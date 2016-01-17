@@ -1,0 +1,804 @@
+<resources>
+    <string name="app_name">ClassTune</string>
+
+    <string name="test_string">Lorem Ipsum is simply dummy text of the printing  into electronic ining Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+    <string name="empty_mobile_num_error">Please enter Mobile Number!</string>
+
+    <string name="join_popup_text">Join</string>
+    <string name="join_popup_student">Student</string>
+    <string name="join_popup_teacher">Teacher</string>
+    <string name="join_popup_parents">Parents</string>
+    <string name="join_popup_alumni">Alumni</string>
+    <string name="join_text2">Fill up this information</string>
+    <string name="share_text">Choose where you want to share...</string>
+
+    <!-- SETTINGS -->
+    <string name="setting_drawer_basic_info_text">Basic Information</string>
+    <string name="setting_drawer_title_text">Info \u0026 Setting</string>
+    <string name="setting_drawer_account_text">Account Settings</string>
+    <string name="setting_drawer_pref_text">Preference Settings</string>
+    <string name="setting_drawer_faq_text">Frequently Asked Questions</string>
+    <string name="setting_drawer_profile_text">Edit Profile</string>
+    <string name="setting_drawer_term_text">Terms \u0026 Policy</string>
+    <string name="setting_drawer_assessment_text">Assessment Scores</string>
+    <string name="setting_drawer_logout_text">Log Out</string>
+    <string name="setting_drawer_about_us_text">About Us</string>
+    <string name="setting_drawer_current_password_hint_text">Current Password</string>
+    <string name="forget_password_username_label">username</string>
+    <string name="forget_password_email_label">email</string>
+    <string name="setting_drawer_new_password_hint_text">New Password</string>
+    <string name="setting_drawer_retype_password_hint_text">Retype Password</string>
+    <string name="progress_message">Signing in to Google&#8230;</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="tv_homework">Homework assigned by </string>
+    <string name="hint_username">Email/Username</string>
+    <string name="hint_password">Password</string>
+    <string name="text_loading">Loading...</string>
+
+    <string-array name="free_settings_images">
+        <item>about_us</item>
+        <item>terms_and_policy</item>
+
+    </string-array>
+    <string-array name="free_settings_text">
+        <item>About Us</item>
+        <item>Terms \u0026 Policy</item>
+    </string-array>
+
+    <string-array name="free_settings_images_log_in">
+        <item>account_settings</item>
+        <item>terms_and_policy</item>
+    </string-array>
+    <string-array name="free_settings_text_log_in">
+        <item>Account Settings</item>
+        <item>Terms \u0026 Policy</item>
+    </string-array>
+    <string-array name="diary_images_student">
+        <item>home</item>
+        <item>homework</item>
+        <item>quiz</item>
+        <item>notice</item>
+        <item>syllabus</item>
+        <item>event</item>
+        <item>attendance</item>
+        <item>routine</item>
+        <item>exam_routine</item>
+        <item>reportcard</item>
+        <item>academic_calendar</item>
+        <item>transport</item>
+        <item>lesson_plan</item>
+
+    </string-array>
+
+    <string-array name="diary_class_student">
+
+        <item>SchoolFeedFragment</item>
+        <item>HomeworkFragment</item>
+        <item>QuizFragment</item>
+        <item>NoticeFragmentNew</item>
+        <item>SyllabusFragment</item>
+        <item>ParentEventFragment</item>
+        <item>ParentAttendenceFragment</item>
+        <item>StudentClassRoutineFragment</item>
+        <item>ExamRoutineFragmentAll</item>
+        <item>ParentReportCardFragment</item>
+        <item>ParentAcademicCalender</item>
+        <item>TransportFragment</item>
+        <item>LessonPlanStudentParent</item>
+
+    </string-array>
+
+    <string-array name="diary_text_student">
+
+        <item>School Feed</item>
+        <item>Homework</item>
+        <item>Quiz</item>
+        <item>Notice</item>
+        <item>Syllabus</item>
+        <item>Event</item>
+        <item>Attendance</item>
+        <item>Routine</item>
+        <item>Exam Routine</item>
+        <item>Report Card</item>
+        <item>Academic Calendar</item>
+        <item>Transport</item>
+        <item>Lesson Plan</item>
+
+    </string-array>
+
+    //student free menus serial
+    <string-array name="diary_images_student_free">
+        <item>home</item>
+        <item>homework</item>
+        <item>notice</item>
+        <item>quiz</item>
+
+        <item>syllabus</item>
+        <item>event</item>
+        <item>attendance</item>
+        <item>routine</item>
+        <item>exam_routine</item>
+        <item>reportcard</item>
+        <item>academic_calendar</item>
+        <item>transport</item>
+        <item>lesson_plan</item>
+
+    </string-array>
+
+    <string-array name="diary_class_student_free">
+
+        <item>SchoolFeedFragment</item>
+        <item>HomeworkFragment</item>
+        <item>NoticeFragmentNew</item>
+        <item>QuizFragment</item>
+
+        <item>SyllabusFragment</item>
+        <item>ParentEventFragment</item>
+        <item>ParentAttendenceFragment</item>
+        <item>StudentClassRoutineFragment</item>
+        <item>ExamRoutineFragmentAll</item>
+        <item>ParentReportCardFragment</item>
+        <item>ParentAcademicCalender</item>
+        <item>TransportFragment</item>
+        <item>LessonPlanStudentParent</item>
+
+    </string-array>
+
+    <string-array name="diary_text_student_free">
+
+        <item>School Feed</item>
+        <item>Homework</item>
+        <item>Notice</item>
+        <item>Quiz</item>
+
+        <item>Syllabus</item>
+        <item>Event</item>
+        <item>Attendance</item>
+        <item>Routine</item>
+        <item>Exam Routine</item>
+        <item>Reportcard</item>
+        <item>Academic Calendar</item>
+        <item>Transport</item>
+        <item>Lesson Plan</item>
+
+    </string-array>
+
+
+    <string-array name="diary_images_parents">
+        <item>home</item>
+        <item>homework</item>
+        <item>quiz</item>
+        <item>notice</item>
+        <item>syllabus</item>
+        <item>event</item>
+        <item>attendance</item>
+        <item>routine</item>
+        <item>exam_routine</item>
+        <item>reportcard</item>
+        <item>meetingrequest</item>
+        <item>academic_calendar</item>
+        <item>transport</item>
+        <item>leaveapplication</item>
+        <item>fees</item>
+        <item>lesson_plan</item>
+
+    </string-array>
+
+    <string-array name="diary_text_parents">
+        <item>School Feed</item>
+        <item>Homework</item>
+        <item>Quiz</item>
+        <item>Notice</item>
+        <item>Syllabus</item>
+        <item>Event</item>
+        <item>Attendance</item>
+        <item>Routine</item>
+        <item>Exam Routine</item>
+        <item>Reportcard</item>
+        <item>Meeting Request</item>
+        <item>Academic Calendar</item>
+        <item>Transport</item>
+        <item>Leave Application</item>
+        <item>Fees</item>
+        <item>Lesson Plan</item>
+
+    </string-array>
+
+    <string-array name="diary_class_parents">
+        <item>SchoolFeedFragment</item>
+        <item>HomeworkFragment</item>
+        <item>QuizFragment</item>
+        <item>NoticeFragmentNew</item>
+        <item>SyllabusFragment</item>
+
+        <item>ParentEventFragment</item>
+        <item>ParentAttendenceFragment</item>
+        <item>StudentClassRoutineFragment</item>
+        <item>ExamRoutineFragmentAll</item>
+        <item>ParentReportCardFragment</item>
+        <item>MeetingFragment</item>
+        <item>ParentAcademicCalender</item>
+        <item>TransportFragment</item>
+        <item>ApplyForLeaveFragment</item>
+        <item>FeesTabhostFragment</item>
+        <item>LessonPlanStudentParent</item>
+
+    </string-array>
+
+    //free parent menu start here
+    <string-array name="diary_images_parents_free">
+        <item>home</item>
+        <item>homework</item>
+        <item>notice</item>
+        <item>quiz</item>
+
+        <item>syllabus</item>
+        <item>event</item>
+        <item>attendance</item>
+        <item>routine</item>
+        <item>exam_routine</item>
+        <item>reportcard</item>
+        <item>meetingrequest</item>
+        <item>academic_calendar</item>
+        <item>transport</item>
+        <item>leaveapplication</item>
+        <item>fees</item>
+        <item>lesson_plan</item>
+
+    </string-array>
+
+    <string-array name="diary_text_parents_free">
+        <item>School Feed</item>
+        <item>Homework</item>
+        <item>Notice</item>
+        <item>Quiz</item>
+
+        <item>Syllabus</item>
+        <item>Event</item>
+        <item>Attendance</item>
+        <item>Routine</item>
+        <item>Exam Routine</item>
+        <item>Report Card</item>
+        <item>Meeting Request</item>
+        <item>Academic Calendar</item>
+        <item>Transport</item>
+        <item>Leave Application</item>
+        <item>Fees</item>
+        <item>Lesson Plan</item>
+
+    </string-array>
+
+    <string-array name="diary_class_parents_free">
+        <item>SchoolFeedFragment</item>
+        <item>HomeworkFragment</item>
+        <item>NoticeFragmentNew</item>
+        <item>QuizFragment</item>
+
+        <item>SyllabusFragment</item>
+        <item>ParentEventFragment</item>
+        <item>ParentAttendenceFragment</item>
+        <item>StudentClassRoutineFragment</item>
+        <item>ExamRoutineFragmentAll</item>
+        <item>ParentReportCardFragment</item>
+        <item>MeetingFragment</item>
+        <item>ParentAcademicCalender</item>
+        <item>TransportFragment</item>
+        <item>ApplyForLeaveFragment</item>
+        <item>FeesTabhostFragment</item>
+        <item>LessonPlanStudentParent</item>
+
+    </string-array>
+
+
+
+    <string-array name="diary_images_teacher">
+        <item>home</item>
+        <item>attendance</item>
+        <item>homework</item>
+        <item>routine</item>
+        <item>exam_routine</item>
+        <item>notice</item>
+        <item>syllabus</item>
+        <item>student_list</item>
+        <item>leaveapplication</item>
+        <item>meetingrequest</item>
+        <item>event</item>
+        <item>transport</item>
+        <item>reportcard</item>
+        <item>academic_calendar</item>
+        <item>lesson_plan</item>
+
+    </string-array>
+
+    <string-array name="diary_text_teacher">
+        <item>School Feed</item>
+        <item>Attendance</item>
+        <item>Homework</item>
+        <item>Routine</item>
+        <item>Exam Routine</item>
+        <item>Notice</item>
+        <item>Syllabus</item>
+        <item>Student List</item>
+        <item>Leave Application</item>
+        <item>Meeting Request</item>
+        <item>Events</item>
+        <item>Transport</item>
+        <item>Report Card</item>
+        <item>Academic Calendar</item>
+        <item>Lesson Plan</item>
+
+    </string-array>
+
+    <string-array name="diary_class_teacher">
+        <item>SchoolFeedFragment</item>
+        <item>TeachersAttendanceTabhostFragment</item>
+        <item>TeacherHomeWorkFragment</item>
+        <item>TeacherRoutineFragment</item>
+        <item>ExamRoutineTeacherFragment</item>
+        <item>NoticeFragmentNew</item>
+        <item>SyllabusFragment</item>
+        <item>StudentListFragment</item>
+        <item>ApplyForLeaveFragment</item>
+        <item>MeetingFragment</item>
+        <item>ParentEventFragment</item>
+        <item>TransportFragment</item>
+        <item>ParentReportCardFragment</item>
+        <item>ParentAcademicCalender</item>
+        <item>LessonPlanTeacher</item>
+
+    </string-array>
+
+    <string-array name="diary_images_teacher_free">
+        <item>home</item>
+        <item>homework</item>
+        <item>notice</item>
+        <item>attendance</item>
+
+        <item>routine</item>
+        <item>exam_routine</item>
+
+        <item>syllabus</item>
+        <item>student_list</item>
+        <item>leaveapplication</item>
+        <item>meetingrequest</item>
+        <item>event</item>
+        <item>transport</item>
+        <item>reportcard</item>
+        <item>academic_calendar</item>
+        <item>lesson_plan</item>
+
+    </string-array>
+
+    <string-array name="diary_text_teacher_free">
+        <item>School Feed</item>
+        <item>Homework</item>
+        <item>Notice</item>
+        <item>Attendance</item>
+
+        <item>Routine</item>
+        <item>Exam Routine</item>
+
+        <item>Syllabus</item>
+        <item>Student List</item>
+        <item>Leave Application</item>
+        <item>Meeting Request</item>
+        <item>Events</item>
+        <item>Transport</item>
+        <item>Report Card</item>
+        <item>Academic Calendar</item>
+        <item>Lesson Plan</item>
+
+    </string-array>
+
+    <string-array name="diary_class_teacher_free">
+        <item>SchoolFeedFragment</item>
+        <item>TeacherHomeWorkFragment</item>
+        <item>NoticeFragmentNew</item>
+        <item>TeachersAttendanceTabhostFragment</item>
+
+        <item>TeacherRoutineFragment</item>
+        <item>ExamRoutineTeacherFragment</item>
+
+        <item>SyllabusFragment</item>
+        <item>StudentListFragment</item>
+        <item>ApplyForLeaveFragment</item>
+        <item>MeetingFragment</item>
+        <item>ParentEventFragment</item>
+        <item>TransportFragment</item>
+        <item>ParentReportCardFragment</item>
+        <item>ParentAcademicCalender</item>
+        <item>LessonPlanTeacher</item>
+
+    </string-array>
+
+    <string-array name="free_menus_images">
+        <!--<item>spellingbee_bee_icon</item>-->
+        <item>spellingbee_newbee_icon</item>
+        <item>resource</item>
+        <item>newsarticle</item>
+        <item>entertainment</item>
+        <item>sports</item>
+        <item>game</item>
+        <item>eca</item>
+        <item>fitness</item>
+        <item>food</item>
+        <item>travel</item>
+        <item>personality</item>
+        <item>literature</item>
+        <!-- <item>video</item> -->
+    </string-array>
+    <string-array name="free_menus_text">
+        <!--<item>Play Online Round</item>-->
+        <item>Spelling Bee</item>
+        <item>Resource Centre</item>
+        <item>News \u0026 Articles</item>
+        <item>Entertainment</item>
+        <item>Sports</item>
+        <item>Games</item>
+        <item>Extra Curricular</item>
+        <item>Fitness \u0026 Health</item>
+        <item>Food \u0026 Nutrition</item>
+        <item>Travel</item>
+        <item>Personality</item>
+        <item>Literature</item>
+        <!-- <item>Videos</item> -->
+    </string-array>
+    <string-array name="free_menus_id">
+        <!--<item>-7</item>-->
+        <item>7</item>
+        <item>6</item>
+        <item>38</item>
+        <item>3</item>
+        <item>47</item>
+        <item>1</item>
+        <item>5</item>
+        <item>2</item>
+        <item>4</item>
+        <item>36</item>
+        <item>37</item>
+        <item>48</item>
+        <!-- <item>49</item> -->
+    </string-array>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <!-- LogIn -->
+    <string name="login_failed_text">Log in failed.</string>
+    <string name="fb_app_id">850059515022967</string>
+    <string name="fb_app_namespace">champs_schoolapp</string>
+    <string name="not_logged_in_msg">This feature is only for registered users.\n\nPlease register with us and get many other interesting features.</string>
+
+    <!-- popUpMessage -->
+    <string name="candle_msg">This is where you make your voice heard. Candle lets users to publish their articles and give feedback.\n</string>
+    <string name="school_msg">Join your school\'s page today and stay connected!
+Get updates on recent on goings and feeds from your school teachers.</string>
+    <string name="good_read_msg">Save and collect articles that you like using \'Good Read\' feature.\n</string>
+    <string name="read_later_msg">We know how busy you are. Use \'Read Later\' to save interesting articles to read them later at a more convenient time.\n</string>
+    <string name="wow_msg">We love that you love our content but this feature is only for registered users. Please register with us and get many more interesting features.</string>
+    <!-- Homework -->
+
+    <string name="btn_ok">OK</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_done">Done</string>
+    <string name="btn_reminder">Reminder</string>
+    <string name="btn_previous">Previous</string>
+    <string name="tab_homework">Homework</string>
+    <string name="tab_project">Project</string>
+    <string name="tab_assessment">Quiz</string>
+
+    <string name="due_payment_deadline_text">Deadline: %1$s</string>
+
+    <!-- Attendence -->
+    <string name="percent_text">Percent</string>
+    <string name="total_class_text">Total Class</string>
+    <string name="present_text">Present</string>
+    <string name="absent_text">Absent</string>
+    <string name="leave_text">Leave</string>
+    <string name="late_text">Late</string>
+    <string name="holiday_text">Holiday</string>
+    <string name="title_monthly_attendance_tab">Monthly Attendance Report</string>
+    <string name="title_yearly_attendance_tab">Yearly Attendance Report</string>
+    <string name="title_roll_call_tab">Roll Call</string>
+    <string name="title_class_report_tab">Class Report</string>
+    <string name="title_student_report_tab">Student Report</string>
+    <string name="yearly_attendance_report_title_text">Attendance status since %1$s</string>
+
+    <!-- Academic Calender -->
+    <string name="title_exam_calendar_tab">Exam</string>
+    <string name="title_events_calendar_tab">Events</string>
+    <string name="title_holidays_calendar_tab">Holidays</string>
+    <string name="title_others_calendar_tab">Others</string>
+    <string name="academic_calendar_title_text">Academic calendar %1$s</string>
+    <string name="teacher_routine_title">Routine of %1$s</string>
+    <string name="no_class_title">You have no class on %1$s</string>
+    <string name="title_date">Date</string>
+
+    <!-- Fees -->
+    <string name="tab_fees_due">Due Payment</string>
+    <string name="tab_fees_history">Payment History</string>
+
+    <!-- Free Version -->
+    <string name="btn_sign_up">Sign Up \u0020\u0020</string>
+    <string name="btn_login">Login</string>
+
+    <!-- CMART -->
+    <string name="product_price_text">\u09F3 %1$s /-</string>
+
+    <!-- Notice -->
+
+    <string name="tab_notice_general">All</string>
+    <string name="tab_notice_circular">Academic</string>
+    <string name="tab_notice_announcement">Extra-Academic</string>
+    <string name="tab_notice_events">Events</string>
+    <string name="btn_notice_acknowledge">Acknowledge</string>
+
+    <!-- EVENTS -->
+    <string name="title_events_tab">Upcoming</string>
+    <string name="title_club_news_tab">Club News</string>
+    <string name="title_archieve_tab">Previous</string>
+    <string name="btn_join">Join in</string>
+    <string name="btn_not_going">Not Going</string>
+
+    <!-- HOMEWOEK TEACHER -->
+    <string name="title_draft">Draft</string>
+    <string name="title_add_homework">Add Homework</string>
+    <string name="title_homework_feed">Homeworks</string>
+    <!-- LEAVE -->
+    <string name="title_leave_application">Application</string>
+    <string name="title_student_leave">Student leave</string>
+    <string name="title_my_leave">My Leave</string>
+    <!-- CLUB NEWS -->
+    <string name="list_row_text_activities_club">Activities:</string>
+    <string name="list_row_text_fees_club">Fees:</string>
+    <string name="list_row_text_schedule_club">Schedule:</string>
+    <string name="btn_text_apply_to_join">Apply to Join</string>
+    <string name="btn_text_applied">Applied</string>
+    <string name="btn_text_joined">Joined</string>
+
+    <!-- CLASS TEST -->
+    <string name="title_classtest_tab">Class Test</string>
+
+    <!-- TERM REPORT -->
+    <string name="title_term_report_tab">Term Report</string>
+    <string name="title_progress_graph_tab">Progress Graph</string>
+
+    <!-- ROUTINE -->
+    <string name="title_class_routine">Class Routine</string>
+    <string name="title_weekly_routine">Weekly Routine</string>
+    <string name="title_exam_routine">Exam Routine</string>
+
+    <!-- COMMON -->
+    <string name="internet_error_text">No Internet Connection!</string>
+    <string name="loading_text">Loading...</string>
+    <string name="authenticating_text">Authenticating...</string>
+
+    <!-- FREE VERSION CANDLE -->
+    <string name="btn_candle_attach_file">Attach a file</string>
+    <string name="btn_candle_upload_picture">Picture</string>
+    <string name="btn_candle_Send">Send</string>
+
+    <!-- COMPLETE PROFILE -->
+    <string name="choose_user_name_text">Choose your user name</string>
+    <string name="title_activity_candle">CandleActivity</string>
+
+    <!-- CANDLE -->
+    <string name="chooser_title">Select file</string>
+    <string name="big_image_size">Sorry, can\'t add this image</string>
+    <string name="cannot_add_image">Please select another image which has size lower at 300 KB.</string>
+    <string name="album_name">champs21</string>
+    <string name="candle_description_text">Candle is the platform where you can write articles, share news or lesson plans which will help students, parents and teachers. It’s not just another blog or newspaper! Your Candles will help students, parents and teachers around the world. Light a Candle today and brighten up the world a little at a time.&lt;br /&gt;&lt;br /&gt;Want to help teachers to better their classes or assist parents to teach their kids at home with a great lesson plan? Candle it today in our Resource Center.Do you have any interesting news to share with us and the world? Do you think students, parents and teachers need to learn about it?  Candle it to us from our News section and you may published.Do you have any tips, ideas or a great recipe to share with students, parents and teachers? Candle it today in our Article section. Planning to write an article? Why wait! Candle it today!Read a book or watched a movie recently? Want to write a review on it? Candle it today with us.&lt;br /&gt;&lt;br /&gt;We would love to hear what you think about us. Leave us a message in the Feedback Section and make your voice heard.</string>
+    <string name="empty_title_error">Please enter title!</string>
+    <string name="empty_description_error">Please enter description!</string>
+    <string name="select_category_error">Please select a category!</string>
+    <string name="good_read_count_text">You have %1$s new good reads</string>
+    <string name="see_all"><u>See All</u></string>
+    <string name="currency_text">\u09F3 %1$s-/</string>
+
+    <string-array name="medium_list">
+        <item>Select Medium</item>
+        <item>Bangla</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="country_list">
+        <item>Bangladesh</item>
+    </string-array>
+    <string-array name="city_list">
+        <item>Dhaka</item>
+        <item>Chittagong</item>
+        <item>Rajshahi</item>
+        <item>Khulna</item>
+        <item>Barisal</item>
+        <item>Sylhet</item>
+        <item>Rangpur</item>
+
+    </string-array>
+    <string-array name="location_list">
+        <item>Select Location</item>
+        <item>Azimpur</item>
+        <item>Badda</item>
+        <item>Banani</item>
+        <item>Bangshal</item>
+        <item>Baridhara</item>
+        <item>Bashabo</item>
+        <item>Bashundhara</item>
+        <item>Cantonment</item>
+        <item>Dhaka University</item>
+        <item>Dhanmondi</item>
+        <item>Elephant Road</item>
+        <item>Fakirapool</item>
+        <item>Gandaria</item>
+        <item>Gopibag</item>
+        <item>Green Road</item>
+        <item>Gulshan</item>
+        <item>Hatirpool</item>
+        <item>Jatrabari</item>
+        <item>Jigatola</item>
+        <item>Jurain</item>
+        <item>Kakrail</item>
+        <item>Kalabagan</item>
+        <item>Kalyanpur</item>
+        <item>Kamlapur</item>
+        <item>Khilgaon</item>
+        <item>Khilkhet</item>
+        <item>Lalbag</item>
+        <item>Lalmatia</item>
+        <item>Laxmibazar</item>
+        <item>Malibag</item>
+        <item>Mirpur</item>
+        <item>Mogbazar</item>
+        <item>Mohakhali</item>
+        <item>Mohammadpur</item>
+        <item>Mothijheel</item>
+        <item>Nikunja</item>
+        <item>Paltan</item>
+        <item>Rampura</item>
+        <item>Rayer Bazar</item>
+        <item>Sadarghat</item>
+        <item>Segunbagucha</item>
+        <item>Shantinagar</item>
+        <item>Shahbag</item>
+        <item>Shyamoli</item>
+        <item>Siddeshwari</item>
+        <item>Sobhanbag</item>
+        <item>Sukrabad</item>
+        <item>Tejgaon</item>
+        <item>Tejkunipara</item>
+        <item>Wari</item>
+        <item>Uttara</item>
+    </string-array>
+
+    <string name="title_activity_cmart_product_detaill">CmartProductDetaillActivity</string>
+    <string name="about_use_text">
+<![CDATA[<p>After its launching in October 2010, Champs21.com has been catering to both Bangla and English medium students, primarily offering a self-assessment test service to assess students’ own strengths and weaknesses in Mathematics and Science towards stronger academic foundation. It also enables students to brush up their ‘beyond-textbook’ learning in both Bangla and English languages. Another area of scholastic focus of this approach covers General Knowledge, IQ, and Current Affairs in its extra curriculum section. The inception of Champs21.com took place keeping in mind the following targets:</p>
+        <p>
+            <ul>
+                <li>•	Bringing about fun, excitement and enjoyment in learning;</li><br><br>
+                <li>•	opening up the world of internet as a \‘huge free knowledge bank\’ to the students;</li><br><br>
+                <li>•	bridging the resource-divide, that implies a village student gains access to the same quality of learning as a traditionally more fortunate urban student of a top-school</li><br><br>
+            </ul>
+        </p>
+        <p>
+            With realization to all the factor that are there in the system which demands an immediate action for a better educational method, Champs21.com is determined to provide the best standard education in every corner of the country.
+        </p>
+         <p>
+            <b>Current Version: 1.0.9</b>
+        </p>
+
+    ]]>
+    </string>
+    <string name="termsandpolicy_text">
+<![CDATA[
+        <p>
+            <b>1. Applicable Terms</b>
+        </p>
+        <p>
+            The terms and conditions set forth hereinafter are applicable to all visitors, subscribers or users of the site. The site is branded under the name of
+            ClassTune.
+        </p>
+        <p>
+            <b>2. Copyright Issue</b>
+        </p>
+        <p>
+            The site is designed, updated and maintained by ClassTune. ClassTune and the name, design and the web address are exclusive property of ClassTune. Any copy and/or reproduction in any form
+            and/or unauthorized access to any data forming part of the site will amount to infringement of copyright laws and international
+            treaty provisions.
+        </p>
+        <p>
+            <b>3. Information Provided</b>
+        </p>
+        <p>
+            Information provided on this site is on \'as is\' basis and/or as collected from various sources, which can be shared with subscribers on request.
+        </p>
+        <p>
+            <b>4. Liability</b>
+        </p>
+        <p>
+            While utmost care is taken to provide correct and up to date information, ClassTune does not warrant the accuracy, completeness and timely availability of
+            the information provided on the site and accepts no responsibility or liability for any error or omission in any information provided on the site.
+        </p>
+        <p>
+            <b>5. Change in Pricing Structure</b>
+        </p>
+        <p>
+            ClassTune may, at its sole discretion, change the pricing structure at any time without prior intimation. The prices, relevant levies and other charges
+           /discounts given can be changed any time without prior notice. Add-ons to the prices, such as but not limited to, taxes, duties or other levies are payable
+            by recipients of subscription service as per the governing laws of Bangladesh or foreign countries as applicable.
+        </p>
+        <p>
+            <b>6. Rights to modify, add, delete and/or change the contents</b>
+        </p>
+        <p>
+            ClassTune reserves the rights to modify, add, delete and/or change the contents and classification and presentation of the information /content at any
+            time as it may in its absolute discretion find to be expedient, and without giving any notice. It is the user\'s responsibility to refer to the currently
+            prevalent terms and/or any change or addition to the same while accessing the site.
+        </p>
+        <p>
+            <b>7. Preparation of Content</b>
+        </p>
+        <p>
+            The content in ClassTune has been prepared by ClassTune team. Every effort has been made to ensure that there is no infringement of any copyright. In case
+            any discrepancy is reported corrective action would be taken immediately by ClassTune.
+        </p>
+        <p>
+            <b>8. Warranty</b>
+        </p>
+        <p>
+            Though utmost precautions are taken, ClassTune offers no warranty that the contents of the site are free from viruses or any other infection, which has
+            contaminating or destructive properties.
+        </p>
+        <p>
+            <b>9. Responsibility Regarding Third Party Content</b>
+        </p>
+        <p>
+            The site provides at many places links to other websites hosted on servers maintained by third parties over which the Site has no control. The site accepts
+            no responsibility as to the validity of contents and shall in no way be liable for any damage/loss arising to users seeking access or using the site.
+        </p>
+        <p>
+            <b>10. Subscribers Bound by the General Terms and Conditions</b>
+        </p>
+        <p>
+            All subscribers to the ClassTune site are bound by the general terms and conditions mentioned herein and by the subscription agreement set forth
+            hereinafter and special terms contracted therein.
+        </p>
+
+    ]]>
+    </string>
+    <string name="title_activity_cart">CartActivity</string>
+    <string name="title_activity_student_list">StudentListActivity</string>
+    <string name="title_activity_syllabus">SyllabusActivity</string>
+    <string name="title_activity_student_info">StudentInfoActivity</string>
+
+    <string name="album_name_classtune">classtune</string>
+
+    <string name="spinner_prompt_select_batch">Select Batch</string>
+    <string name="spinner_prompt_select_gender">Select Gender</string>
+    <string name="spinner_prompt_select_category">Select Job Category</string>
+    <string name="spinner_prompt_select_department">Select Department</string>
+    <string name="spinner_prompt_select_grade">Select Grade (Optional)</string>
+    <string name="spinner_prompt_select_position">Select Your Position</string>
+
+    <string name="classtune_registration_write_here">Write Here</string>
+    <string name="classtune_registration_email_address">Enter Valid\nEmail Address</string>
+    <string name="classtune_registration_character_length">Minimum\n6 Characters</string>
+    <string name="classtune_registration_retype_password">Confirm Password</string>
+    <string name="classtune_registration_school_code">Collect Code\nfrom Your School</string>
+
+    <string name="classtune_registration_student_user_id">Your User ID: </string>
+    <string name="classtune_registration_student_admission_number_title">Admission No./User ID</string>
+    <string name="classtune_registration_student_admission_number">Enter Admission ID / User ID</string>
+    <string name="classtune_registration_student_dob">Select Date of Birth</string>
+    <string name="classtune_registration_student_contact">Write with Country Code</string>
+    <string name="classtune_registration_student_upload_photo">Upload Photo</string>
+
+    <string name="classtune_registration_parent_user_id">Set User ID</string>
+    <string name="classtune_registration_parent_add_student">Insert ID</string>
+
+    <string name="classtune_registration_teacher_employee_number_title">Employee No./User ID</string>
+    <string name="classtune_registration_teacher_employee_number">Enter Employee ID / User ID</string>
+    <string name="classtune_registration_teacher_job_title">Write Job Title</string>
+    <string name="classtune_registration_teacher_joining_date">Select Your Joining Date</string>
+    <string name="classtune_registration_teacher_position_title">Select Job Category First</string>
+</resources>

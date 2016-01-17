@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/layoutRightRedBar"
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/search_tap_sidebar"
+            android:orientation="horizontal"
+            android:visibility="invisible" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/layoutSearchContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tap_search_container"
+                android:clickable="true"
+                android:gravity="center_vertical" >
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp" >
+
+                    <ImageView
+                        android:id="@+id/imageViewImageLogo"
+                        android:layout_width="125dp"
+                        android:layout_height="100dp"/>
+
+                    <com.classtune.app.schoolapp.viewhelpers.CustomRhombusIcon
+                        android:id="@+id/imageViewImageLogoRombus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:visibility="gone"
+                        custom:iconImageRhombus="@drawable/home_tap" >
+                    </com.classtune.app.schoolapp.viewhelpers.CustomRhombusIcon>
+                </FrameLayout>
+
+                <!--
+                     <ImageView
+                    android:id="@+id/imageViewImageLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/science" />
+                -->
+
+                <!-- <com.champs21.schoolapp.viewhelpers.CustomRhombusIcon
+                    android:id="@+id/imageViewImageLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    custom:iconImageRhombus="@drawable/home_tap" >
+                </com.champs21.schoolapp.viewhelpers.CustomRhombusIcon> -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/txtTitleName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/txtCategoryName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/gray_1"
+                        android:text="TextView" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_2" >
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

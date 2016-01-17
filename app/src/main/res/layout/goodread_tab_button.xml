@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:orientation="horizontal" >
+
+    <com.classtune.app.schoolapp.viewhelpers.CustomButton
+        android:id="@+id/btn_goodread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/general_btn"
+        android:clickable="true"
+        android:gravity="center" />
+
+
+</LinearLayout>

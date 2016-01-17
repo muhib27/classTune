@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center" 
+    android:paddingLeft="20dip"
+    android:background="@color/gray_bg"
+    >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight=".2"
+                android:text="Email:"
+                android:textColor="@color/settings_grey_left"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_pass_email"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dip"
+            android:text="Password:"
+            android:textColor="@color/settings_grey_left"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+
+            <EditText
+                android:id="@+id/et_current_pass"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3.5"
+                android:background="@drawable/name_edit"
+                android:hint="@string/setting_drawer_current_password_hint_text"
+                android:paddingLeft="2dip"
+                android:password="true"
+                android:textColorHint="@color/white"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imgEditCurrentPass"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:padding="5dp"
+                android:src="@drawable/writing" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+
+            <EditText
+                android:id="@+id/et_new_pass"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3.5"
+                android:background="@drawable/name_edit"
+                android:hint="@string/setting_drawer_new_password_hint_text"
+                android:paddingLeft="2dip"
+                android:password="true"
+                android:textColorHint="@color/white"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imgEditNewPass"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:padding="5dp"
+                android:src="@drawable/writing" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+
+            <EditText
+                android:id="@+id/et_re_pass"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3.5"
+                android:background="@drawable/name_edit"
+                android:hint="@string/setting_drawer_retype_password_hint_text"
+                android:paddingLeft="2dip"
+                android:password="true"
+                android:textColorHint="@color/white"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imgEditRePass"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:padding="5dp"
+                android:src="@drawable/writing" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:background="@drawable/btn_save_settings" />
+    </LinearLayout>
+
+</LinearLayout>

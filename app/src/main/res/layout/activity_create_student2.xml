@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dfe1e2"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/layoutUserIdHolder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_alignParentTop="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="@string/classtune_registration_student_user_id"/>
+
+                    <TextView
+                        android:id="@+id/txtUserId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/classtune_green_color"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="22sp"/>
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/layout_admission_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@android:color/white"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_below="@+id/layoutUserIdHolder">
+
+                    <EditText
+                        android:id="@+id/txtAdmission"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:padding="10dp"
+                        android:background="#dfe1e2"
+                        android:gravity="center"
+                        android:hint="@string/classtune_registration_student_admission_number" />
+
+                </RelativeLayout>
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:background="@android:color/white"
+                    android:layout_height="500dp"
+                    android:layout_below="@+id/layout_admission_number">
+
+                    <RelativeLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_alignRight="@+id/relativeLayout5"
+                        android:layout_alignEnd="@+id/relativeLayout5"
+                        android:layout_below="@+id/relativeLayout5"
+                        android:background="#219439"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/relativeLayout7">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:weightSum="5"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true">
+
+                            <RelativeLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#219439"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/classtune_icon_batch_id"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:id="@+id/imageView6" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@android:color/white"
+                                    android:textStyle="bold"
+                                    android:text="Batch"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_below="@+id/imageView6"
+                                    android:layout_centerHorizontal="true" />
+
+
+
+
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#286c33">
+
+                            </View>
+
+                            <RelativeLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#219439"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+
+
+                                <ImageView
+                                    android:id="@+id/imageView7"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/classtune_icon_dob"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@android:color/white"
+                                    android:textStyle="bold"
+                                    android:text="Date of Birth"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_below="@+id/imageView7"
+                                    android:layout_centerHorizontal="true" />
+
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#286c33">
+
+                            </View>
+
+                            <RelativeLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#219439"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+
+
+                                <ImageView
+                                    android:id="@+id/imageView8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/classtune_icon_gender"
+                                    android:layout_centerVertical="true"
+                                    android:layout_centerHorizontal="true" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@android:color/white"
+                                    android:textStyle="bold"
+                                    android:text="Gender"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_below="@+id/imageView8"
+                                    android:layout_centerHorizontal="true" />
+
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#286c33">
+
+                            </View>
+
+                            <RelativeLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#219439"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+
+
+                                <ImageView
+                                    android:id="@+id/imageView9"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/classtune_icon_contact"
+                                    android:layout_centerVertical="true"
+                                    android:layout_centerHorizontal="true" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@android:color/white"
+                                    android:textStyle="bold"
+                                    android:text="Contact No."
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_below="@+id/imageView9"
+                                    android:layout_centerHorizontal="true" />
+
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#286c33">
+
+                            </View>
+
+                            <RelativeLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#219439"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+
+
+                                <ImageView
+                                    android:id="@+id/imageView10"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/classtune_icon_upload_photo"
+                                    android:layout_centerVertical="true"
+                                    android:layout_centerHorizontal="true" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@android:color/white"
+                                    android:textStyle="bold"
+                                    android:text="Upload a Photo"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_below="@+id/imageView10"
+                                    android:layout_centerHorizontal="true" />
+
+
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:layout_toRightOf="@+id/relativeLayout5"
+                        android:layout_toEndOf="@+id/relativeLayout5"
+                        android:layout_below="@+id/relativeLayout5">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:weightSum="5"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true">
+
+                            <RelativeLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_weight="1">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:background="#e8e9e9"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:id="@+id/view1">
+
+                                </View>
+
+                                <com.classtune.app.schoolapp.classtune.NoDefaultSpinner
+                                    android:id="@+id/spinnerBatch"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentTop="true"
+                                    android:spinnerMode="dialog"
+                                    android:prompt="@string/spinner_prompt_select_batch">
+                                </com.classtune.app.schoolapp.classtune.NoDefaultSpinner>
+
+
+
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/layoutDatePicker"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginLeft="30dp"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:background="#e8e9e9"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:id="@+id/view2">
+
+                                </View>
+
+                                <TextView
+                                    android:id="@+id/txtDob"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentTop="true"
+                                    android:text="@string/classtune_registration_student_dob"
+                                    android:background="@android:color/transparent"
+                                    android:imeOptions="actionNext"
+                                    android:nextFocusDown="@+id/txtEmail"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="18sp"
+                                    android:layout_above="@+id/view2" />
+
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginLeft="30dp"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:background="#e8e9e9"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:id="@+id/view3">
+
+                                </View>
+
+                                <com.classtune.app.schoolapp.classtune.NoDefaultSpinner
+                                    android:id="@+id/spinnerGender"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentTop="true"
+                                    android:spinnerMode="dialog"
+                                    android:prompt="@string/spinner_prompt_select_gender">>
+                                </com.classtune.app.schoolapp.classtune.NoDefaultSpinner>
+
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginLeft="30dp"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:background="#e8e9e9"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:id="@+id/view4">
+
+                                </View>
+
+                                <EditText
+                                    android:id="@+id/txtContact"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentTop="true"
+                                    android:hint="@string/classtune_registration_student_contact"
+                                    android:background="@android:color/transparent"
+                                    android:imeOptions="actionDone"
+                                    android:nextFocusDown="@+id/txtRetypePassword"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="18sp"
+                                    android:layout_above="@+id/view4" />
+
+
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/layoutUploadPhoto"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginLeft="30dp"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/txtUploadPhoto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/classtune_registration_student_upload_photo"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="18sp"
+                                    android:gravity="center"/>
+
+
+                                <LinearLayout
+                                    android:id="@+id/image_attached_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentTop="true"
+                                    android:visibility="gone"
+                                    android:padding="5dip" >
+
+                                    <TextView
+                                        android:id="@+id/tv_image_name"
+                                        android:layout_width="0dip"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="5dip"
+                                        android:layout_weight="1"
+                                        android:textColor="@color/black"
+                                        android:textColorHint="@color/gray_1"
+                                        android:gravity="center"
+                                        android:textSize="18sp" />
+
+                                    <ImageView
+                                        android:id="@+id/btn_cross_image"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:adjustViewBounds="true"
+                                        android:padding="10dip"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/cross" />
+                                </LinearLayout>
+
+
+
+
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCreateLower"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:textSize="20sp"
+                    android:text="Create Account"
+                    android:textStyle="bold"
+                    android:textColor="@drawable/classtune_btn_firstphase_next"
+                    android:background="@drawable/classtune_btn_fistphase_background"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+</RelativeLayout>

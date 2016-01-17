@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:id="@+id/top_panel_for_others"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="50dp"
+            android:background="@color/gray_bg" />
+
+        <ImageView
+            android:id="@+id/img_cat_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/notice_tap" />
+
+        <TextView
+            android:id="@+id/txt_category_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Notice"
+            android:textColor="@color/gray_1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="7dip"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
+                android:id="@+id/btnNoticeGeneral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_general_btn"
+                android:clickable="true"
+                android:gravity="center"
+                custom:iconImageTab="@drawable/eye_gray"
+                custom:iconTextTab="@string/tab_notice_general" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dip"
+            android:layout_weight="1" >
+
+            <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
+                android:id="@+id/btnNoticeCircular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_general_btn"
+                android:clickable="true"
+                android:gravity="center"
+                custom:iconImageTab="@drawable/circular_gray"
+                custom:iconTextTab="@string/tab_notice_circular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dip"
+            android:layout_weight="1" >
+
+            <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
+                android:id="@+id/btnNoticeAnnouncement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_general_btn"
+                android:clickable="true"
+                android:gravity="center"
+                custom:iconImageTab="@drawable/annaouncment_gray"
+                custom:iconTextTab="@string/tab_notice_announcement" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp" >
+
+            <com.handmark.pulltorefresh.library.PullToRefreshListView
+                android:id="@+id/listViewNotice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/gray_2"
+                android:cacheColorHint="#00000000"
+                android:smoothScrollbar="true"
+                android:dividerHeight="1dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No data found!"
+            android:textColor="@color/classtune_green_color"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="22sp"/>
+
+
+    </FrameLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/top_panel_for_others"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <View
+                android:layout_width="1dip"
+                android:layout_height="50dp"
+                android:background="@color/gray_bg" />
+
+            <ImageView
+                android:id="@+id/img_cat_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/homework_tap" />
+
+            <TextView
+                android:id="@+id/txt_category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Homework"
+                android:textColor="@color/gray_1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:clickable="true"
+            android:visibility="visible"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imgFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/filter_normal" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_1"
+                android:text="Filter" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutMidPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#b1b8ba"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/layoutSubject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="15dp" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FILTER BY SUBJECT"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/white" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="15dp" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FILTER BY DATE"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="7dip"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
+                android:id="@+id/tab_homework"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_general_btn"
+                android:clickable="true"
+                android:gravity="center"
+                custom:iconImageTab="@drawable/homeworks_tab_gray"
+                custom:iconTextTab="@string/tab_homework" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dip"
+            android:layout_weight="1" >
+
+            <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
+                android:id="@+id/tab_project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_general_btn"
+                android:clickable="true"
+                android:gravity="center"
+                custom:iconImageTab="@drawable/project_gray"
+                custom:iconTextTab="@string/tab_project" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutAssessmentHolder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dip"
+            android:layout_weight="1" >
+
+            <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
+                android:id="@+id/tab_assessment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tab_general_btn"
+                android:clickable="true"
+                android:gravity="center"
+                custom:iconImageTab="@drawable/asses_gray"
+                custom:iconTextTab="@string/tab_assessment" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_margin="10dip"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/txtNoData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:text="No quiz available now!"
+            android:textColor="@color/classtune_green_color"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:textStyle="bold" />
+        
+        
+         <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/listViewAssessment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@android:color/transparent"
+        	android:dividerHeight="5dip"
+            android:smoothScrollbar="true"
+            android:layout_marginTop="10dip" />
+
+        
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/listView_homework"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray_bg"
+            android:cacheColorHint="#00000000"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:smoothScrollbar="true" >
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+    </FrameLayout>
+
+</LinearLayout>

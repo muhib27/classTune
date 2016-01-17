@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+	
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/gray_dark" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/resource_tap" />
+
+        <TextView
+            android:id="@+id/tv_report_exam_name"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mid Term Exam"
+            android:textColor="@color/classtune_green_color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dip"
+        android:background="@color/gray_dark" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_dark"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <Button
+                    android:id="@+id/btn_grade"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/report_grade_btn"
+                    android:clickable="false"
+                    android:text="C"
+                    android:textColor="@color/maroon"
+                    android:textSize="50sp" />
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/btn_position"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dip"
+                        android:layout_weight="1"
+                        android:background="@drawable/report_gray_btn"
+                        android:clickable="false"
+                        android:text="Position: 4th"
+                        android:textColor="@color/red"
+                        android:textSize="10sp" />
+
+                    <Button
+                        android:id="@+id/btn_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dip"
+                        android:layout_weight="1"
+                        android:background="@drawable/report_gray_btn"
+                        android:clickable="false"
+                        android:textColor="@color/red"
+                        android:text="Total Students: 204"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/btn_gpa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dip"
+                        android:layout_weight="1"
+                        android:background="@drawable/report_gray_btn"
+                        android:clickable="false"
+                        android:text="4.5"
+                        android:textColor="@color/red"
+                        android:textSize="14sp" />
+
+                    <!--
+                         <com.champs21.schoolapp.viewhelpers.CustomButton
+                        android:id="@+id/btn_place_to_parents"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dip"
+                        android:layout_weight="1"
+                        android:background="@drawable/report_white_btn"
+                        android:clickable="true"
+                        custom:iconImage="@drawable/done_normal"
+                        custom:iconText="Place to your parents"
+                        custom:textColor="@color/black"
+                        custom:textSize="9" />
+                    -->
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

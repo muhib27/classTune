@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/top_panel_for_others"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="50dp"
+            android:background="@color/gray_bg" />
+
+        <ImageView
+            android:id="@+id/img_cat_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/event_tap" />
+
+        <TextView
+            android:id="@+id/txt_category_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Events"
+            android:textColor="@color/gray_1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    
+    <!-- <com.champs21.schoolapp.viewhelpers.CustomButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_btn"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="5dip"
+        android:gravity="left|center_vertical"
+        android:id="@+id/header_parent"
+        custom:textSize="18" /> -->
+
+    <com.classtune.app.schoolapp.viewhelpers.MyFragmentTabHost
+        android:id="@+id/tabhost_events"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dip"
+            android:orientation="vertical" >
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="horizontal" />
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="0" />
+
+            <FrameLayout
+                android:id="@+id/realtabcontent_events"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </com.classtune.app.schoolapp.viewhelpers.MyFragmentTabHost>
+
+</LinearLayout>

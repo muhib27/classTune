@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:title="Dhaka"/>
+    <item android:title="Chittagong"/>
+    <item android:title="Rajshahi"/>
+    <item android:title="Khulna"/>
+    <item android:title="Barisal"/>
+    <item android:title="Sylhet"/>
+    <item android:title="Comilla"/>
+    <item android:title="Rangpur"/>
+    <item android:title="Narayanganj"/>
+    <item android:title="Gazipur"/>
+    
+
+</menu>

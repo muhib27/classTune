@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray_bg">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.35"
+                    android:gravity="left|center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:gravity="left"
+                        android:text="Select Batch"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_2"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSelectBatchActionHolder"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:id="@+id/txtSelectBatch"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dip"
+                            android:layout_weight="1"
+                            android:hint="Select Batch"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp" />
+
+                        <ImageButton
+                            android:id="@+id/btnSelectBatch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_btn" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@android:color/white"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.35"
+                    android:gravity="left|center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:gravity="left"
+                        android:text="Select Category"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_2"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSelectCategoryActionHolder"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:id="@+id/txtSelectCategory"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dip"
+                            android:layout_weight="1"
+                            android:hint="Select Category"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp" />
+
+                        <ImageButton
+                            android:id="@+id/btnSelectCategory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner_btn" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btnDeleteLesson"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/delete_lesson_deactive" />
+
+                <ImageButton
+                    android:id="@+id/btnAssignLesson"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/assign_class_deactive" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:id="@+id/linearLayout">
+
+
+                    <LinearLayout
+                        android:id="@+id/layoutSelect"
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:layout_weight="1.5">
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:background="@color/gray_2">
+
+                    </LinearLayout>
+
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Title"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"/>
+
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:background="@color/gray_2">
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="Category"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:background="@color/gray_2">
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Subject"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+
+
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:background="@color/gray_2">
+
+                    </LinearLayout>
+
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="Status"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutBar"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/linearLayout"
+                    android:background="@color/gray_2">
+
+                </LinearLayout>
+
+                <com.handmark.pulltorefresh.library.PullToRefreshListView
+                    android:id="@+id/listViewLessonPlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:cacheColorHint="#00000000"
+                    android:divider="@color/gray_2"
+                    android:dividerHeight="1dp"
+                    android:smoothScrollbar="true"
+                    android:layout_below="@+id/layoutBar" />
+
+
+                <TextView
+                    android:id="@+id/txtMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="No data found!"
+                    android:textColor="@color/maroon"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/linearLayout"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

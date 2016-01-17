@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Search Widget -->
+    <!--<item
+        android:id="@+id/action_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_search"
+        android:title="Search"/>-->
+    <!--
+        <item
+        android:id="@+id/action_login"
+       	android:icon="@drawable/log_in"
+        android:showAsAction="always"/>
+    -->
+
+    <!--<item
+        android:id="@+id/action_login"
+        android:icon="@drawable/log_in"
+        android:showAsAction="always"
+        android:title="login">
+    </item>-->
+
+    <!--<item
+        android:id="@+id/action_notification"
+        android:icon="@drawable/notification_icon"
+        android:showAsAction="always"
+        android:title="Notification">
+    </item>-->
+
+    <item
+        android:id="@+id/action_notification_new"
+        android:actionLayout="@layout/action_notification_layout"
+        android:showAsAction="always"
+        android:title="Notification">
+    </item>
+
+
+    <item
+        android:id="@+id/action_drawer"
+        android:icon="@drawable/ic_drawer"
+        android:showAsAction="always"
+        android:title="drawer"/>
+
+</menu>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_period_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1st Period"
+        android:textSize="12sp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/tv_period_subject_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Math"
+        android:textSize="12sp"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:id="@+id/img_subject_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/math" />
+
+    <TextView
+        android:id="@+id/tv_period_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="10sp"
+        android:text="8:00 to 8:46 am"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/gray_1" />
+
+</LinearLayout>

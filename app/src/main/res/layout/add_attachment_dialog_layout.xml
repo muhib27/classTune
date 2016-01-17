@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dip"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white" >
+    
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dip"
+        android:gravity="center_horizontal">
+        
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="Select Picture"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+    </LinearLayout>
+    
+    <View android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@color/red"/>
+    
+    <Button android:id="@+id/gallery_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Photo Library"
+        android:layout_gravity="center_horizontal"
+        
+        android:layout_marginTop="20dip"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginBottom="5dip"/>
+    
+    <Button android:id="@+id/camera_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Camera"
+        android:layout_margin="5dip"/>
+   
+    <Button android:id="@+id/cancel_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:layout_margin="5dip"/>
+    
+</LinearLayout>

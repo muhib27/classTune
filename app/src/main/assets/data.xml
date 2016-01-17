@@ -1,0 +1,1603 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<set >
+	<data id="1">
+		<word>legend</word>
+		<bangla_meaning>à¦®à¦¨à§€à¦·à§€</bangla_meaning>
+		<definition>a traditional story sometimes popularly regarded as historical but not authenticated, an extremely famous or notorious person, especially in a particular field </definition>
+		<sentence>Azam Khan is a music legend of Bangladesh.</sentence>
+		<wtype>Noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="2">
+		<word>attack</word>
+		<bangla_meaning>à¦†à¦•à§à¦°à¦®à¦£ à¦•à¦°à¦¾  </bangla_meaning>
+		<definition>take aggressive military action against (a place or enemy forces ) with weapons or armed force</definition>
+		<sentence>In February the Germans attacked Verdun</sentence>
+		<wtype>Verb</wtype>
+		<level>1</level>
+	</data>
+	<data id="3">
+		<word>essential</word>
+		<bangla_meaning>à¦†à¦¬à¦¶à§à¦¯à¦¿à¦• </bangla_meaning>
+		<definition>absolutely necessary; extremely important</definition>
+		<sentence>It is essential to keep up-to-date records.</sentence>
+		<wtype>Adjective</wtype>
+		<level>1</level>
+	</data>
+	<data id="4">
+		<word>pneumonia</word>
+		<bangla_meaning>à¦¨à¦¿à¦‰à¦®à§‹à¦¨à¦¿à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>lung inflammation caused by bacterial or viral infection, in which the air sacs fill with pus and may become solid. </definition>
+		<sentence>The patient is suffering from Pneumonia</sentence>
+		<wtype>Noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="5">
+		<word>hippopotamus</word>
+		<bangla_meaning>à¦œà¦²à¦¹à¦¸à§à¦¤à§€</bangla_meaning>
+		<definition>a large thick-skinned semiaquatic African mammal, with massive jaws and large tusks</definition>
+		<sentence>Dhaka zoo has few Hippopotamuses</sentence>
+		<wtype>Noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="6">
+		<word>kneel</word>
+		<bangla_meaning>à¦¹à¦¾à¦à¦Ÿà§ à¦—à¦¾à¦¡à¦¼à¦¾</bangla_meaning>
+		<definition>Be in or assume a position in which the body is supported by a knee or the knees, as when praying or showing submission</definition>
+		<sentence>They kneel down and pray to God</sentence>
+		<wtype>Verb</wtype>
+		<level>2</level>
+	</data>
+	<data id="7">
+		<word>luxurious</word>
+		<bangla_meaning>à¦¬à¦¿à¦²à¦¾à¦¸ à¦¬à¦¹à§à¦²</bangla_meaning>
+		<definition>extremely comfortable or elegant, especially when involving great expense, giving self-indulgent or sensual pleasure</definition>
+		<sentence>Cox's Bazar's most luxurious hotel is Long beach Hotel. </sentence>
+		<wtype>Adjective</wtype>
+		<level>2</level>
+	</data>
+	<data id="8">
+		<word>lieutenant</word>
+		<bangla_meaning>à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à§‡ à¦•à¦¾à¦œ à¦•à¦°à¦¬à¦¾à¦° à¦•à§à¦·à¦®à¦¤à¦¾ à¦ªà§à¦°à¦¾à¦ªà§à¦¤ à¦•à¦°à§à¦®à¦šà¦¾à¦°à§€à¥¤</bangla_meaning>
+		<definition> a deputy or substitute acting for a superior: a rank of officer in the British army, above second lieutenant and below captain. a rank of officer in the navy, above sub lieutenant and below lieutenant commander </definition>
+		<sentence>He is working as one of the Prime Minister's most trusted lieutenants.</sentence>
+		<wtype>Noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="9">
+		<word>massacre</word>
+		<bangla_meaning>à¦¬à¦¹à§ à¦²à§‹à¦• à¦¹à¦¤à§à¦¯à¦¾ à¦•à¦°à¦¾  </bangla_meaning>
+		<definition>An indiscriminate and brutal slaughter of many people, deliberately and brutally kill (many people).   </definition>
+		<sentence>Reports of massacres on 15th August 1975 not only moved the people of Bangladesh but also the people all over the world.</sentence>
+		<wtype>Noun/ verb</wtype>
+		<level>2</level>
+	</data>
+	<data id="10">
+		<word>melancholia</word>
+		<bangla_meaning>à¦¬à¦¿à¦·à¦¾à¦¦, à¦¹à¦¤à¦¾à¦¶à¦¾</bangla_meaning>
+		<definition>a feeling of deep sadness; melancholy  </definition>
+		<sentence>The haunting melancholia dominates the album.</sentence>
+		<wtype>Noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="11">
+		<word>tranquillizer</word>
+		<bangla_meaning>à¦¦à§à¦¶à§à¦šà¦¿à¦¨à§à¦¤à¦¾ à¦¦à§‚à¦°à¦•à¦¾à¦°à§€ à¦“à¦·à§à¦§</bangla_meaning>
+		<definition>a medicinal drug taken to reduce tension or anxiety</definition>
+		<sentence>We used tranquillizer to control the animals</sentence>
+		<wtype>noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="12">
+		<word>diligence</word>
+		<bangla_meaning>à¦ªà¦°à¦¿à¦¶à§à¦°à¦®</bangla_meaning>
+		<definition>careful and persistent work or effort</definition>
+		<sentence>His diligence is well known.</sentence>
+		<wtype>noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="13">
+		<word>dilemma</word>
+		<bangla_meaning>à¦‰à¦­à¦¯à¦¼ à¦¸à¦‚à¦•à¦Ÿ</bangla_meaning>
+		<definition>a situation in which a difficult choice has to be made between two or more alternatives, especially ones that are equally undesirable</definition>
+		<sentence>When there is a question of shopping, girls are always in dilemma.</sentence>
+		<wtype>noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="14">
+		<word>incessant</word>
+		<bangla_meaning>à¦…à¦¬à¦¿à¦°à¦¾à¦®</bangla_meaning>
+		<definition>continuing without pause or interruption</definition>
+		<sentence>The incessant beat of music which is coming from the next room, hampering the concentration of the reader.</sentence>
+		<wtype>Adjective</wtype>
+		<level>3</level>
+	</data>
+	<data id="15">
+		<word>ambiguous</word>
+		<bangla_meaning>à¦…à¦¸à§à¦ªà¦·à§à¦Ÿ</bangla_meaning>
+		<definition>not clear or decided</definition>
+		<sentence>The election result was ambiguous.</sentence>
+		<wtype>Adjective</wtype>
+		<level>3</level>
+	</data>
+	<data id="16">
+		<word>intermission</word>
+		<bangla_meaning>à¦¬à¦¿à¦°à¦¤à¦¿</bangla_meaning>
+		<definition>a pause or break</definition>
+		<sentence>He was granted an intermission in his studies.</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="17">
+		<word>catalyst</word>
+		<bangla_meaning>à¦ªà§à¦°à¦­à¦¾à¦¬à¦•</bangla_meaning>
+		<definition>a substance that increases the rate of a chemical reaction without itself undergoing any permanent chemical change.  a person or thing that precipitates an event </definition>
+		<sentence>The prime minister's speech acted as a catalyst for debate.</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="19">
+		<word>jeopardize</word>
+		<bangla_meaning>à¦¬à¦¿à¦ªà¦¦à§‡ à¦ªà¦¡à¦¼à¦¾</bangla_meaning>
+		<definition>put (someone or something) into a situation in which there is a danger of loss, harm, or failure </definition>
+		<sentence>A devaluation of the dollar would jeopardize New York's position as a financial center.</sentence>
+		<wtype>verb</wtype>
+		<level>3</level>
+	</data>
+	<data id="20">
+		<word>committee</word>
+		<bangla_meaning>à¦¸à¦®à¦¿à¦¤à¦¿</bangla_meaning>
+		<definition>a group of people appointed for a specific function by a larger group and typically consisting of members of that group</definition>
+		<sentence>The housing committee took a decision of making Mr. Anwar to be their president.</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="21">
+		<word>giraffe</word>
+		<bangla_meaning>à¦œà¦¿à¦°à¦¾à¦« à¦à¦•à¦Ÿà¦¿ à¦ªà¦¶à§</bangla_meaning>
+		<definition>a large African mammal with a very long neck and forelegs, having a coat patterned with brown patches separated by lighter lines . It is the tallest living animal.</definition>
+		<sentence>We went to the zoo and saw a giraffe.</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="22">
+		<word>schizophrenia</word>
+		<bangla_meaning>à¦¸à¦¿à¦œà§‹à¦«à§à¦°à§‡à¦¨à¦¿à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>a long-term mental disorder of a type involving a breakdown in the relation between thought, emotion, and behaviour, leading to faulty perception, inappropriate actions and feelings, withdrawal from reality and personal relationships into fantasy and delu</definition>
+		<sentence>She suffers from schizophrenia</sentence>
+		<wtype>adjective</wtype>
+		<level>3</level>
+	</data>
+	<data id="23">
+		<word>sculpture</word>
+		<bangla_meaning>à¦­à¦¾à¦¸à§à¦•à¦°à§à¦¯</bangla_meaning>
+		<definition>the art of making two-or three-dimensional representative or abstract forms , especially by carving stone or wood or by casting metal or plaster </definition>
+		<sentence>David is a beautiful sculpture by Michael Angelo.</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="24">
+		<word>psychology</word>
+		<bangla_meaning>à¦®à¦¨à§‹à¦¬à¦¿à¦¦à§à¦¯à¦¾</bangla_meaning>
+		<definition>the scientific study of the human mind and its functions, especially those affecting behaviour in a given context.   the mental characteristics or attitude of a person or group </definition>
+		<sentence>A mother can understand her child's psychology very well.</sentence>
+		<wtype>noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="25">
+		<word>neighbour</word>
+		<bangla_meaning>à¦ªà§à¦°à¦¤à¦¿à¦¬à§‡à¦¶à§€</bangla_meaning>
+		<definition>a person living next door to or very near to the speaker or person referred to </definition>
+		<sentence>Our garden was the envy of the neighbors.</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="26">
+		<word>abundant</word>
+		<bangla_meaning>à¦ªà§à¦°à¦šà§à¦°</bangla_meaning>
+		<definition>plentiful, existing or available in large quantities, having plenty of</definition>
+		<sentence>There are abundant natural gas in Bangladesh.</sentence>
+		<wtype>adjective</wtype>
+		<level>3</level>
+	</data>
+	<data id="27">
+		<word>absolute</word>
+		<bangla_meaning>à¦¸à¦®à§à¦ªà§‚à¦°à§à¦£à¦­à¦¾à¦¬à§‡</bangla_meaning>
+		<definition>total,complete, complete, utter, unconditional, despotic, not relative or comparative</definition>
+		<sentence>The absolute silence made us listen to the speech.</sentence>
+		<wtype>Adjective</wtype>
+		<level>1</level>
+	</data>
+	<data id="28">
+		<word>envy</word>
+		<bangla_meaning>à¦¹à¦¿à¦‚à¦¸à¦¾/ à¦¹à¦¿à¦‚à¦¸à¦¾ à¦•à¦°à¦¾</bangla_meaning>
+		<definition>the resentful or unhappy feeling of wanting somebody else's success, good fortune, qualities, or possessions/ to desire something possessed by somebody else</definition>
+		<sentence>I envy you for your success.</sentence>
+		<wtype>noun/ verb</wtype>
+		<level>2</level>
+	</data>
+	<data id="29">
+		<word>absorption</word>
+		<bangla_meaning>à¦¶à§‹à¦·à¦£</bangla_meaning>
+		<definition>inclusion, absorbing or being absorbed, mental engrossment</definition>
+		<sentence>The civilians suffered absorption during the war.</sentence>
+		<wtype>noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="30">
+		<word>accident</word>
+		<bangla_meaning>à¦¦à§à¦°à§à¦˜à¦Ÿà¦¨à¦¾</bangla_meaning>
+		<definition>mishap, an unpleasant event, especially in a vehicle, that happens unexpectedly and causes injury or damage, chance , coincidence, something that happens unexpectedly and is not planned in advance</definition>
+		<sentence>He was killed in a road accident.</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="31">
+		<word>achievement</word>
+		<bangla_meaning>à¦…à¦°à§à¦œà¦¨</bangla_meaning>
+		<definition>accomplishment, a thing that somebody has done successfully, especially using their own effort and skill</definition>
+		<sentence>It was a remarkable achievement for such a young player.</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="32">
+		<word>accommodation</word>
+		<bangla_meaning>à¦¥à¦¾à¦•à¦¾à¦° à¦¬à¦¨à§à¦¦à§‹à¦¬à¦¸à§à¦¤</bangla_meaning>
+		<definition>housing, a place to live, work or stay, in an agreement or arrangement between people or groups with different opinions</definition>
+		<sentence>Hotel accommodation is included in the price of your holiday.</sentence>
+		<wtype>noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="33">
+		<word>accuse</word>
+		<bangla_meaning>à¦¦à§‹à¦· à¦¦à§‡à¦“à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>blame to say that somebody has done something wrong or is guilty of something, an agreement or arrangement between people or groups with different opinions which is acceptable to everyone</definition>
+		<sentence>The government was accused of incompetence.</sentence>
+		<wtype>verb</wtype>
+		<level>1</level>
+	</data>
+	<data id="34">
+		<word>acknowledge</word>
+		<bangla_meaning>à¦¸à§à¦¬à§€à¦•à¦¾à¦° à¦•à¦°à¦¾</bangla_meaning>
+		<definition>recognize, to accept that something is true, to accept that somebody/something has a particular authority or status, acknowledge something to tell somebody that you have received something that they sent to you</definition>
+		<sentence>It is generally acknowledged to be true that there were more rainfall last year.</sentence>
+		<wtype>verb</wtype>
+		<level>2</level>
+	</data>
+	<data id="35">
+		<word>address</word>
+		<bangla_meaning>à¦ à¦¿à¦•à¦¾à¦¨à¦¾ , à¦¡à¦¾à¦•à¦¾  à¦¸à¦®à§à¦¬à§‹à¦§à¦¨</bangla_meaning>
+		<definition>to write on an envelope, etc. the name and address of the person, company, etc. that you are sending it to by mail, to make a formal speech to a group of people</definition>
+		<sentence>The address on the letter was correct, but it was delivered to the wrong house.</sentence>
+		<wtype>noun/ verb</wtype>
+		<level>1</level>
+	</data>
+	<data id="36">
+		<word>adequate</word>
+		<bangla_meaning>à¦¯à¦¥à§‡à¦·à§à¦Ÿ</bangla_meaning>
+		<definition>sufficientenough in quantity, or good enough in quality, for a particular purpose or need</definition>
+		<sentence>The room was small but adequate.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>3</level>
+	</data>
+	<data id="37">
+		<word>admiration</word>
+		<bangla_meaning> à¦ªà§à¦°à¦¶à¦‚à¦¸à¦¾ </bangla_meaning>
+		<definition>respect,appreciationa feeling of respect and liking for somebody/something</definition>
+		<sentence>I have great admiration for her as a writer.</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="38">
+		<word>adopt</word>
+		<bangla_meaning>à¦—à§à¦°à¦¹à¦¨ à¦•à¦°à¦¾</bangla_meaning>
+		<definition>approve, take up, agree to, to take somebody else's child into your family and become its legal parent(s), adopt something to start to use a particular method</definition>
+		<sentence> The council is expected to adopt the new policy at its next meeting.</sentence>
+		<wtype>VERB</wtype>
+		<level>1</level>
+	</data>
+	<data id="39">
+		<word>ally</word>
+		<bangla_meaning>à¦¬à¦¨à§à¦§à§à¦¤à¦¾ , à¦¸à¦¹à¦¯à§‹à¦—à§€  </bangla_meaning>
+		<definition>friend, supporter, collaboratortor, give your support to another group or country</definition>
+		<sentence>The prince allied himself with the mass people.</sentence>
+		<wtype>noun, verb</wtype>
+		<level>1</level>
+	</data>
+	<data id="40">
+		<word>anxiety</word>
+		<bangla_meaning>à¦¦à§à¦¶à§à¦šà¦¿à¦¨à§à¦¤à¦¾</bangla_meaning>
+		<definition>nervousness,worry,concernthe state of feeling nervous or worried that something bad is going to happenSentence- Waiting for exam results is a time of great anxiety.a worry or fear about somethinga strong feeling of wanting to do something or of want</definition>
+		<sentence> If you're worried about your health, share your anxieties with your doctor.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="41">
+		<word>apologise</word>
+		<bangla_meaning>à¦•à§à¦·à¦®à¦¾ à¦šà¦¾à¦“à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>to tell someone that you are sorry for having done something that has caused them problems or unhappiness</definition>
+		<sentence>We apologise for the late departure of this flight.</sentence>
+		<wtype>verb</wtype>
+		<level>2</level>
+	</data>
+	<data id="42">
+		<word>appointment</word>
+		<bangla_meaning>à¦¨à¦¿à¦°à§à¦¦à¦¿à¦·à§à¦Ÿ à¦¸à¦®à¦¯à¦¼à§‡ à¦¦à§‡à¦–à¦¾ à¦•à¦°à¦¾</bangla_meaning>
+		<definition>meeting, a formal arrangement to meet or visit somebody at a particular time, especially for a reason connected with their work,	the act of choosing a person for a job or position of responsibility; the fact of being chosen for a job  </definition>
+		<sentence>I've got a dental appointment at 3 o'clock.</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="43">
+		<word>approximate</word>
+		<bangla_meaning>à¦ªà§à¦°à¦¾à¦¯à¦¼,  à¦¸à¦®à§à¦ªà§‚à¦°à§à¦£ à¦¨à¦¾</bangla_meaning>
+		<definition>estimated, nearalmost correct or accurate, but not completely so</definition>
+		<sentence>the cost given for the construction is only approximate.</sentence>
+		<wtype>noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="44">
+		<word>abhorrent</word>
+		<bangla_meaning>à¦˜à§ƒà¦£à§à¦¯</bangla_meaning>
+		<definition>repugnant,detestableinspiring disgust and loathing</definition>
+		<sentence>racism was abhorrent to us all</sentence>
+		<wtype>Adjective</wtype>
+		<level>3</level>
+	</data>
+	<data id="45">
+		<word>antecedent</word>
+		<bangla_meaning>à¦ªà§‚à¦°à§à¦¬à§‡ à¦¯à¦¾ à¦˜à¦Ÿà§‡à¦›à§‡</bangla_meaning>
+		<definition>Which has happened before.</definition>
+		<sentence>The story is antecedent ed.</sentence>
+		<wtype>Noun, Adjective</wtype>
+		<level>3</level>
+	</data>
+	<data id="46">
+		<word>campaign</word>
+		<bangla_meaning>à¦…à¦­à¦¿à¦¯à¦¾à¦¨</bangla_meaning>
+		<definition>1.series of planned activities that are intended to achieve a particular social, commercial or political aim. 2. movement</definition>
+		<sentence>We ran a successful campaign against smoking in public today.</sentence>
+		<wtype> NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="47">
+		<word>conceptualise</word>
+		<bangla_meaning>à¦¬à§‹à¦à¦¾    ,     à¦§à¦¾à¦°à¦¨à¦¾ à¦•à¦°à¦¾</bangla_meaning>
+		<definition>form an idea of something in your mind.</definition>
+		<sentence>These people do not conceptualise hunting as a violent act.</sentence>
+		<wtype> verb</wtype>
+		<level>3</level>
+	</data>
+	<data id="48">
+		<word>constitution</word>
+		<bangla_meaning>à¦¸à¦‚à¦¬à¦¿à¦§à¦¾à¦¨</bangla_meaning>
+		<definition>1.the system of laws and basic principles that a state, a country or an organization is governed by2. the way something is formed or organized3.  foundation ,charter</definition>
+		<sentence>the genetic constitution of cells is very complex.</sentence>
+		<wtype> NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="49">
+		<word>inconsistent</word>
+		<bangla_meaning>à¦…à¦¶à¦¾à¦®à¦žà§à¦œà¦¸à§à¦¯ à¦ªà§‚à¦°à§à¦£</bangla_meaning>
+		<definition>1  if two statements, etc. are inconsistent, or one is inconsistent with the other, they cannot both be true because they give the facts in a different way. 2. tending to change too often; not staying the same3. incoherent</definition>
+		<sentence>The report is inconsistent with the financial statements.</sentence>
+		<wtype> ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="50">
+		<word>indiscreet</word>
+		<bangla_meaning>à¦…à¦¬à¦¿à¦¬à§‡à¦šà¦•</bangla_meaning>
+		<definition>not careful about what you say or do, especially when this embarrasses or offends somebody.2. careless </definition>
+		<sentence>it was indiscreet of him to disclose that information.</sentence>
+		<wtype> ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="51">
+		<word>insignificant</word>
+		<bangla_meaning>à¦…à¦—à§à¦°à§à¦¤à§à¦¬à¦ªà§‚à¦°à§à¦£</bangla_meaning>
+		<definition>not big or valuable enough to be considered important.2. unimportant</definition>
+		<sentence>The levels of chemicals in the river are not insignificant.</sentence>
+		<wtype> ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="52">
+		<word>interpretation</word>
+		<bangla_meaning>à¦¬à§à¦¯à¦¾à¦–à§à¦¯à¦¾</bangla_meaning>
+		<definition>1	the particular way in which something is understood or explained2  the particular way in which somebody chooses to perform a piece of music, a role in a play, etc.</definition>
+		<sentence>1. Her evidence suggests a different interpretation of the events.2.  a modern interpretation of â€˜King Learâ€™ is quite captive.</sentence>
+		<wtype>  NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="53">
+		<word>methodology</word>
+		<bangla_meaning>à¦ªà¦¦à§à¦§à¦¤à¦¿</bangla_meaning>
+		<definition>a set of methods and principles used to perform a particular activity.</definition>
+		<sentence>The recent changes in the methodology of language teaching is effective.</sentence>
+		<wtype>  NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="54">
+		<word>occurrence</word>
+		<bangla_meaning>à¦˜à¦Ÿà¦¨à¦¾</bangla_meaning>
+		<definition>1 [COUNTABLE]something that happens or exists.2. incidence</definition>
+		<sentence>Terrorism is a daily occurrence in Afghanistan.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="55">
+		<word>proceeding</word>
+		<bangla_meaning>à¦šà¦²à¦¤à§‡ à¦¥à¦¾à¦•à¦¾ à¦˜à¦Ÿà¦¨à¦¾</bangla_meaning>
+		<definition>1 [COUNTABLE, USUALLY PLURAL] proceeding (against somebody) (for something)the process of using a court to settle a disagreement or to deal with a complaint.2. happening</definition>
+		<sentence>The Mayor will open the proceedings at the City Hall tomorrow.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="56">
+		<word>reassess</word>
+		<bangla_meaning>à¦ªà§à¦¨à¦°à§à¦¬à¦¿à¦¬à§‡à¦šà¦¨à¦¾</bangla_meaning>
+		<definition>to think again about something to decide if you need to change your opinion of it.</definition>
+		<sentence>After reassessing the situation, she decided to do nothing</sentence>
+		<wtype>VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="57">
+		<word>acquisition</word>
+		<bangla_meaning>à¦•à§à¦°à§Ÿ à¦•à¦°à¦¾</bangla_meaning>
+		<definition>1 the act of getting something, especially knowledge, a skill, etc.2.  a company, piece of land, etc. bought by somebody, especially another company; the act of buying it3. achievement</definition>
+		<sentence>The group has announced its first overseas acquisition- a successful software company.</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="58">
+		<word>commission</word>
+		<bangla_meaning>à¦•à¦°à§à¦®à¦­à¦¾à¦°    à¦¸à¦¾à¦®à¦°à¦¿à¦• à¦ªà¦¦ à¦ªà§à¦°à¦¦à¦¾à¦¨ </bangla_meaning>
+		<definition>1 to officially ask somebody to write, make or create something or to do a task for you.2 [USUALLY PASSIVE] to choose somebody as an officer in one of the armed forces.</definition>
+		<sentence>He has just been commissioned (as a) pilot officer.</sentence>
+		<wtype>VERB</wtype>
+		<level>3</level>
+	</data>
+	<data id="59">
+		<word>consequence</word>
+		<bangla_meaning>à¦ªà¦°à¦¿à¦£à¦¤à¦¿</bangla_meaning>
+		<definition>1.a result of something that has happened.2 importance3. result</definition>
+		<sentence>This decision could have serious consequences for the industry.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="60">
+		<word>consumption</word>
+		<bangla_meaning>à¦¬à§à¦¯à¦¾à¦¬à¦¹à¦¾à¦°</bangla_meaning>
+		<definition>the act of using energy, food or materials; the amount used,  the act of buying and using products</definition>
+		<sentence>He was advised to reduce his alcohol consumption.</sentence>
+		<wtype>NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="61">
+		<word>deregulate</word>
+		<bangla_meaning>à¦¬à¦¾à¦§à¦¾à¦®à§à¦•à§à¦¤</bangla_meaning>
+		<definition>to free a trade, a business activity, etc. from rules and controls.</definition>
+		<sentence>Deregulated financial markets are risky factors of a inefficient government.</sentence>
+		<wtype> VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="63">
+		<word>institutionalize</word>
+		<bangla_meaning>à¦¸à§à¦¬à¦¿à¦•à§ƒà¦¤à¦¿  à¦¦à¦¾à¦¨ à¦•à¦°à¦¾</bangla_meaning>
+		<definition>to make something become part of an organized system, society or culture, so that it is considered normal.</definition>
+		<sentence>Gay marriage is institutionalized in NY , USA  in 2010.</sentence>
+		<wtype>   VERB</wtype>
+		<level>3</level>
+	</data>
+	<data id="64">
+		<word>irrelevant</word>
+		<bangla_meaning>à¦…à¦ªà§à¦°à¦¾à¦¸à¦™à§à¦—à¦¿à¦•</bangla_meaning>
+		<definition>not important to or connected with a situation, immaterial</definition>
+		<sentence>Many people consider politics irrelevant to their lives.</sentence>
+		<wtype>   ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="65">
+		<word>resourceful</word>
+		<bangla_meaning>à¦¦à¦•à§à¦·</bangla_meaning>
+		<definition>good at finding ways of doing things and solving problems, etc., inventive</definition>
+		<sentence>The women at the entrepreneur conference were strong, resourceful and courageous.</sentence>
+		<wtype>   ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="66">
+		<word>perceive</word>
+		<bangla_meaning>à¦¦à§‡à¦–à¦¾</bangla_meaning>
+		<definition>to notice or become aware of something, to understand or think of somebody/something in a particular way, see</definition>
+		<sentence>The patient was perceived to have difficulty in breathing. </sentence>
+		<wtype>   VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="67">
+		<word>transcend</word>
+		<bangla_meaning>à¦…à¦¸à§€à¦®à§‡ à¦—à¦®à¦¨</bangla_meaning>
+		<definition>be or go beyond the range or limits of (a field of activity or conceptual sphere), go beyond</definition>
+		<sentence>Th idea was transcended to mass people.</sentence>
+		<wtype>   VERB</wtype>
+		<level>3</level>
+	</data>
+	<data id="68">
+		<word>transceiver</word>
+		<bangla_meaning>à¦à¦• à¦¸à§à¦¥à¦¾à¦¨ à¦¥à§‡à¦•à§‡ à¦…à¦¨à§à¦¯ à¦¸à§à¦¥à¦¾à¦¨à§‡ à¦ªà§à¦°à¦šà¦¾à¦° à¦•à¦°à¦¾</bangla_meaning>
+		<definition>a device that can both transmit and receive communications, in particular a combined radio transmitter and receiver, transmitter</definition>
+		<sentence>Grameen phone has established a lot of transceiver's to strengthen their network.</sentence>
+		<wtype>   noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="69">
+		<word>constrain</word>
+		<bangla_meaning>à¦¬à¦¾à¦§à§à¦¯ à¦•à¦°à¦¾</bangla_meaning>
+		<definition>to force somebody to do something or behave in a particular way, to restrict or limit somebody/something, limit</definition>
+		<sentence>Research has been constrained by a lack of funds.</sentence>
+		<wtype>   VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="70">
+		<word>correspondence</word>
+		<bangla_meaning>à¦¸à¦‚à¦¯à§‹à¦— à¦•à¦°à¦¾</bangla_meaning>
+		<definition>the letters a person sends and receives, the activity of writing letters, connection</definition>
+		<sentence>The editor welcomes correspondence from readers on any subject.</sentence>
+		<wtype>   noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="71">
+		<word>demonstration</word>
+		<bangla_meaning>à¦¦à§‡à¦–à¦¾à¦¨à§‹ , à¦¸à¦­à¦¾ </bangla_meaning>
+		<definition>a public meeting or march at which people show that they are protesting against or supporting somebody/something, an act of showing or explaining how something works or is done, an act of giving proof or evidence for something, display</definition>
+		<sentence>We were given a brief demonstration of the computer's functions.</sentence>
+		<wtype>   noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="72">
+		<word>exclusion</word>
+		<bangla_meaning>à¦¬à¦¹à¦¿à¦·à§à¦•à¦¾à¦°  à¦•à¦°à¦¾</bangla_meaning>
+		<definition>the act of preventing somebody/something from entering a place or taking part in something, a person or thing that is not included in something, segregation</definition>
+		<sentence>He was disappointed with his exclusion from the England squad.</sentence>
+		<wtype>   noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="73">
+		<word>emphatic</word>
+		<bangla_meaning>à¦¤à§€à¦¬à§à¦°</bangla_meaning>
+		<definition>statement, answer, etc. is given with force to show that it is important or making it very clear what you mean by speaking with force, forceful</definition>
+		<sentence>He was emphatic that he could not work with her.</sentence>
+		<wtype>   ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="74">
+		<word>illustration</word>
+		<bangla_meaning>à¦›à¦¬à¦¿  ,  à¦‰à¦¦à¦¾à¦¹à¦°à¦£</bangla_meaning>
+		<definition>a drawing or picture in a book, magazine, etc. especially one that explains something. a story, an event or an example that clearly shows the truth about something, picture</definition>
+		<sentence>The statistics are a clear illustration of the point I am trying to make.</sentence>
+		<wtype>   NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="75">
+		<word>inexplicable</word>
+		<bangla_meaning>à¦¬à§à¦¯à¦¾à¦–à§à¦¯à¦¾ à¦•à¦°à¦¾ à¦¯à¦¾à¦¯à¦¼ à¦¨à¦¾ à¦à¦®à¦¨</bangla_meaning>
+		<definition>unable to be explained or accounted for, strange</definition>
+		<sentence>For some inexplicable reason her mind went completely blank.</sentence>
+		<wtype>   adjective</wtype>
+		<level>3</level>
+	</data>
+	<data id="76">
+		<word>inaccessible</word>
+		<bangla_meaning>à¦…à¦—à¦®à§à¦¯ , à¦¦à§à¦°à§à¦—à¦®</bangla_meaning>
+		<definition>unable to be reached, unreachable</definition>
+		<sentence>The city center is inaccessible to traffic in most places.</sentence>
+		<wtype>   adjective</wtype>
+		<level>3</level>
+	</data>
+	<data id="77">
+		<word>professionalism</word>
+		<bangla_meaning>à¦ªà§‡à¦¶à¦¾à¦¦à¦¾à¦°à¦¿à¦¤à§à¦¬</bangla_meaning>
+		<definition>the high standard that is expected from a person who is well trained in a particular job, great skill and ability</definition>
+		<sentence>We were impressed by the professionalism of the staff,</sentence>
+		<wtype>   NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="78">
+		<word>equivalent</word>
+		<bangla_meaning>à¦¸à¦®à¦¤à§à¦²à§à¦¯</bangla_meaning>
+		<definition>a person or thing equal to another in value or measure or force or effect or significance etc., equal in value, amount, meaning, importance, etc., the atomic weight of an element that has the same combining capacity as a given weight of another element</definition>
+		<sentence>Eight kilometers is roughly equivalent to five miles.</sentence>
+		<wtype>   NOUN, ADJECTIVE</wtype>
+		<level>1</level>
+	</data>
+	<data id="79">
+		<word>evolutionary</word>
+		<bangla_meaning>à¦¬à¦¿à¦¬à¦°à§à¦¤à¦¨ à¦•à¦¾à¦°à§€</bangla_meaning>
+		<definition>connected with evolution; connected with gradual development and change</definition>
+		<sentence>Free market is an evolutionary by-product of capitalism.</sentence>
+		<wtype>   ADJECTIVE</wtype>
+		<level>3</level>
+	</data>
+	<data id="80">
+		<word>expansionism</word>
+		<bangla_meaning>à¦¸à¦®à§à¦ªà§à¦°à¦¸à¦¾à¦°à¦£</bangla_meaning>
+		<definition>the belief in and process of increasing the size and importance of something, especially in a country or a business</definition>
+		<sentence>The economic expansionism of America has created a benchmark for others.</sentence>
+		<wtype>   NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="81">
+		<word>revenue</word>
+		<bangla_meaning>à¦†à§Ÿ</bangla_meaning>
+		<definition>the money that a government receives from taxes or that an organization, etc. receives from its business, income</definition>
+		<sentence>The company's annual revenues rose by 30%.</sentence>
+		<wtype>   NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="82">
+		<word>argument</word>
+		<bangla_meaning>à¦¤à¦°à§à¦• </bangla_meaning>
+		<definition>quarrel, fight,disputea conversation or discussion in which two or more people disagree, often angrily</definition>
+		<sentence>We had an argument with the waiter about the bill</sentence>
+		<wtype>NOUN  </wtype>
+		<level>2</level>
+	</data>
+	<data id="83">
+		<word>arrival</word>
+		<bangla_meaning>à¦ªà§Œà¦à¦›à¦¾à¦¨à§‹</bangla_meaning>
+		<definition>influx,comingan act of coming or being brought to a placea person or thing that comes to a place</definition>
+		<sentence> We apologize for the late arrival of the train.The first arrivals at the concert got the best seats</sentence>
+		<wtype>NOUN  </wtype>
+		<level>1</level>
+	</data>
+	<data id="84">
+		<word>ashamed</word>
+		<bangla_meaning>à¦²à¦œà§à¦œà¦¿à¦¤</bangla_meaning>
+		<definition>embarrassedfeeling shame or embarrassment about somebody/something or because of something you have done</definition>
+		<sentence>She was deeply ashamed of her behaviour at the party</sentence>
+		<wtype>Adjective  </wtype>
+		<level>1</level>
+	</data>
+	<data id="85">
+		<word>association</word>
+		<bangla_meaning>à¦¸à¦‚à¦—à¦ à¦¨</bangla_meaning>
+		<definition>organisationan official group of people who have joined together for a particular purpose</definition>
+		<sentence>Do you belong to any professional or trade associations?</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="86">
+		<word>atmosphere</word>
+		<bangla_meaning>à¦ªà¦°à¦¿à¦¬à§‡à¦¶</bangla_meaning>
+		<definition>environment1 the mixture of gases that surrounds the earth2  mixture of gases that surrounds another planet or a star3 the feeling or mood that you have in a particular place or situation; a feeling between two people or in a group of people.</definition>
+		<sentence>The hotel offers a friendly atmosphere and personal service.</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="87">
+		<word>audience</word>
+		<bangla_meaning>à¦¦à¦°à§à¦¶à¦•</bangla_meaning>
+		<definition>spectators ,viewers1  the group of people who have gathered to watch or listen to something (a play, concert, somebody speaking, etc.) </definition>
+		<sentence>The debate was televised in front of a live audience.</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="88">
+		<word>celebration</word>
+		<bangla_meaning>à¦‰à¦¦à¦¯à¦¾à¦ªà¦¨</bangla_meaning>
+		<definition>carnivala special event that people organize in order to celebrate something</definition>
+		<sentence>Her triumph was a cause for celebration</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="89">
+		<word>centimetre</word>
+		<bangla_meaning>à¦¸à§‡à¦¨à§à¦Ÿà¦¿à¦®à¦¿à¦Ÿà¦¾à¦°</bangla_meaning>
+		<definition>a unit for measuring length</definition>
+		<sentence>There are 100 centimetres in a metre</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="90">
+		<word>ceremony</word>
+		<bangla_meaning>à¦…à¦¨à§à¦·à§à¦ à¦¾à¦¨</bangla_meaning>
+		<definition>ritual a public or religious occasion that includes a series of formal or traditional actions</definition>
+		<sentence>Eid ul fitr is a religious ceremony for muslim.</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="91">
+		<word>certificate</word>
+		<bangla_meaning>à¦¨à¦¥à¦¿</bangla_meaning>
+		<definition>record an official document that may be used to prove that the facts it states are truean official document proving that you have completed a course of study or passed an exam; a qualification obtained after a course of study or an exam</definition>
+		<sentence>Postgraduate Certificate in Education is the most elegant part of oneâ€™s career. </sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="92">
+		<word>ceiling</word>
+		<bangla_meaning>à¦›à¦¾à¦¦</bangla_meaning>
+		<definition>upper limitthe top inside surface of a room</definition>
+		<sentence>She lay on her back staring up at the ceiling</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="93">
+		<word>characteristic</word>
+		<bangla_meaning>à¦šà¦°à¦¿à¦¤à§à¦°          à¦¬à§ˆà¦¶à¦¿à¦·à§à¦Ÿà§à¦¯ </bangla_meaning>
+		<definition>featurea typical feature or quality that something/somebody has</definition>
+		<sentence>The two groups of children have quite different characteristics</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="94">
+		<word>cheque</word>
+		<bangla_meaning>à¦šà§‡à¦•</bangla_meaning>
+		<definition>a printed form that you can write on and sign as a way of paying for something instead of using money</definition>
+		<sentence>I have  paid my tuition fees  by cheque.</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="95">
+		<word>cheerful</word>
+		<bangla_meaning>à¦¹à¦¾à¦¶à¦¿  à¦–à§à¦¶à¦¿</bangla_meaning>
+		<definition>jollyhappy, and showing it by the way that you behave</definition>
+		<sentence>You're not your usual cheerful self today</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="96">
+		<word>cigarette</word>
+		<bangla_meaning>à¦¸à¦¿à¦—à¦¾à¦°à§‡à¦Ÿ</bangla_meaning>
+		<definition>a thin tube of paper filled with tobacco, for smoking</definition>
+		<sentence>to light a cigarette in a windy weather is very hard</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="97">
+		<word>circumstance</word>
+		<bangla_meaning>à¦…à¦¬à¦¸à§à¦¥à¦¾</bangla_meaning>
+		<definition>situationthe conditions and facts that are connected with and affect a situation, an event or an action</definition>
+		<sentence>The company reserves the right to cancel this agreement in certain circumstances</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="98">
+		<word>classic</word>
+		<bangla_meaning>à¦§à§à¦°à§à¦ªà¦¦à¦¿</bangla_meaning>
+		<definition>modela book, film/movie or song which is well known and considered to be of very high quality, setting standards for other books, etc</definition>
+		<sentence>The novel may become a modern classic.</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="99">
+		<word>closet</word>
+		<bangla_meaning>à¦–à§à¦ªà¦°à¦¿</bangla_meaning>
+		<definition>secreta small room or a space in a wall with a door that reaches the floor, used for storing things</definition>
+		<sentence>Homosexuals in public life are now coming out of the closet</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="100">
+		<word>collapse</word>
+		<bangla_meaning>à¦­à§‡à¦™à§à¦—à§‡ à¦ªà¦°à¦¾</bangla_meaning>
+		<definition>fall downa sudden failure of something, such as an institution, a business or a course of action</definition>
+		<sentence>The peace talks were on the verge of collapse</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="101">
+		<word>colleague</word>
+		<bangla_meaning>à¦¸à¦¹à¦•à¦°à§à¦®à§€</bangla_meaning>
+		<definition>coworkera person that you work with, especially in a profession or a business</definition>
+		<sentence>We were friends and colleagues for more than 20 years</sentence>
+		<wtype>NOUN </wtype>
+		<level>2</level>
+	</data>
+	<data id="102">
+		<word>commitment</word>
+		<bangla_meaning>à¦ªà¦£</bangla_meaning>
+		<definition>promisea promise to do something or to behave in a particular way; a promise to support somebody/something; the fact of committing yourself</definition>
+		<sentence>She doesn't want to make a big emotional commitment to Milon at the moment</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="103">
+		<word>comparison</word>
+		<bangla_meaning>à¦¤à§à¦²à¦¨à¦¾</bangla_meaning>
+		<definition>contrastthe process of comparing two or more people or things</definition>
+		<sentence>Comparison with other oil-producing countries is extremely interesting</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="104">
+		<word>complaint</word>
+		<bangla_meaning>à¦¨à¦¾à¦²à¦¿à¦¶</bangla_meaning>
+		<definition>objectiona reason for not being satisfied; a statement that somebody makes saying that they are not satisfied </definition>
+		<sentence>We received a number of complaints from customers about the lack of parking facilities</sentence>
+		<wtype>NOUN </wtype>
+		<level>1</level>
+	</data>
+	<data id="105">
+		<word>concentration</word>
+		<bangla_meaning>à¦®à¦¨à§‹à¦¯à§‹à¦—</bangla_meaning>
+		<definition>attentionthe ability to direct all your effort and attention on one thing, without thinking of other things</definition>
+		<sentence>This book requires a great deal of concentration</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="106">
+		<word>conference</word>
+		<bangla_meaning>à¦¸à¦­à¦¾</bangla_meaning>
+		<definition>meetinga large official meeting, usually lasting for a few days, at which people with the same work or interests come together to discuss their views</definition>
+		<sentence>She is attending a three-day conference on AIDS education</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="107">
+		<word>consideration</word>
+		<bangla_meaning>à¦šà¦¿à¦¨à§à¦¤à¦¾</bangla_meaning>
+		<definition>thoughtthe act of thinking carefully about something</definition>
+		<sentence>The proposals are currently under consideration</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="108">
+		<word>contribution</word>
+		<bangla_meaning>à¦¦à¦¾à¦¨</bangla_meaning>
+		<definition>donationa sum of money that is given to a person or an organization in order to help pay for something</definition>
+		<sentence>He made a very positive contribution to the success of the project</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="109">
+		<word>conversation</word>
+		<bangla_meaning>à¦•à¦¥à¦¾à¦¬à¦¾à¦°à§à¦¤à¦¾</bangla_meaning>
+		<definition>chatan informal talk involving a small group of people or only two; the activity of talking in this way</definition>
+		<sentence>I had a long conversation with her the other day</sentence>
+		<wtype>NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="110">
+		<word>cotton</word>
+		<bangla_meaning>à¦¸à§à¦¤à¦¾</bangla_meaning>
+		<definition>a plant grown in warm countries for the soft white hairs around its seeds that are used to make cloth and thread</definition>
+		<sentence>The sheets are 100% pure cotton</sentence>
+		<wtype>NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="111">
+		<word>cough</word>
+		<bangla_meaning>à¦•à¦¾à¦¶à¦¿</bangla_meaning>
+		<definition>an act or a sound of coughing</definition>
+		<sentence>She gave a little cough to attract my attention</sentence>
+		<wtype>NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="112">
+		<word>criterion</word>
+		<bangla_meaning>à¦®à¦¾à¦ªà¦•à¦¾à¦ à¦¿</bangla_meaning>
+		<definition>modela standard or principle by which something is judged, or with the help of which a decision is made</definition>
+		<sentence>What criteria are used for assessing a student's ability?</sentence>
+		<wtype>NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="113">
+		<word>decade</word>
+		<bangla_meaning>à¦¦à¦¶à¦•</bangla_meaning>
+		<definition>a period of ten years, especially a continuous period, such as 1910â€“1919 or 2000â€“2009</definition>
+		<sentence>last decade was remarkable for USA in terms of war against terrorism</sentence>
+		<wtype>NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="114">
+		<word>decline</word>
+		<bangla_meaning>à¦•à¦®à§‡ à¦¯à¦¾à¦“à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>refuseto refuse politely to accept or to do somethingto become smaller, fewer, weaker, etc</definition>
+		<sentence>I offered to give them a lift but they declined</sentence>
+		<wtype>verb</wtype>
+		<level>1</level>
+	</data>
+	<data id="115">
+		<word>decrease</word>
+		<bangla_meaning>à¦¹à§à¦°à¦¾à¦¸ à¦ªà¦¾à¦“à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition> reduce the process of reducing something or the amount that something is reduced by </definition>
+		<sentence>There has been some decrease in military spending this year</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="116">
+		<word>deliberate</word>
+		<bangla_meaning>à¦‡à¦šà§à¦›à¦¾ à¦•à§ƒà¦¤</bangla_meaning>
+		<definition> on purpose done on purpose rather than by accident done slowly and carefully </definition>
+		<sentence>The speech was a deliberate attempt to embarrass the government</sentence>
+		<wtype>adjective</wtype>
+		<level>2</level>
+	</data>
+	<data id="117">
+		<word>delighted</word>
+		<bangla_meaning>à¦¹à§à¦°à¦¾à¦¸ à¦ªà¦¾à¦“à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>pleasedvery pleased</definition>
+		<sentence>I'd be absolutely delighted to come.   She was delighted by/at the news of the wedding</sentence>
+		<wtype>adjective</wtype>
+		<level>1</level>
+	</data>
+	<data id="118">
+		<word>depressing</word>
+		<bangla_meaning>à¦¹à§à¦°à¦¾à¦¸ à¦ªà¦¾à¦“à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>miserablemaking you feel very sad and without enthusiasm</definition>
+		<sentence>Looking for a job these days can be very depressing.</sentence>
+		<wtype>adjective</wtype>
+		<level>1</level>
+	</data>
+	<data id="119">
+		<word>desperate</word>
+		<bangla_meaning>à¦®à¦°à¦¿à§Ÿà¦¾, à¦¬à§‡à¦ªà¦°à§‹à§Ÿà¦¾</bangla_meaning>
+		<definition>a person who is frightened and in need of help, arising from or marked by despair or loss of hope, desperately determined, (of persons) dangerously reckless or violent as from urgency or despair, showing extreme courage; especially of actions courageously</definition>
+		<sentence>I was absolutely desperate to see her.</sentence>
+		<wtype>Noun, adjective</wtype>
+		<level>1</level>
+	</data>
+	<data id="120">
+		<word>departure</word>
+		<bangla_meaning>à¦¹à§à¦°à¦¾à¦¸ à¦ªà¦¾à¦“à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>going away the act of leaving a place; an example of thisa plane, train, etc. leaving a place at a particular time </definition>
+		<sentence>Flights should be confirmed 48 hours before departure</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="121">
+		<word>determination</word>
+		<bangla_meaning>à¦¹à§à¦°à¦¾à¦¸ à¦ªà¦¾à¦“à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>the quality that makes you continue trying to do something even when this is difficult</definition>
+		<sentence>I admire her determination to get it right</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="122">
+		<word>disagreement</word>
+		<bangla_meaning>à¦¹à§à¦°à¦¾à¦¸ à¦ªà¦¾à¦“à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>differencea situation where people have different opinions about something and often argue</definition>
+		<sentence>There is disagreement among archaeologists as to the age of the sculpture</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="123">
+		<word>disappointment</word>
+		<bangla_meaning>à¦¹à§à¦°à¦¾à¦¸ à¦ªà¦¾à¦“à¦¯à¦¼à¦¾</bangla_meaning>
+		<definition>discontentsadness because something has not happened or been as good, successful, etc. as you expected or hoped</definition>
+		<sentence>He found it difficult to hide his disappointment when she didn't arrive</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="124">
+		<word>discussion</word>
+		<bangla_meaning>à¦¸à¦‚à¦²à¦¾à¦ª</bangla_meaning>
+		<definition>the process of discussing somebody/something; a conversation about somebody/something ; conversation</definition>
+		<sentence>We had a discussion with them about the differences between Britain and the US</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="125">
+		<word>dying</word>
+		<bangla_meaning>à¦®à¦°à§‡ à¦¯à¦¾à¦“à§Ÿà¦¾</bangla_meaning>
+		<definition>connected with or happening at the time of somebody's death ; falling</definition>
+		<sentence>I will remember it to my dying day.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="126">
+		<word>downstairs</word>
+		<bangla_meaning>à¦¨à¦¿à¦šà§‡à¦° à¦¤à¦²à¦¾</bangla_meaning>
+		<definition>the lower floor of a house or building, especially the one at ground level ; down the below</definition>
+		<sentence>We're painting the downstairs</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="127">
+		<word>adjacent</word>
+		<bangla_meaning>à¦•à¦¾à¦›à¦¾ à¦•à¦¾à¦›à¦¿  ,  à¦¨à¦¿à¦•à¦Ÿà¦¬à¦°à§à¦¤à§€</bangla_meaning>
+		<definition>next to or near something ; nearby</definition>
+		<sentence>Our farm land was adjacent to the river.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="128">
+		<word>assemble</word>
+		<bangla_meaning>à¦à¦•à¦¸à¦¾à¦¥à§‡ à¦œà¦®à¦¾à¦¨à§‹</bangla_meaning>
+		<definition>to come together as a group; to bring people or things together as a group ; to fit together all the separate parts of something, for example a piece of furniture ;come together</definition>
+		<sentence>The manager has assembled a world-class team.The shelves are easy to assemble.</sentence>
+		<wtype>VERB</wtype>
+		<level>1</level>
+	</data>
+	<data id="129">
+		<word>encounter</word>
+		<bangla_meaning>à¦®à§à¦–à§‹à¦®à§à¦–à¦¿ à¦¹à¦“à§Ÿà¦¾</bangla_meaning>
+		<definition>a meeting, especially one that is sudden, unexpected or violent ;a sports match against a particular player or team ;meet</definition>
+		<sentence>Three of them were killed in the subsequent encounter with the police.She has beaten her opponent in all of their previous encounters.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="130">
+		<word>enormous</word>
+		<bangla_meaning>à¦¬à¦¿à¦¶à¦¾à¦²</bangla_meaning>
+		<definition>extremely large ; huge</definition>
+		<sentence>The problems facing the President are enormous.</sentence>
+		<wtype> ADJECTIVE</wtype>
+		<level>3</level>
+	</data>
+	<data id="131">
+		<word>forthcoming</word>
+		<bangla_meaning>à¦†à¦¸à¦¨à§à¦¨</bangla_meaning>
+		<definition>going to happen, be published, etc. very soon ; approaching</definition>
+		<sentence>The band's forthcoming UK tour has gained huge attention.</sentence>
+		<wtype> ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="132">
+		<word>integrity</word>
+		<bangla_meaning>à¦¬à¦¿à¦¶à§à¦¬à¦¸à§à¦¤</bangla_meaning>
+		<definition>the quality of being honest and having strong moral principles; reliability</definition>
+		<sentence>The integrity shown by the soldiers in Afghanistan is applaud able.</sentence>
+		<wtype> NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="133">
+		<word>persistence</word>
+		<bangla_meaning>à¦ªà¦°à¦¿à¦¶à§à¦°à¦®</bangla_meaning>
+		<definition>the fact of continuing to try to do something despite difficulties, especially when other people are against you and think that you are being annoying or unreasonable; dilligence</definition>
+		<sentence>His persistence was finally rewarded when the insurance company agreed to pay for the damage.</sentence>
+		<wtype> NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="134">
+		<word>straightforward</word>
+		<bangla_meaning>à¦…à¦•à¦ªà¦Ÿ</bangla_meaning>
+		<definition>easy to do or to understand; not complicated; honest and open; not trying to trick somebody or hide something;frank</definition>
+		<sentence>It's quite straightforward to get here.Let me put it more straightforwardly.</sentence>
+		<wtype> ADJECTIVE</wtype>
+		<level>3</level>
+	</data>
+	<data id="135">
+		<word>ceaseless</word>
+		<bangla_meaning>à¦…à¦¬à¦¿à¦°à¦¾à¦®</bangla_meaning>
+		<definition>not stopping; seeming to have no end;continuous</definition>
+		<sentence>His ceaseless questions began to annoy me.</sentence>
+		<wtype> ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="136">
+		<word>bulk</word>
+		<bangla_meaning>à¦—à§à¦°à§à¦¤à§à¦¤à¦ªà§à¦°à¦¨ à¦¹à¦“à§Ÿà¦¾</bangla_meaning>
+		<definition>to be the most important part of something;mass</definition>
+		<sentence>The issue is likely to bulk large at the next summit meeting.</sentence>
+		<wtype> VERB</wtype>
+		<level>1</level>
+	</data>
+	<data id="137">
+		<word>assurance</word>
+		<bangla_meaning>à¦¨à¦¿à¦¶à§à¦šà§Ÿà¦¤à¦¾ à¦¦à§‡à¦“à§Ÿà¦¾</bangla_meaning>
+		<definition>a statement that something will certainly be true or will certainly happen, particularly when there has been doubt about it ;guarantee</definition>
+		<sentence>They called for assurances that the government is committed to its education policy.</sentence>
+		<wtype> NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="138">
+		<word>commencement</word>
+		<bangla_meaning>à¦†à¦°à¦®à§à¦­ à¦¹à¦“à§Ÿà¦¾</bangla_meaning>
+		<definition>Beginning ; a ceremony at which students receive their academic degrees or diplomas;start</definition>
+		<sentence>The commencement of the financial year is very crucial for any government.</sentence>
+		<wtype> NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="139">
+		<word>controversial</word>
+		<bangla_meaning>à¦¬à¦¿à¦¤à¦°à§à¦•à¦¿à¦¤</bangla_meaning>
+		<definition>causing a lot of angry public discussion and disagreement ; notorious</definition>
+		<sentence>Winston Churchill and Richard Nixon were both controversial figures.</sentence>
+		<wtype> ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="140">
+		<word>diminish</word>
+		<bangla_meaning>à¦¹à§à¦°à¦¾à¦¶ à¦ªà¦¾à¦“à§Ÿà¦¾</bangla_meaning>
+		<definition>to become or to make something become smaller, weaker, etc ;reduce</definition>
+		<sentence>The world's resources are rapidly diminishing.</sentence>
+		<wtype>  VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="141">
+		<word>insightful</word>
+		<bangla_meaning>à¦¬à¦¿à¦šà¦•à§à¦·à¦£</bangla_meaning>
+		<definition>showing a clear understanding of a person or situation ;perceptive</definition>
+		<sentence>Mr. hashem is an insightful historian.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="143">
+		<word>preliminary</word>
+		<bangla_meaning>à¦ªà§à¦°à¦¾à¦¥à¦®à¦¿à¦•</bangla_meaning>
+		<definition>a preliminary is an action or event that is done in preparation for something ;first round</definition>
+		<sentence>Research will be needed as a preliminary to taking a decision.</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="144">
+		<word>suspension</word>
+		<bangla_meaning>à¦¬à¦¹à¦¿à¦·à§à¦•à¦¾à¦°</bangla_meaning>
+		<definition>the act of officially removing somebody from their job, school, team, etc. for a period of time, usually as a punishment ;the system by which a vehicle is supported on its wheels and which makes it more comfortable to ride in when the road surface is not</definition>
+		<sentence>The two players are appealing against their suspensions.The extra ordinary part of Ferrari is the front/rear suspension engineering</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="145">
+		<word>unanticipated</word>
+		<bangla_meaning>à¦…à¦­à¦¾à¦¬à¦¨à§€à¦¯à¦¼</bangla_meaning>
+		<definition>that you have not expected or predicted; that you have not anticipated;surprising</definition>
+		<sentence>The unanticipated call from my close friend has been a great delight.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>3</level>
+	</data>
+	<data id="146">
+		<word>refinement</word>
+		<bangla_meaning>à¦‰à¦¨à§à¦¨à¦¤à¦¿ à¦¸à¦¾à¦§à¦¨</bangla_meaning>
+		<definition>a small change to something that improves it;a thing that is an improvement on an earlier, similar thing;improvement</definition>
+		<sentence>This particular model has a further refinement.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="147">
+		<word>scenario</word>
+		<bangla_meaning>à¦›à¦¬à¦¿</bangla_meaning>
+		<definition>a description of how things might happen in the future;picture</definition>
+		<sentence>Let me suggest a possible scenario of this game.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="148">
+		<word>spherical</word>
+		<bangla_meaning>à¦—à§‹à¦²à¦¾à¦•à¦¾à¦°</bangla_meaning>
+		<definition>shaped like a sphere.</definition>
+		<sentence>Lens is spherical.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>3</level>
+	</data>
+	<data id="149">
+		<word>ambiguity</word>
+		<bangla_meaning>à¦…à¦¸à§à¦ªà¦·à§à¦Ÿà¦¤à¦¾</bangla_meaning>
+		<definition>the state of having more than one possible meaning;a word or statement that can be understood in more than one way;doubt</definition>
+		<sentence>Write clear definitions in order to avoid ambiguity.There were several inconsistencies and ambiguities in her speech.</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="150">
+		<word>exploitation</word>
+		<bangla_meaning>à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦°</bangla_meaning>
+		<definition>a situation in which somebody treats somebody else in an unfair way, especially in order to make money from their work;the fact of using a situation in order to get an advantage for yourself;utilization</definition>
+		<sentence>Starvation and poverty are the result of global economic exploitation, not lack of resources.Exploitation of the situation for his own purposes is a wrong doing.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="151">
+		<word>fluctuate</word>
+		<bangla_meaning>à¦‰à¦ à¦¾à¦¨à¦¾à¦®à¦¾ à¦•à¦°à¦¾</bangla_meaning>
+		<definition>to change frequently in size, amount, quality, etc, especially from one extreme to another;vary</definition>
+		<sentence>During the crisis, oil prices fluctuated between $20 and $40 a barrel.</sentence>
+		<wtype>VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="152">
+		<word>infrastructure</word>
+		<bangla_meaning>à¦…à¦¬à¦•à¦¾à¦ à¦¾à¦®à§‹</bangla_meaning>
+		<definition>the basic systems and services that are necessary for a country or an organization to run smoothly, for example buildings, transport and water and power supplies.</definition>
+		<sentence>Development of infrastructure is a must for progress in industrialization.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="153">
+		<word>intensity</word>
+		<bangla_meaning>à¦¤à§€à¦¬à§à¦°à¦¤à¦¾</bangla_meaning>
+		<definition>the state or quality of being intense;strength;acute;severe.</definition>
+		<sentence>The storm resumed with even greater intensity.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="154">
+		<word>practitioner</word>
+		<bangla_meaning>à¦¦à¦•à§à¦·</bangla_meaning>
+		<definition>a person who works in a profession, especially medicine or law, person who regularly does a particular activity, especially one that requires skill</definition>
+		<sentence>One of the greatest practitioners of science fiction is Dr. Muhamamd zafar iqbal.</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="155">
+		<word>predominance</word>
+		<bangla_meaning>à¦ªà§à¦°à¦¾à¦šà§à¦°à§à¦¯</bangla_meaning>
+		<definition>the situation of being greater in number or amount than other things or people;majority.</definition>
+		<sentence>A predominance of female teachers in elementary schools is a positive sign.</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="156">
+		<word>prospective</word>
+		<bangla_meaning>à¦¸à¦®à§à¦­à¦¾à¦¬à¦¨à¦¾à¦®à§Ÿ</bangla_meaning>
+		<definition>expected to do something or to become something;potential</definition>
+		<sentence>They are worried about prospective changes in the law.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="157">
+		<word>reinforcement</word>
+		<bangla_meaning>à¦¶à¦•à§à¦¤à¦¿à¦¶à¦¾à¦²à¦¿ à¦•à¦°à¦¾</bangla_meaning>
+		<definition>extra soldiers or police officers who are sent to a place because more are needed, the act of making something stronger, especially a feeling or an idea.</definition>
+		<sentence>The reinforcement in Iraq is evident.</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="158">
+		<word>reschedule</word>
+		<bangla_meaning>à¦ªà§à¦¨à¦°à§à¦¬à¦¹à¦¾à¦²</bangla_meaning>
+		<definition>to change the time at which something has been arranged to happen, especially so that it takes place later ;rearrange</definition>
+		<sentence>The meeting has been rescheduled for next week.</sentence>
+		<wtype>VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="159">
+		<word>termination</word>
+		<bangla_meaning>à¦¸à¦®à¦¾à¦ªà§à¦¤à¦¿</bangla_meaning>
+		<definition>the act of ending something; the end of something ;extinction</definition>
+		<sentence>Failure to comply with these conditions will result in termination of the contract.</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="160">
+		<word>earth</word>
+		<bangla_meaning>à¦ªà§ƒà¦¥à¦¿à¦¬à§€</bangla_meaning>
+		<definition>the world; the planet that we live on ;land; the hard surface of the world that is not the sea or the sky; the ground, the substance that plants grow in ; ground</definition>
+		<sentence>The earth revolves around the sun.I cleaned off the earth clinging to my boots.</sentence>
+		<wtype>NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="161">
+		<word>edition</word>
+		<bangla_meaning>à¦®à§à¦¦à§à¦°à¦£</bangla_meaning>
+		<definition>the form in which a book is published ;  a particular newspaper or magazine, or radio or television programme, especially one in a regular series ; the total number of copies of a book, newspaper or magazine, etc. published at one time ; version</definition>
+		<sentence>She collects first editions of Victorian novels.The dictionary is now in its eighth edition.The story was in Tuesday's edition of â€˜The New York Timesâ€™.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="162">
+		<word>efficient</word>
+		<bangla_meaning>à¦¦à¦•à§à¦·</bangla_meaning>
+		<definition>doing something well and thoroughly with no waste of time, money, or energy ;capable</definition>
+		<sentence>He is an efficient secretary.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="163">
+		<word>electricity</word>
+		<bangla_meaning>à¦¤à§œà¦¿à§Ž à¦¶à¦•à§à¦¤à¦¿</bangla_meaning>
+		<definition>a form of energy from charged elementary particles, usually supplied as electric current through cables, wires, etc. for lighting, heating, driving machines, etc .</definition>
+		<sentence>The electricity is off so there is no electric power supply.</sentence>
+		<wtype>NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="164">
+		<word>elegant</word>
+		<bangla_meaning>à¦ªà§à¦°à¦®à¦¿à¦¤</bangla_meaning>
+		<definition>attractive and showing a good sense of style. </definition>
+		<sentence>She was tall and elegant.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="165">
+		<word>element</word>
+		<bangla_meaning>à¦…à¦‚à¦¶</bangla_meaning>
+		<definition>a necessary or typical part of something, a small amount of a quality or feeling ,the basic principles of a subject that you have to learn first </definition>
+		<sentence>Cost was a key element in our decision.We need to preserve the element of surprise.He taught me the elements of map-reading.</sentence>
+		<wtype>NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="166">
+		<word>elevator</word>
+		<bangla_meaning>à¦¸à¦¿à¦à§œà¦¿</bangla_meaning>
+		<definition>a machine that carries people or goods up and down to different levels in a building or a mine.</definition>
+		<sentence>It's on the fifth floor, so we'd better take the elevator.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="167">
+		<word>embarrassment</word>
+		<bangla_meaning>à¦²à¦œà§à¦œà¦¾</bangla_meaning>
+		<definition>shy, awkward or guilty feelings; a feeling of being embarrassed;a person who causes problems for another person or other people and makes them feel embarrassed ; shame</definition>
+		<sentence>I'm glad you offered, it saved me the embarrassment of having to ask. </sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="168">
+		<word>emergency</word>
+		<bangla_meaning>à¦¦à§à¦°à§à¦¯à§‹à¦—</bangla_meaning>
+		<definition>a sudden serious and dangerous event or situation which needs immediate action to deal with it ; crisis</definition>
+		<sentence>The government has declared a state of emergency following the earthquake.I always have some extra cash with me for emergencies.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="169">
+		<word>emphasize</word>
+		<bangla_meaning>à¦œà§‹à¦° à¦¦à§‡à¦“à§Ÿà¦¾</bangla_meaning>
+		<definition>to give special importance to something </definition>
+		<sentence>His speech emphasized the importance of attracting industry to the town. The rising tone of his voice emphasized his panic.</sentence>
+		<wtype> VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="170">
+		<word>employee</word>
+		<bangla_meaning>à¦•à¦°à§à¦®à§€</bangla_meaning>
+		<definition>a person who is paid to work for somebody ; worker</definition>
+		<sentence>The firm has over 500 employees.</sentence>
+		<wtype> NOUN</wtype>
+		<level>1</level>
+	</data>
+	<data id="171">
+		<word>encouragement</word>
+		<bangla_meaning>à¦¸à¦¾à¦¹à¦¸ à¦¦à§‡à¦“à§Ÿà¦¾</bangla_meaning>
+		<definition>the act of encouraging somebody to do something; something that encourages somebody ; support</definition>
+		<sentence>With a little encouragement from his parents he should do well.</sentence>
+		<wtype> NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="172">
+		<word>engineer</word>
+		<bangla_meaning>à¦ªà§à¦°à¦•à§Œà¦¶à¦²à§€</bangla_meaning>
+		<definition>a person whose job involves designing and building engines, machines, roads, bridges, etc. ; a person who is trained to repair machines and electrical equipment ; technician</definition>
+		<sentence>They're sending an engineer to fix the transmitter.</sentence>
+		<wtype> NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="173">
+		<word>entertain</word>
+		<bangla_meaning>à¦†à¦¨à¦¨à§à¦¦ à¦¦à§‡à¦“à§Ÿà¦¾</bangla_meaning>
+		<definition>to invite people to eat or drink with you as your guests, especially in your home ; to interest and amuse somebody in order to please them ; amuse</definition>
+		<sentence>Barbecues are a favourite way of entertaining friends.He entertained us for hours with his stories and jokes.</sentence>
+		<wtype> VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="174">
+		<word>enthusiasm</word>
+		<bangla_meaning>à¦‰à§Žà¦¸à¦¾à¦¹</bangla_meaning>
+		<definition>a strong feeling of excitement and interest in something and a desire to become involved in it ; interest</definition>
+		<sentence>She never lost her enthusiasm for teaching. Reading is one of her many enthusiasms.</sentence>
+		<wtype> NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="175">
+		<word>environment</word>
+		<bangla_meaning>à¦ªà¦°à¦¿à¦¬à§‡à¦¶</bangla_meaning>
+		<definition>the conditions that affect the behaviour and development of somebody/something; the physical conditions that somebody/something exists in ; the natural world in which people, animals and plants live ; surrounding</definition>
+		<sentence>They have created an environment in which productivity should flourish.</sentence>
+		<wtype> NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="176">
+		<word>equipment</word>
+		<bangla_meaning>à¦¯à¦¨à§à¦¤à§à¦°</bangla_meaning>
+		<definition>the things that are needed for a particular purpose or activity ; gear</definition>
+		<sentence>The equipment of the photographic studio was expensive.</sentence>
+		<wtype> NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="177">
+		<word>estimate</word>
+		<bangla_meaning>à¦ªà¦°à¦¿à¦®à¦¾à¦ª à¦•à¦°à¦¾</bangla_meaning>
+		<definition>to form an idea of the cost, size, value etc. of something, but without calculating it exactly; measure</definition>
+		<sentence>The satellite will cost an estimated Â£400 million. ;; It is estimated (that) the project will last four years.</sentence>
+		<wtype> VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="178">
+		<word>exaggerate</word>
+		<bangla_meaning>à¦¬à¦¾à§œà¦¿à§Ÿà§‡ à¦¬à¦²à¦¾</bangla_meaning>
+		<definition>to make something seem larger, better, worse or more important than it really is </definition>
+		<sentence>The hotel was really filthy and I'm not exaggerating.</sentence>
+		<wtype> VERB</wtype>
+		<level>3</level>
+	</data>
+	<data id="179">
+		<word>exception</word>
+		<bangla_meaning>à¦†à¦²à¦¾à¦¦à¦¾</bangla_meaning>
+		<definition>a person or thing that is not included in a general statement ;  a thing that does not follow a rule ; exclusion</definition>
+		<sentence>Most of the buildings in the town are modern, but the church is an exception.</sentence>
+		<wtype>  NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="180">
+		<word>exchange</word>
+		<bangla_meaning>à¦¬à¦¿à¦¨à¦¿à¦®à§Ÿ</bangla_meaning>
+		<definition>to give something to somebody and at the same time receive the same type of thing from them ; to sign a contract with the person that you are buying something from, especially a house or land ; switch</definition>
+		<sentence>Everyone in the group exchanged email addresses.The firm has just exchanged contracts on a nine-acre site</sentence>
+		<wtype>  VERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="181">
+		<word>excellent</word>
+		<bangla_meaning>à¦…à¦¸à¦¾à¦§à¦¾à¦°à¦£</bangla_meaning>
+		<definition>extremely good ,outstanding</definition>
+		<sentence>She speaks excellent French.</sentence>
+		<wtype>   ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="182">
+		<word>excitement</word>
+		<bangla_meaning>à¦‰à¦¤à§à¦¤à§‡à¦œà¦¨à¦¾</bangla_meaning>
+		<definition>the state of feeling excited ; thrill</definition>
+		<sentence>The news caused great excitement among her friends.</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="183">
+		<word>exhibition</word>
+		<bangla_meaning>à¦ªà§à¦°à¦¦à¦°à§à¦¶à¦¨à§€</bangla_meaning>
+		<definition>a collection of things, for example works of art, that are shown to the public display</definition>
+		<sentence>Have you seen the exhibition of Picasso's paintings?</sentence>
+		<wtype>NOUN </wtype>
+		<level>3</level>
+	</data>
+	<data id="184">
+		<word>executive</word>
+		<bangla_meaning>à¦¬à§à¦¯à¦¬à¦¸à§à¦¥à¦¾à¦ªà¦•</bangla_meaning>
+		<definition>connected with managing a business or an organization, and with making plans and decisions, having the power to put important laws and decisions into effect, expensive; for the use of somebody who is considered important ; decision making</definition>
+		<sentence>She has an executive position in a finance company.</sentence>
+		<wtype>NOUN, ADJECTIVE</wtype>
+		<level>3</level>
+	</data>
+	<data id="185">
+		<word>expectation</word>
+		<bangla_meaning>à¦†à¦¶à¦¾</bangla_meaning>
+		<definition>a belief that something will happen because it is likely; a hope that something good will happen; hope</definition>
+		<sentence>There was a general expectation that he would win.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="186">
+		<word>exhaustion</word>
+		<bangla_meaning>à¦•à§à¦²à¦¾à¦¨à§à¦¤à¦¿</bangla_meaning>
+		<definition>the state of being very tired; the act of using something until it is completely finished ; fatigue</definition>
+		<sentence>Her face was grey with exhaustion.The exhaustion of natural resources is quite likely at this stage.</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="187">
+		<word>explosion</word>
+		<bangla_meaning>à¦¬à¦¿à¦¸à§à¦«à§‹à¦°à¦£</bangla_meaning>
+		<definition>the sudden violent bursting and loud noise of something such as a bomb exploding; the act of deliberately causing something to explode ; a sudden, violent expression of emotion, especially anger ; blast</definition>
+		<sentence>There were two loud explosions and then the building burst into flames.Do you know what brought on that explosion?</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="189">
+		<word>extensive</word>
+		<bangla_meaning>à¦…à¦¤à§à¦¯à¦§à¦¿à¦•</bangla_meaning>
+		<definition>covering a large area; great in amount ; including or dealing with a wide range of information ; broad</definition>
+		<sentence>The fire caused extensive damage.She has extensive experience in computers.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>3</level>
+	</data>
+	<data id="190">
+		<word>extraordinary</word>
+		<bangla_meaning>à¦†à¦¶à¦¾à¦¤à§€à¦¤</bangla_meaning>
+		<definition>unexpected, surprising or strange ; not normal or ordinary; greater or better than usual ; unusual</definition>
+		<sentence>The president took the extraordinary step of apologizing publicly for his behaviour!She was a truly extraordinary woman.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>3</level>
+	</data>
+	<data id="191">
+		<word>failure</word>
+		<bangla_meaning>à¦¬à§à¦¯à¦¾à¦°à¦¥à¦¤à¦¾</bangla_meaning>
+		<definition>lack of success in doing or achieving something ; the state of not working correctly or as expected; an occasion when this happens ; not a success</definition>
+		<sentence>The success or failure of the plan depends on you.Production has been hampered by mechanical failure</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="193">
+		<word>feeling</word>
+		<bangla_meaning>à¦…à¦¨à§à¦­à§‚à¦¤à¦¿</bangla_meaning>
+		<definition>something that you feel through the mind or through the senses ; the idea or belief that a particular thing is true or a particular situation is likely to happen ; the ability to feel physically ; emotion</definition>
+		<sentence>I had a nasty feeling that we were lost.I've lost all feeling in my legs</sentence>
+		<wtype>NOUN </wtype>
+		<level>2</level>
+	</data>
+	<data id="194">
+		<word>federal</word>
+		<bangla_meaning>à¦ªà§à¦°à¦¾à¦¦à§‡à¦¶à¦¿à¦•</bangla_meaning>
+		<definition>having a system of government in which the individual states of a country have control over their own affairs, but are controlled by a central government for national decisions, etc; connected with national government rather than the local government of a</definition>
+		<sentence>State and federal income taxes are different in USA and Canada.</sentence>
+		<wtype>ADJECTIVE</wtype>
+		<level>3</level>
+	</data>
+	<data id="195">
+		<word>firmly</word>
+		<bangla_meaning>à¦¶à¦•à§à¦¤à¦¿à¦¶à¦¾à¦²à§€</bangla_meaning>
+		<definition>in a strong or definite way</definition>
+		<sentence>I can manage,â€™ she said firmly.</sentence>
+		<wtype>ADVERB</wtype>
+		<level>2</level>
+	</data>
+	<data id="196">
+		<word>flavour</word>
+		<bangla_meaning>à¦¸à§à¦¬à¦¾à¦¦</bangla_meaning>
+		<definition>to add something to food or drink to give it more flavour or a particular flavour ; taste</definition>
+		<sentence>I like to have a chocolate flavour ice cream.</sentence>
+		<wtype>verb</wtype>
+		<level>1</level>
+	</data>
+	<data id="197">
+		<word>flesh</word>
+		<bangla_meaning>à¦¨à¦°à¦® à¦®à¦¾à¦‚à¦¸</bangla_meaning>
+		<definition>the soft substance between the skin and bones of animal or human bodies</definition>
+		<sentence>Tigers are flesh-eating animals.</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="198">
+		<word>flight</word>
+		<bangla_meaning>à¦¯à¦¾à¦¤à§à¦°à¦¾</bangla_meaning>
+		<definition>a journey made by air, especially in a plane ; a journey made by air, especially in a plane</definition>
+		<sentence>All flights between New York and Washington have been cancelled due to fog.The bird is easily recognized in flight</sentence>
+		<wtype>NOUN</wtype>
+		<level>3</level>
+	</data>
+	<data id="199">
+		<word>flu</word>
+		<bangla_meaning>à¦ à¦¾à¦£à§à¦¡à¦¾</bangla_meaning>
+		<definition>an infectious disease like a very bad cold, that causes fever, pains and weakness</definition>
+		<sentence>The whole family has the flu.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="200">
+		<word>forecast</word>
+		<bangla_meaning>à¦†à¦—à§‡ à¦¥à§‡à¦•à§‡ à¦§à¦¾à¦°à¦¨à¦¾ à¦•à¦°à¦¾</bangla_meaning>
+		<definition>to say what you think will happen in the future based on information that you have now ; predict</definition>
+		<sentence>It is difficult to forecast the demand for the new train service.  Temperatures were forecast to reach 40Â°C.</sentence>
+		<wtype> VERB</wtype>
+		<level>3</level>
+	</data>
+	<data id="201">
+		<word>foreign</word>
+		<bangla_meaning>à¦¬à¦¿à¦¦à§‡à¦¶à§€</bangla_meaning>
+		<definition>in or from a country that is not your own ; distant</definition>
+		<sentence>You could tell she was foreign by the way she dressed.</sentence>
+		<wtype> ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="202">
+		<word>formula</word>
+		<bangla_meaning>à¦¸à§‚à¦¤à§à¦° ,  à¦ªà§à¦°à¦•à§à¦°à¦¿à§Ÿà¦¾</bangla_meaning>
+		<definition>a series of letters, numbers or symbols that represent a rule or law ; letters and symbols that show the parts of a chemical compound, etc ; a list of the things that something is made from, giving the amount of each substance to use ; method</definition>
+		<sentence>This formula is used to calculate the area of a circle.CO is the formula for carbon monoxide.The secret formula for the blending of lassi is not a complex thing.</sentence>
+		<wtype>NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="203">
+		<word>frequent</word>
+		<bangla_meaning>à¦ªà§à¦°à¦¾à§Ÿà¦¶</bangla_meaning>
+		<definition>happening or doing something often ; common</definition>
+		<sentence>He is a frequent visitor to this country.</sentence>
+		<wtype> VERB, ADJECTIVE</wtype>
+		<level>2</level>
+	</data>
+	<data id="204">
+		<word>freeze</word>
+		<bangla_meaning>à¦ à¦¾à¦£à§à¦¡à¦¾à§Ÿ à¦œà¦®à§‡ à¦¯à¦¾à¦“à§Ÿà¦¾</bangla_meaning>
+		<definition>to become hard, and often turn to ice, as a result of extreme cold; to make something do this ; to stop moving suddenly because of fear, etc ; chill</definition>
+		<sentence>It's so cold in Antarctica that even the rivers freeze.</sentence>
+		<wtype> VERB, NOUN</wtype>
+		<level>2</level>
+	</data>
+	<data id="205">
+		<word>fortune</word>
+		<bangla_meaning>à¦­à¦¾à¦—à§à¦¯</bangla_meaning>
+		<definition>chance or luck, especially in the way it affects people's lives ; a large amount of money ; luck</definition>
+		<sentence>I have had the good fortune to work with some brilliant directors.He made a fortune in real estate</sentence>
+		<wtype> NOUN</wtype>
+		<level>2</level>
+	</data>
+</set>

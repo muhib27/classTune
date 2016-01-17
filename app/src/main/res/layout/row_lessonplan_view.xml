@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/layoutRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:descendantFocusability="blocksDescendants"
+        android:background="@android:color/white"
+        android:gravity="center">
+
+
+        <RelativeLayout
+            android:id="@+id/layoutSelect"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1.5">
+
+
+            <CheckBox
+                android:id="@+id/btnCheckSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:gravity="center_vertical"
+                android:button="@null"
+                android:drawableLeft="@drawable/check_lessonplan"
+                android:checked="false"
+                android:clickable="true"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/gray_2">
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="New Text"
+            android:gravity="center"
+            android:textColor="@android:color/black"/>
+
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/gray_2">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="New Text"
+            android:gravity="center"
+            android:textColor="@android:color/black" />
+
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/gray_2">
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txtSubject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="New Text"
+            android:gravity="center"
+            android:textColor="@android:color/black" />
+
+
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/gray_2">
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="New Text"
+            android:gravity="center"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    
+    tools:context=".CandleActivity"
+    android:background="#DFE1E2" 
+    android:orientation="vertical">
+
+   <!-- <RelativeLayout android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:background="@color/white"
+       android:padding="10dip">
+       
+       <ImageView android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/back"
+           android:layout_alignParentLeft="true"
+           android:id="@+id/back_btn"/>
+       
+       <ImageView android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/champs"
+           android:layout_alignParentRight="true"/>
+       
+   </RelativeLayout>
+   <View android:layout_width="fill_parent"
+       android:layout_height="5dip"
+       android:background="@drawable/dropshadow"/> -->
+    
+   <RelativeLayout 
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:id="@+id/container_candle">
+       
+       
+   </RelativeLayout>
+   
+    
+
+</LinearLayout>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_child_choosing"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical"
+        android:src="@drawable/banner_register" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_gravity="center"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="2dip"
+                android:layout_marginTop="10dip"
+                android:text="I am a..."
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_usertype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio_student"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio_btn"
+                    android:padding="5dip"
+                    android:text="Student"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/radio_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio_btn"
+                    android:padding="5dip"
+                    android:text="Parents"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/radio_teacher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio_btn"
+                    android:padding="5dip"
+                    android:text="Teacher"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/radio_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_btn"
+                    android:padding="5dip"
+                    android:text="Other"
+                    android:textSize="16sp" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dip" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dip"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dip" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:text="Signup using email address"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/et_email"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/text_box"
+                        android:hint="Email Address"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="5dip"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="2dip"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        android:id="@+id/et_re_email"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/text_box"
+                        android:hint="Re-enter Email Address"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="5dip"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/text_box"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="5dip"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="2dip"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        android:id="@+id/et_re_password"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/text_box"
+                        android:hint="Re-enter Password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="5dip"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dip" />
+
+                <Button
+                    android:id="@+id/btn_create_acc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_create_acc" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dip" />
+
+             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dip"
+                android:layout_marginTop="5dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_fb_login"
+                    android:id="@+id/fb_login_btn" />
+
+                <Button
+                    android:id="@+id/google_login_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_gplus_login" />
+            </LinearLayout> 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dip" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

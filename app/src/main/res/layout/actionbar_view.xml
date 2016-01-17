@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical" >
+
+    <ImageView android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/champs_logo"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="10dip"
+        />
+    
+    <ImageView android:id="@+id/back_btn_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/champs_logo_with_back"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="10dip"
+        android:visibility="gone"
+        />
+    
+    <!-- <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical" >
+
+      <com.champs21.schoolapp.viewhelpers.CustomButtonFree
+            android:id="@+id/btn_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tab_signup_btn"
+            android:clickable="true"
+            android:gravity="center"
+            custom:iconImageFree="@drawable/free_box"
+            custom:iconTextFree="@string/btn_sign_up"/>
+
+        <Button
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_1"
+            android:background="@drawable/tab_signup_btn"
+            android:text="@string/btn_login" /> 
+
+    </LinearLayout> -->
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#312E2F"
+        android:singleLine="true" 
+    	android:ellipsize="marquee"
+    	android:marqueeRepeatLimit ="marquee_forever"
+    	android:scrollHorizontally="true"
+    	android:focusable="true"
+    	android:focusableInTouchMode="true" 
+    	android:layout_margin="5dp"
+    	android:visibility="gone" />
+
+</LinearLayout>

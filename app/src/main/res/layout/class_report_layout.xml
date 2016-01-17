@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_2"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/choose_date_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_marginBottom="5dip"
+        android:layout_marginTop="5dip"
+        android:background="@color/gray_1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="5dip"
+            android:layout_weight="1"
+            android:textColor="@color/hint_color"
+            android:textColorHint="@color/hint_color"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/select_date_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/spinner_btn" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pb"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:gravity="center_horizontal" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/loading_text"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Total Student"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/total_student_count"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/total_view_btn"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="View"
+                    android:textColor="@color/gray_1"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:layout_marginTop="2dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Present"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/present_student_count"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/present_view_btn"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="View"
+                    android:textColor="@color/gray_1"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:layout_marginTop="2dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Absent"
+                    android:textColor="@color/absent"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/absent_student_count"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/absent"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/absent_view_btn"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="View"
+                    android:textColor="@color/gray_1"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:layout_marginTop="2dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Late"
+                    android:textColor="@color/late"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/late_student_count"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/absent"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/late_view_btn"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="View"
+                    android:textColor="@color/gray_1"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:layout_marginTop="2dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="Leave"
+                    android:textColor="@color/leave"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/leave_student_count"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="2dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/leave"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/leave_view_btn"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="View"
+                    android:textColor="@color/gray_1"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="@color/classtune_green_color" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

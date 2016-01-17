@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="5"
+    android:orientation="vertical">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/classtune_selectuser_top">
+
+
+
+                <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ct_splash"/>
+
+                <ImageButton
+                    android:id="@+id/btnAbout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/classtune_btn_info_top"
+                    android:layout_alignParentEnd="true" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:gravity="center">
+
+                <!--<ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/classtune_register_image"/>-->
+
+                <TextView
+                    android:id="@+id/txtMidHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register FREE Now!"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp">
+
+                </TextView>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+
+                android:background="#dfe1e2">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_margin="10dp"
+                        android:gravity="left">
+
+                        <TextView
+                            android:id="@+id/txtMeHeader"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="I'm"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="#888a8b"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageButton
+                                android:id="@+id/btnStudentSelect"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/classtune_btn_select_student"/>
+
+                            <TextView
+                                android:id="@+id/txtStudentHeader"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Student"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:textColor="@android:color/black"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageButton
+                                android:id="@+id/btnParentSelect"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/classtune_btn_select_parent"/>
+
+                            <TextView
+                                android:id="@+id/txtParentHeader"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Parent"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:textColor="@android:color/black"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageButton
+                                android:id="@+id/btnTeacherSelect"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/classtune_btn_select_teacher"/>
+
+                            <TextView
+                                android:id="@+id/txtTeacherHeader"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Teacher"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:textColor="@android:color/black"/>
+
+
+                        </LinearLayout>
+
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="#ebeced">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="20dp"
+                        android:gravity="right">
+
+                        <TextView
+                            android:id="@+id/txtMember"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Already a member?"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:textSize="20sp" />
+                        <Button
+                            android:id="@+id/btnSignIn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="18sp"
+                            android:text="Log in"
+                            android:textStyle="bold"
+                            android:textColor="@drawable/classtune_btn_user_selection_signin"
+                            android:background="@drawable/classtune_btn_background_user_selection_signin"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/top_panel_for_others"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="50dp"
+            android:background="@color/gray_bg" />
+
+        <ImageView
+            android:id="@+id/img_cat_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/event_tap" />
+
+        <TextView
+            android:id="@+id/txt_category_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Events"
+            android:textColor="@color/gray_1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
+        
+        <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
+                android:id="@+id/tab_upcoming"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/tab_general_btn"
+                android:clickable="true"
+                android:gravity="center"
+                custom:iconImageTab="@drawable/events_normal"
+                custom:iconTextTab="@string/title_events_tab" />
+        
+        <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
+                android:id="@+id/tab_archive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/tab_general_btn"
+                android:clickable="true"
+                android:gravity="center"
+                custom:iconImageTab="@drawable/archive_normal"
+                custom:iconTextTab="@string/title_archieve_tab" />
+        
+    </LinearLayout>
+    
+    
+    <RelativeLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical" >
+
+    </RelativeLayout>
+    
+
+    
+
+</LinearLayout>

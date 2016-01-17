@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="2dp" >
+		
+        
+        <TextView
+            android:id="@+id/tv_name_and_batch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matin Rashid khan, Batch iD"
+            android:textColor="@color/gray_5"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_apply_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apply Date:02/05/2014"
+            android:textColor="@color/gray_1"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_start_date_and_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duration: 03/05/2014 to 04/05/2014"
+            android:textColor="@color/gray_1"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btn_approve_leave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:background="@drawable/btn_approve_leave" />
+
+    <ImageButton
+        android:id="@+id/btn_decline_leave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:background="@drawable/btn_decline_leave" />
+
+</LinearLayout>

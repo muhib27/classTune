@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:id="@+id/layoutTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#eef2f3" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:singleLine="true"
+                android:ellipsize="marquee" 
+    			android:marqueeRepeatLimit="marquee_forever"
+    			android:scrollHorizontally="true" 
+	    		android:focusable="true" 
+    			android:focusableInTouchMode="true"
+                android:text="Name" />
+
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_2">
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:singleLine="true"
+                android:ellipsize="marquee" 
+    			android:marqueeRepeatLimit="marquee_forever"
+    			android:scrollHorizontally="true" 
+	    		android:focusable="true" 
+    			android:focusableInTouchMode="true"
+                android:text="Roll" />
+
+        </LinearLayout>
+        
+        
+
+    </LinearLayout>
+    
+    <TextView
+        android:id="@+id/txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutTop"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:text="No data found"
+        android:textColor="@color/maroon"
+        android:textSize="20sp"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:textStyle="bold" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutTop"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+        
+        <ListView 
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@color/gray_2"
+            android:dividerHeight="2dp">
+            
+        </ListView>
+        
+        
+        
+        
+        
+    </LinearLayout>
+
+</RelativeLayout>

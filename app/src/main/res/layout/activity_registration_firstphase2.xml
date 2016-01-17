@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="true"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true">
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="600dp"
+                    android:layout_weight="1"
+                    android:layout_alignRight="@+id/relativeLayout5"
+                    android:layout_alignEnd="@+id/relativeLayout5"
+                    android:layout_below="@+id/relativeLayout5"
+                    android:background="#219439"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/relativeLayout7">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:weightSum="6"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true">
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:background="#219439"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/classtune_icon_first_name"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/imageView6" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:text="First Name"
+                                android:textSize="12sp"
+                                android:layout_marginTop="5dp"
+                                android:layout_below="@+id/imageView6"
+                                android:layout_centerHorizontal="true" />
+
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#286c33">
+
+                        </View>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:background="#219439"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+
+
+                            <ImageView
+                                android:id="@+id/imageView7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/classtune_icon_last_name"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:text="Last Name"
+                                android:textSize="12sp"
+                                android:layout_marginTop="5dp"
+                                android:layout_below="@+id/imageView7"
+                                android:layout_centerHorizontal="true" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#286c33">
+
+                        </View>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:background="#219439"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+
+
+                            <ImageView
+                                android:id="@+id/imageView8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/classtune_icon_email_name"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:text="E-mail"
+                                android:textSize="12sp"
+                                android:layout_marginTop="5dp"
+                                android:layout_below="@+id/imageView8"
+                                android:layout_centerHorizontal="true" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#286c33">
+
+                        </View>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:background="#219439"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+
+
+                            <ImageView
+                                android:id="@+id/imageView9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/classtune_icon_password_name"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:text="Password"
+                                android:textSize="12sp"
+                                android:layout_marginTop="5dp"
+                                android:layout_below="@+id/imageView9"
+                                android:layout_centerHorizontal="true" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#286c33">
+
+                        </View>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:background="#219439"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+
+
+                            <ImageView
+                                android:id="@+id/imageView10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/classtune_icon_password_name"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:text="Retype Password"
+                                android:textSize="12sp"
+                                android:layout_marginTop="5dp"
+                                android:layout_below="@+id/imageView10"
+                                android:layout_centerHorizontal="true" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#286c33">
+
+                        </View>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:background="#219439"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+
+
+                            <ImageView
+                                android:id="@+id/imageView11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/classtune_icon_school_code_name"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:text="School Code"
+                                android:textSize="12sp"
+                                android:layout_marginTop="5dp"
+                                android:layout_below="@+id/imageView11"
+                                android:layout_centerHorizontal="true" />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:layout_toRightOf="@+id/relativeLayout5"
+                    android:layout_toEndOf="@+id/relativeLayout5"
+                    android:layout_below="@+id/relativeLayout5">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:weightSum="6"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true">
+
+
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_weight="1">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#e8e9e9"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:id="@+id/view1">
+
+                            </View>
+
+                            <EditText
+                                android:id="@+id/txtFirstName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentTop="true"
+                                android:hint="@string/classtune_registration_write_here"
+                                android:background="@android:color/transparent"
+                                android:singleLine="true"
+                                android:imeOptions="actionNext"
+                                android:nextFocusDown="@+id/txtLastName"
+                                android:layout_above="@+id/view1" />
+
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="30dp"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#e8e9e9"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:id="@+id/view2">
+
+                            </View>
+
+                            <EditText
+                                android:id="@+id/txtLastName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentTop="true"
+                                android:hint="@string/classtune_registration_write_here"
+                                android:background="@android:color/transparent"
+                                android:singleLine="true"
+                                android:imeOptions="actionNext"
+                                android:nextFocusDown="@+id/txtEmail"
+                                android:layout_above="@+id/view2" />
+
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="30dp"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#e8e9e9"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:id="@+id/view3">
+
+                            </View>
+
+                            <EditText
+                                android:id="@+id/txtEmail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentTop="true"
+                                android:inputType="textEmailAddress"
+                                android:hint="@string/classtune_registration_email_address"
+                                android:background="@android:color/transparent"
+                                android:singleLine="true"
+                                android:imeOptions="actionNext"
+                                android:nextFocusDown="@+id/txtPassword"
+                                android:layout_above="@+id/view3" />
+
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="30dp"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#e8e9e9"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:id="@+id/view4">
+
+                            </View>
+
+                            <EditText
+                                android:id="@+id/txtPassword"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentTop="true"
+                                android:inputType="textPassword"
+                                android:hint="@string/classtune_registration_character_length"
+                                android:background="@android:color/transparent"
+                                android:singleLine="true"
+                                android:imeOptions="actionNext"
+                                android:nextFocusDown="@+id/txtRetypePassword"
+                                android:layout_above="@+id/view4" />
+
+
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="30dp"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#e8e9e9"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:id="@+id/view5">
+
+                            </View>
+
+                            <EditText
+                                android:id="@+id/txtRetypePassword"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentTop="true"
+                                android:inputType="textPassword"
+                                android:imeOptions="actionNext"
+                                android:hint="@string/classtune_registration_retype_password"
+                                android:background="@android:color/transparent"
+                                android:singleLine="true"
+                                android:nextFocusDown="@+id/txtSchoolCode"
+                                android:layout_above="@+id/view5" />
+
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="30dp"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/txtSchoolCode"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentTop="true"
+                                android:hint="@string/classtune_registration_school_code"
+                                android:background="@android:color/transparent"
+                                android:singleLine="true"
+                                android:imeOptions="actionDone" />
+
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCreateLower"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="30dp"
+                    android:textSize="20sp"
+                    android:text="Next"
+                    android:textStyle="bold"
+                    android:textColor="@drawable/classtune_btn_firstphase_next"
+                    android:background="@drawable/classtune_btn_fistphase_background"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

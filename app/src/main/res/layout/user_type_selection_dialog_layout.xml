@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"  
+    android:background="@color/gray_child_choosing">
+    
+    <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginTop="10dip"
+                android:text="I am a..."
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dip" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_usertype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="20dip"
+                android:orientation="vertical" >
+
+                <RadioButton
+                    android:id="@+id/radio_student"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio_btn"
+                    android:padding="5dip"
+                    android:text="Student"
+                    android:textSize="16sp"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/radio_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio_btn"
+                    android:padding="5dip"
+                    android:text="Parents"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/radio_teacher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio_btn"
+                    android:padding="5dip"
+                    android:text="Teacher"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/radio_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radio_btn"
+                    android:padding="5dip"
+                    android:text="Other"
+                    android:textSize="16sp" />
+            </RadioGroup>
+            
+            
+            <Button android:id="@+id/ok_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/red_small"
+                android:text="OK"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_marginBottom="10dip"/>
+    
+
+</LinearLayout>

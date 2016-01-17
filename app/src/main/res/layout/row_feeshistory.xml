@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.8"
+            android:gravity="center"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/txtDueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:text="Due Date" />
+
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_2">
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:text="Description" />
+
+        </LinearLayout>
+        
+        
+        <LinearLayout 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_2">
+            
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.8"
+            android:gravity="center"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/txtBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:text="Amount" />
+
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_2">
+            
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:id="@+id/layoutStatus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:text="Status" />
+
+        </LinearLayout>
+        
+
+    </LinearLayout>
+
+</LinearLayout>

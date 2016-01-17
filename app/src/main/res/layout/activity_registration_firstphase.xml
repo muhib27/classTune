@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout13">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="First Name"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_first_name" />
+
+                    <EditText
+                        android:id="@+id/txtFirstName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35"
+                        android:singleLine="true"
+                        android:imeOptions="actionNext"
+                        android:nextFocusDown="@+id/txtLastName"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Last Name"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_last_name" />
+
+                    <EditText
+                        android:id="@+id/txtLastName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35"
+                        android:singleLine="true"
+                        android:imeOptions="actionNext"
+                        android:nextFocusDown="@+id/txtEmail" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="E-mail"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_email" />
+
+                    <EditText
+                        android:id="@+id/txtEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:layout_weight="1.35"
+                        android:singleLine="true"
+                        android:imeOptions="actionNext"
+                        android:nextFocusDown="@+id/txtPassword"
+                        android:ems="10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Password"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_password" />
+
+                    <EditText
+                        android:id="@+id/txtPassword"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:layout_weight="1.35"
+                        android:singleLine="true"
+                        android:imeOptions="actionNext"
+                        android:nextFocusDown="@+id/txtRetypePassword"
+                        android:ems="10" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Retype Password"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_repassword" />
+
+                    <EditText
+                        android:id="@+id/txtRetypePassword"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:layout_weight="1.35"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:nextFocusDown="@+id/txtSchoolCode"
+                        android:ems="10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="School Code"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_schoolcode_name" />
+
+                    <EditText
+                        android:id="@+id/txtSchoolCode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone" />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayout13"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

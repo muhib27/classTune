@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/top_panel"
+        android:layout_width="fill_parent"
+        android:layout_height="30dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:background="@color/white" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:text="You May Also Like"
+            android:textColor="@color/gray_5"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="150dip"
+        android:layout_below="@+id/top_panel"
+        >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="1dip"
+            android:background="@color/white" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip"
+            >
+
+            <LinearLayout
+                android:id="@+id/related_scroll_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical" >
+            </LinearLayout>
+        </HorizontalScrollView>
+        <View android:layout_width="fill_parent"
+            android:layout_height="2dip"
+            android:background="@color/red"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"/>
+        
+        <ProgressBar android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/pb"/>
+    </FrameLayout>
+
+</RelativeLayout>

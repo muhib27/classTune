@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:background="@color/gray_2"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dip"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:background="@color/white"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/event_cat_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Science Fair"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.classtune.app.schoolapp.viewhelpers.CustomRhombusIcon
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                custom:iconImageRhombus="@drawable/event_row_icon" >
+            </com.classtune.app.schoolapp.viewhelpers.CustomRhombusIcon>
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dip"
+                android:text="13th dec 2014"
+                android:textColor="@color/gray_1"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start:"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12.10 PM"
+                    android:textColor="@color/gray_1"
+                    android:textSize="10sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dip"
+                android:layout_marginTop="2dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="End:"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="02.10 PM"
+                    android:textColor="@color/gray_1"
+                    android:textSize="10sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_marginBottom="1dip"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="10dip" >
+
+                <TextView
+                    android:id="@+id/event_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Science Fair Science FairScience FairScience FairScience "
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.classtune.app.schoolapp.viewhelpers.ExpandableTextView
+                    android:id="@+id/event_details_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/gray_1"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <com.classtune.app.schoolapp.viewhelpers.CustomButtonTest
+                    android:id="@+id/btn_join_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/general_btn"
+                    android:clickable="true"
+                    android:gravity="center"
+                    custom:buttonText="@string/btn_join"
+                    custom:buttonTextSize="8"
+                    custom:iconImageNormal="@drawable/done_normal"
+                    custom:iconImageTap="@drawable/done_tap" />
+
+                <LinearLayout
+                    android:layout_width="2dip"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_2" >
+                </LinearLayout>
+
+                <com.classtune.app.schoolapp.viewhelpers.CustomButtonTest
+                    android:id="@+id/btn_reminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/general_btn"
+                    android:clickable="true"
+                    android:gravity="center"
+                    custom:buttonText="@string/btn_reminder"
+                    custom:buttonTextSize="8"
+                    custom:iconImageNormal="@drawable/btn_reminder_normal"
+                    custom:iconImageTap="@drawable/btn_reminder_tap" />
+
+                <LinearLayout
+                    android:layout_width="2dip"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_2" >
+                </LinearLayout>
+
+                <com.classtune.app.schoolapp.viewhelpers.CustomButtonTest
+                    android:id="@+id/btn_not_going"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/general_btn"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    custom:buttonSelected="true"
+                    custom:buttonText="@string/btn_not_going"
+                    custom:buttonTextSize="8"
+                    custom:iconImageNormal="@drawable/notgoing_normal"
+                    custom:iconImageTap="@drawable/notgoing_tap" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dip"
+        android:background="@drawable/red_line" >
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutUserIdHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtUserId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/maroon"
+            android:layout_gravity="center"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Admission no."
+                    android:textSize="18sp"
+                    android:layout_weight=".65"
+                    android:textColor="@android:color/black"
+                    android:id="@+id/txt_header_admission" />
+
+                <EditText
+                    android:id="@+id/txtAdmission"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.35"
+                    android:singleLine="true"
+                    android:nextFocusDown="@+id/txtContact"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout13">
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Batch"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_batchid" />
+
+                    <Spinner
+                        android:id="@+id/spinnerBatch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35">
+
+                    </Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Date of Birth"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_dob" />
+
+
+
+                    <DatePicker
+                        android:id="@+id/pickerDob"
+                        android:layout_width="0dp"
+                        android:calendarViewShown="false"
+                        android:layout_weight="1.35"
+                        android:layout_height="wrap_content">
+
+                    </DatePicker>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Gender"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_gender" />
+
+                    <Spinner
+                        android:id="@+id/spinnerGender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35">
+
+                    </Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Contact no."
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_contact" />
+
+                    <EditText
+                        android:id="@+id/txtContact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/btnUploadPhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:text="Upload Photo"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/image_attached_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/candle_field"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/tv_image_name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dip"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray_1"
+                        android:textSize="12sp" />
+
+                    <ImageView
+                        android:id="@+id/btn_cross_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:padding="5dip"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/cross" />
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayout13"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+
+
+                <Button
+                    android:id="@+id/btnCreate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Create"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

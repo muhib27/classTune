@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="5dip" >
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <CheckBox
+            android:id="@+id/checkBox_playgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Playgroup"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_kg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="KG"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Class I"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Class II"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Class III"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Class IV"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Class V"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_six"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Class VI"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_seven"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Class VII"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_eight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Class VIII"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_nine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Class IX"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox_ten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/check_btn"
+            android:padding="5dip"
+            android:text="Class X"
+            android:textColor="@color/gray_2"
+            android:textSize="12sp" />
+    </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/red_btn"
+        android:text="Done" />
+
+</LinearLayout>

@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_child_choosing"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_gravity="center"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="2dip"
+                android:layout_marginTop="5dip"
+                android:text="@string/choose_user_name_text"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/radioGroup_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dip" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <RadioButton
+                        android:id="@+id/radio_first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/radio_btn_name"
+                        android:checked="true" />
+
+                    <EditText
+                        android:id="@+id/et_first"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/radio_first"
+                        android:background="@drawable/name_edit"
+                        android:hint="First Name"
+                        android:paddingLeft="5dip"
+                        android:paddingRight="5dip"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="5dip"
+                    android:layout_height="match_parent" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dip" >
+
+                    <RadioButton
+                        android:id="@+id/radio_middle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/radio_btn_name" />
+
+                    <EditText
+                        android:id="@+id/et_middle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/radio_middle"
+                        android:background="@drawable/name_edit"
+                        android:hint="Middle Name"
+                        android:paddingLeft="5dip"
+                        android:paddingRight="5dip"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="5dip"
+                    android:layout_height="match_parent" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dip" >
+
+                    <RadioButton
+                        android:id="@+id/radio_last"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/radio_btn_name" />
+
+                    <EditText
+                        android:id="@+id/et_last"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/radio_last"
+                        android:background="@drawable/name_edit"
+                        android:hint="Last Name"
+                        android:paddingLeft="5dip"
+                        android:paddingRight="5dip"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="5dip"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip" >
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/name_edit"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/tv_country"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dip"
+                        android:layout_weight="1"
+                        android:hint="Bangladesh"
+                        android:textColor="@color/hint_color"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btn_country"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/spinner_btn" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="5dip"
+                    android:layout_height="match_parent" />
+
+                
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/name_edit"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/tv_city"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dip"
+                        android:layout_weight="1"
+                        android:hint="Dhaka"
+                        android:textColor="@color/hint_color"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btn_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/spinner_btn" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="5dip"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/name_edit"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@+id/tv_country_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dip"
+                        android:hint="+880"
+                        android:textColor="@color/hint_color"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="5dip"
+                    android:layout_height="match_parent" />
+
+                <EditText
+                    android:id="@+id/et_mobile"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/name_edit"
+                    android:hint="Mobile Number"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/holder_dark"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip"
+                    android:paddingTop="2dip" >
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/holder_date"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingLeft="5dip" >
+
+                        <TextView
+                            android:id="@+id/tv_month"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dip"
+                            android:hint="Month"
+                            android:textColor="@color/gray_1"
+                            android:textColorHint="@color/gray_1"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="5dip"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/holder_date"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingLeft="5dip" >
+
+                        <TextView
+                            android:id="@+id/tv_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dip"
+                            android:hint="Day"
+                            android:textColor="@color/gray_1"
+                            android:textColorHint="@color/gray_1"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="5dip"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/holder_date"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingLeft="5dip" >
+
+                        <TextView
+                            android:id="@+id/tv_year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dip"
+                            android:hint="Year"
+                            android:textColor="@color/gray_1"
+                            android:textColorHint="@color/gray_1"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="1dip" >
+
+                    <Button
+                        android:id="@+id/btn_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_birthday"
+                        android:text="Select Your Birthday"
+                        android:textColor="@color/gray_5" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:background="@drawable/name_edit"
+                android:hint="School Name"
+                android:padding="5dip"
+                android:textColor="@color/hint_color"
+                android:textColorHint="@color/hint_color"
+                android:textSize="15sp"
+                android:id="@+id/et_school_name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/name_edit"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/tv_medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dip"
+                    android:layout_weight="1"
+                    android:hint="Select Medium"
+                    android:textColor="@color/hint_color"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_btn" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teaching For: "
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip"
+                    android:background="@drawable/name_edit"
+                    android:hint="Year(s)"
+                    android:padding="5dip"
+                    android:textColor="@color/hint_color"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="15sp" 
+                    android:inputType="number"
+                    android:id="@+id/et_teaching_years"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip"
+                    android:background="@drawable/name_edit"
+                    android:hint="Month(s)"
+                    android:padding="5dip"
+                    android:textColor="@color/hint_color"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="15sp"
+                    android:inputType="number"
+                    android:id="@+id/et_teaching_months" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I am a"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <RadioButton
+                        android:id="@+id/radio0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dip"
+                        android:button="@drawable/radio_btn"
+                        android:checked="true"
+                        android:padding="5dip"
+                        android:text="Male"
+                        android:textSize="13sp" />
+
+                    <RadioButton
+                        android:id="@+id/radio1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dip"
+                        android:button="@drawable/radio_btn"
+                        android:padding="5dip"
+                        android:text="Female"
+                        android:textSize="13sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <Button
+                    android:id="@+id/btn_select_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_select_grade"
+                    android:text="Select Grade"
+                    android:textColor="@color/gray_5"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                
+                
+                 <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/red_btn"
+                    android:text="Proceed"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="5dip" 
+                    android:id="@+id/btn_save"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <data id="1">
+        <word>Abdomen</word>
+        <bangla_meaning>পেট</bangla_meaning>
+        <definition>the part of the body below the chest that contains the stomach, bowels, etc.</definition>
+        <sentence>He was knocked over by a flying tennis ball that hit his abdomen at full speed.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="2">
+        <word>Abduct</word>
+        <bangla_meaning>কৌশলে কাউকে অপহরণ করা</bangla_meaning>
+        <definition>to take somebody away illegally, especially by using force.</definition>
+        <sentence>He had attempted to abduct the two children.</sentence>
+        <wtype>verb</wtype>
+        <level>0</level>
+    </data>
+    <data id="3">
+        <word>Abolish</word>
+        <bangla_meaning>উভয়কেই বিনষ্ট</bangla_meaning>
+        <definition>to put an end to.</definition>
+        <sentence>The movement to abolish unreasonable taxes was successful.</sentence>
+        <wtype>verb</wtype>
+        <level>0</level>
+    </data>
+    <data id="4">
+        <word>Abridge</word>
+        <bangla_meaning>সংক্ষিপ্ত করা</bangla_meaning>
+        <definition>to shorten (a book, speech, or a film) without loosing the sense.</definition>
+        <sentence>To abridge a book is a way of reducing its size.</sentence>
+        <wtype>verb</wtype>
+        <level>0</level>
+    </data>
+    <data id="5">
+        <word>Backtrack</word>
+        <bangla_meaning>আগের অবস্থানে ফিরে যাওয়া</bangla_meaning>
+        <definition>reverse to the previous position.</definition>
+        <sentence>We were forced to backtrack and find our way around the park.</sentence>
+        <wtype>verb</wtype>
+        <level>0</level>
+    </data>
+    <data id="6">
+        <word>Bacteria</word>
+        <bangla_meaning>বিভিন্ন প্রকার জীবাণু</bangla_meaning>
+        <definition>a type of very small organism that lives in air, earth, water, plants and animals, often one which causes a disease.</definition>
+        <sentence>The bacterium `Streptococcus pneumoniae' causes about a third of some 3000 annual meningitis cases.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="7">
+        <word>Bald</word>
+        <bangla_meaning>টাক পড়া</bangla_meaning>
+        <definition>with scalp wholly or partly hairless.</definition>
+        <sentence>At twenty he was already going bald.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="8">
+        <word>Bandit</word>
+        <bangla_meaning>ডাকাত</bangla_meaning>
+        <definition>a violent robber or outlaw belonging to a gang.</definition>
+        <sentence>The masked bandit was almost beaten to death by numerous passers-by.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="9">
+        <word>Bandwidth</word>
+        <bangla_meaning>ব্যান্ডপ্রস্থ</bangla_meaning>
+        <definition>the transmission capacity of a computer network.</definition>
+        <sentence>We are working towards expanding the bandwidth for this building.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="10">
+        <word>Barricade</word>
+        <bangla_meaning>বাধা</bangla_meaning>
+        <definition>barrier erected to oppose movement.</definition>
+        <sentence>The police barricade forced traffic to a standstill.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="11">
+        <word>Barrister</word>
+        <bangla_meaning>আয়নজীবী</bangla_meaning>
+        <definition>a lawyer who has the right to argue cases in the higher courts of law.</definition>
+        <sentence>His uncle is one of the best barrister in town.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="12">
+        <word>Cafeteria</word>
+        <bangla_meaning>স্বয়ংপরিবেশন ভোজনালয়</bangla_meaning>
+        <definition>a self-service restaurant.</definition>
+        <sentence>She carried her tray to the counter in the cafeteria to get her food.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="13">
+        <word>Caffeine</word>
+        <bangla_meaning>চা ত্ত কফি মধ্যে প্রাপ্ত উপক্ষারবিশেষ</bangla_meaning>
+        <definition>a substance found in coffee and tea that makes you feel more active.</definition>
+        <sentence>A cup of coffee raises your levels of caffeine in the blood.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="14">
+        <word>Calculate</word>
+        <bangla_meaning>গননা করা</bangla_meaning>
+        <definition>to use numbers to find out a total number, amount, distance, etc.</definition>
+        <sentence>Use the formula to calculate the volume of the container.</sentence>
+        <wtype>verb</wtype>
+        <level>0</level>
+    </data>
+    <data id="15">
+        <word>Calibration</word>
+        <bangla_meaning>ক্রমাঙ্কন</bangla_meaning>
+        <definition>the action or process of calibrating something.</definition>
+        <sentence>The measuring devices require calibration before usage.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="16">
+        <word>Dapple</word>
+        <bangla_meaning>রংবেরঙের বা একই রঙের ফুটফুটে ছোপ বা ডোরাকাটা দাগ</bangla_meaning>
+        <definition>grey or white with darker round marks.</definition>
+        <sentence>The clouds threw dapples of shadow over the eerily quiet street.</sentence>
+        <wtype>verb</wtype>
+        <level>0</level>
+    </data>
+    <data id="17">
+        <word>Dawn</word>
+        <bangla_meaning>ভোর ; প্রত্যুয</bangla_meaning>
+        <definition>the first appearance of light in the sky before sunrise.</definition>
+        <sentence>He set off at dawn for the fair in the next village.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="18">
+        <word>Deadly</word>
+        <bangla_meaning>মারাত্মক</bangla_meaning>
+        <definition>able to cause death.</definition>
+        <sentence>This is quite a deadly poison which will cause death almost immediately after consumption.</sentence>
+        <wtype>adjective</wtype>
+        <level>0</level>
+    </data>
+    <data id="19">
+        <word>Dearth</word>
+        <bangla_meaning>অপ্রাচুর্য, অভাব</bangla_meaning>
+        <definition>a lack of something; the fact of there not being enough of something.</definition>
+        <sentence>There was a dearth of usable firewood at the campsite.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="20">
+        <word>Deathless</word>
+        <bangla_meaning>অমর , মৃত্যুহীন</bangla_meaning>
+        <definition>never dying or forgotten.</definition>
+        <sentence>Shahin an author who craved deathless fame.</sentence>
+        <wtype>adjective</wtype>
+        <level>0</level>
+    </data>
+    <data id="21">
+        <word>Effective</word>
+        <bangla_meaning>কার্যকর</bangla_meaning>
+        <definition>producing a desired or intended result .</definition>
+        <sentence>Our instructions were effective and helped the students.</sentence>
+        <wtype>adjective</wtype>
+        <level>0</level>
+    </data>
+    <data id="22">
+        <word>Egocentric</word>
+        <bangla_meaning>আত্মকেন্দ্রি</bangla_meaning>
+        <definition>thinking only of oneself, without regard for the feelings or desires of others .</definition>
+        <sentence>I never met a more egocentric person.</sentence>
+        <wtype>adjective</wtype>
+        <level>0</level>
+    </data>
+    <data id="23">
+        <word>Egotistic</word>
+        <bangla_meaning>নিজের প্রতি অহম থাকা</bangla_meaning>
+        <definition>being excessively proud of oneself.</definition>
+        <sentence>His boss is an egotistic man who everyone dislikes.</sentence>
+        <wtype>adjective</wtype>
+        <level>0</level>
+    </data>
+    <data id="24">
+        <word>Enclosure</word>
+        <bangla_meaning>ঘেরাও</bangla_meaning>
+        <definition>area sealed off by a barricade.</definition>
+        <sentence>The animals were all herded together inside the enclosure.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="25">
+        <word>Enormous</word>
+        <bangla_meaning>বিশাল</bangla_meaning>
+        <definition>very large in size, quantity, or extent.</definition>
+        <sentence>She travelled to New York because the city offered enormous possibilities to young fashion designers.</sentence>
+        <wtype>adjective</wtype>
+        <level>0</level>
+    </data>
+    <data id="26">
+        <word>Enrich</word>
+        <bangla_meaning>সমৃদ্ধ</bangla_meaning>
+        <definition>improve the quality or value of.</definition>
+        <sentence>You can enrich your vocabulary by reading more often.</sentence>
+        <wtype>verb</wtype>
+        <level>0</level>
+    </data>
+    <data id="27">
+        <word>Famine</word>
+        <bangla_meaning>দুর্ভিক্ষ</bangla_meaning>
+        <definition>a lack of food during a long period of time in a region.</definition>
+        <sentence>A poorly thought out redistribution policy could result in famine and disaster similar to what has happened in Zimbabwe.</sentence>
+        <wtype>noun</wtype>
+        <level>0</level>
+    </data>
+    <data id="28">
+        <word>Famish</word>
+        <bangla_meaning>অনাহারে থাকা</bangla_meaning>
+        <definition>reduced to extreme hunger.</definition>
+        <sentence>The children will famish if we do not arrange their meal immediately.</sentence>
+        <wtype>verb</wtype>
+        <level>0</level>
+    </data>
+    <data id="29">
+        <word>Abeyance</word>
+        <bangla_meaning>সাময়িক নিষ্ক্রিয়াবস্থা</bangla_meaning>
+        <definition>a state of not happening or being used at present.</definition>
+        <sentence>Hostilities between the two groups have been in abeyance since last June.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="30">
+        <word>Abatis/Abattis</word>
+        <bangla_meaning>প্রতিরক্ষার জন্য গাছ দিয়ে প্রতিরধ গড়ে তোলা</bangla_meaning>
+        <definition>a defence made of felled trees placed together with the boughs pointing outwards.</definition>
+        <sentence>The position of the army was strengthened by earthworks and by an abatis along the creek.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="31">
+        <word>Abhorrent</word>
+        <bangla_meaning>অত্যন্ত ঘৃণ্য</bangla_meaning>
+        <definition>very repugnant; hateful.</definition>
+        <sentence>The offense done by him is abhorrent.</sentence>
+        <wtype>adjective</wtype>
+        <level>1</level>
+    </data>
+    <data id="32">
+        <word>Abnegate</word>
+        <bangla_meaning>অস্বীকার,প্রত্যাখ্যান</bangla_meaning>
+        <definition>the act of not allowing yourself to have something that you want; the act of rejecting something.</definition>
+        <sentence>He attempts to abnegate personal responsibility at the family meeting.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="33">
+        <word>Abracadabra</word>
+        <bangla_meaning>অর্থহীন যাদুমন্ত্র</bangla_meaning>
+        <definition>said by someone who is performing a magic trick, in order to help them perform it successfully.</definition>
+        <sentence>I don’t know all the theoretical abracadabra about how it works</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="34">
+        <word>Abscess</word>
+        <bangla_meaning>ফোড়া</bangla_meaning>
+        <definition>a swollen within body tissue.</definition>
+        <sentence>The spot developed in to a poisonous abscess.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="35">
+        <word>Abscissa</word>
+        <bangla_meaning>ভুজ</bangla_meaning>
+        <definition>(of mathematics) the distance from a point on a graph to the vertical or y-axis; the x-coordinate.</definition>
+        <sentence>He did all the calculations properly, but inserted the wrong value of the abscissa.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="36">
+        <word>Barrage</word>
+        <bangla_meaning>নদীর বাঁধ</bangla_meaning>
+        <definition>an artificial barrier across a river or estuary to prevent flooding, aid irrigation or navigation, or to generate electricity by tidal power.</definition>
+        <sentence>They are considering to build a tidal barrage across the Severn estuary.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="37">
+        <word>Bascule</word>
+        <bangla_meaning>আন্দোলক যা সেতুর ভারসাম্য রক্ষায় ব্যাবহার করা হয়</bangla_meaning>
+        <definition>a type of bridge with a section which can be raised and lowered using counterweights.</definition>
+        <sentence>The project included not only bascule bridges but also transit lines below the bridge.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="38">
+        <word>Bastinado</word>
+        <bangla_meaning>পায়ের তলায় বেত্রাঘাত</bangla_meaning>
+        <definition>punishment or torture in which the soles of the feet are beaten with a stick.</definition>
+        <sentence>One favourite torturing method for the guards was the grisly bastinado: turning a slave upside down and beating the soles of their feet until raw.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="39">
+        <word>Bastion</word>
+        <bangla_meaning>ঘাঁটি ,বুরূজ</bangla_meaning>
+        <definition>a group of people or a system that protects a way of life or a belief when it seems that it may disappear.</definition>
+        <sentence>The rebel army retreated to its bastion in the mountains to regroup.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="40">
+        <word>Bequeath</word>
+        <bangla_meaning>সম্পত্তি কাউকে উইল করে দান করা</bangla_meaning>
+        <definition>leave property to someone in a will</definition>
+        <sentence>Everyone expected her to bequeath the land to her son.</sentence>
+        <wtype>verb</wtype>
+        <level>1</level>
+    </data>
+    <data id="41">
+        <word>Caboose</word>
+        <bangla_meaning>জাহাজের ডেকের ওপর রান্নার ঘর</bangla_meaning>
+        <definition>a ship's kitchen.</definition>
+        <sentence>Due to lack of space the kitchen boy slept in the caboose.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="42">
+        <word>Cabriolet</word>
+        <bangla_meaning>পরিবর্তনীয়</bangla_meaning>
+        <definition>an automobile resembling a coupe but with a folding top.</definition>
+        <sentence>Even today, reports vary as to whether the car would have a brougham or cabriolet body.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="43">
+        <word>Cadaverous</word>
+        <bangla_meaning>মড়ামুখো ; বিবর্ণ</bangla_meaning>
+        <definition>Suggestive of death; corpselike.</definition>
+        <sentence>Top models are mostly, skeletally thin, with hollow, cadaverous eyes and cheeks.</sentence>
+        <wtype>adjective</wtype>
+        <level>1</level>
+    </data>
+    <data id="44">
+        <word>Catechism</word>
+        <bangla_meaning>ধর্মে প্রশ্নোত্তরে শিক্ষাদান</bangla_meaning>
+        <definition>religious instruction and knowledge.</definition>
+        <sentence>The school teaches catechisms as well as science and humanities.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="45">
+        <word>Debacle</word>
+        <bangla_meaning>অসফল্যতা</bangla_meaning>
+        <definition>an utter failure.</definition>
+        <sentence>Our attempt to mend their friendship was a debacle.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="46">
+        <word>Debridement</word>
+        <bangla_meaning>ক্ষত থেকে ক্ষতিগ্রস্ত টিস্যু এবং ময়লা অপসারণ করা</bangla_meaning>
+        <definition>removal of damaged tissue and dirt from wound.</definition>
+        <sentence>Debridement of his injuries took a long time.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="47">
+        <word>Detrimental</word>
+        <bangla_meaning>ক্ষতিকারক</bangla_meaning>
+        <definition>tending to cause harm</definition>
+        <sentence>A rich and fatty diet can be detrimental to your health.</sentence>
+        <wtype>adjective</wtype>
+        <level>1</level>
+    </data>
+    <data id="48">
+        <word>Eclipse</word>
+        <bangla_meaning>গ্রহণ</bangla_meaning>
+        <definition>the light blocked by a celestial body in front of it .</definition>
+        <sentence>They wore special glasses to witness an eclipse of the sun.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="49">
+        <word>Effeminate</word>
+        <bangla_meaning>মেয়েলী</bangla_meaning>
+        <definition>having characteristics regarded as typical of a woman; unmanly.</definition>
+        <sentence>He has always been quite fussy and effeminate.</sentence>
+        <wtype>adjective</wtype>
+        <level>1</level>
+    </data>
+    <data id="50">
+        <word>Effervescent</word>
+        <bangla_meaning>অত্যন্ত আগ্রহাম্বিত</bangla_meaning>
+        <definition>vivacious and enthusiastic.</definition>
+        <sentence>They wanted a team of effervescent young people.</sentence>
+        <wtype>adjective</wtype>
+        <level>1</level>
+    </data>
+    <data id="51">
+        <word>Egalitarian</word>
+        <bangla_meaning>রাজনীতি , রাষ্ট্রনীতি</bangla_meaning>
+        <definition>based on, or holding, the belief that everyone is equal and should have the same rights and opportunities.</definition>
+        <sentence>He described himself as ‘an egalitarian’ and believed his wife has the same rights as he does.</sentence>
+        <wtype>adjective</wtype>
+        <level>1</level>
+    </data>
+    <data id="52">
+        <word>Eloquent</word>
+        <bangla_meaning>বাকপটু</bangla_meaning>
+        <definition>fluent or persuasive in speaking or writing.</definition>
+        <sentence>She made an eloquent speech.</sentence>
+        <wtype>adjective</wtype>
+        <level>1</level>
+    </data>
+    <data id="53">
+        <word>Embedded</word>
+        <bangla_meaning>অনুবিদ্ধ</bangla_meaning>
+        <definition>fixed firmly into something.</definition>
+        <sentence>The dirt has become embedded into the fabric and cannot be washed off.</sentence>
+        <wtype>adjective</wtype>
+        <level>1</level>
+    </data>
+    <data id="54">
+        <word>Embezzlement</word>
+        <bangla_meaning>আত্মসাৎ করা</bangla_meaning>
+        <definition>theft or misappropriation of funds belonging to one’s employer.</definition>
+        <sentence>Charges of fraud and embezzlement were brought against the accountant.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="55">
+        <word>Facsimile</word>
+        <bangla_meaning>অনুলিপি</bangla_meaning>
+        <definition>exact copy of written material.</definition>
+        <sentence>He produced a facsimile of the speech written for his boss.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="56">
+        <word>Fahrenheit</word>
+        <bangla_meaning>তাপমাপার একক বিশেষ</bangla_meaning>
+        <definition>of or using a scale of temperature in which water freezes at 32° and boils at 212°.</definition>
+        <sentence>Temperatures tomorrow will rise to around seventy degrees Fahrenheit.</sentence>
+        <wtype>noun</wtype>
+        <level>1</level>
+    </data>
+    <data id="57">
+        <word>Absenteeism</word>
+        <bangla_meaning>অযথা কামাই করার অভ্যাস</bangla_meaning>
+        <definition>the practice of regularly staying away from work or school without good reason.</definition>
+        <sentence>Older workers have lower rates of absenteeism and more experience than younger folk.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="58">
+        <word>Abyss</word>
+        <bangla_meaning>অতল গহ্বর</bangla_meaning>
+        <definition>a very deep wide space or hole that seems to have no bottom.</definition>
+        <sentence>Ahead of them was a gaping abyss.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="59">
+        <word>Acajou</word>
+        <bangla_meaning>কাজুবাদাম</bangla_meaning>
+        <definition>an edible kidney-shaped nut, rich in oil and protein.</definition>
+        <sentence>The guest in the wedding ceremony was greeted with acajou and dates.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="60">
+        <word>Acalculia</word>
+        <bangla_meaning>সাধারণ গণনার দক্ষতা</bangla_meaning>
+        <definition>loss of the ability to perform simple calculations, as a result of brain injury or disease.</definition>
+        <sentence>He lost his job at the university due to Acalculia.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="61">
+        <word>Acanthus</word>
+        <bangla_meaning>বাসকগোত্রীয় বৃক্ষ</bangla_meaning>
+        <definition>a plant which grows in warm regions, and which has shiny leaves with sharp points, and long thin parts with flowers.</definition>
+        <sentence>Our garden is paved and is lined with rows of fig trees, acanthus, bamboo and cranesbill.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="62">
+        <word>Accelerando</word>
+        <bangla_meaning>নিয়মিত গতির বৃদ্ধি</bangla_meaning>
+        <definition>(music) with a gradual increase of speed.</definition>
+        <sentence>The accelerando music in the café greatly irritated the customers.</sentence>
+        <wtype>adverb &amp; adjective</wtype>
+        <level>2</level>
+    </data>
+    <data id="63">
+        <word>Accentuate</word>
+        <bangla_meaning>গুরুত্ব দাওয়া</bangla_meaning>
+        <definition>make more noticeable or prominent.</definition>
+        <sentence>Her short hair accentuated her huge eyes.</sentence>
+        <wtype>verb</wtype>
+        <level>2</level>
+    </data>
+    <data id="64">
+        <word>Adagio</word>
+        <bangla_meaning>(সঙ্গীতে) ঢিমাতালে</bangla_meaning>
+        <definition>a piece of music to be played slowly.</definition>
+        <sentence>When you play this section too adagio, it spoils it.</sentence>
+        <wtype>adjective</wtype>
+        <level>2</level>
+    </data>
+    <data id="65">
+        <word>Adamant</word>
+        <bangla_meaning>অত্যন্ত কঠিন বস্ত্র</bangla_meaning>
+        <definition>impossible to persuade, or unwilling to change an opinion or decision.</definition>
+        <sentence>I've told her she should stay at home and rest but she's adamant that she's coming.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="66">
+        <word>Bailiff</word>
+        <bangla_meaning>শেরিফের অধীন কম্র্মচারী</bangla_meaning>
+        <definition>a sheriff's officer who carries out arrests.</definition>
+        <sentence>The bailiff escorted the murderer into his cell.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="67">
+        <word>Bailiwick</word>
+        <bangla_meaning>আগ্রহের ও পরিচালনার বিষয়</bangla_meaning>
+        <definition>one's area of interest or operation.</definition>
+        <sentence>Jogging is more my bailiwick than aerobics, these days.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="68">
+        <word>Beelzebub</word>
+        <bangla_meaning>অশুভ আত্মার নাম</bangla_meaning>
+        <definition>a name for the devil.</definition>
+        <sentence>Beelzebub also appears in Milton's Paradise Lost as one  of  the  fallen  angels, second  only to Satan in power.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="69">
+        <word>Bergamot</word>
+        <bangla_meaning>কমলা নির্যাস</bangla_meaning>
+        <definition>orange essence used as flavoring</definition>
+        <sentence>I had to go out and buy bergamot to flavour the cake.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="70">
+        <word>Berserk</word>
+        <bangla_meaning>প্রচণ্ড ক্রোধে ক্ষিপ্ত</bangla_meaning>
+        <definition>very angry, often in a violent or uncontrolled way.</definition>
+        <sentence>He went berserk when he found out where I had been all morning.</sentence>
+        <wtype>adjective</wtype>
+        <level>2</level>
+    </data>
+    <data id="71">
+        <word>Caboose</word>
+        <bangla_meaning>জাহাজের ডেকের ওপর রান্নার ঘর</bangla_meaning>
+        <definition>a ship's kitchen.</definition>
+        <sentence>Due to lack of space the kitchen boy slept in the caboose.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="72">
+        <word>Cabriolet</word>
+        <bangla_meaning>পরিবর্তনীয়</bangla_meaning>
+        <definition>an automobile resembling a coupe but with a folding top.</definition>
+        <sentence>Even today, reports vary as to whether the car would have a brougham or cabriolet body.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="73">
+        <word>Cachinnate</word>
+        <bangla_meaning>জোরে হাসা</bangla_meaning>
+        <definition>laugh loudly.</definition>
+        <sentence>I chuckled, guffawed, chortled and cachinnated my way through the book because it was so entertaining.</sentence>
+        <wtype>verb</wtype>
+        <level>2</level>
+    </data>
+    <data id="74">
+        <word>Damnum</word>
+        <bangla_meaning>ক্ষতি</bangla_meaning>
+        <definition>a loss.</definition>
+        <sentence>His unhealthy eating habits ultimately led to the damnum of his health.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="75">
+        <word>Debauch</word>
+        <bangla_meaning>নীতিনষ্ট করা</bangla_meaning>
+        <definition>to corrupt by sensuality, intemperance.</definition>
+        <sentence>The long stay on a tropical isle had debauched the ship's crew to the point where they no longer acted liked naval professionals.</sentence>
+        <wtype>verb</wtype>
+        <level>2</level>
+    </data>
+    <data id="76">
+        <word>Deltoid</word>
+        <bangla_meaning>কাঁধের মোটা পেশী</bangla_meaning>
+        <definition>thick shoulder muscles</definition>
+        <sentence>These exercises are meant strengthen your deltoids.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="77">
+        <word>Demagogue</word>
+        <bangla_meaning>জনপ্রিয় নেতা</bangla_meaning>
+        <definition>a politcal leader</definition>
+        <sentence>Maley is playing the demagogue, which is a dirty trick but also a popular one.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="78">
+        <word>Dilettante</word>
+        <bangla_meaning>পল্লবগ্রাহী লোক</bangla_meaning>
+        <definition>a person who cultivates an area of interest, such as the arts, without real commitment or knowledge.</definition>
+        <sentence>He's a bit of a dilettante as far as sports is concerned.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="79">
+        <word>Edelweiss</word>
+        <bangla_meaning>ভোঁতা</bangla_meaning>
+        <definition>a mountain plant which has woolly white bracts around its small flowers and downy grey-green leaves</definition>
+        <sentence>Celebrated in The Sound of Music, the edelweiss has white star-shaped flowers and grows on rocks and in crevices.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="80">
+        <word>Fissiparous</word>
+        <bangla_meaning>বিভাজন-প্রক্রিয়ায় বংশবৃদ্ধি করে এমন</bangla_meaning>
+        <definition>eproducing by fission.</definition>
+        <sentence>Blanket negativity provides cover for otherwise fissiparous views.</sentence>
+        <wtype>adjective</wtype>
+        <level>2</level>
+    </data>
+    <data id="81">
+        <word>Gadolinium</word>
+        <bangla_meaning>ধাতব মৌল বিশেষ</bangla_meaning>
+        <definition>a chemical element.</definition>
+        <sentence>Gadolinium is a soft silver-white metal.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="82">
+        <word>Gaffe</word>
+        <bangla_meaning>ওঅসতর্ক কর্ম</bangla_meaning>
+        <definition>a mistake that a person makes in public or in a social situation, especially something embarrassing.</definition>
+        <sentence>He made some real gaffes early in his career.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="83">
+        <word>Gargantuan</word>
+        <bangla_meaning>প্রকাণ্ড</bangla_meaning>
+        <definition>extremely large.</definition>
+        <sentence>As I write this blog, I am currently emerging from a food coma of gargantuan proportions.</sentence>
+        <wtype>adjective</wtype>
+        <level>2</level>
+    </data>
+    <data id="84">
+        <word>Carcass/ Carcase</word>
+        <bangla_meaning>পশুর মৃতদেহ</bangla_meaning>
+        <definition>dead body of an animal .</definition>
+        <sentence>The lion left the carcass of the dead zebra for the scavengers.</sentence>
+        <wtype>noun</wtype>
+        <level>2</level>
+    </data>
+    <data id="85">
+        <word>Achernar</word>
+        <bangla_meaning>দক্ষিণ গোলার্ধে উজ্জলতম নক্ষত্র; একেরনার</bangla_meaning>
+        <definition>the ninth brightest star visible only in the southern hemisphere.</definition>
+        <sentence>Achernar is a star that is far away from Earth.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="86">
+        <word>Acquittal</word>
+        <bangla_meaning>বেকসুর খালাস দেওয়া</bangla_meaning>
+        <definition>an official decision in court that a person is not guilty of a crime.</definition>
+        <sentence>The women felt their chances of acquittal were slim and that they were facing lifetime imprisonment.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="87">
+        <word>Belladonna</word>
+        <bangla_meaning>একজাতীয় বিষাক্ত গাছ</bangla_meaning>
+        <definition>a very poisonous plant with purple flowers and black berries.</definition>
+        <sentence>Do you know how many pharmaceuticals listed in the index contain belladonna?</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="88">
+        <word>Bifurcate</word>
+        <bangla_meaning>দ্বিশাখায় বিভক্ত করা</bangla_meaning>
+        <definition>divide into two.</definition>
+        <sentence>The subject bifurcates into two streams of thought.</sentence>
+        <wtype>verb</wtype>
+        <level>3</level>
+    </data>
+    <data id="89">
+        <word>Bigot</word>
+        <bangla_meaning>পক্ষপাতিত্ব বা ধর্মান্ধ ব্যক্তি</bangla_meaning>
+        <definition>a prejudiced intolerant person.</definition>
+        <sentence>Only a bigot would refuse to be moved the story.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="90">
+        <word>Bipedal</word>
+        <bangla_meaning>দ্বিপদ</bangla_meaning>
+        <definition>animal that walks on two feet .</definition>
+        <sentence>Human beings as bipedal creatures.</sentence>
+        <wtype>adjective</wtype>
+        <level>3</level>
+    </data>
+    <data id="91">
+        <word>Blitzkrieg</word>
+        <bangla_meaning>দ্রুত জয়লাভের উদ্দেশ্যে প্রবল ঝটিক আক্রমণ</bangla_meaning>
+        <definition>an intense military campaign intended to bring about a swift victory.</definition>
+        <sentence>The squadron was however actively involved in the frantic aerial campaign to stem the german blitzkrieg during may 1940.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="92">
+        <word>Brachycerous</word>
+        <bangla_meaning>শিং অপ্সারন করা</bangla_meaning>
+        <definition>having horns or antennae clipped or removed.</definition>
+        <sentence>Brachyostomata is a brachycerous insect with short proboscis.</sentence>
+        <wtype>adjective</wtype>
+        <level>3</level>
+    </data>
+    <data id="93">
+        <word>Brobdingnag</word>
+        <bangla_meaning>গালিভারস ট্রাভেলস এর এক কল্পনার দেশ</bangla_meaning>
+        <definition>the imaginary country in Swift's Gulliver's Travels  where   everything  was of enormous size.</definition>
+        <sentence>He described the ruins of Jordan as though they were from Gulliver's Brobdingnag!</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="94">
+        <word>Cipher/ Cypher</word>
+        <bangla_meaning>সংকেতলিপি</bangla_meaning>
+        <definition>a code or key.</definition>
+        <sentence>The letter was written in a cipher so we could not read it.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="95">
+        <word>Caduceus</word>
+        <bangla_meaning>কাঠি ও দুই সাপের চিহ্ন</bangla_meaning>
+        <definition>symbol with two snakes coiled around a wand.</definition>
+        <sentence>A caduceus is the symbol for doctors and the medical profession.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="96">
+        <word>Chrysanthemum</word>
+        <bangla_meaning>এক ধরনের ফুলের গাছ</bangla_meaning>
+        <definition>a flowering plant and it's flower.</definition>
+        <sentence>Mary was looking for chrysanthemums to plant in her garden.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="97">
+        <word>Debutante</word>
+        <bangla_meaning>নবযুবতী যে প্রথম বারের মতো সমাজে আগমন করে</bangla_meaning>
+        <definition>a young woman making her first appearance in society .</definition>
+        <sentence>My darling daughter, Beatrix herself had been one of the most successful debutantes in her younger years.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="98">
+        <word>Éclat</word>
+        <bangla_meaning>বিশেষ সাফল্য</bangla_meaning>
+        <definition>social distinction or conspicuous success.</definition>
+        <sentence>The young actor played the role with such éclat that he was nominated for several awards.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="99">
+        <word>Fricassee</word>
+        <bangla_meaning>মাংস দিয়ে রান্না করা তরকারী</bangla_meaning>
+        <definition>dish of stewed or fried pieces of meat.</definition>
+        <sentence>She is particularly good at making fricasse.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="100">
+        <word>Gewgaw</word>
+        <bangla_meaning>তুচ্ছ রঁচঙে বস্তু</bangla_meaning>
+        <definition>a showy but worthless object.</definition>
+        <sentence>I will throw away all the gewgaws we had accumulated from here and there.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="101">
+        <word>Ichthyophagous</word>
+        <bangla_meaning>মত্স্যভোজী</bangla_meaning>
+        <definition>one that feeds on fish.</definition>
+        <sentence>Most people living in this fishing village are Ichthyophagous.</sentence>
+        <wtype>adjective</wtype>
+        <level>3</level>
+    </data>
+    <data id="102">
+        <word>Jardiniere</word>
+        <bangla_meaning>গাছ লাগানোর সুন্দর পাত্র</bangla_meaning>
+        <definition>ornamental pot for plants.</definition>
+        <sentence>In his haste to leave, he knocked over the jardiniere and broke it.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="103">
+        <word>Jehovah</word>
+        <bangla_meaning>ইহুদীরা ইশ্বরকে যে নামে ডাকে</bangla_meaning>
+        <definition>the name of God that is used in the Old Testament of the Bible.</definition>
+        <sentence>Many Christians want to make a sharp distinction between the vengeful Jehovah of the Old Testament and the merciful Jesus of the New Testament.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="104">
+        <word>Kakidrosis</word>
+        <bangla_meaning>গায়ের দুর্গন্ধ</bangla_meaning>
+        <definition>body odor.</definition>
+        <sentence>A stench of kakidrosis in the prison indicated that the inmates did not wash often.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="105">
+        <word>Kakistocracy</word>
+        <bangla_meaning>শাসনব্যবস্থা</bangla_meaning>
+        <definition>a form of government in which the worst persons are in power.</definition>
+        <sentence>Before the battle the city had a kakistocracy.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="106">
+        <word>Kieselguhr</word>
+        <bangla_meaning>মাটির একটি ধরন</bangla_meaning>
+        <definition>a form of diatomaceous earth used in various manufacturing and laboratory processes, chiefly as a filter, filler, or insulator.</definition>
+        <sentence>The main element in this filter machine is kieselguhr.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="107">
+        <word>Landaulet</word>
+        <bangla_meaning>উপরে হুডযুক্ত গাড়ি</bangla_meaning>
+        <definition>a car with a folding hood over the rear seats.</definition>
+        <sentence>Within three minutes every inch of the landaulet, front, back, and side, was occupied by a man</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="108">
+        <word>Landsknecht</word>
+        <bangla_meaning>সেনাবাহিনীর সদস্য</bangla_meaning>
+        <definition>a member of a class of mercenary soldiers in the German and other continental armies in the 16th and 17th centuries.</definition>
+        <sentence>Charles is very brave, and fought like a landsknecht; and if he continues to fight thus, no doubt he will finish by gaining a battle, like Rocroi</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="109">
+        <word>Langoustine</word>
+        <bangla_meaning>এক ধরণের গলদা চিংড়ি</bangla_meaning>
+        <definition>a type of lobster.</definition>
+        <sentence>These fisherman catch quite a few langoustines each day.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="110">
+        <word>Languor</word>
+        <bangla_meaning>ধীরূজ ভাব</bangla_meaning>
+        <definition>pleasant tiredness and inactivity.</definition>
+        <sentence>We all drowsed in a state of languor after a long fun-filled day.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+    <data id="111">
+        <word>Laudanum</word>
+        <bangla_meaning>আফিমের সার মিশ্রণ</bangla_meaning>
+        <definition>a morphine solution.</definition>
+        <sentence>Laudanum was a popular painkiller during the 19th century.</sentence>
+        <wtype>noun</wtype>
+        <level>3</level>
+    </data>
+</set>

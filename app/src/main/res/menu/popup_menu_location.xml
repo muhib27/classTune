@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:title="Azimpur"/>
+    <item android:title="Badda"/>
+    <item android:title="Banani"/>
+    <item android:title="Bangshal"/>
+    <item android:title="Baridhara"/>
+    <item android:title="Bashabo"/>
+    <item android:title="Bashundhara"/>
+    <item android:title="Cantonment"/>
+    <item android:title="Dhaka University"/>
+    <item android:title="Dhanmondi"/>
+    <item android:title="Elephant Road"/>
+    <item android:title="Fakirapool"/>
+    <item android:title="Gandaria"/>
+    <item android:title="Gopibag"/>
+    <item android:title="Green Road"/>
+    <item android:title="Gulshan"/>
+    <item android:title="Hatirpool"/>
+    <item android:title="Jatrabari"/>
+    <item android:title="Jigatola"/>
+    <item android:title="Jurain"/>
+    <item android:title="Kakrail"/>
+    <item android:title="Kalabagan"/>
+    <item android:title="Kalyanpur"/>
+    <item android:title="Kamlapur"/>
+    <item android:title="Khilgaon"/>
+    <item android:title="Khilkhet"/>
+    <item android:title="Lalbag"/>
+    <item android:title="Lalmatia"/>
+    <item android:title="Laxmibazar"/>
+    <item android:title="Malibag"/>
+    <item android:title="Mirpur"/>
+    <item android:title="Mogbazar"/>
+    <item android:title="Mohakhali"/>
+    <item android:title="Mohammadpur"/>
+    <item android:title="Mothijheel"/>
+    <item android:title="Nikunja"/>
+    <item android:title="Paltan"/>
+    <item android:title="Rampura"/>
+    <item android:title="Rayer Bazar"/>
+    <item android:title="Sadarghat"/>
+    <item android:title="Segunbagucha"/>
+    <item android:title="Shahbag"/>
+    <item android:title="Shantinagar"/>
+    <item android:title="Shyamoli"/>
+    <item android:title="Siddeshwari"/>
+    <item android:title="Sobhanbag"/>
+    <item android:title="Sukrabad"/>
+    <item android:title="Tejgaon"/>
+    <item android:title="Tejkunipara"/>
+    <item android:title="Wari"/>
+    <item android:title="Uttara"/>
+    
+    
+    
+
+</menu>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:id="@+id/top_panel_for_others"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="50dp"
+            android:background="@color/gray_bg" />
+
+        <ImageView
+            android:id="@+id/img_cat_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/academic_calendar_tap" />
+
+        <TextView
+            android:id="@+id/txt_category_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Academic Calendar"
+            android:textColor="@color/gray_1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    
+    <!-- <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:orientation="horizontal"
+        android:padding="5dip"
+        android:background="@color/white"
+        android:layout_marginLeft="10dip"
+    	android:layout_marginRight="10dip"
+        >
+        
+        <ImageView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/piecharticon"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"/>
+             <com.champs21.schoolapp.viewhelpers.CustomRhombusIcon
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    custom:iconImageRhombus="@drawable/piecharticon"
+                    />
+        
+        <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingLeft="5dip">
+            
+            
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/academic_calendar_title_text"
+                android:textColor="@android:color/black"
+                android:gravity="left"
+                android:id="@+id/academic_calendar_title"/>
+            
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="13th december 2014"
+                android:textColor="@color/gray_1"
+                android:gravity="left"
+                android:id="@+id/current_date_text"/>
+            
+            
+        </LinearLayout>
+        
+    </LinearLayout> -->
+
+
+ <com.classtune.app.schoolapp.viewhelpers.MyFragmentTabHost
+    android:id="@+id/tabhost_ac"
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:layout_weight="1"
+    android:layout_marginTop="2dip">
+
+    <LinearLayout
+	        android:orientation="vertical"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_marginLeft="10dip"
+	        android:layout_marginRight="10dip"
+	        >
+		<TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal" />
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
+
+        <FrameLayout
+            android:id="@+id/realtabcontent_ac"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+	        
+	    </LinearLayout>
+</com.classtune.app.schoolapp.viewhelpers.MyFragmentTabHost>
+</LinearLayout>

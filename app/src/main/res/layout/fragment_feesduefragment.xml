@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical" >
+    
+    
+    <LinearLayout
+        android:id="@+id/toplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="5dp" >
+
+            <ImageView
+                android:id="@+id/imgSubjectIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/fees"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txtSubjectName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Fees"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eef2f3" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.8"
+            android:gravity="center"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/txtDueDateHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:singleLine="true"
+                android:ellipsize="marquee" 
+    			android:marqueeRepeatLimit="marquee_forever"
+    			android:scrollHorizontally="true" 
+	    		android:focusable="true" 
+    			android:focusableInTouchMode="true"
+                android:text="Due Date" />
+
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_2">
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/txtDescriptionHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:singleLine="true"
+                android:ellipsize="marquee" 
+    			android:marqueeRepeatLimit="marquee_forever"
+    			android:scrollHorizontally="true" 
+	    		android:focusable="true" 
+    			android:focusableInTouchMode="true"
+                android:text="Description" />
+
+        </LinearLayout>
+        
+        
+        <LinearLayout 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_2">
+            
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.8"
+            android:gravity="center"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/txtAmountHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:singleLine="true"
+                android:ellipsize="marquee" 
+    			android:marqueeRepeatLimit="marquee_forever"
+    			android:scrollHorizontally="true" 
+	    		android:focusable="true" 
+    			android:focusableInTouchMode="true"
+                android:text="Amount" />
+
+        </LinearLayout>
+        
+        
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/white" >
+
+        <TextView
+            android:id="@+id/txtMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/classtune_green_color"
+            android:visibility="gone"
+            android:text="No data available now!" />
+        
+        <ListView 
+            android:id="@+id/listViewFeesDue"
+            android:layout_width="match_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:divider="@color/gray_2"
+            android:dividerHeight="2dp">
+            
+        </ListView>
+        
+        
+    </LinearLayout>
+
+</LinearLayout>

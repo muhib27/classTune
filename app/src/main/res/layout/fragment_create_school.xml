@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/create_school_logo" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Want your own school page?"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Fill up the forms below"
+                        android:textColor="@color/gray_2" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="false"
+                        android:text="This feature is only available for registered user. Share your school&apos;s information on champs21.com now"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="#e8ebed"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <EditText
+                        android:id="@+id/txtSchoolName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.92"
+                        android:background="#00000000"
+                        android:ems="10"
+                        android:hint="School Name"
+                        android:textColor="@android:color/black"
+                        android:textCursorDrawable="@null" >
+
+                        <requestFocus />
+                    </EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="#e8ebed"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <EditText
+                        android:id="@+id/txtContact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.92"
+                        android:background="#00000000"
+                        android:ems="10"
+                        android:hint="Contact"
+                        android:textColor="@android:color/black"
+                        android:textCursorDrawable="@null" >
+
+                        <requestFocus />
+                    </EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2"
+                        android:background="#e8ebed"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="5dip" >
+
+                        <EditText
+                            android:id="@+id/txtAddress"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:ems="10"
+                            android:hint="Address"
+                            android:textColor="@android:color/black"
+                            android:textCursorDrawable="@null" >
+
+                            <requestFocus />
+                        </EditText>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#e8ebed"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="5dip" >
+
+                        <EditText
+                            android:id="@+id/txtZipCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="#00000000"
+                            android:ems="10"
+                            android:hint="Zip Code"
+                            android:textColor="@android:color/black"
+                            android:textCursorDrawable="@null" >
+
+                            <requestFocus />
+                        </EditText>
+                    </LinearLayout>
+                </LinearLayout>
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="#e8ebed"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="5dip" >
+
+                    <EditText
+                    android:id="@+id/txtAbout"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    android:background="@color/gray_2"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:hint="write about your school"
+                    android:inputType="textMultiLine"
+                    android:textColor="@android:color/black"
+                    android:textCursorDrawable="@null" />
+                </LinearLayout>
+
+                
+            </LinearLayout>
+            
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@color/gray_2" >
+            	</LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:background="@android:color/white"
+                android:orientation="horizontal" >
+                
+               
+
+                <com.classtune.app.schoolapp.viewhelpers.CustomButton
+                    android:id="@+id/btnUploadLogo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/general_btn"
+                    android:clickable="true"
+                    android:gravity="center"
+                    custom:iconImage="@drawable/upload_logo"
+                    custom:iconText="Upload Logo" />
+
+                <LinearLayout
+                    android:layout_width="2dip"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_2" >
+                </LinearLayout>
+
+                <com.classtune.app.schoolapp.viewhelpers.CustomButton
+                    android:id="@+id/btnUploadPicture"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/general_btn"
+                    android:clickable="true"
+                    android:gravity="center"
+                    custom:iconImage="@drawable/upload_picture"
+                    custom:iconText="Upload Picture" />
+
+                <LinearLayout
+                    android:id="@+id/dividerRemoveBtn"
+                    android:layout_width="2dip"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_2"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <com.classtune.app.schoolapp.viewhelpers.CustomButton
+                    android:id="@+id/btnSend"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/general_btn"
+                    android:clickable="true"
+                    android:gravity="center"
+                    custom:iconImage="@drawable/btn_send"
+                    custom:iconText="Send" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/red_line" >
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

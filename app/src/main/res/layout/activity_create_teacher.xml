@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutUserIdHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtUserId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/maroon"
+            android:layout_gravity="center"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Employee no."
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_employeenum" />
+
+                    <EditText
+                        android:id="@+id/txtEmployeeNumber"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Date of Birth"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_dob" />
+
+
+
+                    <DatePicker
+                        android:id="@+id/pickerDob"
+                        android:layout_width="0dp"
+                        android:calendarViewShown="false"
+                        android:layout_weight="1.35"
+                        android:layout_height="wrap_content">
+
+                    </DatePicker>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Gender"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_gender" />
+
+                    <Spinner
+                        android:id="@+id/spinnerGender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35">
+
+                    </Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Contact no."
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_contact" />
+
+                    <EditText
+                        android:id="@+id/txtContact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone"/>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Job Title"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_jobtitle" />
+
+                    <EditText
+                        android:id="@+id/txtJobTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Category"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_category" />
+
+                    <com.classtune.app.schoolapp.classtune.NoDefaultSpinner
+                        android:id="@+id/spinnerCategory"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35">
+
+                    </com.classtune.app.schoolapp.classtune.NoDefaultSpinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Department"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_department" />
+
+                    <com.classtune.app.schoolapp.classtune.NoDefaultSpinner
+                        android:id="@+id/spinnerDepartment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35">
+
+                    </com.classtune.app.schoolapp.classtune.NoDefaultSpinner>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Grade"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_grade" />
+
+                    <com.classtune.app.schoolapp.classtune.NoDefaultSpinner
+                        android:id="@+id/spinnerGrade"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35">
+
+                    </com.classtune.app.schoolapp.classtune.NoDefaultSpinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutPositionHolder"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Position"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_position" />
+
+                    <TextView
+                        android:id="@+id/txtPosition"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black"
+                        android:layout_weight="1.35">
+
+                    </TextView>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Joining Date"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_joiningdate" />
+
+
+
+                    <DatePicker
+                        android:id="@+id/pickerJoiningDate"
+                        android:layout_width="0dp"
+                        android:calendarViewShown="false"
+                        android:layout_weight="1.35"
+                        android:layout_height="wrap_content">
+
+                    </DatePicker>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Batch"
+                        android:textSize="18sp"
+                        android:layout_weight=".65"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_header_batchid" />
+
+                    <com.classtune.app.schoolapp.classtune.NoDefaultSpinner
+                        android:id="@+id/spinnerBatch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.35">
+
+                    </com.classtune.app.schoolapp.classtune.NoDefaultSpinner>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayout13"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+
+
+                <Button
+                    android:id="@+id/btnCreate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Create"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

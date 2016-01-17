@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip">
+        
+        <ImageView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/leave_rombus"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/icon"
+            />
+        
+    <TextView
+        android:id="@+id/dialog_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Leave Application"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/icon" 
+        android:layout_centerVertical="true"/>    
+        
+    </RelativeLayout>
+    
+    
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/red"/>
+    
+    
+     <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:orientation="horizontal"
+        >
+        
+        <TextView android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:text="Name:"
+            android:layout_weight="0.3"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:gravity="right|center_vertical"
+            android:layout_marginLeft="20dip"/>
+        
+        <TextView android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:text="Plabon Modak"
+            android:layout_weight="0.7"
+            android:textColor="@color/gray_1"
+            android:textSize="16sp"
+            android:layout_marginLeft="5dip"
+            android:gravity="left|center_vertical"
+            android:id="@+id/name_text"/>
+        
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:orientation="horizontal"
+        >
+        
+        <TextView android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:text="Start Date:"
+            android:layout_weight="0.3"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:gravity="right|center_vertical"
+            android:layout_marginLeft="20dip"/>
+        
+        <TextView android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:text="21/12/2014"
+            android:layout_weight="0.7"
+            android:textColor="@color/gray_1"
+            android:textSize="16sp"
+            android:layout_marginLeft="5dip"
+            android:gravity="left|center_vertical"
+            android:id="@+id/start_date_text"/>
+        
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:orientation="horizontal"
+        >
+        
+        <TextView android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:text="End Date:"
+            android:layout_weight="0.3"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:gravity="right|center_vertical"
+            android:layout_marginLeft="20dip"/>
+        
+        <TextView android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:text="21/12/2014"
+            android:textColor="@color/gray_1"
+            android:textSize="16sp"
+            android:layout_weight="0.7"
+            android:layout_marginLeft="5dip"
+            android:gravity="left|center_vertical"
+            android:id="@+id/end_date_text"/>
+        
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        
+        <TextView android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:text="Reason:"
+            android:layout_weight="0.3"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:gravity="right|center_vertical"
+            android:layout_marginLeft="20dip"/>
+        
+        <TextView android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:text="@string/test_string"
+            android:textColor="@color/gray_1"
+            android:textSize="16sp"
+            android:layout_weight="0.7"
+            android:layout_marginLeft="5dip"
+            android:gravity="left|center_vertical"
+            android:id="@+id/reason_text"/>
+        
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/red" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/dialog_btn_deny"
+            android:layout_width="100dip"
+            android:layout_height="30dip"
+            android:background="@drawable/btn_red_back"
+            android:text="Deny"
+            android:textColor="@color/white"/>
+        
+        <Button
+            android:id="@+id/dialog_btn_accept"
+            android:layout_width="100dip"
+            android:layout_height="30dip"
+            android:background="@drawable/btn_red_back"
+            
+            android:text="Accept"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dip"/>
+    </LinearLayout>
+
+</LinearLayout>

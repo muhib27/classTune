@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<data id="13">
+		<word>AbdomenO</word>
+		<bangla_meaning>পেট</bangla_meaning>
+		<definition>the part of the body below the chest that contains the stomach, bowels, etc.</definition>
+		<sentence>He was knocked over by a flying tennis ball that hit his abdomen at full speed.</sentence>
+		<wtype>noun</wtype>
+		<level>0</level>
+	</data>
+	<data id="14">
+		<word>AbductO</word>
+		<bangla_meaning>কৌশলে কাউকে অপহরণ করা</bangla_meaning>
+		<definition>to take somebody away illegally, especially by using force.</definition>
+		<sentence>He had attempted to abduct the two children.</sentence>
+		<wtype>verb</wtype>
+		<level>0</level>
+	</data>
+	<data id="15">
+		<word>AbolishO</word>
+		<bangla_meaning>উভয়কেই বিনষ্ট</bangla_meaning>
+		<definition>to put an end to.</definition>
+		<sentence>The movement to abolish unreasonable taxes was successful.</sentence>
+		<wtype>verb</wtype>
+		<level>0</level>
+	</data>
+	<data id="16">
+		<word>AbridgeO</word>
+		<bangla_meaning>সংক্ষিপ্ত করা</bangla_meaning>
+		<definition>to shorten (a book, speech, or a film) without loosing the sense.</definition>
+		<sentence>To abridge a book is a way of reducing its size.</sentence>
+		<wtype>verb</wtype>
+		<level>0</level>
+	</data>
+	<data id="17">
+		<word>AbhorrentO</word>
+		<bangla_meaning>অত্যন্ত ঘৃণ্য</bangla_meaning>
+		<definition>very repugnant; hateful.</definition>
+		<sentence>The offense done by him is abhorrent.</sentence>
+		<wtype>adjective</wtype>
+		<level>1</level>
+	</data>
+	<data id="18">
+		<word>AbnegateO</word>
+		<bangla_meaning>অস্বীকার,প্রত্যাখ্যান</bangla_meaning>
+		<definition>the act of not allowing yourself to have something that you want; the act of rejecting something.</definition>
+		<sentence>He attempts to abnegate personal responsibility at the family meeting.</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="19">
+		<word>AbeyanceO</word>
+		<bangla_meaning>সাময়িক নিষ্ক্রিয়াবস্থা</bangla_meaning>
+		<definition>a state of not happening or being used at present.</definition>
+		<sentence>Hostilities between the two groups have been in abeyance since last June.</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="20">
+		<word>AbatisO</word>
+		<word2>AbattisO</word2>
+		<bangla_meaning>প্রতিরক্ষার জন্য গাছ দিয়ে প্রতিরধ গড়ে তোলা</bangla_meaning>
+		<definition>a defence made of felled trees placed together with the boughs pointing outwards.</definition>
+		<sentence>The position of the army was strengthened by earthworks and by an abatis along the creek.</sentence>
+		<wtype>noun</wtype>
+		<level>1</level>
+	</data>
+	<data id="21">
+		<word>AbsenteeismO</word>
+		<bangla_meaning>অযথা কামাই করার অভ্যাস</bangla_meaning>
+		<definition>the practice of regularly staying away from work or school without good reason.</definition>
+		<sentence>Older workers have lower rates of absenteeism and more experience than younger folk.</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+	<data id="22">
+		<word>AcajouO</word>
+		<bangla_meaning>কাজুবাদাম</bangla_meaning>
+		<definition>an edible kidney-shaped nut, rich in oil and protein.</definition>
+		<sentence>The guest in the wedding ceremony was greeted with acajou and dates.</sentence>
+		<wtype>noun</wtype>
+		<level>2</level>
+	</data>
+
+
+	<data id="23">
+		<word>AcquittalO</word>
+		<bangla_meaning>বেকসুর খালাস দেওয়া</bangla_meaning>
+		<definition>an official decision in court that a person is not guilty of a crime.</definition>
+		<sentence>The women felt their chances of acquittal were slim and that they were facing lifetime imprisonment.</sentence>
+		<wtype>noun</wtype>
+		<level>3</level>
+	</data>
+	<data id="24">
+		<word>BelladonnaO</word>
+		<bangla_meaning>একজাতীয় বিষাক্ত গাছ</bangla_meaning>
+		<definition>a very poisonous plant with purple flowers and black berries.</definition>
+		<sentence>Do you know how many pharmaceuticals listed in the index contain belladonna?</sentence>
+		<wtype>noun</wtype>
+		<level>3</level>
+	</data>
+
+</set>

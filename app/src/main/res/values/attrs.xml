@@ -1,0 +1,91 @@
+<resources>
+	<declare-styleable name="CustomFontTextView">
+        <attr name="textFont" format="enum">
+            <enum name="Roboto_Black" value="0" />
+            <enum name="Roboto_BlackItalic" value="1" />
+            <enum name="Roboto_Bold" value="2" />
+            <enum name="Roboto_BoldCondensed" value="3" />
+            <enum name="Roboto_BoldCondensedItalic" value="4" />
+            <enum name="Roboto_BoldItalic" value="5" />
+            <enum name="Roboto_Condensed" value="6" />
+            <enum name="Roboto_CondensedItalic" value="7" />
+            <enum name="Roboto_Italic" value="8" />
+            <enum name="Roboto_Light" value="9" />
+            <enum name="Roboto_LightItalic" value="0" />
+            <enum name="Roboto_Medium" value="11" />
+            <enum name="Roboto_MediumItalic" value="12" />
+            <enum name="Roboto_Regular" value="13" />
+            <enum name="Roboto_Thin" value="14" />
+            <enum name="Roboto_ThinItalic" value="15" />
+            <enum name="GothamNarrow_Light" value="16" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="CustomButton">
+        <attr name="iconImage" format="reference|color" />
+        <attr name="iconText" format="string" />
+        <attr name="textSize" format="integer"/>
+        <attr name="selected" format="boolean"/>
+        <attr name="textColor" format="color"/>
+        
+    </declare-styleable>
+    
+  <declare-styleable name="CustomRhombus">
+        <attr name="iconImageRhombus" format="reference|color" />
+    </declare-styleable> 
+    
+    
+    <declare-styleable name="CustomButtonTest">
+        <attr name="iconImageNormal" format="reference|color" />
+        <attr name="iconImageTap" format="reference|color" />
+        <attr name="buttonText" format="string" />
+        <attr name="buttonTextSize" format="integer"/>
+        <attr name="buttonSelected" format="boolean"/>
+    </declare-styleable>
+    
+    <declare-styleable name="CustomTabButton">
+        <attr name="iconImageTab" format="reference|color" />
+        <attr name="iconTextTab" format="string" />
+    </declare-styleable>
+    <declare-styleable name="CustomButtonFree">
+        <attr name="iconImageFree" format="reference|color" />
+        <attr name="iconTextFree" format="string" />
+    </declare-styleable>
+    <declare-styleable name="ExpandableTextView">
+        <attr name="trimLength" format="integer" />
+    </declare-styleable>
+    
+    <declare-styleable name="ExpandablePanel">
+        <attr name="handle" format="reference" />
+        <attr name="content" format="reference" />
+        <attr name="collapsedHeight" format="dimension"/>
+        <attr name="animationDuration" format="integer"/>
+    </declare-styleable>
+
+    
+    
+    <declare-styleable name="CustomTextView">
+		<attr name="fontName" format="string" />
+   	</declare-styleable>
+
+    <declare-styleable name="TextViewPlus">
+        <attr name="customFont" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="FontButton">
+        <attr name="font" format="string"/>
+    </declare-styleable>
+    
+</resources>
