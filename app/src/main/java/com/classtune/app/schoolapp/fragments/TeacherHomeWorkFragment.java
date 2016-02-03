@@ -140,6 +140,11 @@ public class TeacherHomeWorkFragment extends Fragment {
         spec   =   mTabHostEvts.newTabSpec(AppConstant.TAB_HOMEWORK_ADD);
         spec.setIndicator(getIndicatorView(getString(R.string.title_add_homework), R.drawable.tab_homework_add));
         addTab(this.mTabHostEvts, spec, ( tabInfo = new TabInfo(AppConstant.TAB_HOMEWORK_ADD, TeacherHomeWorkAddFragment.class, args)));
+
+		//draft here
+		spec   =   mTabHostEvts.newTabSpec(AppConstant.TAB_HOMEWORK_DRAFT);
+		spec.setIndicator(getIndicatorView(getString(R.string.title_draft_homework), R.drawable.tab_homework_draft));
+		addTab(this.mTabHostEvts, spec, ( tabInfo = new TabInfo(AppConstant.TAB_HOMEWORK_ADD, TeacherHomeWorkDraftListFragment.class, args)));
         
        /* spec   =   mTabHostEvts.newTabSpec(AppConstant.TAB_DRAFT);
         spec.setIndicator(getIndicatorView(getString(R.string.title_draft), R.drawable.tab_draft));
@@ -151,7 +156,7 @@ public class TeacherHomeWorkFragment extends Fragment {
 			@Override
 			public void onTabChanged(String tabId) {
 				// TODO Auto-generated method stub
-				if(mTabHostEvts.getCurrentTab() == 0)
+				if(mTabHostEvts.getCurrentTab() == 0 || mTabHostEvts.getCurrentTab() == 2)
 				{
 					layoutFilter.setVisibility(View.VISIBLE);
 				}

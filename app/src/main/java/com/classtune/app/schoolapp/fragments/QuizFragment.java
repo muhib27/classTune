@@ -228,6 +228,7 @@ public class QuizFragment extends Fragment {
 		
 		params.put("page_size", "10");
 		params.put("page_number", String.valueOf(pageNumber));
+		params.put("not_started", "1");
 		
 
 		AppRestClient.post(URLHelper.URL_HOMEWORK_ASSESSMENT_LIST, params,
@@ -485,62 +486,67 @@ public class QuizFragment extends Fragment {
 			holder.txtMaximumTime.setText("Maximum Time: "+listAssessmentHomework.get(position).getMaximumTime());
 			holder.txtPassPercentage.setText("Pass Percentage: "+listAssessmentHomework.get(position).getPassPercentage());
 			holder.btnPlay.setTag(position);
-			
-			if(listAssessmentHomework.get(position).getTimeover() == 0 && listAssessmentHomework.get(position).getExamGiven() == 0)
+
+
+			if(listAssessmentHomework.get(position).getNotStarted() == 1)
 			{
-				holder.btnPlay.setText("Play");
-				
-				if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) 
+				holder.btnPlay.setText("Not Started");
+			}
+			else
+			{
+				if(listAssessmentHomework.get(position).getTimeover() == 0 && listAssessmentHomework.get(position).getExamGiven() == 0)
 				{
-					holder.btnPlay.setText("Not Played");
-				}
-				
-				holder.btnPlay.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						Button btn = ((Button)v);
-						
-						if (userHelper.getUser().getType() != UserTypeEnum.PARENTS) 
-						{
-							Intent intent = new Intent(getActivity(), AssesmentHomeworkActivity.class);
-							intent.putExtra("ASSESSMENT_HOMEWORK_ID", listAssessmentHomework.get((Integer) btn.getTag()).getId());
-							startActivity(intent);
+					holder.btnPlay.setText("Play");
+
+					if (userHelper.getUser().getType() == UserTypeEnum.PARENTS)
+					{
+						holder.btnPlay.setText("Not Played");
+					}
+
+					holder.btnPlay.setOnClickListener(new View.OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							Button btn = ((Button)v);
+
+							if (userHelper.getUser().getType() != UserTypeEnum.PARENTS)
+							{
+								Intent intent = new Intent(getActivity(), AssesmentHomeworkActivity.class);
+								intent.putExtra("ASSESSMENT_HOMEWORK_ID", listAssessmentHomework.get((Integer) btn.getTag()).getId());
+								startActivity(intent);
+							}
+
+
 						}
-						
-						
-					}
-				});
-				
+					});
+
+				}
+
+				if(listAssessmentHomework.get(position).getExamGiven() == 1) {
+					holder.btnPlay.setText("Result");
+
+					holder.btnPlay.setOnClickListener(new View.OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							Log.e("CCC", "clicked from result");
+							Button btn = ((Button) v);
+
+							initApiCallAssessmentResult(listAssessmentHomework.get((Integer) btn.getTag()).getId());
+
+						}
+					});
+				}
+				if(listAssessmentHomework.get(position).getTimeover() == 1 && listAssessmentHomework.get(position).getExamGiven() == 0)
+				{
+					holder.btnPlay.setText("Time Over");
+				}
+
 			}
-			
-			if(listAssessmentHomework.get(position).getExamGiven() == 1)
-			{
-				holder.btnPlay.setText("Result");
-				
-				holder.btnPlay.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						Log.e("CCC", "clicked from result");
-						Button btn = ((Button)v);
-						
-						initApiCallAssessmentResult(listAssessmentHomework.get((Integer) btn.getTag()).getId());
-						
-					}
-				});
-			}
-			if(listAssessmentHomework.get(position).getTimeover() == 1 && listAssessmentHomework.get(position).getExamGiven() == 0)
-			{
-				holder.btnPlay.setText("Time Over");
-			}
-			
-			
-			
-			
-			
+
+
 			
 			return convertView;
 		}

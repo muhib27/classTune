@@ -43,6 +43,10 @@ public class TeacherHomeworkData {
 	@SerializedName("done")
 	private String done;
 
+	@SerializedName("is_editable")
+	private boolean isEditable;
+
+
 	public String getSubjects() {
 		return subjects;
 	}
@@ -145,5 +149,13 @@ public class TeacherHomeworkData {
 
 	public void setDone(String done) {
 		this.done = done;
+	}
+
+	public boolean getIsEditable() {
+		return isEditable;
+	}
+
+	public void setIsEditable(boolean isEditable) {
+		this.isEditable = isEditable;
 	}
 }

@@ -200,6 +200,8 @@ public class URLHelper {
 	public final static String URL_HOMEWORK_STATUS= "homework/homeworkstatus";
 	
 	public final static String URL_SINGLE_TEACHER_HOMEWORK = "homework/singleteacher";
+
+	public final static String URL_SINGLE_TEACHER_PUBLISH_HOMEWORK = "homework/publishhomework";
 	
 	public final static String URL_HOMEWORK_SUBJECT = "homework/subjects";
 	

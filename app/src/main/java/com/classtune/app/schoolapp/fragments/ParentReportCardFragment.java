@@ -34,7 +34,7 @@ import com.loopj.android.http.RequestParams;
 
 import java.util.HashMap;
 
-public class ParentReportCardFragment extends UserVisibleHintFragment implements MyFragmentTabHost.OnTabChangeListener{
+public class ParentReportCardFragment extends UserVisibleHintFragment implements MyFragmentTabHost.OnTabChangeListener, IPickedStudentName{
 
 
 	
@@ -44,6 +44,7 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
 	private Batch selectedBatch;
 	private StudentAttendance selectedStudent;
     private UserHelper userHelper;
+	private TextView txtStudentName;
 
     public void clearAllTabsData(){
 		/*FragmentTransaction ft = this.getChildFragmentManager().beginTransaction();
@@ -194,6 +195,7 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
 		// TODO Auto-generated method stub
 		rootView = inflater.inflate(R.layout.parent_report_card_layout,container, false);
 		mTabHostReportCard = (MyFragmentTabHost)rootView.findViewById(R.id.tabhost_reportcard);
+		txtStudentName = (TextView)rootView.findViewById(R.id.txtStudentName);
 		//CustomButton headerParent = (CustomButton) rootView.findViewById(R.id.header_parent);
 		//headerParent.setImage(R.drawable.reportcard_rombus);
 		//headerParent.setTitleText("Report Card");
@@ -221,7 +223,8 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
         spec.setIndicator(getIndicatorView(getString(R.string.title_classtest_tab), R.drawable.tab_classtest));
 
 
-        addTab(this.mTabHostReportCard, spec, ( tabInfo = new TabInfo(AppConstant.TAB_CLASSTEST, ReportClassTestFragment.class, args)));
+        addTab(this.mTabHostReportCard, spec, (tabInfo = new TabInfo(AppConstant.TAB_CLASSTEST, ReportClassTestFragment.class, args)));
+		ReportClassTestFragment.pickedStudentNameListenerClassTest = this;
 
        /* spec   =   mTabHostReportCard.newTabSpec(AppConstant.TAB_PROJECT);
         spec.setIndicator(getIndicatorView(getString(R.string.tab_project), R.drawable.tab_result_project));
@@ -229,7 +232,8 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
 
         spec   =   mTabHostReportCard.newTabSpec(AppConstant.TAB_TERM_REPORT);
         spec.setIndicator(getIndicatorView(getString(R.string.title_term_report_tab), R.drawable.tab_term_report));
-        addTab(this.mTabHostReportCard, spec, ( tabInfo = new TabInfo(AppConstant.TAB_TERM_REPORT, ResultTermTesttFragment.class, args)));
+        addTab(this.mTabHostReportCard, spec, (tabInfo = new TabInfo(AppConstant.TAB_TERM_REPORT, ResultTermTesttFragment.class, args)));
+		ResultTermTesttFragment.pickedStudentNameListenerTermTest = this;
 
         if(userHelper.getUser().getType()!= UserHelper.UserTypeEnum.TEACHER){
             spec   =   mTabHostReportCard.newTabSpec(AppConstant.TAB_PROGRESS_GRAPH);
@@ -336,6 +340,21 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
 		
 	}
 
+	@Override
+	public void onStudentPicked(String studentName) {
+
+		if(studentName.length()>0)
+		{
+			txtStudentName.setVisibility(View.VISIBLE);
+			Log.e("FROM_INTERFACE", "stundet name: "+studentName);
+			txtStudentName.setText("Name: "+studentName);
+
+		}
+		else
+		{
+			txtStudentName.setVisibility(View.GONE);
+		}
 
 
+	}
 }

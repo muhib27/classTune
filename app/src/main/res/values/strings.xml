@@ -544,8 +544,9 @@ Get updates on recent on goings and feeds from your school teachers.</string>
 
     <!-- HOMEWOEK TEACHER -->
     <string name="title_draft">Draft</string>
-    <string name="title_add_homework">Add Homework</string>
-    <string name="title_homework_feed">Homeworks</string>
+    <string name="title_add_homework">Add</string>
+    <string name="title_draft_homework">Drafts</string>
+    <string name="title_homework_feed">All</string>
     <!-- LEAVE -->
     <string name="title_leave_application">Application</string>
     <string name="title_student_leave">Student leave</string>

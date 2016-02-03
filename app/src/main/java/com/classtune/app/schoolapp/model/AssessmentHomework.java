@@ -27,6 +27,9 @@ public class AssessmentHomework {
 	
 	@SerializedName("examGiven")
 	private int examGiven;
+
+	@SerializedName("not_started")
+	private int notStarted;
 	
 	
 
@@ -95,4 +98,11 @@ public class AssessmentHomework {
 		this.examGiven = examGiven;
 	}
 
+	public int getNotStarted() {
+		return notStarted;
+	}
+
+	public void setNotStarted(int notStarted) {
+		this.notStarted = notStarted;
+	}
 }

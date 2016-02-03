@@ -90,7 +90,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		return true;
 	}
 
-	public void PublishHomeWork() {
+	public void PublishHomeWork(final boolean isForDraft) {
 
 		RequestParams params = new RequestParams();
 
@@ -102,6 +102,14 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 				.toString());
 		params.put(RequestKeyHelper.TYPE, homeworkTypeId);
 		params.put(RequestKeyHelper.HOMEWORK_DUEDATE, dateFormatServerString);
+
+		if(isForDraft == true)
+		{
+			params.put("is_draft", "1");
+
+		}
+
+
 		AppRestClient.post(URLHelper.URL_TEACHER_ADD_HOMEWORK, params,
 				new AsyncHttpResponseHandler() {
 					@Override
@@ -128,9 +136,22 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 						Wrapper wrapper = GsonParser.getInstance()
 								.parseServerResponse(responseString);
 						if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-							Toast.makeText(getActivity(),
-									"Successfully posted Homework!",
-									Toast.LENGTH_SHORT).show();
+
+							if(isForDraft == true)
+							{
+								Toast.makeText(getActivity(),
+										"Successfully saved homework as draft!",
+										Toast.LENGTH_SHORT).show();
+
+							}
+							else
+							{
+								Toast.makeText(getActivity(),
+										"Successfully posted Homework!",
+										Toast.LENGTH_SHORT).show();
+							}
+
+
 
 							clearDataFields();
 						} else
@@ -249,6 +270,9 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		((ImageButton) view.findViewById(R.id.btn_publish_homework))
 				.setOnClickListener(this);
 
+		((ImageButton) view.findViewById(R.id.btn_save_draft_homework))
+				.setOnClickListener(this);
+
 		layoutDate = (LinearLayout)view.findViewById(R.id.layoutDate);
 		layoutDate.setOnClickListener(new View.OnClickListener() {
 			
@@ -314,9 +338,16 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 			break;
 		case R.id.btn_publish_homework:
 			if (isFormValid()) {
-				PublishHomeWork();
+				PublishHomeWork(false);
 			}
 			break;
+
+		case R.id.btn_save_draft_homework:
+			if (isFormValid()) {
+				PublishHomeWork(true);
+			}
+			break;
+
 		default:
 			break;
 		}

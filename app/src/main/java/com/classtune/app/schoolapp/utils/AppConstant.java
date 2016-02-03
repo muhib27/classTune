@@ -62,6 +62,7 @@ public class AppConstant {
 		// #########################################
 	public static final String TAB_DRAFT = "tab_draft_identifier";
 	public static final String TAB_HOMEWORK_ADD = "tab_homework_add_identifier";
+	public static final String TAB_HOMEWORK_DRAFT = "tab_homework_draft_identifier";
 	public static final String TAB_HOMEWORK_FEED = "tab_homework_feed_identifier";
 	public static final String TAB_ATTENDANCE_TEACHER = "tab_attendance_teacher_identifier";
 	// ######################################### Report Card

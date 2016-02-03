@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.HomeworkData;
@@ -29,7 +30,6 @@ import com.classtune.app.schoolapp.utils.MyTagHandler;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
-import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
@@ -42,7 +42,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
+public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 	
 	private UIHelper uiHelper;
 	private String id;
@@ -52,7 +52,6 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	private ExpandableTextView txtContent;
 	private TextView tvSubject;
 	private TextView tvDate;
-	private CustomButton btnDone;
 	private ImageView ivSubjectIcon;
 	
 	private LinearLayout bottmlay;
@@ -63,9 +62,12 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	private ImageButton btnDownload;
 	private LinearLayout layoutDownloadHolder;
 
-	private LinearLayout layoutHorizontalBar;
+	private Button btnPublish;
 	private Button btnEdit;
-	private static final int REQUEST_EDIT_HOMEWORK = 56;
+
+	private static final int REQUEST_EDIT_HOMEWORK = 55;
+
+	private boolean isEditable = false;
 	
 	
 	@Override
@@ -79,11 +81,11 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_single_teacher_homework);
+		setContentView(R.layout.activity_single_teacher_draft_homework);
 		
 		gson = new Gson();
 		
-		uiHelper = new UIHelper(SingleTeacherHomeworkActivity.this);
+		uiHelper = new UIHelper(SingleTeacherDraftHomeworkActivity.this);
 		
 		if(getIntent().getExtras() != null)
 			this.id = getIntent().getExtras().getString(AppConstant.ID_SINGLE_HOMEWORK);
@@ -103,15 +105,13 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		this.tvSubject = (TextView) this.findViewById(R.id.tv_teacher_feed_subject_name);
 		this.tvDate = (TextView) this.findViewById(R.id.tv_teacher_homewrok_feed_date);
 		
-		this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
 		this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
 		this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
 		this.btnDownload = (ImageButton)this.findViewById(R.id.btnDownload);
 		this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
 
-		this.layoutHorizontalBar = (LinearLayout)this.findViewById(R.id.layoutHorizontalBar);
+		this.btnPublish = (Button)this.findViewById(R.id.btnPublish);
 		this.btnEdit = (Button)this.findViewById(R.id.btnEdit);
-
 	}
 	
 	
@@ -122,10 +122,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		this.txtContent.setText(Html.fromHtml(data.getContent(), null, new MyTagHandler()));
 		
 		
-		btnDone.setTitleText("Done by "+data.getDone());
-		btnDone.setTextSize(16);
-		
-		
+
 		this.tvSubject.setText(data.getSubjects());
 		
 		String[] parts = data.getDuedate().split(" ");
@@ -136,22 +133,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		
 		this.ivSubjectIcon.setImageResource(AppUtility.getImageResourceId(data.getSubjects_icon(), this));
 		
-		
-		
-		
-		btnDone.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				
-				Intent intent = new Intent(SingleTeacherHomeworkActivity.this, TeacherHomeworkDoneActivity.class);
-				intent.putExtra(AppConstant.ID_TEACHER_HOMEWORK_DONE, data.getId());
-				startActivity(intent);
-			}
-		});
-		
-		
-		
 		
 		if(!TextUtils.isEmpty(data.getAttachment_file_name()))
 		{
@@ -170,35 +152,43 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				//http://api.champs21.com/api/freeuser/downloadattachment?id=47
-
-
+				
+				
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri
 						.parse("http://api.champs21.com/api/freeuser/downloadattachment?id=" + data.getId())));
 			}
 		});
 
 
-		if(data.getIsEditable() == true)
+		this.btnPublish.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				initApicallPublish();
+
+			}
+		});
+
+
+		if(isEditable == true)
 		{
 			btnEdit.setVisibility(View.VISIBLE);
-			layoutHorizontalBar.setVisibility(View.VISIBLE);
 		}
 		else
 		{
 			btnEdit.setVisibility(View.GONE);
-			layoutHorizontalBar.setVisibility(View.GONE);
 		}
 
 		this.btnEdit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 
-				Intent intent = new Intent(SingleTeacherHomeworkActivity.this, SingleTeacherEditHomeworkActivity.class);
+				Intent intent = new Intent(SingleTeacherDraftHomeworkActivity.this, SingleTeacherEditHomeworkActivity.class);
 				intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
 				startActivityForResult(intent, REQUEST_EDIT_HOMEWORK);
+
 			}
 		});
-		
 		
 	}
 	
@@ -275,12 +265,14 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 					.parseServerResponse(responseString);
 
 			if (modelContainer.getStatus().getCode() == 200) {
-				
+
 				JsonObject objHomework = modelContainer.getData().get("homework").getAsJsonObject();
 				data = gson.fromJson(objHomework.toString(), TeacherHomeworkData.class);
-				
+
+				isEditable = data.getIsEditable();
+
 				Log.e("HHH", "data: " + data.getName());
-				
+
 				initAction();
 				
 			}
@@ -300,6 +292,64 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		super.onDestroy();
 		webViewContent.destroy();
 	};*/
+
+	private void initApicallPublish()
+	{
+		RequestParams params = new RequestParams();
+		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
+		params.put("id", this.id);
+
+
+
+		AppRestClient.post(URLHelper.URL_SINGLE_TEACHER_PUBLISH_HOMEWORK, params, singleTeacherPublishHomeWorkHandler);
+	}
+
+	AsyncHttpResponseHandler singleTeacherPublishHomeWorkHandler = new AsyncHttpResponseHandler() {
+
+		@Override
+		public void onFailure(Throwable arg0, String arg1) {
+			uiHelper.showMessage(arg1);
+			if (uiHelper.isDialogActive()) {
+				uiHelper.dismissLoadingDialog();
+			}
+		};
+
+		@Override
+		public void onStart() {
+
+			uiHelper.showLoadingDialog("Please wait...");
+
+
+		};
+
+		@Override
+		public void onSuccess(int arg0, String responseString) {
+
+
+			uiHelper.dismissLoadingDialog();
+
+
+			Wrapper modelContainer = GsonParser.getInstance()
+					.parseServerResponse(responseString);
+
+			if (modelContainer.getStatus().getCode() == 200) {
+
+
+				Toast.makeText(SingleTeacherDraftHomeworkActivity.this, "Successfully published!", Toast.LENGTH_SHORT).show();
+				setResult(RESULT_OK);
+				finish();
+
+			}
+
+			else {
+
+			}
+
+
+
+		};
+	};
+
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -324,5 +374,4 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		finish();
 		super.onBackPressed();
 	}
-
 }

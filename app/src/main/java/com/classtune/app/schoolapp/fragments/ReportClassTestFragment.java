@@ -53,6 +53,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 
 	private Batch selectedBatch;
 	private StudentAttendance selectedStudent;
+	public static IPickedStudentName pickedStudentNameListenerClassTest;
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -571,6 +572,10 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
                 i.putExtra("batch_id", selectedBatch.getId());
                 i.putExtra("student_id", selectedStudent.getId());
                 getActivity().sendBroadcast(i);*/
+				if(pickedStudentNameListenerClassTest != null) {
+					pickedStudentNameListenerClassTest.onStudentPicked(selectedStudent.getStudentName());
+				}
+
                 fetchClassTestReport();
 				break;
 			default:

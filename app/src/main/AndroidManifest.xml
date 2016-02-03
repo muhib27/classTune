@@ -316,6 +316,16 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name="com.classtune.app.freeversion.SingleTeacherDraftHomeworkActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name="com.classtune.app.freeversion.SingleTeacherEditHomeworkActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
 
         <!--<provider android:authorities="com.facebook.app.NativeAppCallContentProvider850059515022967"
             android:name="com.facebook.NativeAppCallContentProvider"

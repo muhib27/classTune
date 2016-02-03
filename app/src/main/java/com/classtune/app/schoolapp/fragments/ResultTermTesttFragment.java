@@ -62,6 +62,7 @@ public class ResultTermTesttFragment extends UserVisibleHintFragment implements
 	private TextView gridTitleText;
 	private LinearLayout pbs;
 	private static final String TAG = "Exam Routine";
+	public static IPickedStudentName pickedStudentNameListenerTermTest;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -319,6 +320,9 @@ public class ResultTermTesttFragment extends UserVisibleHintFragment implements
                 i.putExtra("student_id", selectedStudent.getId());
                 getActivity().sendBroadcast(i);*/
                 //fetchDataFromServer();
+				if(pickedStudentNameListenerTermTest != null) {
+					pickedStudentNameListenerTermTest.onStudentPicked(selectedStudent.getStudentName());
+				}
 				loadDataInToList();
 				break;
 			default:

@@ -78,6 +78,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 	private List<BaseType> homeWorkSubject;
 
 	private TextView txtMessage;
+	private static final int REQUEST_SINGLE_PAGE = 60;
 	
 
 	@Override
@@ -131,7 +132,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 				
 				Intent intent = new Intent(getActivity(), SingleTeacherHomeworkActivity.class);
 				intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
-				startActivity(intent);
+				startActivityForResult(intent, REQUEST_SINGLE_PAGE);
 				
 				Log.e("DATA_CLICKED", "is: " + data.getId());
 				
@@ -730,6 +731,25 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 		}
 		
 		
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+
+
+		if(requestCode == REQUEST_SINGLE_PAGE)
+		{
+			allGooadReadPost.clear();
+			adapter.notifyDataSetChanged();
+
+			setUpList();
+			loadDataInToList();
+		}
+
+
+
 	}
 
 
