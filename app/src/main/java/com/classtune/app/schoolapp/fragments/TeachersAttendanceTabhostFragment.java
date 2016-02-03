@@ -127,7 +127,6 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 			default:
 				break;
 			}
-
 		}
 	};
 	@Override
@@ -156,7 +155,6 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 			this.clss = clazz;
 			this.args = args;
 		}
-
 	}
 
 	/**
@@ -263,7 +261,6 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 		// this.onTabChanged(AppConstant.TAB_ROLLCALL_TEACHER);
 		//
 		// mTabHostAttendanceTeacher.setOnTabChangedListener(this);
-
 	}
 
 	private View getIndicatorView(String text) {

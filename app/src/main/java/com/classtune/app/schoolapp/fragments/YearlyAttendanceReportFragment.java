@@ -93,7 +93,6 @@ public class YearlyAttendanceReportFragment extends Fragment implements UserAuth
 
 		if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
 
-
             if(getActivity().getIntent().getExtras()!=null)
             {
                 if(getActivity().getIntent().getExtras().containsKey("total_unread_extras"))
@@ -103,7 +102,6 @@ public class YearlyAttendanceReportFragment extends Fragment implements UserAuth
 
                     params.put(RequestKeyHelper.STUDENT_ID, getActivity().getIntent().getExtras().getBundle("total_unread_extras").getString("student_id"));
                     params.put(RequestKeyHelper.BATCH_ID, getActivity().getIntent().getExtras().getBundle("total_unread_extras").getString("batch_id"));
-
 
                     GcmIntentService.initApiCall(rid, rtype);
                 }
@@ -164,7 +162,7 @@ public class YearlyAttendanceReportFragment extends Fragment implements UserAuth
 			uiHelper.dismissLoadingDialog();
 			Log.e("Response", responseString);
 			Wrapper wrapper=GsonParser.getInstance().parseServerResponse(responseString);
-			if(wrapper.getStatus().getCode()==200)
+			if(wrapper.getStatus().getCode() == 200)
 			{
 				mSeries.clear();
 				mRenderer.removeAllRenderers();

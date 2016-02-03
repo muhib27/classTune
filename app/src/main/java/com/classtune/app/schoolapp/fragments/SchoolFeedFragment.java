@@ -2,21 +2,21 @@ package com.classtune.app.schoolapp.fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,16 +26,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.classtune.app.R;
-import com.classtune.app.freeversion.ChildContainerActivity;
+import com.classtune.app.freeversion.AnyFragmentLoadActivity;
 import com.classtune.app.freeversion.HomePageFreeVersion;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
-import com.classtune.app.schoolapp.StudentInfoActivity;
-import com.classtune.app.schoolapp.classtune.TeacherInfoActivity;
+import com.classtune.app.freeversion.SingleExamRoutine;
+import com.classtune.app.freeversion.SingleHomeworkActivity;
+import com.classtune.app.freeversion.SingleMeetingRequestActivity;
+import com.classtune.app.freeversion.SingleNoticeActivity;
+import com.classtune.app.schoolapp.model.FreeFeed;
 import com.classtune.app.schoolapp.model.FreeVersionPost;
-import com.classtune.app.schoolapp.model.FreeVersionPost.DateFeed;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -44,22 +47,15 @@ import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserAccessType;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
-import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.PagerContainer;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialog;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
-import com.classtune.app.schoolapp.viewhelpers.UninterceptableViewPager;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +67,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
     UserHelper userHelper;
     private PullToRefreshListView listGoodread;
     private GoodReadAdapter adapter;
-    private ArrayList<FreeVersionPost> allGooadReadPost = new ArrayList<FreeVersionPost>();
+    private ArrayList<FreeFeed> allGooadReadPost = new ArrayList<FreeFeed>();
     private ProgressBar spinner;
 
     boolean hasNext = false;
@@ -80,16 +76,14 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
     private boolean isRefreshing = false;
     private boolean loading = false;
     private boolean stopLoadingData = false;
-    private int[] lArray = {R.id.l1, R.id.l2, R.id.l3, R.id.l4, R.id.l5,
-            R.id.l6};
-    private int[] dArray = {R.id.d1, R.id.d2, R.id.d3, R.id.d4, R.id.d5,
-            R.id.d6};
-    private int[] mArray = {R.id.m1, R.id.m2, R.id.m3, R.id.m4, R.id.m5,
-            R.id.m6};
-    private int[] subjectIconArray = {R.id.si1, R.id.si2, R.id.si3, R.id.si4, R.id.si5};
-    private int[] subjectBgArray = {R.id.sb1, R.id.sb2, R.id.sb3, R.id.sb4, R.id.sb5};
     private boolean isPaid;
     private boolean isTeacher;
+    private String schoolName;
+    private String username;
+    private String userdetails;
+    private String profileurl;
+    private int attendance_status;
+    private FreeVersionPost.LastVisited lastvisited;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -110,13 +104,23 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         spinner = (ProgressBar) view.findViewById(R.id.loading);
         isPaid = userHelper.getUser().getPaidInfo().getSchoolType() == 1 ? true : false;
         isTeacher = userHelper.getUser().getType() == UserTypeEnum.TEACHER ? true : false;
-        // adapter.notifyDataSetChanged();
 
         listGoodread = (PullToRefreshListView) view
                 .findViewById(R.id.listView_category);
         int footerHeight = getActivity().getResources().getDimensionPixelSize(
                 R.dimen.footer_height);
         //some code hello there
+        listGoodread.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position - 1 != 0){
+                    FreeFeed feed = adapter.getList().get(position - 1);
+                    invokeClasses(feed.getRtype(), feed.getRid(), feed.getIs_read());
+                    adapter.getList().get(position - 1).setIs_read("1");
+                }
+            }
+        });
         listGoodread.setAdapter(adapter);
         setUpList();
         loadDataInToList();
@@ -171,10 +175,10 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         RequestParams params = new RequestParams();
         params.put(RequestKeyHelper.PAGE_NUMBER, pageNumber + "");
         params.put(RequestKeyHelper.PAGE_SIZE, pageSize + "");
-        params.put(RequestKeyHelper.SCHOOL_ID, getArguments().getInt("school_id") + "");
+        //params.put(RequestKeyHelper.SCHOOL_ID, getArguments().getInt("school_id") + "");
         // getArguments().getInt("school_id") + "");
-        Log.e("SCHOOL_ID_FEED", getArguments().getInt("school_id") + "");
-        params.put(RequestKeyHelper.TARGET, "school");
+        //Log.e("SCHOOL_ID_FEED", getArguments().getInt("school_id") + "");
+        //params.put(RequestKeyHelper.TARGET, "school");
         if (UserHelper.isLoggedIn()) {
             if (userHelper.getUser().getAccessType() == UserAccessType.PAID) {
                 params.put(RequestKeyHelper.USER_SECRET,
@@ -185,7 +189,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                     params.put("student_id", userHelper.getUser()
                             .getSelectedChild().getProfileId());
                 }
-                AppRestClient.post(URLHelper.URL_PAID_VERSION_SCHOOL_FEED,
+                AppRestClient.post(URLHelper.URL_PAID_VERSION_CLASSTUNE_FEED,
                         params, fitnessHandler);
 
             } else {
@@ -209,8 +213,6 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                 uiHelper.dismissLoadingDialog();
             }
         }
-
-
 
         @Override
         public void onStart() {
@@ -247,25 +249,32 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                 hasNext = modelContainer.getData().get("has_next")
                         .getAsBoolean();
 
-                if (pageNumber == 1)
+                schoolName = modelContainer.getData().get("school_name").getAsString();
+                username = modelContainer.getData().get("user_name").getAsString();
+                profileurl = modelContainer.getData().get("profile_picture").getAsString();
+                attendance_status = modelContainer.getData().get("attandence").getAsInt();
+                userdetails = modelContainer.getData().get("user_details").getAsString();
+                lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
+
+                if (pageNumber == 1) {
                     adapter.clearList();
+                    adapter.addSeparatorItem(new FreeFeed());
+                }
+
                 spinner.setVisibility(View.GONE);
                 if (!hasNext) {
                     // fitnessAdapter.setStopLoadingData(true);
                     stopLoadingData = true;
                 }
                 // fitnessAdapter.getList().addAll();
-                ArrayList<FreeVersionPost> allpost = GsonParser.getInstance()
-                        .parseFreeVersionPost(
-                                modelContainer.getData().getAsJsonArray("post")
+                ArrayList<FreeFeed> allpost = GsonParser.getInstance()
+                        .parsePost(
+                                modelContainer.getData().getAsJsonArray("feeds")
                                         .toString());
 
                 // if (pageNumber == 1)
                 for (int i = 0; i < allpost.size(); i++) {
-                    if (allpost.get(i).getPostType().equals("20")) {
-                        adapter.addSeparatorItem(allpost.get(i));
-                    } else
-                        adapter.addItem(allpost.get(i));
+                     adapter.addItem(allpost.get(i));
                 }
                 adapter.notifyDataSetChanged();
 
@@ -317,7 +326,6 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
     public void showCustomDialog(String headerText, int imgResId,
                                  String descriptionText) {
-
         PopupDialog picker = PopupDialog.newInstance(0);
         picker.setData(headerText, descriptionText, imgResId, getActivity());
         picker.show(getChildFragmentManager(), null);
@@ -326,7 +334,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
     public class GoodReadAdapter extends BaseAdapter {
 
         private Context context;
-        private ArrayList<FreeVersionPost> list;
+        private ArrayList<FreeFeed> list;
         private static final int TYPE_ITEM = 0;
         private static final int TYPE_SUMMERY = 1;
 
@@ -335,10 +343,10 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         private TreeSet<Integer> mSingleSeparatorSet = new TreeSet<Integer>();
         private LayoutInflater mInflater;
 
-        public GoodReadAdapter(Context context, ArrayList<FreeVersionPost> list) {
+        public GoodReadAdapter(Context context, ArrayList<FreeFeed> list) {
             // Cache the LayoutInflate to avoid asking for a new one each time.
             mInflater = LayoutInflater.from(context);
-            this.list = new ArrayList<FreeVersionPost>();
+            this.list = new ArrayList<FreeFeed>();
         }
 
         public void clearList() {
@@ -347,14 +355,14 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
             this.mSingleSeparatorSet.clear();
         }
 
-        public void addItem(final FreeVersionPost item) {
+        public void addItem(final FreeFeed item) {
             list.add(item);
             // The notification is not necessary since the items are not added
             // dynamically
             // notifyDataSetChanged();
         }
 
-        public void addSeparatorItem(final FreeVersionPost item) {
+        public void addSeparatorItem(final FreeFeed item) {
             list.add(item);
             // Save separator position
             // This is used to check whether the element is a separator or an
@@ -363,6 +371,10 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
             // The notification is not necessary since the separators are not
             // added dynamically
             // notifyDataSetChanged();
+        }
+
+        public ArrayList<FreeFeed> getList(){
+            return list;
         }
 
         public GoodReadAdapter(Context context) {
@@ -404,7 +416,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
             ViewHolder holder = null;
             int type = getItemViewType(position);
-            FreeVersionPost mpost = list.get(position);
+            FreeFeed mpost = list.get(position);
 
             if (convertView == null) {
                 holder = new ViewHolder();
@@ -412,237 +424,33 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                 switch (type) {
                     case TYPE_SUMMERY:
                         convertView = mInflater.inflate(
-                                R.layout.fragment_paidverision_summery, parent,
+                                R.layout.feed_header_new, parent,
                                 false);
-                        if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
-                            holder.meeting = (LinearLayout) convertView
-                                    .findViewById(R.id.sum_lay_meeting);
-                            holder.leave = (LinearLayout) convertView
-                                    .findViewById(R.id.sum_lay_leave);
-                            holder.tution = (LinearLayout) convertView
-                                    .findViewById(R.id.sum_lay_tution);
-                            holder.leaveStatusText = (TextView) convertView
-                                    .findViewById(R.id.sum_tv_leave);
-                            holder.leavetextLabel = (TextView) convertView.findViewById(R.id.summary_leave_text1);
-                            holder.meetingStatusText = (TextView) convertView
-                                    .findViewById(R.id.sum_tv_meeting);
-                            holder.meetingLabel = (TextView) convertView.findViewById(R.id.summary_meeting_label);
-                            holder.feesIcon = (ImageView) convertView.findViewById(R.id.summary_tution_icon);
-                            holder.leaveIcon = (ImageView) convertView.findViewById(R.id.summary_leave_icon);
-                            holder.meetingIcon = (ImageView) convertView.findViewById(R.id.summary_meeting_icon);
-                        }
-                        holder.attendance = (LinearLayout) convertView
-                                .findViewById(R.id.sum_lay_attendance);
-                        holder.schoolName = (TextView) convertView
-                                .findViewById(R.id.sum_tv_school_name);
-                        holder.studentName = (TextView) convertView
-                                .findViewById(R.id.sum_tv_child_name);
-                        holder.attendacneIcon = (ImageView) convertView.findViewById(R.id.summary_attendance_icon);
-                        holder.profilePicture = (ImageView) convertView
-                                .findViewById(R.id.sum_iv_profile_photo);
-                        holder.currentDate = (TextView) convertView
-                                .findViewById(R.id.sum_tv_date);
-                        holder.eventText = (TextView) convertView
-                                .findViewById(R.id.sum_tv_event);
-                        holder.studentNameHeader = (TextView) convertView.findViewById(R.id.summary_student_text_name);
-                        holder.parentOfLabel = (TextView) convertView.findViewById(R.id.summary_student_parent_of_label);
-                        holder.eventIcon = (ImageView) convertView.findViewById(R.id.summary_event_icon);
-                        holder.todayTextView = (TextView) convertView
-                                .findViewById(R.id.sum_tv_today);
-                        if (userHelper.getUser().getType() == UserTypeEnum.TEACHER) {
-                            holder.meeting = (LinearLayout) convertView.findViewById(R.id.sum_lay_meeting);
-                            holder.sum_lay_add_homework = (LinearLayout) convertView.findViewById(R.id.sum_lay_add_homework);
-                            holder.sum_lay_add_quiz = (LinearLayout) convertView.findViewById(R.id.sum_lay_add_quiz);
-                            holder.sum_lay_rollcall = (LinearLayout) convertView.findViewById(R.id.sum_lay_roll_call);
-                            holder.nextClasses = (LinearLayout) convertView.findViewById(R.id.sum_lay_next_classes);
-                            holder.nextClass2 = (LinearLayout) convertView.findViewById(R.id.sum_lay_next_class_second);
-                            holder.nextHomework2 = (LinearLayout) convertView.findViewById(R.id.sum_lay_homework_second);
-                            holder.teacherHomewoks = (LinearLayout) convertView.findViewById(R.id.sum_lay_next_homeworks);
-                            holder.routineHomeworkQuizAdd = (LinearLayout) convertView.findViewById(R.id.sum_lay_teacher_rhq);
-                            holder.sum_tv_batch_course1 = (TextView) convertView.findViewById(R.id.sum_tv_batch_course1);
-                            holder.sum_tv_batch_course2 = (TextView) convertView.findViewById(R.id.sum_tv_batch_course2);
-                            holder.sum_tv_class_duration1 = (TextView) convertView.findViewById(R.id.sum_tv_class_duration1);
-                            holder.sum_tv_class_duration2 = (TextView) convertView.findViewById(R.id.sum_tv_class_duration2);
-                            holder.sum_tv_subject_name_day1 = (TextView) convertView.findViewById(R.id.sum_tv_subject_name_day1);
-                            holder.sum_tv_subject_name_day2 = (TextView) convertView.findViewById(R.id.sum_tv_subject_name_day2);
-                            holder.sum_tv_teacher_hw_subject_stat1 = (TextView) convertView.findViewById(R.id.sum_tv_teacher_hw_subject_stat1);
-                            holder.sum_tv_teacher_hw_subject_stat2 = (TextView) convertView.findViewById(R.id.sum_tv_teacher_hw_subject_stat2);
-                            holder.sum_tv_teacher_hw_class_section1 = (TextView) convertView.findViewById(R.id.sum_tv_teacher_hw_class_section1);
-                            holder.sum_tv_teacher_hw_class_section2 = (TextView) convertView.findViewById(R.id.sum_tv_teacher_hw_class_section2);
-                            holder.sum_tv_teacher_hw_date1 = (TextView) convertView.findViewById(R.id.sum_tv_teacher_hw_date1);
-                            holder.sum_tv_teacher_hw_date2 = (TextView) convertView.findViewById(R.id.sum_tv_teacher_hw_date2);
+                        holder.schoolName = (TextView) convertView.findViewById(R.id.sum_tv_school_name_new);
+                        holder.currentDate = (TextView) convertView.findViewById(R.id.sum_tv_date_new);
+                        holder.studentName = (TextView) convertView.findViewById(R.id.sum_tv_name);
+                        holder.todayTextView = (TextView) convertView.findViewById(R.id.sum_tv_today_new);
+                        holder.profilePicture = (ImageView) convertView.findViewById(R.id.sum_iv_profile_photo_new);
+                        holder.parentOfLabel =(TextView) convertView.findViewById(R.id.summary_student_parent_of_label_new);
+                        holder.statusImage = (ImageView) convertView.findViewById(R.id.status_image);
+                        holder.statusText = (TextView) convertView.findViewById(R.id.status_attendance);
+                        holder.tomorrowLay = (LinearLayout) convertView.findViewById(R.id.tomorrow_class_lay);
 
-                        } else {
-
-                            holder.attendanceTextView = (TextView) convertView
-                                    .findViewById(R.id.sum_tv_attendance_text);
-                            holder.classTomorrow = (LinearLayout) convertView
-                                    .findViewById(R.id.sum_lay_has_class_tomorrow);
-                            holder.routineIcon = (ImageView) convertView.findViewById(R.id.summary_routine_icon);
-                            holder.summeryRoutineText = (TextView) convertView.findViewById(R.id.summery_routine_text);
-                            holder.toggle = (LinearLayout) convertView
-                                    .findViewById(R.id.sum_lay_toggle);
-                            holder.homework = (LinearLayout) convertView
-                                    .findViewById(R.id.sum_lay_homework);
-                            holder.homeworkIcon = (ImageView) convertView.findViewById(R.id.summery_homework_icon);
-                            holder.hwText1 = (TextView) convertView.findViewById(R.id.summery_homework_text1);
-                            holder.hwText2 = (TextView) convertView.findViewById(R.id.summery_homework_text2);
-                            holder.quiz = (LinearLayout) convertView
-                                    .findViewById(R.id.sum_lay_quiz);
-                            holder.examResultText = (TextView) convertView
-                                    .findViewById(R.id.sum_tv_result_pub_text);
-                            holder.rpIcon = (ImageView) convertView.findViewById(R.id.summery_result_publish_icon);
-
-                            holder.rpGoodLuck = (TextView) convertView.findViewById(R.id.summery_result_publish_good_luck_text);
-
-
-                            holder.examTomorrow = (LinearLayout) convertView
-                                    .findViewById(R.id.sum_lay_exam);
-                            holder.etIconbg = (LinearLayout) convertView.findViewById(R.id.summery_exam_tomorrow_icon);
-                            holder.etText1 = (TextView) convertView.findViewById(R.id.summery_exam_tomorrow_text1);
-                            holder.etText2 = (TextView) convertView.findViewById(R.id.summery_exam_tomorrow_text2);
-
-                            holder.reusltPublish = (LinearLayout) convertView
-                                    .findViewById(R.id.sum_lay_report_card);
-                        }
-                        holder.examRoutineText = (TextView) convertView
-                                .findViewById(R.id.sum_tv_exam_routine);
-                        holder.erpIcon = (LinearLayout) convertView.findViewById(R.id.summary_exam_routine_publish_icon);
-                        holder.routinePublish = (LinearLayout) convertView
-                                .findViewById(R.id.sum_lay_exam_routine_publish);
-
-                        holder.dateSlot = (LinearLayout) convertView
-                                .findViewById(R.id.sum_lay_date_slot);
-                        // holder.reusltPublish =
-                        // (LinearLayout)convertView.findViewById(R.id.sum_lay)
-                        holder.eventTomorrow = (LinearLayout) convertView
-                                .findViewById(R.id.sum_lay_event);
-
-                        holder.notice = (LinearLayout) convertView
-                                .findViewById(R.id.sum_lay_notice);
-                        holder.noticeIconLay = (RelativeLayout) convertView.findViewById(R.id.notice_icon_lay);
-                        holder.noticeText = (TextView) convertView.findViewById(R.id.notice_text);
-
-                        holder.noticeFreeLay = (LinearLayout) convertView.findViewById(R.id.sum_lay_notice_free);
-                        holder.noticeCount = (TextView) convertView.findViewById(R.id.count_notice);
-                        holder.homeworkFreeLay = (LinearLayout) convertView.findViewById(R.id.sum_lay_homework_free);
-                        holder.homeworkCount = (TextView) convertView.findViewById(R.id.count_homework);
-
-                        for (int m = 0; m < 6; m++) {
-                            holder.linearLayoutArray[m] = (LinearLayout) convertView
-                                    .findViewById(lArray[m]);
-                            holder.dateTextViewArray[m] = (TextView) convertView
-                                    .findViewById(dArray[m]);
-                            holder.monthTextViewArray[m] = (TextView) convertView
-                                    .findViewById(mArray[m]);
-
-                            if(m == 5) {continue;}
-                            holder.sImages[m] = (ImageView) convertView.findViewById(subjectIconArray[m]);
-                            holder.sRelatives[m] = (RelativeLayout) convertView.findViewById(subjectBgArray[m]);
-                        }
                         break;
                     case TYPE_ITEM:
                         convertView = mInflater.inflate(
-                                R.layout.fragment_freeversion_school_adapter,
+                                R.layout.feed_item,
                                 parent, false);
-                        holder.imgViewCategoryMenuIcon = (ImageView) convertView
-                                .findViewById(R.id.imgViewCategoryMenuIcon);
-                        holder.txtCategoryName = (TextView) convertView
-                                .findViewById(R.id.txtCategoryName);
-                        holder.txtPublishedDateString = (TextView) convertView
-                                .findViewById(R.id.txtPublishedDateString);
-                        holder.container = (PagerContainer) convertView
-                                .findViewById(R.id.pager_container_row);
-                        holder.viewPager = (UninterceptableViewPager) holder.container
-                                .getViewPager();
-                        // holder.viewPager.setPageMargin(10);
-                        holder.textTitle = (TextView) convertView
-                                .findViewById(R.id.txtHeading);
-                        holder.txtSummary = (TextView) convertView
-                                .findViewById(R.id.txtSummary);
-                        holder.txtSummary.setOnClickListener(new OnClickListener() {
+                        holder.date = (TextView) convertView.findViewById(R.id.main_feed_date);
+                        holder.headerTitle = (TextView) convertView.findViewById(R.id.main_feed_header_title);
+                        holder.titleTextVie = (TextView) convertView.findViewById(R.id.main_feed_title);
+                        holder.newTextView = (TextView) convertView.findViewById(R.id.newTextView);
+                        holder.iconbg = (RelativeLayout) convertView.findViewById(R.id.iconbg);
+                        holder.icon = (ImageView) convertView.findViewById(R.id.main_feed_icon);
+                        holder.body1 = (TextView) convertView.findViewById(R.id.main_feed_body1);
+                        holder.body2 = (TextView) convertView.findViewById(R.id.main_feed_body2);
+                        holder.body3 = (TextView) convertView.findViewById(R.id.main_feed_body3);
 
-                            @Override
-                            public void onClick(View v) {
-                                /*int pos = Integer.parseInt(v.getTag().toString());
-                                Intent intent = new Intent(getActivity(),
-                                        SchoolSingleItemShowActivity.class);
-                                intent.putExtra(AppConstant.ITEM_ID, list.get(pos)
-                                        .getId());
-                                intent.putExtra(AppConstant.ITEM_CAT_ID,
-                                        list.get(pos).getCategoryId());
-                                startActivity(intent);*/
-                            }
-                        });
-                        holder.pagerBlock = (LinearLayout) convertView
-                                .findViewById(R.id.middle);
-                        holder.seenTextView = (TextView) convertView
-                                .findViewById(R.id.fv_post_tv_seen);
-                        holder.wowCount = (TextView) convertView
-                                .findViewById(R.id.wow_count);
-                        holder.btnWow = (CustomButton) convertView
-                                .findViewById(R.id.btnWow);
-                        holder.btnWow.setOnClickListener(new OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                int pos = Integer.parseInt(v.getTag().toString());
-                                doWow(pos);
-							/*
-							 * CustomButton w = (CustomButton) v;
-							 * w.setTitleColor
-							 * (getResources().getColor(R.color.red));
-							 * w.setImage(R.drawable.wow_icon_tap);
-							 */
-                                View mother = (View) v.getParent().getParent()
-                                        .getParent().getParent();
-                                TextView count = (TextView) mother
-                                        .findViewById(R.id.wow_count);
-                                int n = Integer.parseInt(count.getText().toString()
-                                        .split(" ")[0]);
-                                if (n == 0)
-                                    count.setVisibility(View.VISIBLE);
-                                count.setText((n + 1) + " WoW");
-                            }
-                        });
-                        holder.btnShare = (CustomButton) convertView
-                                .findViewById(R.id.btnShare);
-                        holder.btnShare.setOnClickListener(new OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                int pos = Integer.parseInt(v.getTag().toString());
-                                if (AppUtility.isInternetConnected()) {
-                                    ((ChildContainerActivity) getActivity())
-                                            .sharePostUniversal(list.get(pos));
-                                }
-                            }
-                        });
-
-                        holder.btnReadLater = (CustomButton) convertView
-                                .findViewById(R.id.btnReadLater);
-                        holder.btnReadLater
-                                .setOnClickListener(new OnClickListener() {
-
-                                    @Override
-                                    public void onClick(View v) {
-                                        int pos = Integer.parseInt(v.getTag()
-                                                .toString());
-                                        if (UserHelper.isLoggedIn())
-                                            doReadLater(pos);
-                                        else
-                                            showCustomDialog(
-                                                    "READ LATER",
-                                                    R.drawable.read_later_red_icon,
-                                                    getResources()
-                                                            .getString(
-                                                                    R.string.read_later_msg)
-                                                            + "\n"
-                                                            + getResources()
-                                                            .getString(
-                                                                    R.string.not_logged_in_msg));
-                                    }
-                                });
                         break;
 
                     default:
@@ -654,7 +462,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
             }
 
 
-            holder.profilePicture.setOnClickListener(new OnClickListener() {
+            /*holder.profilePicture.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (userHelper.getUser().getType() != UserTypeEnum.TEACHER)
@@ -686,520 +494,133 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                         startActivity(intent);
                     }
                 }
-            });
+            });*/
 
 
             if (list.size() > 0) {
                switch (type) {
                     case TYPE_SUMMERY:
-                        FreeVersionPost summary = list.get(position);
-                        DateFeed feed = summary.getDateFeeds().get(
-                                summary.getCurrentSummeryPosition());
-                        holder.schoolName.setText(summary.getSchool_name());
-                        holder.studentName.setText(feed.getStudent_name());
-                        holder.studentNameHeader.setText(feed.getStudent_name());
-                        holder.currentDate.setText(summary.getCurrentDate().split(" ")[0] + "\n" + summary.getCurrentDate().split(" ")[1]);
-                        if (!TextUtils.isEmpty(summary.getLast_visited().getType())) {
-                            holder.todayTextView.setText(summary.getLast_visited()
+                        FreeFeed summary = list.get(position);
+                        holder.schoolName.setText(schoolName);
+                        holder.studentName.setText(username);
+                        //holder.studentNameHeader.setText(username);
+                        holder.currentDate.setText(userdetails);
+
+                        switch (attendance_status){
+                            case 1:
+                                holder.statusText.setText("Holiday");
+                                holder.statusImage.setImageResource(R.drawable.group4);
+                                break;
+                            case 2:
+                                holder.statusText.setText("Weekend");
+                                holder.statusImage.setImageResource(R.drawable.group5);
+                                break;
+                            case 3:
+                                holder.statusText.setText("Leave");
+                                holder.statusImage.setImageResource(R.drawable.group3);
+                                break;
+                            case 4:
+                                holder.statusText.setText("Late");
+                                holder.statusImage.setImageResource(R.drawable.group2);
+                                break;
+                            case 5:
+                                holder.statusText.setText("Absent Today");
+                                holder.statusImage.setImageResource(R.drawable.group8);
+                                break;
+                            case 6:
+                                holder.statusText.setText("Present Today");
+                                holder.statusImage.setImageResource(R.drawable.group7);
+                                break;
+                            case 7:
+                                holder.statusText.setText("Class yet to start");
+                                holder.statusImage.setImageResource(R.drawable.group1);
+                                break;
+                        }
+                        if (!TextUtils.isEmpty(lastvisited.getType())) {
+                            holder.todayTextView.setText(lastvisited
                                     .getFirst()
                                     + "\n"
-                                    + summary.getLast_visited().getNumber()
+                                    + lastvisited.getNumber()
                                     + "\n"
-                                    + summary.getLast_visited().getType());
+                                    + lastvisited.getType());
                         } else {
-                            holder.todayTextView.setText(summary.getLast_visited().getNumber());
+                            holder.todayTextView.setText(lastvisited.getNumber());
                         }
-
+                        holder.tomorrowLay.setTag("8");
+                        disableBlock(holder.tomorrowLay, true, 8);
                         if (userHelper.getUser().getType() == UserTypeEnum.TEACHER) {
+                            holder.tomorrowLay.setTag("4");
+                            disableBlock(holder.tomorrowLay,true, 4);
+                            holder.statusImage.setVisibility(View.GONE);
+                            holder.statusText.setVisibility(View.GONE);
                             if (!TextUtils.isEmpty(userHelper.getUser().getNickName())) {
                                 switch (Integer.parseInt(userHelper.getUser().getNickName())) {
                                     case 1:
-                                        setUserName(holder.studentNameHeader,userHelper.getUser().getFirstName());
+                                        setUserName(holder.studentName,userHelper.getUser().getFirstName());
                                         break;
                                     case 2:
-                                        setUserName(holder.studentNameHeader, userHelper.getUser().getMiddleName());
+                                        setUserName(holder.studentName, userHelper.getUser().getMiddleName());
                                         break;
                                     case 3:
-                                        setUserName(holder.studentNameHeader, userHelper.getUser().getLastName());
+                                        setUserName(holder.studentName, userHelper.getUser().getLastName());
                                         break;
                                     default:
                                         break;
                                 }
                             } else {
-                                holder.studentNameHeader.setText(userHelper.getUser().getEmail());
+                                holder.studentName.setText(userHelper.getUser().getEmail());
                             }
                             //holder.studentNameHeader.setText(userHelper.getUser().getFullName());
-                            disableBlock(holder.meeting, isPaid, 10);
-                            if (feed.getNextClasses().size() == 0) {
-                                holder.nextClasses.setVisibility(View.GONE);
-                            } else {
-                                holder.nextClasses.setVisibility(View.VISIBLE);
-                                holder.nextClasses.setOnClickListener(new OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        ((HomePageFreeVersion) getActivity())
-                                                .loadPaidFragment(PaidVersionHomeFragment
-                                                        .newInstance(3));
-                                    }
-                                });
-                                holder.sum_tv_subject_name_day1.setText(feed.getNextClasses().get(0).getSubject_name() + "(" + capitalize(feed.getNextClasses().get(0).getWeekday_text().substring(0, 3)) + ")");
-                                holder.sum_tv_batch_course1.setText(feed.getNextClasses().get(0).getBatch_name() + ", " + feed.getNextClasses().get(0).getCourse_name());
-                                holder.sum_tv_class_duration1.setText(feed.getNextClasses().get(0).getClass_start_time() + "-" + feed.getNextClasses().get(0).getClass_end_time());
-                                if (feed.getNextClasses().size() > 1) {
-                                    holder.sum_tv_subject_name_day2.setText(feed.getNextClasses().get(1).getSubject_name() + "(" + capitalize(feed.getNextClasses().get(1).getWeekday_text().substring(0, 3)) + ")");
-                                    holder.sum_tv_batch_course2.setText(feed.getNextClasses().get(1).getBatch_name() + ", " + feed.getNextClasses().get(1).getCourse_name());
-                                    holder.sum_tv_class_duration2.setText(feed.getNextClasses().get(1).getClass_start_time() + "-" + feed.getNextClasses().get(1).getClass_end_time());
-                                } else {
-                                    holder.nextClass2.setVisibility(View.GONE);
-                                }
-                            }
-                            if (feed.getNextHomeWorks().size() == 0) {
-                                holder.teacherHomewoks.setVisibility(View.GONE);
-                            } else {
-                                holder.teacherHomewoks.setVisibility(View.VISIBLE);
-                                holder.teacherHomewoks.setOnClickListener(new OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        ((HomePageFreeVersion) getActivity())
-                                                .loadPaidFragment(PaidVersionHomeFragment
-                                                        .newInstance(2));
-                                    }
-                                });
-                                holder.sum_tv_teacher_hw_subject_stat1.setText(feed.getNextHomeWorks().get(0).getSubjects() + "(" + feed.getNextHomeWorks().get(0).getDone() + " Done)");
-                                holder.sum_tv_teacher_hw_class_section1.setText(feed.getNextHomeWorks().get(0).getBatch() + ", " + feed.getNextHomeWorks().get(0).getCourse());
-                                holder.sum_tv_teacher_hw_date1.setText(feed.getNextHomeWorks().get(0).getDuedate());
-                                if (feed.getNextHomeWorks().size() > 1) {
-                                    holder.sum_tv_teacher_hw_subject_stat2.setText(feed.getNextHomeWorks().get(1).getSubjects() + "(" + feed.getNextHomeWorks().get(1).getDone() + " Done)");
-                                    holder.sum_tv_teacher_hw_class_section2.setText(feed.getNextHomeWorks().get(1).getBatch() + ", " + feed.getNextHomeWorks().get(1).getCourse());
-                                    holder.sum_tv_teacher_hw_date2.setText(feed.getNextHomeWorks().get(1).getDuedate());
-                                } else {
-                                    holder.nextHomework2.setVisibility(View.GONE);
-                                }
-                            }
-                            holder.routineHomeworkQuizAdd.setVisibility(View.VISIBLE);
-                            holder.sum_lay_rollcall.setOnClickListener(new OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    ((HomePageFreeVersion) getActivity())
-                                            .loadPaidFragment(PaidVersionHomeFragment
-                                                    .newInstance(1));
-                                }
-                            });
-                            holder.sum_lay_add_homework.setOnClickListener(new OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    ((HomePageFreeVersion) getActivity())
-                                            .loadPaidFragment(PaidVersionHomeFragment
-                                                    .newInstance(2));
-                                }
-                            });
-
-
-                        } else {
-                            if(isPaid) {
-                                holder.toggle.setVisibility(View.VISIBLE);
-                            } else {
-                                holder.toggle.setVisibility(View.GONE);
-                            }
-
-                            holder.attendance.setVisibility(View.VISIBLE);
-                            holder.attendanceTextView.setText(feed.getAttendence());
-                            if(!isPaid) {
-                                holder.routineIcon.setAlpha(70);
-                                holder.summeryRoutineText.setTextColor(getResources().getColor(R.color.gray_4));
-                            }else { holder.routineIcon.setAlpha(255);
-                                holder.summeryRoutineText.setTextColor(getResources().getColor(R.color.black));
-                            }
-                            disableBlock(holder.classTomorrow,
-                                    feed.isHasClassTomorrow(), 8);
-
-
-                            /*if(!isPaid) { //feed.getHomeWorkSubjects().size() == 0
-                                holder.homeworkIcon.setAlpha(70);
-                                holder.hwText1.setTextColor(getResources().getColor(R.color.gray_4));
-                                holder.hwText2.setTextColor(getResources().getColor(R.color.gray_4));
-                            } else {
-                                holder.hwText1.setTextColor(getResources().getColor(R.color.black));
-                                holder.hwText2.setTextColor(getResources().getColor(R.color.black));
-                                holder.homeworkIcon.setAlpha(255);
-                            }*/
-                            disableBlock(holder.homework, isPaid, 2);//feed.getHomeWorkSubjects().size() != 0
-
-
-                            disableBlock(holder.attendance, isPaid, 7);
-                            if(isPaid) {
-                                holder.attendacneIcon.setAlpha(255);
-                                holder.attendanceTextView.setTextColor(getResources().getColor(R.color.black));
-                                holder.studentName.setTextColor(getResources().getColor(R.color.classtune_green_color));
-                            } else {
-                                holder.attendacneIcon.setAlpha(70);
-                                holder.attendanceTextView.setTextColor(getResources().getColor(R.color.gray_4));
-                                holder.studentName.setTextColor(getResources().getColor(R.color.gray_4));
-                            }
-
-
-                            if(!isPaid) {
-                                holder.etIconbg.setBackgroundColor(getResources().getColor(R.color.red_disable));
-                                holder.etText1.setTextColor(getResources().getColor(R.color.gray_4));
-                                holder.etText2.setTextColor(getResources().getColor(R.color.gray_4));
-                            }else {
-                                holder.etIconbg.setBackgroundColor(getResources().getColor(R.color.classtune_green_color));
-                                holder.etText1.setTextColor(getResources().getColor(R.color.black));
-                                holder.etText2.setTextColor(getResources().getColor(R.color.black));
-                            }
-
-                            disableBlock(holder.quiz,/*disableBlock(holder.examTomorrow, isPaid,
-                                    9);*/
-                                    feed.getSummeryQuizes().size() != 0, 3);
-
-                            disableBlock(holder.reusltPublish,
-                                    isPaid, 10);
-                            if (isPaid) {
-                                /*holder.examResultText.setText(feed.getResult_publish()
-                                        + " Result published.");*/
-                                holder.rpIcon.setAlpha(255);
-                                holder.examResultText.setTextColor(getResources().getColor(R.color.black));
-                                holder.rpGoodLuck.setTextColor(getResources().getColor(R.color.black));
-                            }else {
-                                holder.rpIcon.setAlpha(70);
-                                holder.examResultText.setTextColor(getResources().getColor(R.color.gray_4));
-                                holder.rpGoodLuck.setTextColor(getResources().getColor(R.color.gray_4));
-                            }
-
-                            holder.toggle.setOnClickListener(new OnClickListener() {
-
-                                @Override
-                                public void onClick(View v) {
-                                    View mother = (View) v.getParent().getParent();
-                                    View child = mother
-                                            .findViewById(R.id.sum_lay_date_slot);
-                                    if (child.getVisibility() == View.VISIBLE)
-                                        child.setVisibility(View.GONE);
-                                    else {
-                                        child.setVisibility(View.VISIBLE);
-                                        listGoodread.refreshDrawableState();
-                                    }
-
-                                }
-                            });
                         }
 
-                        if (isPaid) {
-                                /*holder.examRoutineText.setText(feed
-                                        .getRoutine_publish() + " Routine published.");*/
-                            holder.erpIcon.setBackgroundColor(getResources().getColor(R.color.classtune_green_color));
-                        } else {
-                            holder.erpIcon.setBackgroundColor(getResources().getColor(R.color.red_disable));
-                            holder.examRoutineText.setTextColor(getResources().getColor(R.color.gray_4));
-                        }
-                        disableBlock(holder.routinePublish,
-                                isPaid, isTeacher ? 5 : 9);
                         if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
                             holder.parentOfLabel.setVisibility(View.VISIBLE);
-                            if (isPaid) {
-
-                                holder.leaveIcon.setAlpha(255);
-                                if (feed.getSummeryLeaves().size() != 0) {
-                                    if (feed.getSummeryLeaves().get(0).getSubject()
-                                            .contains("Approved")) {
-                                        holder.leaveStatusText
-                                                .setText("Approved. See details.");
-                                    } else {
-                                        holder.leaveStatusText
-                                                .setText("Declined. See details.");
-                                    }
-                                }
-                            }else {
-                                holder.leavetextLabel.setTextColor(getResources().getColor(R.color.gray_4));
-                                holder.leaveStatusText.setTextColor(getResources().getColor(R.color.gray_4));
-                                holder.leaveIcon.setAlpha(70);
-                            }
-                            if(isPaid) {
-                                holder.feesIcon.setAlpha(255);
-                            } else {
-                                holder.feesIcon.setAlpha(70);
-                            }
-                            disableBlock(holder.leave, isPaid, 14);
-                            disableBlock(holder.tution, isPaid, 15);
-                            disableBlock(holder.meeting, isPaid, 11);
-                            if(isPaid) {
-                                holder.meetingIcon.setAlpha(255);
-                                if (feed.getSummeryMeetings().size() > 0) {
-                                    if (feed.getSummeryMeetings().get(0).getSubject()
-                                            .contains("Accepted"))
-                                        holder.meetingStatusText
-                                                .setText("Accepted. See details.");
-                                    else
-                                        holder.meetingStatusText
-                                                .setText("Declined. See details.");
-                                }
-                            } else {
-                                holder.meetingIcon.setAlpha(70);
-                                holder.meetingStatusText.setTextColor(getResources().getColor(R.color.gray_4));
-                                holder.meetingLabel.setTextColor(getResources().getColor(R.color.gray_4));
-                            }
-                        }
-                        if(!isPaid) {
-                            holder.homeworkFreeLay.setVisibility(View.VISIBLE);
-                            holder.noticeFreeLay.setVisibility(View.VISIBLE);
-                            int hsize = feed.getHomeworkTotal();
-                            int nsize = feed.getNoticeTotal();
-                            holder.homeworkCount.setText(hsize < 10 ? "0" + hsize : "" + hsize);
-                            holder.noticeCount.setText(nsize < 10 ? "0" + nsize : "" + nsize);
-                            holder.homeworkFreeLay.setOnClickListener(new OnClickListener() {
-
-                                @Override
-                                public void onClick(View v) {
-                                    ((HomePageFreeVersion) getActivity())
-                                            .loadPaidFragment(PaidVersionHomeFragment
-                                                    .newInstance(1));
-                                }
-                            });
-                            holder.noticeFreeLay.setOnClickListener(new OnClickListener() {
-
-                                @Override
-                                public void onClick(View v) {
-                                    ((HomePageFreeVersion) getActivity())
-                                            .loadPaidFragment(PaidVersionHomeFragment
-                                                    .newInstance(2));
-                                }
-                            });
-
-                            int limit = feed.getHomeWorkSubjects().size() > 5 ? 5 : feed.getHomeWorkSubjects().size();
-                            for(int k = 0; k < limit; k++) {
-                                holder.sImages[k].setImageResource(AppUtility.getImageResourceIdSummary(feed.getHomeWorkSubjects().get(k).getIcon(), holder.noticeCount.getContext()));
-                                holder.sRelatives[k].setBackgroundColor(getResources().getColor(AppUtility.getColorFromString(feed.getHomeWorkSubjects().get(k).getIcon())));
-                            }
-
-                        } else {
-                            holder.homeworkFreeLay.setVisibility(View.GONE);
-                            holder.noticeFreeLay.setVisibility(View.GONE);
                         }
 
-                        disableBlock(holder.eventTomorrow,
-                                isPaid, isTeacher ? 11 : 6);
-                        if (isPaid) {//feed.isHasEventTomorrow()
-                            /*holder.eventText.setText("You have "
-                                    + feed.getEvent_name() + " Tomorrow.");*/
-                            holder.eventIcon.setAlpha(255);
-                        } else {
-                            holder.eventIcon.setAlpha(70);
-                            holder.eventText.setTextColor(getResources().getColor(R.color.gray_4));
-                        }
-
-                        disableBlock(holder.notice, isPaid, isPaid ? isTeacher ? 6 : 4 : 3);
-                        /*if(feed.isHasNotice()) {
-                            holder.noticeIconLay.setBackgroundColor(getResources().getColor(R.color.red));
-                            holder.noticeText.setTextColor(getResources().getColor(R.color.black));
-                        } else {
-                            holder.noticeIconLay.setBackgroundColor(getResources().getColor(R.color.red_disable));
-                            holder.noticeText.setTextColor(getResources().getColor(R.color.gray_4));
-                        }*/
-
-                       /* if (!TextUtils.isEmpty(summary.getSchool_picture()))
-                            SchoolApp.getInstance().displayUniversalImage(
-                                    summary.getSchool_picture(),
-                                    holder.schoolPicture);*/
-                        if (!TextUtils.isEmpty(summary.getProfile_picture())) {
+                        if (!TextUtils.isEmpty(profileurl)) {
                             if(userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
                                 SchoolApp.getInstance().displayUniversalImage(
                                         userHelper.getUser().getSelectedChild().getProfile_image(),
                                         holder.profilePicture);
                             } else {
                                 SchoolApp.getInstance().displayUniversalImage(
-                                        summary.getProfile_picture(),
+                                        profileurl,
                                         holder.profilePicture);
                             }
-
                         }
-
-                        for (int k = 0; k < 6; k++) {
-                            holder.linearLayoutArray[k].setTag(k + "");
-                            holder.linearLayoutArray[k]
-                                    .setOnClickListener(new OnClickListener() {
-
-                                        @Override
-                                        public void onClick(View v) {
-                                            list.get(0).setCurrentSummeryPosition(
-                                                    Integer.parseInt(v.getTag()
-                                                            .toString()));
-                                            adapter.notifyDataSetChanged();
-                                        }
-                                    });
-                            if (k == summary.getCurrentSummeryPosition()) {
-                                holder.linearLayoutArray[k]
-                                        .setBackgroundColor(getActivity()
-                                                .getResources().getColor(
-                                                        R.color.white));
-                                holder.dateTextViewArray[k]
-                                        .setTextColor(getActivity().getResources()
-                                                .getColor(R.color.black));
-                            } else {
-                                holder.linearLayoutArray[k]
-                                        .setBackgroundColor(getActivity()
-                                                .getResources().getColor(
-                                                        R.color.gray_3));
-                                holder.dateTextViewArray[k]
-                                        .setTextColor(getActivity().getResources()
-                                                .getColor(R.color.gray_4));
-                            }
-                            holder.dateTextViewArray[k].setText(summary
-                                    .getSummeryDates().get(k).getNumber());
-                            holder.monthTextViewArray[k].setText(summary
-                                    .getSummeryDates().get(k).getName()
-                                    .substring(0, 3));
-
-                        }
-
                         break;
                     case TYPE_ITEM:
-                        DisplayImageOptions userimgoptions = new DisplayImageOptions.Builder()
-                                .displayer(new RoundedBitmapDisplayer((int) 60))
-                                .showImageForEmptyUri(R.drawable.user_icon)
-                                .showImageOnFail(R.drawable.user_icon)
-                                .cacheInMemory(true).cacheOnDisc(true)
-                                .bitmapConfig(Bitmap.Config.RGB_565).build();
-                        ImageLoader.getInstance().displayImage(
-                                list.get(position).getAuthor_image(),
-                                holder.imgViewCategoryMenuIcon, userimgoptions,
-                                new ImageLoadingListener() {
 
-                                    @Override
-                                    public void onLoadingStarted(String arg0,
-                                                                 View arg1) {
-                                    }
+                        holder.headerTitle.setText(getcategoryName(list.get(position).getRtype()));
+                        holder.date.setText(list.get(position).getCreated());
+                        holder.titleTextVie.setText(Html.fromHtml(list.get(position).getTitle()));
+                        setImgViewIcon(holder.icon, list.get(position).getRtype());
+                        if(position%2==0){
+                            holder.iconbg.setBackgroundColor(getResources().getColor(R.color.gray_4));
+                            holder.icon.setColorFilter(null);
+                        } else {
+                            holder.iconbg.setBackgroundColor(getResources().getColor(R.color.classtune_green_color));
+                            holder.icon.setColorFilter(Color.argb(255, 255, 255, 255));
+                        }
 
-                                    @Override
-                                    public void onLoadingFailed(String arg0,
-                                                                View arg1, FailReason arg2) {
-                                    }
 
-                                    @Override
-                                    public void onLoadingComplete(String arg0,
-                                                                  View arg1, Bitmap arg2) {
-                                    }
+                        if(list.get(position).getIs_read().equals("0")){
+                            holder.newTextView.setVisibility(View.VISIBLE);
+                        } else {
+                            holder.newTextView.setVisibility(View.GONE);
+                        }
 
-                                    @Override
-                                    public void onLoadingCancelled(String arg0,
-                                                                   View arg1) {
-                                    }
-                                });
-					/*
-					 * SchoolApp.getInstance().displayUniversalImage(
-					 * allGooadReadPost.get(position).getAuthor_image(),
-					 * holder.imgViewCategoryMenuIcon);
-					 */
-                        // }
-                        holder.txtCategoryName.setText(list.get(position)
-                                .getAuthor());
-                        holder.textTitle.setText(list.get(position).getTitle());
-                        holder.txtPublishedDateString.setText(list.get(position)
-                                .getPublishedDateString());
-                        holder.txtSummary.setText(list.get(position).getSummary());
-                        holder.seenTextView.setText(list.get(position)
-                                .getSeenCount());
+                        if(!TextUtils.isEmpty(list.get(position).getBody1())) {
+                            holder.body1.setText(Html.fromHtml( "\u2022 " + list.get(position).getBody1()));
+                        }
 
-                        if (list.get(position).getWow_count().equals("0")) {
-                            holder.wowCount.setVisibility(View.GONE);
-                        } else
-                            holder.wowCount.setVisibility(View.VISIBLE);
+                        if(!TextUtils.isEmpty(list.get(position).getBody2())) {
+                            holder.body2.setText(Html.fromHtml( "\u2022 " + list.get(position).getBody2()));
+                        }
 
-                        holder.wowCount.setText(list.get(position).getWow_count()
-                                + " WoW");
-
-                        // setting position tag of the buttons
-                        holder.btnWow.setTag("" + position);
-                        holder.btnShare.setTag("" + position);
-                        holder.btnReadLater.setTag("" + position);
-                        holder.wowCount.setTag("" + position);
-                        holder.txtSummary.setTag("" + position);
-
-                        // if(map.get(currentTabKey).get(position).getMobileImageUrl()
-                        // != null ||
-                        // map.get(currentTabKey).get(position).getMobileImageUrl().length()
-                        // > 0)
-                        // SchoolApp.getInstance().displayUniversalImage(map.get(currentTabKey).get(position).getMobileImageUrl(),
-                        // holder.imgMobileImage);
-
-                        Log.e("PUBLISHED_DATE", "is:"
-                                + list.get(position).getPublishedDateString());
-
-                        ArrayList<String> imgPaths = list.get(position).getImages();
-                        if (imgPaths.size() == 0) {
-                            holder.pagerBlock.setVisibility(View.GONE);
-                        } else
-                            holder.pagerBlock.setVisibility(View.VISIBLE);
-
-                        holder.imgAdapter = new ImagePagerAdapter(imgPaths);
-
-                        // Log.e("IMAGE PATH",listData.get(position).getImages().get(0)+"");
-
-                        // If hardware acceleration is enabled, you should also
-                        // remove
-                        // clipping on the pager for its children.
-
-                        holder.viewPager.setAdapter(holder.imgAdapter);
-                        holder.viewPager.setTag("" + position);
-                        // holder.imgAdapter.notifyDataSetChanged();
-                        holder.viewPager.setOffscreenPageLimit(holder.imgAdapter
-                                .getCount());
-                        // A little space between pages
-                        holder.viewPager.setPageMargin(15);
-
-                        // If hardware acceleration is enabled, you should also
-                        // remove
-                        // clipping on the pager for its children.
-                        holder.viewPager.setClipChildren(false);
-                        //
-                        holder.viewPager.setOnTouchListener(new OnTouchListener() {
-                            private float pointX;
-                            private float pointY;
-                            private int tolerance = 50;
-
-                            @Override
-                            public boolean onTouch(View v, MotionEvent event) {
-                                switch (event.getAction()) {
-                                    case MotionEvent.ACTION_MOVE:
-                                        return false; // This is important, if you
-                                    // return
-                                    // TRUE the action of swipe will
-                                    // not
-                                    // take place.
-                                    case MotionEvent.ACTION_DOWN:
-                                        pointX = event.getX();
-                                        pointY = event.getY();
-                                        break;
-                                    case MotionEvent.ACTION_UP:
-                                        boolean sameX = pointX + tolerance > event
-                                                .getX()
-                                                && pointX - tolerance < event.getX();
-                                        boolean sameY = pointY + tolerance > event
-                                                .getY()
-                                                && pointY - tolerance < event.getY();
-                                        if (sameX && sameY) {
-
-									/*
-									 * FreeVersionPost item = (FreeVersionPost)
-									 * adapter
-									 * .getItem(Integer.parseInt(v.getTag()
-									 * .toString()));
-									 * 
-									 * Intent intent = new Intent(
-									 * getActivity(),
-									 * SingleItemShowActivity.class);
-									 * intent.putExtra(AppConstant.ITEM_ID,
-									 * item.getId());
-									 * intent.putExtra(AppConstant.ITEM_CAT_ID,
-									 * item.getCategoryId());
-									 * intent.putExtra(AppConstant
-									 * .GOING_GOODREAD, "OK");
-									 * startActivity(intent);
-									 */
-                                        }
-                                }
-                                return false;
-                            }
-                        });
+                        if(!TextUtils.isEmpty(list.get(position).getBody3())) {
+                            holder.body3.setText(Html.fromHtml( "\u2022 " + list.get(position).getBody3()));
+                        }
                         break;
                     default:
                         break;
@@ -1215,27 +636,8 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
             return Character.toUpperCase(line.charAt(0)) + line.substring(1);
         }
 
-        private void doWow(int i) {
-            RequestParams params = new RequestParams();
-            FreeVersionPost p = list.get(i);
-            // params.put(RequestKeyHelper.USER_ID, UserHelper.getUserFreeId());
-            params.put(RequestKeyHelper.POST_ID, list.get(i).getId());
-            list.get(i).setCan_wow(0);
 
-            list.get(i).setWow_count(
-                    (Integer.parseInt(p.getWow_count()) + 1) + "");
-            AppRestClient.post(URLHelper.URL_FREE_VERSION_ADDWOW, params,
-                    wowHandler);
-        }
 
-        private void doReadLater(int i) {
-            RequestParams params = new RequestParams();
-
-            params.put(RequestKeyHelper.USER_ID, UserHelper.getUserFreeId());
-            params.put(RequestKeyHelper.POST_ID, list.get(i).getId());
-            AppRestClient.post(URLHelper.URL_FREE_VERSION_READLATER, params,
-                    readLaterHandler);
-        }
 
         private int getVisibility(boolean isVisible) {
             if (isVisible)
@@ -1275,7 +677,6 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                     } else {
                         view.setVisibility(View.GONE);
                         view.setBackgroundColor(getResources().getColor(R.color.bg_disable));
-
                     }
                      break;
                 case R.id.sum_lay_exam:
@@ -1284,14 +685,12 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                     if (state) {
                         view.setVisibility(View.VISIBLE);
                         view.setTag("" + pos);
-
                     } else {
                         view.setVisibility(View.GONE);
                         view.setBackgroundColor(getResources().getColor(R.color.bg_disable));
                         //view.findViewById(R.id.sum_iv_disable).setBackgroundColor(getActivity().getResources().getColor(R.color.red_disable));
                     }
-
-                    break;
+                break;
 
                 default:
                     break;
@@ -1361,48 +760,22 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
     };
 
     class ViewHolder {
-        ImageView imgViewCategoryMenuIcon;
-        TextView txtCategoryName;
-        TextView txtPublishedDateString;
+
         PagerContainer container;
-        UninterceptableViewPager viewPager;
-        TextView txtSummary;
-        ImagePagerAdapter imgAdapter;
-        TextView seenTextView;
-        TextView textTitle;
-        LinearLayout pagerBlock;
-        CustomButton btnWow, btnShare, btnReadLater;
-        TextView wowCount;
 
         // SUMMERY LAYOUT
         TextView schoolName, currentDate, studentName;
-        TextView todayTextView, summeryRoutineText, hwText1, hwText2;
-        TextView attendanceTextView, leaveStatusText, leavetextLabel, meetingStatusText, meetingLabel;
-        TextView examRoutineText, examResultText, eventText, rpGoodLuck;
-        TextView sum_tv_subject_name_day1, sum_tv_batch_course1, sum_tv_class_duration1;
-        TextView sum_tv_subject_name_day2, sum_tv_batch_course2, sum_tv_class_duration2;
-        TextView sum_tv_teacher_hw_subject_stat1, sum_tv_teacher_hw_class_section1, sum_tv_teacher_hw_date1;
-        TextView sum_tv_teacher_hw_subject_stat2, sum_tv_teacher_hw_class_section2, sum_tv_teacher_hw_date2;
-        ImageView profilePicture, routineIcon,homeworkIcon, rpIcon,leaveIcon, feesIcon, meetingIcon;
-        LinearLayout classTomorrow, homework, reusltPublish, routinePublish,
-                eventTomorrow, examTomorrow, notice, quiz;
-        RelativeLayout noticeIconLay;
-        LinearLayout meeting, leave, tution, attendance, dateSlot, toggle,
-                nextClasses, teacherHomewoks, nextClass2, nextHomework2, routineHomeworkQuizAdd;
-        LinearLayout sum_lay_rollcall, sum_lay_add_homework, sum_lay_add_quiz;
-        LinearLayout etIconbg, erpIcon;
-        TextView etText1, etText2, noticeText;
-        LinearLayout homeworkFreeLay, noticeFreeLay;
-        TextView homeworkCount, noticeCount;
-        TextView[] dateTextViewArray = new TextView[6];
-        TextView[] monthTextViewArray = new TextView[6];
-        ImageView[] sImages = new ImageView[5];
-        RelativeLayout[] sRelatives = new RelativeLayout[5];
-        LinearLayout[] linearLayoutArray = new LinearLayout[6];
+        TextView todayTextView;
+        ImageView icon;
+        RelativeLayout iconbg;
 
-        ImageView eventIcon;
+        TextView date;
+        ImageView profilePicture;
         TextView studentNameHeader, parentOfLabel;
-        public ImageView attendacneIcon;
+        ImageView statusImage;
+        LinearLayout tomorrowLay;
+        TextView statusText;
+        TextView headerTitle, body1, body2, body3, dateTextView, titleTextVie, newTextView;
     }
 
     private class ImagePagerAdapter extends PagerAdapter {
@@ -1522,5 +895,315 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         else
             userNameTextView.setText(userHelper.getUser().getEmail());
     }
+
+    private void setImgViewIcon(ImageView imgView, String rType)
+    {
+        int type = Integer.parseInt(rType);
+
+        switch (type) {
+            case 1:
+                imgView.setImageResource(R.drawable.notice_event);
+                break;
+
+            case 2:
+                imgView.setImageResource(R.drawable.notice_exam_schadule);
+                break;
+
+            case 3:
+                imgView.setImageResource(R.drawable.notice_exam_report);
+                break;
+
+            case 4:
+                imgView.setImageResource(R.drawable.notice_homework);
+                break;
+
+            case 5:
+                imgView.setImageResource(R.drawable.notice_notice);
+                break;
+
+            case 6:
+                imgView.setImageResource(R.drawable.notice_attendance);
+                break;
+
+            case 7:
+                imgView.setImageResource(R.drawable.notice_leave);
+                break;
+
+            case 8:
+                imgView.setImageResource(R.drawable.notice_leave);
+                break;
+
+            case 9:
+                imgView.setImageResource(R.drawable.notice_leave);
+                break;
+
+            case 10:
+                imgView.setImageResource(R.drawable.notice_leave);
+                break;
+
+            case 11:
+                imgView.setImageResource(R.drawable.notice_meeting_request);
+                break;
+
+            case 12:
+                imgView.setImageResource(R.drawable.notice_meeting_request);
+                break;
+
+            case 13:
+                imgView.setImageResource(R.drawable.notice_meeting_request);
+                break;
+
+            case 14:
+                imgView.setImageResource(R.drawable.notice_meeting_request);
+                break;
+
+            default:
+                imgView.setImageResource(R.drawable.notice_default);
+
+                break;
+        }
+
+
+    }
+    private String getcategoryName(String rType)
+    {
+        int type = Integer.parseInt(rType);
+
+        switch (type) {
+            case 1:
+                return "Event";
+
+            case 2:
+                return "Exam Routine";
+
+            case 3:
+                return "Exam Report";
+
+            case 4:
+                return "Homework";
+
+            case 5:
+                return "Notice";
+
+            case 6:
+                return "Attendance";
+
+            case 7:
+                return "Leave";
+
+            case 8:
+                return "Leave";
+
+            case 9:
+                return "Leave";
+
+            case 10:
+                return "Leave";
+
+            case 11:
+                return "Meeting Request";
+
+            case 12:
+                return "Meeting Request";
+
+            case 13:
+                return "Meeting Request";
+
+            case 14:
+                return "Meeting Request";
+
+            default:
+                return "Notice";
+        }
+
+
+    }
+    private void invokeClasses(String rType, String rid, String is_read)
+    {
+        int type = Integer.parseInt(rType);
+        Intent intent = null;
+        switch (type) {
+            case 1:
+
+                intent = new Intent(getActivity(), AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "ParentEventFragment");
+
+                break;
+
+            case 2:
+
+                intent = new Intent(getActivity(), SingleExamRoutine.class);
+                intent.putExtra(AppConstant.ID_SINGLE_CALENDAR_EVENT, rid);
+
+                break;
+
+            case 3:
+
+                intent = new Intent(getActivity(), AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "ParentReportCardFragment");
+
+                break;
+
+
+            case 4:
+                intent = new Intent(getActivity(), SingleHomeworkActivity.class);
+                intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, rid);
+
+                break;
+
+            case 5:
+                intent = new Intent(getActivity(), SingleNoticeActivity.class);
+                intent.putExtra(AppConstant.ID_SINGLE_NOTICE, rid);
+
+                break;
+
+            case 6:
+                intent = new Intent(getActivity(), AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "ParentAttendenceFragment");
+
+                break;
+
+            case 7:
+
+
+                break;
+
+            case 8:
+                intent = new Intent(getActivity(), AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "MyLeaveFragment");
+
+                break;
+
+            case 9:
+
+                intent = new Intent(getActivity(), AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "StudentLeaveFragment");
+
+                break;
+
+            case 10:
+                intent = new Intent(getActivity(), AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "MyLeaveFragment");
+
+                break;
+
+            case 11:
+                intent = new Intent(getActivity(), SingleMeetingRequestActivity.class);
+                intent.putExtra(AppConstant.ID_SINGLE_MEETING_REQUEST, rid);
+
+                break;
+
+            case 12:
+                intent = new Intent(getActivity(), SingleMeetingRequestActivity.class);
+                intent.putExtra(AppConstant.ID_SINGLE_MEETING_REQUEST, rid);
+
+                break;
+
+            case 13:
+                intent = new Intent(getActivity(), SingleMeetingRequestActivity.class);
+                intent.putExtra(AppConstant.ID_SINGLE_MEETING_REQUEST, rid);
+
+                break;
+
+            case 14:
+                intent = new Intent(getActivity(), SingleMeetingRequestActivity.class);
+                intent.putExtra(AppConstant.ID_SINGLE_MEETING_REQUEST, rid);
+
+                break;
+
+            case 15:
+                intent = new Intent(getActivity(), AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "QuizFragment");
+
+                break;
+
+            default:
+                break;
+        }
+
+        if(intent != null) {
+            startActivity(intent);
+        }
+
+        if(is_read.equalsIgnoreCase("0")){
+            initApiCall(rid, rType);
+        }
+
+    }
+    private void initApiCall(String rId, String rTtype)
+    {
+
+        RequestParams params = new RequestParams();
+        params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
+
+
+        if(rId != null)
+        {
+            params.put("rid", rId);
+        }
+
+        if(rTtype != null)
+        {
+            params.put("rtype", rTtype);
+        }
+
+
+        AppRestClient.post(URLHelper.URL_EVENT_REMINDER, params, reminderHandler);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
+
+    AsyncHttpResponseHandler reminderHandler = new AsyncHttpResponseHandler() {
+
+        @Override
+        public void onFailure(Throwable arg0, String arg1) {
+            uiHelper.showMessage(arg1);
+            if (uiHelper.isDialogActive()) {
+                uiHelper.dismissLoadingDialog();
+            }
+        };
+
+        @Override
+        public void onStart() {
+
+            uiHelper.showLoadingDialog("Please wait...");
+
+
+        };
+
+        @Override
+        public void onSuccess(int arg0, String responseString) {
+
+
+            uiHelper.dismissLoadingDialog();
+
+
+            Wrapper modelContainer = GsonParser.getInstance()
+                    .parseServerResponse(responseString);
+
+            if (modelContainer.getStatus().getCode() == 200) {
+
+                //fetchNotification();
+
+               /* modelContainer.getData().get("unread_total").getAsString();
+
+                SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+
+                userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
+
+                listenerActivity.onNotificationCountChangedFromActivity(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));*/
+
+            }
+
+            else {
+
+            }
+        };
+    };
 
 }
