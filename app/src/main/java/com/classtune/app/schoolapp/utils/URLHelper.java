@@ -116,6 +116,8 @@ public class URLHelper {
 	
 	public final static String URL_PAID_VERSION_SCHOOL_FEED = "dashboard/gethome";//"freeuser/getSchoolTeacherBylinePost";
 
+	public final static String URL_PAID_VERSION_CLASSTUNE_FEED = "dashboard/getuserFeed";
+
 	public final static String URL_FREE_VERSION_SCHOOL_FEED ="freeuser/getSchoolTeacherBylinePost";
 	
 	public final static String URL_FREE_VERSION_SEARCH = "freeuser/search";
@@ -193,7 +195,6 @@ public class URLHelper {
 	public final static String URL_SINGLE_CALENDAR_EVENT= "event/getsingleevent";
 	
 	public final static String URL_SINGLE_SYLLABUS= "syllabus/single";
-	
 	
 	public final static String URL_FEES = "event/fees";
 	

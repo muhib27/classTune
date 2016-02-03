@@ -10,6 +10,7 @@ import com.classtune.app.schoolapp.model.ClassReport;
 import com.classtune.app.schoolapp.model.Comment;
 import com.classtune.app.schoolapp.model.ExamRoutine;
 import com.classtune.app.schoolapp.model.FolderList;
+import com.classtune.app.schoolapp.model.FreeFeed;
 import com.classtune.app.schoolapp.model.FreeVersionPost;
 import com.classtune.app.schoolapp.model.GoodReadPostAll;
 import com.classtune.app.schoolapp.model.GraphSubjectType;
@@ -267,6 +268,14 @@ public class GsonParser {
 		}.getType());
 		return allPost;
 	}
+
+	public ArrayList<FreeFeed> parsePost(String object) {
+		ArrayList<FreeFeed> allPost = new ArrayList<FreeFeed>();
+		allPost = new Gson().fromJson(object, new TypeToken<ArrayList<FreeFeed>>(){
+		}.getType());
+		return allPost;
+	}
+
 	public ArrayList<NotificationReminder> parseNotification(String object) {
 		ArrayList<NotificationReminder> allPost = new ArrayList<NotificationReminder>();
 		allPost = new Gson().fromJson(object, new TypeToken<ArrayList<NotificationReminder>>(){
@@ -292,6 +301,13 @@ public class GsonParser {
 		allSubCategory = new Gson().fromJson(object, new TypeToken<ArrayList<SubCategory>>(){
 		}.getType());
 		return allSubCategory;
+	}
+
+	public FreeVersionPost.LastVisited parseLastVisited(String object) {
+		FreeVersionPost.LastVisited lastVisited;
+		lastVisited = new Gson().fromJson(object, new TypeToken<FreeVersionPost.LastVisited>(){}.getType());
+		return lastVisited;
+
 	}
 	public ArrayList<Period> parseWeekPeriod(String object) {
 

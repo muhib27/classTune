@@ -44,7 +44,7 @@ import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 
-public class NotificationActivity extends ChildContainerActivity{
+public class NotificationActivity extends ChildContainerActivity {
 	
 	
 	boolean hasNext = false;
@@ -57,7 +57,6 @@ public class NotificationActivity extends ChildContainerActivity{
 	private boolean isRefreshing = false;
 	private boolean loading = false;
 	private boolean stopLoadingData = false;
-	
 	private static final int REQUEST_REMINDER = 85;
 	
 	@Override
@@ -252,6 +251,7 @@ public class NotificationActivity extends ChildContainerActivity{
 			ImageView imgViewIcon;
 			LinearLayout layoutRootView;
 		}
+
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder holder;
@@ -271,7 +271,6 @@ public class NotificationActivity extends ChildContainerActivity{
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
-			
 
 			holder.txtTitle.setText(list.get(position).getSubject());
 			holder.txtBody.setText(list.get(position).getBody());
@@ -455,7 +454,7 @@ public class NotificationActivity extends ChildContainerActivity{
                 Bundle extra = new Bundle();
                 extra.putString("student_id", data.getStudentId());
                 extra.putString("batch_id", data.getBatchId());
-                intent.putExtra("total_unread_extras", extra);
+				intent.putExtra("total_unread_extras", extra);
             }
 
 			startActivityForResult(intent, REQUEST_REMINDER);

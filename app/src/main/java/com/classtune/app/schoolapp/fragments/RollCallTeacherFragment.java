@@ -470,6 +470,7 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 			Log.e("late", late);
 			params.put("student_id", studentIds);
 			params.put("late", late);
+			Log.d("@@PARAM@@STRING@@##", params.toString());
 		}
 		
 		AppRestClient.post(URLHelper.URL_POST_ADD_ATTENDANCE, params, addAttendanceHandler);
