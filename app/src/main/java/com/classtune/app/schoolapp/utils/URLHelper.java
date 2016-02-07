@@ -289,5 +289,7 @@ public class URLHelper {
 	public final static String URL_GET_INFO = "dashboard/getstudentinfo";
 
 	public final static String URL_GET_TEACHER_INFO = "dashboard/getemployeeinfo";
+
+	public final static String URL_GET_SINGLE_EVENT = "event/getsingleevent";
 	
 }

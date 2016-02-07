@@ -39,6 +39,9 @@ public class SchoolEvent {
 	
 	@SerializedName("event_acknowledge")
 	private int eventAck;
+
+	@SerializedName("upcomming")
+	private boolean isUpcoming;
 	
 	public String getEventId() {
 		return eventId;
@@ -105,14 +108,15 @@ public class SchoolEvent {
 	public void setEventAcks(int eventAcks) {
 		this.eventAck = eventAcks;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public boolean isUpcoming() {
+		return isUpcoming;
+	}
+
+	public void setIsUpcoming(boolean isUpcoming) {
+		this.isUpcoming = isUpcoming;
+	}
+
 	public boolean isCurrentUserType()
 	{
 		return true;

@@ -170,22 +170,31 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 		});
 
 
-		if(isEditable == true)
+		/*if(isEditable == true)
 		{
 			btnEdit.setVisibility(View.VISIBLE);
 		}
 		else
 		{
 			btnEdit.setVisibility(View.GONE);
-		}
+		}*/
 
 		this.btnEdit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 
-				Intent intent = new Intent(SingleTeacherDraftHomeworkActivity.this, SingleTeacherEditHomeworkActivity.class);
-				intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
-				startActivityForResult(intent, REQUEST_EDIT_HOMEWORK);
+				if(isEditable == true)
+				{
+					Intent intent = new Intent(SingleTeacherDraftHomeworkActivity.this, SingleTeacherEditHomeworkActivity.class);
+					intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
+					startActivityForResult(intent, REQUEST_EDIT_HOMEWORK);
+				}
+				else
+				{
+					Toast.makeText(SingleTeacherDraftHomeworkActivity.this, "Please edit homework from website.", Toast.LENGTH_SHORT).show();
+				}
+
+
 
 			}
 		});

@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.HomeworkData;
@@ -178,7 +179,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		});
 
 
-		if(data.getIsEditable() == true)
+		/*if(data.getIsEditable() == true)
 		{
 			btnEdit.setVisibility(View.VISIBLE);
 			layoutHorizontalBar.setVisibility(View.VISIBLE);
@@ -187,17 +188,29 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		{
 			btnEdit.setVisibility(View.GONE);
 			layoutHorizontalBar.setVisibility(View.GONE);
-		}
+		}*/
 
 		this.btnEdit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 
-				Intent intent = new Intent(SingleTeacherHomeworkActivity.this, SingleTeacherEditHomeworkActivity.class);
-				intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
-				startActivityForResult(intent, REQUEST_EDIT_HOMEWORK);
+				if(data.getIsEditable() == true)
+				{
+					Intent intent = new Intent(SingleTeacherHomeworkActivity.this, SingleTeacherEditHomeworkActivity.class);
+					intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
+					startActivityForResult(intent, REQUEST_EDIT_HOMEWORK);
+				}
+				else
+				{
+					Toast.makeText(SingleTeacherHomeworkActivity.this, "Please edit homework from website.", Toast.LENGTH_SHORT).show();
+				}
+
+
 			}
 		});
+
+
+
 		
 		
 	}

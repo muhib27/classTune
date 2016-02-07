@@ -163,7 +163,7 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 				
 				SchoolEvent rmEvent = (SchoolEvent) reminderBtn.getTag();
 				reminderBtn.setImage(R.drawable.btn_reminder_tap);
-				reminderBtn.setTitleColor(context.getResources().getColor(R.color.maroon));
+				reminderBtn.setTitleColor(context.getResources().getColor(R.color.classtune_green_color));
 				reminderBtn.setEnabled(false);
 				String content = ""+ Html.fromHtml(rmEvent.getEventDescription());
 				//ReminderHelper.getInstance().setReminder(rmEvent.getEventStartDate(), rmEvent.getEventTitle(), content, rmEvent.getEventStartDate(), context);
@@ -248,7 +248,7 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 		if(enable) {
 			setBtnTitleColor(btn, R.color.gray_1); 
 		} else {
-			setBtnTitleColor(btn, R.color.maroon); 
+			setBtnTitleColor(btn, R.color.classtune_green_color);
 		}
 	}
 	private void setBtnTitleColor(CustomButtonTest btn, int colorId) {

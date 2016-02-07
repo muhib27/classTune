@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.classtune.app.R;
 import com.classtune.app.freeversion.AnyFragmentLoadActivity;
 import com.classtune.app.freeversion.ChildContainerActivity;
+import com.classtune.app.freeversion.SingleEventActivity;
 import com.classtune.app.freeversion.SingleExamRoutine;
 import com.classtune.app.freeversion.SingleHomeworkActivity;
 import com.classtune.app.freeversion.SingleMeetingRequestActivity;
@@ -405,8 +406,11 @@ public class NotificationActivity extends ChildContainerActivity {
 		switch (type) {
 		case 1:
 			
-			intent = new Intent(this, AnyFragmentLoadActivity.class);
-			intent.putExtra("class_name", "ParentEventFragment");
+			/*intent = new Intent(this, AnyFragmentLoadActivity.class);
+			intent.putExtra("class_name", "ParentEventFragment");*/
+
+			intent = new Intent(this, SingleEventActivity.class);
+			intent.putExtra(AppConstant.ID_SINGLE_EVENT, data.getRid());
 
 
             if(userHelper.getUser().getType() == UserHelper.UserTypeEnum.PARENTS)

@@ -163,6 +163,10 @@ public class AppConstant {
 	
 	//######################################## HomeworkFragment
 	public static final String ID_SINGLE_HOMEWORK = "id_single_homework";
+
+
+	//######################################## SingleEventActivity
+	public static final String ID_SINGLE_EVENT = "id_single_event";
 	
 	
 	//######################################## SingleCalendarEvent

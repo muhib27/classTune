@@ -29,6 +29,7 @@ import android.util.Log;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.AnyFragmentLoadActivity;
+import com.classtune.app.freeversion.SingleEventActivity;
 import com.classtune.app.freeversion.SingleExamRoutine;
 import com.classtune.app.freeversion.SingleHomeworkActivity;
 import com.classtune.app.freeversion.SingleMeetingRequestActivity;
@@ -248,8 +249,10 @@ public class GcmIntentService extends IntentService {
 
             case 1:
 
-                intent = new Intent(this, AnyFragmentLoadActivity.class);
-                intent.putExtra("class_name", "ParentEventFragment");
+                /*intent = new Intent(this, AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "ParentEventFragment");*/
+                intent = new Intent(this, SingleEventActivity.class);
+                intent.putExtra(AppConstant.ID_SINGLE_EVENT, rId);
                 intent.putExtra("total_unread_extras", extras);
 
                 //initApiCall(extras.getString("rid"), rType);

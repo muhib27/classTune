@@ -138,7 +138,6 @@
                         android:text="Edit"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"
-                        android:visibility="gone"
                         android:background="@drawable/btn_holder_homework" />
 
                     <Button

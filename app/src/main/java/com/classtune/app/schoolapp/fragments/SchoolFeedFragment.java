@@ -29,6 +29,7 @@ import com.classtune.app.R;
 import com.classtune.app.freeversion.AnyFragmentLoadActivity;
 import com.classtune.app.freeversion.HomePageFreeVersion;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
+import com.classtune.app.freeversion.SingleEventActivity;
 import com.classtune.app.freeversion.SingleExamRoutine;
 import com.classtune.app.freeversion.SingleHomeworkActivity;
 import com.classtune.app.freeversion.SingleMeetingRequestActivity;
@@ -1025,8 +1026,10 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         switch (type) {
             case 1:
 
-                intent = new Intent(getActivity(), AnyFragmentLoadActivity.class);
-                intent.putExtra("class_name", "ParentEventFragment");
+                /*intent = new Intent(getActivity(), AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "ParentEventFragment");*/
+                intent = new Intent(getActivity(), SingleEventActivity.class);
+                intent.putExtra(AppConstant.ID_SINGLE_EVENT, rid);
 
                 break;
 
