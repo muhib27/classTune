@@ -32,6 +32,31 @@ public class ClassTestItem {
 	private String category;
 	@SerializedName("total_mark")
 	private String totalMark;
+
+
+	@SerializedName("remark")
+	private String remarks;
+
+	@SerializedName("max_mark_percent")
+	private float maxMarkPercent;
+
+	@SerializedName("avg_mark")
+	private float averageMark;
+
+	@SerializedName("avg_mark_percent")
+	private float averageMarkPercent;
+
+	@SerializedName("percentile")
+	private float percentile;
+
+	@SerializedName("subject_id")
+	private String subjectId;
+
+	@SerializedName("subject_name")
+	private String subjectName;
+
+	@SerializedName("subject_icon")
+	private String subjectIcon;
 	
 	
 	public String getExamId() {
@@ -109,5 +134,70 @@ public class ClassTestItem {
 	}
 	public void setTotalMark(String totalMark) {
 		this.totalMark = totalMark;
+	}
+
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+	public float getMaxMarkPercent() {
+		return maxMarkPercent;
+	}
+
+	public void setMaxMarkPercent(float maxMarkPercent) {
+		this.maxMarkPercent = maxMarkPercent;
+	}
+
+	public float getAverageMark() {
+		return averageMark;
+	}
+
+	public void setAverageMark(float averageMark) {
+		this.averageMark = averageMark;
+	}
+
+	public float getAverageMarkPercent() {
+		return averageMarkPercent;
+	}
+
+	public void setAverageMarkPercent(float averageMarkPercent) {
+		this.averageMarkPercent = averageMarkPercent;
+	}
+
+	public float getPercentile() {
+		return percentile;
+	}
+
+	public void setPercentile(float percentile) {
+		this.percentile = percentile;
+	}
+
+	public String getSubjectId() {
+		return subjectId;
+	}
+
+	public void setSubjectId(String subjectId) {
+		this.subjectId = subjectId;
+	}
+
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
+
+	public String getSubjectIcon() {
+		return subjectIcon;
+	}
+
+	public void setSubjectIcon(String subjectIcon) {
+		this.subjectIcon = subjectIcon;
 	}
 }

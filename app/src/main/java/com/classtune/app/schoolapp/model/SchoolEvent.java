@@ -42,6 +42,11 @@ public class SchoolEvent {
 
 	@SerializedName("upcomming")
 	private boolean isUpcoming;
+
+	@SerializedName("created_at")
+	private String createdAt;
+
+
 	
 	public String getEventId() {
 		return eventId;
@@ -129,6 +134,13 @@ public class SchoolEvent {
 		else
 			return false;
 	}
-	
-	
+
+
+	public String getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
+	}
 }

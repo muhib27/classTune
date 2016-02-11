@@ -4,6 +4,7 @@
 package com.classtune.app.schoolapp.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,10 +15,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.classtune.app.R;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
+import com.classtune.app.freeversion.SingleReportCardSubject;
 import com.classtune.app.schoolapp.BatchSelectionChangedBroadcastReceiver;
 import com.classtune.app.schoolapp.BatchSelectionChangedBroadcastReceiver.onBatchIdChangeListener;
-import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.ClassTestItem;
@@ -43,7 +45,9 @@ import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Amit
@@ -293,6 +297,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 	
 	LayoutInflater mInflater;
 
+
 	protected void processItems() {
 		// TODO Auto-generated method stub
 
@@ -398,16 +403,48 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 
 							newHolder.tvProjectDescription.setText(projectList.get(k).getTopic());
 							newHolder.tvProjectGrade.setText(projectList.get(k).getGrade());
-							newHolder.tvProjectHighestMarks.setText(projectList.get(k).getMaxMark());
-							newHolder.tvProjectMarks.setText(projectList.get(k).getMark());
+							newHolder.tvProjectHighestMarks.setText(getDecimalFormatNumber(projectList.get(k).getMaxMark())); //projectList.get(k).getMaxMark()
+							newHolder.tvProjectMarks.setText(getDecimalFormatNumber(projectList.get(k).getMark())); //projectList.get(k).getMark()
 
 							Double p = Double.parseDouble(projectList.get(k).getPercentage());
 
 							newHolder.tvProjectPercentage.setText(Math.rint(p) + "%");
 							newHolder.tvProjectSub.setText(projectList.get(k).getExamName());
-							newHolder.tvProjectTotalMarks.setText(projectList.get(k).getTotalMark());
+							newHolder.tvProjectTotalMarks.setText(getDecimalFormatNumber(projectList.get(k).getTotalMark()));//projectList.get(k).getTotalMark()
 
 							parentHolder.layoutDynamicRow.addView(dynamicView);
+
+							//working on SingleReportCardSubject data
+							dynamicView.setTag(items.get(j).getCtReportSubjectExam().getClasstestList());
+							final int m = k;
+							final String subjectName = items.get(j).getSubjectName();
+							final String subjectIcon = items.get(j).getSubjectIcon();
+							final String subjectId = items.get(j).getSubjectID();
+
+
+							dynamicView.setOnClickListener(new View.OnClickListener() {
+								@Override
+								public void onClick(View view) {
+									Intent intent = new Intent(getActivity(), SingleReportCardSubject.class);
+									List<ClassTestItem> ctListInner = (List<ClassTestItem>) view.getTag();
+
+									//Gson gson = new Gson();
+									//String data = gson.toJson(ctListInner);
+
+									intent.putExtra("inner_reportcard_item_subject_id", subjectId);
+									intent.putExtra("inner_reportcard_item_position", m);
+									intent.putExtra("inner_reportcard_item_exam_id", ctListInner.get(m).getExamId());
+									intent.putExtra("inner_reportcard_item_exam_category_name", "Class Test");
+									intent.putExtra("inner_reportcard_item_exam_from_class_test", true);
+									if(selectedStudent != null)
+										intent.putExtra("inner_reportcard_item_student_id", selectedStudent.getId());
+
+
+									startActivity(intent);
+								}
+							});
+
+
 						}
 
 					}
@@ -489,14 +526,44 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 							newHolder.tvCTName.setText(ctList.get(k).getExamName());
 
 							newHolder.tvCTGrade.setText(ctList.get(k).getGrade());
-							newHolder.tvCTHighestMarks.setText(ctList.get(k).getMaxMark());
-							newHolder.tvCTMarks.setText(ctList.get(k).getMark());
+							newHolder.tvCTHighestMarks.setText(getDecimalFormatNumber(ctList.get(k).getMaxMark()));//ctList.get(k).getMaxMark()
+							newHolder.tvCTMarks.setText(getDecimalFormatNumber(ctList.get(k).getMark()));//ctList.get(k).getMark()
 							newHolder.tvCTPercentage.setText(ctList.get(k).getPercentage() + "%");
-							newHolder.tvCTTotalMarks.setText(ctList.get(k).getTotalMark());
+							newHolder.tvCTTotalMarks.setText(getDecimalFormatNumber(ctList.get(k).getTotalMark()));//ctList.get(k).getTotalMark()
 
 							//							Log.e("Position 2", i+"");
 
 							parentHolder.layoutDynamicRow.addView(dynamicView);
+
+							//working on SingleReportCardSubject data
+							dynamicView.setTag(items.get(j).getCtReportSubjectExam().getClasstestList());
+							final int m = k;
+
+							final String subjectName = items.get(j).getSubjectName();
+							final String subjectIcon = items.get(j).getSubjectIcon();
+							final String subjectId = items.get(j).getSubjectID();
+
+
+							dynamicView.setOnClickListener(new View.OnClickListener(){
+								@Override
+								public void onClick(View view) {
+									Intent intent = new Intent(getActivity(), SingleReportCardSubject.class);
+									List<ClassTestItem>  ctListInner = (List<ClassTestItem>)view.getTag();
+
+									//Gson gson = new Gson();
+									//String data = gson.toJson(ctListInner);
+
+									intent.putExtra("inner_reportcard_item_subject_id", subjectId);
+									intent.putExtra("inner_reportcard_item_position", m);
+									intent.putExtra("inner_reportcard_item_exam_id", ctListInner.get(m).getExamId());
+									intent.putExtra("inner_reportcard_item_exam_category_name", "Class Test");
+									intent.putExtra("inner_reportcard_item_exam_from_class_test", true);
+									if(selectedStudent != null)
+										intent.putExtra("inner_reportcard_item_student_id", selectedStudent.getId());
+
+									startActivity(intent);
+								}
+							});
 
 						}
 					}
@@ -514,10 +581,11 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 			holder.tvCTName.setText(ctList.get(pos).getExamName());
 
 			holder.tvCTGrade.setText(ctList.get(pos).getGrade());
-			holder.tvCTHighestMarks.setText(ctList.get(pos).getMaxMark());
-			holder.tvCTMarks.setText(ctList.get(pos).getMark());
+			holder.tvCTHighestMarks.setText(getDecimalFormatNumber(ctList.get(pos).getMaxMark()));//ctList.get(pos).getMaxMark()
+
+			holder.tvCTMarks.setText(getDecimalFormatNumber(ctList.get(pos).getMark()));//ctList.get(pos).getMark()
 			holder.tvCTPercentage.setText(ctList.get(pos).getPercentage() + "%");
-			holder.tvCTTotalMarks.setText(ctList.get(pos).getTotalMark());
+			holder.tvCTTotalMarks.setText(getDecimalFormatNumber(ctList.get(pos).getTotalMark()));//ctList.get(pos).getTotalMark()
 
 			holder.layoutCT.setVisibility(View.VISIBLE);
 			holder.layoutProject.setVisibility(View.GONE);
@@ -525,6 +593,35 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 			//			ArrayList<ClassTestItem> projectList = items.get(i).getCtReportSubjectExam().getProjectList();
 			//			arrangeProjectUI(projectList, holder);
 
+			//working on SingleReportCardSubject data
+			view.setTag(items.get(i).getCtReportSubjectExam().getClasstestList());
+			final int m = pos;
+
+			final String subjectName = items.get(j).getSubjectName();
+			final String subjectIcon = items.get(j).getSubjectIcon();
+			final String subjectId = items.get(j).getSubjectID();
+
+
+			view.setOnClickListener(new View.OnClickListener(){
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(getActivity(), SingleReportCardSubject.class);
+					List<ClassTestItem>  ctListInner = (List<ClassTestItem>)view.getTag();
+
+					//Gson gson = new Gson();
+					//String data = gson.toJson(ctListInner);
+
+					intent.putExtra("inner_reportcard_item_subject_id", subjectId);
+					intent.putExtra("inner_reportcard_item_position", m);
+					intent.putExtra("inner_reportcard_item_exam_id", ctListInner.get(m).getExamId());
+					intent.putExtra("inner_reportcard_item_exam_category_name", "Class Test");
+					intent.putExtra("inner_reportcard_item_exam_from_class_test", true);
+					if(selectedStudent != null)
+						intent.putExtra("inner_reportcard_item_student_id", selectedStudent.getId());
+
+					startActivity(intent);
+				}
+			});
 
 			listLayout.addView(view);
 		}
@@ -536,7 +633,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 		// TODO Auto-generated method stub
 		this.batchId = batchId;
 		this.studentId = schoolId;
-		uiHelper.showMessage(batchId+"  "+studentId);
+		uiHelper.showMessage(batchId + "  " + studentId);
 		fetchClassTestReport();
 	}
 
@@ -608,6 +705,26 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 	protected void onInvisible() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	private String getDecimalFormatNumber(float number)
+	{
+		String value = "";
+
+		value = new DecimalFormat("#.##").format(number);
+
+		return value;
+	}
+
+	private String getDecimalFormatNumber(String numberString)
+	{
+		float number = Float.parseFloat(numberString);
+		String value = "";
+
+		value = new DecimalFormat("#.##").format(number);
+
+		return value;
 	}
 
 

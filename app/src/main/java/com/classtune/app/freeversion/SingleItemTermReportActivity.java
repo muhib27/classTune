@@ -1,5 +1,6 @@
 package com.classtune.app.freeversion;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -213,6 +214,12 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 				//continue;
 			}
 
+			/*LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+			params.setMargins(0, (int) AppUtility.getDeviceIndependentDpFromPixel(this, 25), 0, (int) AppUtility.getDeviceIndependentDpFromPixel(this, 25));
+			layoutReport.setLayoutParams(params);*/
+
+
+
 			// *********************** Initialization ***********************
 			holder.layoutRow = (LinearLayout) childView
 					.findViewById(R.id.layout_row);
@@ -265,6 +272,31 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 					+ "%");
 
 			layoutReport.addView(childView);
+
+
+			//working on SingleReportCardSubject data
+			childView.setTag(subjectReportList.get(i));
+			final int k = i;
+
+			childView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+
+					Intent intent = new Intent(SingleItemTermReportActivity.this, SingleReportCardSubject.class);
+					TermReportExamSubjectItem ctListInner = (TermReportExamSubjectItem)view.getTag();
+
+					intent.putExtra("inner_reportcard_item_subject_id", ctListInner.getSubjctId());
+					intent.putExtra("inner_reportcard_item_position", k);
+					intent.putExtra("inner_reportcard_item_exam_group_id", SingleItemTermReportActivity.this.getIntent().getExtras().getString("id"));
+					intent.putExtra("inner_reportcard_item_exam_category_name", "Term Report");
+					intent.putExtra("inner_reportcard_item_exam_from_class_test", false);
+
+					intent.putExtra("inner_reportcard_item_student_id", SingleItemTermReportActivity.this.getIntent().getExtras().getString("student_id"));
+
+					startActivity(intent);
+				}
+			});
+
 		}
 	}
 

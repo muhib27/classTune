@@ -2,13 +2,17 @@ package com.classtune.app.freeversion;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.SchoolEvent;
@@ -22,7 +26,6 @@ import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButtonTest;
-import com.classtune.app.schoolapp.viewhelpers.CustomRhombusIcon;
 import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
@@ -52,15 +55,26 @@ public class SingleEventActivity extends ChildContainerActivity {
     CustomButtonTest remainderBtn;
     //CustomButtonTest notGoingBtn;
     TextView eventCatName;
-    TextView txtTime, txtStartDate, txtEndDate;
+    TextView txtStartDate, txtEndDate;
 
     private LinearLayout bottomLayer;
-    private CustomRhombusIcon categoryIcon;
+    private ImageView categoryIcon;
+
+    private TextView txtStartTime;
+    private TextView txtEndTime;
+    private TextView txtCreateDate;
+    private Button btnAllEvent;
+
+    private LinearLayout layoutRoot;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_event);
+        setContentView(R.layout.activity_single_event2);
         context = SingleEventActivity.this;
 
         gson = new Gson();
@@ -92,12 +106,31 @@ public class SingleEventActivity extends ChildContainerActivity {
         remainderBtn=(CustomButtonTest)this.findViewById(R.id.btn_reminder);
         eventCatName = (TextView)this.findViewById(R.id.event_cat_name);
 
-        txtTime = (TextView)this.findViewById(R.id.txtTime);
+
         txtStartDate = (TextView)this.findViewById(R.id.txtStartDate);
         txtEndDate = (TextView)this.findViewById(R.id.txtEndDate);
 
         bottomLayer = (LinearLayout)this.findViewById(R.id.bottomLayer);
-        categoryIcon = (CustomRhombusIcon)this.findViewById(R.id.categoryIcon);
+        categoryIcon = (ImageView)this.findViewById(R.id.categoryIcon);
+
+        txtStartTime = (TextView)this.findViewById(R.id.txtStartTime);
+        txtEndTime = (TextView)this.findViewById(R.id.txtEndTime);
+        txtCreateDate = (TextView)this.findViewById(R.id.txtCreateDate);
+        btnAllEvent = (Button)this.findViewById(R.id.btnAllEvent);
+
+        btnAllEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(SingleEventActivity.this, AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "ParentEventFragment");
+                startActivity(intent);
+            }
+        });
+
+        layoutRoot = (LinearLayout)this.findViewById(R.id.layoutRoot);
+
+        layoutRoot.setVisibility(View.GONE);
     }
 
     private void initApiCall()
@@ -106,6 +139,7 @@ public class SingleEventActivity extends ChildContainerActivity {
         RequestParams params=new RequestParams();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("id", id);
+        Log.e("SINGLE_EVENT_ID", "is: "+id);
 
 
         AppRestClient.post(URLHelper.URL_GET_SINGLE_EVENT, params, singleEventHandler);
@@ -139,12 +173,16 @@ public class SingleEventActivity extends ChildContainerActivity {
                 JsonObject objHomework = wrapper.getData().get("events").getAsJsonObject();
                 data = gson.fromJson(objHomework.toString(), SchoolEvent.class);
 
+                layoutRoot.setVisibility(View.VISIBLE);
                 initAction();
 
             }
             else
             {
+                layoutRoot.setVisibility(View.GONE);
+                Toast.makeText(SingleEventActivity.this, "This event is removed!", Toast.LENGTH_SHORT).show();
 
+                finish();
             }
             Log.e("Events", responseString);
 
@@ -160,12 +198,14 @@ public class SingleEventActivity extends ChildContainerActivity {
 
         if(data.isUpcoming())
         {
-            categoryIcon.setIconImage(R.drawable.event_row_icon);
+            //categoryIcon.setIconImage(R.drawable.event_row_icon);
+            categoryIcon.setImageResource(R.drawable.event_row_icon);
             bottomLayer.setVisibility(View.VISIBLE);
         }
         else
         {
-            categoryIcon.setIconImage(R.drawable.event_row_gray_icon);
+            //categoryIcon.setIconImage(R.drawable.event_row_gray_icon);
+            categoryIcon.setImageResource(R.drawable.event_row_gray_icon);
             bottomLayer.setVisibility(View.GONE);
         }
 
@@ -299,12 +339,21 @@ public class SingleEventActivity extends ChildContainerActivity {
 
         //viewHolder.txtTime.setText(arrayStartDate[1] + "-"+ arrayEndDate[1]);
 
-        txtTime.setText(get12HoursTime(arrayStartDate[1]) + "-"+ get12HoursTime(arrayEndDate[1]));
+        //txtTime.setText(get12HoursTime(arrayStartDate[1]) + "-"+ get12HoursTime(arrayEndDate[1]));
 
 
         txtStartDate.setText(arrayStartDate[0]);
         txtEndDate.setText(arrayEndDate[0]);
 
+        txtStartTime.setText(get12HoursTime(arrayStartDate[1]));
+        txtEndTime.setText(get12HoursTime(arrayEndDate[1]));
+
+
+
+        String str = data.getCreatedAt();
+        String[] splited = str.split("\\s+");
+
+        txtCreateDate.setText(splited[0]);
 
     }
 

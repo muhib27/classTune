@@ -45,7 +45,7 @@
         <activity
             android:name=".freeversion.HomePageFreeVersion"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.SplashScreenActivity"
             android:label="@string/app_name"
@@ -84,7 +84,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" />
 
-        <receiver android:name=".schoolapp.utils.MyAlarm"></receiver>
+        <receiver android:name=".schoolapp.utils.MyAlarm" />
         <receiver
             android:name=".schoolapp.utils.BootBroadcastReceiver"
             android:enabled="true">
@@ -95,13 +95,13 @@
 
         <activity
             android:name=".freeversion.InfoActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.PreferenceSettingsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.AccountSettingsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <!--
           WakefulBroadcastReceiver that will receive intents from GCM
@@ -126,32 +126,32 @@
 
         <activity
             android:name=".freeversion.SchoolCandleSettingActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.AssesmentActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.StudentListActivity"
-            android:label="@string/title_activity_student_list"></activity>
+            android:label="@string/title_activity_student_list" />
         <activity
             android:name=".freeversion.CreateMeetingRequest"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.SyllabusActivity"
-            android:label="@string/title_activity_syllabus"></activity>
+            android:label="@string/title_activity_syllabus" />
         <activity
             android:name=".schoolapp.StudentInfoActivity"
             android:label="@string/title_activity_student_info"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.AssessmentSummeryActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.AssessmentLeaderBoardActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.AssessmentRules"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <service android:name=".schoolapp.NotifyService" />
 
@@ -159,87 +159,94 @@
 
         <activity
             android:name=".freeversion.AssesmentHomeworkActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleHomeworkActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleCalendarEvent"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.NotificationActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleSyllabus"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SyllabusMidLayerActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleExamRoutine"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleItemTermReportActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.TeacherHomeworkDoneActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleTeacherHomeworkActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleNoticeActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.AnyFragmentLoadActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleMeetingRequestActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleLessonPlan"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.EditLessonPlanActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.LessonPlanSubjectDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.classtune.UserSelectionActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.classtune.RegistrationFirstPhaseActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.classtune.CreateStudentActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.classtune.CreateParentActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.classtune.CreateTeacherActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.classtune.InfoPageMainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.classtune.InfoFeatureActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.ForgetPasswordActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".schoolapp.classtune.TeacherInfoActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleTeacherDraftHomeworkActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".freeversion.SingleTeacherEditHomeworkActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".freeversion.SingleEventActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".freeversion.SingleEventActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".freeversion.SingleReportCardSubject"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <!--
             <provider android:authorities="com.facebook.app.NativeAppCallContentProvider850059515022967"

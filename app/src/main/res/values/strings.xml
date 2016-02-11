@@ -801,4 +801,5 @@ Get updates on recent on goings and feeds from your school teachers.</string>
     <string name="classtune_registration_teacher_job_title">Write Job Title</string>
     <string name="classtune_registration_teacher_joining_date">Select Your Joining Date</string>
     <string name="classtune_registration_teacher_position_title">Select Job Category First</string>
+    <string name="title_activity_single_report_card_subject">SingleReportCardSubject</string>
 </resources>

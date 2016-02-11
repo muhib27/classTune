@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical" >
+
+
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layoutRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.55"
+                        android:id="@+id/categoryIcon"
+                        android:textSize="16sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:src="@drawable/event_row_icon"/>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray_4">
+
+                    </View>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/event_cat_name"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textSize="14sp"
+                            android:textColor="@color/gray_1"
+                            android:textStyle="bold"
+                            android:id="@+id/txtCreateDate" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_4">
+
+                </View>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.55"
+                        android:text="Start Time"
+                        android:id="@+id/textView8"
+                        android:textSize="16sp"
+                        android:layout_margin="10dp"
+                        android:textColor="@android:color/black" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray_4">
+
+                    </View>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:id="@+id/txtStartTime"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginLeft="15dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_4">
+
+                </View>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.55"
+                        android:text="End Time"
+                        android:id="@+id/textView1"
+                        android:textSize="16sp"
+                        android:layout_margin="10dp"
+                        android:textColor="@android:color/black" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray_4">
+
+                    </View>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:id="@+id/txtEndTime"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginLeft="15dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_4">
+
+                </View>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.55"
+                        android:text="Start Date"
+                        android:id="@+id/textView2"
+                        android:textSize="16sp"
+                        android:layout_margin="10dp"
+                        android:textColor="@android:color/black" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray_4">
+
+                    </View>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:id="@+id/txtStartDate"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginLeft="15dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_4">
+
+                </View>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.55"
+                        android:text="End Date"
+                        android:id="@+id/textView3"
+                        android:textSize="16sp"
+                        android:layout_margin="10dp"
+                        android:textColor="@android:color/black" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray_4">
+
+                    </View>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:id="@+id/txtEndDate"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginLeft="15dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_4">
+
+                </View>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_2"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_marginBottom="1dip"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:padding="10dip" >
+
+                        <TextView
+                            android:id="@+id/event_title_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <com.classtune.app.schoolapp.viewhelpers.ExpandableTextView
+                            android:id="@+id/event_details_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dip"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/gray_1"
+                            android:textStyle="normal" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/bottomLayer"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:orientation="horizontal" >
+
+                        <com.classtune.app.schoolapp.viewhelpers.CustomButtonTest
+                            android:id="@+id/btn_join_in"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/general_btn"
+                            android:clickable="true"
+                            android:gravity="center"
+                            custom:buttonText="@string/btn_join"
+                            custom:buttonTextSize="8"
+                            custom:iconImageNormal="@drawable/done_normal"
+                            custom:iconImageTap="@drawable/done_tap" />
+
+                        <LinearLayout
+                            android:layout_width="2dip"
+                            android:layout_height="match_parent"
+                            android:background="@color/gray_2" >
+                        </LinearLayout>
+
+                        <com.classtune.app.schoolapp.viewhelpers.CustomButtonTest
+                            android:id="@+id/btn_reminder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/general_btn"
+                            android:clickable="true"
+                            android:gravity="center"
+                            custom:buttonText="@string/btn_reminder"
+                            custom:buttonTextSize="8"
+                            custom:iconImageNormal="@drawable/btn_reminder_normal"
+                            custom:iconImageTap="@drawable/btn_reminder_tap" />
+
+                        <LinearLayout
+                            android:layout_width="2dip"
+                            android:layout_height="match_parent"
+                            android:background="@color/gray_2" >
+                        </LinearLayout>
+
+                        <com.classtune.app.schoolapp.viewhelpers.CustomButtonTest
+                            android:id="@+id/btn_not_going"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/general_btn"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            custom:buttonSelected="true"
+                            custom:buttonText="@string/btn_not_going"
+                            custom:buttonTextSize="8"
+                            custom:iconImageNormal="@drawable/notgoing_normal"
+                            custom:iconImageTap="@drawable/notgoing_tap" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="3dip"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/red_line" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+                <Button
+                    android:id="@+id/btnAllEvent"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="See All Events"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:background="@drawable/btn_holder_see_all_events" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+
+
+
+
+</LinearLayout>
