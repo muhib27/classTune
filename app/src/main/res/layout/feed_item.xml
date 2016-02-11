@@ -106,7 +106,7 @@
                 android:layout_weight="1"
                 android:text="Notice"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/main_feed_body1"
@@ -116,6 +116,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:text="Notice"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -126,6 +128,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:text="Notice"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -136,6 +140,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:text="Notice"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
