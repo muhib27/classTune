@@ -184,7 +184,8 @@ public class CreateMeetingRequest extends ChildContainerActivity {
                 // TODO Auto-generated method stub
 
                 if (TextUtils.isEmpty(txtSelectBatch.getText().toString())) {
-                    Toast.makeText(CreateMeetingRequest.this, "Select a batch first", Toast.LENGTH_SHORT).show();
+                    if(userHelper.getUser().getType() != UserTypeEnum.PARENTS)
+                        Toast.makeText(CreateMeetingRequest.this, "Select a batch first", Toast.LENGTH_SHORT).show();
                 }
 
                 PopupMenu popup = new PopupMenu(CreateMeetingRequest.this, btnSelectParent);
@@ -221,7 +222,7 @@ public class CreateMeetingRequest extends ChildContainerActivity {
                 // TODO Auto-generated method stub
 
                 /*if (TextUtils.isEmpty(txtSelectBatch.getText().toString())) {
-                    Toast.makeText(CreateMeetingRequest.this, "Select a batch first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateMeetingRequest.this, " ", Toast.LENGTH_SHORT).show();
                 }*/
 
                 // TODO Auto-generated method stub

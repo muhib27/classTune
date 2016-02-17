@@ -292,5 +292,7 @@ public class URLHelper {
 
 	public final static String URL_GET_SINGLE_EVENT = "event/getsingleevent";
 	public final static String URL_GET_SINGLE_REPORT_CARD = "report/subjectreport";
+
+	public final static String URL_GET_APP_VERSION = "user/checkversion";
 	
 }

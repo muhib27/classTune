@@ -487,10 +487,15 @@ public class QuizFragment extends Fragment {
 			holder.txtPassPercentage.setText("Pass Percentage: "+listAssessmentHomework.get(position).getPassPercentage());
 			holder.btnPlay.setTag(position);
 
+			listAssessmentHomework.get(position).setIsClickable(true);
+			holder.btnPlay.setEnabled(listAssessmentHomework.get(position).isClickable());
 
 			if(listAssessmentHomework.get(position).getNotStarted() == 1)
 			{
-				holder.btnPlay.setText("Not Started");
+				holder.btnPlay.setText("Yet to start");
+
+				listAssessmentHomework.get(position).setIsClickable(false);
+				holder.btnPlay.setEnabled(listAssessmentHomework.get(position).isClickable());
 			}
 			else
 			{
@@ -512,9 +517,14 @@ public class QuizFragment extends Fragment {
 
 							if (userHelper.getUser().getType() != UserTypeEnum.PARENTS)
 							{
+								listAssessmentHomework.get((Integer) btn.getTag()).setIsClickable(true);
+								btn.setEnabled(listAssessmentHomework.get((Integer) btn.getTag()).isClickable());
+
 								Intent intent = new Intent(getActivity(), AssesmentHomeworkActivity.class);
 								intent.putExtra("ASSESSMENT_HOMEWORK_ID", listAssessmentHomework.get((Integer) btn.getTag()).getId());
 								startActivity(intent);
+
+
 							}
 
 
@@ -534,7 +544,12 @@ public class QuizFragment extends Fragment {
 							Log.e("CCC", "clicked from result");
 							Button btn = ((Button) v);
 
+							listAssessmentHomework.get((Integer) btn.getTag()).setIsClickable(true);
+							btn.setEnabled(listAssessmentHomework.get((Integer) btn.getTag()).isClickable());
+
 							initApiCallAssessmentResult(listAssessmentHomework.get((Integer) btn.getTag()).getId());
+
+
 
 						}
 					});
@@ -542,6 +557,9 @@ public class QuizFragment extends Fragment {
 				if(listAssessmentHomework.get(position).getTimeover() == 1 && listAssessmentHomework.get(position).getExamGiven() == 0)
 				{
 					holder.btnPlay.setText("Time Over");
+
+					listAssessmentHomework.get(position).setIsClickable(false);
+					holder.btnPlay.setEnabled(listAssessmentHomework.get(position).isClickable());
 				}
 
 			}

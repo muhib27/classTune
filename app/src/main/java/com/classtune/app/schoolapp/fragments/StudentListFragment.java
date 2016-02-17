@@ -96,6 +96,7 @@ public class StudentListFragment extends UserVisibleHintFragment {
 			isStudentListloaded = true;
 
 
+
 			if(arraylist.size() <= 0)
 			{
 				txtMessage.setVisibility(View.VISIBLE);
@@ -164,14 +165,15 @@ public class StudentListFragment extends UserVisibleHintFragment {
 
 		txtMessage = (TextView)rootView.findViewById(R.id.txtMessage);
 
-		if(arraylist.size() <= 0)
+
+		/*if(arraylist.size() <= 0)
 		{
 			txtMessage.setVisibility(View.VISIBLE);
 		}
 		else
 		{
 			txtMessage.setVisibility(View.GONE);
-		}
+		}*/
 
 
 		return rootView;

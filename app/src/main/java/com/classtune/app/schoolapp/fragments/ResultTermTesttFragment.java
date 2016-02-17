@@ -64,6 +64,11 @@ public class ResultTermTesttFragment extends UserVisibleHintFragment implements
 	private static final String TAG = "Exam Routine";
 	public static IPickedStudentName pickedStudentNameListenerTermTest;
 
+	private TextView nodataMsg;
+
+
+
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -107,6 +112,9 @@ public class ResultTermTesttFragment extends UserVisibleHintFragment implements
 		gridTitleText = (TextView) view.findViewById(R.id.grid_title_textview);
 		gridTitleText.setText("Term Test");
 		pbs = (LinearLayout) view.findViewById(R.id.pb);
+		nodataMsg = (TextView)view.findViewById(R.id.nodataMsg);
+
+
 		setUpList();
 		//loadDataInToList();
 		return view;
@@ -220,6 +228,15 @@ public class ResultTermTesttFragment extends UserVisibleHintFragment implements
 								wrapper.getData().getAsJsonArray("all_exam")
 										.toString()));
 				adapter.notifyDataSetChanged();
+
+				if(items.size()>0) {
+					nodataMsg.setVisibility(View.GONE);
+				}
+				else {
+					nodataMsg.setVisibility(View.VISIBLE);
+				}
+
+
 			} else if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SESSION_EXPIRED) {
 				// userHelper.doLogIn();
 			}

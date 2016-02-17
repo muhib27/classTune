@@ -2,11 +2,15 @@ package com.classtune.app.freeversion;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +30,9 @@ import android.widget.Toast;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.ChildSelectionActivity;
 import com.classtune.app.schoolapp.LoginActivity;
+import com.classtune.app.schoolapp.fragments.ClassReportTeacherFragment;
+import com.classtune.app.schoolapp.fragments.TeachersAttendanceTabhostFragment;
+import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.CHILD_TYPE;
 import com.classtune.app.schoolapp.model.DrawerChildBase;
 import com.classtune.app.schoolapp.model.DrawerChildMenu;
@@ -59,7 +66,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @SuppressLint("NewApi")
-public class HomePageFreeVersion extends HomeContainerActivity {
+public class HomePageFreeVersion extends HomeContainerActivity implements TeachersAttendanceTabhostFragment.IBatchSelection {
 
     private UIHelper uiHelper;
 
@@ -613,7 +620,136 @@ public class HomePageFreeVersion extends HomeContainerActivity {
         {
             showBannerPopup();
         }
+
+        checkAppVersion();
     }
+
+    private void checkAppVersion()
+    {
+        initApiCallCheckVersion();
+    }
+
+    private void initApiCallCheckVersion()
+    {
+
+        RequestParams params = new RequestParams();
+        AppRestClient.post(URLHelper.URL_GET_APP_VERSION, params, checkVersionHandler);
+
+    }
+
+    AsyncHttpResponseHandler checkVersionHandler = new AsyncHttpResponseHandler() {
+
+        @Override
+        public void onFailure(Throwable arg0, String arg1) {
+            /*uiHelper.showMessage(arg1);
+            if (uiHelper.isDialogActive()) {
+                uiHelper.dismissLoadingDialog();
+            }*/
+        };
+
+        @Override
+        public void onStart() {
+
+            //uiHelper.showLoadingDialog("Please wait...");
+
+
+        };
+
+        @Override
+        public void onSuccess(int arg0, String responseString) {
+
+
+            //uiHelper.dismissLoadingDialog();
+
+
+            Wrapper modelContainer = GsonParser.getInstance()
+                    .parseServerResponse(responseString);
+
+            if (modelContainer.getStatus().getCode() == 200) {
+
+
+                int version = modelContainer.getData().get("version").getAsJsonObject().get("version").getAsInt();
+                boolean toastUpdate = modelContainer.getData().get("version").getAsJsonObject().get("toast_update").getAsBoolean();
+                boolean mustUpdate = modelContainer.getData().get("version").getAsJsonObject().get("must_update").getAsBoolean();
+
+                if(version > getAppVersionCode())
+                {
+                    if(mustUpdate==true)
+                    {
+                        showVersionDialog();
+                    }
+                    else if(toastUpdate==true)
+                    {
+                        Toast.makeText(HomePageFreeVersion.this, "New update is available. Go to Play Store to get it.", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+
+            }
+
+
+            else {
+
+            }
+
+
+
+        };
+    };
+
+
+    private int getAppVersionCode()
+    {
+        PackageManager manager = this.getPackageManager();
+        PackageInfo info = null;
+        int vCode = 0;
+        try {
+            info = manager.getPackageInfo(this.getPackageName(), 0);
+            Log.e("VER_NAME", "is: "+info.versionName);
+            Log.e("VER_CODE", "is: "+info.versionCode);
+            vCode = info.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return vCode;
+    }
+
+    private void showVersionDialog()
+    {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(HomePageFreeVersion.this);
+        builder1.setTitle(getResources().getString(R.string.app_name));
+        builder1.setMessage("You must update ClassTune from Play Store to continue.");
+        builder1.setCancelable(false);
+
+        builder1.setPositiveButton(
+                "Update Now",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        String url = "https://play.google.com/store/apps/details?id=com.classtune.app";
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        startActivity(i);
+                        finish();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No, thanks",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        finish();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+
+    }
+
 
     private void showBannerPopup()
     {
@@ -939,6 +1075,24 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                 .replace(R.id.pager_frame,
                         CommonChildFragment.newInstance(cat, subcat), TAG)
                 .commit();*/
+    }
+
+
+    @Override
+    public void onBatchSelection(Batch batch) {
+
+        Log.e("HOMEPAGE_BATCH", "is: " + batch.getName());
+
+
+
+        TeachersAttendanceTabhostFragment recFragment = (TeachersAttendanceTabhostFragment)getSupportFragmentManager().findFragmentByTag(getResources().getString(R.string.title_class_report_tab));
+        ClassReportTeacherFragment frag = (ClassReportTeacherFragment)recFragment.getChildFragmentManager().findFragmentByTag(getResources().getString(R.string.title_class_report_tab));
+
+        if(frag != null  && frag.isInLayout())
+        {
+            frag.updateBatchSelectionFromHomePageFreeVersion(batch);
+        }
+
     }
 
 

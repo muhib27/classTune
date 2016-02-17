@@ -7,6 +7,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.classtune.app.R;
 import com.classtune.app.freeversion.HomePageFreeVersion;
 import com.classtune.app.schoolapp.model.School;
 import com.classtune.app.schoolapp.model.User;
@@ -304,7 +305,7 @@ public class UserHelper {
                 setRegistered(true);
                 uListener.onPaswordChanged();
             } else {
-                uListener.onAuthenticationFailed(wrapper.getStatus().getMsg());
+                uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_user_not_found));
             }
             /*if (wrapper.getStatus().getCode() == 200) {
                 UserWrapper userData = GsonParser.getInstance()
@@ -409,7 +410,7 @@ public class UserHelper {
                 storeLoggedInUser(u);
                 uListener.onAuthenticationSuccessful();
             } else {
-                uListener.onAuthenticationFailed(wrapper.getStatus().getMsg());
+                uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_user_not_found));
             }
         }
     };
@@ -437,26 +438,53 @@ public class UserHelper {
             Wrapper wrapper = GsonParser.getInstance().parseServerResponse(
                     responseString);
             if (wrapper.getStatus().getCode() == 200) {
-                UserWrapper userData = GsonParser.getInstance()
-                        .parseUserWrapper(wrapper.getData().toString());
-                User u = new User();
-                u = userData.getUser();
-                u.setUsername(logedInUser.getUsername());
-                u.setPassword(logedInUser.getPassword());
-                u.setSessionID(userData.getSession());
-                u.setChildren(userData.getChildren());
-                if (userData.getUserType() == 0)
-                    u.setAccessType(UserAccessType.FREE);
-                else {
-                    u.setAccessType(UserAccessType.PAID);
-                    u.setPaidInfo(userData.getInfo());
+
+
+                //if user is free user then don't let him log in
+                int userTypeUpper = wrapper.getData().get("user_type").getAsInt();
+                if(wrapper.getData().get("user_type") != null && userTypeUpper == 0)
+                {
+                    //Toast.makeText(context, "User not found", Toast.LENGTH_SHORT).show();
+                    uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_user_not_found));
                 }
-                storeLoggedInUser(u);
-                setLoggedIn(true);
-                setRegistered(true);
-                uListener.onAuthenticationSuccessful();
+                else
+                {
+                    UserWrapper userData = GsonParser.getInstance()
+                            .parseUserWrapper(wrapper.getData().toString());
+                    User u = new User();
+                    u = userData.getUser();
+                    u.setUsername(logedInUser.getUsername());
+                    u.setPassword(logedInUser.getPassword());
+                    u.setSessionID(userData.getSession());
+                    u.setChildren(userData.getChildren());
+                    if (userData.getUserType() == 0)
+                        u.setAccessType(UserAccessType.FREE);
+                    else {
+                        u.setAccessType(UserAccessType.PAID);
+                        u.setPaidInfo(userData.getInfo());
+                    }
+
+                    //if paid user is admin then don't let him log in
+                    if(u.getPaidInfo().isAdmin())
+                    {
+                        uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_admin_user));
+                    }
+                    else
+                    {
+                        storeLoggedInUser(u);
+                        setLoggedIn(true);
+                        setRegistered(true);
+                        uListener.onAuthenticationSuccessful();
+                    }
+
+
+
+                }
+
+
+
             } else {
-                uListener.onAuthenticationFailed(wrapper.getStatus().getMsg());
+                uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_user_not_found));
             }
 
             if(ordinal == 2) //student

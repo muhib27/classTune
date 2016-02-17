@@ -1,5 +1,6 @@
 package com.classtune.app.schoolapp.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,14 +42,29 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	public static String dateString="";
 	
 	private TextView txtDate;
-	
+
+	private IBatchSelection listenerSelection;
+
+
+	@Override
+	public void onAttach(Context context) {
+		super.onAttach(context);
+
+		try {
+			listenerSelection = (IBatchSelection) context;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(getActivity().toString()
+					+ " must implement OnHeadlineSelectedListener");
+		}
+	}
+
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		dateString="";
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -123,6 +139,7 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 				/*Intent i = new Intent("com.champs21.schoolapp.batch");
                 i.putExtra("batch_id", selectedBatch.getId());
                 getActivity().sendBroadcast(i);*/
+				listenerSelection.onBatchSelection(selectedBatch);
 				break;
 			default:
 				break;
@@ -324,5 +341,10 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	 * ft.commit(); this.getChildFragmentManager().executePendingTransactions();
 	 * } }
 	 */
+
+	public interface IBatchSelection{
+
+		void onBatchSelection(Batch batch);
+	}
 
 }

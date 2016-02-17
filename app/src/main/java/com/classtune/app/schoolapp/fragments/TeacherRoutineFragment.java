@@ -6,6 +6,7 @@ package com.classtune.app.schoolapp.fragments;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -184,6 +185,9 @@ public class TeacherRoutineFragment extends UserVisibleHintFragment implements O
 		nextClassTimeText.setText(nextClass.getClassStartTime()+"-"+nextClass.getClassEndTime());
 		nextClassNameText.setText(nextClass.getClassName()+" "+nextClass.getBatchName());
 		nextSubjectNameText.setText(nextClass.getSubjectName());
+
+		if(TextUtils.isEmpty(nextClass.getClassName()) && TextUtils.isEmpty(nextClass.getBatchName()))
+			nextClassNameText.setText("No Class Available");
 	}
 	
 	

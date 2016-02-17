@@ -49,6 +49,10 @@ public class TransportFragment extends UserVisibleHintFragment implements
 	private LinearLayout pbs;
     private Context mContext;
 	private RelativeLayout nodata;
+	private TextView txtMessage;
+
+
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -173,6 +177,9 @@ public class TransportFragment extends UserVisibleHintFragment implements
 								.get("schedule").getAsJsonArray().toString());
 				if(listSchedule.size()>0) {
 					nodata.setVisibility(View.GONE);
+				}
+				else {
+					nodata.setVisibility(View.VISIBLE);
 				}
 				layoutListHolder.removeAllViews();
 				for (int i = 0; i < listSchedule.size(); i++) {

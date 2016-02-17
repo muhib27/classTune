@@ -13,6 +13,10 @@
     <string name="join_text2">Fill up this information</string>
     <string name="share_text">Choose where you want to share...</string>
 
+    <!--userhelpper-->
+    <string name="msg_user_not_found">User not found.</string>
+    <string name="msg_admin_user">An admin cannot log in from mobile device. Please log in using browser.</string>
+
     <!-- SETTINGS -->
     <string name="setting_drawer_basic_info_text">Basic Information</string>
     <string name="setting_drawer_title_text">Info \u0026 Setting</string>

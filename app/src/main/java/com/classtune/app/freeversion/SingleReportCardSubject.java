@@ -130,6 +130,7 @@ public class SingleReportCardSubject extends ChildContainerActivity {
         txtRemarks = (TextView)this.findViewById(R.id.txtRemarks);
         layoutRemarksHolder = (LinearLayout)this.findViewById(R.id.layoutRemarksHolder);
         txtExamCategory = (TextView)this.findViewById(R.id.txtExamCategory);
+        txtExamCategory.setSelected(true);
 
         //layoutChart = (LinearLayout)this.findViewById(R.id.layoutChart);
         chart = (BarChart)this.findViewById(R.id.chart);
@@ -151,12 +152,37 @@ public class SingleReportCardSubject extends ChildContainerActivity {
         txtTotalMark.setText(String.valueOf(getDecimalFormatNumber(data.getTotalMark())));
         txtGrade.setText(data.getGrade());
         txtAverage.setText(String.valueOf(getDecimalFormatNumber(data.getAverageMark())));
-        txtPercentile.setText(String.valueOf(getDecimalFormatNumber(data.getPercentile())));
+
+
+        /*int percentile = Math.round(data.getPercentile());Log.e("percentile", ""+percentile);
+        int percent = Math.round(percentile/5);Log.e("percent", ""+percent);
+        int finalPercentile = percent * 5;Log.e("finalPercentile", ""+finalPercentile);
+
+        txtPercentile.setText("Top "+String.valueOf(finalPercentile)+" %");*/
+
+
+        float percentile = (float)Math.round(data.getPercentile());
+        float percent = (float)Math.round(percentile / 5);
+        int finalPercentile = (int)percent * 5;
+
+        txtPercentile.setText("Top "+String.valueOf(finalPercentile)+" %");
+
+
+
+
 
         if(!TextUtils.isEmpty(data.getRemarks()))
         {
-            layoutRemarksHolder.setVisibility(View.VISIBLE);
-            txtRemarks.setText(data.getRemarks());
+            if(data.getRemarks().equalsIgnoreCase("-"))
+            {
+                layoutRemarksHolder.setVisibility(View.GONE);
+            }
+            else
+            {
+                layoutRemarksHolder.setVisibility(View.VISIBLE);
+                txtRemarks.setText(data.getRemarks());
+            }
+
         }
         else
         {
@@ -318,8 +344,15 @@ public class SingleReportCardSubject extends ChildContainerActivity {
 
     private String getDecimalFormatNumber(String numberString)
     {
-        float number = Float.parseFloat(numberString);
         String value = "";
+        float number = 0;
+
+        try {
+            number = Float.parseFloat(numberString);
+        }catch (NumberFormatException e) {
+            e.printStackTrace();
+            return "0";
+        }
 
         value = new DecimalFormat("#.##").format(number);
 

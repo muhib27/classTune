@@ -42,7 +42,6 @@
                 android:id="@+id/curr_date_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="25th july 2014"
                 android:textColor="@color/gray_1"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -85,7 +84,6 @@
                 android:id="@+id/tv_class_batch_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No Class Available"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -93,7 +91,6 @@
                 android:id="@+id/tv_subject_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -101,7 +98,6 @@
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"
                 android:textColor="@color/gray_1"
                 android:textSize="14sp" />
 
@@ -109,7 +105,6 @@
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"
                 android:textColor="@color/gray_1"
                 android:textSize="14sp" />
         </LinearLayout>

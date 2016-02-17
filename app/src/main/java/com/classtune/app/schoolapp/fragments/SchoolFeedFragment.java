@@ -525,11 +525,11 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                                 holder.statusImage.setImageResource(R.drawable.group2);
                                 break;
                             case 5:
-                                holder.statusText.setText("Absent Today");
+                                holder.statusText.setText("Absent today");
                                 holder.statusImage.setImageResource(R.drawable.group8);
                                 break;
                             case 6:
-                                holder.statusText.setText("Present Today");
+                                holder.statusText.setText("Present today");
                                 holder.statusImage.setImageResource(R.drawable.group7);
                                 break;
                             case 7:

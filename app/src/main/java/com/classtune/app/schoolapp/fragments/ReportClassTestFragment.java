@@ -222,6 +222,8 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 			pbs.setVisibility(View.GONE);
 
 			//Toast.makeText(getActivity(), responseString, Toast.LENGTH_LONG).show();
+			Log.e("##RESPONSE", "is: "+responseString);
+
 
 			Wrapper wrapper = GsonParser.getInstance().parseServerResponse(responseString);
 
@@ -719,12 +721,21 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 
 	private String getDecimalFormatNumber(String numberString)
 	{
-		float number = Float.parseFloat(numberString);
-		String value = "";
+		if(numberString.equalsIgnoreCase("-")) {
+			return "-";
 
-		value = new DecimalFormat("#.##").format(number);
+		}
 
-		return value;
+		else
+		{
+			float number = Float.parseFloat(numberString);
+			String value = "";
+
+			value = new DecimalFormat("#.##").format(number);
+
+			return value;
+		}
+
 	}
 
 

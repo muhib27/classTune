@@ -31,7 +31,7 @@ public class AssessmentHomework {
 	@SerializedName("not_started")
 	private int notStarted;
 	
-	
+	private boolean isClickable;
 
 	
 	public String getId() {
@@ -104,5 +104,13 @@ public class AssessmentHomework {
 
 	public void setNotStarted(int notStarted) {
 		this.notStarted = notStarted;
+	}
+
+	public boolean isClickable() {
+		return isClickable;
+	}
+
+	public void setIsClickable(boolean isClickable) {
+		this.isClickable = isClickable;
 	}
 }

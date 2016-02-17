@@ -18,12 +18,13 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.classtune.app.R;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.schoolapp.BatchSelectionChangedBroadcastReceiver;
 import com.classtune.app.schoolapp.BatchSelectionChangedBroadcastReceiver.onBatchIdChangeListener;
-import com.classtune.app.R;
 import com.classtune.app.schoolapp.StudentListActivity;
 import com.classtune.app.schoolapp.fragments.DatePickerFragment.DatePickerOnSetDateListener;
+import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.ClassReport;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
@@ -42,7 +43,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ClassReportTeacherFragment extends Fragment implements
-		OnClickListener,onBatchIdChangeListener {
+		OnClickListener,onBatchIdChangeListener{
 	private View rootView;
 	private TextView totalStudentCountTxt, presentStudentCountTxt,
 			absentStudentCountTxt, lateStudentCountTxt, leaveStudentCountTxt;
@@ -56,10 +57,11 @@ public class ClassReportTeacherFragment extends Fragment implements
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
+
 		super.onResume();
 		getActivity().registerReceiver(reciever, new IntentFilter("com.classtune.app.schoolapp.batch"));
 	}
-	
+
 	@Override
 	public void onPause() {
 		// TODO Auto-generated method stub
@@ -67,10 +69,13 @@ public class ClassReportTeacherFragment extends Fragment implements
 		getActivity().unregisterReceiver(reciever);
 	}
 
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.e("OnCreate", "Aise");
+
+
 	}
 
 	@Override
@@ -290,6 +295,12 @@ public class ClassReportTeacherFragment extends Fragment implements
 	@Override
 	public void update(String batchId, String schoolId) {
 		getClassReport();
+	}
+
+
+	public void updateBatchSelectionFromHomePageFreeVersion(Batch batch)
+	{
+		Log.e("CLASSREPORT_BATCH", "is: "+batch.getName());
 	}
 
 }
