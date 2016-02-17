@@ -30,7 +30,6 @@ import android.widget.Toast;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.ChildSelectionActivity;
 import com.classtune.app.schoolapp.LoginActivity;
-import com.classtune.app.schoolapp.fragments.ClassReportTeacherFragment;
 import com.classtune.app.schoolapp.fragments.TeachersAttendanceTabhostFragment;
 import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.CHILD_TYPE;
@@ -1082,16 +1081,6 @@ public class HomePageFreeVersion extends HomeContainerActivity implements Teache
     public void onBatchSelection(Batch batch) {
 
         Log.e("HOMEPAGE_BATCH", "is: " + batch.getName());
-
-
-
-        TeachersAttendanceTabhostFragment recFragment = (TeachersAttendanceTabhostFragment)getSupportFragmentManager().findFragmentByTag(getResources().getString(R.string.title_class_report_tab));
-        ClassReportTeacherFragment frag = (ClassReportTeacherFragment)recFragment.getChildFragmentManager().findFragmentByTag(getResources().getString(R.string.title_class_report_tab));
-
-        if(frag != null  && frag.isInLayout())
-        {
-            frag.updateBatchSelectionFromHomePageFreeVersion(batch);
-        }
 
     }
 

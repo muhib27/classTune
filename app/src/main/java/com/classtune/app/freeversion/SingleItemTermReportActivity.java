@@ -177,7 +177,15 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 				+ term.getTotalStudent());
 
 		Button gpaBtn = (Button) findViewById(R.id.btn_gpa);
-		gpaBtn.setText(term.getGpa());
+		if(term.getGpa().equalsIgnoreCase("-"))
+		{
+			gpaBtn.setText(term.getGpa());
+		}
+		else
+		{
+			gpaBtn.setText("GPA\n"+term.getGpa());
+		}
+
 
 		
 	}
@@ -268,8 +276,16 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 			m = Float.parseFloat(subjectReportList.get(i).getTotalMark());
 			holder.tvTotal.setText((int) m + "");
 
-			holder.tvPercent.setText(subjectReportList.get(i).getPercent()
-					+ "%");
+			//percentile
+
+			float percentage = 0;
+			percentage = subjectReportList.get(i).getPercentile();
+			float percentile = (float)Math.round(percentage);
+			float percent = (float)Math.round(percentile / 5);
+			int finalPercentile = (int)percent * 5;
+			holder.tvPercent.setText("Top "+String.valueOf(finalPercentile)+" %");
+
+			//percentile finish
 
 			layoutReport.addView(childView);
 

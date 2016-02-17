@@ -24,7 +24,6 @@ import com.classtune.app.schoolapp.BatchSelectionChangedBroadcastReceiver;
 import com.classtune.app.schoolapp.BatchSelectionChangedBroadcastReceiver.onBatchIdChangeListener;
 import com.classtune.app.schoolapp.StudentListActivity;
 import com.classtune.app.schoolapp.fragments.DatePickerFragment.DatePickerOnSetDateListener;
-import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.ClassReport;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
@@ -297,10 +296,5 @@ public class ClassReportTeacherFragment extends Fragment implements
 		getClassReport();
 	}
 
-
-	public void updateBatchSelectionFromHomePageFreeVersion(Batch batch)
-	{
-		Log.e("CLASSREPORT_BATCH", "is: "+batch.getName());
-	}
 
 }

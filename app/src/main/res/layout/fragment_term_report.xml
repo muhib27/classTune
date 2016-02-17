@@ -108,7 +108,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/report_gray_btn"
                         android:clickable="false"
-                        android:text="4.5"
+                        android:text="GPA"
                         android:textColor="@color/red"
                         android:textSize="14sp" />
 

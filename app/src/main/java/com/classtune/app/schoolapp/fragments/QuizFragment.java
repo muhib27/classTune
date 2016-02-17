@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -464,6 +465,8 @@ public class QuizFragment extends Fragment {
 
 				convertView = LayoutInflater.from(getActivity()).inflate(R.layout.row_assessment_homework, parent, false);
 
+				holder.layoutRoot = (LinearLayout)convertView.findViewById(R.id.layoutRoot);
+
 				holder.txtPosition = (TextView)convertView.findViewById(R.id.txtPosition);
 				holder.txtName = (TextView)convertView.findViewById(R.id.txtName);
 				holder.txtStartDate = (TextView)convertView.findViewById(R.id.txtStartDate);
@@ -486,9 +489,11 @@ public class QuizFragment extends Fragment {
 			holder.txtMaximumTime.setText("Maximum Time: "+listAssessmentHomework.get(position).getMaximumTime());
 			holder.txtPassPercentage.setText("Pass Percentage: "+listAssessmentHomework.get(position).getPassPercentage());
 			holder.btnPlay.setTag(position);
+			holder.layoutRoot.setTag(position);
 
 			listAssessmentHomework.get(position).setIsClickable(true);
 			holder.btnPlay.setEnabled(listAssessmentHomework.get(position).isClickable());
+			holder.layoutRoot.setEnabled(listAssessmentHomework.get(position).isClickable());
 
 			if(listAssessmentHomework.get(position).getNotStarted() == 1)
 			{
@@ -496,6 +501,7 @@ public class QuizFragment extends Fragment {
 
 				listAssessmentHomework.get(position).setIsClickable(false);
 				holder.btnPlay.setEnabled(listAssessmentHomework.get(position).isClickable());
+				holder.layoutRoot.setEnabled(listAssessmentHomework.get(position).isClickable());
 			}
 			else
 			{
@@ -531,6 +537,29 @@ public class QuizFragment extends Fragment {
 						}
 					});
 
+
+					holder.layoutRoot.setOnClickListener(new View.OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							LinearLayout btn = ((LinearLayout) v);
+
+							if (userHelper.getUser().getType() != UserTypeEnum.PARENTS) {
+								listAssessmentHomework.get((Integer) btn.getTag()).setIsClickable(true);
+								btn.setEnabled(listAssessmentHomework.get((Integer) btn.getTag()).isClickable());
+
+								Intent intent = new Intent(getActivity(), AssesmentHomeworkActivity.class);
+								intent.putExtra("ASSESSMENT_HOMEWORK_ID", listAssessmentHomework.get((Integer) btn.getTag()).getId());
+								startActivity(intent);
+
+
+							}
+
+
+						}
+					});
+
 				}
 
 				if(listAssessmentHomework.get(position).getExamGiven() == 1) {
@@ -550,6 +579,23 @@ public class QuizFragment extends Fragment {
 							initApiCallAssessmentResult(listAssessmentHomework.get((Integer) btn.getTag()).getId());
 
 
+						}
+					});
+
+
+					holder.layoutRoot.setOnClickListener(new View.OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							Log.e("CCC", "clicked from result");
+							LinearLayout btn = ((LinearLayout) v);
+
+							listAssessmentHomework.get((Integer) btn.getTag()).setIsClickable(true);
+							btn.setEnabled(listAssessmentHomework.get((Integer) btn.getTag()).isClickable());
+
+							initApiCallAssessmentResult(listAssessmentHomework.get((Integer) btn.getTag()).getId());
+
 
 						}
 					});
@@ -560,6 +606,7 @@ public class QuizFragment extends Fragment {
 
 					listAssessmentHomework.get(position).setIsClickable(false);
 					holder.btnPlay.setEnabled(listAssessmentHomework.get(position).isClickable());
+					holder.layoutRoot.setEnabled(listAssessmentHomework.get(position).isClickable());
 				}
 
 			}
@@ -570,7 +617,9 @@ public class QuizFragment extends Fragment {
 		}
 		
 		class ViewHolderAssessment {
-			
+
+			LinearLayout layoutRoot;
+
 			TextView txtPosition;
 			TextView txtName;
 			TextView txtStartDate;

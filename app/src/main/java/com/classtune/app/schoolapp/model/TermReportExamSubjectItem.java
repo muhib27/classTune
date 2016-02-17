@@ -32,6 +32,9 @@ public class TermReportExamSubjectItem {
 	private String maxMark;
 	@SerializedName("total_mark")
 	private String totalMark;
+
+	@SerializedName("percentile")
+	private float percentile;
 	
 	
 	public String getSubjctName() {
@@ -109,5 +112,13 @@ public class TermReportExamSubjectItem {
 	}
 	public void setTotalMark(String totalMark) {
 		this.totalMark = totalMark;
+	}
+
+	public float getPercentile() {
+		return percentile;
+	}
+
+	public void setPercentile(float percentile) {
+		this.percentile = percentile;
 	}
 }

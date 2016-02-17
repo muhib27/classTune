@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -222,6 +223,7 @@ public class LessonPlanStudentParent extends Fragment {
 
                 convertView = LayoutInflater.from(LessonPlanStudentParent.this.getActivity()).inflate(R.layout.row_lessonplan_studentparent_subject, parent, false);
 
+                holder.layoutRoot = (LinearLayout)convertView.findViewById(R.id.layoutRoot);
                 holder.imgViewSubjectIcon = (ImageView)convertView.findViewById(R.id.imgViewSubjectIcon);
                 holder.txtSubjectName = (TextView)convertView.findViewById(R.id.txtSubjectName);
                 holder.txtPublishDate = (TextView)convertView.findViewById(R.id.txtPublishDate);
@@ -234,16 +236,17 @@ public class LessonPlanStudentParent extends Fragment {
             }
 
             holder.btnView.setTag(position);
+            holder.layoutRoot.setTag(position);
 
             holder.imgViewSubjectIcon.setImageResource(AppUtility.getImageResourceId(listSubject.get(position).getIcon(), getActivity()));
-            holder.txtSubjectName.setText(listSubject.get(position).getName()+" ("+listSubject.get(position).getTotal()+")");
+            holder.txtSubjectName.setText(listSubject.get(position).getName() + " (" + listSubject.get(position).getTotal() + ")");
             holder.txtPublishDate.setText("Last Updated "+AppUtility.getDateString(listSubject.get(position).getLastUpdated(), AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
 
-            holder.btnView.setOnClickListener(new View.OnClickListener(){
+            holder.btnView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    ImageButton btn = (ImageButton)v;
+                    ImageButton btn = (ImageButton) v;
                     int position = Integer.parseInt(btn.getTag().toString());
 
                     LessonPlanStudentParentSubject data = listSubject.get(position);
@@ -257,6 +260,23 @@ public class LessonPlanStudentParent extends Fragment {
                 }
             });
 
+            holder.layoutRoot.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    LinearLayout btn = (LinearLayout) view;
+                    int position = Integer.parseInt(btn.getTag().toString());
+
+                    LessonPlanStudentParentSubject data = listSubject.get(position);
+
+                    Intent intent = new Intent(getActivity(), LessonPlanSubjectDetailsActivity.class);
+                    Gson gson = new Gson();
+                    String strData = gson.toJson(data, LessonPlanStudentParentSubject.class);
+                    intent.putExtra(AppConstant.DATA_LESSON_PLAN_SUBJECT, strData);
+                    startActivity(intent);
+                }
+            });
+
 
             return convertView;
         }
@@ -264,6 +284,7 @@ public class LessonPlanStudentParent extends Fragment {
 
         class ViewHolder {
 
+            LinearLayout layoutRoot;
             ImageView imgViewSubjectIcon;
             TextView txtSubjectName;
             TextView txtPublishDate;

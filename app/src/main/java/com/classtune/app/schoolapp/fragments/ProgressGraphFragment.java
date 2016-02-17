@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.classtune.app.schoolapp.GcmIntentService;
@@ -61,6 +62,9 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
     private GraphicalView mChartView;
     private String subjectTextString = "";
     private String subjectIdString ="";
+    private RelativeLayout layoutSelectSubject;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,8 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
         btnSubjectSelect.setOnClickListener(this);
         pbGraph = (ProgressBar) view.findViewById(R.id.pb_graph);
         graphView = (LinearLayout) view.findViewById(R.id.graph_view);
+        layoutSelectSubject = (RelativeLayout)view.findViewById(R.id.layoutSelectSubject);
+        layoutSelectSubject.setOnClickListener(this);
         return view;
     }
 
@@ -84,6 +90,9 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
 
         switch (view.getId()) {
             case R.id.btn_prog_select_subject:
+                showSubjectPicker();
+                break;
+            case R.id.layoutSelectSubject:
                 showSubjectPicker();
                 break;
             default:

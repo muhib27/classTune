@@ -29,11 +29,11 @@
                 android:text="Select Subject"/>
             </LinearLayout>
         <RelativeLayout
+            android:id="@+id/layoutSelectSubject"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_marginLeft="2dp"
-            android:background="@color/white"
-                        >
+            android:background="@color/white">
             <TextView
                 android:id="@+id/tv_prog_selected_subject"
                 android:layout_width="wrap_content"

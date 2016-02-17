@@ -33,25 +33,6 @@
             android:background="@color/gray_2" />
 
         <TextView
-            android:id="@+id/tv_grade"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingBottom="5dip"
-            android:paddingLeft="2dip"
-            android:paddingRight="2dip"
-            android:paddingTop="5dip"
-            android:text="Grade"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@color/gray_2" />
-
-        <TextView
             android:id="@+id/tv_score"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
@@ -109,6 +90,25 @@
             android:background="@color/gray_2" />
 
         <TextView
+            android:id="@+id/tv_grade"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="5dip"
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip"
+            android:paddingTop="5dip"
+            android:text="Grade"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/gray_2" />
+
+        <TextView
             android:id="@+id/tv_percent"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
             android:paddingLeft="2dip"
             android:paddingRight="2dip"
             android:paddingTop="5dip"
-            android:text="%"
+            android:text="Percentile"
             android:textSize="13sp"
             android:textStyle="bold" />
     </LinearLayout>

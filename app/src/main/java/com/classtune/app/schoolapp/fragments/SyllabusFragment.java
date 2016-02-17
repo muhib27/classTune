@@ -495,28 +495,40 @@ public class SyllabusFragment extends Fragment {
 
 
             holder.layoutAction.setTag(listTerm.get(position).getTermId());
+			holder.layoutRoot.setTag(listTerm.get(position).getTermId());
 
             holder.txtExamName.setText(listTerm.get(position).getTermTitle());
             holder.txtAction.setText("View");
             holder.txtDate.setText(listTerm.get(position).getExam_date());
 
             holder.layoutAction.setOnClickListener(new View.OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					String termId  = (String) ((LinearLayout)v).getTag();
+					String termId = (String) ((LinearLayout) v).getTag();
 					Intent intent = new Intent(getActivity(), SyllabusMidLayerActivity.class);
 					intent.putExtra(AppConstant.ID_TERM, termId);
-					if(userHelper.getUser().getType() == UserTypeEnum.TEACHER)
-					{
+					if (userHelper.getUser().getType() == UserTypeEnum.TEACHER) {
 						intent.putExtra(AppConstant.ID_BATCH, selectedBatchId);
 					}
 					startActivity(intent);
-					
+
 				}
 			});
-            
+
+			holder.layoutRoot.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					String termId = (String) ((LinearLayout) view).getTag();
+					Intent intent = new Intent(getActivity(), SyllabusMidLayerActivity.class);
+					intent.putExtra(AppConstant.ID_TERM, termId);
+					if (userHelper.getUser().getType() == UserTypeEnum.TEACHER) {
+						intent.putExtra(AppConstant.ID_BATCH, selectedBatchId);
+					}
+					startActivity(intent);
+				}
+			});
 			
 			return convertView;
 		}
