@@ -43,20 +43,6 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	
 	private TextView txtDate;
 
-	private IBatchSelection listenerSelection;
-
-
-	@Override
-	public void onAttach(Context context) {
-		super.onAttach(context);
-
-		try {
-			listenerSelection = (IBatchSelection) context;
-		} catch (ClassCastException e) {
-			throw new ClassCastException(getActivity().toString()
-					+ " must implement OnHeadlineSelectedListener");
-		}
-	}
 
 	@Override
 	public void onDestroy() {
@@ -139,7 +125,6 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 				/*Intent i = new Intent("com.champs21.schoolapp.batch");
                 i.putExtra("batch_id", selectedBatch.getId());
                 getActivity().sendBroadcast(i);*/
-				listenerSelection.onBatchSelection(selectedBatch);
 				break;
 			default:
 				break;
@@ -274,6 +259,9 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 				AppConstant.TAB_STUDENT_REPORT_TEACHER,
 				StudentReportTeacherFragment.class, args)));
 
+
+
+
 		// Default to first tab
 		// this.onTabChanged(AppConstant.TAB_ROLLCALL_TEACHER);
 		//
@@ -342,9 +330,5 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	 * } }
 	 */
 
-	public interface IBatchSelection{
-
-		void onBatchSelection(Batch batch);
-	}
 
 }

@@ -83,6 +83,7 @@ public class StudentReportTeacherFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.e("TAG_NAME", "tag: " + this.getTag());
 
 	}
 

@@ -66,6 +66,8 @@ public class ClassReportTeacherFragment extends Fragment implements
 		// TODO Auto-generated method stub
 		super.onPause();
 		getActivity().unregisterReceiver(reciever);
+
+
 	}
 
 
@@ -73,7 +75,8 @@ public class ClassReportTeacherFragment extends Fragment implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.e("OnCreate", "Aise");
-
+		Log.e("ACTIVITY_NAME", "activity: "+getActivity().toString());
+		Log.e("TAG_NAME", "tag: " + this.getTag());
 
 	}
 
@@ -295,6 +298,8 @@ public class ClassReportTeacherFragment extends Fragment implements
 	public void update(String batchId, String schoolId) {
 		getClassReport();
 	}
+
+
 
 
 }

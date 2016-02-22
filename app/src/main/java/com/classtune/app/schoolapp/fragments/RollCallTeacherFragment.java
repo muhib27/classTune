@@ -67,6 +67,8 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 		allStudents=new ArrayList<StudentAttendance>();
 		studentMap=new HashMap<String, StudentAttendance>();
 		uiHelper=new UIHelper(getActivity());
+
+		Log.e("TAG_NAME", "tag: " + this.getTag());
 	}
 
 	@Override

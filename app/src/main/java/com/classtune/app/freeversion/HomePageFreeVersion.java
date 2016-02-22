@@ -30,8 +30,6 @@ import android.widget.Toast;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.ChildSelectionActivity;
 import com.classtune.app.schoolapp.LoginActivity;
-import com.classtune.app.schoolapp.fragments.TeachersAttendanceTabhostFragment;
-import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.CHILD_TYPE;
 import com.classtune.app.schoolapp.model.DrawerChildBase;
 import com.classtune.app.schoolapp.model.DrawerChildMenu;
@@ -65,7 +63,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @SuppressLint("NewApi")
-public class HomePageFreeVersion extends HomeContainerActivity implements TeachersAttendanceTabhostFragment.IBatchSelection {
+public class HomePageFreeVersion extends HomeContainerActivity {
 
     private UIHelper uiHelper;
 
@@ -1074,14 +1072,6 @@ public class HomePageFreeVersion extends HomeContainerActivity implements Teache
                 .replace(R.id.pager_frame,
                         CommonChildFragment.newInstance(cat, subcat), TAG)
                 .commit();*/
-    }
-
-
-    @Override
-    public void onBatchSelection(Batch batch) {
-
-        Log.e("HOMEPAGE_BATCH", "is: " + batch.getName());
-
     }
 
 
