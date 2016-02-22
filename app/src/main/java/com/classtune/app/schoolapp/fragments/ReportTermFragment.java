@@ -213,23 +213,23 @@ public class ReportTermFragment extends Fragment implements
 
 			holder.tvGrade = (TextView) childView.findViewById(R.id.tv_grade);
 			holder.tvGrade
-					.setTextColor(getResources().getColor(R.color.maroon));
+					.setTextColor(getResources().getColor(R.color.classtune_green_color));
 
 			holder.tvScore = (TextView) childView.findViewById(R.id.tv_score);
 
 			holder.tvHighest = (TextView) childView
 					.findViewById(R.id.tv_highest);
 			holder.tvHighest.setTextColor(getResources().getColor(
-					R.color.maroon));
+					R.color.classtune_green_color));
 
 			holder.tvTotal = (TextView) childView.findViewById(R.id.tv_total);
 			holder.tvTotal
 					.setTextColor(getResources().getColor(R.color.gray_1));
 
-			holder.tvPercent = (TextView) childView
+			/*holder.tvPercent = (TextView) childView
 					.findViewById(R.id.tv_percent);
 			holder.tvPercent.setTextColor(getResources().getColor(
-					R.color.gray_1));
+					R.color.gray_1));*/
 
 			// *********************** Set values ***********************
 			holder.tvSubject.setText(subjectReportList.get(i).getSubjctName());
@@ -250,8 +250,8 @@ public class ReportTermFragment extends Fragment implements
 			m = Float.parseFloat(subjectReportList.get(i).getTotalMark());
 			holder.tvTotal.setText((int) m + "");
 
-			holder.tvPercent.setText(subjectReportList.get(i).getPercent()
-					+ "%");
+			/*holder.tvPercent.setText(subjectReportList.get(i).getPercent()
+					+ "%");*/
 
 			layoutReport.addView(childView);
 		}

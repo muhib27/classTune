@@ -239,23 +239,23 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 
 			holder.tvGrade = (TextView) childView.findViewById(R.id.tv_grade);
 			holder.tvGrade
-					.setTextColor(getResources().getColor(R.color.maroon));
+					.setTextColor(getResources().getColor(R.color.classtune_green_color));
 
 			holder.tvScore = (TextView) childView.findViewById(R.id.tv_score);
 
 			holder.tvHighest = (TextView) childView
 					.findViewById(R.id.tv_highest);
 			holder.tvHighest.setTextColor(getResources().getColor(
-					R.color.maroon));
+					R.color.classtune_green_color));
 
 			holder.tvTotal = (TextView) childView.findViewById(R.id.tv_total);
 			holder.tvTotal
 					.setTextColor(getResources().getColor(R.color.gray_1));
 
-			holder.tvPercent = (TextView) childView
+			/*holder.tvPercent = (TextView) childView
 					.findViewById(R.id.tv_percent);
 			holder.tvPercent.setTextColor(getResources().getColor(
-					R.color.gray_1));
+					R.color.gray_1));*/
 
 			// *********************** Set values ***********************
 			holder.tvSubject.setText(subjectReportList.get(i).getSubjctName());
@@ -278,12 +278,12 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 
 			//percentile
 
-			float percentage = 0;
+			/*float percentage = 0;
 			percentage = subjectReportList.get(i).getPercentile();
 			float percentile = (float)Math.round(percentage);
 			float percent = (float)Math.round(percentile / 5);
 			int finalPercentile = (int)percent * 5;
-			holder.tvPercent.setText("Top "+String.valueOf(finalPercentile)+" %");
+			holder.tvPercent.setText("Top "+String.valueOf(finalPercentile)+" %");*/
 
 			//percentile finish
 

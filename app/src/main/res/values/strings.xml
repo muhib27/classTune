@@ -15,7 +15,7 @@
 
     <!--userhelpper-->
     <string name="msg_user_not_found">User not found.</string>
-    <string name="msg_admin_user">An admin cannot log in from mobile device. Please log in using browser.</string>
+    <string name="msg_admin_user">You are an admin user. Log-in from web browser to enjoy full control.</string>
 
     <!-- SETTINGS -->
     <string name="setting_drawer_basic_info_text">Basic Information</string>
