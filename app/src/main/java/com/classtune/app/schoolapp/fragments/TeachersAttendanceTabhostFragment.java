@@ -43,12 +43,27 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	
 	private TextView txtDate;
 
+	private IChangeBatchFromAttendanceTab mBatchSelectCallback = null;
+
 
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		dateString="";
+	}
+
+
+	@Override
+	public void onAttach(Context context) {
+		super.onAttach(context);
+
+		try {
+			mBatchSelectCallback = (IChangeBatchFromAttendanceTab) context;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(getActivity().toString()
+					+ " must implement OnHeadlineSelectedListener");
+		}
 	}
 
 	@Override
@@ -125,6 +140,7 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 				/*Intent i = new Intent("com.champs21.schoolapp.batch");
                 i.putExtra("batch_id", selectedBatch.getId());
                 getActivity().sendBroadcast(i);*/
+				mBatchSelectCallback.onBatchChanged(selectedBatch);
 				break;
 			default:
 				break;
@@ -260,7 +276,7 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 				StudentReportTeacherFragment.class, args)));
 
 
-
+		Log.e("SURRENT_TAB", "is: "+mTabHostAttendanceTeacher.getCurrentTab());
 
 		// Default to first tab
 		// this.onTabChanged(AppConstant.TAB_ROLLCALL_TEACHER);
@@ -329,6 +345,12 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	 * ft.commit(); this.getChildFragmentManager().executePendingTransactions();
 	 * } }
 	 */
+
+
+	public interface IChangeBatchFromAttendanceTab{
+
+		void onBatchChanged(Batch batch);
+	}
 
 
 }

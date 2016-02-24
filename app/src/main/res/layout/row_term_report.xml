@@ -103,6 +103,25 @@
             android:textSize="13sp"
             android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/gray_2" />
+
+        <TextView
+            android:id="@+id/txtView"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="5dip"
+            android:paddingLeft="2dip"
+            android:paddingRight="2dip"
+            android:paddingTop="5dip"
+            android:text="Action"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
 
 
     </LinearLayout>

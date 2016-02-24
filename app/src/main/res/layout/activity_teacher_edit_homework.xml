@@ -44,6 +44,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutSelectSubject"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
@@ -98,6 +99,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutSelectType"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"

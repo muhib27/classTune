@@ -62,7 +62,6 @@
                     android:layout_weight="1"
                     android:background="@drawable/report_grade_btn"
                     android:clickable="false"
-                    android:text="C"
                     android:textColor="@color/classtune_green_color"
                     android:textSize="50sp" />
 
@@ -79,7 +78,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/report_gray_btn"
                         android:clickable="false"
-                        android:text="Position: 4th"
                         android:textColor="@color/black"
                         android:textSize="10sp" />
 
@@ -91,7 +89,6 @@
                         android:background="@drawable/report_gray_btn"
                         android:clickable="false"
                         android:textColor="@color/black"
-                        android:text="Total Students: 204"
                         android:textSize="10sp" />
                 </LinearLayout>
 
@@ -108,7 +105,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/report_gray_btn"
                         android:clickable="false"
-                        android:text="GPA"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 

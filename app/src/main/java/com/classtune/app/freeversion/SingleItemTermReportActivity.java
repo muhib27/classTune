@@ -198,7 +198,7 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 		TextView tvScore;
 		TextView tvHighest;
 		TextView tvTotal;
-		TextView tvPercent;
+		TextView txtView;
 	}
 
 	private void arrangeAndShowTermReportData(TermReportItem term) {
@@ -251,6 +251,9 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 			holder.tvTotal = (TextView) childView.findViewById(R.id.tv_total);
 			holder.tvTotal
 					.setTextColor(getResources().getColor(R.color.gray_1));
+
+			holder.txtView = (TextView)childView.findViewById(R.id.txtView);
+			holder.txtView.setText("View");
 
 			/*holder.tvPercent = (TextView) childView
 					.findViewById(R.id.tv_percent);

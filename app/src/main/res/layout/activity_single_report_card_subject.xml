@@ -344,7 +344,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight=".55"
-                            android:text="Percentile"
+                            android:text="Standing"
                             android:id="@+id/textView13"
                             android:textSize="16sp"
                             android:textColor="@android:color/black"

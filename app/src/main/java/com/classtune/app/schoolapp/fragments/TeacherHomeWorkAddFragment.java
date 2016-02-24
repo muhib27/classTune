@@ -62,6 +62,11 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	private LinearLayout layoutAttachmentHolder;
 	UserHelper userHelper;
 
+	private LinearLayout layoutSelectSubject;
+	private LinearLayout layoutSelectType;
+
+
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -288,6 +293,13 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
 		
 		choosenDateTextView.setText(AppUtility.getDateString(fDate, AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
+
+		layoutSelectSubject = (LinearLayout)view.findViewById(R.id.layoutSelectSubject);
+		layoutSelectSubject.setOnClickListener(this);
+
+		layoutSelectType = (LinearLayout)view.findViewById(R.id.layoutSelectType);
+		layoutSelectType.setOnClickListener(this);
+
 	}
 
 	public void showPicker(PickerType type, List<BaseType> cats, String title) {
@@ -326,10 +338,20 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 			showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
 					"Select your Subject");
 			break;
+		case R.id.layoutSelectSubject:
+			showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
+					"Select your Subject");
+			break;
+
 		case R.id.btn_homework_type:
 			showPicker(PickerType.TEACHER_HOMEWORKTYPE, homeworkTypeCats,
 					"Select Homework type");
 			break;
+			case R.id.layoutSelectType:
+				showPicker(PickerType.TEACHER_HOMEWORKTYPE, homeworkTypeCats,
+						"Select Homework type");
+				break;
+
 		case R.id.btn_teacher_ah_attach_file:
 			showChooser();
 			break;

@@ -1039,8 +1039,8 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 
 
 			String[] parts2 =  list.get(position).getAssign_date().split(" ");
-			String part2 = parts[0];
-			holder.tvDate.setText(part2);
+			String part2 = parts2[0];
+			//holder.tvDate.setText(part2);
 			holder.txtAssignDate.setText(part2);
 
 

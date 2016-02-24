@@ -16,10 +16,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.classtune.app.R;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.schoolapp.BatchSelectionChangedBroadcastReceiver;
 import com.classtune.app.schoolapp.BatchSelectionChangedBroadcastReceiver.onBatchIdChangeListener;
-import com.classtune.app.R;
 import com.classtune.app.schoolapp.fragments.LeaveApplicationDialogFragment.LeaveApplicationStatusListener;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Batch;
@@ -435,6 +435,11 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 			saveData();
 			break;
 		case R.id.reset_btn:
+
+			if(PaidVersionHomeFragment.isBatchLoaded)
+				fetchData();
+			else
+				updateUI();
 			
 			break;
 		default:
@@ -509,4 +514,25 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 		this.batchId=batchId;
 		fetchData();
 	}
+
+
+	public  void updateDataAfterBatchLodedFromTeacherTabHost(Batch batch)
+	{
+		PaidVersionHomeFragment.isBatchLoaded=true;
+		PaidVersionHomeFragment.batches.clear();
+		PaidVersionHomeFragment.selectedBatch = batch;
+
+		reload();
+
+	}
+
+	private void reload()
+	{
+		if(PaidVersionHomeFragment.isBatchLoaded)
+			fetchData();
+		else
+			updateUI();
+	}
+
+
 }

@@ -73,7 +73,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
     boolean hasNext = false;
     private int pageNumber = 1;
-    private int pageSize = 10;
+    private int pageSize = 30;
     private boolean isRefreshing = false;
     private boolean loading = false;
     private boolean stopLoadingData = false;

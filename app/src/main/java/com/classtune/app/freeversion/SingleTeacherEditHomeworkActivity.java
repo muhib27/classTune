@@ -77,6 +77,9 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
     private Button btnCancel;
     private Button btnSave;
 
+    private LinearLayout layoutSelectSubject;
+    private LinearLayout layoutSelectType;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -429,6 +432,24 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                 if (isFormValid()) {
                     PublishHomeWork();
                 }
+            }
+        });
+
+        layoutSelectSubject = (LinearLayout)this.findViewById(R.id.layoutSelectSubject);
+        layoutSelectSubject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
+                        "Select your Subject");
+            }
+        });
+
+        layoutSelectType = (LinearLayout)this.findViewById(R.id.layoutSelectType);
+        layoutSelectType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPicker(PickerType.TEACHER_HOMEWORKTYPE, homeworkTypeCats,
+                        "Select Homework type");
             }
         });
     }

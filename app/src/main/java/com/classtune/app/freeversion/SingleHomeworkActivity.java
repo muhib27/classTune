@@ -369,6 +369,7 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put("id", this.id);
+		Log.e("SINGLE_HOMEWORK", "id: "+this.id);
 		
 		if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) 
 		{
