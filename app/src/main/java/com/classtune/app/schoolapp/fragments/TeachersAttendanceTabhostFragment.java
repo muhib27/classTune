@@ -1,7 +1,7 @@
 package com.classtune.app.schoolapp.fragments;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
@@ -21,20 +22,26 @@ import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.PickerType;
+import com.classtune.app.schoolapp.model.School;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
+import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.viewhelpers.MyFragmentTabHost;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
+import java.util.Observable;
+import java.util.Observer;
 
 
-public class TeachersAttendanceTabhostFragment extends Fragment implements OnClickListener {
+public class TeachersAttendanceTabhostFragment extends Fragment implements OnClickListener{
 
 	private UIHelper uiHelper;
 	private TextView batchNameText;
@@ -43,7 +50,7 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	
 	private TextView txtDate;
 
-	private IChangeBatchFromAttendanceTab mBatchSelectCallback = null;
+
 
 
 	@Override
@@ -54,17 +61,6 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	}
 
 
-	@Override
-	public void onAttach(Context context) {
-		super.onAttach(context);
-
-		try {
-			mBatchSelectCallback = (IChangeBatchFromAttendanceTab) context;
-		} catch (ClassCastException e) {
-			throw new ClassCastException(getActivity().toString()
-					+ " must implement OnHeadlineSelectedListener");
-		}
-	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -123,7 +119,7 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	public void showPicker(PickerType type) {
 
 		Picker picker = Picker.newInstance(0);
-		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback , "Select Batch");
+		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback, "Select Batch");
 		picker.show(getChildFragmentManager(), null);
 	}
 
@@ -140,13 +136,20 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 				/*Intent i = new Intent("com.champs21.schoolapp.batch");
                 i.putExtra("batch_id", selectedBatch.getId());
                 getActivity().sendBroadcast(i);*/
-				mBatchSelectCallback.onBatchChanged(selectedBatch);
+
+				SchoolApp.getInstance().globalBroadcastThroughApp(AppConstant.KEY_BATCH_FROM_TEACHERATTENDANCE_TAB, new Gson().toJson(selectedBatch));
+
+
 				break;
 			default:
 				break;
 			}
 		}
 	};
+
+
+
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -345,12 +348,6 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	 * ft.commit(); this.getChildFragmentManager().executePendingTransactions();
 	 * } }
 	 */
-
-
-	public interface IChangeBatchFromAttendanceTab{
-
-		void onBatchChanged(Batch batch);
-	}
 
 
 }

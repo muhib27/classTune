@@ -42,8 +42,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
-public class RollCallTeacherFragment extends Fragment implements LeaveApplicationStatusListener,onBatchIdChangeListener,OnClickListener {
+public class RollCallTeacherFragment extends Fragment implements LeaveApplicationStatusListener,onBatchIdChangeListener,OnClickListener,Observer {
 	private View rootView;
 	private UIHelper uiHelper;
 	private List<StudentAttendance> allStudents;
@@ -67,6 +69,8 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 		allStudents=new ArrayList<StudentAttendance>();
 		studentMap=new HashMap<String, StudentAttendance>();
 		uiHelper=new UIHelper(getActivity());
+
+		ObservableObject.getInstance().addObserver(this);
 
 		Log.e("TAG_NAME", "tag: " + this.getTag());
 	}
@@ -320,7 +324,7 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 	private void dispatchLeaveApplicationDialog(StudentAttendance s,ViewHolder holder,RelativeLayout rowView,Boolean flag)
 	{
 		LeaveApplicationDialogFragment dialog = LeaveApplicationDialogFragment.newInstance(0);
-		dialog.setData(this,s,holder,rowView,flag);
+		dialog.setData(this, s, holder, rowView, flag);
 		dialog.show(getChildFragmentManager(), null);
 	}
 	
@@ -516,16 +520,6 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 	}
 
 
-	public  void updateDataAfterBatchLodedFromTeacherTabHost(Batch batch)
-	{
-		PaidVersionHomeFragment.isBatchLoaded=true;
-		PaidVersionHomeFragment.batches.clear();
-		PaidVersionHomeFragment.selectedBatch = batch;
-
-		reload();
-
-	}
-
 	private void reload()
 	{
 		if(PaidVersionHomeFragment.isBatchLoaded)
@@ -535,4 +529,14 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 	}
 
 
+	@Override
+	public void update(Observable observable, Object data) {
+		//Toast.makeText(getActivity(), String.valueOf("activity observer " + data), Toast.LENGTH_SHORT).show();
+		/*Intent intent = (Intent)data;
+		String key = intent.getExtras().getString(AppConstant.KEY_BATCH_FROM_TEACHERATTENDANCE_TAB);
+		Batch batch = new Gson().fromJson(key, Batch.class);
+		Log.e("**** UPDATE", "is: "+batch.getName());*/
+		if(isAdded())
+			reload();
+	}
 }

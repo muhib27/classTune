@@ -378,4 +378,12 @@ public class SchoolApp extends Application {
 		return tf;
 	}
 
+
+	public void globalBroadcastThroughApp(String key, String data){
+		Intent intent = new Intent();
+		intent.putExtra(key, data);
+		intent.setAction("com.datacontext.CUSTOM_INTENT");
+		sendBroadcast(intent);
+	}
+
 }

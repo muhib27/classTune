@@ -248,6 +248,15 @@
 
         </activity>
 
+        <receiver android:name=".schoolapp.fragments.AppBroadcastReceiver">
+
+            <intent-filter>
+                <action android:name="com.datacontext.CUSTOM_INTENT">
+                </action>
+            </intent-filter>
+
+        </receiver>
+
         <!--
             <provider android:authorities="com.facebook.app.NativeAppCallContentProvider850059515022967"
             android:name="com.facebook.NativeAppCallContentProvider"

@@ -261,7 +261,8 @@ public class AppConstant {
 	public static final long BANNER_POPUP_DISMISS_TIME = 5000;
 
 
-
+	//################### key for getting batch from global broadcast
+	public static final String KEY_BATCH_FROM_TEACHERATTENDANCE_TAB = "key_batch_from_teacherattendance_tab";
 
 
 }

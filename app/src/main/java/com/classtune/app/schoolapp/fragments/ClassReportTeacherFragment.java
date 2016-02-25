@@ -40,9 +40,11 @@ import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 
 public class ClassReportTeacherFragment extends Fragment implements
-		OnClickListener,onBatchIdChangeListener{
+		OnClickListener,onBatchIdChangeListener, Observer {
 	private View rootView;
 	private TextView totalStudentCountTxt, presentStudentCountTxt,
 			absentStudentCountTxt, lateStudentCountTxt, leaveStudentCountTxt;
@@ -77,6 +79,7 @@ public class ClassReportTeacherFragment extends Fragment implements
 		Log.e("OnCreate", "Aise");
 		Log.e("ACTIVITY_NAME", "activity: "+getActivity().toString());
 		Log.e("TAG_NAME", "tag: " + this.getTag());
+		ObservableObject.getInstance().addObserver(this);
 
 	}
 
@@ -299,7 +302,10 @@ public class ClassReportTeacherFragment extends Fragment implements
 		getClassReport();
 	}
 
+	@Override
+	public void update(Observable observable, Object o) {
 
-
-
+		if(isAdded())
+			getClassReport();
+	}
 }

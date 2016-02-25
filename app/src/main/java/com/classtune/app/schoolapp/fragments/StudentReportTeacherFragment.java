@@ -27,8 +27,10 @@ import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Observable;
+import java.util.Observer;
 
-public class StudentReportTeacherFragment extends Fragment {
+public class StudentReportTeacherFragment extends Fragment implements Observer{
 	private View rootView;
 	private ListView studentListView;
 	private LinearLayout pbLayout;
@@ -84,6 +86,7 @@ public class StudentReportTeacherFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.e("TAG_NAME", "tag: " + this.getTag());
+		ObservableObject.getInstance().addObserver(this);
 
 	}
 
@@ -96,7 +99,7 @@ public class StudentReportTeacherFragment extends Fragment {
 		studentListView = (ListView) rootView.findViewById(R.id.listview);
 		pbLayout = (LinearLayout) rootView.findViewById(R.id.pb);
 		// Capture Text in EditText
-		
+
 		editsearch.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -123,4 +126,12 @@ public class StudentReportTeacherFragment extends Fragment {
 		return rootView;
 	}
 
+	@Override
+	public void update(Observable observable, Object o) {
+
+		if(isAdded())
+		{
+			fetchData();
+		}
+	}
 }
