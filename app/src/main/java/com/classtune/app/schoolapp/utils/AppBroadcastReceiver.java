@@ -1,4 +1,4 @@
-package com.classtune.app.schoolapp.fragments;
+package com.classtune.app.schoolapp.utils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

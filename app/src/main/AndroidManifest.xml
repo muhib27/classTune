@@ -248,7 +248,7 @@
 
         </activity>
 
-        <receiver android:name=".schoolapp.fragments.AppBroadcastReceiver">
+        <receiver android:name=".schoolapp.utils.AppBroadcastReceiver">
 
             <intent-filter>
                 <action android:name="com.datacontext.CUSTOM_INTENT">

@@ -32,6 +32,7 @@ import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.ClickSpan;
 import com.classtune.app.schoolapp.utils.GsonParser;
+import com.classtune.app.schoolapp.utils.ObservableObject;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
@@ -303,9 +304,12 @@ public class ClassReportTeacherFragment extends Fragment implements
 	}
 
 	@Override
-	public void update(Observable observable, Object o) {
+	public void update(Observable observable, Object data) {
+		if(((Intent)data).getExtras().containsKey(AppConstant.KEY_BATCH_FROM_TEACHERATTENDANCE_TAB))
+		{
+			if(isAdded())
+				getClassReport();
+		}
 
-		if(isAdded())
-			getClassReport();
 	}
 }

@@ -31,6 +31,7 @@ import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.GsonParser;
+import com.classtune.app.schoolapp.utils.ObservableObject;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
@@ -536,7 +537,11 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 		String key = intent.getExtras().getString(AppConstant.KEY_BATCH_FROM_TEACHERATTENDANCE_TAB);
 		Batch batch = new Gson().fromJson(key, Batch.class);
 		Log.e("**** UPDATE", "is: "+batch.getName());*/
-		if(isAdded())
-			reload();
+		if(((Intent)data).getExtras().containsKey(AppConstant.KEY_BATCH_FROM_TEACHERATTENDANCE_TAB))
+		{
+			if(isAdded())
+				reload();
+		}
+
 	}
 }

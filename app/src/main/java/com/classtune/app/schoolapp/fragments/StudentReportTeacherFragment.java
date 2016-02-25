@@ -1,5 +1,6 @@
 package com.classtune.app.schoolapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -18,7 +19,9 @@ import com.classtune.app.schoolapp.adapters.StudentReportListAdapter;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.GsonParser;
+import com.classtune.app.schoolapp.utils.ObservableObject;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
@@ -127,11 +130,12 @@ public class StudentReportTeacherFragment extends Fragment implements Observer{
 	}
 
 	@Override
-	public void update(Observable observable, Object o) {
+	public void update(Observable observable, Object data) {
 
-		if(isAdded())
+		if(((Intent)data).getExtras().containsKey(AppConstant.KEY_BATCH_FROM_TEACHERATTENDANCE_TAB))
 		{
-			fetchData();
+			if(isAdded())
+				fetchData();
 		}
 	}
 }
