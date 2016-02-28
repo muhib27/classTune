@@ -77,6 +77,11 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 	private String batchId="";
 	private String studentId="";
 	private Context mContext;
+
+	/*private LinearLayout layoutDataHolderProject;
+	private LinearLayout layoutDataHolderClassTest;
+	private TextView txtRemarksProject;
+	private TextView txtRemarksClassTest;*/
 	
 	/*@Override
 	public void onResume() {
@@ -177,6 +182,14 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 
 		CustomButton btnProject;
 		CustomButton btnAllCT;
+
+		//***** No Comment *****
+		LinearLayout layoutDataHolderProject;
+		LinearLayout layoutDataHolderClassTest;
+		TextView txtRemarksProject;
+		TextView txtRemarksClassTest;
+
+
 	}
 
 
@@ -185,6 +198,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 		RequestParams params = new RequestParams();
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
+		params.put("no_exams", "1");
 		
 		if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
 			params.put(RequestKeyHelper.STUDENT_ID, userHelper.getUser().getSelectedChild().getProfileId());
@@ -324,6 +338,8 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 			holder.tvCTHighestMarks = (TextView) view.findViewById(R.id.tv_highest_ct);
 			holder.tvCTTotalMarks = (TextView) view.findViewById(R.id.tv_total_ct);
 			holder.tvCTPercentage = (TextView) view.findViewById(R.id.tv_percent_ct);
+			holder.layoutDataHolderClassTest = (LinearLayout)view.findViewById(R.id.layoutDataHolderClassTest);
+			holder.txtRemarksClassTest = (TextView)view.findViewById(R.id.txtRemarksClassTest);
 
 
 			// %%%%%%%%%%%%%%%%%% projects %%%%%%%%%%%%%%%%%%
@@ -337,6 +353,9 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 			holder.tvProjectPercentage = (TextView) view.findViewById(R.id.tv_percent_project);
 			holder.tvProjectSub = (TextView) view.findViewById(R.id.tv_subject_proect);
 			holder.tvProjectTotalMarks = (TextView) view.findViewById(R.id.tv_total_project);
+
+			holder.layoutDataHolderProject = (LinearLayout)view.findViewById(R.id.layoutDataHolderProject);
+			holder.txtRemarksProject = (TextView)view.findViewById(R.id.txtRemarksProject);
 
 
 			// %%%%%%%%%%%%%%%%%% Common %%%%%%%%%%%%%%%%%%
@@ -414,6 +433,18 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 							newHolder.tvProjectSub.setText(projectList.get(k).getExamName());
 							newHolder.tvProjectTotalMarks.setText(getDecimalFormatNumber(projectList.get(k).getTotalMark()));//projectList.get(k).getTotalMark()
 
+							if(items.get(j).getNoExams().equalsIgnoreCase("1"))
+							{
+								newHolder.layoutDataHolderProject.setVisibility(View.GONE);
+								newHolder.txtRemarksProject.setVisibility(View.VISIBLE);
+								newHolder.txtRemarksProject.setText(projectList.get(k).getRemarks());
+							}
+							else
+							{
+								newHolder.layoutDataHolderProject.setVisibility(View.VISIBLE);
+								newHolder.txtRemarksProject.setVisibility(View.GONE);
+							}
+
 							parentHolder.layoutDynamicRow.addView(dynamicView);
 
 							//working on SingleReportCardSubject data
@@ -422,6 +453,8 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 							final String subjectName = items.get(j).getSubjectName();
 							final String subjectIcon = items.get(j).getSubjectIcon();
 							final String subjectId = items.get(j).getSubjectID();
+
+
 
 
 							dynamicView.setOnClickListener(new View.OnClickListener() {
@@ -535,6 +568,19 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 
 							//							Log.e("Position 2", i+"");
 
+
+							if(items.get(j).getNoExams().equalsIgnoreCase("1"))
+							{
+								newHolder.layoutDataHolderClassTest.setVisibility(View.GONE);
+								newHolder.txtRemarksClassTest.setVisibility(View.VISIBLE);
+								newHolder.txtRemarksClassTest.setText(ctList.get(k).getRemarks());
+							}
+							else
+							{
+								newHolder.layoutDataHolderClassTest.setVisibility(View.VISIBLE);
+								newHolder.txtRemarksClassTest.setVisibility(View.GONE);
+							}
+
 							parentHolder.layoutDynamicRow.addView(dynamicView);
 
 							//working on SingleReportCardSubject data
@@ -624,6 +670,18 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 					startActivity(intent);
 				}
 			});
+
+			if(items.get(i).getNoExams().equalsIgnoreCase("1"))
+			{
+				holder.layoutDataHolderClassTest.setVisibility(View.GONE);
+				holder.txtRemarksClassTest.setVisibility(View.VISIBLE);
+				holder.txtRemarksClassTest.setText(ctList.get(pos).getRemarks());
+			}
+			else
+			{
+				holder.layoutDataHolderClassTest.setVisibility(View.VISIBLE);
+				holder.txtRemarksClassTest.setVisibility(View.GONE);
+			}
 
 			listLayout.addView(view);
 		}

@@ -8,6 +8,7 @@
     tools:context="com.classtune.app.freeversion.SingleReportCardSubject">
 
     <LinearLayout
+        android:id="@+id/layoutAllHolder"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -85,333 +86,399 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:orientation="vertical"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@android:color/white">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/gray_4">
-
-                    </View>
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:id="@+id/layoutNoCommentHolder"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.55"
-                            android:text="Exam Title"
-                            android:id="@+id/textView8"
-                            android:textSize="16sp"
-                            android:layout_margin="10dp"
-                            android:textColor="@android:color/black" />
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:orientation="vertical">
 
                         <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:background="@color/gray_4">
 
                         </View>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_margin="10dp"
-                            android:id="@+id/txtTitle1"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_marginLeft="15dp" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@android:color/white">
+
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.55"
+                                android:text="Exam Title"
+                                android:id="@+id/textView21"
+                                android:textSize="16sp"
+                                android:layout_margin="10dp"
+                                android:textColor="@android:color/black" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_4">
+
+                            </View>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_margin="10dp"
+                                android:id="@+id/txtTitle21"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="15dp" />
+                        </LinearLayout>
+
+
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/gray_4">
 
-                    </View>
 
                     <LinearLayout
-                        android:orientation="horizontal"
+                        android:id="@+id/layoutDataHolder"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.55"
-                            android:text="Exam Date"
-                            android:id="@+id/textView9"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_margin="10dp" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@android:color/white">
 
                         <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:background="@color/gray_4">
 
                         </View>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/txtDate"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_marginLeft="15dp"
-                            android:layout_margin="10dp" />
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/gray_4">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                    </View>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.55"
+                                android:text="Exam Title"
+                                android:id="@+id/textView8"
+                                android:textSize="16sp"
+                                android:layout_margin="10dp"
+                                android:textColor="@android:color/black" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_4">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".55"
-                            android:text="Your Mark"
-                            android:id="@+id/textView10"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_margin="10dp" />
+                            </View>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_margin="10dp"
+                                android:id="@+id/txtTitle1"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="15dp" />
+                        </LinearLayout>
 
                         <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:background="@color/gray_4">
 
                         </View>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/txtYourMark"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_marginLeft="15dp"
-                            android:layout_margin="10dp" />
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/gray_4">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    </View>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.55"
+                                android:text="Exam Date"
+                                android:id="@+id/textView9"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_margin="10dp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_4">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".55"
-                            android:text="Highest Mark"
-                            android:id="@+id/textView11"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_margin="10dp" />
+                            </View>
 
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/txtDate"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="15dp"
+                                android:layout_margin="10dp" />
+                        </LinearLayout>
                         <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:background="@color/gray_4">
 
                         </View>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/txtHighestMark"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_marginLeft="15dp"
-                            android:layout_margin="10dp" />
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/gray_4">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    </View>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".55"
+                                android:text="Your Mark"
+                                android:id="@+id/textView10"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_margin="10dp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_4">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".55"
-                            android:text="Total Mark"
-                            android:id="@+id/textView12"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_margin="10dp" />
+                            </View>
 
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/txtYourMark"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="15dp"
+                                android:layout_margin="10dp" />
+                        </LinearLayout>
                         <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:background="@color/gray_4">
 
                         </View>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/txtTotalMark"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_marginLeft="15dp"
-                            android:layout_margin="10dp" />
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/gray_4">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    </View>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".55"
+                                android:text="Highest Mark"
+                                android:id="@+id/textView11"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_margin="10dp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_4">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".55"
-                            android:text="Average"
-                            android:id="@+id/textView19"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_margin="10dp" />
+                            </View>
 
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/txtHighestMark"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="15dp"
+                                android:layout_margin="10dp" />
+                        </LinearLayout>
                         <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:background="@color/gray_4">
 
                         </View>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/txtAverage"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_marginLeft="15dp"
-                            android:layout_margin="10dp" />
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/gray_4">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    </View>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".55"
+                                android:text="Total Mark"
+                                android:id="@+id/textView12"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_margin="10dp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_4">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".55"
-                            android:text="Standing"
-                            android:id="@+id/textView13"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_margin="10dp" />
+                            </View>
 
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/txtTotalMark"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="15dp"
+                                android:layout_margin="10dp" />
+                        </LinearLayout>
                         <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:background="@color/gray_4">
 
                         </View>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/txtPercentile"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black"
-                            android:layout_marginLeft="15dp"
-                            android:layout_margin="10dp" />
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/gray_4">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    </View>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".55"
+                                android:text="Average"
+                                android:id="@+id/textView19"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_margin="10dp" />
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_4">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="Your Grade"
-                            android:id="@+id/textView20"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:layout_gravity="center_vertical"
-                            android:textColor="@android:color/black"
-                            android:layout_margin="10dp"
-                            android:layout_weight=".55" />
+                            </View>
 
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/txtAverage"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="15dp"
+                                android:layout_margin="10dp" />
+                        </LinearLayout>
                         <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:background="@color/gray_4">
 
                         </View>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="A+"
-                            android:id="@+id/txtGrade"
-                            android:textSize="36sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/classtune_green_color"
-                            android:layout_marginLeft="15dp"
-                            android:layout_margin="10dp" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".55"
+                                android:text="Standing"
+                                android:id="@+id/textView13"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_margin="10dp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_4">
+
+                            </View>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/txtPercentile"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:layout_marginLeft="15dp"
+                                android:layout_margin="10dp" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/gray_4">
+
+                        </View>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Your Grade"
+                                android:id="@+id/textView20"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@android:color/black"
+                                android:layout_margin="10dp"
+                                android:layout_weight=".55" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/gray_4">
+
+                            </View>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="A+"
+                                android:id="@+id/txtGrade"
+                                android:textSize="36sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/classtune_green_color"
+                                android:layout_marginLeft="15dp"
+                                android:layout_margin="10dp" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
-                </LinearLayout>
+                </FrameLayout>
+
+
 
                 <LinearLayout
                     android:id="@+id/layoutRemarksHolder"

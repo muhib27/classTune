@@ -32,6 +32,8 @@ public class ClassTestItem {
 	private String category;
 	@SerializedName("total_mark")
 	private String totalMark;
+	@SerializedName("no_exams")
+	private String noExams;
 
 
 	@SerializedName("remark")
@@ -199,5 +201,13 @@ public class ClassTestItem {
 
 	public void setSubjectIcon(String subjectIcon) {
 		this.subjectIcon = subjectIcon;
+	}
+
+	public String getNoExams() {
+		return noExams;
+	}
+
+	public void setNoExams(String noExams) {
+		this.noExams = noExams;
 	}
 }

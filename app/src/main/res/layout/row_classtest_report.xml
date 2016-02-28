@@ -60,158 +60,178 @@
                 android:layout_height="match_parent"
                 android:background="@color/gray_2" />
 
-            <LinearLayout
-                android:layout_width="0dip"
+            <TextView
+                android:id="@+id/txtRemarksProject"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:gravity="center"
-                android:orientation="vertical" >
+                android:visibility="gone"
+                android:text="Comment based layout content"/>
+
+
+            <LinearLayout
+                android:id="@+id/layoutDataHolderProject"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/tv_grade_project"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="A+"
+                        android:textColor="@color/classtune_green_color"
+                        android:textSize="50sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_2" />
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="Your Mark"
+                            android:textColor="@color/black"
+                            android:textSize="9sp" />
+
+                        <TextView
+                            android:id="@+id/tv_marks_project"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="78"
+                            android:textColor="@color/black"
+                            android:textSize="9sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/gray_2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="Highest Mark"
+                            android:textColor="@color/black"
+                            android:textSize="9sp" />
+
+                        <TextView
+                            android:id="@+id/tv_highest_project"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="85"
+                            android:textColor="@color/classtune_green_color"
+                            android:textSize="9sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/gray_2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="Total Mark"
+                            android:textColor="@color/black"
+                            android:textSize="9sp" />
+
+                        <TextView
+                            android:id="@+id/tv_total_project"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="100"
+                            android:textColor="@color/gray_1"
+                            android:textSize="9sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_2" />
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    >
 
                 <TextView
-                    android:id="@+id/tv_grade_project"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="A+"
-                    android:textColor="@color/classtune_green_color"
-                    android:textSize="50sp" />
-            </LinearLayout>
+                    android:id="@+id/tv_percent_project"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="80%"
+                    android:textColor="@color/gray_1"
+                    android:textSize="24sp" />
 
-            <LinearLayout
-                android:layout_width="1dip"
-                android:layout_height="match_parent"
-                android:background="@color/gray_2" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View"
+                    android:textStyle="bold"
+                    android:textColor="@color/classtune_green_color"/>
 
-            <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center"
-                android:orientation="vertical" >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:gravity="center"
-                        android:text="Your Mark"
-                        android:textColor="@color/black"
-                        android:textSize="9sp" />
-
-                    <TextView
-                        android:id="@+id/tv_marks_project"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="78"
-                        android:textColor="@color/black"
-                        android:textSize="9sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/gray_2" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:gravity="center"
-                        android:text="Highest Mark"
-                        android:textColor="@color/black"
-                        android:textSize="9sp" />
-
-                    <TextView
-                        android:id="@+id/tv_highest_project"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="85"
-                        android:textColor="@color/classtune_green_color"
-                        android:textSize="9sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/gray_2" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:gravity="center"
-                        android:text="Total Mark"
-                        android:textColor="@color/black"
-                        android:textSize="9sp" />
-
-                    <TextView
-                        android:id="@+id/tv_total_project"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="100"
-                        android:textColor="@color/gray_1"
-                        android:textSize="9sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="1dip"
-                android:layout_height="match_parent"
-                android:background="@color/gray_2" />
 
-            <LinearLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center"
-                android:orientation="vertical"
-                >
-
-            <TextView
-                android:id="@+id/tv_percent_project"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="80%"
-                android:textColor="@color/gray_1"
-                android:textSize="24sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="View"
-                android:textStyle="bold"
-                android:textColor="@color/classtune_green_color"/>
-
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -268,6 +288,22 @@
                 android:layout_width="1dip"
                 android:layout_height="match_parent"
                 android:background="@color/gray_2" />
+
+            <TextView
+                android:id="@+id/txtRemarksClassTest"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:visibility="gone"
+                android:text="Comment based layout content"/>
+
+        <LinearLayout
+            android:id="@+id/layoutDataHolderClassTest"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="horizontal">
+
 
             <LinearLayout
                 android:layout_width="0dip"
@@ -407,7 +443,6 @@
                 android:layout_height="match_parent"
                 android:background="@color/gray_2" />
 
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -431,11 +466,11 @@
                     android:textColor="@color/classtune_green_color"/>
 
             </LinearLayout>
-
-
+        </LinearLayout>
 
 
         </LinearLayout>
+
     </FrameLayout>
 
     <LinearLayout

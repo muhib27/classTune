@@ -83,6 +83,7 @@ public class SingleExamRoutine extends ChildContainerActivity {
 		// app.showLog("Secret before sending", app.getUserSecret());
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put("exam_id", getIntent().getExtras().getString(AppConstant.ID_SINGLE_CALENDAR_EVENT));
+		params.put("no_exams", "1");
 		if(userHelper.getUser().getType()==UserTypeEnum.PARENTS){
 
             if(getIntent().getExtras()!=null)
@@ -274,10 +275,35 @@ public class SingleExamRoutine extends ChildContainerActivity {
 			
 			Log.e("ITEM SUBJECT", item.getExam_subject_name());
 			holder.tvSubject.setText(item.getExam_subject_name());
+
+			/*reworked for no_exams
 			holder.tvStartTime.setText(item.getExam_start_time() + " - "+item.getExam_end_time());
+			*/
+
 			//holder.tvEndTime.setText(item.getExam_end_time());
+
+			/*reworked for no_exams
 			holder.tvDate.setText(item.getExam_date());
+			*/
+
+			/*reworked for no_exams
 			holder.tvDay.setText(item.getExam_day());
+			*/
+
+
+			if(item.getNoExams().equalsIgnoreCase("1"))
+			{
+				holder.tvDate.setText("N/A");
+				holder.tvStartTime.setText("N/A");
+				holder.tvDay.setVisibility(View.GONE);
+			}
+			else
+			{
+				holder.tvStartTime.setText(item.getExam_start_time() + " - "+item.getExam_end_time());
+				holder.tvDate.setText(item.getExam_date());
+				holder.tvDay.setText(item.getExam_day());
+				holder.tvDay.setVisibility(View.VISIBLE);
+			}
 
 
             if(position%2 != 0)

@@ -35,6 +35,9 @@ public class TermReportExamSubjectItem {
 
 	@SerializedName("percentile")
 	private float percentile;
+
+	@SerializedName("no_exams")
+	private String noExams;
 	
 	
 	public String getSubjctName() {
@@ -120,5 +123,13 @@ public class TermReportExamSubjectItem {
 
 	public void setPercentile(float percentile) {
 		this.percentile = percentile;
+	}
+
+	public String getNoExams() {
+		return noExams;
+	}
+
+	public void setNoExams(String noExams) {
+		this.noExams = noExams;
 	}
 }

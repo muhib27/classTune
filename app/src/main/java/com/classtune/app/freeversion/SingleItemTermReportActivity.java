@@ -46,6 +46,9 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 		RequestParams params = new RequestParams();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.SCHOOL_ID, getIntent().getExtras().getString("id"));
+		params.put("no_exams", "1");
+
+
 		if(userHelper.getUser().getType()==UserTypeEnum.PARENTS){
 			params.put(RequestKeyHelper.BATCH_ID, userHelper.getUser().getSelectedChild().getBatchId());
 			params.put(RequestKeyHelper.STUDENT_ID, userHelper.getUser().getSelectedChild().getProfileId());
@@ -262,22 +265,39 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 
 			// *********************** Set values ***********************
 			holder.tvSubject.setText(subjectReportList.get(i).getSubjctName());
-			holder.tvGrade.setText(subjectReportList.get(i).getGrade());
 
-			float m;
-
-			if (subjectReportList.get(i).getMark().equalsIgnoreCase("-")) {
-				holder.tvScore.setText(subjectReportList.get(i).getMark());
-			} else {
-				m = Float.parseFloat(subjectReportList.get(i).getMark());
-				holder.tvScore.setText((int) m + "");
+			if(subjectReportList.get(i).getNoExams().equalsIgnoreCase("1"))
+			{
+				holder.tvGrade.setText("N/A");
+				holder.tvScore.setText("N/A");
+				holder.tvHighest.setText("N/A");
+				holder.tvTotal.setText("N/A");
 			}
 
-			m = Float.parseFloat(subjectReportList.get(i).getMaxMark());
-			holder.tvHighest.setText((int) m + "");
+			else
+			{
+				holder.tvGrade.setText(subjectReportList.get(i).getGrade());
 
-			m = Float.parseFloat(subjectReportList.get(i).getTotalMark());
-			holder.tvTotal.setText((int) m + "");
+				float m;
+
+				if (subjectReportList.get(i).getMark().equalsIgnoreCase("-")) {
+					holder.tvScore.setText(subjectReportList.get(i).getMark());
+				} else {
+					m = Float.parseFloat(subjectReportList.get(i).getMark());
+					holder.tvScore.setText((int) m + "");
+				}
+
+				m = Float.parseFloat(subjectReportList.get(i).getMaxMark());
+				holder.tvHighest.setText((int) m + "");
+
+				m = Float.parseFloat(subjectReportList.get(i).getTotalMark());
+				holder.tvTotal.setText((int) m + "");
+			}
+
+
+
+
+
 
 			//percentile
 

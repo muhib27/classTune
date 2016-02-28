@@ -20,6 +20,8 @@ public class ClassTestReportItem {
 	private String subjectIcon;
 	@SerializedName("subject_exam")
 	private CTReportSubjectExam ctReportSubjectExam;
+	@SerializedName("no_exams")
+	private String noExams;
 	
 	private boolean project = false;
 	
@@ -63,5 +65,13 @@ public class ClassTestReportItem {
 	}
 	public boolean isProject() {
 		return project;
+	}
+
+	public String getNoExams() {
+		return noExams;
+	}
+
+	public void setNoExams(String noExams) {
+		this.noExams = noExams;
 	}
 }

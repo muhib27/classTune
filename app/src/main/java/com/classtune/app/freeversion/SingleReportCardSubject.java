@@ -66,12 +66,16 @@ public class SingleReportCardSubject extends ChildContainerActivity {
     private TextView txtExamCategory;
 
 
-    //private LinearLayout layoutChart;
+    private LinearLayout layoutChart;
 
     private BarChart chart;
 
     private ClassTestItem data;
     private boolean isFromClassTestFragment = false;
+    private LinearLayout layoutNoCommentHolder;
+    private LinearLayout layoutDataHolder;
+    private TextView txtTitle21;
+    private LinearLayout layoutAllHolder;
 
 
 
@@ -132,12 +136,23 @@ public class SingleReportCardSubject extends ChildContainerActivity {
         txtExamCategory = (TextView)this.findViewById(R.id.txtExamCategory);
         txtExamCategory.setSelected(true);
 
-        //layoutChart = (LinearLayout)this.findViewById(R.id.layoutChart);
+        layoutChart = (LinearLayout)this.findViewById(R.id.layoutChart);
         chart = (BarChart)this.findViewById(R.id.chart);
+
+        layoutNoCommentHolder = (LinearLayout)this.findViewById(R.id.layoutNoCommentHolder);
+        layoutDataHolder = (LinearLayout)this.findViewById(R.id.layoutDataHolder);
+        txtTitle21 = (TextView)this.findViewById(R.id.txtTitle21);
+
+        layoutAllHolder = (LinearLayout)this.findViewById(R.id.layoutAllHolder);
+
+        layoutAllHolder.setVisibility(View.GONE);
     }
 
     private void initAction()
     {
+
+        layoutAllHolder.setVisibility(View.VISIBLE);
+
         imgSubjectIcon.setImageResource(AppUtility.getImageResourceId(data.getSubjectIcon(), SingleReportCardSubject.this));
         txtSubjectName.setText(data.getSubjectName());
         txtExamCategory.setText(examCategoryName);
@@ -187,6 +202,25 @@ public class SingleReportCardSubject extends ChildContainerActivity {
         else
         {
             layoutRemarksHolder.setVisibility(View.GONE);
+        }
+
+
+        if(data.getNoExams().equalsIgnoreCase("1"))
+        {
+            layoutRemarksHolder.setVisibility(View.VISIBLE);
+            layoutNoCommentHolder.setVisibility(View.VISIBLE);
+            txtTitle21.setText(data.getExamName());
+
+            layoutChart.setVisibility(View.GONE);
+            layoutDataHolder.setVisibility(View.GONE);
+        }
+        else
+        {
+            layoutRemarksHolder.setVisibility(View.GONE);
+            layoutNoCommentHolder.setVisibility(View.GONE);
+
+            layoutChart.setVisibility(View.VISIBLE);
+            layoutDataHolder.setVisibility(View.VISIBLE);
         }
 
         showChart();
@@ -257,6 +291,7 @@ public class SingleReportCardSubject extends ChildContainerActivity {
         RequestParams params = new RequestParams();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put(RequestKeyHelper.SUBJECT_ID, subjectId);
+        params.put("no_exams", "1");
 
         if(isFromClassTestFragment == true) {
             params.put("exam_id", examId);

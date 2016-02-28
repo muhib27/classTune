@@ -21,6 +21,8 @@ public class ExamRoutine {
 	private String name;
 	@SerializedName("id")
 	private String id;
+	@SerializedName("no_exams")
+	private String noExams;
 	
 	public String getName() {
 		return name;
@@ -84,5 +86,13 @@ public class ExamRoutine {
 
 	public void setExam_date(String exam_date) {
 		this.exam_date = exam_date;
+	}
+
+	public String getNoExams() {
+		return noExams;
+	}
+
+	public void setNoExams(String noExams) {
+		this.noExams = noExams;
 	}
 }
