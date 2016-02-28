@@ -422,6 +422,10 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 							newHolder.layoutGap = (LinearLayout) dynamicView.findViewById(R.id.layout_gap);
 							newHolder.layoutGap.setVisibility(View.GONE);
 
+							newHolder.layoutDataHolderProject = (LinearLayout)dynamicView.findViewById(R.id.layoutDataHolderProject);
+							newHolder.txtRemarksProject = (TextView)dynamicView.findViewById(R.id.txtRemarksProject);
+
+
 							newHolder.tvProjectDescription.setText(projectList.get(k).getTopic());
 							newHolder.tvProjectGrade.setText(projectList.get(k).getGrade());
 							newHolder.tvProjectHighestMarks.setText(getDecimalFormatNumber(projectList.get(k).getMaxMark())); //projectList.get(k).getMaxMark()
@@ -552,6 +556,9 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 
 							newHolder.layoutGap = (LinearLayout) dynamicView.findViewById(R.id.layout_gap);
 							newHolder.layoutGap.setVisibility(View.GONE);
+
+							newHolder.layoutDataHolderClassTest = (LinearLayout)dynamicView.findViewById(R.id.layoutDataHolderClassTest);
+							newHolder.txtRemarksClassTest = (TextView)dynamicView.findViewById(R.id.txtRemarksClassTest);
 
 							ArrayList<ClassTestItem> ctList = items.get(j).getCtReportSubjectExam().getClasstestList();
 
