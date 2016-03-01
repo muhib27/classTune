@@ -442,11 +442,13 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 								newHolder.layoutDataHolderProject.setVisibility(View.GONE);
 								newHolder.txtRemarksProject.setVisibility(View.VISIBLE);
 								newHolder.txtRemarksProject.setText(projectList.get(k).getRemarks());
+								newHolder.tvCTDate.setVisibility(View.GONE);
 							}
 							else
 							{
 								newHolder.layoutDataHolderProject.setVisibility(View.VISIBLE);
 								newHolder.txtRemarksProject.setVisibility(View.GONE);
+								newHolder.tvCTDate.setVisibility(View.VISIBLE);
 							}
 
 							parentHolder.layoutDynamicRow.addView(dynamicView);
@@ -581,11 +583,13 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 								newHolder.layoutDataHolderClassTest.setVisibility(View.GONE);
 								newHolder.txtRemarksClassTest.setVisibility(View.VISIBLE);
 								newHolder.txtRemarksClassTest.setText(ctList.get(k).getRemarks());
+								newHolder.tvCTDate.setVisibility(View.GONE);
 							}
 							else
 							{
 								newHolder.layoutDataHolderClassTest.setVisibility(View.VISIBLE);
 								newHolder.txtRemarksClassTest.setVisibility(View.GONE);
+								newHolder.tvCTDate.setVisibility(View.VISIBLE);
 							}
 
 							parentHolder.layoutDynamicRow.addView(dynamicView);
@@ -683,11 +687,13 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 				holder.layoutDataHolderClassTest.setVisibility(View.GONE);
 				holder.txtRemarksClassTest.setVisibility(View.VISIBLE);
 				holder.txtRemarksClassTest.setText(ctList.get(pos).getRemarks());
+				holder.tvCTDate.setVisibility(View.GONE);
 			}
 			else
 			{
 				holder.layoutDataHolderClassTest.setVisibility(View.VISIBLE);
 				holder.txtRemarksClassTest.setVisibility(View.GONE);
+				holder.tvCTDate.setVisibility(View.VISIBLE);
 			}
 
 			listLayout.addView(view);
