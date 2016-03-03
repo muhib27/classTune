@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Share"
+                android:text="@string/popup_layout_share_txt_share"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -75,7 +75,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="Social Media"
+                android:text="@string/popup_layout_share_btn_social_media"
                 android:background="@drawable/btn_red_back" />
              <Button
                 android:id="@+id/btn_champs"
@@ -86,7 +86,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="My School"
+                android:text="@string/popup_layout_share_btn_my_School"
                 android:background="@drawable/btn_red_back" />
 
         </LinearLayout>

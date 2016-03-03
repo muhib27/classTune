@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".35"
-                android:text="User ID:"
+                android:text="@string/account_settings_layout_txt_user_id"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -43,7 +43,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dip"
             android:layout_marginTop="5dip"
-            android:text="Password:"
+            android:text="@string/popup_layout_change_pass_txt_password"
             android:textColor="@color/black"
             android:textSize="16sp" />
 

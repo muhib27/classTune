@@ -22,7 +22,7 @@
         android:id="@+id/dialog_tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Leave Application"
+        android:text="@string/leave_application_diolog_layout_title"
         android:textColor="@color/red"
         android:textSize="18sp"
         android:layout_toRightOf="@+id/icon" 
@@ -45,7 +45,7 @@
         
         <TextView android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:text="Name:"
+            android:text="@string/leave_application_diolog_layout_name"
             android:layout_weight="0.3"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -54,7 +54,6 @@
         
         <TextView android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:text="Plabon Modak"
             android:layout_weight="0.7"
             android:textColor="@color/gray_1"
             android:textSize="16sp"
@@ -71,7 +70,7 @@
         
         <TextView android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:text="Start Date:"
+            android:text="@string/leave_application_diolog_layout_start_date"
             android:layout_weight="0.3"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -80,7 +79,6 @@
         
         <TextView android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:text="21/12/2014"
             android:layout_weight="0.7"
             android:textColor="@color/gray_1"
             android:textSize="16sp"
@@ -97,7 +95,7 @@
         
         <TextView android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:text="End Date:"
+            android:text="@string/leave_application_diolog_layout_end_date"
             android:layout_weight="0.3"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -106,7 +104,6 @@
         
         <TextView android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:text="21/12/2014"
             android:textColor="@color/gray_1"
             android:textSize="16sp"
             android:layout_weight="0.7"
@@ -123,7 +120,7 @@
         
         <TextView android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:text="Reason:"
+            android:text="@string/leave_application_diolog_layout_reason"
             android:layout_weight="0.3"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -132,7 +129,6 @@
         
         <TextView android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:text="@string/test_string"
             android:textColor="@color/gray_1"
             android:textSize="16sp"
             android:layout_weight="0.7"
@@ -161,7 +157,7 @@
             android:layout_width="100dip"
             android:layout_height="30dip"
             android:background="@drawable/btn_red_back"
-            android:text="Deny"
+            android:text="@string/popup_layout_meeting_status_btn_deny"
             android:textColor="@color/white"/>
         
         <Button
@@ -170,7 +166,7 @@
             android:layout_height="30dip"
             android:background="@drawable/btn_red_back"
             
-            android:text="Accept"
+            android:text="@string/popup_layout_meeting_status_btn_accept"
             android:textColor="@color/white"
             android:layout_marginLeft="10dip"/>
     </LinearLayout>

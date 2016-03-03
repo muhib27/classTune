@@ -19,7 +19,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="GOOD READ"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -66,7 +65,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Subject"
+            android:text="@string/popup_layout_homework_assessment_result_txt_subject"
             android:layout_marginBottom="10dp"
             android:textColor="@color/black" />
         
@@ -136,7 +135,7 @@
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:background="@drawable/btn_red_back"
-                android:text="OK"/>
+                android:text="@string/btn_ok"/>
 
         </LinearLayout>
 

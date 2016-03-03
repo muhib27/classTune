@@ -19,7 +19,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="GOOD READ"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -56,7 +55,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="here is some description text there will be a bunch of text here."
             android:textColor="@color/black" />
 
         <LinearLayout
@@ -71,7 +69,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_red_back"
-                android:text="Delete"
+                android:text="@string/popup_layout_lessonplan_confirmation_btn_delete"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -84,7 +82,7 @@
                  android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_red_back"
-                android:text="Cancel"
+                android:text="@string/btn_cancel"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

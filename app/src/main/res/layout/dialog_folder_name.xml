@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/name_edit"
-        android:hint="Folder Name"
+        android:hint="@string/create_fodler_dialog"
         android:padding="10dip"
         android:textColor="@color/hint_color"
         android:textColorHint="@color/hint_color"
@@ -27,7 +27,7 @@
         android:layout_marginTop="10dip"
         android:textSize="12dip"
         android:visibility="gone"
-        android:text="* Folder must have a name!"
+        android:text="@string/dialog_folder_name_txt_error"
         android:textColor="@color/red" />
 
     <LinearLayout

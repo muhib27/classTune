@@ -19,7 +19,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="GOOD READ"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -55,7 +54,6 @@
             android:id="@+id/popup_tv_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="here is some description text there will be a bunch of text here."
             android:textSize="18sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -158,7 +156,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="Exit"
+                android:text="@string/popup_layout_assessment_btn_exit"
                 android:background="@drawable/btn_red_back" />
              <Button
                 android:id="@+id/btnCancel"
@@ -169,7 +167,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="Cancel"
+                android:text="@string/popup_layout_assessment_btn_cancel"
                 android:background="@drawable/btn_red_back" />
 
         </LinearLayout>

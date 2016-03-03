@@ -21,7 +21,6 @@
                     android:id="@+id/txtDayName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sunday"
                     android:textSize="12sp"
                     android:gravity="center"/>
             </LinearLayout>
@@ -36,8 +35,7 @@
                     android:id="@+id/txtHomePickUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="08:00 am"
-                    android:textSize="12sp" 
+                    android:textSize="12sp"
                     android:gravity="center"/>
             </LinearLayout>
 
@@ -51,7 +49,6 @@
                     android:id="@+id/txtSchoolPickUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12:00 pm"
                     android:textSize="12sp"
                     android:gravity="center" />
             </LinearLayout>

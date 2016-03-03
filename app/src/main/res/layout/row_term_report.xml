@@ -23,7 +23,7 @@
             android:paddingLeft="2dip"
             android:paddingRight="2dip"
             android:paddingTop="5dip"
-            android:text="Subject"
+            android:text="@string/popup_layout_homework_assessment_result_txt_subject"
             android:textSize="13sp"
             android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
             android:paddingLeft="2dip"
             android:paddingRight="2dip"
             android:paddingTop="5dip"
-            android:text="Score"
+            android:text="@string/row_term_report_score"
             android:textSize="13sp"
             android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
             android:paddingLeft="2dip"
             android:paddingRight="2dip"
             android:paddingTop="5dip"
-            android:text="Highest"
+            android:text="@string/row_term_report_highest"
             android:textSize="13sp"
             android:textStyle="bold" />
 
@@ -80,7 +80,7 @@
             android:paddingLeft="2dip"
             android:paddingRight="2dip"
             android:paddingTop="5dip"
-            android:text="Total"
+            android:text="@string/row_term_report_total"
             android:textSize="13sp"
             android:textStyle="bold" />
 
@@ -99,7 +99,7 @@
             android:paddingLeft="2dip"
             android:paddingRight="2dip"
             android:paddingTop="5dip"
-            android:text="Grade"
+            android:text="@string/row_term_report_grade"
             android:textSize="13sp"
             android:textStyle="bold" />
 
@@ -118,7 +118,7 @@
             android:paddingLeft="2dip"
             android:paddingRight="2dip"
             android:paddingTop="5dip"
-            android:text="Action"
+            android:text="@string/row_term_report_action"
             android:textSize="13sp"
             android:textStyle="bold" />
 

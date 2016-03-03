@@ -26,7 +26,6 @@
                 android:id="@+id/event_cat_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Science Fair"
                 android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
@@ -46,7 +45,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dip"
-                android:text="13th dec 2014"
                 android:textColor="@color/gray_1"
                 android:textSize="10sp"
                 android:textStyle="normal" />
@@ -61,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Start:"
+                    android:text="@string/row_upcoming_events_txt_start"
                     android:textColor="@color/black"
                     android:textSize="10sp"
                     android:textStyle="normal" />
@@ -70,7 +68,6 @@
                     android:id="@+id/txtStartDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12.10 PM"
                     android:textColor="@color/gray_1"
                     android:textSize="10sp"
                     android:textStyle="normal" />
@@ -87,7 +84,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="End:"
+                    android:text="@string/row_upcoming_events_txt_end"
                     android:textColor="@color/black"
                     android:textSize="10sp"
                     android:textStyle="normal" />
@@ -96,7 +93,6 @@
                     android:id="@+id/txtEndDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="02.10 PM"
                     android:textColor="@color/gray_1"
                     android:textSize="10sp"
                     android:textStyle="normal" />
@@ -123,7 +119,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Science Fair Science FairScience FairScience FairScience "
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold" />

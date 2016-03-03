@@ -20,8 +20,7 @@
                 android:id="@+id/txtDueDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="Due Date" />
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
         
@@ -43,8 +42,7 @@
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="Description" />
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
         
@@ -68,8 +66,7 @@
                 android:id="@+id/txtBalance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="Amount" />
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
         
@@ -94,8 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@android:color/black"
-                android:text="Status" />
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
         

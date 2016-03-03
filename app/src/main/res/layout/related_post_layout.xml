@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dip"
-            android:text="You May Also Like"
+            android:text="@string/related_post_also_like_text"
             android:textColor="@color/gray_5"
             android:textSize="16sp"
             android:textStyle="bold" />

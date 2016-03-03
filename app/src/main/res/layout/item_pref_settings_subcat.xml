@@ -23,7 +23,6 @@
             android:id="@+id/tv_pref_subcat_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Some Subcategory"
             android:textColor="@color/black"
             android:textSize="18sp"
             customfont:fontName="AliquamREG.ttf" />

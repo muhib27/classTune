@@ -23,14 +23,12 @@
                 android:id="@+id/txtDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/txtDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01/07/2014"
                 android:textColor="@color/black" />
         </LinearLayout>
 
@@ -40,7 +38,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center"
-            android:text="08:00am"
             android:textColor="@color/black" />
         <TextView
             android:id="@+id/txtSubject"
@@ -48,7 +45,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="English"
             android:textColor="@color/black" />
     </LinearLayout>
 

@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="CHANGE PASSWORD"
+                android:text="@string/popup_layout_change_pass_txt_title"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -49,7 +49,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dip"
             android:layout_marginTop="5dip"
-            android:text="Password:"
+            android:text="@string/popup_layout_change_pass_txt_password"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -136,7 +136,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="Save"
+                android:text="@string/popup_layout_change_pass_txt_save"
                 android:background="@drawable/btn_red_back" />
              <Button
                 android:id="@+id/btn_skip"
@@ -147,7 +147,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="Skip"
+                android:text="@string/popup_layout_change_pass_txt_skip"
                 android:background="@drawable/btn_red_back" />
 
         </LinearLayout>

@@ -1,45 +1,6 @@
 <resources>
     <string name="app_name">ClassTune</string>
 
-    <string name="test_string">Lorem Ipsum is simply dummy text of the printing  into electronic ining Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-
-    <string name="empty_mobile_num_error">Please enter Mobile Number!</string>
-
-    <string name="join_popup_text">Join</string>
-    <string name="join_popup_student">Student</string>
-    <string name="join_popup_teacher">Teacher</string>
-    <string name="join_popup_parents">Parents</string>
-    <string name="join_popup_alumni">Alumni</string>
-    <string name="join_text2">Fill up this information</string>
-    <string name="share_text">Choose where you want to share...</string>
-
-    <!--userhelpper-->
-    <string name="msg_user_not_found">User not found.</string>
-    <string name="msg_admin_user">You are an admin user. Log-in from web browser to enjoy full control.</string>
-
-    <!-- SETTINGS -->
-    <string name="setting_drawer_basic_info_text">Basic Information</string>
-    <string name="setting_drawer_title_text">Info \u0026 Setting</string>
-    <string name="setting_drawer_account_text">Account Settings</string>
-    <string name="setting_drawer_pref_text">Preference Settings</string>
-    <string name="setting_drawer_faq_text">Frequently Asked Questions</string>
-    <string name="setting_drawer_profile_text">Edit Profile</string>
-    <string name="setting_drawer_term_text">Terms \u0026 Policy</string>
-    <string name="setting_drawer_assessment_text">Assessment Scores</string>
-    <string name="setting_drawer_logout_text">Log Out</string>
-    <string name="setting_drawer_about_us_text">About Us</string>
-    <string name="setting_drawer_current_password_hint_text">Current Password</string>
-    <string name="forget_password_username_label">username</string>
-    <string name="forget_password_email_label">email</string>
-    <string name="setting_drawer_new_password_hint_text">New Password</string>
-    <string name="setting_drawer_retype_password_hint_text">Retype Password</string>
-    <string name="progress_message">Signing in to Google&#8230;</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="tv_homework">Homework assigned by </string>
-    <string name="hint_username">Email/Username</string>
-    <string name="hint_password">Password</string>
-    <string name="text_loading">Loading...</string>
 
     <string-array name="free_settings_images">
         <item>about_us</item>
@@ -465,22 +426,51 @@
         <!-- <item>49</item> -->
     </string-array>
 
+    <string name="title_activity_student_list">StudentListActivity</string>
+    <string name="title_activity_syllabus">SyllabusActivity</string>
+    <string name="title_activity_student_info">StudentInfoActivity</string>
+
+    <string name="album_name_classtune">classtune</string>
+
+
+
+    <!--Multiple Language Support-->
+
+    <string name="test_string">Lorem Ipsum is simply dummy text of the printing  into electronic ining Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="share_text">Choose where you want to share...</string>
+
+    <!--userhelpper-->
+
+    <string name="msg_user_not_found">User not found.</string>
+    <string name="msg_admin_user">You are an admin user. Log-in from web browser to enjoy full control.</string>
+
+
+    <!-- SETTINGS -->
+
+    <string name="setting_drawer_title_text">Info \u0026 Setting</string>
+    <string name="setting_drawer_account_text">Account Settings</string>
+    <string name="setting_drawer_pref_text">Preference Settings</string>
+    <string name="setting_drawer_faq_text">Frequently Asked Questions</string>
+    <string name="setting_drawer_profile_text">Edit Profile</string>
+    <string name="setting_drawer_term_text">Terms \u0026 Policy</string>
+    <string name="setting_drawer_assessment_text">Assessment Scores</string>
+    <string name="setting_drawer_logout_text">Log Out</string>
+    <string name="setting_drawer_about_us_text">About Us</string>
+    <string name="setting_drawer_current_password_hint_text">Current Password</string>
+    <string name="forget_password_username_label">username</string>
+    <string name="forget_password_email_label">email</string>
+    <string name="setting_drawer_new_password_hint_text">New Password</string>
+    <string name="setting_drawer_retype_password_hint_text">Retype Password</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="tv_homework">Homework assigned by </string>
+    <string name="hint_password">Password</string>
+    <string name="text_loading">Loading...</string>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
-    <!-- LogIn -->
-    <string name="login_failed_text">Log in failed.</string>
-    <string name="fb_app_id">850059515022967</string>
-    <string name="fb_app_namespace">champs_schoolapp</string>
-    <string name="not_logged_in_msg">This feature is only for registered users.\n\nPlease register with us and get many other interesting features.</string>
 
-    <!-- popUpMessage -->
-    <string name="candle_msg">This is where you make your voice heard. Candle lets users to publish their articles and give feedback.\n</string>
-    <string name="school_msg">Join your school\'s page today and stay connected!
-Get updates on recent on goings and feeds from your school teachers.</string>
-    <string name="good_read_msg">Save and collect articles that you like using \'Good Read\' feature.\n</string>
-    <string name="read_later_msg">We know how busy you are. Use \'Read Later\' to save interesting articles to read them later at a more convenient time.\n</string>
-    <string name="wow_msg">We love that you love our content but this feature is only for registered users. Please register with us and get many more interesting features.</string>
     <!-- Homework -->
 
     <string name="btn_ok">OK</string>
@@ -491,8 +481,6 @@ Get updates on recent on goings and feeds from your school teachers.</string>
     <string name="tab_homework">Homework</string>
     <string name="tab_project">Project</string>
     <string name="tab_assessment">Quiz</string>
-
-    <string name="due_payment_deadline_text">Deadline: %1$s</string>
 
     <!-- Attendence -->
     <string name="percent_text">Percent</string>
@@ -523,44 +511,29 @@ Get updates on recent on goings and feeds from your school teachers.</string>
     <string name="tab_fees_due">Due Payment</string>
     <string name="tab_fees_history">Payment History</string>
 
-    <!-- Free Version -->
-    <string name="btn_sign_up">Sign Up \u0020\u0020</string>
-    <string name="btn_login">Login</string>
-
-    <!-- CMART -->
-    <string name="product_price_text">\u09F3 %1$s /-</string>
-
     <!-- Notice -->
 
     <string name="tab_notice_general">All</string>
     <string name="tab_notice_circular">Academic</string>
     <string name="tab_notice_announcement">Extra-Academic</string>
-    <string name="tab_notice_events">Events</string>
     <string name="btn_notice_acknowledge">Acknowledge</string>
 
     <!-- EVENTS -->
     <string name="title_events_tab">Upcoming</string>
-    <string name="title_club_news_tab">Club News</string>
     <string name="title_archieve_tab">Previous</string>
     <string name="btn_join">Join in</string>
     <string name="btn_not_going">Not Going</string>
 
     <!-- HOMEWOEK TEACHER -->
-    <string name="title_draft">Draft</string>
     <string name="title_add_homework">Add</string>
     <string name="title_draft_homework">Drafts</string>
     <string name="title_homework_feed">All</string>
+
     <!-- LEAVE -->
     <string name="title_leave_application">Application</string>
     <string name="title_student_leave">Student leave</string>
     <string name="title_my_leave">My Leave</string>
-    <!-- CLUB NEWS -->
-    <string name="list_row_text_activities_club">Activities:</string>
-    <string name="list_row_text_fees_club">Fees:</string>
-    <string name="list_row_text_schedule_club">Schedule:</string>
-    <string name="btn_text_apply_to_join">Apply to Join</string>
-    <string name="btn_text_applied">Applied</string>
-    <string name="btn_text_joined">Joined</string>
+
 
     <!-- CLASS TEST -->
     <string name="title_classtest_tab">Class Test</string>
@@ -581,34 +554,15 @@ Get updates on recent on goings and feeds from your school teachers.</string>
 
     <!-- FREE VERSION CANDLE -->
     <string name="btn_candle_attach_file">Attach a file</string>
-    <string name="btn_candle_upload_picture">Picture</string>
-    <string name="btn_candle_Send">Send</string>
 
     <!-- COMPLETE PROFILE -->
     <string name="choose_user_name_text">Choose your user name</string>
-    <string name="title_activity_candle">CandleActivity</string>
 
     <!-- CANDLE -->
     <string name="chooser_title">Select file</string>
-    <string name="big_image_size">Sorry, can\'t add this image</string>
-    <string name="cannot_add_image">Please select another image which has size lower at 300 KB.</string>
     <string name="album_name">champs21</string>
-    <string name="candle_description_text">Candle is the platform where you can write articles, share news or lesson plans which will help students, parents and teachers. It’s not just another blog or newspaper! Your Candles will help students, parents and teachers around the world. Light a Candle today and brighten up the world a little at a time.&lt;br /&gt;&lt;br /&gt;Want to help teachers to better their classes or assist parents to teach their kids at home with a great lesson plan? Candle it today in our Resource Center.Do you have any interesting news to share with us and the world? Do you think students, parents and teachers need to learn about it?  Candle it to us from our News section and you may published.Do you have any tips, ideas or a great recipe to share with students, parents and teachers? Candle it today in our Article section. Planning to write an article? Why wait! Candle it today!Read a book or watched a movie recently? Want to write a review on it? Candle it today with us.&lt;br /&gt;&lt;br /&gt;We would love to hear what you think about us. Leave us a message in the Feedback Section and make your voice heard.</string>
-    <string name="empty_title_error">Please enter title!</string>
-    <string name="empty_description_error">Please enter description!</string>
-    <string name="select_category_error">Please select a category!</string>
-    <string name="good_read_count_text">You have %1$s new good reads</string>
-    <string name="see_all"><u>See All</u></string>
-    <string name="currency_text">\u09F3 %1$s-/</string>
 
-    <string-array name="medium_list">
-        <item>Select Medium</item>
-        <item>Bangla</item>
-        <item>English</item>
-    </string-array>
-    <string-array name="country_list">
-        <item>Bangladesh</item>
-    </string-array>
+
     <string-array name="city_list">
         <item>Dhaka</item>
         <item>Chittagong</item>
@@ -619,62 +573,7 @@ Get updates on recent on goings and feeds from your school teachers.</string>
         <item>Rangpur</item>
 
     </string-array>
-    <string-array name="location_list">
-        <item>Select Location</item>
-        <item>Azimpur</item>
-        <item>Badda</item>
-        <item>Banani</item>
-        <item>Bangshal</item>
-        <item>Baridhara</item>
-        <item>Bashabo</item>
-        <item>Bashundhara</item>
-        <item>Cantonment</item>
-        <item>Dhaka University</item>
-        <item>Dhanmondi</item>
-        <item>Elephant Road</item>
-        <item>Fakirapool</item>
-        <item>Gandaria</item>
-        <item>Gopibag</item>
-        <item>Green Road</item>
-        <item>Gulshan</item>
-        <item>Hatirpool</item>
-        <item>Jatrabari</item>
-        <item>Jigatola</item>
-        <item>Jurain</item>
-        <item>Kakrail</item>
-        <item>Kalabagan</item>
-        <item>Kalyanpur</item>
-        <item>Kamlapur</item>
-        <item>Khilgaon</item>
-        <item>Khilkhet</item>
-        <item>Lalbag</item>
-        <item>Lalmatia</item>
-        <item>Laxmibazar</item>
-        <item>Malibag</item>
-        <item>Mirpur</item>
-        <item>Mogbazar</item>
-        <item>Mohakhali</item>
-        <item>Mohammadpur</item>
-        <item>Mothijheel</item>
-        <item>Nikunja</item>
-        <item>Paltan</item>
-        <item>Rampura</item>
-        <item>Rayer Bazar</item>
-        <item>Sadarghat</item>
-        <item>Segunbagucha</item>
-        <item>Shantinagar</item>
-        <item>Shahbag</item>
-        <item>Shyamoli</item>
-        <item>Siddeshwari</item>
-        <item>Sobhanbag</item>
-        <item>Sukrabad</item>
-        <item>Tejgaon</item>
-        <item>Tejkunipara</item>
-        <item>Wari</item>
-        <item>Uttara</item>
-    </string-array>
 
-    <string name="title_activity_cmart_product_detaill">CmartProductDetaillActivity</string>
     <string name="about_use_text">
 <![CDATA[<p>After its launching in October 2010, Champs21.com has been catering to both Bangla and English medium students, primarily offering a self-assessment test service to assess students’ own strengths and weaknesses in Mathematics and Science towards stronger academic foundation. It also enables students to brush up their ‘beyond-textbook’ learning in both Bangla and English languages. Another area of scholastic focus of this approach covers General Knowledge, IQ, and Current Affairs in its extra curriculum section. The inception of Champs21.com took place keeping in mind the following targets:</p>
         <p>
@@ -770,12 +669,8 @@ Get updates on recent on goings and feeds from your school teachers.</string>
 
     ]]>
     </string>
-    <string name="title_activity_cart">CartActivity</string>
-    <string name="title_activity_student_list">StudentListActivity</string>
-    <string name="title_activity_syllabus">SyllabusActivity</string>
-    <string name="title_activity_student_info">StudentInfoActivity</string>
 
-    <string name="album_name_classtune">classtune</string>
+
 
     <string name="spinner_prompt_select_batch">Select Batch</string>
     <string name="spinner_prompt_select_gender">Select Gender</string>
@@ -806,4 +701,133 @@ Get updates on recent on goings and feeds from your school teachers.</string>
     <string name="classtune_registration_teacher_joining_date">Select Your Joining Date</string>
     <string name="classtune_registration_teacher_position_title">Select Job Category First</string>
     <string name="title_activity_single_report_card_subject">SingleReportCardSubject</string>
+
+    <!--New work for language support-->
+
+
+    <!--User Type Selection-->
+    <string name="user_type_selection_dialog">I am a...</string>
+    <string name="user_type_selection_students">Student</string>
+    <string name="user_type_selection_parents">Parents</string>
+    <string name="user_type_selection_teacher">Teacher</string>
+    <string name="user_type_selection_other">Teacher</string>
+
+    <!--Create Folder Dialog-->
+    <string name="create_fodler_dialog">Folder Name</string>
+
+    <!--Picker-->
+    <string name="picker_title">Title</string>
+
+    <!--Image Dialog Fragment-->
+    <string name="attachment_dialog_select_picture">Select Picture</string>
+    <string name="attachment_dialog_photo_library">Photo Library</string>
+    <string name="attachment_dialog_camera">Camera</string>
+    <string name="attachment_dialog_cancel">Cancel</string>
+
+    <!--StudentListAdapter-->
+    <string name="student_row_item_view">View</string>
+
+    <!--RelatedPostFragment-->
+    <string name="related_post_also_like_text">You May Also Like</string>
+
+    <!--SyllabusMidLayerActivity-->
+    <string name="syllabus_mid_layer_activity_no_syllabus_found">You May Also Like</string>
+
+    <!--LessonPlanSubjectDetailsActivity-->
+    <string name="lesson_plan_subject_details_activity_date">Date</string>
+    <string name="lesson_plan_subject_details_activity_title">Title</string>
+
+    <!--DialogSelectChildren-->
+    <string name="txt_relation_hint">i.e. Father/Mother</string>
+
+    <!--PopupDialogAssessmentExitHomework-->
+    <string name="popup_layout_assessment_btn_exit">Exit</string>
+    <string name="popup_layout_assessment_btn_cancel">Cancel</string>
+
+    <!--PopupDialogAssessmentNextQuestionHomework-->
+    <string name="popup_layout_assessment_next_question_homework_btn_next">Next</string>
+
+    <!--PopupDialogAssessmentOk-->
+    <string name="popup_layout_assessment_ok_btn_save_score">Save Score</string>
+    <string name="popup_layout_assessment_ok_btn_retry">Retry</string>
+    <string name="popup_layout_assessment_ok_btn_summery">Summery</string>
+
+    <!--PopupDialogSingleItemAssessmentInvok-->
+    <string name="popup_layout_assessment_singleitem_invok_btn_start">Start Now</string>
+    <string name="popup_layout_assessment_singleitem_invok_btn_leader_board">Leader Board</string>
+
+    <!--PopupDialogAssessmentSummery-->
+    <string name="popup_layout_assessment_summery_txt_question">Question</string>
+    <string name="popup_layout_assessment_summery_txt_correct_answer">Correct Answer</string>
+    <string name="popup_layout_assessment_summery_txt_explanation">Explanation</string>
+
+    <!--PopupDialogChangePassword-->
+    <string name="popup_layout_change_pass_txt_title">CHANGE PASSWORD</string>
+    <string name="popup_layout_change_pass_txt_password">Password:</string>
+    <string name="popup_layout_change_pass_txt_save">Save</string>
+    <string name="popup_layout_change_pass_txt_skip">Skip</string>
+
+    <!--PopupDialogGoodReadDelete-->
+    <string name="popup_layout_delete_btn_yes">Yes</string>
+    <string name="popup_layout_delete_btn_no">No</string>
+
+    <!--PopupDialogHomeworkAssessmentResult-->
+    <string name="popup_layout_homework_assessment_result_txt_subject">Subject</string>
+
+    <!--PopupDialogLessonPlanConfirmation-->
+    <string name="popup_layout_lessonplan_confirmation_btn_delete">Delete</string>
+
+    <!--PopupDialogShare-->
+    <string name="popup_layout_share_txt_share">Share</string>
+    <string name="popup_layout_share_btn_social_media">Social Media</string>
+    <string name="popup_layout_share_btn_my_School">My School</string>
+
+    <!--PopupDialogMeetingStatus-->
+    <string name="popup_layout_meeting_status_btn_deny">Deny</string>
+    <string name="popup_layout_meeting_status_btn_accept">Accept</string>
+
+    <!--AccountSettingsActivity-->
+    <string name="account_settings_layout_txt_user_id">User ID:</string>
+
+    <!--LeaveApplicationDialogFragment-->
+    <string name="leave_application_diolog_layout_title">Leave Application</string>
+    <string name="leave_application_diolog_layout_name">Name:</string>
+    <string name="leave_application_diolog_layout_start_date">Start Date:</string>
+    <string name="leave_application_diolog_layout_end_date">End Date:</string>
+    <string name="leave_application_diolog_layout_reason">Reason:</string>
+
+    <!--MeetingFragment-->
+    <string name="row_meeting_status_txt_status_pending">Pending</string>
+
+    <!--SingleItemTermReportActivity-->
+    <string name="row_term_report_score">Score</string>
+    <string name="row_term_report_highest">Highest</string>
+    <string name="row_term_report_total">Total</string>
+    <string name="row_term_report_grade">Grade</string>
+    <string name="row_term_report_action">Action</string>
+
+    <!--SchoolCandleSettingActivity-->
+    <string name="activity_school_candle_setting_txt_post_settings">Post Settings</string>
+    <string name="activity_school_candle_setting_txt_post_for">Post for</string>
+    <string name="activity_school_candle_setting_txt_alumni">Alumni</string>
+
+    <!--ArchievePageFragment-->
+    <string name="fragment_archieved_events_txt_no_data_found">No data found!</string>
+
+    <!--ProgressGraphFragment-->
+    <string name="fragment_progress_graph_text_select_subject">Select Subject</string>
+    <string name="fragment_progress_graph_text_no_subject_selected">No Subject Selected</string>
+
+    <!--UpcomingEventListAdapter-->
+    <string name="row_upcoming_events_txt_start">Start:</string>
+    <string name="row_upcoming_events_txt_end">End:</string>
+
+    <!--CreateFolderDialog-->
+    <string name="dialog_folder_name_txt_error">* Folder must have a name!</string>
+
+    <!--SingleHomeworkActivity-->
+    <string name="activity_single_homework_txt_no_data_available">No data available!</string>
+
+
+
 </resources>

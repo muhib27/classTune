@@ -17,7 +17,6 @@
             android:id="@+id/tv_name_and_batch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Matin Rashid khan, Batch iD"
             android:textColor="@color/gray_5"
             android:textSize="14sp" />
         
@@ -25,7 +24,6 @@
             android:id="@+id/txtLeaveSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Matin Rashid khan, Batch iD"
             android:textColor="@color/gray_5"
             android:layout_marginTop="5dp"
             android:textSize="14sp" />
@@ -34,7 +32,6 @@
             android:id="@+id/tv_apply_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apply Date:02/05/2014"
             android:textColor="@color/gray_1"
             android:textSize="12sp" />
 
@@ -42,7 +39,6 @@
             android:id="@+id/tv_start_date_and_end_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Duration: 03/05/2014 to 04/05/2014"
             android:textColor="@color/gray_1"
             android:textSize="12sp" />
     </LinearLayout>

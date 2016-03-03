@@ -19,7 +19,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="GOOD READ"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -66,7 +65,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="here is some description text there will be a bunch of text here."
             android:textColor="@color/black" />
 
         <LinearLayout
@@ -81,7 +79,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_red_back"
-                android:text="Save Score"
+                android:text="@string/popup_layout_assessment_ok_btn_save_score"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -94,7 +92,7 @@
                  android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_red_back"
-                android:text="Retry"
+                android:text="@string/popup_layout_assessment_ok_btn_retry"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -107,7 +105,7 @@
                  android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_red_back"
-                android:text="Summery"
+                android:text="@string/popup_layout_assessment_ok_btn_summery"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

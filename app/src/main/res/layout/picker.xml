@@ -12,7 +12,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:text="Title"
+        android:text="@string/picker_title"
         android:textColor="@color/classtune_green_color"
         android:textSize="24sp" />
 

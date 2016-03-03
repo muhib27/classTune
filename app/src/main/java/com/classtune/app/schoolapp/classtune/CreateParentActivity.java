@@ -171,7 +171,7 @@ public class CreateParentActivity extends FragmentActivity implements IDialogSel
         //btnAddChild = (Button)this.findViewById(R.id.btnAddChild);
 
         dialog = new DialogSelectChildren(this, schoolCode, this);
-        layoutChildViewHolder = (LinearLayout)this.findViewById(R.id.layoutChildViewHolder);
+        //layoutChildViewHolder = (LinearLayout)this.findViewById(R.id.layoutChildViewHolder);
 
         layoutUploadPhoto = (RelativeLayout)this.findViewById(R.id.layoutUploadPhoto);
 

@@ -26,7 +26,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Subject"/>
+                android:text="@string/fragment_progress_graph_text_select_subject"/>
             </LinearLayout>
         <RelativeLayout
             android:id="@+id/layoutSelectSubject"
@@ -43,7 +43,7 @@
                 android:maxEms="9"
                 android:ellipsize="end"
                 android:textSize="12sp"
-                android:text="No Subject Selected"/>
+                android:text="@string/fragment_progress_graph_text_no_subject_selected"/>
             <ImageButton
                 android:layout_marginRight="5dp"
                 android:id="@+id/btn_prog_select_subject"

@@ -19,7 +19,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="GOOD READ"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -107,7 +106,7 @@
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:background="@drawable/btn_red_back"
-                android:text="Start Now"/>
+                android:text="@string/popup_layout_assessment_singleitem_invok_btn_start"/>
             
             <Button
                 android:id="@+id/btnLeaderBoard"
@@ -119,7 +118,7 @@
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:background="@drawable/btn_red_back"
-                android:text="Leader Board"/>
+                android:text="@string/popup_layout_assessment_singleitem_invok_btn_leader_board"/>
 
         </LinearLayout>
 

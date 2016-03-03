@@ -16,8 +16,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:textSize="10sp"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:text="8:00pm\n9:00pm" />
+            android:marqueeRepeatLimit="marquee_forever" />
     </LinearLayout>
 
     <LinearLayout
