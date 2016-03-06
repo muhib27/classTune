@@ -34,13 +34,12 @@
             <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="Select a batch"
+                android:text="@string/teacher_attendance_tabhost_layout_txt_select_batch"
                 android:textSize="14sp"
                 android:id="@+id/batch_text"/>
              <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray_1"
-                android:text="25th july 2014"
                 android:textSize="14sp"
                 android:id="@+id/date_text"/>
             

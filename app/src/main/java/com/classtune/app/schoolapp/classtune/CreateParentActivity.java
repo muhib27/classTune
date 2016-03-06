@@ -162,7 +162,7 @@ public class CreateParentActivity extends FragmentActivity implements IDialogSel
     private void initView()
     {
         txtUserId = (EditText)this.findViewById(R.id.txtUserId);
-        pickerDob = (DatePicker)this.findViewById(R.id.pickerDob);
+        //pickerDob = (DatePicker)this.findViewById(R.id.pickerDob);
         spinnerGender = (Spinner)this.findViewById(R.id.spinnerGender);
         txtContact = (EditText)this.findViewById(R.id.txtContact);
 

@@ -50,7 +50,7 @@
                             android:id="@+id/txtTitleLessonPlan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Lesson Plan"
+                            android:text="@string/activity_edit_lessonplan_txt_header"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -140,7 +140,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             custom:iconImageTab="@drawable/lessonplan_delete_normal"
-                            custom:iconTextTab="Delete Lesson Plan" />
+                            custom:iconTextTab="@string/activity_single_lessonplan_btn_delete_lesson_plan" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -157,7 +157,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             custom:iconImageTab="@drawable/lessonplan_edit_normal"
-                            custom:iconTextTab="Edit Lesson Plan" />
+                            custom:iconTextTab="@string/activity_single_lessonplan_btn_edit_lesson_plan" />
                     </LinearLayout>
 
 

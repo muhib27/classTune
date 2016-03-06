@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Fees"
+                    android:text="@string/fragment_feesduefragment_txt_header"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -76,7 +76,7 @@
     			android:scrollHorizontally="true" 
 	    		android:focusable="true" 
     			android:focusableInTouchMode="true"
-                android:text="Due Date" />
+                android:text="@string/activity_teacher_edit_homework_homework_txt_due_date" />
 
         </LinearLayout>
         
@@ -105,7 +105,7 @@
     			android:scrollHorizontally="true" 
 	    		android:focusable="true" 
     			android:focusableInTouchMode="true"
-                android:text="Description" />
+                android:text="@string/fragment_feesduefragment_txt_description" />
 
         </LinearLayout>
         
@@ -136,7 +136,7 @@
     			android:scrollHorizontally="true" 
 	    		android:focusable="true" 
     			android:focusableInTouchMode="true"
-                android:text="Amount" />
+                android:text="@string/fragment_feesduefragment_txt_amount" />
 
         </LinearLayout>
         
@@ -166,7 +166,7 @@
     			android:scrollHorizontally="true" 
 	    		android:focusable="true" 
     			android:focusableInTouchMode="true"
-                android:text="Status" />
+                android:text="@string/fragment_lessonplan_view_txt_status" />
 
         </LinearLayout>
         

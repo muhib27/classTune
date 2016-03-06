@@ -35,7 +35,7 @@
                 android:id="@+id/batch_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Student List"
+                android:text="@string/student_list_fragment_layout_txt_header"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -43,7 +43,7 @@
                 android:id="@+id/date_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tap to select class and batch"
+                android:text="@string/student_list_fragment_layout_txt_select_class_and_batch"
                 android:textColor="@color/gray_1"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -94,7 +94,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/name_edit"
-        android:hint="Search by roll or name"
+        android:hint="@string/student_report_layout_txt_search"
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"

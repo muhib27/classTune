@@ -38,7 +38,7 @@
                         android:background="@color/white"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Select Subject"
+                        android:text="@string/fragment_progress_graph_text_select_subject"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -62,7 +62,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:padding="10dp"
-                        android:hint="Select Subject"
+                        android:hint="@string/fragment_progress_graph_text_select_subject"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -93,7 +93,7 @@
                         android:background="@color/white"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Homework Type"
+                        android:text="@string/activity_teacher_edit_homework_homework_type"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -115,7 +115,7 @@
                         android:ems="7"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:hint="Select Type"
+                        android:hint="@string/activity_teacher_edit_homework_homework_select_type"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -153,7 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:text="Title"
+                        android:text="@string/lesson_plan_subject_details_activity_title"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -172,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:cursorVisible="true"
-                        android:hint="Type Homework Title"
+                        android:hint="@string/activity_teacher_edit_homework_homework_type_title"
                         android:padding="10dp"
                         android:textColor="@color/black"
                         android:textCursorDrawable="@drawable/cursor_color"
@@ -190,7 +190,7 @@
                 android:background="@null"
                 android:gravity="top"
                 android:lines="5"
-                android:hint="Write Homework Description..."
+                android:hint="@string/activity_teacher_edit_homework_homework_txt_hint_homework_description"
                 android:textSize="14sp"
                 android:padding="10dp"
                 android:textColor="@color/black"
@@ -225,7 +225,7 @@
                         android:id="@+id/tv_teacher_ah_choosen_file_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No File Attached"
+                        android:text="@string/activity_teacher_edit_homework_homework_txt_no_file_attached"
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -245,7 +245,7 @@
                     android:clickable="true"
                     android:gravity="center"
                     custom:iconImage="@drawable/small_calendar_icon"
-                    custom:iconText="Due Date" />
+                    custom:iconText="@string/activity_teacher_edit_homework_homework_txt_due_date" />
 
                 <LinearLayout
                     android:id="@+id/layoutDate"

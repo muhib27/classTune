@@ -42,7 +42,7 @@
                     android:id="@+id/txtTitleLessonPlan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lesson Plan"
+                    android:text="@string/activity_edit_lessonplan_txt_header"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -51,7 +51,6 @@
                     android:id="@+id/txtDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="25th July 2015"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
@@ -89,7 +88,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:gravity="left"
-                        android:text="Title"
+                        android:text="@string/lesson_plan_subject_details_activity_title"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -117,7 +116,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dip"
                             android:layout_weight="1"
-                            android:hint="Type Title"
+                            android:hint="@string/fragment_lessonplan_add_txt_hint_type_title"
                             android:textColor="@android:color/black"
                             android:textSize="14sp" />
 

@@ -32,7 +32,7 @@
     			android:scrollHorizontally="true" 
 	    		android:focusable="true" 
     			android:focusableInTouchMode="true"
-                android:text="Name" />
+                android:text="@string/activity_teacherhomeworkdone_txt_name" />
 
         </LinearLayout>
         
@@ -60,7 +60,7 @@
     			android:scrollHorizontally="true" 
 	    		android:focusable="true" 
     			android:focusableInTouchMode="true"
-                android:text="Roll" />
+                android:text="@string/activity_teacherhomeworkdone_txt_roll" />
 
         </LinearLayout>
         

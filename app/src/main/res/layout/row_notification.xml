@@ -32,7 +32,6 @@
 	            android:id="@+id/tv_ntitle" 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="SOME TITLE"
 	            android:textColor="@color/black"/>
 	        <TextView 
 	            android:layout_marginTop="5dp"
@@ -40,8 +39,7 @@
 	            android:id="@+id/tv_ndescription"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="SOME DESCRIPTION"
-				android:maxLines="2"
+	            android:maxLines="2"
 				android:ellipsize="end"
 	            android:textColor="@color/black"/>
 	    </LinearLayout>

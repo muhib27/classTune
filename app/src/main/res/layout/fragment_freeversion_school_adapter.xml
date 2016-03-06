@@ -49,7 +49,6 @@
                             android:id="@+id/txtCategoryName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
                             android:textColor="@android:color/black"
                             android:textSize="14sp" />
 
@@ -62,7 +61,6 @@
                                 android:id="@+id/txtPublishedDateString"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="TextView"
                                 android:textColor="@color/gray_1"
                                 android:textSize="12sp" />
 
@@ -88,7 +86,6 @@
                             android:id="@+id/fv_post_tv_seen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="25"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
@@ -96,7 +93,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="-2dp"
-                            android:text="Seen"
+                            android:text="@string/fragment_freeversion_school_adapter_txt_seen"
                             android:textSize="10sp" />
                     </LinearLayout>
                 </LinearLayout>

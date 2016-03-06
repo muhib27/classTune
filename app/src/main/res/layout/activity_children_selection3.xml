@@ -34,7 +34,6 @@
             android:id="@+id/txtSchoolName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="This is the school name"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:gravity="center"

@@ -34,7 +34,7 @@
             android:singleLine="true"
             android:textSize="10sp"
             android:marqueeRepeatLimit="marquee_forever"
-            android:text="Bangla" />
+            android:text="@string/row_weekly_routine_sub_name" />
     </LinearLayout>
 
     <LinearLayout

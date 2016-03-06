@@ -32,7 +32,7 @@
             android:id="@+id/txt_category_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Events"
+            android:text="@string/parent_event_layout_custom_txt_header"
             android:textColor="@color/gray_1"
             android:textSize="18sp"
             android:textStyle="bold" />

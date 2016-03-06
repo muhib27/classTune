@@ -29,7 +29,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
         android:background="@drawable/name_edit"
-        android:hint="Search by roll or name"
+        android:hint="@string/student_report_layout_txt_search"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"

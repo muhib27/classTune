@@ -29,7 +29,7 @@
             android:id="@+id/txt_category_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Quiz"
+            android:text="@string/fragment_quiz_header"
             android:textColor="@color/gray_1"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -49,7 +49,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/white"
             android:gravity="center"
-            android:text="No quiz available now!"
+            android:text="@string/fragment_quiz_txt_no_quiz_available"
             android:textColor="@color/classtune_green_color"
             android:textSize="20sp"
             android:textStyle="bold"

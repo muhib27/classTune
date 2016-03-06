@@ -41,7 +41,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Class"
+                    android:text="@string/calendar_txt_total_class"
                     android:textColor="@color/dark_grey"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -71,7 +71,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Present"
+                    android:text="@string/calendar_txt_present"
                     android:textColor="@color/dark_grey"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -101,7 +101,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Absent"
+                    android:text="@string/calendar_txt_absent"
                     android:textColor="@color/dark_grey"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -131,7 +131,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Late"
+                    android:text="@string/calendar_txt_late"
                     android:textColor="@color/dark_grey"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -161,7 +161,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Leave"
+                    android:text="@string/calendar_txt_leave"
                     android:textColor="@color/dark_grey"
                     android:textSize="10sp"
                     android:textStyle="bold" />

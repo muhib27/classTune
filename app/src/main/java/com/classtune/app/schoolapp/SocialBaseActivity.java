@@ -342,9 +342,9 @@ public abstract class SocialBaseActivity extends RoboFragmentActivity implements
 
 	@Override
 	public void onClick(View view) {
-		if (view.getId() == R.id.google_login_btn) {
+		/*if (view.getId() == R.id.google_login_btn) {
 			//mPlus.signIn(REQUEST_CODE_PLUS_CLIENT_FRAGMENT);
-		}
+		}*/
 	}
 
 	public void doGooglePlusLogin()

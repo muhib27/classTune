@@ -45,7 +45,7 @@
                         android:id="@+id/txtSubjectName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lesson Plan"
+                        android:text="@string/activity_edit_lessonplan_txt_header"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -84,7 +84,7 @@
                     android:gravity="center"
                     android:padding="5dp"
                     custom:iconImageTab="@drawable/lesson_plan_view_normal"
-                    custom:iconTextTab="View Lesson Plan" />
+                    custom:iconTextTab="@string/fragment_lessonplan_teacher_btn_view_lesson_plan" />
             </LinearLayout>
 
             <LinearLayout
@@ -101,7 +101,7 @@
                     android:gravity="center"
                     android:padding="5dp"
                     custom:iconImageTab="@drawable/lesson_plan_add_normal"
-                    custom:iconTextTab="Add New Lesson" />
+                    custom:iconTextTab="@string/fragment_lessonplan_teacher_add_new_lesson" />
             </LinearLayout>
 
 

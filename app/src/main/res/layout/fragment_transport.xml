@@ -31,7 +31,7 @@
             android:id="@+id/txt_category_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Transport"
+            android:text="@string/fragment_transport_txt_header"
             android:textColor="@color/gray_1"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -101,13 +101,13 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Transport" />
+                                android:text="@string/fragment_transport_txt_header" />
 
                             <TextView
                                 android:id="@+id/txtLastUpdate1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Last update: "
+                                android:text="@string/fragment_transport_txt_last_update"
                                 android:textColor="#b1b8ba" />
                         </LinearLayout>
                     </LinearLayout>
@@ -126,7 +126,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Pick up location" />
+                            android:text="@string/fragment_transport_txt_pick_up_location" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -154,7 +154,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Drop location" />
+                            android:text="@string/fragment_transport_txt_drop_location" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -209,13 +209,13 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Transportation Schedule" />
+                                android:text="@string/fragment_transport_txt_transportation_schedule" />
 
                             <TextView
                                 android:id="@+id/txtLastUpdate2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Last update: "
+                                android:text="@string/fragment_transport_txt_last_update"
                                 android:textColor="#b1b8ba" />
                         </LinearLayout>
                     </LinearLayout>
@@ -238,7 +238,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Day"
+                            android:text="@string/fragment_transport_txt_day"
                             android:textColor="@color/classtune_green_color"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -254,7 +254,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Home Pick Up Time"
+                            android:text="@string/fragment_transport_txt_home_pick_up_time"
                             android:textColor="@color/classtune_green_color"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -270,7 +270,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="School Pick Up Time"
+                            android:text="@string/fragment_transport_txt_school_pick_up_time"
                             android:textColor="@color/classtune_green_color"
                             android:textSize="12sp" />
                     </LinearLayout>

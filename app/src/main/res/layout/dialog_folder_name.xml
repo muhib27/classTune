@@ -43,7 +43,7 @@
             android:layout_marginTop="10dip"
             android:layout_weight="1"
             android:background="@drawable/red_btn"
-            android:text="Create"
+            android:text="@string/dialog_folder_name_btn_create"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -60,7 +60,7 @@
             android:layout_marginTop="10dip"
             android:layout_weight="1"
             android:background="@drawable/red_btn"
-            android:text="Cancel"
+            android:text="@string/btn_cancel"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />

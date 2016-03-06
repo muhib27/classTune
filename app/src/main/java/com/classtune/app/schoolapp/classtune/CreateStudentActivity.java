@@ -267,7 +267,7 @@ public class CreateStudentActivity extends FragmentActivity implements UserAuthL
         spinnerGender = (Spinner)this.findViewById(R.id.spinnerGender);
         txtContact = (EditText)this.findViewById(R.id.txtContact);
         txtAdmission = (EditText)this.findViewById(R.id.txtAdmission);
-        btnCreate = (Button)this.findViewById(R.id.btnCreate);
+        //btnCreate = (Button)this.findViewById(R.id.btnCreate);
 
         layoutUserIdHolder = (LinearLayout)this.findViewById(R.id.layoutUserIdHolder);
         txtUserId = (TextView)this.findViewById(R.id.txtUserId);

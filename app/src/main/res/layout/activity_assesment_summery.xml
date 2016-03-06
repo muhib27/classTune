@@ -39,7 +39,7 @@
                         android:id="@+id/txtTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Quiz Result Details"
+                        android:text="@string/activity_assesment_summery_txt_title"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />

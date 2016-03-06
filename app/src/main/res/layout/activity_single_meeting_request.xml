@@ -36,7 +36,7 @@
             android:id="@+id/txt_category_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Meeting Request"
+            android:text="@string/activity_single_meeting_request_txt_header"
             android:textColor="@color/gray_1"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -93,7 +93,7 @@
                         android:gravity="center"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:text="Meeting with:" />
+                        android:text="@string/activity_single_meeting_request_txt_meeting_with" />
 
                     <LinearLayout
                         android:layout_width="1dp"
@@ -109,8 +109,7 @@
                         android:padding="10dp"
                         android:gravity="center"
                         android:layout_weight="2"
-                        android:textColor="@android:color/black"
-                        android:text="TextView" />
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
 
@@ -136,7 +135,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:padding="10dp"
-                            android:text="Batch:"
+                            android:text="@string/activity_single_meeting_request_txt_batch"
                             android:textColor="@android:color/black" />
 
                         <LinearLayout
@@ -152,7 +151,6 @@
                             android:layout_weight="2"
                             android:gravity="center"
                             android:padding="10dp"
-                            android:text="TextView"
                             android:textColor="@android:color/black" />
                     </LinearLayout>
                 </LinearLayout>
@@ -174,7 +172,7 @@
                         android:gravity="center"
                         android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:text="Date:" />
+                        android:text="@string/activity_single_meeting_request_txt_date" />
 
                     <LinearLayout
                         android:layout_width="1dp"
@@ -190,8 +188,7 @@
                         android:padding="10dp"
                         android:gravity="center"
                         android:layout_weight="2"
-                        android:textColor="@android:color/black"
-                        android:text="TextView" />
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
 
@@ -210,8 +207,7 @@
                         android:id="@+id/txtDescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:text="TextView" />
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
 
@@ -233,7 +229,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Pending"
+                        android:text="@string/activity_single_meeting_request_txt_pending"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 

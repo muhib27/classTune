@@ -44,7 +44,7 @@
                         android:id="@+id/txtSubjectName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lesson Plan"
+                        android:text="@string/activity_edit_lessonplan_txt_header"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -52,7 +52,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lesson Plans"
+                        android:text="@string/activity_edit_lessonplan_txt_header"
                         android:textColor="@color/gray_1"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="10dp"
-                android:text="Date"
+                android:text="@string/title_date"
                 android:gravity="center"
                 android:textSize="18sp"
                 android:textColor="@color/classtune_green_color"/>
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:padding="10dp"
-                android:text="Title"
+                android:text="@string/lesson_plan_subject_details_activity_title"
                 android:layout_gravity="center"
                 android:textSize="18sp"
                 android:textColor="@color/classtune_green_color"/>

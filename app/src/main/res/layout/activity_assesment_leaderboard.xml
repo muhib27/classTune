@@ -37,7 +37,7 @@
                     android:id="@+id/txtTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Leader Board"
+                    android:text="@string/activity_assesment_leaderboard_txt_header"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -92,7 +92,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:background="@drawable/btn_red_back"
-        android:text="Quiz Rules"
+        android:text="@string/activity_assesment_leaderboard_btn_quiz_rules"
         android:textColor="@android:color/white"
         android:textSize="22sp"
         android:textStyle="bold" />

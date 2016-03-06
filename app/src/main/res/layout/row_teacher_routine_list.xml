@@ -40,7 +40,7 @@
                 android:id="@+id/tv_class_batch_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Routine"
+                android:text="@string/routine_layout_txt_header"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
             
@@ -48,7 +48,7 @@
                 android:id="@+id/tv_subject_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Routine"
+                android:text="@string/routine_layout_txt_header"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -58,7 +58,6 @@
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="11.00 AM"
                 android:textColor="@color/gray_1"
                 android:textSize="14sp" />
         </LinearLayout>

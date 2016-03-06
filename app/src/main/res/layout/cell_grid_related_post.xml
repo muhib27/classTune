@@ -30,7 +30,6 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="14dip"
-            android:text="Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello"
             android:ellipsize="end"
             android:maxLines="2"/>
         

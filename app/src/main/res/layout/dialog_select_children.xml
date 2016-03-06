@@ -45,7 +45,7 @@
                         android:id="@+id/txt_header_childid"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Child ID "
+                        android:text="@string/dialog_select_children_txt_child_id"
                         android:layout_weight=".5"
                         android:textColor="@android:color/black"
                         android:textSize="14sp"/>
@@ -68,7 +68,7 @@
                         android:id="@+id/txt_header_relation"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Relation "
+                        android:text="@string/dialog_select_children_txt_relation"
                         android:layout_weight=".5"
                         android:textColor="@android:color/black"
                         android:textSize="14sp"/>
@@ -97,7 +97,7 @@
                     android:id="@+id/btnDone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Done"
+                    android:text="@string/btn_done"
                     android:textColor="@android:color/black"/>
 
             </LinearLayout>

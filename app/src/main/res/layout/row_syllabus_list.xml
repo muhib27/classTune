@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip"
-                    android:text="Last updated"
+                    android:text="@string/row_syllabus_list_txt_last_updated"
                     android:textSize="12sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/gray_1" />
@@ -60,7 +60,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip"
-                    android:text="25/07/2014"
                     android:textSize="12sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/gray_1" />

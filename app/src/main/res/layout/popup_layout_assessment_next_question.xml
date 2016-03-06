@@ -29,7 +29,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="GOOD READ"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
@@ -65,7 +64,6 @@
                     android:id="@+id/popup_tv_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="here is some description text there will be a bunch of text here."
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -83,7 +81,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Question"
+                        android:text="@string/popup_layout_assessment_next_question_txt_question"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -94,8 +92,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        android:layout_marginTop="10dp"
-                        android:text="TextView" />
+                        android:layout_marginTop="10dp" />
 
                 </LinearLayout>
 
@@ -109,7 +106,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Correct Answer"
+                        android:text="@string/popup_layout_assessment_next_question_txt_correct_answer"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -120,8 +117,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        android:layout_marginTop="10dp"
-                        android:text="TextView" />
+                        android:layout_marginTop="10dp" />
 
                 </LinearLayout>
 
@@ -165,7 +161,7 @@
                         android:textColor="@android:color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:text="Explanation"
+                        android:text="@string/popup_layout_assessment_next_question_btn_explanation"
                         android:background="@drawable/btn_red_back" />
                     <Button
                         android:id="@+id/btnNext"

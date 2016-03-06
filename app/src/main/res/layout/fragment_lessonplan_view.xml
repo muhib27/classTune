@@ -33,7 +33,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:gravity="left"
-                        android:text="Select Batch"
+                        android:text="@string/fragment_lessonplan_view_txt_select_batch"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -61,7 +61,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dip"
                             android:layout_weight="1"
-                            android:hint="Select Batch"
+                            android:hint="@string/fragment_lessonplan_view_txt_select_batch"
                             android:textColor="@android:color/black"
                             android:textSize="14sp" />
 
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:gravity="left"
-                        android:text="Select Category"
+                        android:text="@string/fragment_lessonplan_view_txt_select_category"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -120,7 +120,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dip"
                             android:layout_weight="1"
-                            android:hint="Select Category"
+                            android:hint="@string/fragment_lessonplan_view_txt_select_category"
                             android:textColor="@android:color/black"
                             android:textSize="14sp" />
 
@@ -207,7 +207,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="Title"
+                        android:text="@string/lesson_plan_subject_details_activity_title"
                         android:gravity="center"
                         android:textColor="@android:color/black"/>
 
@@ -224,7 +224,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.5"
-                        android:text="Category"
+                        android:text="@string/fragment_lessonplan_view_txt_category"
                         android:gravity="center"
                         android:textColor="@android:color/black" />
 
@@ -242,7 +242,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="Subject"
+                        android:text="@string/popup_layout_homework_assessment_result_txt_subject"
                         android:gravity="center"
                         android:textColor="@android:color/black" />
 
@@ -262,7 +262,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.5"
-                        android:text="Status"
+                        android:text="@string/fragment_lessonplan_view_txt_status"
                         android:gravity="center"
                         android:textColor="@android:color/black" />
 

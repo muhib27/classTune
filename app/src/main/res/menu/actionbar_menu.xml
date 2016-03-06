@@ -33,7 +33,7 @@
         android:id="@+id/action_notification_new"
         android:actionLayout="@layout/action_notification_layout"
         android:showAsAction="always"
-        android:title="Notification">
+        android:title="@string/actionbar_menu_notification">
     </item>
 
 
@@ -41,6 +41,6 @@
         android:id="@+id/action_drawer"
         android:icon="@drawable/ic_drawer"
         android:showAsAction="always"
-        android:title="drawer"/>
+        android:title="@string/actionbar_menu_drawer"/>
 
 </menu>

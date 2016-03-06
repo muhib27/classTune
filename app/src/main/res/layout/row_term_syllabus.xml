@@ -29,7 +29,7 @@
     			android:scrollHorizontally="true" 
 	    		android:focusable="true" 
     			android:focusableInTouchMode="true"
-                android:text="Date" />
+                android:text="@string/row_term_syllabus_txt_date" />
 
         </LinearLayout>
         
@@ -58,7 +58,7 @@
     			android:scrollHorizontally="true" 
 	    		android:focusable="true" 
     			android:focusableInTouchMode="true"
-                android:text="Exam Name" />
+                android:text="@string/row_term_syllabus_txt_exam_name" />
 
         </LinearLayout>
         
@@ -90,7 +90,7 @@
     			android:scrollHorizontally="true" 
 	    		android:focusable="true" 
     			android:focusableInTouchMode="true"
-                android:text="Action" />
+                android:text="@string/row_term_syllabus_txt_exam_action" />
 
         </LinearLayout>
         

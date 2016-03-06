@@ -48,7 +48,7 @@
                         android:id="@+id/batch_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Leave Application"
+                        android:text="@string/leave_application_layout_txt_header"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
@@ -82,7 +82,7 @@
                         android:background="@color/white"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Start Date: "
+                        android:text="@string/leave_application_diolog_layout_start_date"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -140,7 +140,7 @@
                         android:background="@color/white"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="End Date: "
+                        android:text="@string/leave_application_diolog_layout_end_date"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -199,7 +199,7 @@
                         android:background="@color/white"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Reason for Leave:"
+                        android:text="@string/leave_application_layout_txt_reason_for_leave"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -224,7 +224,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:padding="10dp"
-                        android:text="Reason Text"
+                        android:text="@string/leave_application_layout_txt_reason"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -253,7 +253,7 @@
                     android:layout_height="35dp"
                     android:background="@color/gray_2"
                     android:gravity="top"
-                    android:hint="Write Subject..."
+                    android:hint="@string/leave_application_layout_txt_write_subject"
                     android:lines="7"
                     android:padding="10dp"
                     android:textColor="@color/black"
@@ -267,7 +267,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/gray_2"
                     android:gravity="top"
-                    android:hint="Write Description..."
+                    android:hint="@string/leave_application_layout_txt_write_description"
                     android:lines="7"
                     android:padding="10dp"
                     android:textColor="@color/black"
@@ -281,7 +281,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/btn_apply_leave"
-                    android:text="Apply for Leave"
+                    android:text="@string/leave_application_layout_btn_apply_for_leave"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/white"
                     android:textStyle="bold" />

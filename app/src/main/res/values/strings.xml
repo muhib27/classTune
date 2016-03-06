@@ -506,6 +506,7 @@
     <string name="teacher_routine_title">Routine of %1$s</string>
     <string name="no_class_title">You have no class on %1$s</string>
     <string name="title_date">Date</string>
+    <string name="title_exam_calendar_action">Action</string>
 
     <!-- Fees -->
     <string name="tab_fees_due">Due Payment</string>
@@ -824,10 +825,239 @@
 
     <!--CreateFolderDialog-->
     <string name="dialog_folder_name_txt_error">* Folder must have a name!</string>
+    <string name="dialog_folder_name_btn_create">Create</string>
 
     <!--SingleHomeworkActivity-->
     <string name="activity_single_homework_txt_no_data_available">No data available!</string>
 
+    <!--QuizFragment-->
+    <string name="fragment_quiz_header">Quiz</string>
+    <string name="fragment_quiz_txt_no_quiz_available">No quiz available now!</string>
 
+    <!--WeeklyRoutineFragment-->
+    <string name="fragment_weekly_routine_time">Time</string>
+    <string name="fragment_weekly_routine_sat">SAT</string>
+    <string name="fragment_weekly_routine_sun">SUN</string>
+    <string name="fragment_weekly_routine_mon">MON</string>
+    <string name="fragment_weekly_routine_tue">TUE</string>
+    <string name="fragment_weekly_routine_wed">WED</string>
+    <string name="fragment_weekly_routine_thu">THU</string>
+    <string name="row_weekly_routine_sub_name">Bangla</string>
+
+    <!--PopupDialogAssessmentNextQuestion-->
+    <string name="popup_layout_assessment_next_question_txt_question">Question</string>
+    <string name="popup_layout_assessment_next_question_txt_correct_answer">Correct Answer</string>
+    <string name="popup_layout_assessment_next_question_btn_explanation">Explanation</string>
+    <string name="popup_layout_assessment_next_question_btn_next">Next</string>
+
+    <!--SyllabusFragment-->
+    <string name="row_term_syllabus_txt_date">Date</string>
+    <string name="row_term_syllabus_txt_exam_name">Exam Name</string>
+    <string name="row_term_syllabus_txt_exam_action">Action</string>
+
+    <!--StudentReportTeacherFragment-->
+    <string name="student_report_layout_txt_search">Search by roll or name</string>
+
+    <!--TeacherHomeWorkFragment-->
+    <string name="teacher_homework_txt_homework">Homework</string>
+
+    <!--LoginActivity-->
+    <string name="activity_login_txt_sign_in">Sign in to your account</string>
+    <string name="activity_login_txt_sign_in_txt_hint_username">Username</string>
+    <string name="activity_login_btn_sign_in">Sign In</string>
+    <string name="activity_login_txt_forgot_password">Forgot Password?</string>
+
+    <!--FeesTabhostFragment-->
+    <string name="fees_tabhost_layout_txt_header">Fees</string>
+
+    <!--TransportFragment-->
+    <string name="fragment_transport_txt_header">Transport</string>
+    <string name="fragment_transport_txt_last_update">Last update: </string>
+    <string name="fragment_transport_txt_pick_up_location">Pick up location</string>
+    <string name="fragment_transport_txt_drop_location">Drop location</string>
+    <string name="fragment_transport_txt_transportation_schedule">Transportation Schedule</string>
+    <string name="fragment_transport_txt_day">Day</string>
+    <string name="fragment_transport_txt_home_pick_up_time">Home Pick Up Time</string>
+    <string name="fragment_transport_txt_school_pick_up_time">School Pick Up Time</string>
+
+    <!--ParentAttendenceFragment-->
+    <string name="parent_attendance_layout_txt_header">Attendance</string>
+
+    <!--RoutineFragment-->
+    <string name="routine_layout_txt_header">Routine</string>
+
+    <!--TeacherHomeworkDoneActivity-->
+    <string name="activity_teacherhomeworkdone_txt_name">Name</string>
+    <string name="activity_teacherhomeworkdone_txt_roll">Roll</string>
+
+    <!--NoticeFragment--> <!--NoticeFragmentNew-->
+    <string name="fragment_notice_txt_header">Notice</string>
+
+    <!--ParentEventFragment-->
+    <string name="parent_event_layout_custom_txt_header">Events</string>
+
+    <!--AcademicCalendarEvents-->
+    <string name="fragment_academic_calendar_exam_txt_header">Exam Routine</string>
+
+    <!--LessonPlanView-->
+    <string name="fragment_lessonplan_view_txt_select_batch">Select Batch</string>
+    <string name="fragment_lessonplan_view_txt_select_category">Select Category</string>
+    <string name="fragment_lessonplan_view_txt_category">Category</string>
+    <string name="fragment_lessonplan_view_txt_status">Status</string>
+
+    <!--ParentAcademicCalender-->
+    <string name="parent_academic_calender_layout_txt_header">Academic Calendar</string>
+
+    <!--Menu-->
+    <string name="actionbar_menu_notification">Notification</string>
+    <string name="actionbar_menu_drawer">drawer</string>
+
+    <!--LessonPlanAdd-->
+    <string name="fragment_lessonplan_add_txt_hint_type_title">Type Title</string>
+    <string name="fragment_lessonplan_add_txt_subject_and_class">Subject and Class</string>
+    <string name="fragment_lessonplan_add_txt_hint_select_subject_and_class">Select Subject and Class</string>
+    <string name="fragment_lessonplan_add_txt_lecture_date">Lecture Date</string>
+    <string name="fragment_lessonplan_add_txt_hint_select_lecture_date">Select Lecture Date</string>
+    <string name="fragment_lessonplan_add_txt_hint_description">Type here...</string>
+    <string name="fragment_lessonplan_add_btn_save_and_publish">Save and Publish</string>
+
+    <!--TeachersAttendanceTabhostFragment-->
+    <string name="teacher_attendance_tabhost_layout_txt_select_batch">Select a batch</string>
+
+    <!--StudentClassRoutineFragment--> <!--TeacherRoutineFragment-->
+    <string name="teacher_routine_fragment_layout_txt_tap_to_select_the_day">Tap to select the day</string>
+
+    <!--StudentListFragment-->
+    <string name="student_list_fragment_layout_txt_header">Student List</string>
+    <string name="student_list_fragment_layout_txt_select_class_and_batch">Tap to select class and batch</string>
+
+    <!--SingleMeetingRequestActivity-->
+    <string name="activity_single_meeting_request_txt_header">Meeting Request</string>
+    <string name="activity_single_meeting_request_txt_meeting_with">Meeting with:</string>
+    <string name="activity_single_meeting_request_txt_batch">Batch:</string>
+    <string name="activity_single_meeting_request_txt_date">Date:</string>
+    <string name="activity_single_meeting_request_txt_pending">Pending</string>
+
+    <!--SingleNoticeActivity-->
+    <string name="activity_single_notice_txt_header">Notice</string>
+
+    <!--AssessmentLeaderBoardActivity-->
+    <string name="activity_assesment_leaderboard_txt_header">Leader Board</string>
+    <string name="activity_assesment_leaderboard_btn_quiz_rules">Quiz Rules</string>
+
+    <!--StudentListActivity-->
+    <string name="activity_student_list_roll_no">Roll No</string>
+    <string name="activity_student_list_student_name">Student name</string>
+
+    <!--AssessmentRules-->
+    <string name="activity_assesment_rules_num1">1</string>
+    <string name="activity_assesment_rules_num2">2</string>
+    <string name="activity_assesment_rules_num3">3</string>
+    <string name="activity_assesment_rules_num4">4</string>
+    <string name="activity_assesment_rules_num5">5</string>
+    <string name="activity_assesment_rules_txt_num1">Top 100 scorers will be on the leader board.</string>
+    <string name="activity_assesment_rules_txt_num2">If two players have the same score, then their play timing will be taken into consideration.</string>
+    <string name="activity_assesment_rules_txt_num3">At the unlikely event where the score and play timing of two players match, then number of attempts will be taken into consideration.</string>
+    <string name="activity_assesment_rules_txt_num4">At the very unlikely event where the score, play timing and number of attempts of two players match, then average the lowest timing to answer questions will be taken into consideration.</string>
+    <string name="activity_assesment_rules_txt_num5">A player can play a specific topic once every 24 hours. In the meantime, she can attempt other quiz topics.</string>
+
+    <!--SingleTeacherEditHomeworkActivity-->
+    <string name="activity_teacher_edit_homework_homework_type">Homework Type</string>
+    <string name="activity_teacher_edit_homework_homework_select_type">Select Type</string>
+    <string name="activity_teacher_edit_homework_homework_type_title">Type Homework Title</string>
+    <string name="activity_teacher_edit_homework_homework_txt_hint_homework_description">Write Homework Description...</string>
+    <string name="activity_teacher_edit_homework_homework_txt_no_file_attached">No File Attached</string>
+    <string name="activity_teacher_edit_homework_homework_txt_due_date">Due Date</string>
+
+
+    <!--ReportClassTestFragment-->
+    <string name="row_classtest_report_txt_your_mark">Your Mark</string>
+    <string name="row_classtest_report_txt_highest_mark">Highest Mark</string>
+    <string name="row_classtest_report_txt_total_mark">Total Mark</string>
+    <string name="row_classtest_report_btn_all_class_test">All Class Test</string>
+
+    <!--AssessmentSummeryActivity-->
+    <string name="activity_assesment_summery_txt_title">Quiz Result Details</string>
+
+    <!--HomeworkFragment-->
+    <string name="fragment_homework_txt_filter">Filter</string>
+
+    <!--TeacherRoutineAdapter-->
+    <string name="row_teacher_routine_list"></string>
+
+    <!--AttendenceFragment-->
+    <string name="calendar_txt_total_class">Total Class</string>
+    <string name="calendar_txt_present">Present</string>
+    <string name="calendar_txt_absent">Absent</string>
+    <string name="calendar_txt_late">Late</string>
+    <string name="calendar_txt_leave">Leave</string>
+
+    <!--EditLessonPlanActivity-->
+    <string name="activity_edit_lessonplan_txt_header">Lesson Plan</string>
+
+    <!--FeesDueFragment--> <!--FeesHistoryFragment-->
+    <string name="fragment_feesduefragment_txt_header">Fees</string>
+    <string name="fragment_feesduefragment_txt_description">Description</string>
+    <string name="fragment_feesduefragment_txt_amount">Amount</string>
+
+
+    <!--HomeworkFragment-->
+    <string name="item_homework_feed_txt_due_date">Due Date: </string>
+    <string name="item_homework_feed_assigned_date">Assigned Date: </string>
+
+
+    <!--DialogSelectChildren-->
+    <string name="dialog_select_children_txt_child_id">Child ID</string>
+    <string name="dialog_select_children_txt_relation">Relation</string>
+
+
+    <!--LessonPlanStudentParent-->
+    <string name="fragment_lessonplan_student_parent_txt_subject_list">Subject List</string>
+
+
+    <!--LessonPlanTeacher-->
+    <string name="fragment_lessonplan_teacher_btn_view_lesson_plan">View Lesson Plan</string>
+    <string name="fragment_lessonplan_teacher_add_new_lesson">Add New Lesson</string>
+
+
+    <!--SyllabusFragment-->
+    <string name="fragment_syllabus_new_txt_header">Syllabus</string>
+    <string name="fragment_syllabus_new_tap_select_batch">Tap here to select a batch</string>
+    <string name="fragment_syllabus_new_txt_term_exam">Term Exam</string>
+    <string name="fragment_syllabus_new_class_test">Class Test</string>
+
+    <!--InfoPageMainActivity-->
+    <string name="activity_classtune_infopage_main_txt_what_is">What is</string>
+
+    <!--LeaveApplicationFragment-->
+    <string name="leave_application_layout_txt_header">Leave Application</string>
+
+
+    <!--LeaveApplicationFragment-->
+    <string name="leave_application_layout_txt_reason_for_leave">Reason for Leave:</string>
+    <string name="leave_application_layout_txt_reason">Reason Text</string>
+    <string name="leave_application_layout_txt_write_subject">Write Subject...</string>
+    <string name="leave_application_layout_txt_write_description">Write Description...</string>
+    <string name="leave_application_layout_btn_apply_for_leave">Apply for Leave</string>
+
+
+    <!--ParentReportCardFragment-->
+    <string name="parent_report_card_layout_txt_header">Report Card</string>
+
+
+    <!--SchoolFeedFragment-->
+    <string name="feed_item_txt_homeworks">Homeworks</string>
+    <string name="feed_item_txt_new">New</string>
+
+    <string name="fragment_freeversion_school_adapter_txt_seen">Seen</string>
+
+
+    <!--SingleLessonPlan-->
+    <string name="activity_single_lessonplan_btn_delete_lesson_plan">Delete Lesson Plan</string>
+    <string name="activity_single_lessonplan_btn_edit_lesson_plan">Edit Lesson Plan</string>
+
+
+    <!--SyllabusMidLayerActivity-->
+    <string name="row_syllabus_list_txt_last_updated">Last updated</string>
 
 </resources>

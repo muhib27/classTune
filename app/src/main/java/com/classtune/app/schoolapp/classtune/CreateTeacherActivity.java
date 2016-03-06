@@ -195,7 +195,7 @@ public class CreateTeacherActivity extends FragmentActivity implements UserAuthL
         txtUserId = (TextView)this.findViewById(R.id.txtUserId);
 
         txtEmployeeNumber = (EditText)this.findViewById(R.id.txtEmployeeNumber);
-        pickerDob = (DatePicker)this.findViewById(R.id.pickerDob);
+        //pickerDob = (DatePicker)this.findViewById(R.id.pickerDob);
         spinnerGender = (Spinner)this.findViewById(R.id.spinnerGender);
         txtContact = (EditText)this.findViewById(R.id.txtContact);
         txtJobTitle = (EditText)this.findViewById(R.id.txtJobTitle);
@@ -203,7 +203,7 @@ public class CreateTeacherActivity extends FragmentActivity implements UserAuthL
         spinnerDepartment = (Spinner)this.findViewById(R.id.spinnerDepartment);
         spinnerGrade = (Spinner)this.findViewById(R.id.spinnerGrade);
 
-        pickerJoiningDate = (DatePicker)this.findViewById(R.id.pickerJoiningDate);
+       // pickerJoiningDate = (DatePicker)this.findViewById(R.id.pickerJoiningDate);
 
 
         txtDob = (TextView)this.findViewById(R.id.txtDob);

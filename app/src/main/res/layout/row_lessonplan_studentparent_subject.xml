@@ -40,7 +40,6 @@
                 android:id="@+id/txtSubjectName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Physics"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -49,7 +48,6 @@
                 android:id="@+id/txtPublishDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Last Updated 8 April 2015"
                 android:textColor="@color/gray_1"
                 android:textSize="12sp" />
 

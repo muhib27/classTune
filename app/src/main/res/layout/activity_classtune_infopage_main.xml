@@ -47,7 +47,7 @@
                 <com.classtune.app.schoolapp.classtune.TextViewPlus
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="What is"
+                    android:text="@string/activity_classtune_infopage_main_txt_what_is"
                     android:textSize="48sp"
                     android:textColor="@color/classtune_green_color_what_is"
                     custom:customFont="fonts/breeserif_regular.otf"
