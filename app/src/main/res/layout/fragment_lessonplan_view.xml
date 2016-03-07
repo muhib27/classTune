@@ -293,7 +293,7 @@
                     android:id="@+id/txtMessage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="No data available!"
+                    android:text="@string/activity_single_homework_txt_no_data_available"
                     android:textColor="@color/classtune_green_color"
                     android:background="@android:color/white"
                     android:gravity="center"

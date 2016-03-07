@@ -150,7 +150,7 @@
                     android:textSize="20sp"
                     android:textColor="@color/classtune_green_color"
                     android:layout_gravity="center"
-                    android:text="No data available!"
+                    android:text="@string/activity_single_homework_txt_no_data_available"
                     android:visibility="gone"
                     android:textStyle="bold"/>
                 <ListView

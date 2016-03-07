@@ -79,7 +79,7 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Total Student"
+                    android:text="@string/class_report_layout_txt_total_student"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -102,7 +102,7 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="View"
+                    android:text="@string/student_row_item_view"
                     android:textColor="@color/gray_1"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -120,7 +120,7 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Present"
+                    android:text="@string/calendar_txt_present"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -143,7 +143,7 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="View"
+                    android:text="@string/student_row_item_view"
                     android:textColor="@color/gray_1"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -161,7 +161,7 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Absent"
+                    android:text="@string/calendar_txt_absent"
                     android:textColor="@color/absent"
                     android:textSize="16sp" />
 
@@ -184,7 +184,7 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="View"
+                    android:text="@string/student_row_item_view"
                     android:textColor="@color/gray_1"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -202,7 +202,7 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Late"
+                    android:text="@string/calendar_txt_late"
                     android:textColor="@color/late"
                     android:textSize="16sp" />
 
@@ -225,7 +225,7 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="View"
+                    android:text="@string/student_row_item_view"
                     android:textColor="@color/gray_1"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -243,7 +243,7 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="Leave"
+                    android:text="@string/calendar_txt_leave"
                     android:textColor="@color/leave"
                     android:textSize="16sp" />
 
@@ -266,7 +266,7 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:text="View"
+                    android:text="@string/student_row_item_view"
                     android:textColor="@color/gray_1"
                     android:textSize="16sp" />
             </LinearLayout>

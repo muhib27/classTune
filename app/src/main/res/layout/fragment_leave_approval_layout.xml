@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Leave Application"
+                android:text="@string/leave_application_diolog_layout_title"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -60,7 +60,6 @@
                 android:id="@+id/date_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="13th September 2014"
                 android:textColor="@color/gray_1"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -83,7 +82,7 @@
             android:id="@+id/txtMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="No data found!"
+            android:text="@string/fragment_archieved_events_txt_no_data_found"
             android:textColor="@color/classtune_green_color"
             android:gravity="center"
             android:layout_marginTop="10dp"

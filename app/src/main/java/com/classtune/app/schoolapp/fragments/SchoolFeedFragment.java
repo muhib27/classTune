@@ -660,7 +660,16 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                                     .newInstance(pos-1));
                 }
             });
-            switch (view.getId()) {
+
+            if (state) {
+                view.setVisibility(View.VISIBLE);
+                view.setTag("" + pos);
+            } else {
+                view.setVisibility(View.GONE);
+                view.setBackgroundColor(getResources().getColor(R.color.bg_disable));
+                //view.findViewById(R.id.sum_iv_disable).setBackgroundColor(getActivity().getResources().getColor(R.color.red_disable));
+            }
+            /*switch (view.getId()) {
                 case R.id.sum_lay_event:
                 case R.id.sum_lay_has_class_tomorrow:
                 case R.id.sum_lay_homework:
@@ -695,7 +704,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
                 default:
                     break;
-            }
+            }*/
 
         }
     }

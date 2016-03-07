@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray_1"
-                android:text="Filter" />
+                android:text="@string/teacher_homework_txt_filter" />
 
         </LinearLayout>
         
@@ -89,7 +89,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FILTER BY SUBJECT"
+                android:text="@string/teacher_homework_txt_filter_by_subject"
                 android:textColor="@android:color/white" />
         </LinearLayout>
 
@@ -114,7 +114,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FILTER BY DATE"
+                android:text="@string/teacher_homework_txt_filter_by_date"
                 android:textColor="@android:color/white" />
         </LinearLayout>
     </LinearLayout>

@@ -96,7 +96,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Employee No:"
+                    android:text="@string/activity_teacher_info_txt_employee_no"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -137,7 +137,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender :"
+                    android:text="@string/activity_teacher_info_txt_gender"
                     android:textColor="@color/gray_1"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -155,7 +155,7 @@
                     android:id="@+id/tv_profile_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Father Name"
+                    android:text="@string/activity_teacher_info_txt_father_name"
                     android:textColor="@color/gray_5"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -178,7 +178,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Department:"
+                    android:text="@string/activity_teacher_info_txt_department"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -218,7 +218,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Category:"
+                    android:text="@string/activity_teacher_info_txt_category"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -259,7 +259,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone No:"
+                    android:text="@string/activity_teacher_info_txt_phone_no"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -299,7 +299,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date of Birth:"
+                    android:text="@string/activity_teacher_info_txt_dob"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -339,7 +339,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Joining Date:"
+                    android:text="@string/activity_teacher_info_txt_joining_date"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
             </LinearLayout>

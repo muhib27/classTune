@@ -68,7 +68,7 @@
                     android:id="@+id/summary_student_parent_of_label_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Parent of"
+                    android:text="@string/feed_header_new_txt_parent_of"
                     android:textColor="@color/gray_1"
                     android:textSize="12sp"
                     android:visibility="gone" />
@@ -77,7 +77,7 @@
                     android:id="@+id/sum_tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="My "
+                    android:text="@string/feed_header_new_txt_my"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Today"
+                    android:text="@string/feed_header_new_txt_today"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -147,8 +147,7 @@
                 android:layout_marginLeft="5dp"
                 android:id="@+id/status_attendance"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="present today"/>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
         <LinearLayout
@@ -166,7 +165,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next day classes"/>
+                android:text="@string/feed_header_new_next_day_classes"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

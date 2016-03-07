@@ -106,7 +106,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Batch"
+                    android:text="@string/activity_student_info_txt_batch"
                     android:textColor="@color/gray_5"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -133,7 +133,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Roll Number"
+                    android:text="@string/activity_student_info_txt_roll_number"
                     android:textColor="@color/gray_5"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -156,7 +156,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Admission No :"
+                    android:text="@string/activity_student_info_txt_admission_no"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -197,7 +197,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender :"
+                    android:text="@string/activity_teacher_info_txt_gender"
                     android:textColor="@color/gray_1"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -215,7 +215,7 @@
                     android:id="@+id/tv_profile_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Father Name"
+                    android:text="@string/activity_teacher_info_txt_father_name"
                     android:textColor="@color/gray_5"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -238,7 +238,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Guardian :"
+                    android:text="@string/activity_student_info_txt_guardian"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -278,7 +278,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contact no :"
+                    android:text="@string/activity_student_info_txt_contact_no"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -319,7 +319,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Address :"
+                    android:text="@string/activity_student_info_txt_address"
                     android:textColor="@color/gray_1"
                     android:textSize="14sp" />
             </LinearLayout>

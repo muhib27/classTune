@@ -160,7 +160,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_margin="10dp"
-                        android:text="Edit"
+                        android:text="@string/activity_single_teacher_draft_homework_btn_edit"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"
                         android:visibility="visible"

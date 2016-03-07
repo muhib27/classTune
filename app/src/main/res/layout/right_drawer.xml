@@ -84,14 +84,12 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="14sp"
-                android:text="Plabon Modak"
                 android:id="@+id/tv_name"></TextView>
             
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/settings_grey_left"
                 android:textSize="12sp"
-                android:text="Student of class IX"
                 android:id="@+id/tv_class"></TextView>"
             
         </LinearLayout>
@@ -233,7 +231,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="5dip"
-                                android:text="Password:"
+                                android:text="@string/popup_layout_change_pass_txt_password"
                                 android:layout_marginTop="5dip"
                                 android:textColor="@color/settings_grey_left"
                                 android:textSize="12sp" />

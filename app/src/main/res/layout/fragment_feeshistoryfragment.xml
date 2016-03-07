@@ -188,7 +188,7 @@
             android:textSize="16sp"
             android:textColor="@color/classtune_green_color"
             android:visibility="gone"
-            android:text="No data available now!" />
+            android:text="@string/activity_single_homework_txt_no_data_available" />
         
         <ListView 
             android:id="@+id/listViewFeesDue"

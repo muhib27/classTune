@@ -75,7 +75,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Start Date: "
+                    android:text="@string/leave_application_diolog_layout_start_date"
                     android:textColor="@android:color/black" />
 
                 <TextView
@@ -93,7 +93,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="End Date: "
+                    android:text="@string/leave_application_diolog_layout_end_date"
                     android:textColor="@android:color/black" />
 
                 <TextView

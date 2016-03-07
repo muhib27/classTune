@@ -58,7 +58,7 @@
                     android:id="@+id/txtMidHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Register FREE Now!"
+                    android:text="@string/activity_userselection_layout2_txt_register_free"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:textColor="@android:color/black"
@@ -96,7 +96,7 @@
                             android:id="@+id/txtMeHeader"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="I'm"
+                            android:text="@string/activity_userselection_layout2_im"
                             android:textStyle="bold"
                             android:textSize="20sp"
                             android:textColor="#888a8b"/>
@@ -128,7 +128,7 @@
                                 android:id="@+id/txtStudentHeader"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Student"
+                                android:text="@string/user_type_selection_students"
                                 android:textStyle="bold"
                                 android:textSize="14sp"
                                 android:textColor="@android:color/black"/>
@@ -154,7 +154,7 @@
                                 android:id="@+id/txtParentHeader"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Parent"
+                                android:text="@string/activity_userselection_layout2_txt_parent"
                                 android:textStyle="bold"
                                 android:textSize="14sp"
                                 android:textColor="@android:color/black"/>
@@ -180,7 +180,7 @@
                                 android:id="@+id/txtTeacherHeader"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Teacher"
+                                android:text="@string/activity_userselection_layout2_txt_teacher"
                                 android:textStyle="bold"
                                 android:textSize="14sp"
                                 android:textColor="@android:color/black"/>
@@ -213,7 +213,7 @@
                             android:id="@+id/txtMember"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Already a member?"
+                            android:text="@string/activity_userselection_layout2_txt_already_member"
                             android:textColor="@android:color/black"
                             android:textStyle="bold"
                             android:textSize="20sp" />
@@ -225,7 +225,7 @@
                             android:paddingRight="30dp"
                             android:layout_marginTop="10dp"
                             android:textSize="18sp"
-                            android:text="Log in"
+                            android:text="@string/activity_userselection_layout2_btn_log_in"
                             android:textStyle="bold"
                             android:textColor="@drawable/classtune_btn_user_selection_signin"
                             android:background="@drawable/classtune_btn_background_user_selection_signin"/>

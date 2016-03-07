@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Pending"
+                android:text="@string/row_meeting_status_txt_status_pending"
                 android:textColor="@android:color/black" />
         </LinearLayout>
     </LinearLayout>

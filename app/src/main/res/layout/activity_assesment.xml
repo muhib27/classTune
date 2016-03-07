@@ -62,7 +62,7 @@
                                 android:id="@+id/TextView03"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Topic: "
+                                android:text="@string/activity_assesment_txt_topic"
                                 android:textColor="@color/gray_1"
                                 android:textSize="12sp" />
 
@@ -107,7 +107,7 @@
                         android:id="@+id/txtPlayCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/maroon"
+                        android:textColor="@color/classtune_green_color"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -115,7 +115,7 @@
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Played"
+                        android:text="@string/activity_assesment_txt_played"
                         android:textColor="@color/gray_1" />
                 </LinearLayout>
             </LinearLayout>
@@ -145,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="QUESTION"
+                    android:text="@string/activity_assesment_txt_question"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -169,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="00:00"
-                    android:textColor="@color/maroon"
+                    android:textColor="@color/classtune_green_color"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -214,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="TAP ON THE RIGHT ANSWER"
+                android:text="@string/activity_assesment_tap_right_answer"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />

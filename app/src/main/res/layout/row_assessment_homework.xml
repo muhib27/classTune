@@ -105,7 +105,6 @@
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:text="Button"
                 android:background="@drawable/btn_red_back" />
 
         </LinearLayout>

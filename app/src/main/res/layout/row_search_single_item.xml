@@ -79,16 +79,14 @@
                         android:id="@+id/txtTitleName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:text="TextView" />
+                        android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/txtCategoryName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:textColor="@color/gray_1"
-                        android:text="TextView" />
+                        android:textColor="@color/gray_1" />
                 </LinearLayout>
             </LinearLayout>
 

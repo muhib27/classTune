@@ -58,7 +58,7 @@
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
-            android:text="0/0" />
+            android:text="@string/popup_layout_assessment_ok_zero_by_zero" />
 
         <TextView
             android:id="@+id/popup_tv_description"

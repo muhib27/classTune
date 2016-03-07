@@ -89,7 +89,6 @@
                     android:id="@+id/tv_class"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Student of class IX"
                     android:textColor="@color/black"
                     android:textSize="18sp" >
                 </TextView>

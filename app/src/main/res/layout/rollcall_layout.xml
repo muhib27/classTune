@@ -53,13 +53,13 @@
         
         <Button android:layout_width="100dip"
             android:layout_height="30dip"
-            android:text="Reset all"
+            android:text="@string/rollcall_layout_btn_reset_all"
             android:id="@+id/reset_btn"
             android:background="@drawable/btn_red_back"/>
         
         <Button android:layout_width="80dip"
             android:layout_height="30dip"
-            android:text="Save"
+            android:text="@string/popup_layout_change_pass_txt_save"
             android:layout_marginLeft="10dip"
             android:id="@+id/save_btn"
             android:background="@drawable/btn_red_back"/>

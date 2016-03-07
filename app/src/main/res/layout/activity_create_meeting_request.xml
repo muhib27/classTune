@@ -54,7 +54,7 @@
                                     android:id="@+id/txtTitle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Meeting Request"
+                                    android:text="@string/activity_single_meeting_request_txt_header"
                                     android:textColor="@android:color/black"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -67,7 +67,6 @@
                                         android:id="@+id/txtCurrentDate"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="18th December 2014"
                                         android:textColor="@color/gray_1"
                                         android:textSize="12sp" />
                                 </LinearLayout>
@@ -106,7 +105,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Select Batch"
+                            android:text="@string/fragment_lessonplan_view_txt_select_batch"
                             android:textColor="@android:color/black" />
                     </LinearLayout>
 
@@ -135,7 +134,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dip"
                                 android:layout_weight="1"
-                                android:hint="Select Batch"
+                                android:hint="@string/fragment_lessonplan_view_txt_select_batch"
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp" />
 
@@ -171,7 +170,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Select Parent"
+                            android:text="@string/activity_create_meeting_request_txt_select_parent"
                             android:textColor="@android:color/black" />
                     </LinearLayout>
 
@@ -200,7 +199,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dip"
                                 android:layout_weight="1"
-                                android:hint="Select Parent by Student Name"
+                                android:hint="@string/activity_create_meeting_request_txt_select_parent_student_name"
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp" />
 
@@ -235,7 +234,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Preferred Time"
+                            android:text="@string/activity_create_meeting_request_txt_preferred_time"
                             android:textColor="@android:color/black" />
                     </LinearLayout>
 
@@ -264,7 +263,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dip"
                                 android:layout_weight="1"
-                                android:hint="Select Date and Time"
+                                android:hint="@string/activity_create_meeting_request_txt_select_date_and_time"
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp" />
 
@@ -296,7 +295,7 @@
                         android:background="@color/gray_2"
                         android:ems="10"
                         android:gravity="top"
-                        android:hint="Write your description"
+                        android:hint="@string/activity_create_meeting_request_txt_hint_description"
                         android:inputType="textMultiLine"
                         android:padding="5dp"
                         android:textColor="@android:color/black"

@@ -72,7 +72,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Question"
+                android:text="@string/popup_layout_assessment_next_question_txt_question"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -83,8 +83,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:layout_marginTop="10dp"
-            	android:text="TextView" />
+                android:layout_marginTop="10dp" />
             
         </LinearLayout>
 
@@ -99,7 +98,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Correct Answer"
+                android:text="@string/popup_layout_assessment_next_question_homework_txt_correct_answer"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -110,8 +109,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:layout_marginTop="10dp"
-            	android:text="TextView" />
+                android:layout_marginTop="10dp" />
             
         </LinearLayout>
 
@@ -126,7 +124,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Explanation"
+                android:text="@string/popup_layout_assessment_next_question_btn_explanation"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -155,7 +153,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:text="Explanation"
+                android:text="@string/popup_layout_assessment_next_question_btn_explanation"
                 android:visibility="gone"
                 android:background="@drawable/btn_red_back" />
              <Button

@@ -143,7 +143,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:gravity="left"
-                        android:text="Select Category"
+                        android:text="@string/fragment_lessonplan_view_txt_select_category"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -171,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dip"
                             android:layout_weight="1"
-                            android:hint="Select Category"
+                            android:hint="@string/fragment_lessonplan_view_txt_select_category"
                             android:textColor="@android:color/black"
                             android:textSize="14sp" />
 
@@ -202,7 +202,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:gravity="left"
-                        android:text="Subject and Class"
+                        android:text="@string/fragment_lessonplan_add_txt_subject_and_class"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -230,7 +230,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dip"
                             android:layout_weight="1"
-                            android:hint="Select Subject and Class"
+                            android:hint="@string/fragment_lessonplan_add_txt_hint_select_subject_and_class"
                             android:textColor="@android:color/black"
                             android:textSize="14sp" />
 
@@ -277,7 +277,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:gravity="left"
-                        android:text="Lecture Date"
+                        android:text="@string/fragment_lessonplan_add_txt_lecture_date"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -305,7 +305,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dip"
                             android:layout_weight="1"
-                            android:hint="Select Lecture Date"
+                            android:hint="@string/fragment_lessonplan_add_txt_hint_select_lecture_date"
                             android:textColor="@android:color/black"
                             android:textSize="14sp" />
 
@@ -339,7 +339,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:gravity="top"
-                    android:hint="Type here..."
+                    android:hint="@string/fragment_lessonplan_add_txt_hint_description"
                     android:background="#eff0f4"
                     android:layout_above="@+id/linearLayout4"
                     android:layout_alignParentTop="true" />
@@ -369,7 +369,7 @@
                             android:clickable="true"
                             android:gravity="center"
                             android:padding="5dp"
-                            custom:iconTextTab="Save" />
+                            custom:iconTextTab="@string/popup_layout_change_pass_txt_save" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -385,7 +385,7 @@
                             android:clickable="true"
                             android:gravity="center"
                             android:padding="5dp"
-                            custom:iconTextTab="Save and Publish" />
+                            custom:iconTextTab="@string/fragment_lessonplan_add_btn_save_and_publish" />
                     </LinearLayout>
 
 

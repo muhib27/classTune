@@ -135,7 +135,7 @@
                         android:layout_weight="1"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="5dp"
-                        android:text="Edit"
+                        android:text="@string/activity_single_teacher_draft_homework_btn_edit"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"
                         android:background="@drawable/btn_holder_homework" />
@@ -148,7 +148,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"
-                        android:text="Publish"
+                        android:text="@string/activity_single_teacher_draft_homework_btn_publish"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"
                         android:background="@drawable/btn_holder_homework" />

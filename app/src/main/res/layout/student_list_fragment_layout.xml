@@ -127,7 +127,7 @@
             android:id="@+id/txtMessage"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:text="No data found!"
+            android:text="@string/fragment_archieved_events_txt_no_data_found"
             android:textColor="@color/classtune_green_color"
             android:gravity="center"
             android:background="@android:color/white"

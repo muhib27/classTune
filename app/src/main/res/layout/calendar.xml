@@ -403,7 +403,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dip"
                 android:visibility="gone"
-                android:text="This is title"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -413,7 +412,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dip"
-                android:text="This is description"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />

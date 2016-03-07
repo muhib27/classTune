@@ -54,7 +54,7 @@
             android:background="@color/gray_2"
             android:ems="5"
             android:padding="10dp"
-            android:text="approved" />
+            android:text="@string/item_leave_teacher_txt_approved" />
     </LinearLayout>
 
 </LinearLayout>

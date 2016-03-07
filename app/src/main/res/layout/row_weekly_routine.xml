@@ -34,7 +34,7 @@
             android:singleLine="true"
             android:textSize="10sp"
             android:marqueeRepeatLimit="marquee_forever"
-            android:text="@string/row_weekly_routine_sub_name" />
+            android:text="@string/row_weekly_routine_sub_name_bangla" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +52,7 @@
             android:singleLine="true"
             android:textSize="12sp"
             android:marqueeRepeatLimit="marquee_forever"
-            android:text="English" />
+            android:text="@string/row_weekly_routine_sub_name_english" />
     </LinearLayout>
 
     <LinearLayout
@@ -70,7 +70,7 @@
             android:singleLine="true"
             android:textSize="12sp"
             android:marqueeRepeatLimit="marquee_forever"
-            android:text="Physics" />
+            android:text="@string/row_weekly_routine_sub_name_physics" />
     </LinearLayout>
 
     <LinearLayout
@@ -88,7 +88,7 @@
             android:singleLine="true"
             android:textSize="12sp"
             android:marqueeRepeatLimit="marquee_forever"
-            android:text="chemistry" />
+            android:text="@string/row_weekly_routine_sub_name_chemistry" />
     </LinearLayout>
 
     <LinearLayout
@@ -107,7 +107,7 @@
             android:singleLine="true"
             android:textSize="12sp"
             android:marqueeRepeatLimit="marquee_forever"
-            android:text="Science" />
+            android:text="@string/row_weekly_routine_sub_name_science" />
     </LinearLayout>
 
     <LinearLayout
@@ -125,7 +125,7 @@
             android:singleLine="true"
             android:textSize="12sp"
             android:marqueeRepeatLimit="marquee_forever"
-            android:text="History" />
+            android:text="@string/row_weekly_routine_sub_name_history" />
     </LinearLayout>
 
 </LinearLayout>

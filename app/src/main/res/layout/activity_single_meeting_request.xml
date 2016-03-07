@@ -59,8 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:textColor="@color/maroon"
-                android:text="No data available!"
+                android:textColor="@color/classtune_green_color"
+                android:text="@string/activity_single_homework_txt_no_data_available"
                 android:gravity="center"
                 android:layout_centerInParent="true"
                 android:textStyle="bold"/>

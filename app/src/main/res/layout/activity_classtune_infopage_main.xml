@@ -87,7 +87,7 @@
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
-                android:text="The easiest and quickest way for Students, Parents and Teachers to connect with each other. School Administrators can connect each individual on a single platform. ClassTune makes institutional monitoring and management of school activity easy and effective.">
+                android:text="@string/activity_classtune_infopage_main_txt_header">
 
             </com.classtune.app.schoolapp.classtune.TextViewPlus>
 
@@ -115,7 +115,7 @@
             android:paddingBottom="5dp"
             android:layout_marginTop="10dp"
             android:textSize="24sp"
-            android:text="Our Features"
+            android:text="@string/activity_classtune_infopage_main_txt_our_features"
             custom:font="fonts/breeserif_regular.otf"
             android:textStyle="bold"
             android:textColor="@color/classtune_green_color_what_is"

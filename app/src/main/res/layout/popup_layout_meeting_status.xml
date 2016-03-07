@@ -63,7 +63,7 @@
                 android:textColor="@color/black"
                 android:button="@drawable/check_btn"
                 android:gravity="center"
-                android:text="Accept" />
+                android:text="@string/popup_layout_meeting_status_btn_accept" />
 
             <CheckBox
                 android:id="@+id/checkBoxDeny"
@@ -73,7 +73,7 @@
                 android:textColor="@color/black"
                 android:button="@drawable/check_btn"
                 android:gravity="center"
-                android:text="Deny" />
+                android:text="@string/popup_layout_meeting_status_btn_deny" />
 
         </LinearLayout>
 

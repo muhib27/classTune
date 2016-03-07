@@ -52,7 +52,7 @@
                             android:id="@+id/txtTitleStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Meeting Request Status"
+                            android:text="@string/fragment_meeting2_txt_header"
                             android:textColor="@android:color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -89,7 +89,7 @@
                         android:layout_weight="1"
                         android:checked="true"
                         android:padding="10dp"
-                        android:text="Incoming Request"
+                        android:text="@string/fragment_meeting2_btn_radio_txt_incoming"
                         android:layout_marginLeft="10dp"
                         android:button="@drawable/radio_btn"
                         android:textColor="@android:color/black" />
@@ -106,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="10dp"
-                        android:text="Outgoing Request"
+                        android:text="@string/fragment_meeting2_btn_radio_txt_outgoing"
                         android:layout_marginLeft="10dp"
                         android:button="@drawable/radio_btn"
                         android:textColor="@android:color/black" />
@@ -193,7 +193,7 @@
                 android:id="@+id/txtMessage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="No data found!"
+                android:text="@string/activity_single_homework_txt_no_data_available"
                 android:textColor="@color/classtune_green_color"
                 android:gravity="center"
                 android:background="@android:color/white"
