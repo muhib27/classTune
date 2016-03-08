@@ -198,7 +198,7 @@ public class LessonPlanView extends Fragment {
             public void onClick(View v) {
 
                 if(listSelectedId.size() > 0)
-                    showCustomDialogConfirmationDelete("LESSON PLAN", "Delete", "Are you sure you want to delete selected lesson plan(s)?", R.drawable.lessonplan_icon_red, getActivity());
+                    showCustomDialogConfirmationDelete(getActivity().getString(R.string.java_lessonplanview_lesson_plan), getActivity().getString(R.string.java_lessonplanview_delete), getActivity().getString(R.string.java_lessonplanview_content_delete), R.drawable.lessonplan_icon_red, getActivity());
 
 
             }
@@ -211,7 +211,7 @@ public class LessonPlanView extends Fragment {
             public void onClick(View v) {
 
                 if(listSelectedId.size() > 0)
-                    showCustomDialogConfirmationAssign("LESSON PLAN", "Assign", "Are you sure you want to assign selected lesson plan(s)?", R.drawable.lessonplan_icon_red, getActivity());
+                    showCustomDialogConfirmationAssign(getString(R.string.java_lessonplanview_lesson_plan), getActivity().getString(R.string.java_lessonplanview_assign), getActivity().getString(R.string.java_lessonplanview_content_assign), R.drawable.lessonplan_icon_red, getActivity());
 
 
             }
@@ -372,7 +372,7 @@ public class LessonPlanView extends Fragment {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         }
@@ -477,7 +477,7 @@ public class LessonPlanView extends Fragment {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         }
@@ -544,7 +544,7 @@ public class LessonPlanView extends Fragment {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         }
@@ -741,7 +741,7 @@ public class LessonPlanView extends Fragment {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         }
@@ -763,7 +763,7 @@ public class LessonPlanView extends Fragment {
             if (modelContainer.getStatus().getCode() == 200) {
 
 
-                Toast.makeText(getActivity(), "Successfully Deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.java_lessonplanview_successfully_deleted, Toast.LENGTH_SHORT).show();
                 initApiCall(selectedBatchId, selectedCategoryId);
 
                 listSelectedId.clear();
@@ -807,7 +807,7 @@ public class LessonPlanView extends Fragment {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         }
@@ -830,7 +830,7 @@ public class LessonPlanView extends Fragment {
             if (modelContainer.getStatus().getCode() == 200) {
 
 
-                Toast.makeText(getActivity(), "Successfully Assigned", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.java_lessonplanview_successfully_assigned, Toast.LENGTH_SHORT).show();
                 initApiCall(selectedBatchId, selectedCategoryId);
 
                 listSelectedId.clear();
@@ -947,11 +947,11 @@ public class LessonPlanView extends Fragment {
 
             if(listLessonPlan.get(position).getIs_show().equalsIgnoreCase("0"))
             {
-               holder.txtStatus.setText("Inactive");
+               holder.txtStatus.setText(R.string.java_lessonplanview_inactive);
             }
             else
             {
-                holder.txtStatus.setText("Active");
+                holder.txtStatus.setText(R.string.java_lessonplanview_active);
             }
 
 

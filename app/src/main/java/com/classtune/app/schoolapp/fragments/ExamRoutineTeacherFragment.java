@@ -113,7 +113,7 @@ public class ExamRoutineTeacherFragment extends Fragment {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };
@@ -210,10 +210,10 @@ public class ExamRoutineTeacherFragment extends Fragment {
 
             holder.imgViewSubjectIcon.setImageResource(AppUtility.getImageResourceId(listExamRoutine.get(position).getSubjectIcon(), getActivity()));
             holder.txtSubjectName.setText(listExamRoutine.get(position).getSubject());
-            holder.txtStartTime.setText("Start Time: "+listExamRoutine.get(position).getStartTime());
-            holder.txtEndTime.setText("End Time: "+listExamRoutine.get(position).getEndTime());
-            holder.txtExamName.setText("Exam Name:"+listExamRoutine.get(position).getExamName());
-            holder.txtBatch.setText("Batch: "+listExamRoutine.get(position).getBatch());
+            holder.txtStartTime.setText(getActivity().getString(R.string.java_examroutineteacherfragment_start_time)+listExamRoutine.get(position).getStartTime());
+            holder.txtEndTime.setText(getActivity().getString(R.string.java_examroutineteacherfragment_end_time)+listExamRoutine.get(position).getEndTime());
+            holder.txtExamName.setText(getActivity().getString(R.string.java_examroutineteacherfragment_exam_name)+listExamRoutine.get(position).getExamName());
+            holder.txtBatch.setText(getActivity().getString(R.string.java_examroutineteacherfragment_batch)+listExamRoutine.get(position).getBatch());
 
 
 

@@ -174,7 +174,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
             if (userHelper.getUser().getType()==UserTypeEnum.PARENTS){
                 group = new DrawerGroup();
                 group.setImageName("student_selection_icon_white");
-                group.setText("Select your Child");
+                group.setText(getString(R.string.java_homecontaineractivity_select_your_child));
                 group.setId("1");
                 groupItem.add(group);
                 childList.put(groupItem.get(count++).getText(),
@@ -277,7 +277,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 
 		group = new DrawerGroup();
 		group.setImageName("settings_right_drawer");
-		group.setText("Settings");
+		group.setText(getString(R.string.java_homecontaineractivity_settings));
 		group.setId("2");
 		groupItem.add(group);
 		String[] mySettingsArrayText;
@@ -316,7 +316,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 
 			group = new DrawerGroup();
 			group.setImageName("log_out");
-			group.setText("Log Out");
+			group.setText(getString(R.string.java_homecontaineractivity_log_out));
 			group.setId("4");
 			groupItem.add(group);
 			childList.put(groupItem.get(count++).getText(),
@@ -397,7 +397,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 			}
 			
 			if(userHelper.getUser().getType()==UserTypeEnum.PARENTS){
-				userTypeTextView.setText("PARENT");
+				userTypeTextView.setText(R.string.java_homecontaineractivity_parent);
 			}else{
 				userTypeTextView.setText(userHelper.getUser().getType().toString());
 			} 
@@ -878,7 +878,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 		@Override
 		public void onStart() {
 			if (uiHelper != null)
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -1056,9 +1056,9 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 				HomeContainerActivity.this);
 
 		alertDialogBuilder
-				.setMessage("Change Profile Picture")
+				.setMessage(R.string.java_homecontaineractivity_change_profile_picture)
 				.setCancelable(false)
-				.setPositiveButton("Gallery",
+				.setPositiveButton(getString(R.string.java_createparentactivity_gallery),
 						new DialogInterface.OnClickListener() {
 
 							@Override
@@ -1082,7 +1082,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 
 							}
 						})
-				.setNegativeButton("Camera",
+				.setNegativeButton(getString(R.string.java_createparentactivity_camera),
 						new DialogInterface.OnClickListener() {
 
 							@Override
@@ -1289,7 +1289,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 	@Override
 	public void onAuthenticationStart() {
 		// TODO Auto-generated method stub
-		uiHelper.showLoadingDialog("Please wait...");
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 	}
 
 	@Override

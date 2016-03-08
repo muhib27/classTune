@@ -82,7 +82,7 @@ public class ClassRoutineFragment extends Fragment implements UserAuthListener{
 		public void onStart() {
 			super.onStart(); 
 			// uListener.onServerAuthenticationStart();
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getActivity().getString(R.string.java_accountsettingsactivity_please_wait));
 		}
 		//3gjnfr27hein04pfbe4ur7gbv7
 		//08e9344b9eb6b0fcc56717c5efa6e2d6e08e9e84ad9403ea45816188c5600f89
@@ -204,8 +204,8 @@ public class ClassRoutineFragment extends Fragment implements UserAuthListener{
 			
 			if(periodList.size()>0){
 				holder.tvSubjectName.setText(item.getSubject_name());
-				holder.tvduration.setText(item.getClass_start_time()+" to "+item.getClass_end_time());
-				holder.tvTitle.setText(getIntWithSuffix(position+1)+" period");
+				holder.tvduration.setText(item.getClass_start_time()+getActivity().getString(R.string.java_classroutinefragment_to)+item.getClass_end_time());
+				holder.tvTitle.setText(getIntWithSuffix(position + 1) + getActivity().getString(R.string.java_classroutinefragment_period));
 				holder.subjectIcon.setImageResource(AppUtility.getImageResourceId(item.getSubject_icon_name(), getActivity()));
 			}
 			
@@ -216,16 +216,16 @@ public class ClassRoutineFragment extends Fragment implements UserAuthListener{
 			switch (num) {
 			case 1:
 				
-				return num+"st";
+				return num+getActivity().getString(R.string.java_classroutinefragment_st);
 			case 2:
 				
-				return num+"nd";
+				return num+getActivity().getString(R.string.java_classroutinefragment_nd);
 			case 3:
 				
-				return num+"rd";
+				return num+getActivity().getString(R.string.java_classroutinefragment_rd);
 
 			default:
-				return num+"th";
+				return num+getActivity().getString(R.string.java_classroutinefragment_th);
 			}
 			
 		}

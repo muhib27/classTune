@@ -302,7 +302,7 @@ public class LessonPlanAdd extends Fragment {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         }
@@ -408,7 +408,7 @@ public class LessonPlanAdd extends Fragment {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         }
@@ -554,19 +554,19 @@ public class LessonPlanAdd extends Fragment {
         if(TextUtils.isEmpty(txtTitle.getText().toString()))
         {
             result = false;
-            showToast("Please insert lesson plan title.");
+            showToast(getString(R.string.java_editLessonplanactivity_insert_lesson_plan_title));
         }
 
         else if(TextUtils.isEmpty(txtSelectCategory.getText().toString()))
         {
             result = false;
-            showToast("Please select lesson plan category.");
+            showToast(getString(R.string.java_editLessonplanactivity_select_lesson_plan_category));
         }
 
         else if(TextUtils.isEmpty(txtDescription.getText().toString()))
         {
             result = false;
-            showToast("Please insert description of your lesson plan.");
+            showToast(getString(R.string.java_editLessonplanactivity_insert_lesson_plan_description));
         }
 
 
@@ -595,7 +595,7 @@ public class LessonPlanAdd extends Fragment {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         }
@@ -617,7 +617,7 @@ public class LessonPlanAdd extends Fragment {
 
             if (modelContainer.getStatus().getCode() == 200) {
 
-                Toast.makeText(getActivity(), "Successfully added lesson plan.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_successfully_added_lesson_plan, Toast.LENGTH_SHORT).show();
 
 
             } else {

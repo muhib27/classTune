@@ -488,7 +488,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                                 Intent tpIntent = new Intent(
                                         HomePageFreeVersion.this,
                                         InfoActivity.class);
-                                tpIntent.putExtra("title", "Terms & Policy");
+                                tpIntent.putExtra("title", getString(R.string.java_homepagefreeversion_terms_and_policy));
                                 tpIntent.putExtra("description", getResources()
                                         .getString(R.string.termsandpolicy_text));
                                 startActivity(tpIntent);
@@ -506,7 +506,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                                 Intent aboutIntent = new Intent(
                                         HomePageFreeVersion.this,
                                         InfoActivity.class);
-                                aboutIntent.putExtra("title", "About Us");
+                                aboutIntent.putExtra("title", getString(R.string.java_homepagefreeversion_about_us));
                                 aboutIntent.putExtra("description", getResources()
                                         .getString(R.string.about_use_text));
                                 startActivity(aboutIntent);
@@ -515,7 +515,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                                 Intent tpIntent = new Intent(
                                         HomePageFreeVersion.this,
                                         InfoActivity.class);
-                                tpIntent.putExtra("title", "Terms & Policy");
+                                tpIntent.putExtra("title", getString(R.string.java_homepagefreeversion_terms_and_policy));
                                 tpIntent.putExtra("description", getResources()
                                         .getString(R.string.termsandpolicy_text));
                                 startActivity(tpIntent);
@@ -579,7 +579,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                         if (AppUtility.isInternetConnected()) {
                             initApiCallLogout();
                         } else {
-                            Toast.makeText(context, "Sorry no internet connection found!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.java_homepagefreeversion_no_internet_connection, Toast.LENGTH_SHORT).show();
                         }
 
                     }else {
@@ -677,7 +677,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                     }
                     else if(toastUpdate==true)
                     {
-                        Toast.makeText(HomePageFreeVersion.this, "New update is available. Go to Play Store to get it.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(HomePageFreeVersion.this, R.string.java_homepagefreeversion_new_update_available, Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -717,11 +717,11 @@ public class HomePageFreeVersion extends HomeContainerActivity {
     {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(HomePageFreeVersion.this);
         builder1.setTitle(getResources().getString(R.string.app_name));
-        builder1.setMessage("You must update ClassTune from Play Store to continue.");
+        builder1.setMessage(R.string.java_homepagefreeversion_you_must_update_from_play_store);
         builder1.setCancelable(false);
 
         builder1.setPositiveButton(
-                "Update Now",
+                R.string.java_homepagefreeversion_update_now,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
@@ -734,7 +734,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                 });
 
         builder1.setNegativeButton(
-                "No, thanks",
+                R.string.java_homepagefreeversion_no_thanks,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
@@ -794,7 +794,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
 
         @Override
         public void onStart() {
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
         }
 
@@ -825,7 +825,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                 overridePendingTransition(0, 0);
             } else {
 
-                Toast.makeText(context, "Something went wrong with your internet connectivity, pleaswe try again later.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.java_homepagefreeversion_something_wrong_internet, Toast.LENGTH_SHORT).show();
 
             }
         }
@@ -923,7 +923,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                         gcm = GoogleCloudMessaging.getInstance(context);
                     }
                     regid = gcm.register(SENDER_ID);
-                    msg = "Device registered, registration ID=" + regid;
+                    msg = getString(R.string.java_homepagefreeversion_device_registered) + regid;
 
                     // You should send the registration ID to your server over
                     // HTTP, so it
@@ -939,7 +939,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                     // Persist the regID - no need to register again.
                     storeRegistrationId(context, regid);
                 } catch (IOException ex) {
-                    msg = "Error :" + ex.getMessage();
+                    msg = getString(R.string.java_homepagefreeversion_error) + ex.getMessage();
                     // If there is an error, don't just keep trying to register.
                     // Require the user to click a button again, or perform
                     // exponential back-off.

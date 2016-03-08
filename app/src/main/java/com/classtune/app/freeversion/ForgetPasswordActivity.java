@@ -59,9 +59,9 @@ public class ForgetPasswordActivity extends ChildContainerActivity implements Vi
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 if (TextUtils.isEmpty(etUsername.getText().toString().trim())) {
-                    uiHelper.showErrorDialog("Username Cannot be empty!");
+                    uiHelper.showErrorDialog(getString(R.string.java_forgetpasswordactivity_username_cannot_empty));
                 } else if (TextUtils.isEmpty(etEmail.getText().toString().trim())) {
-                    uiHelper.showErrorDialog("Email Cannot be empty!");
+                    uiHelper.showErrorDialog(getString(R.string.java_forgetpasswordactivity_email_cannot_empty));
                 } else {
                     /*userHelper.updatePassword(userHelper.getUser(), etNewPass
                                 .getText().toString(), etUsername.getText()
@@ -88,10 +88,10 @@ public class ForgetPasswordActivity extends ChildContainerActivity implements Vi
                         Wrapper wrapper = GsonParser.getInstance().parseServerResponse(
                                 s);
                         if (wrapper.getStatus().getCode() == 200) {
-                            Toast.makeText(ForgetPasswordActivity.this,"Please check your Email to reset Password",Toast.LENGTH_LONG).show();
+                            Toast.makeText(ForgetPasswordActivity.this, R.string.java_forgetpasswordactivity_check_email,Toast.LENGTH_LONG).show();
                             finish();
                         } else if(wrapper.getStatus().getCode() == 404) {
-                            Toast.makeText(ForgetPasswordActivity.this,"Username of Email is Incorrect",Toast.LENGTH_LONG).show();
+                            Toast.makeText(ForgetPasswordActivity.this, R.string.java_forgetpasswordactivity_email_incorrect,Toast.LENGTH_LONG).show();
                         }
                     }
                 });

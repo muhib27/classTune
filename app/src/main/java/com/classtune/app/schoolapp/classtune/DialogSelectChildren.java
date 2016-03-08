@@ -193,7 +193,7 @@ public class DialogSelectChildren extends Dialog {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(activity.getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };

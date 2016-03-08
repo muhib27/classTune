@@ -79,7 +79,7 @@ public class LeaveApplicationFragment extends Fragment implements
 		
 		
 		if (userHelper.getUser().getType() != UserTypeEnum.PARENTS && leaveId.equals("")) {
-			Toast.makeText(getActivity(), "Please choose a reason type!",
+			Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_reason_type,
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
@@ -87,26 +87,26 @@ public class LeaveApplicationFragment extends Fragment implements
 		if(etLeaveSubject.getText().toString().trim().equals(""))
 		{
 			Toast.makeText(getActivity(),
-					"Application subject can't be empty!", Toast.LENGTH_SHORT)
+					R.string.java_leaveapplicationfragment_application_subject, Toast.LENGTH_SHORT)
 					.show();
 			return false;
 		}
 		
 		if (leaveDescriptionEditText.getText().toString().trim().equals("")) {
 			Toast.makeText(getActivity(),
-					"Leave description can't be Empty!", Toast.LENGTH_SHORT)
+					R.string.java_leaveapplicationfragment_leave_description, Toast.LENGTH_SHORT)
 					.show();
 			return false;
 		}
 		if (startDateFormatServerString.equals("")) {
 			Toast.makeText(getActivity(),
-					"Please Choose a start date for leave!",
+					R.string.java_leaveapplicationfragment_choose_start_date,
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if (endDateFormatServerString.equals("")) {
 			Toast.makeText(getActivity(),
-					"Please Choose an end date for leave!",
+					R.string.java_leaveapplicationfragment_choose_end_date,
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
@@ -148,7 +148,7 @@ public class LeaveApplicationFragment extends Fragment implements
 						@Override
 						public void onStart() {
 							if (!uiHelper.isDialogActive())
-								uiHelper.showLoadingDialog("Loading..");
+								uiHelper.showLoadingDialog(getString(R.string.loading_text));
 							super.onStart();
 						}
 
@@ -170,7 +170,7 @@ public class LeaveApplicationFragment extends Fragment implements
 									.parseServerResponse(responseString);
 							if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 								Toast.makeText(getActivity(),
-										"Successfully posted application!",
+										R.string.java_leaveapplicationfragment_successfully_posted,
 										Toast.LENGTH_SHORT).show();
 								leaveDescriptionEditText.setText("");
 								leaveId="";
@@ -179,7 +179,7 @@ public class LeaveApplicationFragment extends Fragment implements
 							} else
 								Toast.makeText(
 										getActivity(),
-										"Failed to post leave application! Please try again.",
+										R.string.java_leaveapplicationfragment_failed_post,
 										Toast.LENGTH_SHORT).show();
 							super.onSuccess(arg0, responseString);
 						}
@@ -192,7 +192,7 @@ public class LeaveApplicationFragment extends Fragment implements
 						@Override
 						public void onStart() {
 							if (!uiHelper.isDialogActive())
-								uiHelper.showLoadingDialog("Loading..");
+								uiHelper.showLoadingDialog(getString(R.string.loading_text));
 							super.onStart();
 						}
 
@@ -214,7 +214,7 @@ public class LeaveApplicationFragment extends Fragment implements
 									.parseServerResponse(responseString);
 							if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 								Toast.makeText(getActivity(),
-										"Successfully posted application!",
+										R.string.java_leaveapplicationfragment_successfully_posted,
 										Toast.LENGTH_SHORT).show();
 								leaveDescriptionEditText.setText("");
 								leaveId="";
@@ -223,7 +223,7 @@ public class LeaveApplicationFragment extends Fragment implements
 							} else
 								Toast.makeText(
 										getActivity(),
-										"Failed to post leave application! Please try again.",
+										R.string.java_leaveapplicationfragment_failed_post,
 										Toast.LENGTH_SHORT).show();
 							super.onSuccess(arg0, responseString);
 						}
@@ -356,15 +356,15 @@ public class LeaveApplicationFragment extends Fragment implements
 		CustomPickerWithLoadData picker = CustomPickerWithLoadData.newInstance(0);
 		RequestParams params = new RequestParams();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-		picker.setData(PickerType.LEAVE,params,URLHelper.URL_GET_LEAVE_TYPE, new PickerItemSelectedListener() {
-			
+		picker.setData(PickerType.LEAVE, params, URLHelper.URL_GET_LEAVE_TYPE, new PickerItemSelectedListener() {
+
 			@Override
 			public void onPickerItemSelected(BaseType item) {
-				LeaveType reasonType =  (LeaveType)item;
+				LeaveType reasonType = (LeaveType) item;
 				leaveReasonTextView.setText(reasonType.getText());
 				leaveId = reasonType.getId();
 			}
-		} , "Select Leave Type");
+		}, getActivity().getString(R.string.java_leaveapplicationfragment_select_leave_type));
 		picker.show(getChildFragmentManager(), null);
 	}
 
@@ -415,7 +415,7 @@ public class LeaveApplicationFragment extends Fragment implements
 									"File select error", e);
 						}
 					} else {
-						Toast.makeText(getActivity(), "Invalid file type",
+						Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_invalid_file_type,
 								Toast.LENGTH_SHORT).show();
 					}
 					Log.e("File", "Uri = " + uri.toString());

@@ -1208,6 +1208,241 @@
     <string name="activity_single_teacher_draft_homework_btn_edit">Edit</string>
     <string name="activity_single_teacher_draft_homework_btn_publish">Publish</string>
 
+    <!--AccountSettingsActivity-->
+    <string name="java_accountsettingsactivity_please_wait">Please wait...</string>
+    <string name="java_accountsettingsactivity_password_changes_success">Your password is changed successfully.</string>
+    <string name="java_accountsettingsactivity_password_cannot_empty">Password Cannot be empty!</string>
+    <string name="java_accountsettingsactivity_password_didnt_match">Password doesn\'t match!</string>
+    <string name="java_accountsettingsaactivity_enter_correct_password">Please enter correct password</string>
+
+    <!--AppConstant-->
+    <string name="java_appconstant_new_homework">You have a new homework.</string>
+    <string name="java_appconstant_last_update">"Last Update: "</string>
+    <string name="java_classtune_registration_valid_email">Provide valid E-mail address.</string>
+    <string name="java_classtune_registration_first_name">Enter your first Name.</string>
+    <string name="java_classtune_registration_last_name">Enter your last Name.</string>
+    <string name="java_classtune_registration_provide_email_address">Provide E-mail address.</string>
+    <string name="java_classtune_registration_provide_password">Provide Password.</string>
+    <string name="java_classtune_registration_password_length">Password should be minimum of 6 characters.</string>
+    <string name="java_classtune_registration_retype_password">Retype your Password.</string>
+    <string name="java_classtune_registration_password_didnt_match">Password didn\'t match, retype Password.</string>
+    <string name="java_classtune_registration_provide_school_code">Provide School Code.</string>
+    <string name="java_classtune_registration_schoolcode_not_valid">School code is not valid.</string>
+    <string name="java_classtune_registration_something_went_wrong">Something went wrong please try again.</string>
+    <string name="java_classtune_registration_school_didnt_create_class_yet">School didn\'t create any class yet.</string>
+    <string name="java_classtune_registration_provide_admission_no">Provide Admission No.</string>
+    <string name="java_classtune_registration_select_batch">Select a batch.</string>
+    <string name="java_classtune_registration_select_dob">Select Date of Birth.</string>
+    <string name="java_classtune_registration_select_gender">Select Gender.</string>
+    <string name="java_classtune_registration_provide_contact_no">Provide Contact No.</string>
+    <string name="java_classtune_registration_already_exists">Already exists.</string>
+    <string name="java_classtune_registration_select_source">Select Source</string>
+    <string name="java_classtune_registration_add_more_child">To add more than Three(3) children you have to login from web browser.</string>
+    <string name="java_classtune_registration_provide_user_id">Provide User ID.</string>
+    <string name="java_classtune_registration_add_one_child">Add at least One child.</string>
+    <string name="java_classtune_registration_student_id_not_valid">This Student ID is not valid.</string>
+    <string name="java_classtune_registration_duplicate_student_id">You have entered duplicate student ID, please enter correct ID again</string>
+    <string name="java_classtune_registration_enter_children_id">Enter Children ID</string>
+    <string name="java_classtune_registration_provide_child_id">Provide child ID</string>
+    <string name="java_classtune_registration_field_cannot_be_empty">This field  cannot be empty.</string>
+    <string name="java_classtune_registration_id_does_not_exist">This ID does not exist.</string>
+    <string name="java_classtune_registration_employee_necessaty_information_yet">School didn\'t create employee necessary information yet.</string>
+    <string name="java_classtune_registration_employee_position_yet">School didn\'t create employee position for this yet.</string>
+    <string name="java_classtune_registration_employee_no">Provide Employee No.</string>
+    <string name="java_classtune_registration_provide_job_title">" Provide Job title."</string>
+    <string name="java_classtune_registration_select_category">Select a Category.</string>
+    <string name="java_classtune_registration_select_department">Select a Department.</string>
+    <string name="java_classtune_registration_select_position">Select a Position.</string>
+    <string name="java_classtune_registration_select_joining_date">Select Joining Date.</string>
+    <string name="java_classtune_registration_number_already_exists">This Number already exists.</string>
+
+    <!--AssesmentActivity-->
+    <string name="java_assesmentactivity_your_score_is">Your score is</string>
+    <string name="java_assesmentactivity_title_quiz">QUIZ</string>
+    <string name="java_assesmentactivity_you_got_it_right">Congratulations! \nYou got it right.</string>
+    <string name="java_assesmentactivity_time_out">Time Out!</string>
+    <string name="java_assesmentactivity_already_in_leaderboard">You are already in leader board!</string>
+    <string name="java_assesmentactivity_marks_added_sussessfully">Marks added successfully</string>
+    <string name="java_assesmentactivity_wrong_answer">Opps! Wrong answer.</string>
+
+
+    <!--AssesmentHomeworkActivity-->
+    <string name="java_assesmenthomeworkactivity_already_completed_quiz">You have already completed this quiz!</string>
+    <string name="java_assesmentomeworkactivity_automatic_save">Your score will be automatically saved. Do you want to exit your progress now?</string>
+
+    <!--AssessmentLeaderBoardActivity-->
+    <string name="java_assessmentleaderboardactivity_txt_marks">"Marks: "</string>
+    <string name="java_assessmentleaderboardactivity_txt_time">"Time: "</string>
+
+    <!--AssessmentSummeryActivity-->
+    <string name="java_assessmentsummeryactivity_no_summery_available">No summery available</string>
+    <string name="java_assessmentsummeryactivity_summery_title">SUMMERY</string>
+
+    <!--AttendenceFragment-->
+    <string name="java_attendencefragment_day_sun">Sun</string>
+    <string name="java_attendencefragment_day_mon">Mon</string>
+    <string name="java_attendencefragment_day_tue">Tue</string>
+    <string name="java_attendencefragment_day_wed">Wed</string>
+    <string name="java_attendencefragment_day_thu">Thu</string>
+    <string name="java_attendencefragment_day_fri">Fri</string>
+    <string name="java_attendencefragment_day_sat">Sat</string>
+    <string name="java_attendencefragment_authenticating">Authenticating.....</string>
+
+    <!--CameraGalleryPicker-->
+    <string name="java_ameragallerypicker_select_file">Select File</string>
+
+    <!--ChildSelectionActivity-->
+    <string name="java_childselectionactivity_section">",  Section "</string>
+
+    <!--ClassReportTeacherFragment-->
+    <string name="java_classreportteacherfragment_view">View</string>
+    <string name="java_classreportteacherfragment_present_students">Present Students</string>
+    <string name="java_classreportteacherfragment_students_late">Students late</string>
+    <string name="java_classreportteacherfragment_students_on_leave">Students on leave</string>
+    <string name="java_classreportteacherfragment_students_absent">Students absent</string>
+
+    <!--ClassRoutineFragment-->
+    <string name="java_classroutinefragment_to">" to "</string>
+    <string name="java_classroutinefragment_period">" period"</string>
+    <string name="java_classroutinefragment_st">st</string>
+    <string name="java_classroutinefragment_nd">nd</string>
+    <string name="java_classroutinefragment_rd">rd</string>
+    <string name="java_classroutinefragment_th">th</string>
+
+    <!--CreateMeetingRequest-->
+    <string name="java_createmeetingrequest_select_teacher">Select Teacher</string>
+    <string name="java_createmeetingrequest_select_parent">Select Parent</string>
+    <string name="java_createmeetingrequest_select_parent_by_student">Select Parent by Student Name</string>
+    <string name="java_createmeetingrequest_select_batch_first">Select a batch first</string>
+    <string name="java_createmeetingrequest_select_teacher_name">Select teacher name</string>
+    <string name="java_createmeetingrequest_select_date_and_time">Select date and time</string>
+    <string name="java_createmeetingrequest_enter_meeting_description">Enter meeting description</string>
+    <string name="java_createmeetingrequest_meeting_request_success">Meeting request sent sucessfully</string>
+
+    <!--CreateParentActivity-->
+    <string name="java_createparentactivity_male">Male</string>
+    <string name="java_createparentactivity_female">Female</string>
+    <string name="java_createparentactivity_gallery">Gallery</string>
+    <string name="java_createparentactivity_camera">Camera</string>
+    <string name="java_createparentactivity_successful">Successful</string>
+
+    <!--CustomDateTimePicker-->
+    <string name="java_customdatetimepicker_set_date">Set Date</string>
+    <string name="java_customdatetimepicker_set_time">Set Time</string>
+    <string name="java_customdatetimepicker_set">Set</string>
+    <string name="java_customdatetimepicker_cancel">Cancel</string>
+
+    <!--DateChangeBroadCastReceiver-->
+    <string name="jaav_datechangebroadcastreceiver_date_changed">DATE HAS BEEN CHANGED</string>
+
+    <!--EditLessonPlanActivity-->
+    <string name="java_editLessonplanactivity_insert_lesson_plan_title">Please insert lesson plan title.</string>
+    <string name="java_editLessonplanactivity_select_lesson_plan_category">Please select lesson plan category.</string>
+    <string name="java_editLessonplanactivity_insert_lesson_plan_description">Please insert description of your lesson plan.</string>
+    <string name="java_editLessonplanactivity_successfully_edited_lesson_plan">Successfully edited lesson plan.</string>
+
+    <!--ExamRoutineFragmentAll-->
+    <string name="java_examroutinefragmentall_exam">Exam</string>
+
+    <!--ExamRoutineTeacherFragment-->
+    <string name="java_examroutineteacherfragment_start_time">"Start Time: "</string>
+    <string name="java_examroutineteacherfragment_end_time">"End Time: "</string>
+    <string name="java_examroutineteacherfragment_exam_name">Exam Name:</string>
+    <string name="java_examroutineteacherfragment_batch">"Batch: "</string>
+
+    <!--FeesHistoryFragment-->
+    <string name="java_feeshistoryfragment_not_paid">Not Paid</string>
+    <string name="java_feeshistoryfragment_paid">Paid</string>
+
+    <!--ForgetPasswordActivity-->
+    <string name="java_forgetpasswordactivity_username_cannot_empty">Username Cannot be empty!</string>
+    <string name="java_forgetpasswordactivity_email_cannot_empty">Email Cannot be empty!</string>
+    <string name="java_forgetpasswordactivity_check_email">Please check your Email to reset Password</string>
+    <string name="java_forgetpasswordactivity_email_incorrect">Username of Email is Incorrect</string>
+
+    <!--HomeContainerActivity-->
+    <string name="java_homecontaineractivity_select_your_child">Select your Child</string>
+    <string name="java_homecontaineractivity_settings">Settings</string>
+    <string name="java_homecontaineractivity_log_out">Log Out</string>
+    <string name="java_homecontaineractivity_parent">PARENT</string>
+    <string name="java_homecontaineractivity_change_profile_picture">Change Profile Picture</string>
+    <string name="java_homepagefreeversion_terms_and_policy"><![CDATA[Terms & Policy]]></string>
+    <string name="java_homepagefreeversion_about_us">About Us</string>
+    <string name="java_homepagefreeversion_no_internet_connection">Sorry no internet connection found!</string>
+    <string name="java_homepagefreeversion_new_update_available">New update is available. Go to Play Store to get it.</string>
+    <string name="java_homepagefreeversion_you_must_update_from_play_store">You must update ClassTune from Play Store to continue.</string>
+    <string name="java_homepagefreeversion_update_now">Update Now</string>
+    <string name="java_homepagefreeversion_no_thanks">No, thanks</string>
+    <string name="java_homepagefreeversion_something_wrong_internet">Something went wrong with your internet connectivity, pleaswe try again later.</string>
+    <string name="java_homepagefreeversion_device_registered">Device registered, registration ID=</string>
+    <string name="java_homepagefreeversion_error">Error :</string>
+
+    <!--HomeworkFragment-->
+    <string name="java_homeworkfragment_choose_your_subject">Choose your subject</string>
+    <string name="java_homeworkfragment_erro_in_operation">Error in operation!</string>
+    <string name="java_homeworkfragment_start_date">"Start Date: "</string>
+    <string name="java_homeworkfragment_due_date">"Due Date: "</string>
+    <string name="java_homeworkfragment_max_time">"Maximum Time: "</string>
+    <string name="java_homeworkfragment_pass_percentage">"Pass Percentage: "</string>
+    <string name="java_homeworkfragment_play">Play</string>
+    <string name="java_homeworkfragment_result">Result</string>
+    <string name="java_homeworkfragment_time_over">Time Over</string>
+
+    <!--InfoFeatureActivity-->
+    <string name="java_infofeatureactivity_title_attendance">Attendance</string>
+    <string name="java_infofeatureactivity_content_attendance">Taking class attendance is now easier than ever! Teachers can take attendance in few clicks, and parents get real time notification. Also, it helps school to keep records.</string>
+    <string name="java_infofeatureactivity_title_academic_calendar">Academic Calendar</string>
+    <string name="java_infofeatureactivity_content_academic_calendar">School can share the academic calendar in the beginning of the year with the authority of modification when required. It helps parents to plan family holidays.</string>
+    <string name="java_infofeatureactivity_title_lesson_plan">Lesson Plan</string>
+    <string name="java_infofeatureactivity_content_lesson_plan">Teachers can upload weekly, monthly and yearly lesson plans. It allows students and parents to plan ahead of time.</string>
+    <string name="java_infofeatureactivity_title_teachers_routine">Teacher\'s Routine</string>
+    <string name="java_infofeatureactivity_content_teachers_routine">Now teachers can see their day to day schedule and make plans accordingly. Surely accelerate better outputs.</string>
+    <string name="java_infofeatureactivity_title_homework">Homework</string>
+    <string name="java_infofeatureactivity_content_homework">This feature is convenient for everyone! Teachers can assign homework to whole class or individual student. Students now can find homework easily. Set reminder and mark done once completed and parents can keep track of homework assigned to child.</string>
+    <string name="java_infofeatureactivity_title_fees">Fees</string>
+    <string name="java_infofeatureactivity_content_fees">Parents can pay fees online using credit card or mobile money. Great tool for monitoring payment and keeping school\'s accounts.</string>
+    <string name="java_infofeatureactivity_title_forms">Forms</string>
+    <string name="java_infofeatureactivity_content_forms">All school forms are now available from mobile and web. Fill it up and submit online. Zero crowd in office room thus higher productivity.</string>
+    <string name="java_infofeatureactivity_title_meeting_request">Meeting Request</string>
+    <string name="java_infofeatureactivity_content_meeting_request">School admin can organize parents meets and notify parents quickly. Parents can request to meet teachers. Even teachers can request an individual parent for meeting.</string>
+    <string name="java_infofeatureactivity_title_report_card">Report Card</string>
+    <string name="java_infofeatureactivity_content_report_card">Teacher can upload the report card of class tests, exams, projects and students can see it online. Students can place it for parents view and after reviewing parents can send acknowledgement to school.</string>
+    <string name="java_infofeatureactivity_title_events">Events</string>
+    <string name="java_infofeatureactivity_content_events">Events page keeps everyone updated about date, timing and venue of any event coming up in the school. It also sends necessary reminders.</string>
+    <string name="java_infofeatureactivity_title_transport">Transport</string>
+    <string name="java_infofeatureactivity_content_transport">Pick up and drop off time of your child\'s school transport now can be checked online. Any changes in the transport schedule can reach parents in minutes.</string>
+    <string name="java_infofeatureactivity_title_routine">Routine</string>
+    <string name="java_infofeatureactivity_content_routine">Teachers and Management can modify routine when necessary and send instant notification.</string>
+    <string name="java_infofeatureactivity_title_syllabus">Syllabus</string>
+    <string name="java_infofeatureactivity_content_syllabus">Schools are enabled to upload yearly syllabus. Students, Parents and Teachers can refer to syllabus on the go.</string>
+    <string name="java_infofeatureactivity_title_notice">Notice</string>
+    <string name="java_infofeatureactivity_content_notice">Any notice without any word limitation can be sent. Its real time and interactive. Instant notification to parents.</string>
+    <string name="java_infofeatureactivity_title_leave">Leave</string>
+    <string name="java_infofeatureactivity_content_leave">Applying for leave is now hassle free! Parents can apply for Student’s leave and get notification once granted. Teachers can approve Students leave and can apply for their own leaves also.</string>
+
+    <!--LeaveApplicationFragment-->
+    <string name="java_leaveapplicationfragment_reason_type">Please choose a reason type!</string>
+    <string name="java_leaveapplicationfragment_application_subject">Application subject can\'t be empty!</string>
+    <string name="java_leaveapplicationfragment_leave_description">Leave description can\'t be Empty!</string>
+    <string name="java_leaveapplicationfragment_choose_start_date">Please Choose a start date for leave!</string>
+    <string name="java_leaveapplicationfragment_choose_end_date">Please Choose an end date for leave!</string>
+    <string name="java_leaveapplicationfragment_successfully_posted">Successfully posted application!</string>
+    <string name="java_leaveapplicationfragment_failed_post">Failed to post leave application! Please try again.</string>
+    <string name="java_leaveapplicationfragment_select_leave_type">Select Leave Type</string>
+    <string name="java_leaveapplicationfragment_invalid_file_type">Invalid file type</string>
+    <string name="java_leaveapplicationfragment_successfully_added_lesson_plan">Successfully added lesson plan.</string>
+    <string name="java_leaveapplicationfragment_last_updated">"Last Updated "</string>
+
+    <!--LessonPlanView-->
+    <string name="java_lessonplanview_lesson_plan">LESSON PLAN</string>
+    <string name="java_lessonplanview_delete">Delete</string>
+    <string name="java_lessonplanview_content_delete">Are you sure you want to delete selected lesson plan(s)?</string>
+    <string name="java_lessonplanview_assign">Assign</string>
+    <string name="java_lessonplanview_content_assign">Are you sure you want to assign selected lesson plan(s)?</string>
+    <string name="java_lessonplanview_successfully_deleted">Successfully Deleted</string>
+    <string name="java_lessonplanview_successfully_assigned">Successfully Assigned</string>
+    <string name="java_lessonplanview_inactive">Inactive</string>
+    <string name="java_lessonplanview_active">Active</string>
 
 
 </resources>

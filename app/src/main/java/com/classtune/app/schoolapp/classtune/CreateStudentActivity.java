@@ -178,7 +178,7 @@ public class CreateStudentActivity extends FragmentActivity implements UserAuthL
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };
@@ -304,8 +304,8 @@ public class CreateStudentActivity extends FragmentActivity implements UserAuthL
     private void initAction()
     {
         listGender = new ArrayList<String>();
-        listGender.add("Male");
-        listGender.add("Female");
+        listGender.add(getString(R.string.java_createparentactivity_male));
+        listGender.add(getString(R.string.java_createparentactivity_female));
 
         SpinnerGenderAdapter genderAdapter = new SpinnerGenderAdapter(this, android.R.layout.simple_spinner_item, listGender);
         spinnerGender.setAdapter(genderAdapter);
@@ -557,7 +557,7 @@ public class CreateStudentActivity extends FragmentActivity implements UserAuthL
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };
@@ -613,7 +613,7 @@ public class CreateStudentActivity extends FragmentActivity implements UserAuthL
         alertDialogBuilder
                 .setMessage(AppConstant.CLASSTUNE_MESSAGE_SELECT_SOURCE)
                 .setCancelable(false)
-                .setPositiveButton("Gallery",
+                .setPositiveButton(getString(R.string.java_createparentactivity_gallery),
                         new DialogInterface.OnClickListener() {
 
                             @Override
@@ -626,7 +626,7 @@ public class CreateStudentActivity extends FragmentActivity implements UserAuthL
 
                             }
                         })
-                .setNegativeButton("Camera",
+                .setNegativeButton(getString(R.string.java_createparentactivity_camera),
                         new DialogInterface.OnClickListener() {
 
                             @Override
@@ -654,7 +654,7 @@ public class CreateStudentActivity extends FragmentActivity implements UserAuthL
         if (isVisible) {
             imageNameContainer.setVisibility(View.VISIBLE);
             //tvImageName.setText(getFileNameFromPath(selectedImagePath));
-            tvImageName.setText("Successful");
+            tvImageName.setText(getString(R.string.java_createparentactivity_successful));
 
             txtUploadPhoto.setVisibility(View.GONE);
 

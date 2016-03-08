@@ -132,14 +132,14 @@ public class CreateMeetingRequest extends ChildContainerActivity {
 
         if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
             this.layoutSelectBatchSegmnent.setVisibility(View.GONE);
-            this.txtHeaderParent.setText("Select Teacher");
-            this.txtSelectParent.setHint("Select Teacher");//Select Parent by Student Name
+            this.txtHeaderParent.setText(R.string.java_createmeetingrequest_select_teacher);
+            this.txtSelectParent.setHint(R.string.java_createmeetingrequest_select_teacher);//Select Parent by Student Name
 
             initApiCallParent();
         } else {
             this.layoutSelectBatchSegmnent.setVisibility(View.VISIBLE);
-            this.txtHeaderParent.setText("Select Parent");
-            this.txtSelectParent.setHint("Select Parent by Student Name");
+            this.txtHeaderParent.setText(R.string.java_createmeetingrequest_select_parent);
+            this.txtSelectParent.setHint(R.string.java_createmeetingrequest_select_parent_by_student);
         }
 
 
@@ -185,7 +185,7 @@ public class CreateMeetingRequest extends ChildContainerActivity {
 
                 if (TextUtils.isEmpty(txtSelectBatch.getText().toString())) {
                     if(userHelper.getUser().getType() != UserTypeEnum.PARENTS)
-                        Toast.makeText(CreateMeetingRequest.this, "Select a batch first", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateMeetingRequest.this, R.string.java_createmeetingrequest_select_batch_first, Toast.LENGTH_SHORT).show();
                 }
 
                 PopupMenu popup = new PopupMenu(CreateMeetingRequest.this, btnSelectParent);
@@ -381,7 +381,7 @@ public class CreateMeetingRequest extends ChildContainerActivity {
     private void showBatchPicker(PickerType type) {
 
         Picker picker = Picker.newInstance(0);
-        picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback, "Select Batch");
+        picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback, getString(R.string.spinner_prompt_select_batch));
         picker.show(this.getSupportFragmentManager(), null);
     }
 
@@ -456,7 +456,7 @@ public class CreateMeetingRequest extends ChildContainerActivity {
 
         @Override
         public void onStart() {
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
         }
 
         ;
@@ -493,19 +493,19 @@ public class CreateMeetingRequest extends ChildContainerActivity {
     private boolean isValidate() {
         boolean isValid = true;
         if (layoutSelectBatchSegmnent.getVisibility() == View.VISIBLE && TextUtils.isEmpty(txtSelectBatch.getText().toString())) {
-            Toast.makeText(this, "Select batch", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.spinner_prompt_select_batch), Toast.LENGTH_SHORT).show();
             isValid = false;
         } else if (TextUtils.isEmpty(txtSelectParent.getText().toString())) {
             if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
-                Toast.makeText(this, "Select teacher name", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.java_createmeetingrequest_select_teacher_name, Toast.LENGTH_SHORT).show();
             } else
-                Toast.makeText(this, "Select parent by student name", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.java_createmeetingrequest_select_parent_by_student, Toast.LENGTH_SHORT).show();
             isValid = false;
         } else if (TextUtils.isEmpty(txtSelectDateTime.getText().toString())) {
-            Toast.makeText(this, "Select date and time", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.java_createmeetingrequest_select_date_and_time, Toast.LENGTH_SHORT).show();
             isValid = false;
         } else if (TextUtils.isEmpty(txtDescription.getText().toString())) {
-            Toast.makeText(this, "Enter meeting description", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.java_createmeetingrequest_enter_meeting_description, Toast.LENGTH_SHORT).show();
             isValid = false;
         }
 
@@ -558,7 +558,7 @@ public class CreateMeetingRequest extends ChildContainerActivity {
 
         @Override
         public void onStart() {
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
         }
 
         ;
@@ -576,7 +576,7 @@ public class CreateMeetingRequest extends ChildContainerActivity {
             if (modelContainer.getStatus().getCode() == 200) {
 
                 //do parsing
-                Toast.makeText(CreateMeetingRequest.this, "Meeting request sent sucessfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateMeetingRequest.this, R.string.java_createmeetingrequest_meeting_request_success, Toast.LENGTH_SHORT).show();
 
                 CreateMeetingRequest.this.finish();
 

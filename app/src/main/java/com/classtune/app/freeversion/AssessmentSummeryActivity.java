@@ -78,7 +78,7 @@ public class AssessmentSummeryActivity extends ChildContainerActivity {
 		
 		if(listAssessmentQuestionSummery.size() <= 0)
 		{
-			Toast.makeText(AssessmentSummeryActivity.this, "No summery available", Toast.LENGTH_SHORT).show();
+			Toast.makeText(AssessmentSummeryActivity.this, R.string.java_assessmentsummeryactivity_no_summery_available, Toast.LENGTH_SHORT).show();
 		}
 	}
 	
@@ -161,7 +161,7 @@ public class AssessmentSummeryActivity extends ChildContainerActivity {
 					// TODO Auto-generated method stub
 					// show answer and explanation popup here
 					
-					showCustomDialogScore("SUMMERY", listAssessmentQuestionSummery.get((Integer) ((LinearLayout)v).getTag()).getQuestion(), listAssessmentQuestionSummery.get((Integer) ((LinearLayout)v).getTag()).getAnswer(), listAssessmentQuestionSummery.get((Integer) ((LinearLayout)v).getTag()).getExplanation(),
+					showCustomDialogScore(getString(R.string.java_assessmentsummeryactivity_summery_title), listAssessmentQuestionSummery.get((Integer) ((LinearLayout)v).getTag()).getQuestion(), listAssessmentQuestionSummery.get((Integer) ((LinearLayout)v).getTag()).getAnswer(), listAssessmentQuestionSummery.get((Integer) ((LinearLayout)v).getTag()).getExplanation(),
 							R.drawable.assessment_icon_popup);
 				}
 			});

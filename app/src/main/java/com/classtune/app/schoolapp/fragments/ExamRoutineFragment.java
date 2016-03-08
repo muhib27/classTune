@@ -83,7 +83,7 @@ public class ExamRoutineFragment extends Fragment implements UserAuthListener {
 		public void onStart() {
 			super.onStart();
 			// uListener.onServerAuthenticationStart();
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		}
 
 		// u44tk4p199mvhgi8gf378ui510

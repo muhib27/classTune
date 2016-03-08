@@ -59,7 +59,7 @@ public class AccountSettingsActivity extends ChildContainerActivity implements O
 		if (uiHelper.isDialogActive()) {
 			uiHelper.dismissLoadingDialog();
 		}
-		uiHelper.showLoadingDialog("Please wait...");
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 	}
 	@Override
 	public void onAuthenticationSuccessful() {
@@ -85,7 +85,7 @@ public class AccountSettingsActivity extends ChildContainerActivity implements O
 		if (uiHelper.isDialogActive()) {
 			uiHelper.dismissLoadingDialog();
 		}
-		uiHelper.showMessage("Your password is changed successfully.");
+		uiHelper.showMessage(getString(R.string.java_accountsettingsactivity_password_changes_success));
 		finish();
 	}
 	
@@ -114,15 +114,15 @@ public class AccountSettingsActivity extends ChildContainerActivity implements O
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (TextUtils.isEmpty(etCurrentPass.getText().toString().trim())) {
-					uiHelper.showErrorDialog("Password Cannot be empty!");
+					uiHelper.showErrorDialog(getString(R.string.java_accountsettingsactivity_password_cannot_empty));
 				} else if (TextUtils.isEmpty(etNewPass.getText().toString().trim())) {
-					uiHelper.showErrorDialog("Password Cannot be empty!");
+					uiHelper.showErrorDialog(getString(R.string.java_accountsettingsactivity_password_cannot_empty));
 				} else if (TextUtils.isEmpty(etRePass.getText().toString().trim())) {
-					uiHelper.showErrorDialog("Password Cannot be empty!");
+					uiHelper.showErrorDialog(getString(R.string.java_accountsettingsactivity_password_cannot_empty));
 				} else {
 					if (!etNewPass.getText().toString().trim()
 							.equals(etRePass.getText().toString().trim())) {
-						uiHelper.showErrorDialog("Password doesn't match!");
+						uiHelper.showErrorDialog(getString(R.string.java_accountsettingsactivity_password_didnt_match));
 					} else {
 						userHelper.updatePassword(userHelper.getUser(), etNewPass
 								.getText().toString(), etCurrentPass.getText()
@@ -188,7 +188,7 @@ public class AccountSettingsActivity extends ChildContainerActivity implements O
 								.toString()
 								.equalsIgnoreCase(
 										etNewPass.getText().toString()))
-					etRePass.setError("Please enter correct password");
+					etRePass.setError(getString(R.string.java_accountsettingsaactivity_enter_correct_password));
 
 			}
 

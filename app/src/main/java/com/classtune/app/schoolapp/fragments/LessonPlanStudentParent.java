@@ -141,7 +141,7 @@ public class LessonPlanStudentParent extends Fragment {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };
@@ -240,7 +240,7 @@ public class LessonPlanStudentParent extends Fragment {
 
             holder.imgViewSubjectIcon.setImageResource(AppUtility.getImageResourceId(listSubject.get(position).getIcon(), getActivity()));
             holder.txtSubjectName.setText(listSubject.get(position).getName() + " (" + listSubject.get(position).getTotal() + ")");
-            holder.txtPublishDate.setText("Last Updated "+AppUtility.getDateString(listSubject.get(position).getLastUpdated(), AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
+            holder.txtPublishDate.setText(getActivity().getString(R.string.java_leaveapplicationfragment_last_updated)+AppUtility.getDateString(listSubject.get(position).getLastUpdated(), AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
 
             holder.btnView.setOnClickListener(new View.OnClickListener() {
                 @Override

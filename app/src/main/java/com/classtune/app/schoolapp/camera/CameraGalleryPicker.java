@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 
+import com.classtune.app.R;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
@@ -56,7 +57,7 @@ public class CameraGalleryPicker {
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
 
-        mActivity.startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+        mActivity.startActivityForResult(Intent.createChooser(intent, mActivity.getString(R.string.java_ameragallerypicker_select_file)), SELECT_FILE);
 
     }
 

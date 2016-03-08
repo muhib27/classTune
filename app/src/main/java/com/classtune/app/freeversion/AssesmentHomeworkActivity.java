@@ -255,12 +255,12 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 			        	if(!userHelper.isLoggedIn())
 						{
 							//showCustomDialogScore("SCORE", R.drawable.assessment_icon_popup, "Your score is "+getScore()+"/"+totalScore +" login to save your score");
-							showCustomDialogOk(false, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+							showCustomDialogOk(false, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
 						}
 						else
 						{
 							//R.drawable.assessment_icon_popup
-							showCustomDialogOk(true, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+							showCustomDialogOk(true, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
 							
 						}
 		        	}
@@ -273,7 +273,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 		        		if(currentPosition < listAssessmentQuestion.size())
 		        		{
 		        			if(isValid)
-								showCustomDialogNextQuestion("QUIZ", R.drawable.assessment_icon_popup, "Congratulations! \nYou got it right.",  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
+								showCustomDialogNextQuestion(getString(R.string.java_assesmentactivity_title_quiz), R.drawable.assessment_icon_popup, getString(R.string.java_assesmentactivity_you_got_it_right),  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
 							else
 							{
 								if(currentPosition <= listAssessmentQuestion.size())
@@ -283,7 +283,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 											listAssessmentQuestion.get(currentPosition-1).getExplanation()));
 								}
 								
-								showCustomDialogNextQuestion("QUIZ", R.drawable.assessment_icon_popup, "Time Out!",  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
+								showCustomDialogNextQuestion(getString(R.string.java_assesmentactivity_title_quiz), R.drawable.assessment_icon_popup, getString(R.string.java_assesmentactivity_time_out),  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
 		        			
 			        			
 							}
@@ -370,12 +370,12 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 					if(!userHelper.isLoggedIn())
 					{
 						//showCustomDialogScore("SCORE", R.drawable.assessment_icon_popup, "Your score is "+getScore()+"/"+totalScore +" login to save your score");
-						showCustomDialogOk(false, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+						showCustomDialogOk(false, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
 					}
 					else
 					{
 						//R.drawable.assessment_icon_popup
-						showCustomDialogOk(true, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+						showCustomDialogOk(true, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
 						
 					}
 				}
@@ -545,7 +545,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 
 		@Override
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -604,7 +604,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 			
 			if (modelContainer.getStatus().getCode() == 404) 
 			{
-				Toast.makeText(AssesmentHomeworkActivity.this, "You have already completed this quiz!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(AssesmentHomeworkActivity.this, R.string.java_assesmenthomeworkactivity_already_completed_quiz, Toast.LENGTH_SHORT).show();
 				AssesmentHomeworkActivity.this.finish();
 			}
 			
@@ -637,7 +637,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 
 		@Override
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -652,7 +652,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 			if (modelContainer.getStatus().getCode() == 200) 
 			{
 				
-				Toast.makeText(AssesmentHomeworkActivity.this, "Marks added successfully", Toast.LENGTH_SHORT).show();
+				Toast.makeText(AssesmentHomeworkActivity.this, getString(R.string.java_assesmentactivity_marks_added_sussessfully), Toast.LENGTH_SHORT).show();
 				
 				AssesmentHomeworkActivity.this.finish();
 			}
@@ -819,12 +819,12 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 										if(!userHelper.isLoggedIn())
 										{
 											//showCustomDialogScore("SCORE", R.drawable.assessment_icon_popup, "Your score is "+getScore()+"/"+totalScore +" login to save your score");
-											showCustomDialogOk(false, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+											showCustomDialogOk(false, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
 										}
 										else
 										{
 											//R.drawable.assessment_icon_popup
-											showCustomDialogOk(true, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+											showCustomDialogOk(true, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
 											
 										}
 									}
@@ -1114,12 +1114,12 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 												if(!userHelper.isLoggedIn())
 												{
 													//showCustomDialogScore("SCORE", R.drawable.assessment_icon_popup, "Your score is "+getScore()+"/"+totalScore +" login to save your score");
-													showCustomDialogOk(false, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+													showCustomDialogOk(false, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
 												}
 												else
 												{
 													//R.drawable.assessment_icon_popup
-													showCustomDialogOk(true, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+													showCustomDialogOk(true, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
 													
 												}
 											}
@@ -1672,9 +1672,9 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 					enableDisableClickListener(false);
 					
 					if(isValid)
-						showCustomDialogNextQuestion("QUIZ", R.drawable.assessment_icon_popup, "Congratulations! \nYou got it right.", listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
+						showCustomDialogNextQuestion(getString(R.string.java_assesmentactivity_title_quiz), R.drawable.assessment_icon_popup, getString(R.string.java_assesmentactivity_you_got_it_right), listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
 					else
-						showCustomDialogNextQuestion("QUIZ", R.drawable.assessment_icon_popup, "Opps! Wrong answer.",  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
+						showCustomDialogNextQuestion(getString(R.string.java_assesmentactivity_title_quiz), R.drawable.assessment_icon_popup, getString(R.string.java_assesmentactivity_wrong_answer),  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
 				}
 				
 				isValid = false;
@@ -1909,7 +1909,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 	    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 	        // do something on back.
 	    	
-	    	showCustomialogExit("QUIZ", "Your score will be automatically saved. Do you want to exit your progress now?", R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+	    	showCustomialogExit(getString(R.string.java_assesmentactivity_title_quiz), getString(R.string.java_assesmentomeworkactivity_automatic_save), R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
 	    	
 	    	return true;
 	    }

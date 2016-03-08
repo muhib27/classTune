@@ -190,40 +190,40 @@ public class ClassReportTeacherFragment extends Fragment implements
 		
 		
 		if(cReport.getPresentStudentCount()>0)
-		clickify(presentViewLink, "View",new ClickSpan.OnClickListener()
+		clickify(presentViewLink, getActivity().getString(R.string.java_classreportteacherfragment_view),new ClickSpan.OnClickListener()
 	     {
 	        @Override
 	        public void onClick() {
 	            // do something
 	        	Intent intent=new Intent(getActivity(), StudentListActivity.class);
 	        	intent.putParcelableArrayListExtra("students",(ArrayList<StudentAttendance>)(cReport.getStudent().getPresentStudents()));
-	        	intent.putExtra("title", "Present Students");
+	        	intent.putExtra("title", getActivity().getString(R.string.java_classreportteacherfragment_present_students));
 	        	intent.putExtra("date", dateTxt.getText().toString());
 	        	startActivity(intent);
 	        }
 	    });
 		if(cReport.getLateStudentCount()>0)
-		clickify(lateViewLink, "View",new ClickSpan.OnClickListener()
+		clickify(lateViewLink, getActivity().getString(R.string.java_classreportteacherfragment_view),new ClickSpan.OnClickListener()
 	     {
 	        @Override
 	        public void onClick() {
 	            // do something
 	        	Intent intent=new Intent(getActivity(), StudentListActivity.class);
 	        	intent.putParcelableArrayListExtra("students",(ArrayList<StudentAttendance>)(cReport.getStudent().getLateStudents()));
-	        	intent.putExtra("title", "Students late");
+	        	intent.putExtra("title", getActivity().getString(R.string.java_classreportteacherfragment_students_late));
 	        	intent.putExtra("date", dateTxt.getText().toString());
 	        	startActivity(intent);
 	        }
 	    });
 		if(cReport.getLeaveStudentCount()>0)
-		clickify(leaveViewLink, "View",new ClickSpan.OnClickListener()
+		clickify(leaveViewLink, getActivity().getString(R.string.java_classreportteacherfragment_view),new ClickSpan.OnClickListener()
 	     {
 	        @Override
 	        public void onClick() {
 	            // do something
 	        	Intent intent=new Intent(getActivity(), StudentListActivity.class);
 	        	intent.putParcelableArrayListExtra("students",(ArrayList<StudentAttendance>)(cReport.getStudent().getLeaveStudents()));
-	        	intent.putExtra("title", "Students on leave");
+	        	intent.putExtra("title", getActivity().getString(R.string.java_classreportteacherfragment_students_on_leave));
 	        	intent.putExtra("date", dateTxt.getText().toString());
 	        	startActivity(intent);
 	        }
@@ -236,7 +236,7 @@ public class ClassReportTeacherFragment extends Fragment implements
 	            // do something
 	        	Intent intent=new Intent(getActivity(), StudentListActivity.class);
 	        	intent.putParcelableArrayListExtra("students",(ArrayList<StudentAttendance>)(cReport.getStudent().getAbsentStudents()));
-	        	intent.putExtra("title", "Students absent");
+	        	intent.putExtra("title", getActivity().getString(R.string.java_classreportteacherfragment_students_absent));
 	        	intent.putExtra("date", dateTxt.getText().toString());
 	        	startActivity(intent);
 	        }

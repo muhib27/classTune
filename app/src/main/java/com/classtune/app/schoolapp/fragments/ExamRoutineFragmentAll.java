@@ -85,7 +85,7 @@ public class ExamRoutineFragmentAll extends UserVisibleHintFragment implements
 				.setVisibility(View.VISIBLE);
 		examList = (ListView) view.findViewById(R.id.exam_listview);
 		gridTitleText = (TextView) view.findViewById(R.id.grid_title_textview);
-		gridTitleText.setText("Exam");
+		gridTitleText.setText(R.string.java_examroutinefragmentall_exam);
 		pbs = (LinearLayout) view.findViewById(R.id.pb);
 		nodata = (TextView) view.findViewById(R.id.nodataMsg);
 		setUpList();

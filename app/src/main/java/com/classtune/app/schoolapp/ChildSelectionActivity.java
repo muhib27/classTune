@@ -221,7 +221,7 @@ public class ChildSelectionActivity extends RoboFragmentActivity{
 		
 		txtChildName.setText(childrenList.get(currentPosition).getFullName());
 		txtSchoolName.setText(childrenList.get(currentPosition).getSchool_name());
-		txtBatchSection.setText(childrenList.get(currentPosition).getBatch_name()+"  "+childrenList.get(currentPosition).getCourse_name()+",  Section "+childrenList.get(currentPosition).getSection_name());
+		txtBatchSection.setText(childrenList.get(currentPosition).getBatch_name()+"  "+childrenList.get(currentPosition).getCourse_name()+getString(R.string.java_childselectionactivity_section)+childrenList.get(currentPosition).getSection_name());
 	
 		
 		if(currentPosition <= 0)

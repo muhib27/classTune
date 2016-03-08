@@ -18,6 +18,8 @@ import android.widget.TimePicker;
 import android.widget.TimePicker.OnTimeChangedListener;
 import android.widget.ViewSwitcher;
 
+import com.classtune.app.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -90,13 +92,13 @@ public class CustomDateTimePicker implements OnClickListener {
 
 		btn_setDate = new Button(activity);
 		btn_setDate.setLayoutParams(button_params);
-		btn_setDate.setText("Set Date");
+		btn_setDate.setText(R.string.java_customdatetimepicker_set_date);
 		btn_setDate.setId(SET_DATE);
 		btn_setDate.setOnClickListener(this);
 
 		btn_setTime = new Button(activity);
 		btn_setTime.setLayoutParams(button_params);
-		btn_setTime.setText("Set Time");
+		btn_setTime.setText(R.string.java_customdatetimepicker_set_time);
 		btn_setTime.setId(SET_TIME);
 		btn_setTime.setOnClickListener(this);
 
@@ -125,13 +127,13 @@ public class CustomDateTimePicker implements OnClickListener {
 
 		btn_set = new Button(activity);
 		btn_set.setLayoutParams(button_params);
-		btn_set.setText("Set");
+		btn_set.setText(R.string.java_customdatetimepicker_set);
 		btn_set.setId(SET);
 		btn_set.setOnClickListener(this);
 
 		btn_cancel = new Button(activity);
 		btn_cancel.setLayoutParams(button_params);
-		btn_cancel.setText("Cancel");
+		btn_cancel.setText(R.string.java_customdatetimepicker_cancel);
 		btn_cancel.setId(CANCEL);
 		btn_cancel.setOnClickListener(this);
 

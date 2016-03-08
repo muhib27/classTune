@@ -144,7 +144,7 @@ public class FeesHistoryFragment extends Fragment {
 		@Override
 		public void onStart() {
 			
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			
 
 		};
@@ -253,13 +253,13 @@ public class FeesHistoryFragment extends Fragment {
             if(listDue.get(position).getIsPaid().equalsIgnoreCase("0"))
             {
             	holder.layoutStatus.setBackgroundColor(Color.BLACK);
-            	holder.txtStatus.setText("Not Paid");
+            	holder.txtStatus.setText(R.string.java_feeshistoryfragment_not_paid);
             	holder.txtStatus.setTextColor(Color.RED);
             }
             else
             {
             	holder.layoutStatus.setBackgroundColor(Color.WHITE);
-            	holder.txtStatus.setText("Paid");
+            	holder.txtStatus.setText(R.string.java_feeshistoryfragment_paid);
             	holder.txtStatus.setTextColor(Color.BLACK);
             }
             

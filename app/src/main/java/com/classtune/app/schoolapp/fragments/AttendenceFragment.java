@@ -298,8 +298,8 @@ public class AttendenceFragment extends Fragment implements UserAuthListener{
 
 	public GregorianCalendar month, itemmonth;// calendar instances.
 	
-	private final String[] weekdays = new String[] { "Sun", "Mon", "Tue",
-			"Wed", "Thu", "Fri", "Sat" };
+	private final String[] weekdays = new String[] { getActivity().getString(R.string.java_attendencefragment_day_sun), getActivity().getString(R.string.java_attendencefragment_day_mon), getActivity().getString(R.string.java_attendencefragment_day_tue),
+			getActivity().getString(R.string.java_attendencefragment_day_wed), getActivity().getString(R.string.java_attendencefragment_day_thu), getActivity().getString(R.string.java_attendencefragment_day_fri), getActivity().getString(R.string.java_attendencefragment_day_sat) };
 	private LinearLayout weekDaysNameContainer;
 	
 	public CalendarAdapter adapter;// adapter instance
@@ -529,7 +529,7 @@ public class AttendenceFragment extends Fragment implements UserAuthListener{
 	@Override
 	public void onAuthenticationStart() {
 		if(uiHelper.isDialogActive())
-			uiHelper.updateLoadingDialog("Authenticating.....");
+			uiHelper.updateLoadingDialog(getActivity().getString(R.string.java_attendencefragment_authenticating));
 		else
 			uiHelper.updateLoadingDialog(getString(R.string.loading_text));
 	}

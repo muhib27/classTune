@@ -115,7 +115,7 @@ public class AssessmentLeaderBoardActivity extends ChildContainerActivity implem
 
 		@Override
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -243,8 +243,8 @@ public class AssessmentLeaderBoardActivity extends ChildContainerActivity implem
 			
 			holder.txtUserName.setText(listLeaderBoard.get(position).getUserName());
 			//holder.txtLeaderBoardTitle.setText("Title: "+listLeaderBoard.get(position).getTitle());
-			holder.txtMarks.setText("Marks: "+listLeaderBoard.get(position).getMark());
-			holder.txtTime.setText("Time: "+convertSecondsToHMS(listLeaderBoard.get(position).getTimeTaken()));
+			holder.txtMarks.setText(getString(R.string.java_assessmentleaderboardactivity_txt_marks)+listLeaderBoard.get(position).getMark());
+			holder.txtTime.setText(getString(R.string.java_assessmentleaderboardactivity_txt_time)+convertSecondsToHMS(listLeaderBoard.get(position).getTimeTaken()));
 			
 			return convertView;
 		}

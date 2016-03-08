@@ -211,8 +211,8 @@ public class CreateParentActivity extends FragmentActivity implements IDialogSel
     private void initAction()
     {
         listGender = new ArrayList<String>();
-        listGender.add("Male");
-        listGender.add("Female");
+        listGender.add(getString(R.string.java_createparentactivity_male));
+        listGender.add(getString(R.string.java_createparentactivity_female));
 
         SpinnerGenderAdapter genderAdapter = new SpinnerGenderAdapter(this, android.R.layout.simple_spinner_item, listGender);
         spinnerGender.setAdapter(genderAdapter);
@@ -537,7 +537,7 @@ public class CreateParentActivity extends FragmentActivity implements IDialogSel
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };
@@ -686,7 +686,7 @@ public class CreateParentActivity extends FragmentActivity implements IDialogSel
         alertDialogBuilder
                 .setMessage(AppConstant.CLASSTUNE_MESSAGE_SELECT_SOURCE)
                 .setCancelable(false)
-                .setPositiveButton("Gallery",
+                .setPositiveButton(R.string.java_createparentactivity_gallery,
                         new DialogInterface.OnClickListener() {
 
                             @Override
@@ -705,7 +705,7 @@ public class CreateParentActivity extends FragmentActivity implements IDialogSel
 
                             }
                         })
-                .setNegativeButton("Camera",
+                .setNegativeButton(R.string.java_createparentactivity_camera,
                         new DialogInterface.OnClickListener() {
 
                             @Override
@@ -734,7 +734,7 @@ public class CreateParentActivity extends FragmentActivity implements IDialogSel
         if (isVisible) {
             imageNameContainer.setVisibility(View.VISIBLE);
             //tvImageName.setText(getFileNameFromPath(selectedImagePath));
-            tvImageName.setText("Successful");
+            tvImageName.setText(R.string.java_createparentactivity_successful);
 
             txtUploadPhoto.setVisibility(View.GONE);
 

@@ -430,7 +430,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 		@Override
 		public void onStart() {
 			if (currentAdapter.getPageNumber() == 1 && !currentAdapter.isRefreshing()) {
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			}
 
 		};
@@ -475,7 +475,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 	private void showSubjectPicker() {
 		Picker picker = Picker.newInstance(0);
 		picker.setData(PickerType.HOMEWORK_SUBJECT, homeWorkSubject, PickerCallback,
-				"Choose your subject");
+				getActivity().getString(R.string.java_homeworkfragment_choose_your_subject));
 		picker.show(getChildFragmentManager(), null);
 	}
 
@@ -778,7 +778,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 		@Override
 		public void onStart() {
 			if (currentAdapter.getPageNumber() == 1 && !currentAdapter.isRefreshing()) {
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			}
 
 		};
@@ -815,7 +815,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 
 				if(modelContainer.getData().getHomeworkList().size() <= 0)
 				{
-					Toast.makeText(getActivity(), "No data found!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), getString(R.string.fragment_archieved_events_txt_no_data_found), Toast.LENGTH_SHORT).show();
 				}
 			}
 		};
@@ -971,10 +971,10 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 
 
 			 if (ReminderHelper.getInstance().reminder_map.containsKey(AppConstant.KEY_HOMEWORK+list.get(i).getId())){
-					setButtonState(holder.btnReminder, R.drawable.btn_reminder_tap, false, "Reminder");
+					setButtonState(holder.btnReminder, R.drawable.btn_reminder_tap, false, getString(R.string.btn_reminder));
 
 				}else {
-					setButtonState(holder.btnReminder, R.drawable.btn_reminder_normal, true, "Reminder");
+					setButtonState(holder.btnReminder, R.drawable.btn_reminder_normal, true, getString(R.string.btn_reminder));
 				}
 
 			holder.btnReminder.setOnClickListener(new OnClickListener() {
@@ -984,7 +984,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 					// TODO Auto-generated method stub
 					final CustomButton btn = (CustomButton) v;
 
-					setButtonState(btn, R.drawable.btn_reminder_tap, false, "Reminder");
+					setButtonState(btn, R.drawable.btn_reminder_tap, false, getString(R.string.btn_reminder));
 
 
 					AppUtility.listenerDatePickerCancel = new AppUtility.IDatePickerCancel() {
@@ -1130,7 +1130,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 
 		public void onStart() {
 			Log.e("button", "onstart");
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		public void onSuccess(int arg0, String response) {
@@ -1150,7 +1150,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 
 
 			} else {
-				uiHelper.showMessage("Error in operation!");
+				uiHelper.showMessage(getActivity().getString(R.string.java_homeworkfragment_erro_in_operation));
 			}
 
 
@@ -1278,7 +1278,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 
 		@Override
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -1371,7 +1371,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 
 		@Override
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -1404,7 +1404,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 				String studentCountText = totaltotalParticipated+"/"+totalStudent;
 
 
-				showCustomDialogHomeworkAssessmentOk("QUIZ", nameText, subjectText, studentCountText, maxScore, minScore, totalMarkText, totalTimeTaken, isPassedText, totalScoreText, R.drawable.assessment_icon_popup, getActivity());
+				showCustomDialogHomeworkAssessmentOk(getString(R.string.java_assesmentactivity_title_quiz), nameText, subjectText, studentCountText, maxScore, minScore, totalMarkText, totalTimeTaken, isPassedText, totalScoreText, R.drawable.assessment_icon_popup, getActivity());
 
 			}
 
@@ -1515,15 +1515,15 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 			holder.txtPosition.setText(String.valueOf(position + 1)+". ");
 
 			holder.txtName.setText(listAssessmentHomework.get(position).getName());
-			holder.txtStartDate.setText("Start Date: "+listAssessmentHomework.get(position).getStartDate());
-			holder.txtEndDate.setText("Due Date: "+listAssessmentHomework.get(position).getEndDate());
-			holder.txtMaximumTime.setText("Maximum Time: "+listAssessmentHomework.get(position).getMaximumTime());
-			holder.txtPassPercentage.setText("Pass Percentage: "+listAssessmentHomework.get(position).getPassPercentage());
+			holder.txtStartDate.setText(getActivity().getString(R.string.java_homeworkfragment_start_date)+listAssessmentHomework.get(position).getStartDate());
+			holder.txtEndDate.setText(getActivity().getString(R.string.java_homeworkfragment_due_date)+listAssessmentHomework.get(position).getEndDate());
+			holder.txtMaximumTime.setText(getActivity().getString(R.string.java_homeworkfragment_max_time)+listAssessmentHomework.get(position).getMaximumTime());
+			holder.txtPassPercentage.setText(getActivity().getString(R.string.java_homeworkfragment_pass_percentage)+listAssessmentHomework.get(position).getPassPercentage());
 			holder.btnPlay.setTag(position);
 
 			if(listAssessmentHomework.get(position).getTimeover() == 0 && listAssessmentHomework.get(position).getExamGiven() == 0)
 			{
-				holder.btnPlay.setText("Play");
+				holder.btnPlay.setText(R.string.java_homeworkfragment_play);
 
 				holder.btnPlay.setOnClickListener(new View.OnClickListener() {
 
@@ -1543,7 +1543,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 
 			if(listAssessmentHomework.get(position).getExamGiven() == 1)
 			{
-				holder.btnPlay.setText("Result");
+				holder.btnPlay.setText(R.string.java_homeworkfragment_result);
 
 				holder.btnPlay.setOnClickListener(new View.OnClickListener() {
 					
@@ -1560,7 +1560,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 			}
 			if(listAssessmentHomework.get(position).getTimeover() == 1 && listAssessmentHomework.get(position).getExamGiven() == 0)
 			{
-				holder.btnPlay.setText("Time Over");
+				holder.btnPlay.setText(R.string.java_homeworkfragment_time_over);
 			}
 			
 			

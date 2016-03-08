@@ -263,12 +263,12 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 			        	if(!userHelper.isLoggedIn())
 						{
 							//showCustomDialogScore("SCORE", R.drawable.assessment_icon_popup, "Your score is "+getScore()+"/"+totalScore +" login to save your score");
-							showCustomDialogOk(false, true, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
+							showCustomDialogOk(false, true, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
 						}
 						else
 						{
 							//R.drawable.assessment_icon_popup
-							showCustomDialogOk(true, true, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
+							showCustomDialogOk(true, true, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
 							
 						}
 		        	}
@@ -281,7 +281,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 		        		if(currentPosition < listAssessmentQuestion.size())
 		        		{
 		        			if(isValid)
-								showCustomDialogNextQuestion("QUIZ", R.drawable.assessment_icon_popup, "Congratulations! \nYou got it right.",  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
+								showCustomDialogNextQuestion(getString(R.string.java_assesmentactivity_title_quiz), R.drawable.assessment_icon_popup, getString(R.string.java_assesmentactivity_you_got_it_right),  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
 							else
 							{
 								if(currentPosition <= listAssessmentQuestion.size())
@@ -291,7 +291,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 											listAssessmentQuestion.get(currentPosition-1).getExplanation()));
 								}
 								
-								showCustomDialogNextQuestion("QUIZ", R.drawable.assessment_icon_popup, "Time Out!",  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
+								showCustomDialogNextQuestion(getString(R.string.java_assesmentactivity_title_quiz), R.drawable.assessment_icon_popup, getString(R.string.java_assesmentactivity_time_out),  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
 		        			
 			        			
 							}
@@ -378,12 +378,12 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 					if(!userHelper.isLoggedIn())
 					{
 						//showCustomDialogScore("SCORE", R.drawable.assessment_icon_popup, "Your score is "+getScore()+"/"+totalScore +" login to save your score");
-						showCustomDialogOk(false, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
+						showCustomDialogOk(false, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
 					}
 					else
 					{
 						//R.drawable.assessment_icon_popup
-						showCustomDialogOk(true, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
+						showCustomDialogOk(true, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
 						
 					}
 				}
@@ -514,7 +514,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 
 		@Override
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -588,7 +588,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 
 		@Override
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -614,13 +614,13 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 				
 			if (modelContainer.getStatus().getCode() == 404) 
 			{
-				Toast.makeText(AssesmentActivity.this, "You are already in leader board!", Toast.LENGTH_LONG).show();
+				Toast.makeText(AssesmentActivity.this, R.string.java_assesmentactivity_already_in_leaderboard, Toast.LENGTH_LONG).show();
 				
 				AssesmentActivity.this.finish();
 			}
 			else if(modelContainer.getStatus().getCode() == 200)
 			{
-				Toast.makeText(AssesmentActivity.this, "Marks added successfully", Toast.LENGTH_SHORT).show();
+				Toast.makeText(AssesmentActivity.this, R.string.java_assesmentactivity_marks_added_sussessfully, Toast.LENGTH_SHORT).show();
 				//sendNotification(AssesmentActivity.this.title+" quiz has beed activated now for you!", postId);
 				//startNotification(AssesmentActivity.this);
 				AssesmentActivity.this.finish();
@@ -777,12 +777,12 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 										if(!userHelper.isLoggedIn())
 										{
 											//showCustomDialogScore("SCORE", R.drawable.assessment_icon_popup, "Your score is "+getScore()+"/"+totalScore +" login to save your score");
-											showCustomDialogOk(false, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
+											showCustomDialogOk(false, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
 										}
 										else
 										{
 											//R.drawable.assessment_icon_popup
-											showCustomDialogOk(true, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
+											showCustomDialogOk(true, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
 											
 										}
 									}
@@ -1072,12 +1072,12 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 												if(!userHelper.isLoggedIn())
 												{
 													//showCustomDialogScore("SCORE", R.drawable.assessment_icon_popup, "Your score is "+getScore()+"/"+totalScore +" login to save your score");
-													showCustomDialogOk(false, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
+													showCustomDialogOk(false, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
 												}
 												else
 												{
 													//R.drawable.assessment_icon_popup
-													showCustomDialogOk(true, false, "Your score is", String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
+													showCustomDialogOk(true, false, getString(R.string.java_assesmentactivity_your_score_is), String.valueOf(getScore() + "/" + String.valueOf(totalScore)), "", R.drawable.assessment_icon_popup, AssesmentActivity.this);
 													
 												}
 											}
@@ -1630,9 +1630,9 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 					enableDisableClickListener(false);
 					
 					if(isValid)
-						showCustomDialogNextQuestion("QUIZ", R.drawable.assessment_icon_popup, "Congratulations! \nYou got it right.", listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
+						showCustomDialogNextQuestion(getString(R.string.java_assesmentactivity_title_quiz), R.drawable.assessment_icon_popup, getString(R.string.java_assesmentactivity_you_got_it_right), listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
 					else
-						showCustomDialogNextQuestion("QUIZ", R.drawable.assessment_icon_popup, "Opps! Wrong answer.",  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
+						showCustomDialogNextQuestion(getString(R.string.java_assesmentactivity_title_quiz), R.drawable.assessment_icon_popup, getString(R.string.java_assesmentactivity_wrong_answer),  listAssessmentQuestion.get(currentPosition-1).getListQuestion().get(rightAnswerPos).getAnswer(), listAssessmentQuestion.get(currentPosition-1).getQuestion(), listAssessmentQuestion.get(currentPosition-1).getExplanation());
 				}
 				
 				isValid = false;
