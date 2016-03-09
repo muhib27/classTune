@@ -20,7 +20,7 @@
     <string-array name="free_settings_text_log_in">
         <item>Account Settings</item>
         <item>Terms \u0026 Policy</item>
-        <item>Choose Language</item>
+        <item>ভাষা পরিবর্তন করুন</item>
     </string-array>
     <string-array name="diary_images_student">
         <item>home</item>
@@ -1625,7 +1625,7 @@
     <string name="java_dialoglanguagechooser_title">Choose your language</string>
     <string name="java_dialoglanguagechooser_lang_english">English</string>
     <string name="java_dialoglanguagechooser_lang_bangla">বাংলা</string>
-    <string name="java_dialoglanguagechooser_toast_select">You need to select at least one language.</string>
+    <string name="java_dialoglanguagechooser_toast_select">কমপক্ষে একটি ভাষা সিলেক্ট করুন</string>
 
 
 </resources>

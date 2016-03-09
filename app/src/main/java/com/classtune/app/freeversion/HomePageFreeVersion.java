@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ import com.classtune.app.schoolapp.utils.SharedPreferencesHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.BannerDialog;
+import com.classtune.app.schoolapp.viewhelpers.DialogLanguageChooser;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -60,6 +62,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @SuppressLint("NewApi")
@@ -495,6 +498,28 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                                 break;
                             case 2:
                                 //FAQ implementation goes here pagla ovi
+                                //language popup here
+                                DialogLanguageChooser dlc = new DialogLanguageChooser(HomePageFreeVersion.this, new DialogLanguageChooser.IDialogLanguageOkButtonListener() {
+                                    @Override
+                                    public void onOkButtonPresse(String localIdentifier) {
+                                        Log.e("HOME_PAGE_FREE", "ok clicked");
+
+
+                                        String languageToLoad = localIdentifier; // your language
+                                        Locale locale = new Locale(languageToLoad);
+                                        Locale.setDefault(locale);
+                                        Configuration config = new Configuration();
+                                        config.locale = locale;
+                                        context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+
+                                        Intent refresh = new Intent(HomePageFreeVersion.this, HomePageFreeVersion.class);
+                                        startActivity(refresh);
+                                        finish();
+                                    }
+                                });
+                                dlc.show();
+
+
                                 break;
                             default:
                                 break;
