@@ -77,7 +77,7 @@ public class PreferenceSettingsActivity extends ChildContainerActivity implement
 
 	AsyncHttpResponseHandler preferenceHandler = new AsyncHttpResponseHandler() {
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		public void onFailure(Throwable arg0, String arg1) {
@@ -164,7 +164,7 @@ public class PreferenceSettingsActivity extends ChildContainerActivity implement
 
 	AsyncHttpResponseHandler set_preferenceHandler = new AsyncHttpResponseHandler() {
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		public void onFailure(Throwable arg0, String arg1) {

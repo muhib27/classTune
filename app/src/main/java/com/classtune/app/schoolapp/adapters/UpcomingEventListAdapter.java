@@ -67,7 +67,7 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 	}
 	
 	@Override
-	public View getView(final int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, final View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		
 		
@@ -129,7 +129,7 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 				{
 					selectedEvent=items.get(position);
 					if(AppUtility.isInternetConnected()){
-						setButtonState(holder.joinInBtn, R.drawable.done_tap, false, "Joined");
+						setButtonState(holder.joinInBtn, R.drawable.done_tap, false, context.getString(R.string.java_singleeventactivity_joined));
 						notifyServerAboutAck(ackTypeEnum.JOIN_IN.ordinal(),items.get(position).getEventId());
 					}
 					else
@@ -205,17 +205,17 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 
         if(temp.getEventAck().equals(ackTypeEnum.JOIN_IN))
         {
-            setButtonState(holder.joinInBtn, R.drawable.done_tap, false, "Joined");
+            setButtonState(holder.joinInBtn, R.drawable.done_tap, false, context.getString(R.string.java_singleeventactivity_joined));
             holder.joinInBtn.setEnabled(false);
 
             Log.e("JOIN_TYPE", "inner is: " + temp.getEventAck().JOIN_IN.ordinal());
         }
 	    
 	    if (ReminderHelper.getInstance().reminder_map.containsKey(temp.getEventStartDate())){
-			setButtonState(holder.remainderBtn, R.drawable.btn_reminder_tap, false, "Reminder");
+			setButtonState(holder.remainderBtn, R.drawable.btn_reminder_tap, false, context.getString(R.string.btn_reminder));
 			
 		}else {
-			setButtonState(holder.remainderBtn, R.drawable.btn_reminder_normal, true, "Reminder");
+			setButtonState(holder.remainderBtn, R.drawable.btn_reminder_normal, true, context.getString(R.string.btn_reminder));
 		}
 	    
 	    

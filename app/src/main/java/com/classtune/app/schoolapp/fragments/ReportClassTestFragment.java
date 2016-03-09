@@ -475,7 +475,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 									intent.putExtra("inner_reportcard_item_subject_id", subjectId);
 									intent.putExtra("inner_reportcard_item_position", m);
 									intent.putExtra("inner_reportcard_item_exam_id", ctListInner.get(m).getExamId());
-									intent.putExtra("inner_reportcard_item_exam_category_name", "Class Test");
+									intent.putExtra("inner_reportcard_item_exam_category_name", getString(R.string.java_reportclasstestfragment_class_test));
 									intent.putExtra("inner_reportcard_item_exam_from_class_test", true);
 									if(selectedStudent != null)
 										intent.putExtra("inner_reportcard_item_student_id", selectedStudent.getId());
@@ -615,7 +615,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 									intent.putExtra("inner_reportcard_item_subject_id", subjectId);
 									intent.putExtra("inner_reportcard_item_position", m);
 									intent.putExtra("inner_reportcard_item_exam_id", ctListInner.get(m).getExamId());
-									intent.putExtra("inner_reportcard_item_exam_category_name", "Class Test");
+									intent.putExtra("inner_reportcard_item_exam_category_name", getActivity().getString(R.string.java_reportclasstestfragment_class_test));
 									intent.putExtra("inner_reportcard_item_exam_from_class_test", true);
 									if(selectedStudent != null)
 										intent.putExtra("inner_reportcard_item_student_id", selectedStudent.getId());
@@ -673,7 +673,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 					intent.putExtra("inner_reportcard_item_subject_id", subjectId);
 					intent.putExtra("inner_reportcard_item_position", m);
 					intent.putExtra("inner_reportcard_item_exam_id", ctListInner.get(m).getExamId());
-					intent.putExtra("inner_reportcard_item_exam_category_name", "Class Test");
+					intent.putExtra("inner_reportcard_item_exam_category_name", getString(R.string.java_reportclasstestfragment_class_test));
 					intent.putExtra("inner_reportcard_item_exam_from_class_test", true);
 					if(selectedStudent != null)
 						intent.putExtra("inner_reportcard_item_student_id", selectedStudent.getId());
@@ -713,7 +713,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 	public void showPicker(PickerType type) {
 
 		Picker picker = Picker.newInstance(0);
-		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback , "Select Batch");
+		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback , getString(R.string.fragment_lessonplan_view_txt_select_batch));
 		picker.show(getChildFragmentManager(), null);
 	}
 	
@@ -723,7 +723,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 		RequestParams params = new RequestParams();
 		params.put(RequestKeyHelper.BATCH_ID,selectedBatch.getId());
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-		picker.setData(PickerType.TEACHER_STUDENT,params,URLHelper.URL_GET_STUDENTS_ATTENDANCE, PickerCallback , "Select Student");
+		picker.setData(PickerType.TEACHER_STUDENT,params,URLHelper.URL_GET_STUDENTS_ATTENDANCE, PickerCallback , getString(R.string.java_parentreportcardfragment_select_student));
 		picker.show(getChildFragmentManager(), null);
 	}
 	PickerItemSelectedListener PickerCallback = new PickerItemSelectedListener() {

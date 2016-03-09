@@ -128,7 +128,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };
@@ -173,11 +173,11 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
         if(data.getType().equalsIgnoreCase("1"))
         {
-            homeWorkTypeTextView.setText("Regular");
+            homeWorkTypeTextView.setText(R.string.java_singleteacheredithomeworkactivity_regular);
         }
         else if(data.getType().equalsIgnoreCase("2"))
         {
-            homeWorkTypeTextView.setText("Project");
+            homeWorkTypeTextView.setText(R.string.java_singleteacheredithomeworkactivity_project);
         }
 
         subjectEditText.setText(data.getName());
@@ -199,19 +199,19 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
     private boolean isFormValid() {
         if(subjectId.equals("")){
-            Toast.makeText(this, "Please choose a subject", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.java_singleteacheredithomeworkactivity_choose_subject, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(subjectEditText.getText().toString().trim().equals("")){
-            Toast.makeText(this, "Subject title cannot be Empty!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.java_singleteacheredithomeworkactivity_subject_title_cannot_empty, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(homeworkDescriptionEditText.getText().toString().trim().equals("")){
-            Toast.makeText(this, "Homework description cannot be Empty!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.java_singleteacheredithomeworkactivity_homework_description_cannot_empty, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(dateFormatServerString.equals("")){
-            Toast.makeText(this, "Please Choose a due date for Homework!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.java_singleteacheredithomeworkactivity_choose_due_date, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -238,7 +238,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                     @Override
                     public void onStart() {
                         if (!uiHelper.isDialogActive())
-                            uiHelper.showLoadingDialog("Loading..");
+                            uiHelper.showLoadingDialog(getString(R.string.loading_text));
                         super.onStart();
                     }
 
@@ -261,7 +261,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                         if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
                             Toast.makeText(SingleTeacherEditHomeworkActivity.this,
-                                    "Successfully saved homework as draft!",
+                                    R.string.java_singleteacheredithomeworkactivity_saved_as_draft,
                                     Toast.LENGTH_SHORT).show();
 
                             setResult(RESULT_OK);
@@ -270,7 +270,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                         } else
                             Toast.makeText(
                                     SingleTeacherEditHomeworkActivity.this,
-                                    "Failed to post Homework! Please try again.",
+                                    R.string.java_singleteacheredithomeworkactivity_failed_post,
                                     Toast.LENGTH_SHORT).show();
                         super.onSuccess(arg0, responseString);
                     }
@@ -283,7 +283,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
         homeWorkTypeTextView.setText("");
         subjectEditText.setText("");
         homeworkDescriptionEditText.setText("");
-        choosenFileTextView.setText("No File Attached");
+        choosenFileTextView.setText(R.string.java_singleteacheredithomeworkactivity_no_file_attached);
 
         Date cDate = new Date();
         String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
@@ -295,8 +295,8 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
     private void createHomeworkTypeCats() {
         homeworkTypeCats = new ArrayList<BaseType>();
-        homeworkTypeCats.add(new TypeHomeWork("Regular", "1"));
-        homeworkTypeCats.add(new TypeHomeWork("Project", "2"));
+        homeworkTypeCats.add(new TypeHomeWork(getString(R.string.java_singleteacheredithomeworkactivity_regular), "1"));
+        homeworkTypeCats.add(new TypeHomeWork(getString(R.string.java_singleteacheredithomeworkactivity_project), "2"));
     }
 
     private void fetchSubject() {
@@ -352,7 +352,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
             @Override
             public void onClick(View view) {
                 showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
-                        "Select your Subject");
+                        getString(R.string.java_singleteacheredithomeworkactivity_select_subject));
             }
         });
 
@@ -362,7 +362,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
             @Override
             public void onClick(View view) {
                 showPicker(PickerType.TEACHER_HOMEWORKTYPE, homeworkTypeCats,
-                        "Select Homework type");
+                        getString(R.string.java_singleteacheredithomeworkactivity_select_homework_type));
             }
         });
 
@@ -440,7 +440,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
             @Override
             public void onClick(View view) {
                 showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
-                        "Select your Subject");
+                        getString(R.string.java_singleteacheredithomeworkactivity_select_subject));
             }
         });
 
@@ -449,7 +449,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
             @Override
             public void onClick(View view) {
                 showPicker(PickerType.TEACHER_HOMEWORKTYPE, homeworkTypeCats,
-                        "Select Homework type");
+                        getString(R.string.java_singleteacheredithomeworkactivity_select_homework_type));
             }
         });
     }
@@ -528,7 +528,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                                         "File select error", e);
                             }
                         } else {
-                            Toast.makeText(SingleTeacherEditHomeworkActivity.this, "Invalid file type",
+                            Toast.makeText(SingleTeacherEditHomeworkActivity.this, R.string.java_singleteacheredithomeworkactivity_invalid_file_type,
                                     Toast.LENGTH_SHORT).show();
                         }
                         Log.e("File", "Uri = " + uri.toString());

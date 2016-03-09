@@ -96,11 +96,11 @@ public class PopupDialogSingleItemAssessmentInvok extends DialogFragment {
 		txtTotalPlayed = (TextView)view.findViewById(R.id.txtTotalPlayed);
 		
 		txtTitle.setText(titleText);
-		txtNoOfQuestion.setText("Total Questions: "+noOfQuestion);
-		txtTotalScore.setText("Total Score: "+totalScore);
-		txtTotalTime.setText("Maximum Quiz Time: "+totalTime);
-		txtHighestScore.setText("Highest Score: "+highestScore);
-		txtTotalPlayed.setText("Total Players: "+totalPlayed);
+		txtNoOfQuestion.setText(context.getString(R.string.java_popupaialogsingleitemassessmentnnvok_total_questions)+noOfQuestion);
+		txtTotalScore.setText(context.getString(R.string.java_popupaialogsingleitemassessmentnnvok_total_score)+totalScore);
+		txtTotalTime.setText(context.getString(R.string.java_popupaialogsingleitemassessmentnnvok_max_quiz_time)+totalTime);
+		txtHighestScore.setText(context.getString(R.string.java_popupaialogsingleitemassessmentnnvok_highest_score)+highestScore);
+		txtTotalPlayed.setText(context.getString(R.string.java_popupaialogsingleitemassessmentnnvok_total_players)+totalPlayed);
 		
 		
 		

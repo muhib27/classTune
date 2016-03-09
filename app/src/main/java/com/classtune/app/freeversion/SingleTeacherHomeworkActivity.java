@@ -123,7 +123,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		this.txtContent.setText(Html.fromHtml(data.getContent(), null, new MyTagHandler()));
 		
 		
-		btnDone.setTitleText("Done by "+data.getDone());
+		btnDone.setTitleText(getString(R.string.java_singleteacherhomeworkactivity_done_by)+data.getDone());
 		btnDone.setTextSize(16);
 		
 		
@@ -202,7 +202,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 				}
 				else
 				{
-					Toast.makeText(SingleTeacherHomeworkActivity.this, "Please edit homework from website.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(SingleTeacherHomeworkActivity.this, getString(R.string.java_singleteacherdrafthomeworkactivity_edit_from_website), Toast.LENGTH_SHORT).show();
 				}
 
 
@@ -272,7 +272,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		@Override
 		public void onStart() {
 			
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			
 
 		};

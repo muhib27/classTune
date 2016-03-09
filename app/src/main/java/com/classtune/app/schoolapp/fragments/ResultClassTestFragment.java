@@ -82,7 +82,7 @@ public class ResultClassTestFragment extends UserVisibleHintFragment implements
 				.setVisibility(View.GONE);
 		examList = (ListView) view.findViewById(R.id.exam_listview);
 		gridTitleText = (TextView) view.findViewById(R.id.grid_title_textview);
-		gridTitleText.setText("Class Test");
+		gridTitleText.setText(getString(R.string.java_reportclasstestfragment_class_test));
 		pbs = (LinearLayout) view.findViewById(R.id.pb);
 		setUpList();
 		loadDataInToList();

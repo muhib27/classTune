@@ -82,7 +82,7 @@ public class ResultProjectFragment extends UserVisibleHintFragment implements
 				.setVisibility(View.GONE);
 		examList = (ListView) view.findViewById(R.id.exam_listview);
 		gridTitleText = (TextView) view.findViewById(R.id.grid_title_textview);
-		gridTitleText.setText("Project");
+		gridTitleText.setText(getString(R.string.tab_project));
 		pbs = (LinearLayout) view.findViewById(R.id.pb);
 		setUpList();
 		loadDataInToList();

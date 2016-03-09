@@ -337,7 +337,7 @@ public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
 		@Override
 		public void onStart() {
 			
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			
 
 		};
@@ -437,7 +437,7 @@ public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
 
 		public void onStart() {
 			Log.e("button", "onstart");
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		public void onSuccess(int arg0, String response) {
@@ -458,7 +458,7 @@ public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
 				clickedAckBtn.setImage(R.drawable.done_tap);
 				clickedAckBtn.setTitleColor(NoticeFragmentNew.this.getActivity()
 						.getResources().getColor(R.color.classtune_green_color));
-				clickedAckBtn.setTitleText("Acknowledged");
+				clickedAckBtn.setTitleText(getString(R.string.java_noticefragment_acknowledge));
 				clickedAckBtn.setEnabled(false);
 			}
 
@@ -579,10 +579,10 @@ public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
 			}*/
 			Log.e("NOTICE PUBLISH", listNotice.get(position).getPublishedAt() + "");
 			if (ReminderHelper.getInstance().reminder_map.containsKey(listNotice.get(position).getPublishedAt())){
-				setButtonState(holder.reminderBtn, R.drawable.btn_reminder_tap, false, "Reminder");
+				setButtonState(holder.reminderBtn, R.drawable.btn_reminder_tap, false, getString(R.string.btn_reminder));
 				
 			}else {
-				setButtonState(holder.reminderBtn, R.drawable.btn_reminder_normal, true, "Reminder");
+				setButtonState(holder.reminderBtn, R.drawable.btn_reminder_normal, true, getString(R.string.btn_reminder));
 			}
 			
 			

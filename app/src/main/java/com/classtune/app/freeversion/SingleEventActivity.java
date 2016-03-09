@@ -180,7 +180,7 @@ public class SingleEventActivity extends ChildContainerActivity {
             else
             {
                 layoutRoot.setVisibility(View.GONE);
-                Toast.makeText(SingleEventActivity.this, "This event is removed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SingleEventActivity.this, R.string.java_singleeventactivity_event_removed, Toast.LENGTH_SHORT).show();
 
                 finish();
             }
@@ -241,7 +241,7 @@ public class SingleEventActivity extends ChildContainerActivity {
                 {
                     selectedEvent=data;
                     if(AppUtility.isInternetConnected()){
-                        setButtonState(joinInBtn, R.drawable.done_tap, false, "Joined");
+                        setButtonState(joinInBtn, R.drawable.done_tap, false, getString(R.string.java_singleeventactivity_joined));
                         notifyServerAboutAck(SchoolEvent.ackTypeEnum.JOIN_IN.ordinal(),data.getEventId());
                     }
                     else
@@ -317,17 +317,17 @@ public class SingleEventActivity extends ChildContainerActivity {
 
         if(temp.getEventAck().equals(SchoolEvent.ackTypeEnum.JOIN_IN))
         {
-            setButtonState(joinInBtn, R.drawable.done_tap, false, "Joined");
+            setButtonState(joinInBtn, R.drawable.done_tap, false, getString(R.string.java_singleeventactivity_joined));
             joinInBtn.setEnabled(false);
 
             Log.e("JOIN_TYPE", "inner is: " + temp.getEventAck().JOIN_IN.ordinal());
         }
 
         if (ReminderHelper.getInstance().reminder_map.containsKey(temp.getEventStartDate())){
-            setButtonState(remainderBtn, R.drawable.btn_reminder_tap, false, "Reminder");
+            setButtonState(remainderBtn, R.drawable.btn_reminder_tap, false, getString(R.string.btn_reminder));
 
         }else {
-            setButtonState(remainderBtn, R.drawable.btn_reminder_normal, true, "Reminder");
+            setButtonState(remainderBtn, R.drawable.btn_reminder_normal, true, getString(R.string.btn_reminder));
         }
 
 

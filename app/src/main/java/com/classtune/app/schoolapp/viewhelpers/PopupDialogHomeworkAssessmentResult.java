@@ -117,18 +117,18 @@ public class PopupDialogHomeworkAssessmentResult extends DialogFragment {
 		
 		txtName.setText(nameText);
 		txtSubjectName.setText(subjectNameText);
-		txtStudentCount.setText("Participated: "+studentCountText);
-		txtMaxScore.setText("Highest Mark: "+maxScoreText);
-		txtMinScore.setText("Lowest Mark: "+minScoreText);
-		txtTotalMark.setText("Total Marks: "+totalMarkText);
-		txtTotalTimeTaken.setText("Total Time Taken: "+totalTimeTakenText);
+		txtStudentCount.setText(context.getString(R.string.java_popupdialoghomeworkassessmentresult_participated)+studentCountText);
+		txtMaxScore.setText(context.getString(R.string.java_popupdialoghomeworkassessmentresult_highest_mark)+maxScoreText);
+		txtMinScore.setText(context.getString(R.string.java_popupdialoghomeworkassessmentresult_lowest_mark)+minScoreText);
+		txtTotalMark.setText(context.getString(R.string.java_popupdialoghomeworkassessmentresult_total_marks)+totalMarkText);
+		txtTotalTimeTaken.setText(context.getString(R.string.java_popupdialoghomeworkassessmentresult_total_time_taken)+totalTimeTakenText);
 		
 		if(isPassedText.equalsIgnoreCase("1"))
-			txtIsPassed.setText("Passed: YES");
+			txtIsPassed.setText(R.string.java_popupdialoghomeworkassessmentresult_passed_yes);
 		else
-			txtIsPassed.setText("Passed: NO");
+			txtIsPassed.setText(R.string.java_popupdialoghomeworkassessmentresult_passed_no);
 		
-		txtTotalScore.setText("Total Score: "+totalScoreText);
+		txtTotalScore.setText(context.getString(R.string.java_popupdialoghomeworkassessmentresult_total_score)+totalScoreText);
 		
 		
 		

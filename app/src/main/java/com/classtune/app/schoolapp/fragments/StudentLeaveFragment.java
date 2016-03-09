@@ -226,10 +226,10 @@ public class StudentLeaveFragment extends UserVisibleHintFragment{
 			
 			holder.decline.setTag(""+position);
 			holder.accept.setTag(""+position);
-			holder.namebatch.setText(studentlist.get(position).getStudentName()+", Batch:"+studentlist.get(position).getBatch());
-			holder.applydate.setText("Apply Date: "+studentlist.get(position).getCreateDate());
+			holder.namebatch.setText(studentlist.get(position).getStudentName()+mContext.getString(R.string.java_studentleavefragment_batch)+studentlist.get(position).getBatch());
+			holder.applydate.setText(mContext.getString(R.string.java_studentleavefragment_apply_date)+studentlist.get(position).getCreateDate());
 			// Listen for ListView Item Click
-			holder.startend.setText("Duration: "+studentlist.get(position).getLeaveStartDate()+" to "+studentlist.get(position).getLeaveEndDate());
+			holder.startend.setText(mContext.getString(R.string.java_studentleavefragment_duration)+studentlist.get(position).getLeaveStartDate()+mContext.getString(R.string.java_studentleavefragment_to)+studentlist.get(position).getLeaveEndDate());
 			
 			
 			holder.accept.setOnClickListener(new OnClickListener() {
@@ -305,7 +305,7 @@ public class StudentLeaveFragment extends UserVisibleHintFragment{
 			{
 				
 				fetchData();
-				Toast.makeText(getActivity(), "Successfully done!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), R.string.java_studentleavefragment_successfully_done, Toast.LENGTH_SHORT).show();
 				adapter.notifyDataSetChanged();
 			}
 			

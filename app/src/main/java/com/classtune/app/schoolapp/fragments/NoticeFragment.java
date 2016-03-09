@@ -97,7 +97,7 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 
 		public void onStart() {
 			Log.e("button", "onstart");
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		public void onSuccess(int arg0, String response) {
@@ -118,7 +118,7 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 				clickedAckBtn.setImage(R.drawable.done_tap);
 				clickedAckBtn.setTitleColor(NoticeFragment.this.getActivity()
 						.getResources().getColor(R.color.maroon));
-				clickedAckBtn.setTitleText("Acknowledged");
+				clickedAckBtn.setTitleText(getActivity().getString(R.string.java_noticefragment_acknowledge));
 				clickedAckBtn.setEnabled(false);
 			}
 
@@ -359,10 +359,10 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 			}*/
 			Log.e("NOTICE PUBLISH", notice.getPublishedAt() + "");
 			if (ReminderHelper.getInstance().reminder_map.containsKey(notice.getPublishedAt())){
-				setButtonState(holder.reminderBtn, R.drawable.btn_reminder_tap, false, "Reminder");
+				setButtonState(holder.reminderBtn, R.drawable.btn_reminder_tap, false, getString(R.string.btn_reminder));
 				
 			}else {
-				setButtonState(holder.reminderBtn, R.drawable.btn_reminder_normal, true, "Reminder");
+				setButtonState(holder.reminderBtn, R.drawable.btn_reminder_normal, true, getString(R.string.btn_reminder));
 			}
 			return convertView;
 		}

@@ -71,7 +71,7 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
         btnSignIn.setOnClickListener(this);
 
         txtMeHeader.setTypeface(SchoolApp.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
-        txtMeHeader.setText("I'm");
+        txtMeHeader.setText(getString(R.string.activity_userselection_layout2_im));
 
         txtMember.setTypeface(SchoolApp.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
 
@@ -84,9 +84,9 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
 
         txtMidHeader.setTypeface(SchoolApp.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
 
-        String text1 = "Register";
-        String text2 = " FREE ";
-        String text3 = "Now!";
+        String text1 = getString(R.string.java_userselectionactivity_register);
+        String text2 = getString(R.string.java_userselectionactivity_free);
+        String text3 = getString(R.string.java_userselectionactivity_now);
 
         Spannable wordtoSpan = new SpannableString(text1+text2+text3);
         wordtoSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.classtune_green_color_light)), text1.length()+1, text1.length()+text2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

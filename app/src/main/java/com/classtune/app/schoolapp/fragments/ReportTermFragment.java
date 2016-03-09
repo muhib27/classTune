@@ -158,10 +158,10 @@ public class ReportTermFragment extends Fragment implements
 		gradeBtn.setText(items.get(termNumber).getGrade());
 
 		Button positionBtn = (Button) view.findViewById(R.id.btn_position);
-		positionBtn.setText("Position: " + items.get(termNumber).getPosition());
+		positionBtn.setText(app.getString(R.string.java_reporttermfragment_position) + items.get(termNumber).getPosition());
 
 		Button totalBtn = (Button) view.findViewById(R.id.btn_total);
-		totalBtn.setText("Total Students: "
+		totalBtn.setText(app.getString(R.string.java_reporttermfragment_total_students)
 				+ items.get(termNumber).getTotalStudent());
 
 		Button gpaBtn = (Button) view.findViewById(R.id.btn_gpa);

@@ -161,7 +161,7 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 	private void showBatchPicker(PickerType type) {
 
 		Picker picker = Picker.newInstance(0);
-		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback , "Select Batch");
+		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback , getString(R.string.fragment_lessonplan_view_txt_select_batch));
 		picker.show(this.getChildFragmentManager(), null);
 	}
 
@@ -502,7 +502,7 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 		public void onSuccess(int arg0, String responseString) {
 			
 			pbLayout.setVisibility(View.GONE);
-			uiHelper.showMessage("Todays report saved.");
+			uiHelper.showMessage(getActivity().getString(R.string.java_rollcallteacherfragment_report_saved));
 			/*Wrapper wrapper = GsonParser.getInstance().parseServerResponse(
 					responseString);
 			allStudents.addAll(GsonParser.getInstance().parseStudentList((wrapper.getData().get("batch_attendence")).toString()));

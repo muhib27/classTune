@@ -77,19 +77,19 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 	private boolean isFormValid() {
 		if(subjectId.equals("")){
-			Toast.makeText(getActivity(), "Please choose a subject", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), getString(R.string.java_singleteacheredithomeworkactivity_choose_subject), Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(subjectEditText.getText().toString().trim().equals("")){
-			Toast.makeText(getActivity(), "Subject title cannot be Empty!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), getString(R.string.java_singleteacheredithomeworkactivity_subject_title_cannot_empty), Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(homeworkDescriptionEditText.getText().toString().trim().equals("")){
-			Toast.makeText(getActivity(), "Homework description cannot be Empty!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), getString(R.string.java_singleteacheredithomeworkactivity_homework_description_cannot_empty), Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		if(dateFormatServerString.equals("")){
-			Toast.makeText(getActivity(), "Please Choose a due date for Homework!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), getString(R.string.java_singleteacheredithomeworkactivity_choose_due_date), Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		return true;
@@ -120,7 +120,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 					@Override
 					public void onStart() {
 						if (!uiHelper.isDialogActive())
-							uiHelper.showLoadingDialog("Loading..");
+							uiHelper.showLoadingDialog(getString(R.string.loading_text));
 						super.onStart();
 					}
 
@@ -145,14 +145,14 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 							if(isForDraft == true)
 							{
 								Toast.makeText(getActivity(),
-										"Successfully saved homework as draft!",
+										getString(R.string.java_singleteacheredithomeworkactivity_saved_as_draft),
 										Toast.LENGTH_SHORT).show();
 
 							}
 							else
 							{
 								Toast.makeText(getActivity(),
-										"Successfully posted Homework!",
+										R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
 										Toast.LENGTH_SHORT).show();
 							}
 
@@ -162,7 +162,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 						} else
 							Toast.makeText(
 									getActivity(),
-									"Failed to post Homework! Please try again.",
+									getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
 									Toast.LENGTH_SHORT).show();
 						super.onSuccess(arg0, responseString);
 					}
@@ -175,7 +175,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
         homeWorkTypeTextView.setText("");
         subjectEditText.setText("");
         homeworkDescriptionEditText.setText("");
-        choosenFileTextView.setText("No File Attached");
+        choosenFileTextView.setText(getString(R.string.java_singleteacheredithomeworkactivity_no_file_attached));
 
         Date cDate = new Date();
         String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
@@ -197,8 +197,8 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 	private void createHomeworkTypeCats() {
 		homeworkTypeCats = new ArrayList<BaseType>();
-		homeworkTypeCats.add(new TypeHomeWork("Regular", "1"));
-		homeworkTypeCats.add(new TypeHomeWork("Project", "2"));
+		homeworkTypeCats.add(new TypeHomeWork(getString(R.string.java_singleteacheredithomeworkactivity_regular), "1"));
+		homeworkTypeCats.add(new TypeHomeWork(getString(R.string.java_singleteacheredithomeworkactivity_project), "2"));
 	}
 
 	private void fetchSubject() {
@@ -336,20 +336,20 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		switch (v.getId()) {
 		case R.id.btn_subject_name:
 			showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
-					"Select your Subject");
+					getString(R.string.java_singleteacheredithomeworkactivity_select_subject));
 			break;
 		case R.id.layoutSelectSubject:
 			showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
-					"Select your Subject");
+					getString(R.string.java_singleteacheredithomeworkactivity_select_subject));
 			break;
 
 		case R.id.btn_homework_type:
 			showPicker(PickerType.TEACHER_HOMEWORKTYPE, homeworkTypeCats,
-					"Select Homework type");
+					getString(R.string.java_singleteacheredithomeworkactivity_select_homework_type));
 			break;
 			case R.id.layoutSelectType:
 				showPicker(PickerType.TEACHER_HOMEWORKTYPE, homeworkTypeCats,
-						"Select Homework type");
+						getString(R.string.java_singleteacheredithomeworkactivity_select_homework_type));
 				break;
 
 		case R.id.btn_teacher_ah_attach_file:
@@ -399,7 +399,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 									"File select error", e);
 						}
 					} else {
-						Toast.makeText(getActivity(), "Invalid file type",
+						Toast.makeText(getActivity(), getString(R.string.java_singleteacheredithomeworkactivity_invalid_file_type),
 								Toast.LENGTH_SHORT).show();
 					}
 					Log.e("File", "Uri = " + uri.toString());

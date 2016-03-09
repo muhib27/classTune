@@ -182,7 +182,7 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 		String part1 = parts[0];
 		this.tvDate.setText(part1);
 		
-		this.section.setText("By "+data.getTeacherName());
+		this.section.setText(getString(R.string.java_singlehomeworkactivity_by)+data.getTeacherName());
 		
 		this.ivSubjectIcon.setImageResource(AppUtility.getImageResourceId(data.getSubject_icon_name(), this));
 		
@@ -210,7 +210,7 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				final CustomButton btn = (CustomButton) v;
-				setButtonState(btn, R.drawable.btn_reminder_tap, false, "Reminder");
+				setButtonState(btn, R.drawable.btn_reminder_tap, false, getString(R.string.btn_reminder));
 
 
 				AppUtility.listenerDatePickerCancel = new AppUtility.IDatePickerCancel() {
@@ -258,10 +258,10 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 
 
         if (ReminderHelper.getInstance().reminder_map.containsKey(AppConstant.KEY_HOMEWORK+data.getId())){
-            setButtonState(btnReminder, R.drawable.btn_reminder_tap, false, "Reminder");
+            setButtonState(btnReminder, R.drawable.btn_reminder_tap, false, getString(R.string.btn_reminder));
 
         }else {
-            setButtonState(btnReminder, R.drawable.btn_reminder_normal, true, "Reminder");
+            setButtonState(btnReminder, R.drawable.btn_reminder_normal, true, getString(R.string.btn_reminder));
         }
 
 		
@@ -305,7 +305,7 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 
 		public void onStart() {
 			Log.e("button", "onstart");
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		public void onSuccess(int arg0, String response) {
@@ -324,7 +324,7 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 				btnDone.setEnabled(false);
 				
 			} else {
-				uiHelper.showMessage("Error in operation!");
+				uiHelper.showMessage(getString(R.string.java_singlehomeworkactivity_error_in_operation));
 			}
 
 
@@ -424,7 +424,7 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 		@Override
 		public void onStart() {
 			
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			
 
 		};

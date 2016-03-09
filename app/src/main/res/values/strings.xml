@@ -1444,5 +1444,180 @@
     <string name="java_lessonplanview_inactive">Inactive</string>
     <string name="java_lessonplanview_active">Active</string>
 
+    <!--LoginActivity-->
+    <string name="java_loginactivity_enter_user_name">Please enter UserName!!</string>
+    <string name="java_loginactivity_enter_password">Please enter Password!!</string>
+
+    <!--MeetingFragment-->
+    <string name="java_meetingfragment_accepted">Accepted</string>
+    <string name="java_meetingfragment_declined">Declined</string>
+    <string name="java_meetingfragment_title_meeting_status">MEETING STATUS</string>
+    <string name="java_meetingfragment_pending_meeting_request">You have pending meeting request</string>
+
+    <!--MyAlarm-->
+    <string name="java_myalarm_new_invite">New Invite!</string>
+    <string name="java_myleavefragment_apply_date">Apply Date: </string>
+    <string name="java_myleavefragment_duration">Duration: </string>
+    <string name="java_myleavefragment_declined">declined</string>
+    <string name="java_myleavefragment_to"> to </string>
+    <string name="java_myleavefragment_accepted">accepted</string>
+    <string name="java_myleavefragment_pending">pending</string>
+
+    <!--NoticeFragment-->
+    <string name="java_noticefragment_acknowledge">Acknowledged</string>
+
+    <!--PaidVersionHomeFragment-->
+    <string name="java_paidversionhomefragment_contact_school">Contact your school to Upgrade.</string>
+
+    <!--ParentReportCardFragment-->
+    <string name="java_parentreportcardfragment_select_student">Select Student</string>
+    <string name="java_parentreportcardfragment_name">"Name: "</string>
+
+    <!--PopupDialogChangePassword-->
+    <string name="java_popupdialogchangepassword_password_cannot_empty">Password Cannot be empty!</string>
+
+    <!--PopupDialogHomeworkAssessmentResult-->
+    <string name="java_popupdialoghomeworkassessmentresult_participated">"Participated: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_highest_mark">"Highest Mark: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_lowest_mark">"Lowest Mark: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_total_marks">"Total Marks: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_total_time_taken">"Total Time Taken: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_passed_yes">Passed: YES</string>
+    <string name="java_popupdialoghomeworkassessmentresult_passed_no">Passed: NO</string>
+    <string name="java_popupdialoghomeworkassessmentresult_total_score">"Total Score: "</string>
+
+    <!--PopupDialogSingleItemAssessmentInvok-->
+    <string name="java_popupaialogsingleitemassessmentnnvok_total_questions">"Total Questions: "</string>
+    <string name="java_popupaialogsingleitemassessmentnnvok_total_score">"Total Score: "</string>
+    <string name="java_popupaialogsingleitemassessmentnnvok_max_quiz_time">"Maximum Quiz Time: "</string>
+    <string name="java_popupaialogsingleitemassessmentnnvok_highest_score">"Highest Score: "</string>
+    <string name="java_popupaialogsingleitemassessmentnnvok_total_players">"Total Players: "</string>
+
+    <!--ProgressGraphFragment-->
+    <string name="java_progressgraphfragment_select_exam_type">Select Exam Type</string>
+    <string name="java_progressgraphfragment_all_subject_graph">All Subject Comparison Graph</string>
+    <string name="java_progressgraphfragment_exam_name">Exam Name</string>
+    <string name="java_progressgraphfragment_percentage">Percentage</string>
+    <string name="java_progressgraphfragment_your_percentage">Your Percentage</string>
+    <string name="java_progressgraphfragment_highest_percentage">Highest Percentage</string>
+    <string name="java_progressgraphfragment_average_percentage">Average Percentage</string>
+
+    <!--QuizFragment-->
+    <string name="java_quizfragment_yet_to_start">Yet to start</string>
+    <string name="java_quizfragment_not_played">Not Played</string>
+    <string name="java_quizfragment_result">Result</string>
+    <string name="java_quizfragment_time_over">Time Over</string>
+
+    <!--ReportClassTestFragment-->
+    <string name="java_reportclasstestfragment_class_test">Class Test</string>
+
+    <!--ReportTermFragment-->
+    <string name="java_reporttermfragment_position">"Position: "</string>
+    <string name="java_reporttermfragment_total_students">"Total Students: "</string>
+
+    <!--ResultTermTesttFragment-->
+    <string name="java_resulttermtesttfragment_term_test">Term Test</string>
+
+    <!--RollCallTeacherFragment-->
+    <string name="java_rollcallteacherfragment_report_saved">Todays report saved.</string>
+
+    <!--SchoolFeedFragment-->
+    <string name="java_schoolfeedfragment_holiday">Holiday</string>
+    <string name="java_schoolfeedfragment_weekend">Weekend</string>
+    <string name="java_schoolfeedfragment_leave">Leave</string>
+    <string name="java_schoolfeedfragment_late">Late</string>
+    <string name="java_schoolfeedfragment_absent_today">Absent today</string>
+    <string name="java_schoolfeedfragment_present_today">Present today</string>
+    <string name="java_schoolfeedfragment_class_yet_to_start">Class yet to start</string>
+    <string name="java_schoolfeedfragment_event">Event</string>
+    <string name="java_schoolfeedfragment_exam_routine">Exam Routine</string>
+    <string name="java_schoolfeedfragment_exam_report">Exam Report</string>
+    <string name="java_schoolfeedfragment_homework">Homework</string>
+    <string name="java_schoolfeedfragment_notice">Notice</string>
+    <string name="java_schoolfeedfragment_attendance">Attendance</string>
+    <string name="java_schoolfeedfragment_meeting_request">Meeting Request</string>
+
+    <!--SingleEventActivity-->
+    <string name="java_singleeventactivity_event_removed">This event is removed!</string>
+    <string name="java_singleeventactivity_joined">Joined</string>
+
+    <!--SingleExamRoutine-->
+    <string name="java_singlexeamroutine_na">N/A</string>
+
+    <!--SingleHomeworkActivity-->
+    <string name="java_singlehomeworkactivity_by">"By "</string>
+    <string name="java_singlehomeworkactivity_error_in_operation">Error in operation!</string>
+    <string name="java_singleitemtermreportactivity_gpa">GPA</string>
+    <string name="java_singleItemtermreportactivity_term_report">Term Report</string>
+
+    <!--SingleLessonPlan-->
+    <string name="java_singlelessonplan_subject">"Subject: "</string>
+    <string name="java_singlelessonplan_category">"Category: "</string>
+    <string name="java_singlelessonplan_published_date">"Published date: "</string>
+    <string name="java_singlelessonplan_title_lesson_plan">LESSON PLAN</string>
+    <string name="java_singlelessonplan_delete">Delete</string>
+    <string name="java_singlelessonplan_delete_confirmation">Are you sure you want to delete selected lesson plan?</string>
+    <string name="java_singlelessonplan_successfully_deleetd">Successfully Deleted</string>
+
+    <!--SingleMeetingRequestActivity-->
+    <string name="java_singlemeetingrequestactivity_time_exceed">Time Exceed</string>
+    <string name="java_singlemeetingrequestactivity_pending">Pending</string>
+    <string name="java_singlemeetingrequestactivity_accepted">Accepted</string>
+    <string name="java_singlemeetingrequestactivity_declined">Declined</string>
+    <string name="java_singlemeetingrequestactivity_meeting_status">MEETING STATUS</string>
+    <string name="java_singlemeetingrequestactivity_you_have_pending_meeting_request">You have pending meeting request</string>
+    <string name="java_singlenoticeactivity_acknowledged">Acknowledged</string>
+    <string name="java_singlenoticeactivity_acknowldge">Acknowledge</string>
+
+    <!--SingleReportCardSubject-->
+    <string name="java_singlereportcardsubject_top">"Top "</string>
+    <string name="java_singlereportcardsubject_Average_mark">Average Mark</string>
+
+    <!--SingleTeacherDraftHomeworkActivity-->
+    <string name="java_singleteacherdrafthomeworkactivity_edit_from_website">Please edit homework from website.</string>
+    <string name="java_singleteacherdrafthomeworkactivity_successfully_published">Successfully published!</string>
+
+    <!--SingleTeacherEditHomeworkActivity-->
+    <string name="java_singleteacheredithomeworkactivity_regular">Regular</string>
+    <string name="java_singleteacheredithomeworkactivity_project">Project</string>
+    <string name="java_singleteacheredithomeworkactivity_choose_subject">Please choose a subject</string>
+    <string name="java_singleteacheredithomeworkactivity_subject_title_cannot_empty">Subject title cannot be Empty!</string>
+    <string name="java_singleteacheredithomeworkactivity_homework_description_cannot_empty">Homework description cannot be Empty!</string>
+    <string name="java_singleteacheredithomeworkactivity_choose_due_date">Please Choose a due date for Homework!</string>
+    <string name="java_singleteacheredithomeworkactivity_saved_as_draft">Successfully saved homework as draft!</string>
+    <string name="java_singleteacheredithomeworkactivity_failed_post">Failed to post Homework! Please try again.</string>
+    <string name="java_singleteacheredithomeworkactivity_no_file_attached">No File Attached</string>
+    <string name="java_singleteacheredithomeworkactivity_select_subject">Select your Subject</string>
+    <string name="java_singleteacheredithomeworkactivity_select_homework_type">Select Homework type</string>
+    <string name="java_singleteacheredithomeworkactivity_invalid_file_type">Invalid file type</string>
+
+    <!--SingleTeacherHomeworkActivity-->
+    <string name="java_singleteacherhomeworkactivity_done_by">"Done by "</string>
+
+    <!--StudentClassRoutineFragment-->
+    <string name="java_studentclassroutinefragment_select_day">Select day</string>
+    <string name="java_studentclassroutinefragment_no_class_available">No Class Available</string>
+    <string name="java_studentleavefragment_batch">, Batch:</string>
+    <string name="java_studentleavefragment_apply_date">"Apply Date: "</string>
+    <string name="java_studentleavefragment_duration">"Duration: "</string>
+    <string name="java_studentleavefragment_to">" to "</string>
+    <string name="java_studentleavefragment_successfully_done">Successfully done!</string>
+
+    <!--TeacherHomeWorkAddFragment-->
+    <string name="java_teacherhomeworkaddfragment_successfully_posted_homework">Successfully posted Homework!</string>
+
+    <!--UIHelper-->
+    <string name="java_uihelper_error">Error</string>
+    <string name="java_uihelper_ok">OK</string>
+    <string name="java_uihelper_settings">Settings</string>
+
+    <!--UserSelectionActivity-->
+    <string name="java_userselectionactivity_register">Register</string>
+    <string name="java_userselectionactivity_free">" FREE "</string>
+    <string name="java_userselectionactivity_now">Now!</string>
+
+    <!--UserTypeSelectionDialog-->
+    <string name="java_usertypeselectiondialog_select_user_type">Select User Type</string>
+
 
 </resources>

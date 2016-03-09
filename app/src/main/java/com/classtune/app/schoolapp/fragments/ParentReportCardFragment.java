@@ -105,7 +105,7 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
 	public void showPicker(PickerType type) {
 
 		Picker picker = Picker.newInstance(0);
-		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback , "Select Batch");
+		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback , getString(R.string.spinner_prompt_select_batch));
 		picker.show(getChildFragmentManager(), null);
 	}
 	
@@ -115,7 +115,7 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
 		RequestParams params = new RequestParams();
 		params.put(RequestKeyHelper.BATCH_ID,selectedBatch.getId());
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-		picker.setData(PickerType.TEACHER_STUDENT,params,URLHelper.URL_GET_STUDENTS_ATTENDANCE, PickerCallback , "Select Student");
+		picker.setData(PickerType.TEACHER_STUDENT, params, URLHelper.URL_GET_STUDENTS_ATTENDANCE, PickerCallback, getActivity().getString(R.string.java_parentreportcardfragment_select_student));
 		picker.show(getChildFragmentManager(), null);
 	}
 	PickerItemSelectedListener PickerCallback = new PickerItemSelectedListener() {
@@ -347,7 +347,7 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
 		{
 			txtStudentName.setVisibility(View.VISIBLE);
 			Log.e("FROM_INTERFACE", "stundet name: "+studentName);
-			txtStudentName.setText("Name: "+studentName);
+			txtStudentName.setText(getActivity().getString(R.string.java_parentreportcardfragment_name)+studentName);
 
 		}
 		else

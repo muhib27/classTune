@@ -24,7 +24,7 @@ public class MyAlarm extends BroadcastReceiver {
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(ns);
 
         int icon = R.drawable.eye_gray;
-        CharSequence tickerText = "New Invite!";
+        CharSequence tickerText = context.getString(R.string.java_myalarm_new_invite);
         long when = System.currentTimeMillis();
 
 //        Notification notification = new Notification(icon, tickerText, when);

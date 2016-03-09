@@ -191,7 +191,7 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 				}
 				else
 				{
-					Toast.makeText(SingleTeacherDraftHomeworkActivity.this, "Please edit homework from website.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(SingleTeacherDraftHomeworkActivity.this, R.string.java_singleteacherdrafthomeworkactivity_edit_from_website, Toast.LENGTH_SHORT).show();
 				}
 
 
@@ -258,7 +258,7 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 		@Override
 		public void onStart() {
 			
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			
 
 		};
@@ -326,7 +326,7 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 		@Override
 		public void onStart() {
 
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
 		};
@@ -344,7 +344,7 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 			if (modelContainer.getStatus().getCode() == 200) {
 
 
-				Toast.makeText(SingleTeacherDraftHomeworkActivity.this, "Successfully published!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(SingleTeacherDraftHomeworkActivity.this, R.string.java_singleteacherdrafthomeworkactivity_successfully_published, Toast.LENGTH_SHORT).show();
 				setResult(RESULT_OK);
 				finish();
 

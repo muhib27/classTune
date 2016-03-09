@@ -180,7 +180,7 @@ public class SingleReportCardSubject extends ChildContainerActivity {
         float percent = (float)Math.round(percentile / 5);
         int finalPercentile = (int)percent * 5;
 
-        txtPercentile.setText("Top "+String.valueOf(finalPercentile)+" %");
+        txtPercentile.setText(getString(R.string.java_singlereportcardsubject_top)+String.valueOf(finalPercentile)+" %");
 
 
 
@@ -254,13 +254,13 @@ public class SingleReportCardSubject extends ChildContainerActivity {
         BarEntry v3e1 = new BarEntry(Float.parseFloat(getDecimalFormatNumber(data.getMaxMark())), 2); // highest mark
         valueSet3.add(v3e1);
 
-        BarDataSet barDataSet1 = new BarDataSet(valueSet1, "Your Mark");
+        BarDataSet barDataSet1 = new BarDataSet(valueSet1, getString(R.string.row_classtest_report_txt_your_mark));
         barDataSet1.setColor(Color.rgb(0, 155, 0));
 
-        BarDataSet barDataSet2 = new BarDataSet(valueSet2, "Average Mark");
+        BarDataSet barDataSet2 = new BarDataSet(valueSet2, getString(R.string.java_singlereportcardsubject_Average_mark));
         barDataSet2.setColor(Color.rgb(155, 0, 0));
 
-        BarDataSet barDataSet3 = new BarDataSet(valueSet3, "Highest Mark");
+        BarDataSet barDataSet3 = new BarDataSet(valueSet3, getString(R.string.row_classtest_report_txt_highest_mark));
         barDataSet3.setColor(Color.rgb(0, 0, 155));
 
         barDataSet1.setBarSpacePercent(-50f);
@@ -331,7 +331,7 @@ public class SingleReportCardSubject extends ChildContainerActivity {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };

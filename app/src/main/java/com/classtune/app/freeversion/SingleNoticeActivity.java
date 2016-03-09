@@ -14,8 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.schoolapp.model.ModelContainer;
 import com.classtune.app.schoolapp.model.Notice;
 import com.classtune.app.schoolapp.model.Wrapper;
@@ -183,22 +183,22 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 			if (data.getAllAck().get(0).getAcknowledge_status()
 					.equals("1")) {
 
-				setButtonState(btnNoticeAcknowledge, R.drawable.done_tap, false, "Acknowledged");
+				setButtonState(btnNoticeAcknowledge, R.drawable.done_tap, false, getString(R.string.java_singlenoticeactivity_acknowledged));
 				
 			} else if (data.getAllAck().get(0).getAcknowledge_status()
 					.equals("0")) {
-				setButtonState(btnNoticeAcknowledge, R.drawable.done_normal, true, "Acknowledge");
+				setButtonState(btnNoticeAcknowledge, R.drawable.done_normal, true, getString(R.string.java_singlenoticeactivity_acknowldge));
 			}
 		} else {
-			setButtonState(btnNoticeAcknowledge, R.drawable.done_normal, false, "Acknowledge");
+			setButtonState(btnNoticeAcknowledge, R.drawable.done_normal, false, getString(R.string.java_singlenoticeactivity_acknowldge));
 			btnNoticeAcknowledge.setTitleColor(this.getResources().getColor(R.color.gray_1));
 		}
 		
 		if (ReminderHelper.getInstance().reminder_map.containsKey(data.getPublishedAt())){
-			setButtonState(btnNoticeReminder, R.drawable.btn_reminder_tap, false, "Reminder");
+			setButtonState(btnNoticeReminder, R.drawable.btn_reminder_tap, false, getString(R.string.btn_reminder));
 			
 		}else {
-			setButtonState(btnNoticeReminder, R.drawable.btn_reminder_normal, true, "Reminder");
+			setButtonState(btnNoticeReminder, R.drawable.btn_reminder_normal, true, getString(R.string.btn_reminder));
 		}
 
 
@@ -270,7 +270,7 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 
 		public void onStart() {
 			Log.e("button", "onstart");
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		public void onSuccess(int arg0, String response) {
@@ -291,7 +291,7 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 				clickedAckBtn.setImage(R.drawable.done_tap);
 				clickedAckBtn.setTitleColor(SingleNoticeActivity.this
 						.getResources().getColor(R.color.classtune_green_color));
-				clickedAckBtn.setTitleText("Acknowledged");
+				clickedAckBtn.setTitleText(getString(R.string.java_singlenoticeactivity_acknowledged));
 				clickedAckBtn.setEnabled(false);
 			}
 
@@ -324,7 +324,7 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 		@Override
 		public void onStart() {
 			
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			
 
 		};

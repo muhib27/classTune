@@ -134,7 +134,7 @@ public class SingleExamRoutine extends ChildContainerActivity {
 		public void onStart() {
 			super.onStart();
 			// uListener.onServerAuthenticationStart();
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		}
 
 		// u44tk4p199mvhgi8gf378ui510
@@ -293,8 +293,8 @@ public class SingleExamRoutine extends ChildContainerActivity {
 
 			if(item.getNoExams().equalsIgnoreCase("1"))
 			{
-				holder.tvDate.setText("N/A");
-				holder.tvStartTime.setText("N/A");
+				holder.tvDate.setText(R.string.java_singlexeamroutine_na);
+				holder.tvStartTime.setText(R.string.java_singlexeamroutine_na);
 				holder.tvDay.setVisibility(View.GONE);
 			}
 			else

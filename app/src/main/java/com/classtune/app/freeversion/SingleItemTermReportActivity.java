@@ -73,7 +73,7 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 
 		@Override
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			//pbs.setVisibility(View.VISIBLE);
 
 		};
@@ -173,10 +173,10 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 		gradeBtn.setText(term.getGrade());
 
 		Button positionBtn = (Button) findViewById(R.id.btn_position);
-		positionBtn.setText("Position: " + term.getPosition());
+		positionBtn.setText(getString(R.string.java_reporttermfragment_position)+ term.getPosition());
 
 		Button totalBtn = (Button) findViewById(R.id.btn_total);
-		totalBtn.setText("Total Students: "
+		totalBtn.setText(getString(R.string.java_reporttermfragment_total_students)
 				+ term.getTotalStudent());
 
 		Button gpaBtn = (Button) findViewById(R.id.btn_gpa);
@@ -186,7 +186,7 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 		}
 		else
 		{
-			gpaBtn.setText("GPA\n"+term.getGpa());
+			gpaBtn.setText(getString(R.string.java_singleitemtermreportactivity_gpa)+"\n"+term.getGpa());
 		}
 
 
@@ -256,7 +256,7 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 					.setTextColor(getResources().getColor(R.color.gray_1));
 
 			holder.txtView = (TextView)childView.findViewById(R.id.txtView);
-			holder.txtView.setText("View");
+			holder.txtView.setText(getString(R.string.java_classreportteacherfragment_view));
 
 			/*holder.tvPercent = (TextView) childView
 					.findViewById(R.id.tv_percent);
@@ -268,10 +268,10 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 
 			if(subjectReportList.get(i).getNoExams().equalsIgnoreCase("1"))
 			{
-				holder.tvGrade.setText("N/A");
-				holder.tvScore.setText("N/A");
-				holder.tvHighest.setText("N/A");
-				holder.tvTotal.setText("N/A");
+				holder.tvGrade.setText(getString(R.string.java_singlexeamroutine_na));
+				holder.tvScore.setText(getString(R.string.java_singlexeamroutine_na));
+				holder.tvHighest.setText(getString(R.string.java_singlexeamroutine_na));
+				holder.tvTotal.setText(getString(R.string.java_singlexeamroutine_na));
 			}
 
 			else
@@ -327,7 +327,7 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 					intent.putExtra("inner_reportcard_item_subject_id", ctListInner.getSubjctId());
 					intent.putExtra("inner_reportcard_item_position", k);
 					intent.putExtra("inner_reportcard_item_exam_group_id", SingleItemTermReportActivity.this.getIntent().getExtras().getString("id"));
-					intent.putExtra("inner_reportcard_item_exam_category_name", "Term Report");
+					intent.putExtra("inner_reportcard_item_exam_category_name", getString(R.string.java_singleItemtermreportactivity_term_report));
 					intent.putExtra("inner_reportcard_item_exam_from_class_test", false);
 
 					intent.putExtra("inner_reportcard_item_student_id", SingleItemTermReportActivity.this.getIntent().getExtras().getString("student_id"));

@@ -246,7 +246,7 @@ public class QuizFragment extends Fragment {
 
 		@Override
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -371,7 +371,7 @@ public class QuizFragment extends Fragment {
 
 		@Override
 		public void onStart() {
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -404,7 +404,7 @@ public class QuizFragment extends Fragment {
 				String studentCountText = totaltotalParticipated+"/"+totalStudent;
 				
 				
-				showCustomDialogHomeworkAssessmentOk("QUIZ", nameText, subjectText, studentCountText, maxScore, minScore, totalMarkText, totalTimeTaken, isPassedText, totalScoreText, R.drawable.assessment_icon_popup, getActivity());
+				showCustomDialogHomeworkAssessmentOk(getString(R.string.fragment_quiz_header), nameText, subjectText, studentCountText, maxScore, minScore, totalMarkText, totalTimeTaken, isPassedText, totalScoreText, R.drawable.assessment_icon_popup, getActivity());
 				
 				
 				
@@ -484,10 +484,10 @@ public class QuizFragment extends Fragment {
 			holder.txtPosition.setText(String.valueOf(position + 1)+". ");
 			
 			holder.txtName.setText(listAssessmentHomework.get(position).getName());
-			holder.txtStartDate.setText("Start Date: "+listAssessmentHomework.get(position).getStartDate());
-			holder.txtEndDate.setText("Due Date: "+listAssessmentHomework.get(position).getEndDate());
-			holder.txtMaximumTime.setText("Maximum Time: "+listAssessmentHomework.get(position).getMaximumTime());
-			holder.txtPassPercentage.setText("Pass Percentage: "+listAssessmentHomework.get(position).getPassPercentage());
+			holder.txtStartDate.setText(getString(R.string.java_homeworkfragment_start_date)+listAssessmentHomework.get(position).getStartDate());
+			holder.txtEndDate.setText(getString(R.string.java_homeworkfragment_due_date)+listAssessmentHomework.get(position).getEndDate());
+			holder.txtMaximumTime.setText(getString(R.string.java_homeworkfragment_max_time)+listAssessmentHomework.get(position).getMaximumTime());
+			holder.txtPassPercentage.setText(getString(R.string.java_homeworkfragment_pass_percentage)+listAssessmentHomework.get(position).getPassPercentage());
 			holder.btnPlay.setTag(position);
 			holder.layoutRoot.setTag(position);
 
@@ -497,7 +497,7 @@ public class QuizFragment extends Fragment {
 
 			if(listAssessmentHomework.get(position).getNotStarted() == 1)
 			{
-				holder.btnPlay.setText("Yet to start");
+				holder.btnPlay.setText(R.string.java_quizfragment_yet_to_start);
 
 				listAssessmentHomework.get(position).setIsClickable(false);
 				holder.btnPlay.setEnabled(listAssessmentHomework.get(position).isClickable());
@@ -507,11 +507,11 @@ public class QuizFragment extends Fragment {
 			{
 				if(listAssessmentHomework.get(position).getTimeover() == 0 && listAssessmentHomework.get(position).getExamGiven() == 0)
 				{
-					holder.btnPlay.setText("Play");
+					holder.btnPlay.setText(getString(R.string.java_homeworkfragment_play));
 
 					if (userHelper.getUser().getType() == UserTypeEnum.PARENTS)
 					{
-						holder.btnPlay.setText("Not Played");
+						holder.btnPlay.setText(R.string.java_quizfragment_not_played);
 					}
 
 					holder.btnPlay.setOnClickListener(new View.OnClickListener() {
@@ -563,7 +563,7 @@ public class QuizFragment extends Fragment {
 				}
 
 				if(listAssessmentHomework.get(position).getExamGiven() == 1) {
-					holder.btnPlay.setText("Result");
+					holder.btnPlay.setText(R.string.java_quizfragment_result);
 
 					holder.btnPlay.setOnClickListener(new View.OnClickListener() {
 
@@ -602,7 +602,7 @@ public class QuizFragment extends Fragment {
 				}
 				if(listAssessmentHomework.get(position).getTimeover() == 1 && listAssessmentHomework.get(position).getExamGiven() == 0)
 				{
-					holder.btnPlay.setText("Time Over");
+					holder.btnPlay.setText(R.string.java_quizfragment_time_over);
 
 					listAssessmentHomework.get(position).setIsClickable(false);
 					holder.btnPlay.setEnabled(listAssessmentHomework.get(position).isClickable());

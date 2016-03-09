@@ -117,9 +117,9 @@ public class SingleLessonPlan extends ChildContainerActivity {
     private void initAction()
     {
         txtTitleLessonPlan.setText(data.getTitle());
-        txtSubject.setText("Subject: "+data.getSubjects());
-        txtCategory.setText("Category: "+data.getCategory());
-        txtDate.setText("Published date: "+ AppUtility.getDateString(data.getPublishDate(), AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
+        txtSubject.setText(getString(R.string.java_singlelessonplan_subject)+data.getSubjects());
+        txtCategory.setText(getString(R.string.java_singlelessonplan_category)+data.getCategory());
+        txtDate.setText(getString(R.string.java_singlelessonplan_published_date)+ AppUtility.getDateString(data.getPublishDate(), AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
 
 
         txtDescription.setText(Html.fromHtml(data.getDescription(), null, new MyTagHandler()));
@@ -131,7 +131,7 @@ public class SingleLessonPlan extends ChildContainerActivity {
 
                 btnDelete.setButtonSelected(true, R.color.black, R.drawable.btn_delete_lesson_plan);
 
-                showCustomDialogConfirmationDelete("LESSON PLAN", "Delete", "Are you sure you want to delete selected lesson plan?", R.drawable.lessonplan_icon_red, SingleLessonPlan.this);
+                showCustomDialogConfirmationDelete(getString(R.string.java_singlelessonplan_title_lesson_plan), getString(R.string.java_singlelessonplan_delete), getString(R.string.java_singlelessonplan_delete_confirmation), R.drawable.lessonplan_icon_red, SingleLessonPlan.this);
 
             }
         });
@@ -200,7 +200,7 @@ public class SingleLessonPlan extends ChildContainerActivity {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };
@@ -265,7 +265,7 @@ public class SingleLessonPlan extends ChildContainerActivity {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         }
@@ -287,7 +287,7 @@ public class SingleLessonPlan extends ChildContainerActivity {
             if (modelContainer.getStatus().getCode() == 200) {
 
 
-                Toast.makeText(SingleLessonPlan.this, "Successfully Deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SingleLessonPlan.this, R.string.java_singlelessonplan_successfully_deleetd, Toast.LENGTH_SHORT).show();
                 finish();
 
 

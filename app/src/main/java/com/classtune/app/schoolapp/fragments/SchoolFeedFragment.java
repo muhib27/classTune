@@ -509,31 +509,31 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
                         switch (attendance_status){
                             case 1:
-                                holder.statusText.setText("Holiday");
+                                holder.statusText.setText(R.string.java_schoolfeedfragment_holiday);
                                 holder.statusImage.setImageResource(R.drawable.group4);
                                 break;
                             case 2:
-                                holder.statusText.setText("Weekend");
+                                holder.statusText.setText(R.string.java_schoolfeedfragment_weekend);
                                 holder.statusImage.setImageResource(R.drawable.group5);
                                 break;
                             case 3:
-                                holder.statusText.setText("Leave");
+                                holder.statusText.setText(R.string.java_schoolfeedfragment_leave);
                                 holder.statusImage.setImageResource(R.drawable.group3);
                                 break;
                             case 4:
-                                holder.statusText.setText("Late");
+                                holder.statusText.setText(R.string.java_schoolfeedfragment_late);
                                 holder.statusImage.setImageResource(R.drawable.group2);
                                 break;
                             case 5:
-                                holder.statusText.setText("Absent today");
+                                holder.statusText.setText(R.string.java_schoolfeedfragment_absent_today);
                                 holder.statusImage.setImageResource(R.drawable.group8);
                                 break;
                             case 6:
-                                holder.statusText.setText("Present today");
+                                holder.statusText.setText(R.string.java_schoolfeedfragment_present_today);
                                 holder.statusImage.setImageResource(R.drawable.group7);
                                 break;
                             case 7:
-                                holder.statusText.setText("Class yet to start");
+                                holder.statusText.setText(R.string.java_schoolfeedfragment_class_yet_to_start);
                                 holder.statusImage.setImageResource(R.drawable.group1);
                                 break;
                         }
@@ -743,7 +743,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
     AsyncHttpResponseHandler readLaterHandler = new AsyncHttpResponseHandler() {
         public void onStart() {
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
         }
 
 
@@ -981,49 +981,49 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
         switch (type) {
             case 1:
-                return "Event";
+                return getActivity().getString(R.string.java_schoolfeedfragment_event);
 
             case 2:
-                return "Exam Routine";
+                return getActivity().getString(R.string.java_schoolfeedfragment_exam_routine);
 
             case 3:
-                return "Exam Report";
+                return getActivity().getString(R.string.java_schoolfeedfragment_exam_report);
 
             case 4:
-                return "Homework";
+                return getActivity().getString(R.string.java_schoolfeedfragment_homework);
 
             case 5:
-                return "Notice";
+                return getActivity().getString(R.string.java_schoolfeedfragment_notice);
 
             case 6:
-                return "Attendance";
+                return getActivity().getString(R.string.java_schoolfeedfragment_attendance);
 
             case 7:
-                return "Leave";
+                return getActivity().getString(R.string.java_schoolfeedfragment_leave);
 
             case 8:
-                return "Leave";
+                return getActivity().getString(R.string.java_schoolfeedfragment_leave);
 
             case 9:
-                return "Leave";
+                return getActivity().getString(R.string.java_schoolfeedfragment_leave);
 
             case 10:
-                return "Leave";
+                return getActivity().getString(R.string.java_schoolfeedfragment_leave);
 
             case 11:
-                return "Meeting Request";
+                return getActivity().getString(R.string.java_schoolfeedfragment_meeting_request);
 
             case 12:
-                return "Meeting Request";
+                return getActivity().getString(R.string.java_schoolfeedfragment_meeting_request);
 
             case 13:
-                return "Meeting Request";
+                return getActivity().getString(R.string.java_schoolfeedfragment_meeting_request);
 
             case 14:
-                return "Meeting Request";
+                return getActivity().getString(R.string.java_schoolfeedfragment_meeting_request);
 
             default:
-                return "Notice";
+                return getActivity().getString(R.string.java_schoolfeedfragment_notice);
         }
 
 
@@ -1183,7 +1183,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };

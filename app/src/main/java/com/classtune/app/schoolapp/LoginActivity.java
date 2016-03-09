@@ -96,9 +96,9 @@ public class LoginActivity extends SocialBaseActivity implements
 
         if (TextUtils.isEmpty(username)) {
 
-            etUserName.setError("Please enter UserName!!");
+            etUserName.setError(getString(R.string.java_loginactivity_enter_user_name));
         } else if (TextUtils.isEmpty(password)) {
-            etPassword.setError("Please enter Password!!");
+            etPassword.setError(getString(R.string.java_loginactivity_enter_password));
         } else {
             if (ContextCompat.checkSelfPermission(LoginActivity.this,
                     Manifest.permission.READ_PHONE_STATE)

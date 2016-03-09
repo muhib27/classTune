@@ -916,7 +916,7 @@ public class MeetingFragment extends Fragment implements UserAuthListener{
 			
 			if(listStatus.get(position).getTimeOver() == 1)
 			{
-				holder.txtStatus.setText("Time Over");
+				holder.txtStatus.setText(R.string.java_homeworkfragment_time_over);
 				holder.txtStatus.setTextColor(Color.BLACK);
 				holder.layoutStatus.setBackgroundColor(Color.parseColor("#fff200"));
 			}
@@ -924,20 +924,20 @@ public class MeetingFragment extends Fragment implements UserAuthListener{
 			{
 				if(listStatus.get(position).getStatus().equalsIgnoreCase("0"))
 				{
-					holder.txtStatus.setText("Pending");
+					holder.txtStatus.setText(getString(R.string.row_meeting_status_txt_status_pending));
 					holder.txtStatus.setTextColor(Color.BLACK);
 					holder.layoutStatus.setBackgroundColor(Color.parseColor("#e7ecee"));
 				}
 				else if(listStatus.get(position).getStatus().equalsIgnoreCase("1"))
 				{
 					//holder.txtStatus.setText("Done");
-					holder.txtStatus.setText("Accepted");
+					holder.txtStatus.setText(R.string.java_meetingfragment_accepted);
 					holder.txtStatus.setTextColor(Color.WHITE);
 					holder.layoutStatus.setBackgroundColor(Color.parseColor("#4f9611"));
 				}
 				else if(listStatus.get(position).getStatus().equalsIgnoreCase("2"))
 				{
-					holder.txtStatus.setText("Declined");
+					holder.txtStatus.setText(R.string.java_meetingfragment_declined);
 					holder.txtStatus.setTextColor(Color.WHITE);
 					holder.layoutStatus.setBackgroundColor(Color.parseColor("#d71921"));
 				}
@@ -949,7 +949,7 @@ public class MeetingFragment extends Fragment implements UserAuthListener{
 				
 				if(listStatus.get(position).getTimeOver() == 1)
 				{
-					holder.txtStatus.setText("Time Over");
+					holder.txtStatus.setText(R.string.java_homeworkfragment_time_over);
 					holder.txtStatus.setTextColor(Color.BLACK);
 					holder.layoutStatus.setBackgroundColor(Color.parseColor("#fff200"));
 				}
@@ -964,7 +964,7 @@ public class MeetingFragment extends Fragment implements UserAuthListener{
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					if(listStatus.get((Integer) ((LinearLayout)v).getTag()).getTimeOver() == 0 && selectedType.equalsIgnoreCase("1"))
-						showCustomDialogStatus(listStatus.get((Integer) ((LinearLayout)v).getTag()).getId(), "MEETING STATUS", R.drawable.icon_meeting_request_status, "You have pending meeting request");
+						showCustomDialogStatus(listStatus.get((Integer) ((LinearLayout) v).getTag()).getId(), getActivity().getString(R.string.java_meetingfragment_title_meeting_status), R.drawable.icon_meeting_request_status, getActivity().getString(R.string.java_meetingfragment_pending_meeting_request));
 					
 				}
 			});

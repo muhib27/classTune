@@ -104,7 +104,7 @@ public class TeacherHomeworkDoneActivity extends ChildContainerActivity {
 		@Override
 		public void onStart() {
 			
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			
 
 		};

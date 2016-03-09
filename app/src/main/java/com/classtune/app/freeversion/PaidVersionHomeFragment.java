@@ -316,7 +316,7 @@ public class PaidVersionHomeFragment extends Fragment implements
 		if (child.isPressed())
 			return;
 		if(!ispaid && Integer.parseInt(child.getId()) > 2){
-			showCustomDialog(child.getText(),R.drawable.premium_upgrade_icon, "Contact your school to Upgrade.");
+			showCustomDialog(child.getText(), R.drawable.premium_upgrade_icon, getActivity().getString(R.string.java_paidversionhomefragment_contact_school));
 			return;
 		}
 		for (int i = 0; i < menuScrollView.getChildCount(); i++) {

@@ -119,7 +119,7 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	public void showPicker(PickerType type) {
 
 		Picker picker = Picker.newInstance(0);
-		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback, "Select Batch");
+		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback, getString(R.string.fragment_lessonplan_view_txt_select_batch));
 		picker.show(getChildFragmentManager(), null);
 	}
 

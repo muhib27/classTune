@@ -359,7 +359,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 	private void showSubjectPicker() {
 		Picker picker = Picker.newInstance(0);
 		picker.setData(PickerType.HOMEWORK_SUBJECT, homeWorkSubject, PickerCallback,
-				"Choose your subject");
+				getString(R.string.java_homeworkfragment_choose_your_subject));
 		picker.show(getChildFragmentManager(), null);
 	}
 	
@@ -515,7 +515,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 				
 				holder.doneBtn.setTag(allGooadReadPost.get(position).getId());
 				
-				holder.doneBtn.setTitleText("Done by "+allGooadReadPost.get(position).getDone());
+				holder.doneBtn.setTitleText(getString(R.string.java_singleteacherhomeworkactivity_done_by)+allGooadReadPost.get(position).getDone());
 				holder.doneBtn.setTextSize(16);
 				
 				holder.txtAssignDate.setText(AppUtility.getDateString(hwork.getAssign_date(), AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
@@ -622,7 +622,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 		@Override
 		public void onStart() {
 			
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			
 
 		};

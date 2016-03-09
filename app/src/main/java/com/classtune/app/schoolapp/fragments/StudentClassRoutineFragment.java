@@ -73,7 +73,7 @@ public class StudentClassRoutineFragment extends UserVisibleHintFragment impleme
 	public void showPicker(PickerType type) {
 
 		Picker picker = Picker.newInstance(0);
-		picker.setData(type, days, PickerCallback , "Select day");
+		picker.setData(type, days, PickerCallback, con.getString(R.string.java_studentclassroutinefragment_select_day));
 		picker.show(getChildFragmentManager(), null);
 	}
 	
@@ -197,7 +197,7 @@ public class StudentClassRoutineFragment extends UserVisibleHintFragment impleme
 		nextSubjectNameText.setText(nextClass.getSubjectName());
 
 		if(TextUtils.isEmpty(nextClass.getClassName()) && TextUtils.isEmpty(nextClass.getBatchName()))
-			nextClassNameText.setText("No Class Available");
+			nextClassNameText.setText(R.string.java_studentclassroutinefragment_no_class_available);
 	}
 	
 	

@@ -270,23 +270,23 @@ public class MyLeaveFragment extends  UserVisibleHintFragment{
 			holder.txtLeaveSubject.setText(studentlist.get(position).getLeave_subject());
 			
 			holder.namebatch.setText(studentlist.get(position).getLeave_type());
-			holder.applydate.setText("Apply Date: "+studentlist.get(position).getCreateDate());
+			holder.applydate.setText(mContext.getString(R.string.java_myleavefragment_apply_date)+studentlist.get(position).getCreateDate());
 			// Listen for ListView Item Click
-			holder.startend.setText("Duration: "+studentlist.get(position).getLeaveStartDate()+" to "+studentlist.get(position).getLeaveEndDate());
+			holder.startend.setText(mContext.getString(R.string.java_myleavefragment_duration)+studentlist.get(position).getLeaveStartDate()+mContext.getString(R.string.java_myleavefragment_to)+studentlist.get(position).getLeaveEndDate());
 			switch (studentlist.get(position).getTeacherLeaveStatus()) {
 			case 0:
-				holder.status.setText("declined");
+				holder.status.setText(R.string.java_myleavefragment_declined);
 				holder.status.setTextColor(getResources().getColor(R.color.white));
 				holder.status.setBackgroundColor(getActivity().getResources().getColor(R.color.red));
 				break;
 			case 1:
 				holder.status.setTextColor(getResources().getColor(R.color.white));
-				holder.status.setText("accepted");
+				holder.status.setText(R.string.java_myleavefragment_accepted);
 				holder.status.setBackgroundColor(getActivity().getResources().getColor(R.color.accepted_color));
 				break;
 			case 2:
 				holder.status.setTextColor(getResources().getColor(R.color.black));
-				holder.status.setText("pending");
+				holder.status.setText(R.string.java_myleavefragment_pending);
 				holder.status.setBackgroundColor(getActivity().getResources().getColor(R.color.gray_2));
 				break;
 			default:

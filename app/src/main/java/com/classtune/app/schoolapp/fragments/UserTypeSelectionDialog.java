@@ -35,7 +35,7 @@ public class UserTypeSelectionDialog extends DialogFragment implements OnClickLi
 	    view.findViewById(R.id.radio_parent).setOnClickListener(this);
 	    view.findViewById(R.id.radio_teacher).setOnClickListener(this);
 	    view.findViewById(R.id.ok_btn).setOnClickListener(this);
-	    this.getDialog().setTitle("Select User Type");
+	    this.getDialog().setTitle(R.string.java_usertypeselectiondialog_select_user_type);
 	    return view;
 	}
 	

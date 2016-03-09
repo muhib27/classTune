@@ -140,7 +140,7 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 		
 		if(data.getTimeOver() == 1)
 		{
-			txtStatus.setText("Time Exceed");
+			txtStatus.setText(R.string.java_singlemeetingrequestactivity_time_exceed);
 			txtStatus.setTextColor(Color.BLACK);
 			layoutStatus.setBackgroundColor(Color.parseColor("#fff200"));
 		}
@@ -148,20 +148,20 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 		{
 			if(data.getStatus().equalsIgnoreCase("0"))
 			{
-				txtStatus.setText("Pending");
+				txtStatus.setText(R.string.java_singlemeetingrequestactivity_pending);
 				txtStatus.setTextColor(Color.BLACK);
 				layoutStatus.setBackgroundColor(Color.parseColor("#e7ecee"));
 			}
 			else if(data.getStatus().equalsIgnoreCase("1"))
 			{
 				//holder.txtStatus.setText("Done");
-				txtStatus.setText("Accepted");
+				txtStatus.setText(R.string.java_singlemeetingrequestactivity_accepted);
 				txtStatus.setTextColor(Color.WHITE);
 				layoutStatus.setBackgroundColor(Color.parseColor("#4f9611"));
 			}
 			else if(data.getStatus().equalsIgnoreCase("2"))
 			{
-				txtStatus.setText("Declined");
+				txtStatus.setText(R.string.java_singlemeetingrequestactivity_declined);
 				txtStatus.setTextColor(Color.WHITE);
 				layoutStatus.setBackgroundColor(Color.parseColor("#d71921"));
 			}
@@ -173,7 +173,7 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 			
 			if(data.getTimeOver() == 1)
 			{
-				txtStatus.setText("Time Exceed");
+				txtStatus.setText(getString(R.string.java_singlemeetingrequestactivity_time_exceed));
 				txtStatus.setTextColor(Color.BLACK);
 				layoutStatus.setBackgroundColor(Color.parseColor("#fff200"));
 			}
@@ -186,7 +186,7 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					if(data.getTimeOver() == 0 && data.getType() == 1)
-						showCustomDialogStatus(data.getId(), "MEETING STATUS", R.drawable.icon_meeting_request_status, "You have pending meeting request");
+						showCustomDialogStatus(data.getId(), getString(R.string.java_singlemeetingrequestactivity_meeting_status), R.drawable.icon_meeting_request_status, getString(R.string.java_singlemeetingrequestactivity_you_have_pending_meeting_request));
 				}
 			});
 			
@@ -225,7 +225,7 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 		@Override
 		public void onStart() {
 			
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 			
 
 		};
@@ -291,7 +291,7 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 				    {
 				    	initApiCallStatus(meetingId, "1");
 				    	
-				    	txtStatus.setText("Accepted");
+				    	txtStatus.setText(getString(R.string.java_singlemeetingrequestactivity_accepted));
 						txtStatus.setTextColor(Color.WHITE);
 						layoutStatus.setBackgroundColor(Color.parseColor("#4f9611"));
 				    }
@@ -300,7 +300,7 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 				    {
 				    	initApiCallStatus(meetingId, "2");
 				    	
-				    	txtStatus.setText("Declined");
+				    	txtStatus.setText(getString(R.string.java_singlemeetingrequestactivity_declined));
 						txtStatus.setTextColor(Color.WHITE);
 						layoutStatus.setBackgroundColor(Color.parseColor("#d71921"));
 				    }

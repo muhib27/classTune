@@ -99,7 +99,7 @@ public class WeeklyRoutineFragment extends Fragment implements
 		public void onStart() {
 			super.onStart();
 			// uListener.onServerAuthenticationStart();
-			uiHelper.showLoadingDialog("Please wait...");
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		}
 
 		// 3gjnfr27hein04pfbe4ur7gbv7

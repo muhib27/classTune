@@ -362,7 +362,7 @@ public class SyllabusFragment extends Fragment {
 	private void showBatchPicker(PickerType type) {
 
 		Picker picker = Picker.newInstance(0);
-		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback , "Select Batch");
+		picker.setData(type, PaidVersionHomeFragment.batches, PickerCallback , getString(R.string.fragment_lessonplan_view_txt_select_batch));
 		picker.show(getChildFragmentManager(), null);
 	}
 
@@ -408,7 +408,7 @@ public class SyllabusFragment extends Fragment {
 
 		@Override
 		public void onStart() {
-				uiHelper.showLoadingDialog("Please wait...");
+				uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 		};
 
 		@Override
@@ -427,7 +427,7 @@ public class SyllabusFragment extends Fragment {
 
 				if(listTerm.size() <= 0)
 				{
-					Toast.makeText(getActivity(), "No data found!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), getString(R.string.fragment_archieved_events_txt_no_data_found), Toast.LENGTH_SHORT).show();
 				}
 			}
 
@@ -498,7 +498,7 @@ public class SyllabusFragment extends Fragment {
 			holder.layoutRoot.setTag(listTerm.get(position).getTermId());
 
             holder.txtExamName.setText(listTerm.get(position).getTermTitle());
-            holder.txtAction.setText("View");
+            holder.txtAction.setText(getString(R.string.java_classreportteacherfragment_view));
             holder.txtDate.setText(listTerm.get(position).getExam_date());
 
             holder.layoutAction.setOnClickListener(new View.OnClickListener() {

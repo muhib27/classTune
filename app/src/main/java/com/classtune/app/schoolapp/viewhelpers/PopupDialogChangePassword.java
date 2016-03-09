@@ -60,7 +60,7 @@ public class PopupDialogChangePassword extends DialogFragment implements UserAut
         if (uiHelper.isDialogActive()) {
             uiHelper.dismissLoadingDialog();
         }
-        uiHelper.showLoadingDialog("Please wait...");
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
     }
 
@@ -86,7 +86,7 @@ public class PopupDialogChangePassword extends DialogFragment implements UserAut
         if (uiHelper.isDialogActive()) {
             uiHelper.dismissLoadingDialog();
         }
-        uiHelper.showMessage("Your password is changed successfully.");
+        uiHelper.showMessage(getString(R.string.java_accountsettingsactivity_password_changes_success));
         ((LoginActivity)getActivity()).onPassChangeDialogDismiss();
         PopupDialogChangePassword.this.dismiss();
     }
@@ -116,15 +116,15 @@ public class PopupDialogChangePassword extends DialogFragment implements UserAut
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 if (TextUtils.isEmpty(etCurrentPass.getText().toString().trim())) {
-                    uiHelper.showErrorDialog("Password Cannot be empty!");
+                    uiHelper.showErrorDialog(getActivity().getString(R.string.java_popupdialogchangepassword_password_cannot_empty));
                 } else if (TextUtils.isEmpty(etNewPass.getText().toString().trim())) {
-                    uiHelper.showErrorDialog("Password Cannot be empty!");
+                    uiHelper.showErrorDialog(getString(R.string.java_popupdialogchangepassword_password_cannot_empty));
                 } else if (TextUtils.isEmpty(etRePass.getText().toString().trim())) {
-                    uiHelper.showErrorDialog("Password Cannot be empty!");
+                    uiHelper.showErrorDialog(getString(R.string.java_popupdialogchangepassword_password_cannot_empty));
                 } else {
                     if (!etNewPass.getText().toString().trim()
                             .equals(etRePass.getText().toString().trim())) {
-                        uiHelper.showErrorDialog("Password doesn't match!");
+                        uiHelper.showErrorDialog(getString(R.string.java_classtune_registration_password_didnt_match));
                     } else {
                         userHelper.updatePassword(userHelper.getUser(), etNewPass
                                 .getText().toString(), etCurrentPass.getText()
@@ -190,7 +190,7 @@ public class PopupDialogChangePassword extends DialogFragment implements UserAut
                         .toString()
                         .equalsIgnoreCase(
                                 etNewPass.getText().toString()))
-                    etRePass.setError("Please enter correct password");
+                    etRePass.setError(getString(R.string.java_accountsettingsaactivity_enter_correct_password));
             }
 
             @Override

@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.classtune.app.R;
+
 public class UIHelper {
 
 	ProgressDialog loadingDialog;
@@ -57,7 +59,7 @@ public class UIHelper {
     }
 
     public void showErrorDialog(String errorMessage) {
-        new AlertDialog.Builder(activity).setMessage(errorMessage).setTitle("Error").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(activity).setMessage(errorMessage).setTitle(R.string.java_uihelper_error).setPositiveButton(R.string.java_uihelper_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
             }
@@ -65,7 +67,7 @@ public class UIHelper {
     }
 
     public void showSuccessDialog(String errorMessage,String title) {
-        new AlertDialog.Builder(activity).setMessage(errorMessage).setTitle(title).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(activity).setMessage(errorMessage).setTitle(title).setPositiveButton(R.string.java_uihelper_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
             }
@@ -76,7 +78,7 @@ public class UIHelper {
         if (activity != null) {
             activity.runOnUiThread(new Runnable() {
                 public void run() {
-                    new AlertDialog.Builder(activity).setMessage(errorMessage).setTitle("Error").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    new AlertDialog.Builder(activity).setMessage(errorMessage).setTitle(R.string.java_uihelper_error).setPositiveButton(R.string.java_uihelper_ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
                             dismissLoadingDialog();
@@ -92,7 +94,7 @@ public class UIHelper {
     	final AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
     	dialog.setMessage(conenctionMessage);
     	dialog.setTitle(title);
-    	dialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+    	dialog.setPositiveButton(R.string.java_uihelper_settings, new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -102,7 +104,7 @@ public class UIHelper {
 			}
 		});
     	
-    	dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+    	dialog.setNegativeButton(R.string.java_uihelper_ok, new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

@@ -360,7 +360,7 @@ public class TeacherHomeWorkDraftListFragment  extends Fragment implements UserA
     private void showSubjectPicker() {
         Picker picker = Picker.newInstance(0);
         picker.setData(PickerType.HOMEWORK_SUBJECT, homeWorkSubject, PickerCallback,
-                "Choose your subject");
+                getString(R.string.java_homeworkfragment_choose_your_subject));
         picker.show(getChildFragmentManager(), null);
     }
 
@@ -600,7 +600,7 @@ public class TeacherHomeWorkDraftListFragment  extends Fragment implements UserA
         @Override
         public void onStart() {
 
-            uiHelper.showLoadingDialog("Please wait...");
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
 
         };

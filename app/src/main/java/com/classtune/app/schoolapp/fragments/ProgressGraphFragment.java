@@ -141,7 +141,7 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
         }
 
 
-        picker.setData(PickerType.GRAPH,params, URLHelper.URL_GET_GRAPH_SUBJECTS, PickerCallback , "Select Subject");
+        picker.setData(PickerType.GRAPH,params, URLHelper.URL_GET_GRAPH_SUBJECTS, PickerCallback , getString(R.string.fragment_progress_graph_text_select_subject));
         picker.show(getChildFragmentManager(), null);
     }
     Picker.PickerItemSelectedListener PickerCallback = new Picker.PickerItemSelectedListener() {
@@ -167,7 +167,7 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
         List<BaseType> examTypes = new ArrayList<BaseType>(2);
         examTypes.add(new Batch("1","Class Test"));
         examTypes.add(new Batch("3","Term Test"));
-        picker.setData(type, examTypes, PickerCallbackExamType , "Select Exam Type");
+        picker.setData(type, examTypes, PickerCallbackExamType, getActivity().getString(R.string.java_progressgraphfragment_select_exam_type));
         picker.show(getChildFragmentManager(), null);
     }
     Picker.PickerItemSelectedListener PickerCallbackExamType = new Picker.PickerItemSelectedListener() {
@@ -353,7 +353,7 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
         for(int i=0;i<ss.getAllExam().size();i++){
             renderer.addXTextLabel(i,ss.getAllExam().get(i).getName());
         }
-        setChartSettings(renderer, "All Subject Comparison Graph", "Exam Name", "Percentage", 0.5, 12.5, 0, 110,
+        setChartSettings(renderer, getActivity().getString(R.string.java_progressgraphfragment_all_subject_graph), getActivity().getString(R.string.java_progressgraphfragment_exam_name), getActivity().getString(R.string.java_progressgraphfragment_percentage), 0.5, 12.5, 0, 110,
                 Color.BLACK, Color.BLACK);
 
         renderer.setXLabelsColor(Color.BLACK);
@@ -407,12 +407,12 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
 
         // Creating an  XYSeries for Income
         //CategorySeries incomeSeries = new CategorySeries("Income");
-        XYSeries incomeSeries = new XYSeries("Your Percentage");
+        XYSeries incomeSeries = new XYSeries(getActivity().getString(R.string.java_progressgraphfragment_your_percentage));
         // Creating an  XYSeries for Income
-        XYSeries expenseSeries = new XYSeries("Highest Percentage");
+        XYSeries expenseSeries = new XYSeries(getActivity().getString(R.string.java_progressgraphfragment_highest_percentage));
         // Adding data to Income and Expense Series
 
-        XYSeries averageSeries = new XYSeries("Average Percentage");
+        XYSeries averageSeries = new XYSeries(getActivity().getString(R.string.java_progressgraphfragment_average_percentage));
         for(int i=0;i<exam.size();i++){
             incomeSeries.add(i,exam.get(i).getYour_percent());//income[i]
             expenseSeries.add(i,exam.get(i).getMax_mark_percent());//expense[i]
