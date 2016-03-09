@@ -503,7 +503,15 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                     case TYPE_SUMMERY:
                         FreeFeed summary = list.get(position);
                         holder.schoolName.setText(schoolName);
-                        holder.studentName.setText(username);
+
+
+                        if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
+                            holder.studentName.setText(userHelper.getUser().getSelectedChild().getFullName());
+                        }
+                        else{
+                            holder.studentName.setText(username);
+                        }
+
                         //holder.studentNameHeader.setText(username);
                         holder.currentDate.setText(userdetails);
 
