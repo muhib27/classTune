@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:textSize="12sp"
-            android:text="View" />
+            android:text="@string/student_row_item_view" />
     </LinearLayout>
     
 

@@ -439,141 +439,141 @@
     <!--Multiple Language Support-->
 
     <string name="test_string">Lorem Ipsum is simply dummy text of the printing  into electronic ining Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-    <string name="share_text">Choose where you want to share...</string>
+    <string name="share_text">আপনি যা শেয়ার করতে চান তা নির্বাচন করুন...</string>
 
     <!--userhelpper-->
 
-    <string name="msg_user_not_found">User not found.</string>
-    <string name="msg_admin_user">You are an admin user. Log-in from web browser to enjoy full control.</string>
+    <string name="msg_user_not_found">ইউজার পাওয়া যায়নি।</string>
+    <string name="msg_admin_user">আপনি একজন অ্যাডমিন ইউজার। পূর্ণ নিয়ন্ত্রনের জন্য ওয়েব ব্রাউজার থেকে লগইন করুন । </string>
 
 
     <!-- SETTINGS -->
 
-    <string name="setting_drawer_title_text">Info \u0026 Setting</string>
-    <string name="setting_drawer_account_text">Account Settings</string>
-    <string name="setting_drawer_pref_text">Preference Settings</string>
-    <string name="setting_drawer_faq_text">Frequently Asked Questions</string>
-    <string name="setting_drawer_profile_text">Edit Profile</string>
-    <string name="setting_drawer_term_text">Terms \u0026 Policy</string>
-    <string name="setting_drawer_assessment_text">Assessment Scores</string>
-    <string name="setting_drawer_logout_text">Log Out</string>
-    <string name="setting_drawer_about_us_text">About Us</string>
-    <string name="setting_drawer_current_password_hint_text">Current Password</string>
-    <string name="forget_password_username_label">username</string>
-    <string name="forget_password_email_label">email</string>
-    <string name="setting_drawer_new_password_hint_text">New Password</string>
-    <string name="setting_drawer_retype_password_hint_text">Retype Password</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="tv_homework">Homework assigned by </string>
-    <string name="hint_password">Password</string>
-    <string name="text_loading">Loading...</string>
+    <string name="setting_drawer_title_text">ইনফো এবং সেটিং</string>
+    <string name="setting_drawer_account_text">অ্যাকাউন্ট সেটিংস</string>
+    <string name="setting_drawer_pref_text">অগ্রাধিকার সেটিংস</string>
+    <string name="setting_drawer_faq_text">প্রশ্ন জিজ্ঞাসা</string>
+    <string name="setting_drawer_profile_text">প্রোফাইল সম্পাদন করুন</string>
+    <string name="setting_drawer_term_text"> শর্তাবলী</string>
+    <string name="setting_drawer_assessment_text">অ্যাসেসমেন্ট স্কোর</string>
+    <string name="setting_drawer_logout_text">লগ আউট</string>
+    <string name="setting_drawer_about_us_text">আমাদের সম্পর্কে</string>
+    <string name="setting_drawer_current_password_hint_text">বর্তমান পাসওয়ার্ড</string>
+    <string name="forget_password_username_label">ইউজারনেম</string>
+    <string name="forget_password_email_label">ইমেইল</string>
+    <string name="setting_drawer_new_password_hint_text">নতুন পাসওয়ার্ড</string>
+    <string name="setting_drawer_retype_password_hint_text">রি-টাইপ পাসওয়ার্ড</string>
+    <string name="action_settings">সেটিংস</string>
+    <string name="hello_world">হ্যালো ওয়ার্ল্ড!</string>
+    <string name="tv_homework">হোমওয়ার্ক নির্ধারিত করেছেন  </string>
+    <string name="hint_password">পাসওয়ার্ড</string>
+    <string name="text_loading">লোডিং...</string>
 
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
+    <string name="drawer_open">ন্যাভিগেশন ড্রয়ার উন্মুক্ত করুন</string>
+    <string name="drawer_close">ন্যাভিগেশন ড্রয়ার বন্ধ করুন</string>
 
 
     <!-- Homework -->
 
-    <string name="btn_ok">OK</string>
-    <string name="btn_cancel">Cancel</string>
-    <string name="btn_done">Done</string>
-    <string name="btn_reminder">Reminder</string>
-    <string name="btn_previous">Previous</string>
-    <string name="tab_homework">Homework</string>
-    <string name="tab_project">Project</string>
-    <string name="tab_assessment">Quiz</string>
+    <string name="btn_ok">ঠিক আছে</string>
+    <string name="btn_cancel">বাতিল করুন</string>
+    <string name="btn_done">সম্পন্ন হয়েছে</string>
+    <string name="btn_reminder">রিমাইন্ডার</string>
+    <string name="btn_previous">পূর্ববর্তী</string>
+    <string name="tab_homework">হোমওয়ার্ক</string>
+    <string name="tab_project">প্রজেক্ট</string>
+    <string name="tab_assessment">কুইজ</string>
 
     <!-- Attendence -->
-    <string name="percent_text">Percent</string>
-    <string name="total_class_text">Total Class</string>
-    <string name="present_text">Present</string>
-    <string name="absent_text">Absent</string>
-    <string name="leave_text">Leave</string>
-    <string name="late_text">Late</string>
-    <string name="holiday_text">Holiday</string>
-    <string name="title_monthly_attendance_tab">Monthly Attendance Report</string>
-    <string name="title_yearly_attendance_tab">Yearly Attendance Report</string>
-    <string name="title_roll_call_tab">Roll Call</string>
-    <string name="title_class_report_tab">Class Report</string>
-    <string name="title_student_report_tab">Student Report</string>
-    <string name="yearly_attendance_report_title_text">Attendance status since %1$s</string>
+    <string name="percent_text">শতকরা</string>
+    <string name="total_class_text">সর্বমোট ক্লাস</string>
+    <string name="present_text">উপস্থিতি</string>
+    <string name="absent_text">অনুপস্থিতি</string>
+    <string name="leave_text">ছুটি</string>
+    <string name="late_text">বিলম্ব</string>
+    <string name="holiday_text">ছুটির দিন</string>
+    <string name="title_monthly_attendance_tab">মাসিক উপস্থিতির রিপোর্ট</string>
+    <string name="title_yearly_attendance_tab">বাৎসরিক উপস্থিতির রিপোর্ট</string>
+    <string name="title_roll_call_tab">রোল কল</string>
+    <string name="title_class_report_tab">ক্লাস রিপোর্ট</string>
+    <string name="title_student_report_tab">শিক্ষার্থীর রিপোর্ট </string>
+    <string name="yearly_attendance_report_title_text">উপস্থিতির স্ট্যাটাস  %1$s</string>
 
     <!-- Academic Calender -->
-    <string name="title_exam_calendar_tab">Exam</string>
-    <string name="title_events_calendar_tab">Events</string>
-    <string name="title_holidays_calendar_tab">Holidays</string>
-    <string name="title_others_calendar_tab">Others</string>
-    <string name="academic_calendar_title_text">Academic calendar %1$s</string>
-    <string name="teacher_routine_title">Routine of %1$s</string>
-    <string name="no_class_title">You have no class on %1$s</string>
-    <string name="title_date">Date</string>
-    <string name="title_exam_calendar_action">Action</string>
+    <string name="title_exam_calendar_tab">পরীক্ষা</string>
+    <string name="title_events_calendar_tab">ইভেন্ট</string>
+    <string name="title_holidays_calendar_tab">ছুটি</string>
+    <string name="title_others_calendar_tab">অন্যান্য</string>
+    <string name="academic_calendar_title_text">অ্যাকাডেমিক ক্যালেন্ডার %1$s</string>
+    <string name="teacher_routine_title">রুটিন %1$s</string>
+    <string name="no_class_title">আপনার কোন ক্লাস নেই %1$s</string>
+    <string name="title_date">তারিখ</string>
+    <string name="title_exam_calendar_action">অ্যাকশন</string>
 
     <!-- Fees -->
-    <string name="tab_fees_due">Due Payment</string>
-    <string name="tab_fees_history">Payment History</string>
+    <string name="tab_fees_due">পরিশোধিত অর্থ</string>
+    <string name="tab_fees_history">পেমেন্টের ইতিবৃত্ত</string>
 
     <!-- Notice -->
 
-    <string name="tab_notice_general">All</string>
-    <string name="tab_notice_circular">Academic</string>
-    <string name="tab_notice_announcement">Extra-Academic</string>
-    <string name="btn_notice_acknowledge">Acknowledge</string>
+    <string name="tab_notice_general">সকল</string>
+    <string name="tab_notice_circular">অ্যাকাডেমিক</string>
+    <string name="tab_notice_announcement">অ্যাকাডেমিক ব্যতীত</string>
+    <string name="btn_notice_acknowledge">প্রাপ্তি স্বীকার</string>
 
     <!-- EVENTS -->
-    <string name="title_events_tab">Upcoming</string>
-    <string name="title_archieve_tab">Previous</string>
-    <string name="btn_join">Join in</string>
-    <string name="btn_not_going">Not Going</string>
+    <string name="title_events_tab">আসন্ন</string>
+    <string name="title_archieve_tab">পূর্ববর্তী</string>
+    <string name="btn_join">যোগদান</string>
+    <string name="btn_not_going">অনিচ্ছুক</string>
 
     <!-- HOMEWOEK TEACHER -->
-    <string name="title_add_homework">Add</string>
-    <string name="title_draft_homework">Drafts</string>
-    <string name="title_homework_feed">All</string>
+    <string name="title_add_homework">যোগ করুন</string>
+    <string name="title_draft_homework">ড্রাফ্‌ট</string>
+    <string name="title_homework_feed">সকল</string>
 
     <!-- LEAVE -->
-    <string name="title_leave_application">Application</string>
-    <string name="title_student_leave">Student leave</string>
-    <string name="title_my_leave">My Leave</string>
+    <string name="title_leave_application">আবেদনপত্র</string>
+    <string name="title_student_leave">শিক্ষার্থীর ছুটি</string>
+    <string name="title_my_leave">আমার ছুটি</string>
 
 
     <!-- CLASS TEST -->
-    <string name="title_classtest_tab">Class Test</string>
+    <string name="title_classtest_tab">ক্লাস টেস্ট</string>
 
     <!-- TERM REPORT -->
-    <string name="title_term_report_tab">Term Report</string>
-    <string name="title_progress_graph_tab">Progress Graph</string>
+    <string name="title_term_report_tab">টার্ম রিপোর্ট</string>
+    <string name="title_progress_graph_tab">অগ্রগতির গ্রাফ</string>
 
     <!-- ROUTINE -->
-    <string name="title_class_routine">Class Routine</string>
-    <string name="title_weekly_routine">Weekly Routine</string>
-    <string name="title_exam_routine">Exam Routine</string>
+    <string name="title_class_routine">ক্লাস রুটিন</string>
+    <string name="title_weekly_routine">সাপ্তাহিক রুটিন</string>
+    <string name="title_exam_routine">পরীক্ষার রুটিন</string>
 
     <!-- COMMON -->
-    <string name="internet_error_text">No Internet Connection!</string>
-    <string name="loading_text">Loading...</string>
-    <string name="authenticating_text">Authenticating...</string>
+    <string name="internet_error_text">ইন্টারনেট সংযোগ নেই!</string>
+    <string name="loading_text">লোডিং...</string>
+    <string name="authenticating_text">প্রমানিত...</string>
 
     <!-- FREE VERSION CANDLE -->
-    <string name="btn_candle_attach_file">Attach a file</string>
+    <string name="btn_candle_attach_file">ফাইল সংযুক্ত করুন</string>
 
     <!-- COMPLETE PROFILE -->
-    <string name="choose_user_name_text">Choose your user name</string>
+    <string name="choose_user_name_text">আপনার ইউজারনেম নির্বাচন করুন</string>
 
     <!-- CANDLE -->
-    <string name="chooser_title">Select file</string>
-    <string name="album_name">champs21</string>
+    <string name="chooser_title">ফাইল নির্বাচন করুন</string>
+    <string name="album_name">চ্যাম্পস২১</string>
 
 
     <string-array name="city_list">
-        <item>Dhaka</item>
-        <item>Chittagong</item>
-        <item>Rajshahi</item>
-        <item>Khulna</item>
-        <item>Barisal</item>
-        <item>Sylhet</item>
-        <item>Rangpur</item>
+        <item>ঢাকা</item>
+        <item>চট্টগ্রাম</item>
+        <item>রাজশাহী</item>
+        <item>খুলনা</item>
+        <item>বরিশাল</item>
+        <item>সিলেট</item>
+        <item>রংপুর</item>
 
     </string-array>
 
@@ -675,973 +675,976 @@
 
 
 
-    <string name="spinner_prompt_select_batch">Select Batch</string>
-    <string name="spinner_prompt_select_gender">Select Gender</string>
-    <string name="spinner_prompt_select_category">Select Job Category</string>
-    <string name="spinner_prompt_select_department">Select Department</string>
-    <string name="spinner_prompt_select_grade">Select Grade (Optional)</string>
-    <string name="spinner_prompt_select_position">Select Your Position</string>
+    <string name="spinner_prompt_select_batch">ব্যাচ নির্বাচন করুন</string>
+    <string name="spinner_prompt_select_gender">লিঙ্গ নির্বাচন করুন</string>
+    <string name="spinner_prompt_select_category">জব ক্যাটাগরি নির্বাচন করুন</string>
+    <string name="spinner_prompt_select_department">ডিপার্টমেন্ট নির্বাচন করুন</string>
+    <string name="spinner_prompt_select_grade">গ্রেড নির্বাচন (ঐচ্ছিক)</string>
+    <string name="spinner_prompt_select_position">আপনার পদ নির্বাচন করুন</string>
 
-    <string name="classtune_registration_write_here">Write Here</string>
-    <string name="classtune_registration_email_address">Enter Valid\nEmail Address</string>
-    <string name="classtune_registration_character_length">Minimum\n6 Characters</string>
-    <string name="classtune_registration_retype_password">Confirm Password</string>
-    <string name="classtune_registration_school_code">Collect Code\nfrom Your School</string>
+    <string name="classtune_registration_write_here">এখানে লিখুন</string>
+    <string name="classtune_registration_email_address">সক্রিয় ইমেইল অ্যাড্রেস লিখুন</string>
+    <string name="classtune_registration_character_length">সর্বনিম্ন ৬ অক্ষরের</string>
+    <string name="classtune_registration_retype_password">পাসওয়ার্ড নিশ্চিত করুন</string>
+    <string name="classtune_registration_school_code">কোড সংগ্রহ করুন \আপনার স্কুল থেকে</string>
 
-    <string name="classtune_registration_student_user_id">Your User ID: </string>
-    <string name="classtune_registration_student_admission_number_title">Admission No./User ID</string>
-    <string name="classtune_registration_student_admission_number">Enter Admission ID / User ID</string>
-    <string name="classtune_registration_student_dob">Select Date of Birth</string>
-    <string name="classtune_registration_student_contact">Write with Country Code</string>
-    <string name="classtune_registration_student_upload_photo">Upload Photo</string>
+    <string name="classtune_registration_student_user_id">আপনার ইউজার আইডি: </string>
+    <string name="classtune_registration_student_admission_number_title">অ্যাডমিশন নাম্বার./ইউজার আইডি</string>
+    <string name="classtune_registration_student_admission_number">অ্যাডমিশন আইডি  / ইউজার আইডি লিখুন </string>
+    <string name="classtune_registration_student_dob">জন্ম তারিখ নির্বাচন করুন</string>
+    <string name="classtune_registration_student_contact">দেশের কোডসহ টাইপ করুন</string>
+    <string name="classtune_registration_student_upload_photo">ফটো আপলোড করুন</string>
 
-    <string name="classtune_registration_parent_user_id">Set User ID</string>
-    <string name="classtune_registration_parent_add_student">Insert ID</string>
+    <string name="classtune_registration_parent_user_id">ইউজার আইডি সেট করুন</string>
+    <string name="classtune_registration_parent_add_student">আইডি সন্নিবেশ করুন</string>
 
-    <string name="classtune_registration_teacher_employee_number_title">Employee No./User ID</string>
-    <string name="classtune_registration_teacher_employee_number">Enter Employee ID / User ID</string>
-    <string name="classtune_registration_teacher_job_title">Write Job Title</string>
-    <string name="classtune_registration_teacher_joining_date">Select Your Joining Date</string>
-    <string name="classtune_registration_teacher_position_title">Select Job Category First</string>
-    <string name="title_activity_single_report_card_subject">SingleReportCardSubject</string>
+    <string name="classtune_registration_teacher_employee_number_title">কর্মচারী নাম্বার/ইউজার আইডি</string>
+    <string name="classtune_registration_teacher_employee_number">কর্মচারী আইডি / ইউজার আইডি লিখুন</string>
+    <string name="classtune_registration_teacher_job_title">কর্মস্থানের পদ লিখুন</string>
+    <string name="classtune_registration_teacher_joining_date">আপনার কাজে যোগদানের তারিখ লিখুন</string>
+    <string name="classtune_registration_teacher_position_title">প্রথমে জব ক্যাটাগরি নির্বাচন করুন</string>
+    <string name="title_activity_single_report_card_subject">একক রিপোর্ট কার্ড বিষয়</string>
 
     <!--New work for language support-->
 
 
     <!--User Type Selection-->
-    <string name="user_type_selection_dialog">I am a...</string>
-    <string name="user_type_selection_students">Student</string>
-    <string name="user_type_selection_parents">Parents</string>
-    <string name="user_type_selection_teacher">Teacher</string>
-    <string name="user_type_selection_other">Teacher</string>
+    <string name="user_type_selection_dialog">আমি...</string>
+    <string name="user_type_selection_students">শিক্ষার্থী</string>
+    <string name="user_type_selection_parents">অভিভাবক</string>
+    <string name="user_type_selection_teacher">শিক্ষক</string>
+    <string name="user_type_selection_other">শিক্ষক</string>
 
     <!--Create Folder Dialog-->
-    <string name="create_fodler_dialog">Folder Name</string>
+    <string name="create_fodler_dialog">ফোল্ডারের নাম</string>
 
     <!--Picker-->
-    <string name="picker_title">Title</string>
+    <string name="picker_title">টাইটেল</string>
 
     <!--Image Dialog Fragment-->
-    <string name="attachment_dialog_select_picture">Select Picture</string>
-    <string name="attachment_dialog_photo_library">Photo Library</string>
-    <string name="attachment_dialog_camera">Camera</string>
-    <string name="attachment_dialog_cancel">Cancel</string>
+    <string name="attachment_dialog_select_picture">ছবি নির্বাচন করুন</string>
+    <string name="attachment_dialog_photo_library">ফটো লাইব্রেরি</string>
+    <string name="attachment_dialog_camera">ক্যামেরা</string>
+    <string name="attachment_dialog_cancel">বাতিল করুন</string>
 
     <!--StudentListAdapter-->
-    <string name="student_row_item_view">View</string>
+    <string name="student_row_item_view">দেখুন</string>
 
     <!--RelatedPostFragment-->
-    <string name="related_post_also_like_text">You May Also Like</string>
+    <string name="related_post_also_like_text">আপনি আরও পছন্দ করতে পারেন...</string>
 
     <!--SyllabusMidLayerActivity-->
-    <string name="syllabus_mid_layer_activity_no_syllabus_found">You May Also Like</string>
+    <string name="syllabus_mid_layer_activity_no_syllabus_found">আপনি আরও পছন্দ করতে পারেন</string>
 
     <!--LessonPlanSubjectDetailsActivity-->
-    <string name="lesson_plan_subject_details_activity_date">Date</string>
-    <string name="lesson_plan_subject_details_activity_title">Title</string>
+    <string name="lesson_plan_subject_details_activity_date">তারিখ</string>
+    <string name="lesson_plan_subject_details_activity_title">টাইটেল</string>
 
     <!--DialogSelectChildren-->
-    <string name="txt_relation_hint">i.e. Father/Mother</string>
+    <string name="txt_relation_hint">যেমন বাব/মা</string>
 
     <!--PopupDialogAssessmentExitHomework-->
-    <string name="popup_layout_assessment_btn_exit">Exit</string>
-    <string name="popup_layout_assessment_btn_cancel">Cancel</string>
+    <string name="popup_layout_assessment_btn_exit">বের হয়ে আসুন</string>
+    <string name="popup_layout_assessment_btn_cancel">বাতিল করুন</string>
 
     <!--PopupDialogAssessmentNextQuestionHomework-->
-    <string name="popup_layout_assessment_next_question_homework_btn_next">Next</string>
-    <string name="popup_layout_assessment_next_question_homework_txt_correct_answer">Correct Answer</string>
+    <string name="popup_layout_assessment_next_question_homework_btn_next">পরবর্তী</string>
+    <string name="popup_layout_assessment_next_question_homework_txt_correct_answer">সঠিক উত্তর</string>
 
     <!--PopupDialogAssessmentOk-->
-    <string name="popup_layout_assessment_ok_btn_save_score">Save Score</string>
-    <string name="popup_layout_assessment_ok_btn_retry">Retry</string>
-    <string name="popup_layout_assessment_ok_btn_summery">Summery</string>
+    <string name="popup_layout_assessment_ok_btn_save_score">স্কোর সেভ করুন</string>
+    <string name="popup_layout_assessment_ok_btn_retry">পুনরায় চেষ্টা</string>
+    <string name="popup_layout_assessment_ok_btn_summery">সংক্ষেপিত</string>
 
     <!--PopupDialogSingleItemAssessmentInvok-->
-    <string name="popup_layout_assessment_singleitem_invok_btn_start">Start Now</string>
-    <string name="popup_layout_assessment_singleitem_invok_btn_leader_board">Leader Board</string>
+    <string name="popup_layout_assessment_singleitem_invok_btn_start">শুরু করুন এখনই</string>
+    <string name="popup_layout_assessment_singleitem_invok_btn_leader_board">লিডারবোর্ড</string>
 
     <!--PopupDialogAssessmentSummery-->
-    <string name="popup_layout_assessment_summery_txt_question">Question</string>
-    <string name="popup_layout_assessment_summery_txt_correct_answer">Correct Answer</string>
-    <string name="popup_layout_assessment_summery_txt_explanation">Explanation</string>
+    <string name="popup_layout_assessment_summery_txt_question">প্রশ্ন</string>
+    <string name="popup_layout_assessment_summery_txt_correct_answer">সঠিক উত্তর</string>
+    <string name="popup_layout_assessment_summery_txt_explanation">বর্ণনা</string>
 
     <!--PopupDialogChangePassword-->
-    <string name="popup_layout_change_pass_txt_title">CHANGE PASSWORD</string>
-    <string name="popup_layout_change_pass_txt_password">Password:</string>
-    <string name="popup_layout_change_pass_txt_save">Save</string>
-    <string name="popup_layout_change_pass_txt_skip">Skip</string>
+    <string name="popup_layout_change_pass_txt_title">পাসওয়ার্ড পরিবর্তন</string>
+    <string name="popup_layout_change_pass_txt_password">পাসওয়ার্ড:</string>
+    <string name="popup_layout_change_pass_txt_save">সেভ</string>
+    <string name="popup_layout_change_pass_txt_skip">স্কিপ</string>
 
     <!--PopupDialogGoodReadDelete-->
-    <string name="popup_layout_delete_btn_yes">Yes</string>
-    <string name="popup_layout_delete_btn_no">No</string>
+    <string name="popup_layout_delete_btn_yes">হ্যাঁ</string>
+    <string name="popup_layout_delete_btn_no">না</string>
 
     <!--PopupDialogHomeworkAssessmentResult-->
-    <string name="popup_layout_homework_assessment_result_txt_subject">Subject</string>
+    <string name="popup_layout_homework_assessment_result_txt_subject">বিষয়</string>
 
     <!--PopupDialogLessonPlanConfirmation-->
-    <string name="popup_layout_lessonplan_confirmation_btn_delete">Delete</string>
+    <string name="popup_layout_lessonplan_confirmation_btn_delete">মুছে ফেলুন</string>
 
     <!--PopupDialogShare-->
-    <string name="popup_layout_share_txt_share">Share</string>
-    <string name="popup_layout_share_btn_social_media">Social Media</string>
-    <string name="popup_layout_share_btn_my_School">My School</string>
+    <string name="popup_layout_share_txt_share">শেয়ার</string>
+    <string name="popup_layout_share_btn_social_media">সামাজিক যোগাযোগমাধ্যম</string>
+    <string name="popup_layout_share_btn_my_School">আমার স্কুল</string>
 
     <!--PopupDialogMeetingStatus-->
-    <string name="popup_layout_meeting_status_btn_deny">Deny</string>
-    <string name="popup_layout_meeting_status_btn_accept">Accept</string>
+    <string name="popup_layout_meeting_status_btn_deny">অননুমোদন </string>
+    <string name="popup_layout_meeting_status_btn_accept">গ্রহণ</string>
 
     <!--AccountSettingsActivity-->
-    <string name="account_settings_layout_txt_user_id">User ID:</string>
+    <string name="account_settings_layout_txt_user_id">ইউজার আইডি:</string>
 
     <!--LeaveApplicationDialogFragment-->
-    <string name="leave_application_diolog_layout_title">Leave Application</string>
-    <string name="leave_application_diolog_layout_name">Name:</string>
-    <string name="leave_application_diolog_layout_start_date">Start Date:</string>
-    <string name="leave_application_diolog_layout_end_date">End Date:</string>
-    <string name="leave_application_diolog_layout_reason">Reason:</string>
+    <string name="leave_application_diolog_layout_title">ছুটির আবেদন</string>
+    <string name="leave_application_diolog_layout_name">নাম:</string>
+    <string name="leave_application_diolog_layout_start_date">শুরুর তারিখ:</string>
+    <string name="leave_application_diolog_layout_end_date">শেষের তারিখ:</string>
+    <string name="leave_application_diolog_layout_reason">কারণ:</string>
 
     <!--MeetingFragment-->
-    <string name="row_meeting_status_txt_status_pending">Pending</string>
-    <string name="fragment_meeting2_txt_header">Meeting Request Status</string>
-    <string name="fragment_meeting2_btn_radio_txt_incoming">Incoming Request</string>
-    <string name="fragment_meeting2_btn_radio_txt_outgoing">Outgoing Request</string>
+    <string name="row_meeting_status_txt_status_pending">অনিষ্পাদিত</string>
+    <string name="fragment_meeting2_txt_header">মিটিং রিকোয়েস্ট স্ট্যাটাস</string>
+    <string name="fragment_meeting2_btn_radio_txt_incoming">ইনকামিং রিকোয়েস্ট</string>
+    <string name="fragment_meeting2_btn_radio_txt_outgoing">আউটগোয়িং রিকোয়েস্ট</string>
 
     <!--SingleItemTermReportActivity-->
-    <string name="row_term_report_score">Score</string>
-    <string name="row_term_report_highest">Highest</string>
-    <string name="row_term_report_total">Total</string>
-    <string name="row_term_report_grade">Grade</string>
-    <string name="row_term_report_action">Action</string>
+    <string name="row_term_report_score">স্কোর</string>
+    <string name="row_term_report_highest">সর্বোচ্চ</string>
+    <string name="row_term_report_total">সর্বমোট</string>
+    <string name="row_term_report_grade">গ্রেড</string>
+    <string name="row_term_report_action">অ্যাকশন</string>
 
     <!--SchoolCandleSettingActivity-->
-    <string name="activity_school_candle_setting_txt_post_settings">Post Settings</string>
-    <string name="activity_school_candle_setting_txt_post_for">Post for</string>
-    <string name="activity_school_candle_setting_txt_alumni">Alumni</string>
+    <string name="activity_school_candle_setting_txt_post_settings">পোস্ট সেটিংস</string>
+    <string name="activity_school_candle_setting_txt_post_for">পোস্টের কারণ</string>
+    <string name="activity_school_candle_setting_txt_alumni">অ্যালামনাই</string>
 
     <!--ArchievePageFragment-->
-    <string name="fragment_archieved_events_txt_no_data_found">No data found!</string>
+    <string name="fragment_archieved_events_txt_no_data_found">কোন ডাটা পাওয়া যায়নি!</string>
 
     <!--ProgressGraphFragment-->
-    <string name="fragment_progress_graph_text_select_subject">Select Subject</string>
-    <string name="fragment_progress_graph_text_no_subject_selected">No Subject Selected</string>
+    <string name="fragment_progress_graph_text_select_subject">বিষয় নির্বাচন করুন</string>
+    <string name="fragment_progress_graph_text_no_subject_selected">কোন বিষয় নির্বাচন করা হয়নি</string>
 
     <!--UpcomingEventListAdapter-->
-    <string name="row_upcoming_events_txt_start">Start:</string>
-    <string name="row_upcoming_events_txt_end">End:</string>
+    <string name="row_upcoming_events_txt_start">শুরু:</string>
+    <string name="row_upcoming_events_txt_end">শেষ:</string>
 
     <!--CreateFolderDialog-->
-    <string name="dialog_folder_name_txt_error">* Folder must have a name!</string>
-    <string name="dialog_folder_name_btn_create">Create</string>
+    <string name="dialog_folder_name_txt_error">* ফোল্ডারের একটি নাম লাগবে!</string>
+    <string name="dialog_folder_name_btn_create">তৈরি করুন</string>
 
     <!--SingleHomeworkActivity-->
-    <string name="activity_single_homework_txt_no_data_available">No data available!</string>
+    <string name="activity_single_homework_txt_no_data_available">কোন ডাটা পাওয়া যায়নি!</string>
 
     <!--QuizFragment-->
-    <string name="fragment_quiz_header">Quiz</string>
-    <string name="fragment_quiz_txt_no_quiz_available">No quiz available now!</string>
+    <string name="fragment_quiz_header">কুইজ</string>
+    <string name="fragment_quiz_txt_no_quiz_available">কোন কুইজ এখন নেই!</string>
 
     <!--WeeklyRoutineFragment-->
-    <string name="fragment_weekly_routine_time">Time</string>
-    <string name="fragment_weekly_routine_sat">SAT</string>
-    <string name="fragment_weekly_routine_sun">SUN</string>
-    <string name="fragment_weekly_routine_mon">MON</string>
-    <string name="fragment_weekly_routine_tue">TUE</string>
-    <string name="fragment_weekly_routine_wed">WED</string>
-    <string name="fragment_weekly_routine_thu">THU</string>
-    <string name="row_weekly_routine_sub_name_bangla">Bangla</string>
-    <string name="row_weekly_routine_sub_name_english">English</string>
-    <string name="row_weekly_routine_sub_name_physics">Physics</string>
-    <string name="row_weekly_routine_sub_name_chemistry">Chemistry</string>
-    <string name="row_weekly_routine_sub_name_science">Science</string>
-    <string name="row_weekly_routine_sub_name_history">History</string>
+    <string name="fragment_weekly_routine_time">সময়</string>
+    <string name="fragment_weekly_routine_sat">শনি</string>
+    <string name="fragment_weekly_routine_sun">রবি</string>
+    <string name="fragment_weekly_routine_mon">সোম</string>
+    <string name="fragment_weekly_routine_tue">মঙ্গল</string>
+    <string name="fragment_weekly_routine_wed">বুধ</string>
+    <string name="fragment_weekly_routine_thu">বৃহস্পতি</string>
+    <string name="row_weekly_routine_sub_name_bangla">বাংলা</string>
+    <string name="row_weekly_routine_sub_name_english">ইংরেজি</string>
+    <string name="row_weekly_routine_sub_name_physics">পদার্থবিজ্ঞান</string>
+    <string name="row_weekly_routine_sub_name_chemistry">রসায়ন বিজ্ঞান</string>
+    <string name="row_weekly_routine_sub_name_science">বিজ্ঞান</string>
+    <string name="row_weekly_routine_sub_name_history">ইতিহাস</string>
 
 
     <!--PopupDialogAssessmentNextQuestion-->
-    <string name="popup_layout_assessment_next_question_txt_question">Question</string>
-    <string name="popup_layout_assessment_next_question_txt_correct_answer">Correct Answer</string>
-    <string name="popup_layout_assessment_next_question_btn_explanation">Explanation</string>
-    <string name="popup_layout_assessment_next_question_btn_next">Next</string>
+    <string name="popup_layout_assessment_next_question_txt_question">প্রশ্ন</string>
+    <string name="popup_layout_assessment_next_question_txt_correct_answer">সঠিক উত্তর</string>
+    <string name="popup_layout_assessment_next_question_btn_explanation">বর্ণনা</string>
+    <string name="popup_layout_assessment_next_question_btn_next">পরবর্তী</string>
 
     <!--SyllabusFragment-->
-    <string name="row_term_syllabus_txt_date">Date</string>
-    <string name="row_term_syllabus_txt_exam_name">Exam Name</string>
-    <string name="row_term_syllabus_txt_exam_action">Action</string>
+    <string name="row_term_syllabus_txt_date">তারিখ</string>
+    <string name="row_term_syllabus_txt_exam_name">পরীক্ষার নাম</string>
+    <string name="row_term_syllabus_txt_exam_action">অ্যাকশন</string>
 
     <!--StudentReportTeacherFragment-->
-    <string name="student_report_layout_txt_search">Search by roll or name</string>
+    <string name="student_report_layout_txt_search">রোল নাম্বার বা নাম দিয়ে খোঁজ করুন</string>
 
     <!--TeacherHomeWorkFragment-->
-    <string name="teacher_homework_txt_homework">Homework</string>
-    <string name="teacher_homework_txt_filter_by_subject">FILTER BY SUBJECT</string>
-    <string name="teacher_homework_txt_filter_by_date">FILTER BY DATE</string>
+    <string name="teacher_homework_txt_homework">হোমওয়ার্ক</string>
+    <string name="teacher_homework_txt_filter_by_subject">বিষয়ভিত্তিক ফিল্টার করুন</string>
+    <string name="teacher_homework_txt_filter_by_date">তারিখ দিয়ে ফিল্টার করুন</string>
 
     <!--LoginActivity-->
-    <string name="activity_login_txt_sign_in">Sign in to your account</string>
-    <string name="activity_login_txt_sign_in_txt_hint_username">Username</string>
-    <string name="activity_login_btn_sign_in">Sign In</string>
-    <string name="activity_login_txt_forgot_password">Forgot Password?</string>
+    <string name="activity_login_txt_sign_in">আপনার অ্যাকাউন্টে সাইল ইন করুন</string>
+    <string name="activity_login_txt_sign_in_txt_hint_username">ইউজারনেম</string>
+    <string name="activity_login_btn_sign_in">সাইন ইন</string>
+    <string name="activity_login_txt_forgot_password">পাসওয়ার্ড ভুলে গিয়েছেন?</string>
 
     <!--FeesTabhostFragment-->
-    <string name="fees_tabhost_layout_txt_header">Fees</string>
+    <string name="fees_tabhost_layout_txt_header">ফি</string>
 
     <!--TransportFragment-->
-    <string name="fragment_transport_txt_header">Transport</string>
-    <string name="fragment_transport_txt_last_update">Last update: </string>
-    <string name="fragment_transport_txt_pick_up_location">Pick up location</string>
-    <string name="fragment_transport_txt_drop_location">Drop location</string>
-    <string name="fragment_transport_txt_transportation_schedule">Transportation Schedule</string>
-    <string name="fragment_transport_txt_day">Day</string>
-    <string name="fragment_transport_txt_home_pick_up_time">Home Pick Up Time</string>
-    <string name="fragment_transport_txt_school_pick_up_time">School Pick Up Time</string>
+    <string name="fragment_transport_txt_header">পরিবহণ</string>
+    <string name="fragment_transport_txt_last_update">সর্বশেষ আপডেট: </string>
+    <string name="fragment_transport_txt_pick_up_location">পিক আপের অবস্থান</string>
+    <string name="fragment_transport_txt_drop_location">ড্রপের অবস্থান</string>
+    <string name="fragment_transport_txt_transportation_schedule">পরিবহণের শিডিউল</string>
+    <string name="fragment_transport_txt_day">দিন</string>
+    <string name="fragment_transport_txt_home_pick_up_time">বাসা থেকে পিক আপের সময়</string>
+    <string name="fragment_transport_txt_school_pick_up_time">স্কুল থেকে পিক আপের সময়</string>
 
     <!--ParentAttendenceFragment-->
-    <string name="parent_attendance_layout_txt_header">Attendance</string>
+    <string name="parent_attendance_layout_txt_header">উপস্থিতি</string>
 
     <!--RoutineFragment-->
-    <string name="routine_layout_txt_header">Routine</string>
+    <string name="routine_layout_txt_header">রুটিন</string>
 
     <!--TeacherHomeworkDoneActivity-->
-    <string name="activity_teacherhomeworkdone_txt_name">Name</string>
-    <string name="activity_teacherhomeworkdone_txt_roll">Roll</string>
+    <string name="activity_teacherhomeworkdone_txt_name">নাম</string>
+    <string name="activity_teacherhomeworkdone_txt_roll">রোল নাম্বার</string>
 
     <!--NoticeFragment--> <!--NoticeFragmentNew-->
-    <string name="fragment_notice_txt_header">Notice</string>
+    <string name="fragment_notice_txt_header">নোটিশ</string>
+    <string name="fragment_notice_txt_attachment">নোটিশটিতে ফাইল সংযুক্ত আছে</string>
 
     <!--ParentEventFragment-->
-    <string name="parent_event_layout_custom_txt_header">Events</string>
+    <string name="parent_event_layout_custom_txt_header">ইভেন্ট</string>
 
     <!--AcademicCalendarEvents-->
-    <string name="fragment_academic_calendar_exam_txt_header">Exam Routine</string>
+    <string name="fragment_academic_calendar_exam_txt_header">পরীক্ষার রুটিন</string>
 
     <!--LessonPlanView-->
-    <string name="fragment_lessonplan_view_txt_select_batch">Select Batch</string>
-    <string name="fragment_lessonplan_view_txt_select_category">Select Category</string>
-    <string name="fragment_lessonplan_view_txt_category">Category</string>
-    <string name="fragment_lessonplan_view_txt_status">Status</string>
+    <string name="fragment_lessonplan_view_txt_select_batch">ব্যাচ নির্বাচন করুন</string>
+    <string name="fragment_lessonplan_view_txt_select_category">ক্যাটাগরি নির্বাচন করুন</string>
+    <string name="fragment_lessonplan_view_txt_category">ক্যাটাগরি</string>
+    <string name="fragment_lessonplan_view_txt_status">স্ট্যাটাস</string>
 
     <!--ParentAcademicCalender-->
-    <string name="parent_academic_calender_layout_txt_header">Academic Calendar</string>
+    <string name="parent_academic_calender_layout_txt_header">অ্যাকাডেমিক ক্যালেন্ডার</string>
 
     <!--Menu-->
-    <string name="actionbar_menu_notification">Notification</string>
-    <string name="actionbar_menu_drawer">drawer</string>
+    <string name="actionbar_menu_notification">নোটিফিকেশন</string>
+    <string name="actionbar_menu_drawer">ড্রয়ার</string>
 
     <!--LessonPlanAdd-->
-    <string name="fragment_lessonplan_add_txt_hint_type_title">Type Title</string>
-    <string name="fragment_lessonplan_add_txt_subject_and_class">Subject and Class</string>
-    <string name="fragment_lessonplan_add_txt_hint_select_subject_and_class">Select Subject and Class</string>
-    <string name="fragment_lessonplan_add_txt_lecture_date">Lecture Date</string>
-    <string name="fragment_lessonplan_add_txt_hint_select_lecture_date">Select Lecture Date</string>
-    <string name="fragment_lessonplan_add_txt_hint_description">Type here...</string>
-    <string name="fragment_lessonplan_add_btn_save_and_publish">Save and Publish</string>
+    <string name="fragment_lessonplan_add_txt_hint_type_title">টাইটেল টাইপ করুন</string>
+    <string name="fragment_lessonplan_add_txt_subject_and_class">বিষয় এবং ক্লাস</string>
+    <string name="fragment_lessonplan_add_txt_hint_select_subject_and_class">বিষয় এবং ক্লাস নির্বাচন করুন</string>
+    <string name="fragment_lessonplan_add_txt_lecture_date">লেকচারের তারিখ</string>
+    <string name="fragment_lessonplan_add_txt_hint_select_lecture_date">লেকচারের তারিখ নির্বাচন করুন</string>
+    <string name="fragment_lessonplan_add_txt_hint_description">এখানে টাইপ করুন...</string>
+    <string name="fragment_lessonplan_add_btn_save_and_publish">সেভ এবং প্রকাশ</string>
 
     <!--TeachersAttendanceTabhostFragment-->
-    <string name="teacher_attendance_tabhost_layout_txt_select_batch">Select a batch</string>
+    <string name="teacher_attendance_tabhost_layout_txt_select_batch">ব্যাচ নির্বাচন করুন</string>
 
     <!--StudentClassRoutineFragment--> <!--TeacherRoutineFragment-->
-    <string name="teacher_routine_fragment_layout_txt_tap_to_select_the_day">Tap to select the day</string>
+    <string name="teacher_routine_fragment_layout_txt_tap_to_select_the_day">দিন নির্বাচন করুন</string>
 
     <!--StudentListFragment-->
-    <string name="student_list_fragment_layout_txt_header">Student List</string>
-    <string name="student_list_fragment_layout_txt_select_class_and_batch">Tap to select class and batch</string>
+    <string name="student_list_fragment_layout_txt_header">শিক্ষার্থীর তালিকা</string>
+    <string name="student_list_fragment_layout_txt_select_class_and_batch">ক্লাস ও ব্যাচ নির্বাচন করুন</string>
 
     <!--SingleMeetingRequestActivity-->
-    <string name="activity_single_meeting_request_txt_header">Meeting Request</string>
-    <string name="activity_single_meeting_request_txt_meeting_with">Meeting with:</string>
-    <string name="activity_single_meeting_request_txt_batch">Batch:</string>
-    <string name="activity_single_meeting_request_txt_date">Date:</string>
-    <string name="activity_single_meeting_request_txt_pending">Pending</string>
+    <string name="activity_single_meeting_request_txt_header">মিটিং রিকোয়েস্ট</string>
+    <string name="activity_single_meeting_request_txt_meeting_with">মিটিং :</string>
+    <string name="activity_single_meeting_request_txt_batch">ব্যাচ:</string>
+    <string name="activity_single_meeting_request_txt_date">তারিখ:</string>
+    <string name="activity_single_meeting_request_txt_pending">অনিষ্পাদিত</string>
 
     <!--SingleNoticeActivity-->
-    <string name="activity_single_notice_txt_header">Notice</string>
+    <string name="activity_single_notice_txt_header">নোটিশ</string>
 
     <!--AssessmentLeaderBoardActivity-->
-    <string name="activity_assesment_leaderboard_txt_header">Leader Board</string>
-    <string name="activity_assesment_leaderboard_btn_quiz_rules">Quiz Rules</string>
+    <string name="activity_assesment_leaderboard_txt_header">লিডারবোর্ড</string>
+    <string name="activity_assesment_leaderboard_btn_quiz_rules">কুইজের নিয়মাবলী</string>
 
     <!--StudentListActivity-->
-    <string name="activity_student_list_roll_no">Roll No</string>
-    <string name="activity_student_list_student_name">Student name</string>
+    <string name="activity_student_list_roll_no">রোল নাম্বার</string>
+    <string name="activity_student_list_student_name">শিক্ষার্থীর নাম</string>
 
     <!--AssessmentRules-->
-    <string name="activity_assesment_rules_num1">1</string>
-    <string name="activity_assesment_rules_num2">2</string>
-    <string name="activity_assesment_rules_num3">3</string>
-    <string name="activity_assesment_rules_num4">4</string>
-    <string name="activity_assesment_rules_num5">5</string>
-    <string name="activity_assesment_rules_txt_num1">Top 100 scorers will be on the leader board.</string>
-    <string name="activity_assesment_rules_txt_num2">If two players have the same score, then their play timing will be taken into consideration.</string>
-    <string name="activity_assesment_rules_txt_num3">At the unlikely event where the score and play timing of two players match, then number of attempts will be taken into consideration.</string>
-    <string name="activity_assesment_rules_txt_num4">At the very unlikely event where the score, play timing and number of attempts of two players match, then average the lowest timing to answer questions will be taken into consideration.</string>
-    <string name="activity_assesment_rules_txt_num5">A player can play a specific topic once every 24 hours. In the meantime, she can attempt other quiz topics.</string>
+    <string name="activity_assesment_rules_num1">১</string>
+    <string name="activity_assesment_rules_num2">২</string>
+    <string name="activity_assesment_rules_num3">৩</string>
+    <string name="activity_assesment_rules_num4">৪</string>
+    <string name="activity_assesment_rules_num5">৫</string>
+    <string name="activity_assesment_rules_txt_num1">প্রথম ১০০ জন লিডারবোর্ডে থাকবে।</string>
+    <string name="activity_assesment_rules_txt_num2">যদি দুইজন প্লেয়ার একই স্কোরে থাকে তবে তাদের খেলার টাইমিং বিবেচনায় আনা হবে</string>
+    <string name="activity_assesment_rules_txt_num3">যদি দুইজন প্লেয়ারের স্কোর ও খেলার টাইমিং ও সমান থাকে তবে তারা কতবার অ্যাটেম্পট করেছে তা বিবেচনায় আনা হবে।</string>
+    <string name="activity_assesment_rules_txt_num4">যদি দুইজন প্লেয়ারের স্কোর, খেলার টাইমিং ও অ্যাটেম্পট সংখ্যা ও সমান থাকে তবে প্রশ্ন উত্তর দেওয়ার গড় টাইমিং বিবেচনায় আনা হবে।</string>
+    <string name="activity_assesment_rules_txt_num5">প্রতি ২৪ ঘণ্টায় একজন প্লেয়ার কুইজের যেকোন একটি টপিক একবারই খেলতে পারবে। এছাড়া, প্লেয়ারটি কুইজের অন্যান্য টপিকও খেলতে পারবে।</string>
 
     <!--SingleTeacherEditHomeworkActivity-->
-    <string name="activity_teacher_edit_homework_homework_type">Homework Type</string>
-    <string name="activity_teacher_edit_homework_homework_select_type">Select Type</string>
-    <string name="activity_teacher_edit_homework_homework_type_title">Type Homework Title</string>
-    <string name="activity_teacher_edit_homework_homework_txt_hint_homework_description">Write Homework Description...</string>
-    <string name="activity_teacher_edit_homework_homework_txt_no_file_attached">No File Attached</string>
-    <string name="activity_teacher_edit_homework_homework_txt_due_date">Due Date</string>
+    <string name="activity_teacher_edit_homework_homework_type">হোমওয়ার্কের ধরণ</string>
+    <string name="activity_teacher_edit_homework_homework_select_type">টাইপ নির্বাচন করুন</string>
+    <string name="activity_teacher_edit_homework_homework_type_title">হোমওয়ার্কের টাইটেল লিখুন</string>
+    <string name="activity_teacher_edit_homework_homework_txt_hint_homework_description">হোমওয়ার্কের বর্ণনা লিখুন...</string>
+    <string name="activity_teacher_edit_homework_homework_txt_no_file_attached">কোন ফাইল সংযুক্ত হয়নি</string>
+    <string name="activity_teacher_edit_homework_homework_txt_due_date">জমাদানের তারিখ</string>
 
 
     <!--ReportClassTestFragment-->
-    <string name="row_classtest_report_txt_your_mark">Your Mark</string>
-    <string name="row_classtest_report_txt_highest_mark">Highest Mark</string>
-    <string name="row_classtest_report_txt_total_mark">Total Mark</string>
-    <string name="row_classtest_report_btn_all_class_test">All Class Test</string>
+    <string name="row_classtest_report_txt_your_mark">তোমার মার্কস</string>
+    <string name="row_classtest_report_txt_highest_mark">সর্বোচ্চ মার্কস</string>
+    <string name="row_classtest_report_txt_total_mark">সর্বমোট মার্কস</string>
+    <string name="row_classtest_report_btn_all_class_test">সকল ক্লাস টেস্ট</string>
 
     <!--AssessmentSummeryActivity-->
-    <string name="activity_assesment_summery_txt_title">Quiz Result Details</string>
-    <string name="activity_assesment_summery_txt_explanation">Explanation</string>
+    <string name="activity_assesment_summery_txt_title">কুইজের ফলাফলের বিবরণী</string>
+    <string name="activity_assesment_summery_txt_explanation">বর্ণনা</string>
 
     <!--HomeworkFragment-->
-    <string name="fragment_homework_txt_filter">Filter</string>
+    <string name="fragment_homework_txt_filter">ফিল্টার</string>
 
     <!--TeacherRoutineAdapter-->
     <string name="row_teacher_routine_list"></string>
 
     <!--AttendenceFragment-->
-    <string name="calendar_txt_total_class">Total Class</string>
-    <string name="calendar_txt_present">Present</string>
-    <string name="calendar_txt_absent">Absent</string>
-    <string name="calendar_txt_late">Late</string>
-    <string name="calendar_txt_leave">Leave</string>
+    <string name="calendar_txt_total_class">সর্বমোট ক্লাস</string>
+    <string name="calendar_txt_present">উপস্থিত</string>
+    <string name="calendar_txt_absent">অনুপস্থিত</string>
+    <string name="calendar_txt_late">বিলম্ব</string>
+    <string name="calendar_txt_leave">ছুটি</string>
 
     <!--EditLessonPlanActivity-->
-    <string name="activity_edit_lessonplan_txt_header">Lesson Plan</string>
+    <string name="activity_edit_lessonplan_txt_header">কর্ম পরিকল্পনা</string>
 
     <!--FeesDueFragment--> <!--FeesHistoryFragment-->
-    <string name="fragment_feesduefragment_txt_header">Fees</string>
-    <string name="fragment_feesduefragment_txt_description">Description</string>
-    <string name="fragment_feesduefragment_txt_amount">Amount</string>
+    <string name="fragment_feesduefragment_txt_header">ফি</string>
+    <string name="fragment_feesduefragment_txt_description">বর্ণনা</string>
+    <string name="fragment_feesduefragment_txt_amount">পরিমাণ</string>
 
 
     <!--HomeworkFragment-->
-    <string name="item_homework_feed_txt_due_date">Due Date: </string>
-    <string name="item_homework_feed_assigned_date">Assigned Date: </string>
-    <string name="item_homework_feed_txt_worksheet">This homework has worksheet</string>
+    <string name="item_homework_feed_txt_due_date">জমাদানের তারিখ: </string>
+    <string name="item_homework_feed_assigned_date">অ্যাসাইনের তারিখ: </string>
+    <string name="item_homework_feed_txt_worksheet">হোমওয়ার্কটির ওয়ার্কশিট রয়েছে</string>
 
 
     <!--DialogSelectChildren-->
-    <string name="dialog_select_children_txt_child_id">Child ID</string>
-    <string name="dialog_select_children_txt_relation">Relation</string>
+    <string name="dialog_select_children_txt_child_id">সন্তানের আইডি</string>
+    <string name="dialog_select_children_txt_relation">সম্পর্ক</string>
 
 
     <!--LessonPlanStudentParent-->
-    <string name="fragment_lessonplan_student_parent_txt_subject_list">Subject List</string>
+    <string name="fragment_lessonplan_student_parent_txt_subject_list">বিষয়ের তালিকা</string>
 
 
     <!--LessonPlanTeacher-->
-    <string name="fragment_lessonplan_teacher_btn_view_lesson_plan">View Lesson Plan</string>
-    <string name="fragment_lessonplan_teacher_add_new_lesson">Add New Lesson</string>
+    <string name="fragment_lessonplan_teacher_btn_view_lesson_plan">কর্ম পরিকল্পনা দেখুন</string>
+    <string name="fragment_lessonplan_teacher_add_new_lesson">নতুন কর্ম পরিকল্পনা যোগ করুন</string>
 
 
     <!--SyllabusFragment-->
-    <string name="fragment_syllabus_new_txt_header">Syllabus</string>
-    <string name="fragment_syllabus_new_tap_select_batch">Tap here to select a batch</string>
-    <string name="fragment_syllabus_new_txt_term_exam">Term Exam</string>
-    <string name="fragment_syllabus_new_class_test">Class Test</string>
+    <string name="fragment_syllabus_new_txt_header">সিলেবাস</string>
+    <string name="fragment_syllabus_new_tap_select_batch">ব্যাচ নির্বাচন করুন</string>
+    <string name="fragment_syllabus_new_txt_term_exam">টার্ম পরীক্ষা</string>
+    <string name="fragment_syllabus_new_class_test">ক্লাস টেস্ট</string>
+    <string name="fragment_syllabus_new_yearly">বার্ষিক</string>
 
     <!--InfoPageMainActivity-->
-    <string name="activity_classtune_infopage_main_txt_what_is">What is</string>
-    <string name="activity_classtune_infopage_main_txt_our_features">Our Features</string>
+    <string name="activity_classtune_infopage_main_txt_what_is">কি</string>
+    <string name="activity_classtune_infopage_main_txt_our_features">আমাদের ফিচারসমূহ</string>
 
     <!--LeaveApplicationFragment-->
-    <string name="leave_application_layout_txt_header">Leave Application</string>
+    <string name="leave_application_layout_txt_header">ছুটির আবেদন</string>
 
 
     <!--LeaveApplicationFragment-->
-    <string name="leave_application_layout_txt_reason_for_leave">Reason for Leave:</string>
-    <string name="leave_application_layout_txt_reason">Reason Text</string>
-    <string name="leave_application_layout_txt_write_subject">Write Subject...</string>
-    <string name="leave_application_layout_txt_write_description">Write Description...</string>
-    <string name="leave_application_layout_btn_apply_for_leave">Apply for Leave</string>
+    <string name="leave_application_layout_txt_reason_for_leave">ছুটির কারণ:</string>
+    <string name="leave_application_layout_txt_reason">কারণের টেক্সট</string>
+    <string name="leave_application_layout_txt_write_subject">বিষয় লিখুন...</string>
+    <string name="leave_application_layout_txt_write_description">বর্ণনা লিখুন...</string>
+    <string name="leave_application_layout_btn_apply_for_leave">ছুটির জন্য আবেদন করুন</string>
 
 
     <!--ParentReportCardFragment-->
-    <string name="parent_report_card_layout_txt_header">Report Card</string>
+    <string name="parent_report_card_layout_txt_header">রিপোর্ট কার্ড</string>
 
 
     <!--SchoolFeedFragment-->
-    <string name="feed_item_txt_homeworks">Homeworks</string>
-    <string name="feed_item_txt_new">New</string>
-    <string name="feed_header_new_txt_my">My </string>
-    <string name="feed_header_new_txt_today">Today</string>
+    <string name="feed_item_txt_homeworks">হোমওয়ার্ক</string>
+    <string name="feed_item_txt_new">নতুন</string>
+    <string name="feed_header_new_txt_my">আমার</string>
+    <string name="feed_header_new_txt_today">আজ</string>
 
-    <string name="fragment_freeversion_school_adapter_txt_seen">Seen</string>
+    <string name="fragment_freeversion_school_adapter_txt_seen">দেখা হয়েছে</string>
 
 
     <!--SingleLessonPlan-->
-    <string name="activity_single_lessonplan_btn_delete_lesson_plan">Delete Lesson Plan</string>
-    <string name="activity_single_lessonplan_btn_edit_lesson_plan">Edit Lesson Plan</string>
+    <string name="activity_single_lessonplan_btn_delete_lesson_plan">কর্ম পরিকল্পনা মুছে ফেলুন</string>
+    <string name="activity_single_lessonplan_btn_edit_lesson_plan">কর্ম পরিকল্পনা সম্পাদন করুন</string>
 
 
-    <!--SyllabusMidLayerActivity-->
-    <string name="row_syllabus_list_txt_last_updated">Last updated</string>
+     <!--SyllabusMidLayerActivity-->
+    <string name="row_syllabus_list_txt_last_updated">সর্বশেষ আপডেট</string>
 
     <!--SingleReportCardSubject-->
-    <string name="activity_single_report_card_subject_txt_exam_category">Exam Category: </string>
-    <string name="activity_single_report_card_subject_txt_exam_title">Exam Title</string>
-    <string name="activity_single_report_card_subject_txt_exam_date">Exam Date</string>
-    <string name="activity_single_report_card_subject_txt_your_mark">Your Mark</string>
-    <string name="activity_single_report_card_subject_txt_highest_mark">Highest Mark</string>
-    <string name="activity_single_report_card_subject_txt_total_mark">Total Mark</string>
-    <string name="activity_single_report_card_subject_txt_average">Average</string>
-    <string name="activity_single_report_card_subject_txt_standing">Standing</string>
-    <string name="activity_single_report_card_subject_txt_your_grade">Your Grade</string>
-    <string name="activity_single_report_card_subject_txt_remarks">Remarks</string>
+    <string name="activity_single_report_card_subject_txt_exam_category">পরীক্ষার ক্যাটাগরি: </string>
+    <string name="activity_single_report_card_subject_txt_exam_title">পরীক্ষার টাইটেল</string>
+    <string name="activity_single_report_card_subject_txt_exam_date">পরীক্ষার তারিখ</string>
+    <string name="activity_single_report_card_subject_txt_your_mark">তোমার মার্কস</string>
+    <string name="activity_single_report_card_subject_txt_highest_mark">সর্বোচ্চ মার্কস</string>
+    <string name="activity_single_report_card_subject_txt_total_mark">সর্বমোট মার্কস</string>
+    <string name="activity_single_report_card_subject_txt_average">গড়</string>
+    <string name="activity_single_report_card_subject_txt_standing">অবস্থান</string>
+    <string name="activity_single_report_card_subject_txt_your_grade">তোমার গ্রেড</string>
+    <string name="activity_single_report_card_subject_txt_remarks">মন্তব্য</string>
 
 
     <!--RollCallTeacherFragment-->
-    <string name="rollcall_layout_btn_reset_all">Reset all</string>
+    <string name="rollcall_layout_btn_reset_all">রিসেট</string>
 
 
     <!--CreateMeetingRequest-->
-    <string name="activity_create_meeting_request_txt_select_parent">Select Parent</string>
-    <string name="activity_create_meeting_request_txt_select_parent_student_name">Select Parent by Student Name</string>
-    <string name="activity_create_meeting_request_txt_preferred_time">Preferred Time</string>
-    <string name="activity_create_meeting_request_txt_select_date_and_time">Select Date and Time</string>
-    <string name="activity_create_meeting_request_txt_hint_description">Write your description</string>
+    <string name="activity_create_meeting_request_txt_select_parent">অভিভাবক নির্বাচন করুন</string>
+    <string name="activity_create_meeting_request_txt_select_parent_student_name">শিক্ষার্থীর নাম দিয়ে অভিভাবক নির্বাচন করুন </string>
+    <string name="activity_create_meeting_request_txt_preferred_time">অগ্রাধিকারের সময়</string>
+    <string name="activity_create_meeting_request_txt_select_date_and_time">তারিখ ও সময় নির্বাচন করুন</string>
+    <string name="activity_create_meeting_request_txt_hint_description">বর্ণনা লিখুন</string>
 
 
     <!--MyLeaveFragment-->
-    <string name="item_leave_teacher_txt_approved">approved</string>
+    <string name="item_leave_teacher_txt_approved">অনুমোদিত</string>
 
     <!--UserSelectionActivity-->
-    <string name="activity_userselection_layout2_txt_register_free">Register FREE Now!</string>
-    <string name="activity_userselection_layout2_im">I\'m</string>
-    <string name="activity_userselection_layout2_txt_parent">Parent</string>
-    <string name="activity_userselection_layout2_txt_teacher">Teacher</string>
-    <string name="activity_userselection_layout2_txt_already_member">Already a member?</string>
-    <string name="activity_userselection_layout2_btn_log_in">Log in</string>
+    <string name="activity_userselection_layout2_txt_register_free">ফ্রি রেজিস্টার এখনই!</string>
+    <string name="activity_userselection_layout2_im">আমি</string>
+    <string name="activity_userselection_layout2_txt_parent">অভিভাবক</string>
+    <string name="activity_userselection_layout2_txt_teacher">শিক্ষক</string>
+    <string name="activity_userselection_layout2_txt_already_member">ইতিমধ্যেই একজন সদস্য ?</string>
+    <string name="activity_userselection_layout2_btn_log_in">লগ ইন</string>
 
     <!--PopupDialogAssessmentOk-->
     <string name="popup_layout_assessment_ok_zero_by_zero">0/0</string>
 
     <!--TeacherHomeWorkFragment-->
-    <string name="teacher_homework_txt_filter">Filter</string>
-    <string name="activity_assesment_txt_topic">Topic: </string>
-    <string name="activity_assesment_txt_question">QUESTION</string>
-    <string name="activity_assesment_tap_right_answer">TAP ON THE RIGHT ANSWER</string>
+    <string name="teacher_homework_txt_filter">ফিল্টার</string>
+    <string name="activity_assesment_txt_topic">বিষয়: </string>
+    <string name="activity_assesment_txt_question">প্রশ্ন</string>
+    <string name="activity_assesment_tap_right_answer">সঠিক উত্তর বাছাই করুন</string>
 
 
     <!--AssessmentLeaderBoardActivity-->
-    <string name="activity_assesment_leaderboard_txt_no_leaderboard_found">No leaderboard found yet!</string>
+    <string name="activity_assesment_leaderboard_txt_no_leaderboard_found">কোন লিডারবোর্ড পাওয়া যায়নি!</string>
 
     <!--ExamRoutineTeacherFragment-->
-    <string name="fragment_exam_routine_teacher_txt_no_upcoming_exam">No upcoming exam!</string>
+    <string name="fragment_exam_routine_teacher_txt_no_upcoming_exam">আসন্ন কোন পরীক্ষা নেই</string>
 
     <!--SchoolFeedFragment-->
-    <string name="feed_header_new_txt_parent_of">Parent of</string>
-    <string name="feed_header_new_next_day_classes">Next day classes</string>
+    <string name="feed_header_new_txt_parent_of">অভিভাবক</string>
+    <string name="feed_header_new_next_day_classes">পরবর্তী দিনের ক্লাস</string>
 
 
     <!--RegistrationFirstPhaseActivity-->
-    <string name="activity_registration_firstphase2_txt_first_name">First Name</string>
-    <string name="activity_registration_firstphase2_txt_last_name">Last Name</string>
-    <string name="activity_registration_firstphase2_txt_email">E-mail</string>
-    <string name="activity_registration_firstphase2_txt_retype_password">Retype Password</string>
-    <string name="activity_registration_firstphase2_txt_school_code">School Code</string>
+    <string name="activity_registration_firstphase2_txt_first_name">প্রথম নাম</string>
+    <string name="activity_registration_firstphase2_txt_last_name">শেষ নাম</string>
+    <string name="activity_registration_firstphase2_txt_email">ইমেইল</string>
+    <string name="activity_registration_firstphase2_txt_retype_password">পাসওয়ার্ড রি-টাইপ করুন</string>
+    <string name="activity_registration_firstphase2_txt_school_code">স্কুল কোড</string>
 
 
     <!--CreateParentActivity-->
-    <string name="activity_create_parent2_txt_user_id">User ID</string>
-    <string name="activity_create_parent2_dob">Date of Birth</string>
-    <string name="activity_create_parent2_gender">Gender</string>
-    <string name="activity_create_parent2_contact_no">Contact No.</string>
-    <string name="activity_create_parent2_add_children">Add Children</string>
-    <string name="activity_create_parent2_upload_photo">Upload a Photo</string>
-    <string name="activity_create_parent2_btn_create_account">Create Account</string>
+    <string name="activity_create_parent2_txt_user_id">ইউজার আইডি</string>
+    <string name="activity_create_parent2_dob">জন্ম তারিখ</string>
+    <string name="activity_create_parent2_gender">লিঙ্গ</string>
+    <string name="activity_create_parent2_contact_no">মোবাইল নাম্বার.</string>
+    <string name="activity_create_parent2_add_children">সন্তান যোগ করুন</string>
+    <string name="activity_create_parent2_upload_photo">ফটো আপলোড করুন</string>
+    <string name="activity_create_parent2_btn_create_account">অ্যাকাউন্ট তৈরি করুন</string>
 
 
     <!--ClassReportTeacherFragment-->
-    <string name="class_report_layout_txt_total_student">Total Student</string>
+    <string name="class_report_layout_txt_total_student">সর্বমোট শিক্ষার্থী</string>
 
 
     <!--ForgetPasswordActivity-->
-    <string name="activity_forget_password_txt_submit">Submit</string>
+    <string name="activity_forget_password_txt_submit">সাবমিট</string>
 
 
     <!--InfoPageMainActivity-->
-    <string name="activity_classtune_infopage_main_txt_header">The easiest and quickest way for Students, Parents and Teachers to connect with each other. School Administrators can connect each individual on a single platform. ClassTune makes institutional monitoring and management of school activity easy and effective.</string>
+    <string name="activity_classtune_infopage_main_txt_header">শিক্ষার্থী-অভিভাবক-শিক্ষকদের মধ্যবর্তী যোগাযোগ প্রতিষ্ঠার সবচেয়ে সহজ এবং দ্রুততম উপায় হচ্ছে ClassTune। স্কুল কর্তৃপক্ষ এই একটিমাত্র উপায়ে প্রতিটি বিষয়ে সংযুক্ত থাকতে পারেন সর্বক্ষন। ClassTune স্কুল বিষয়ক প্রাতিষ্ঠানিক পর্যবেক্ষন এবং ব্যবস্থাপনাকে সহজ ও কার্যকর করে তোলে। </string>
 
 
     <!--SingleEventActivity-->
-    <string name="activity_single_event2_txt_start_time">Start Time</string>
-    <string name="activity_single_event2_txt_end_time">End Time</string>
-    <string name="activity_single_event2_txt_start_date">Start Date</string>
-    <string name="activity_single_event2_txt_end_date">End Date</string>
-    <string name="activity_single_event2_btn_see_all_events">See All Events</string>
+    <string name="activity_single_event2_txt_start_time">শুরুর সময়</string>
+    <string name="activity_single_event2_txt_end_time">শেষের সময়</string>
+    <string name="activity_single_event2_txt_start_date">শুরুর তারিখ</string>
+    <string name="activity_single_event2_txt_end_date">শেষের তারিখ</string>
+    <string name="activity_single_event2_btn_see_all_events">সকল ইভেন্ট দেখুন</string>
 
 
     <!--TeacherInfoActivity-->
-    <string name="activity_teacher_info_txt_employee_no">Employee No:</string>
-    <string name="activity_teacher_info_txt_department">Department:</string>
-    <string name="activity_teacher_info_txt_category">Category:</string>
-    <string name="activity_teacher_info_txt_phone_no">Phone No:</string>
-    <string name="activity_teacher_info_txt_dob">Date of Birth:</string>
-    <string name="activity_teacher_info_txt_joining_date">Joining Date:</string>
-    <string name="activity_teacher_info_txt_gender">Gender:</string>
-    <string name="activity_teacher_info_txt_father_name">Father Name</string>
+    <string name="activity_teacher_info_txt_employee_no">কর্মচারী নাম্বার:</string>
+    <string name="activity_teacher_info_txt_department">ডিপার্টমেন্ট:</string>
+    <string name="activity_teacher_info_txt_category">ক্যাটাগরি:</string>
+    <string name="activity_teacher_info_txt_phone_no">ফোন নাম্বার:</string>
+    <string name="activity_teacher_info_txt_dob">জন্ম তারিখ:</string>
+    <string name="activity_teacher_info_txt_joining_date">যোগদানের তারিখ:</string>
+    <string name="activity_teacher_info_txt_gender">লিঙ্গ:</string>
+    <string name="activity_teacher_info_txt_father_name">পিতার নাম</string>
 
     <!--StudentInfoActivity-->
-    <string name="activity_student_info_txt_batch">Batch</string>
-    <string name="activity_student_info_txt_roll_number">Roll Number</string>
-    <string name="activity_student_info_txt_admission_no">Admission No :</string>
-    <string name="activity_student_info_txt_guardian">Guardian :</string>
-    <string name="activity_student_info_txt_contact_no">Contact no :</string>
-    <string name="activity_student_info_txt_address">Address :</string>
+    <string name="activity_student_info_txt_batch">ব্যাচ</string>
+    <string name="activity_student_info_txt_roll_number">রোল নাম্বার</string>
+    <string name="activity_student_info_txt_admission_no">অ্যাডমিশন নাম্বার :</string>
+    <string name="activity_student_info_txt_guardian">অভিভাবক :</string>
+    <string name="activity_student_info_txt_contact_no">মোবাইল নাম্বার :</string>
+    <string name="activity_student_info_txt_address">ঠিকানা :</string>
 
 
     <!--AssesmentActivity-->
-    <string name="activity_assesment_txt_played">Played</string>
+    <string name="activity_assesment_txt_played">খেলা হয়েছে</string>
 
 
     <!--CreateTeacherActivity-->
-    <string name="activity_create_teacher2_txt_job_title">Job Title</string>
-    <string name="activity_create_teacher2_txt_department">Department</string>
-    <string name="activity_create_teacher2_txt_position">Position</string>
-    <string name="activity_create_teacher2_txt_grade">Grade</string>
-    <string name="activity_create_teacher2_txt_joining_date">Joining Date</string>
-    <string name="activity_create_teacher2_txt_select_joining_date">Tap here to r\nselect joining date</string>
+    <string name="activity_create_teacher2_txt_job_title">জব টাইটেল</string>
+    <string name="activity_create_teacher2_txt_department">ডিপার্টমেন্ট</string>
+    <string name="activity_create_teacher2_txt_position">পদ</string>
+    <string name="activity_create_teacher2_txt_grade">গ্রেড</string>
+    <string name="activity_create_teacher2_txt_joining_date">যোগদানের তারিখ</string>
+    <string name="activity_create_teacher2_txt_select_joining_date">যোগদানের তারিখ নির্বাচন করুন r\n</string>
 
 
     <!--SingleTeacherDraftHomeworkActivity-->
-    <string name="activity_single_teacher_draft_homework_btn_edit">Edit</string>
-    <string name="activity_single_teacher_draft_homework_btn_publish">Publish</string>
+    <string name="activity_single_teacher_draft_homework_btn_edit">সম্পাদন করুন</string>
+    <string name="activity_single_teacher_draft_homework_btn_publish">প্রকাশ করুন</string>
 
     <!--AccountSettingsActivity-->
-    <string name="java_accountsettingsactivity_please_wait">Please wait...</string>
-    <string name="java_accountsettingsactivity_password_changes_success">Your password is changed successfully.</string>
-    <string name="java_accountsettingsactivity_password_cannot_empty">Password Cannot be empty!</string>
-    <string name="java_accountsettingsactivity_password_didnt_match">Password doesn\'t match!</string>
-    <string name="java_accountsettingsaactivity_enter_correct_password">Please enter correct password</string>
+    <string name="java_accountsettingsactivity_please_wait">অনুগ্রহপূর্বক অপেক্ষা করুন...</string>
+    <string name="java_accountsettingsactivity_password_changes_success">পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে ।</string>
+    <string name="java_accountsettingsactivity_password_cannot_empty">পাসওয়ার্ড খালি রাখা যাবে না!</string>
+    <string name="java_accountsettingsactivity_password_didnt_match">পাসওয়ার্ড মিলেনি!</string>
+    <string name="java_accountsettingsaactivity_enter_correct_password">অনুগ্রহপূর্বক সঠিক পাসওয়ার্ড লিখুন</string>
 
     <!--AppConstant-->
-    <string name="java_appconstant_new_homework">You have a new homework.</string>
-    <string name="java_appconstant_last_update">"Last Update: "</string>
-    <string name="java_classtune_registration_valid_email">Provide valid E-mail address.</string>
-    <string name="java_classtune_registration_first_name">Enter your first Name.</string>
-    <string name="java_classtune_registration_last_name">Enter your last Name.</string>
-    <string name="java_classtune_registration_provide_email_address">Provide E-mail address.</string>
-    <string name="java_classtune_registration_provide_password">Provide Password.</string>
-    <string name="java_classtune_registration_password_length">Password should be minimum of 6 characters.</string>
-    <string name="java_classtune_registration_retype_password">Retype your Password.</string>
-    <string name="java_classtune_registration_password_didnt_match">Password didn\'t match, retype Password.</string>
-    <string name="java_classtune_registration_provide_school_code">Provide School Code.</string>
-    <string name="java_classtune_registration_schoolcode_not_valid">School code is not valid.</string>
-    <string name="java_classtune_registration_something_went_wrong">Something went wrong please try again.</string>
-    <string name="java_classtune_registration_school_didnt_create_class_yet">School didn\'t create any class yet.</string>
-    <string name="java_classtune_registration_provide_admission_no">Provide Admission No.</string>
-    <string name="java_classtune_registration_select_batch">Select a batch.</string>
-    <string name="java_classtune_registration_select_dob">Select Date of Birth.</string>
-    <string name="java_classtune_registration_select_gender">Select Gender.</string>
-    <string name="java_classtune_registration_provide_contact_no">Provide Contact No.</string>
-    <string name="java_classtune_registration_already_exists">Already exists.</string>
-    <string name="java_classtune_registration_select_source">Select Source</string>
-    <string name="java_classtune_registration_add_more_child">To add more than Three(3) children you have to login from web browser.</string>
-    <string name="java_classtune_registration_provide_user_id">Provide User ID.</string>
-    <string name="java_classtune_registration_add_one_child">Add at least One child.</string>
-    <string name="java_classtune_registration_student_id_not_valid">This Student ID is not valid.</string>
-    <string name="java_classtune_registration_duplicate_student_id">You have entered duplicate student ID, please enter correct ID again</string>
-    <string name="java_classtune_registration_enter_children_id">Enter Children ID</string>
-    <string name="java_classtune_registration_provide_child_id">Provide child ID</string>
-    <string name="java_classtune_registration_field_cannot_be_empty">This field  cannot be empty.</string>
-    <string name="java_classtune_registration_id_does_not_exist">This ID does not exist.</string>
-    <string name="java_classtune_registration_employee_necessaty_information_yet">School didn\'t create employee necessary information yet.</string>
-    <string name="java_classtune_registration_employee_position_yet">School didn\'t create employee position for this yet.</string>
-    <string name="java_classtune_registration_employee_no">Provide Employee No.</string>
-    <string name="java_classtune_registration_provide_job_title">" Provide Job title."</string>
-    <string name="java_classtune_registration_select_category">Select a Category.</string>
-    <string name="java_classtune_registration_select_department">Select a Department.</string>
-    <string name="java_classtune_registration_select_position">Select a Position.</string>
-    <string name="java_classtune_registration_select_joining_date">Select Joining Date.</string>
-    <string name="java_classtune_registration_number_already_exists">This Number already exists.</string>
+    <string name="java_appconstant_new_homework">আপনার নতুন হোমওয়ার্ক রয়েছে</string>
+    <string name="java_appconstant_last_update">"সর্বশেষ আপডেট: "</string>
+    <string name="java_classtune_registration_valid_email">সক্রিয় ইমেইল অ্যাড্রেস প্রদান করুন</string>
+    <string name="java_classtune_registration_first_name">প্রথম নাম লিখুন</string>
+    <string name="java_classtune_registration_last_name">শেষ নাম লিখুন</string>
+    <string name="java_classtune_registration_provide_email_address">ইমেইল অ্যাড্রেস প্রদান করুন</string>
+    <string name="java_classtune_registration_provide_password">পাসওয়ার্ড প্রদান করুন</string>
+    <string name="java_classtune_registration_password_length">পাসওয়ার্ড সর্বনিম্ন ৬ অক্ষরের হতে হবে</string>
+    <string name="java_classtune_registration_retype_password">পাসওয়ার্ড রি-টাইপ করুন</string>
+    <string name="java_classtune_registration_password_didnt_match">পাসওয়ার্ড মিলেনি, পাসওয়ার্ড রি-টাইপ করুন</string>
+    <string name="java_classtune_registration_provide_school_code">স্কুল কোড প্রদান করুন</string>
+    <string name="java_classtune_registration_schoolcode_not_valid">স্কুল কোড সঠিক নয়</string>
+    <string name="java_classtune_registration_something_went_wrong">ভুল হয়েছে, অনুগ্রহপূর্বক আবার চেষ্টা করুন</string>
+    <string name="java_classtune_registration_school_didnt_create_class_yet">স্কুল এখনো কোন ক্লাস তৈরি করেনি</string>
+    <string name="java_classtune_registration_provide_admission_no">অ্যাডমিশন নাম্বার প্রদান করুন</string>
+    <string name="java_classtune_registration_select_batch">ব্যাচ নির্বাচন করুন</string>
+    <string name="java_classtune_registration_select_dob">জন্ম তারিখ নির্বাচন করুন</string>
+    <string name="java_classtune_registration_select_gender">লিঙ্গ নির্বাচন করুন</string>
+    <string name="java_classtune_registration_provide_contact_no">মোবাইল নাম্বার প্রদান করুন</string>
+    <string name="java_classtune_registration_already_exists">ইতিমধ্যে বিদ্যমান</string>
+    <string name="java_classtune_registration_select_source">উৎস নির্বাচন করুন</string>
+    <string name="java_classtune_registration_add_more_child">তিনটি সন্তান যোগ করতে অনুগ্রহপূর্বক ওয়েব থেকে লগ ইন করুন</string>
+    <string name="java_classtune_registration_provide_user_id">ইউজার আইডি প্রদান করুন</string>
+    <string name="java_classtune_registration_add_one_child">অন্তত একটি সন্তান যোগ করুন</string>
+    <string name="java_classtune_registration_student_id_not_valid">এই শিক্ষার্থী আইডি বৈধ নয়.</string>
+    <string name="java_classtune_registration_duplicate_student_id">আপনি সদৃশ শিক্ষার্থী আইডি প্রদান করেছেন, অনুগ্রহপূর্বক সঠিক আইডি প্রদান করুন</string>
+    <string name="java_classtune_registration_enter_children_id">সন্তানের আইডি প্রদান করুন</string>
+    <string name="java_classtune_registration_provide_child_id">সন্তানের আইডি প্রদান করুন</string>
+    <string name="java_classtune_registration_field_cannot_be_empty">ফিল্ডটি খালি রাখা যাবে না</string>
+    <string name="java_classtune_registration_id_does_not_exist">আইডিটি বিদ্যমান নয়</string>
+    <string name="java_classtune_registration_employee_necessaty_information_yet">স্কুল কর্মচারীর প্রয়োজনীয় তথ্য সৃষ্টি করেনি</string>
+    <string name="java_classtune_registration_employee_position_yet">স্কুল কর্মচারীর প্রয়োজনীয় পদ সৃষ্টি করেনি</string>
+    <string name="java_classtune_registration_employee_no">কর্মচারীর নাম্বার প্রদান করুন</string>
+    <string name="java_classtune_registration_provide_job_title">" জব টাইটেল প্রদান করুন"</string>
+    <string name="java_classtune_registration_select_category">ক্যাটাগরি নির্বাচন করুন</string>
+    <string name="java_classtune_registration_select_department">ডিপার্টমেন্ট নির্বাচন করুন</string>
+    <string name="java_classtune_registration_select_position">পদ নির্বাচন করুন</string>
+    <string name="java_classtune_registration_select_joining_date">যোগদানের তারিখ নির্বাচন করুন</string>
+    <string name="java_classtune_registration_number_already_exists">নাম্বারটি বিদ্যমান রয়েছে</string>
 
     <!--AssesmentActivity-->
-    <string name="java_assesmentactivity_your_score_is">Your score is</string>
-    <string name="java_assesmentactivity_title_quiz">QUIZ</string>
-    <string name="java_assesmentactivity_you_got_it_right">Congratulations! \nYou got it right.</string>
-    <string name="java_assesmentactivity_time_out">Time Out!</string>
-    <string name="java_assesmentactivity_already_in_leaderboard">You are already in leader board!</string>
-    <string name="java_assesmentactivity_marks_added_sussessfully">Marks added successfully</string>
-    <string name="java_assesmentactivity_wrong_answer">Opps! Wrong answer.</string>
+    <string name="java_assesmentactivity_your_score_is">তোমার স্কোর</string>
+    <string name="java_assesmentactivity_title_quiz">কুইজ</string>
+    <string name="java_assesmentactivity_you_got_it_right">অভিবাদন! \n সঠিক হয়েছে</string>
+    <string name="java_assesmentactivity_time_out">সময় শেষ!</string>
+    <string name="java_assesmentactivity_already_in_leaderboard">তুমি ইতিমধ্যেই লিডারবোর্ডে আছো!</string>
+    <string name="java_assesmentactivity_marks_added_sussessfully">মার্কস সফলভাবে যোগ হয়েছে</string>
+    <string name="java_assesmentactivity_wrong_answer">দুঃখিত! ভুল উত্তর হয়েছে</string>
 
 
     <!--AssesmentHomeworkActivity-->
-    <string name="java_assesmenthomeworkactivity_already_completed_quiz">You have already completed this quiz!</string>
-    <string name="java_assesmentomeworkactivity_automatic_save">Your score will be automatically saved. Do you want to exit your progress now?</string>
+    <string name="java_assesmenthomeworkactivity_already_completed_quiz">কুইজ ইতিমধ্যেই সম্পন্ন হয়েছে!</string>
+    <string name="java_assesmentomeworkactivity_automatic_save">স্বয়ংক্রিয়ভাবে স্কোর সেভ হবে.  আপনি কি আর অগ্রসর হতে চান না?</string>
 
     <!--AssessmentLeaderBoardActivity-->
-    <string name="java_assessmentleaderboardactivity_txt_marks">"Marks: "</string>
-    <string name="java_assessmentleaderboardactivity_txt_time">"Time: "</string>
+    <string name="java_assessmentleaderboardactivity_txt_marks">"মার্কস: "</string>
+    <string name="java_assessmentleaderboardactivity_txt_time">"সময়: "</string>
 
     <!--AssessmentSummeryActivity-->
-    <string name="java_assessmentsummeryactivity_no_summery_available">No summery available</string>
-    <string name="java_assessmentsummeryactivity_summery_title">SUMMERY</string>
+    <string name="java_assessmentsummeryactivity_no_summery_available">কোন সারাংশ পাওয়া যায়নি</string>
+    <string name="java_assessmentsummeryactivity_summery_title">সারাংশ</string>
 
     <!--AttendenceFragment-->
-    <string name="java_attendencefragment_day_sun">Sun</string>
-    <string name="java_attendencefragment_day_mon">Mon</string>
-    <string name="java_attendencefragment_day_tue">Tue</string>
-    <string name="java_attendencefragment_day_wed">Wed</string>
-    <string name="java_attendencefragment_day_thu">Thu</string>
-    <string name="java_attendencefragment_day_fri">Fri</string>
-    <string name="java_attendencefragment_day_sat">Sat</string>
-    <string name="java_attendencefragment_authenticating">Authenticating.....</string>
+    <string name="java_attendencefragment_day_sun">রবি</string>
+    <string name="java_attendencefragment_day_mon">সোম</string>
+    <string name="java_attendencefragment_day_tue">মঙ্গল</string>
+    <string name="java_attendencefragment_day_wed">বুধ</string>
+    <string name="java_attendencefragment_day_thu">বৃহস্পতি</string>
+    <string name="java_attendencefragment_day_fri">শুক্র</string>
+    <string name="java_attendencefragment_day_sat">শনি</string>
+    <string name="java_attendencefragment_authenticating">প্রমানিত হচ্ছে.....</string>
 
     <!--CameraGalleryPicker-->
-    <string name="java_ameragallerypicker_select_file">Select File</string>
+    <string name="java_ameragallerypicker_select_file">ফাইল নির্বাচন করুন</string>
 
     <!--ChildSelectionActivity-->
-    <string name="java_childselectionactivity_section">",  Section "</string>
+    <string name="java_childselectionactivity_section">",  শাখা "</string>
 
     <!--ClassReportTeacherFragment-->
-    <string name="java_classreportteacherfragment_view">View</string>
-    <string name="java_classreportteacherfragment_present_students">Present Students</string>
-    <string name="java_classreportteacherfragment_students_late">Students late</string>
-    <string name="java_classreportteacherfragment_students_on_leave">Students on leave</string>
-    <string name="java_classreportteacherfragment_students_absent">Students absent</string>
+    <string name="java_classreportteacherfragment_view">দেখুন</string>
+    <string name="java_classreportteacherfragment_present_students">বর্তমান শিক্ষার্থী</string>
+    <string name="java_classreportteacherfragment_students_late">বিলম্বিত শিক্ষার্থী</string>
+    <string name="java_classreportteacherfragment_students_on_leave">শিক্ষার্থী ছুটিতে</string>
+    <string name="java_classreportteacherfragment_students_absent">শিক্ষার্থী অনুপস্থিত</string>
 
     <!--ClassRoutineFragment-->
-    <string name="java_classroutinefragment_to">" to "</string>
-    <string name="java_classroutinefragment_period">" period"</string>
-    <string name="java_classroutinefragment_st">st</string>
-    <string name="java_classroutinefragment_nd">nd</string>
-    <string name="java_classroutinefragment_rd">rd</string>
-    <string name="java_classroutinefragment_th">th</string>
+    <string name="java_classroutinefragment_to">" প্রতি "</string>
+    <string name="java_classroutinefragment_period">" পিরিয়ড"</string>
+    <string name="java_classroutinefragment_st">তম</string>
+    <string name="java_classroutinefragment_nd">তম</string>
+    <string name="java_classroutinefragment_rd">তম</string>
+    <string name="java_classroutinefragment_th">তম</string>
 
     <!--CreateMeetingRequest-->
-    <string name="java_createmeetingrequest_select_teacher">Select Teacher</string>
-    <string name="java_createmeetingrequest_select_parent">Select Parent</string>
-    <string name="java_createmeetingrequest_select_parent_by_student">Select Parent by Student Name</string>
-    <string name="java_createmeetingrequest_select_batch_first">Select a batch first</string>
-    <string name="java_createmeetingrequest_select_teacher_name">Select teacher name</string>
-    <string name="java_createmeetingrequest_select_date_and_time">Select date and time</string>
-    <string name="java_createmeetingrequest_enter_meeting_description">Enter meeting description</string>
-    <string name="java_createmeetingrequest_meeting_request_success">Meeting request sent sucessfully</string>
+    <string name="java_createmeetingrequest_select_teacher">শিক্ষক নির্বাচন করুন</string>
+    <string name="java_createmeetingrequest_select_parent">অভিভাবক নির্বাচন করুন</string>
+    <string name="java_createmeetingrequest_select_parent_by_student">শিক্ষার্থীর নাম দিয়ে অভিভাবক নির্বাচন করুন</string>
+    <string name="java_createmeetingrequest_select_batch_first">প্রথমে ব্যাচ নির্বাচন করুন</string>
+    <string name="java_createmeetingrequest_select_teacher_name">শিক্ষক নির্বাচন করুন</string>
+    <string name="java_createmeetingrequest_select_date_and_time">তারিখ ও সময় নির্বাচন করুন</string>
+    <string name="java_createmeetingrequest_enter_meeting_description">মিটিং এর বর্ণনা লিখুন</string>
+    <string name="java_createmeetingrequest_meeting_request_success">সফলভাবে মিটিং রিকোয়েস্ট পাঠানো </string>
 
     <!--CreateParentActivity-->
-    <string name="java_createparentactivity_male">Male</string>
-    <string name="java_createparentactivity_female">Female</string>
-    <string name="java_createparentactivity_gallery">Gallery</string>
-    <string name="java_createparentactivity_camera">Camera</string>
-    <string name="java_createparentactivity_successful">Successful</string>
+    <string name="java_createparentactivity_male">পুরুষ</string>
+    <string name="java_createparentactivity_female">মহিলা</string>
+    <string name="java_createparentactivity_gallery">গ্যালারি</string>
+    <string name="java_createparentactivity_camera">ক্যামেরা</string>
+    <string name="java_createparentactivity_successful">সফল</string>
 
     <!--CustomDateTimePicker-->
-    <string name="java_customdatetimepicker_set_date">Set Date</string>
-    <string name="java_customdatetimepicker_set_time">Set Time</string>
-    <string name="java_customdatetimepicker_set">Set</string>
-    <string name="java_customdatetimepicker_cancel">Cancel</string>
+    <string name="java_customdatetimepicker_set_date">তারিখ সেট করুন</string>
+    <string name="java_customdatetimepicker_set_time">সময় সেট করুন</string>
+    <string name="java_customdatetimepicker_set">সেট</string>
+    <string name="java_customdatetimepicker_cancel">বাতিল</string>
 
     <!--DateChangeBroadCastReceiver-->
-    <string name="jaav_datechangebroadcastreceiver_date_changed">DATE HAS BEEN CHANGED</string>
+    <string name="jaav_datechangebroadcastreceiver_date_changed">তারিখ পরিবর্তিত হয়েছে</string>
 
     <!--EditLessonPlanActivity-->
-    <string name="java_editLessonplanactivity_insert_lesson_plan_title">Please insert lesson plan title.</string>
-    <string name="java_editLessonplanactivity_select_lesson_plan_category">Please select lesson plan category.</string>
-    <string name="java_editLessonplanactivity_insert_lesson_plan_description">Please insert description of your lesson plan.</string>
-    <string name="java_editLessonplanactivity_successfully_edited_lesson_plan">Successfully edited lesson plan.</string>
+    <string name="java_editLessonplanactivity_insert_lesson_plan_title">অনুগ্রহপূর্বক কর্ম পরিকল্পনার টাইটেল লিখুন</string>
+    <string name="java_editLessonplanactivity_select_lesson_plan_category">অনুগ্রহপূর্বক কর্ম পরিকল্পনার ক্যাটাগরি লিখুন</string>
+    <string name="java_editLessonplanactivity_insert_lesson_plan_description">অনুগ্রহপূর্বক কর্ম পরিকল্পনার বর্ণনা লিখুন</string>
+    <string name="java_editLessonplanactivity_successfully_edited_lesson_plan">কর্ম পরিকল্পনা সফলভাবে সম্পাদিত হয়েছে</string>
 
     <!--ExamRoutineFragmentAll-->
-    <string name="java_examroutinefragmentall_exam">Exam</string>
+    <string name="java_examroutinefragmentall_exam">পরীক্ষা</string>
 
     <!--ExamRoutineTeacherFragment-->
-    <string name="java_examroutineteacherfragment_start_time">"Start Time: "</string>
-    <string name="java_examroutineteacherfragment_end_time">"End Time: "</string>
-    <string name="java_examroutineteacherfragment_exam_name">Exam Name:</string>
-    <string name="java_examroutineteacherfragment_batch">"Batch: "</string>
+    <string name="java_examroutineteacherfragment_start_time">"শুরুর সময়: "</string>
+    <string name="java_examroutineteacherfragment_end_time">"শেষ সময়: "</string>
+    <string name="java_examroutineteacherfragment_exam_name">পরীক্ষার নাম:</string>
+    <string name="java_examroutineteacherfragment_batch">"ব্যাচ: "</string>
 
     <!--FeesHistoryFragment-->
-    <string name="java_feeshistoryfragment_not_paid">Not Paid</string>
-    <string name="java_feeshistoryfragment_paid">Paid</string>
+    <string name="java_feeshistoryfragment_not_paid">পরিশোধিত হয়নি</string>
+    <string name="java_feeshistoryfragment_paid">পরিশোধিত </string>
 
     <!--ForgetPasswordActivity-->
-    <string name="java_forgetpasswordactivity_username_cannot_empty">Username Cannot be empty!</string>
-    <string name="java_forgetpasswordactivity_email_cannot_empty">Email Cannot be empty!</string>
-    <string name="java_forgetpasswordactivity_check_email">Please check your Email to reset Password</string>
-    <string name="java_forgetpasswordactivity_email_incorrect">Username of Email is Incorrect</string>
+    <string name="java_forgetpasswordactivity_username_cannot_empty">ইউজারনেম খালি রাখা যাবে না !</string>
+    <string name="java_forgetpasswordactivity_email_cannot_empty">ইমেইল খালি রাখা যাবে না!</string>
+    <string name="java_forgetpasswordactivity_check_email">অনুগ্রহপূর্বক ইমেইল চেক করে পাসওয়ার্ড রিসেট করুন</string>
+    <string name="java_forgetpasswordactivity_email_incorrect">ইমেইলের ইউজারনেম সঠিক নয়</string>
 
     <!--HomeContainerActivity-->
-    <string name="java_homecontaineractivity_select_your_child">Select your Child</string>
-    <string name="java_homecontaineractivity_settings">Settings</string>
-    <string name="java_homecontaineractivity_log_out">Log Out</string>
-    <string name="java_homecontaineractivity_parent">PARENT</string>
-    <string name="java_homecontaineractivity_change_profile_picture">Change Profile Picture</string>
-    <string name="java_homepagefreeversion_terms_and_policy"><![CDATA[Terms & Policy]]></string>
-    <string name="java_homepagefreeversion_about_us">About Us</string>
-    <string name="java_homepagefreeversion_no_internet_connection">Sorry no internet connection found!</string>
-    <string name="java_homepagefreeversion_new_update_available">New update is available. Go to Play Store to get it.</string>
-    <string name="java_homepagefreeversion_you_must_update_from_play_store">You must update ClassTune from Play Store to continue.</string>
-    <string name="java_homepagefreeversion_update_now">Update Now</string>
-    <string name="java_homepagefreeversion_no_thanks">No, thanks</string>
-    <string name="java_homepagefreeversion_something_wrong_internet">Something went wrong with your internet connectivity, pleaswe try again later.</string>
-    <string name="java_homepagefreeversion_device_registered">Device registered, registration ID=</string>
-    <string name="java_homepagefreeversion_error">Error :</string>
+    <string name="java_homecontaineractivity_select_your_child">সন্তান নির্বাচন করুন</string>
+    <string name="java_homecontaineractivity_settings">সেটিংস</string>
+    <string name="java_homecontaineractivity_log_out">লগ আউট</string>
+    <string name="java_homecontaineractivity_parent">অভিভাবক</string>
+    <string name="java_homecontaineractivity_change_profile_picture">প্রোফাইলের ছবি পরিবর্তন করুন</string>
+    <string name="java_homepagefreeversion_terms_and_policy"><![CDATA[শর্তাবলী]]></string>
+    <string name="java_homepagefreeversion_about_us">আমাদের সম্পর্কে</string>
+    <string name="java_homepagefreeversion_no_internet_connection">দুঃখিত ইন্টারনেট সংযোগ নেই!</string>
+    <string name="java_homepagefreeversion_new_update_available">নতুন আপডেট রয়েছে। গুগল প্লে স্টোর থেকে আপডেট করুন</string>
+    <string name="java_homepagefreeversion_you_must_update_from_play_store">ClassTune গুগল প্লে স্টোর থেকে আপডেট করুন</string>
+    <string name="java_homepagefreeversion_update_now">এখনই আপডেট করুন</string>
+    <string name="java_homepagefreeversion_no_thanks">না, ধন্যবাদ</string>
+    <string name="java_homepagefreeversion_something_wrong_internet">ইন্টারনেট সংযোগে কোন সমস্যা হয়েছে,  অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
+    <string name="java_homepagefreeversion_device_registered">ডিভাইস রেজিস্টার করা হয়েছে, রেজিস্ট্রেশন আইডি=</string>
+    <string name="java_homepagefreeversion_error">ভুল :</string>
 
     <!--HomeworkFragment-->
-    <string name="java_homeworkfragment_choose_your_subject">Choose your subject</string>
-    <string name="java_homeworkfragment_erro_in_operation">Error in operation!</string>
-    <string name="java_homeworkfragment_start_date">"Start Date: "</string>
-    <string name="java_homeworkfragment_due_date">"Due Date: "</string>
-    <string name="java_homeworkfragment_max_time">"Maximum Time: "</string>
-    <string name="java_homeworkfragment_pass_percentage">"Pass Percentage: "</string>
-    <string name="java_homeworkfragment_play">Play</string>
-    <string name="java_homeworkfragment_result">Result</string>
-    <string name="java_homeworkfragment_time_over">Time Over</string>
+    <string name="java_homeworkfragment_choose_your_subject">বিষয় নির্বাচন করুন</string>
+    <string name="java_homeworkfragment_erro_in_operation">ক্রিয়াকলাপে ভুল হয়েছে!</string> 
+    <string name="java_homeworkfragment_start_date">"শুরুর তারিখ: "</string>
+    <string name="java_homeworkfragment_due_date">"জমাদানের তারিখ: "</string>
+    <string name="java_homeworkfragment_max_time">"সর্বোচ্চ সময়: "</string>
+    <string name="java_homeworkfragment_pass_percentage">"শতকরা পাস: "</string>
+    <string name="java_homeworkfragment_play">খেলুন</string>
+    <string name="java_homeworkfragment_result">ফলাফল</string>
+    <string name="java_homeworkfragment_time_over">সময় শেষ</string>
 
     <!--InfoFeatureActivity-->
-    <string name="java_infofeatureactivity_title_attendance">Attendance</string>
-    <string name="java_infofeatureactivity_content_attendance">Taking class attendance is now easier than ever! Teachers can take attendance in few clicks, and parents get real time notification. Also, it helps school to keep records.</string>
-    <string name="java_infofeatureactivity_title_academic_calendar">Academic Calendar</string>
-    <string name="java_infofeatureactivity_content_academic_calendar">School can share the academic calendar in the beginning of the year with the authority of modification when required. It helps parents to plan family holidays.</string>
-    <string name="java_infofeatureactivity_title_lesson_plan">Lesson Plan</string>
-    <string name="java_infofeatureactivity_content_lesson_plan">Teachers can upload weekly, monthly and yearly lesson plans. It allows students and parents to plan ahead of time.</string>
-    <string name="java_infofeatureactivity_title_teachers_routine">Teacher\'s Routine</string>
-    <string name="java_infofeatureactivity_content_teachers_routine">Now teachers can see their day to day schedule and make plans accordingly. Surely accelerate better outputs.</string>
-    <string name="java_infofeatureactivity_title_homework">Homework</string>
-    <string name="java_infofeatureactivity_content_homework">This feature is convenient for everyone! Teachers can assign homework to whole class or individual student. Students now can find homework easily. Set reminder and mark done once completed and parents can keep track of homework assigned to child.</string>
-    <string name="java_infofeatureactivity_title_fees">Fees</string>
-    <string name="java_infofeatureactivity_content_fees">Parents can pay fees online using credit card or mobile money. Great tool for monitoring payment and keeping school\'s accounts.</string>
-    <string name="java_infofeatureactivity_title_forms">Forms</string>
-    <string name="java_infofeatureactivity_content_forms">All school forms are now available from mobile and web. Fill it up and submit online. Zero crowd in office room thus higher productivity.</string>
-    <string name="java_infofeatureactivity_title_meeting_request">Meeting Request</string>
-    <string name="java_infofeatureactivity_content_meeting_request">School admin can organize parents meets and notify parents quickly. Parents can request to meet teachers. Even teachers can request an individual parent for meeting.</string>
-    <string name="java_infofeatureactivity_title_report_card">Report Card</string>
-    <string name="java_infofeatureactivity_content_report_card">Teacher can upload the report card of class tests, exams, projects and students can see it online. Students can place it for parents view and after reviewing parents can send acknowledgement to school.</string>
-    <string name="java_infofeatureactivity_title_events">Events</string>
-    <string name="java_infofeatureactivity_content_events">Events page keeps everyone updated about date, timing and venue of any event coming up in the school. It also sends necessary reminders.</string>
-    <string name="java_infofeatureactivity_title_transport">Transport</string>
-    <string name="java_infofeatureactivity_content_transport">Pick up and drop off time of your child\'s school transport now can be checked online. Any changes in the transport schedule can reach parents in minutes.</string>
-    <string name="java_infofeatureactivity_title_routine">Routine</string>
-    <string name="java_infofeatureactivity_content_routine">Teachers and Management can modify routine when necessary and send instant notification.</string>
-    <string name="java_infofeatureactivity_title_syllabus">Syllabus</string>
-    <string name="java_infofeatureactivity_content_syllabus">Schools are enabled to upload yearly syllabus. Students, Parents and Teachers can refer to syllabus on the go.</string>
-    <string name="java_infofeatureactivity_title_notice">Notice</string>
-    <string name="java_infofeatureactivity_content_notice">Any notice without any word limitation can be sent. Its real time and interactive. Instant notification to parents.</string>
-    <string name="java_infofeatureactivity_title_leave">Leave</string>
-    <string name="java_infofeatureactivity_content_leave">Applying for leave is now hassle free! Parents can apply for Student’s leave and get notification once granted. Teachers can approve Students leave and can apply for their own leaves also.</string>
+    <string name="java_infofeatureactivity_title_attendance">উপস্থিতি</string>
+    <string name="java_infofeatureactivity_content_attendance">ক্লাসে উপস্থিতি গণনা এখন আগের চেয়ে অনেক সহজ! শিক্ষক মাত্র কয়েকটি ক্লিকের সাহায্যে উপস্থিতি গ্রহণ করতে পারেন এবং একইসময়ে তথ্য পৌঁছে যাবে অভিভাবকের কাছে। এছাড়া এ তথ্য সংরক্ষিত খাকবে স্কুল রেকর্ডে।</string>
+    <string name="java_infofeatureactivity_title_academic_calendar">অ্যাকাডেমিক ক্যালেন্ডার</string>
+    <string name="java_infofeatureactivity_content_academic_calendar">স্কুল কর্তৃপক্ষ বছরের শুরুতেই অ্যাকাডেমিক ক্যালেন্ডার শেয়ার করতে পারেন। প্রয়োজন অনুযায়ী পরিবর্তন-পরিবর্ধনও করতে পারেন। এর ফলে খুব সহজেই পারিবারিক ছুটি কাটানোর অাগাম পরিকল্পনা করা সম্ভব। </string>
+    <string name="java_infofeatureactivity_title_lesson_plan">কর্ম পরিকল্পনা</string>
+    <string name="java_infofeatureactivity_content_lesson_plan">"শিক্ষক সাপ্তাহিক, মাসিক ও বার্ষিক পাঠ পরিকল্পনা আপলোড করতে পারেন। কর্ম পরিকল্পনা শিক্ষার্থী এবং অভিভাবকদের পাঠ্যসময়সূচি প্রস্তুতে সহায়তা করবে।</string>
+    <string name="java_infofeatureactivity_title_teachers_routine">শিক্ষকদের রুটিন</string>
+    <string name="java_infofeatureactivity_content_teachers_routine">এখন শিক্ষকরা তাদের প্রতিদিনের করণীয় কর্মতালিকা দেখতে পারেন এবং সে অনুযায়ী পরিকল্পনা করতে পারেন ও এর মাধ্যমে তাদের অগ্রগতি সুনিশ্চত।</string>
+    <string name="java_infofeatureactivity_title_homework">হোমওয়ার্ক</string>
+    <string name="java_infofeatureactivity_content_homework">সকলের জন্যই সুবিধাজনক একটি ফিচার! শিক্ষক পুরো ক্লাসকে একসঙ্গে বা পৃথক শিক্ষার্থীকে হোমওয়ার্ক দিতে পারেন। শিক্ষার্থীরা এখন সহজেই বাড়ির কাজ সর্ম্পকে জানতে পারবে। রিমাইন্ডার সেট করুন এবং কাজ শেষে সম্পন্ন হিসাবে চিহ্নিত করুন। অভিভাবকরাও সন্তানের নির্ধারিত হোমওয়ার্ক ট্র্যাক রাখতে পারবেন।.</string>
+    <string name="java_infofeatureactivity_title_fees">ফি</string>
+    <string name="java_infofeatureactivity_content_fees">অভিভাবকরা ক্রেডিট কার্ড বা মোবাইল টাকার মাধ্যমে অনলাইনেই প্রয়োজনীয়  ফি পরিশোধ করতে পারেন। স্কুলের টাকা জমাদান ও হিসাবরক্ষণের জন্য অত্যন্ত কার্যকরী একটি টুল।</string>
+    <string name="java_infofeatureactivity_title_forms">ফর্ম:</string>
+    <string name="java_infofeatureactivity_content_forms">সকল স্কুল ফরম মোবাইল এবং ওয়েব থেকে এখন সংগ্রহ করা যায়। ফরম পূরণ ও জমাদানও অনলাইনে। অফিস রুমে কোনরকম ভীড় বা ঝামেলা ছাড়াই সর্বোচ্চ সেবা প্রদান।</string>
+    <string name="java_infofeatureactivity_title_meeting_request">মিটিং রিকোয়েস্ট</string>
+    <string name="java_infofeatureactivity_content_meeting_request">স্কুল কর্তৃপক্ষ অভিভাবকদের সঙ্গে বৈঠক আয়োজন এবং নোটিশ পাঠানোর কাজটি করতে পারেন সহজেই। অভিভাবকরাও শিক্ষকদের সঙ্গে সাক্ষাতের অনুমতি চাইতে পারেন। এমনকি শিক্ষকরাও পৃথক পৃথক অভিভাবকদের বৈঠকের জন্য আমন্ত্রণ জানাতে পারেন।</string>
+    <string name="java_infofeatureactivity_title_report_card">রিপোর্ট কার্ড</string>
+    <string name="java_infofeatureactivity_content_report_card">শিক্ষক ক্লাস টেস্ট, অন্যান্য পরীক্ষা ও প্রজেক্টের রিপোর্ট কার্ড শিক্ষার্থীদের সুবিধার্থে অনলাইনে আপলোড করতে পারেন। শিক্ষার্থীরা তাদের রিপোর্ট কার্ড অভিভাবকদের প্রদর্শনের জন্য অনলাইনে জমা রাখবে এবং অভিভাবকরা পর্যালোচনা শেষে স্কুল কর্তৃপক্ষের অবগতির জন্য তা পাঠাবে।</string>
+    <string name="java_infofeatureactivity_title_events">ইভেন্ট</string>
+    <string name="java_infofeatureactivity_content_events">স্কুল আয়োজিত যে কোন ইভেন্টের তারিখ, সময় এবং স্থান সর্ম্পকিত হালনাগাদ তথ্য জানা যায় এ পেইজের মাধ্যমে। অনুষ্ঠান সর্ম্পকিত প্রয়োজনীয় রিমাইন্ডারও পাঠানো হয় এখান থেকে।</string>
+    <string name="java_infofeatureactivity_title_transport">পরিবহণ</string>
+    <string name="java_infofeatureactivity_content_transport">স্কুল যানবাহনে আপনার সন্তানের উঠানামার সময় সর্ম্পকিত সকল তথ্য এখন অনলাইন থেকেই জানা সম্ভব। পরিবহনের সময়সূচীর যে কোন পরিবর্তন মিনিটের মধ্যেই জেনে যাবেন অভিভাবকরা।</string>
+    <string name="java_infofeatureactivity_title_routine">রুটিন</string>
+    <string name="java_infofeatureactivity_content_routine">শিক্ষক ও ব্যবস্থাপনা কর্তৃপক্ষ প্রয়োজন অনুযায়ী রুটিন পরিবর্তন করতে পারেন এবং এ তথ্য তাৎক্ষনিক সকলকে জানিয়েও দিতে পারেন।</string>
+    <string name="java_infofeatureactivity_title_syllabus">সিলেবাস</string>
+    <string name="java_infofeatureactivity_content_syllabus">স্কুল কর্তৃপক্ষ পুরো বছরের সিলেবাস আপলোড করতে পারেন। শিক্ষক, শিক্ষার্থী এবং অভিভাবকরা চলমান সিলবাস সর্ম্পকিত তথ‌্য যে কোন সময় ব্যবহার করতে পারেন।</string>
+    <string name="java_infofeatureactivity_title_notice">নোটিশ</string>
+    <string name="java_infofeatureactivity_content_notice">কোন শব্দ সীমাবদ্ধতা ছাড়াই বিজ্ঞপ্তি পাঠানো সম্ভব। তাৎক্ষনিকভাবে একই সময়ে অভিভাবকদের নিকট বিজ্ঞপ্তি পৌঁছানোর কার্যকরী ও সহজতম উপায়।</string>
+    <string name="java_infofeatureactivity_title_leave">ছুটি</string>
+    <string name="java_infofeatureactivity_content_leave">ছুটির আবেদন এখন ঝামেলাহীন! অভিভাবকরা শিক্ষার্থীদের ছুটির আবেদন করতে পারনে এবং তা মঞ্জুর হলে নোটিফিকেশনের মাধ্যমে জানতে পারেন। শিক্ষক শিক্ষার্থীদের ছুটি অনুমোদন করতে পারেন এবং তার নিজস্ব ছুটির জন্যও আবেদন করতে পারেন।</string>
 
     <!--LeaveApplicationFragment-->
-    <string name="java_leaveapplicationfragment_reason_type">Please choose a reason type!</string>
-    <string name="java_leaveapplicationfragment_application_subject">Application subject can\'t be empty!</string>
-    <string name="java_leaveapplicationfragment_leave_description">Leave description can\'t be Empty!</string>
-    <string name="java_leaveapplicationfragment_choose_start_date">Please Choose a start date for leave!</string>
-    <string name="java_leaveapplicationfragment_choose_end_date">Please Choose an end date for leave!</string>
-    <string name="java_leaveapplicationfragment_successfully_posted">Successfully posted application!</string>
-    <string name="java_leaveapplicationfragment_failed_post">Failed to post leave application! Please try again.</string>
-    <string name="java_leaveapplicationfragment_select_leave_type">Select Leave Type</string>
-    <string name="java_leaveapplicationfragment_invalid_file_type">Invalid file type</string>
-    <string name="java_leaveapplicationfragment_successfully_added_lesson_plan">Successfully added lesson plan.</string>
-    <string name="java_leaveapplicationfragment_last_updated">"Last Updated "</string>
+    <string name="java_leaveapplicationfragment_reason_type">অনুগ্রহপূর্বক কারণ নির্বাচন করুন!</string>
+    <string name="java_leaveapplicationfragment_application_subject">আবেদনের বিষয় খালি রাখা যাবে না!</string>
+    <string name="java_leaveapplicationfragment_leave_description">ছুটির বর্ণনা খালি রাখা যাবে না!</string>
+    <string name="java_leaveapplicationfragment_choose_start_date">অনুগ্রহপূর্বক ছুটির আবেদনের জন্য শুরুর তারিখ নির্বাচন করুন!</string>
+    <string name="java_leaveapplicationfragment_choose_end_date">অনুগ্রহপূর্বক ছুটির আবেদনের জন্য শেষের তারিখ নির্বাচন করুন!!</string>
+    <string name="java_leaveapplicationfragment_successfully_posted">সফলভাবে আবেদন প্রকাশিত হয়েছে!</string>
+    <string name="java_leaveapplicationfragment_failed_post">আবেদন প্রকাশ হয়নি! অনুগ্রহপূর্বক আবার চেষ্টা করুন</string>
+    <string name="java_leaveapplicationfragment_select_leave_type">ছুটির ধরণ নির্বাচন করুন</string>
+    <string name="java_leaveapplicationfragment_invalid_file_type">ফাইলটি অকার্যকর অবস্থায় রয়েছে </string>
+    <string name="java_leaveapplicationfragment_successfully_added_lesson_plan">সফলভাবে কর্ম পরিকল্পনা প্রকাশিত হয়েছে</string>
+    <string name="java_leaveapplicationfragment_last_updated">"সর্বশেষ আপডেট "</string>
 
     <!--LessonPlanView-->
-    <string name="java_lessonplanview_lesson_plan">LESSON PLAN</string>
-    <string name="java_lessonplanview_delete">Delete</string>
-    <string name="java_lessonplanview_content_delete">Are you sure you want to delete selected lesson plan(s)?</string>
-    <string name="java_lessonplanview_assign">Assign</string>
-    <string name="java_lessonplanview_content_assign">Are you sure you want to assign selected lesson plan(s)?</string>
-    <string name="java_lessonplanview_successfully_deleted">Successfully Deleted</string>
-    <string name="java_lessonplanview_successfully_assigned">Successfully Assigned</string>
-    <string name="java_lessonplanview_inactive">Inactive</string>
-    <string name="java_lessonplanview_active">Active</string>
+    <string name="java_lessonplanview_lesson_plan">কর্ম পরিকল্পনা</string>
+    <string name="java_lessonplanview_delete">মুছে ফেলুন</string>
+    <string name="java_lessonplanview_content_delete">আপনি কি নিশ্চিতভাবে কর্ম পরিকল্পনা মুছে ফেলতে চান?</string>
+    <string name="java_lessonplanview_assign">অ্যাসাইন</string>
+    <string name="java_lessonplanview_content_assign">আপনি কি নিশ্চিতভাবে কর্ম পরিকল্পনা অ্যাসাইন করতে চান?</string>
+    <string name="java_lessonplanview_successfully_deleted">সফলভাবে মুছে গিয়েছে</string>
+    <string name="java_lessonplanview_successfully_assigned">সফলভাবে অ্যাসাইন করা হয়েছে</string>
+    <string name="java_lessonplanview_inactive">নিষ্ক্রিয়</string>
+    <string name="java_lessonplanview_active">সক্রিয়</string>
 
     <!--LoginActivity-->
-    <string name="java_loginactivity_enter_user_name">Please enter UserName!!</string>
-    <string name="java_loginactivity_enter_password">Please enter Password!!</string>
+    <string name="java_loginactivity_enter_user_name">অনুগ্রহপূর্বক ইউজারনেম লিখুন!!</string>
+    <string name="java_loginactivity_enter_password">অনুগ্রহপূর্বক পাসওয়ার্ড লিখুন!!</string>
 
     <!--MeetingFragment-->
-    <string name="java_meetingfragment_accepted">Accepted</string>
-    <string name="java_meetingfragment_declined">Declined</string>
-    <string name="java_meetingfragment_title_meeting_status">MEETING STATUS</string>
-    <string name="java_meetingfragment_pending_meeting_request">You have pending meeting request</string>
+    <string name="java_meetingfragment_accepted">গ্রহণ করা হয়েছে</string>
+    <string name="java_meetingfragment_declined">গ্রহণ করা হয়নি</string>
+    <string name="java_meetingfragment_title_meeting_status">মিটিং স্ট্যাটাস</string>
+    <string name="java_meetingfragment_pending_meeting_request">আপনার পেন্ডিং মিটিং রিকোয়েস্ট রয়েছে</string>
 
     <!--MyAlarm-->
-    <string name="java_myalarm_new_invite">New Invite!</string>
-    <string name="java_myleavefragment_apply_date">Apply Date: </string>
-    <string name="java_myleavefragment_duration">Duration: </string>
-    <string name="java_myleavefragment_declined">declined</string>
-    <string name="java_myleavefragment_to"> to </string>
-    <string name="java_myleavefragment_accepted">accepted</string>
-    <string name="java_myleavefragment_pending">pending</string>
+    <string name="java_myalarm_new_invite">নতুন আমন্ত্রন!</string>
+    <string name="java_myleavefragment_apply_date">আবেদনের তারিখ: </string>
+    <string name="java_myleavefragment_duration">সময়কাল: </string>
+    <string name="java_myleavefragment_declined">গ্রহণ করা হয়নি</string>
+    <string name="java_myleavefragment_to"> প্রতি</string>
+    <string name="java_myleavefragment_accepted">গ্রহণ করা হয়নি</string>
+    <string name="java_myleavefragment_pending">পেন্ডিং</string>
 
     <!--NoticeFragment-->
-    <string name="java_noticefragment_acknowledge">Acknowledged</string>
+    <string name="java_noticefragment_acknowledge">স্বীকৃত হয়েছে</string>
 
     <!--PaidVersionHomeFragment-->
-    <string name="java_paidversionhomefragment_contact_school">Contact your school to Upgrade.</string>
+    <string name="java_paidversionhomefragment_contact_school">আপগ্রেডের জন্য স্কুলের সাথে যোগাযোগ করুন</string>
 
     <!--ParentReportCardFragment-->
-    <string name="java_parentreportcardfragment_select_student">Select Student</string>
-    <string name="java_parentreportcardfragment_name">"Name: "</string>
+    <string name="java_parentreportcardfragment_select_student">শিক্ষার্থী নির্বাচন করুন</string>
+    <string name="java_parentreportcardfragment_name">"নাম: "</string>
 
     <!--PopupDialogChangePassword-->
-    <string name="java_popupdialogchangepassword_password_cannot_empty">Password Cannot be empty!</string>
+    <string name="java_popupdialogchangepassword_password_cannot_empty">পাসওয়ার্ড খালি রাখা যাবে না!</string>
 
     <!--PopupDialogHomeworkAssessmentResult-->
-    <string name="java_popupdialoghomeworkassessmentresult_participated">"Participated: "</string>
-    <string name="java_popupdialoghomeworkassessmentresult_highest_mark">"Highest Mark: "</string>
-    <string name="java_popupdialoghomeworkassessmentresult_lowest_mark">"Lowest Mark: "</string>
-    <string name="java_popupdialoghomeworkassessmentresult_total_marks">"Total Marks: "</string>
-    <string name="java_popupdialoghomeworkassessmentresult_total_time_taken">"Total Time Taken: "</string>
-    <string name="java_popupdialoghomeworkassessmentresult_passed_yes">Passed: YES</string>
-    <string name="java_popupdialoghomeworkassessmentresult_passed_no">Passed: NO</string>
-    <string name="java_popupdialoghomeworkassessmentresult_total_score">"Total Score: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_participated">"অংশগ্রহণ করা হয়েছে: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_highest_mark">"সর্বোচ্চ মার্ক: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_lowest_mark">"সর্বনিম্ন মার্ক: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_total_marks">"সর্বমোট মার্কস: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_total_time_taken">"সর্বমোট সময়: "</string>
+    <string name="java_popupdialoghomeworkassessmentresult_passed_yes">পাস: হ্যাঁ</string>
+    <string name="java_popupdialoghomeworkassessmentresult_passed_no">পাস: না</string>
+    <string name="java_popupdialoghomeworkassessmentresult_total_score">"সর্বমোট স্কোর: "</string>
 
     <!--PopupDialogSingleItemAssessmentInvok-->
-    <string name="java_popupaialogsingleitemassessmentnnvok_total_questions">"Total Questions: "</string>
-    <string name="java_popupaialogsingleitemassessmentnnvok_total_score">"Total Score: "</string>
-    <string name="java_popupaialogsingleitemassessmentnnvok_max_quiz_time">"Maximum Quiz Time: "</string>
-    <string name="java_popupaialogsingleitemassessmentnnvok_highest_score">"Highest Score: "</string>
-    <string name="java_popupaialogsingleitemassessmentnnvok_total_players">"Total Players: "</string>
+    <string name="java_popupaialogsingleitemassessmentnnvok_total_questions">"সর্বমোট প্রশ্ন: "</string>
+    <string name="java_popupaialogsingleitemassessmentnnvok_total_score">"সর্বমোট স্কোর: "</string>
+    <string name="java_popupaialogsingleitemassessmentnnvok_max_quiz_time">"কুইজের সর্বোচ্চ সময়: "</string>
+    <string name="java_popupaialogsingleitemassessmentnnvok_highest_score">"সর্বোচ্চ স্কোর: "</string>
+    <string name="java_popupaialogsingleitemassessmentnnvok_total_players">"সর্বমোট প্রতিযোগী: "</string>
 
     <!--ProgressGraphFragment-->
-    <string name="java_progressgraphfragment_select_exam_type">Select Exam Type</string>
-    <string name="java_progressgraphfragment_all_subject_graph">All Subject Comparison Graph</string>
-    <string name="java_progressgraphfragment_exam_name">Exam Name</string>
-    <string name="java_progressgraphfragment_percentage">Percentage</string>
-    <string name="java_progressgraphfragment_your_percentage">Your Percentage</string>
-    <string name="java_progressgraphfragment_highest_percentage">Highest Percentage</string>
-    <string name="java_progressgraphfragment_average_percentage">Average Percentage</string>
+    <string name="java_progressgraphfragment_select_exam_type">পরীক্ষার ধরণ নির্বাচন করুন</string>
+    <string name="java_progressgraphfragment_all_subject_graph">সকল বিষয়ের তুলনামূলক গ্রাফ</string>
+    <string name="java_progressgraphfragment_exam_name">পরীক্ষার নাম</string>
+    <string name="java_progressgraphfragment_percentage">শতকরা</string>
+    <string name="java_progressgraphfragment_your_percentage">তোমার শতকরা</string>
+    <string name="java_progressgraphfragment_highest_percentage">সর্বোচ্চ শতকরা</string>
+    <string name="java_progressgraphfragment_average_percentage">গড় শতকরা</string>
 
     <!--QuizFragment-->
-    <string name="java_quizfragment_yet_to_start">Yet to start</string>
-    <string name="java_quizfragment_not_played">Not Played</string>
-    <string name="java_quizfragment_result">Result</string>
-    <string name="java_quizfragment_time_over">Time Over</string>
+    <string name="java_quizfragment_yet_to_start">এখনো শুরু হয়নি</string>
+    <string name="java_quizfragment_not_played">এখনো খেলা হয়নি</string>
+    <string name="java_quizfragment_result">ফলাফল</string>
+    <string name="java_quizfragment_time_over">সময় শেষ</string>
 
     <!--ReportClassTestFragment-->
-    <string name="java_reportclasstestfragment_class_test">Class Test</string>
+    <string name="java_reportclasstestfragment_class_test">ক্লাস টেস্ট</string>
 
     <!--ReportTermFragment-->
-    <string name="java_reporttermfragment_position">"Position: "</string>
-    <string name="java_reporttermfragment_total_students">"Total Students: "</string>
+    <string name="java_reporttermfragment_position">"অবস্থান: "</string>
+    <string name="java_reporttermfragment_total_students">"সর্বমোট শিক্ষার্থী: "</string>
 
     <!--ResultTermTesttFragment-->
-    <string name="java_resulttermtesttfragment_term_test">Term Test</string>
+    <string name="java_resulttermtesttfragment_term_test">টার্ম টেস্ট</string>
 
     <!--RollCallTeacherFragment-->
-    <string name="java_rollcallteacherfragment_report_saved">Todays report saved.</string>
+    <string name="java_rollcallteacherfragment_report_saved">আজকের রিপোর্ট সেভ হয়েছে</string>
 
     <!--SchoolFeedFragment-->
-    <string name="java_schoolfeedfragment_holiday">Holiday</string>
-    <string name="java_schoolfeedfragment_weekend">Weekend</string>
-    <string name="java_schoolfeedfragment_leave">Leave</string>
-    <string name="java_schoolfeedfragment_late">Late</string>
-    <string name="java_schoolfeedfragment_absent_today">Absent today</string>
-    <string name="java_schoolfeedfragment_present_today">Present today</string>
-    <string name="java_schoolfeedfragment_class_yet_to_start">Class yet to start</string>
-    <string name="java_schoolfeedfragment_event">Event</string>
-    <string name="java_schoolfeedfragment_exam_routine">Exam Routine</string>
-    <string name="java_schoolfeedfragment_exam_report">Exam Report</string>
-    <string name="java_schoolfeedfragment_homework">Homework</string>
-    <string name="java_schoolfeedfragment_notice">Notice</string>
-    <string name="java_schoolfeedfragment_attendance">Attendance</string>
-    <string name="java_schoolfeedfragment_meeting_request">Meeting Request</string>
+    <string name="java_schoolfeedfragment_holiday">ছুটি</string>
+    <string name="java_schoolfeedfragment_weekend">ছুটির দিন</string>
+    <string name="java_schoolfeedfragment_leave">সাময়িক ছুটি</string>
+    <string name="java_schoolfeedfragment_late">বিলম্ব</string>
+    <string name="java_schoolfeedfragment_absent_today">আজকে অনুপস্থিত</string>
+    <string name="java_schoolfeedfragment_present_today">আজকে উপস্থিত</string>
+    <string name="java_schoolfeedfragment_class_yet_to_start">ক্লাস এখনো শুরু হয়নি</string>
+    <string name="java_schoolfeedfragment_event">ইভেন্ট</string>
+    <string name="java_schoolfeedfragment_exam_routine">পরীক্ষার রুটিন</string>
+    <string name="java_schoolfeedfragment_exam_report">পরীক্ষার রিপোর্ট</string>
+    <string name="java_schoolfeedfragment_homework">হোমওয়ার্ক</string>
+    <string name="java_schoolfeedfragment_notice">নোটিশ</string>
+    <string name="java_schoolfeedfragment_attendance">উপস্থিতি</string>
+    <string name="java_schoolfeedfragment_meeting_request">মিটিং রিকোয়েস্ট</string>
 
     <!--SingleEventActivity-->
-    <string name="java_singleeventactivity_event_removed">This event is removed!</string>
-    <string name="java_singleeventactivity_joined">Joined</string>
+    <string name="java_singleeventactivity_event_removed">ইভেন্টটি মুছে ফেলা হয়েছে!</string>
+    <string name="java_singleeventactivity_joined">যোগদান করছি</string>
 
     <!--SingleExamRoutine-->
-    <string name="java_singlexeamroutine_na">N/A</string>
+    <string name="java_singlexeamroutine_na">পাওয়া যায়নি</string>
 
     <!--SingleHomeworkActivity-->
-    <string name="java_singlehomeworkactivity_by">"By "</string>
-    <string name="java_singlehomeworkactivity_error_in_operation">Error in operation!</string>
-    <string name="java_singleitemtermreportactivity_gpa">GPA</string>
-    <string name="java_singleItemtermreportactivity_term_report">Term Report</string>
+    <string name="java_singlehomeworkactivity_by">"দ্বারা "</string>
+    <string name="java_singlehomeworkactivity_error_in_operation">ক্রিয়াকলাপে ভুল হয়েছে !</string>
+    <string name="java_singleitemtermreportactivity_gpa">জিপিএ</string>
+    <string name="java_singleItemtermreportactivity_term_report">টার্ম রিপোর্ট</string>
 
     <!--SingleLessonPlan-->
-    <string name="java_singlelessonplan_subject">"Subject: "</string>
-    <string name="java_singlelessonplan_category">"Category: "</string>
-    <string name="java_singlelessonplan_published_date">"Published date: "</string>
-    <string name="java_singlelessonplan_title_lesson_plan">LESSON PLAN</string>
-    <string name="java_singlelessonplan_delete">Delete</string>
-    <string name="java_singlelessonplan_delete_confirmation">Are you sure you want to delete selected lesson plan?</string>
-    <string name="java_singlelessonplan_successfully_deleetd">Successfully Deleted</string>
+    <string name="java_singlelessonplan_subject">"বিষয়: "</string>
+    <string name="java_singlelessonplan_category">"ক্যাটাগরি: "</string>
+    <string name="java_singlelessonplan_published_date">"প্রকাশের তারিখ: "</string>
+    <string name="java_singlelessonplan_title_lesson_plan">কর্ম পরিকল্পনা</string>
+    <string name="java_singlelessonplan_delete">মুছে ফেলুন</string>
+    <string name="java_singlelessonplan_delete_confirmation">আপনি কি নিশ্চিতভাবে কর্ম পরিকল্পনা মুছে ফেলতে চান?</string>
+    <string name="java_singlelessonplan_successfully_deleetd">সফলভাবে মুছে ফেলা হয়েছে</string>
 
     <!--SingleMeetingRequestActivity-->
-    <string name="java_singlemeetingrequestactivity_time_exceed">Time Exceed</string>
-    <string name="java_singlemeetingrequestactivity_pending">Pending</string>
-    <string name="java_singlemeetingrequestactivity_accepted">Accepted</string>
-    <string name="java_singlemeetingrequestactivity_declined">Declined</string>
-    <string name="java_singlemeetingrequestactivity_meeting_status">MEETING STATUS</string>
-    <string name="java_singlemeetingrequestactivity_you_have_pending_meeting_request">You have pending meeting request</string>
-    <string name="java_singlenoticeactivity_acknowledged">Acknowledged</string>
-    <string name="java_singlenoticeactivity_acknowldge">Acknowledge</string>
+    <string name="java_singlemeetingrequestactivity_time_exceed">সময় অতিক্রান্ত হয়েছে</string>
+    <string name="java_singlemeetingrequestactivity_pending">পেন্ডিং</string>
+    <string name="java_singlemeetingrequestactivity_accepted">গ্রহণ করা হয়েছে</string>
+    <string name="java_singlemeetingrequestactivity_declined">গ্রহণ করা হয়নি</string>
+    <string name="java_singlemeetingrequestactivity_meeting_status">মিটিং স্ট্যাটাস</string>
+    <string name="java_singlemeetingrequestactivity_you_have_pending_meeting_request">আপনার পেন্ডিং মিটিং রিকোয়েস্ট রয়েছে</string>
+    <string name="java_singlenoticeactivity_acknowledged">স্বীকৃত হয়েছে</string>
+    <string name="java_singlenoticeactivity_acknowldge">স্বীকৃত</string>
 
     <!--SingleReportCardSubject-->
-    <string name="java_singlereportcardsubject_top">"Top "</string>
-    <string name="java_singlereportcardsubject_Average_mark">Average Mark</string>
+    <string name="java_singlereportcardsubject_top">"সেরা "</string>
+    <string name="java_singlereportcardsubject_Average_mark">গড় মার্কস</string>
 
     <!--SingleTeacherDraftHomeworkActivity-->
-    <string name="java_singleteacherdrafthomeworkactivity_edit_from_website">Please edit homework from website.</string>
-    <string name="java_singleteacherdrafthomeworkactivity_successfully_published">Successfully published!</string>
+    <string name="java_singleteacherdrafthomeworkactivity_edit_from_website">অনুগ্রহপূর্বক ওয়েবসাইট থেকে হোমওয়ার্ক সম্পাদন করুন</string>
+    <string name="java_singleteacherdrafthomeworkactivity_successfully_published">সফলভাবে প্রকাশিত হয়েছে!</string>
 
     <!--SingleTeacherEditHomeworkActivity-->
-    <string name="java_singleteacheredithomeworkactivity_regular">Regular</string>
-    <string name="java_singleteacheredithomeworkactivity_project">Project</string>
-    <string name="java_singleteacheredithomeworkactivity_choose_subject">Please choose a subject</string>
-    <string name="java_singleteacheredithomeworkactivity_subject_title_cannot_empty">Subject title cannot be Empty!</string>
-    <string name="java_singleteacheredithomeworkactivity_homework_description_cannot_empty">Homework description cannot be Empty!</string>
-    <string name="java_singleteacheredithomeworkactivity_choose_due_date">Please Choose a due date for Homework!</string>
-    <string name="java_singleteacheredithomeworkactivity_saved_as_draft">Successfully saved homework as draft!</string>
-    <string name="java_singleteacheredithomeworkactivity_failed_post">Failed to post Homework! Please try again.</string>
-    <string name="java_singleteacheredithomeworkactivity_no_file_attached">No File Attached</string>
-    <string name="java_singleteacheredithomeworkactivity_select_subject">Select your Subject</string>
-    <string name="java_singleteacheredithomeworkactivity_select_homework_type">Select Homework type</string>
-    <string name="java_singleteacheredithomeworkactivity_invalid_file_type">Invalid file type</string>
+    <string name="java_singleteacheredithomeworkactivity_regular">রেগুলার</string>
+    <string name="java_singleteacheredithomeworkactivity_project">প্রজেক্ট</string>
+    <string name="java_singleteacheredithomeworkactivity_choose_subject">অনুগ্রহপূর্বক বিষয় নির্বাচন করুন</string>
+    <string name="java_singleteacheredithomeworkactivity_subject_title_cannot_empty">বিষয়ের টাইটেল খালি রাখা যাবে না!</string>
+    <string name="java_singleteacheredithomeworkactivity_homework_description_cannot_empty">হোমওয়ার্কের বর্ণনা খালি রাখা যাবে না!</string>
+    <string name="java_singleteacheredithomeworkactivity_choose_due_date">অনুগ্রহপূর্বক হোমওয়ার্ক জমাদানের তারিখ নির্বাচন করুন!</string>
+    <string name="java_singleteacheredithomeworkactivity_saved_as_draft">সফলভাবে হোমওয়ার্কটি ড্রাফ্‌ট আকারে সেভ হলো!</string>
+    <string name="java_singleteacheredithomeworkactivity_failed_post">হোমওয়ার্কটি পোস্ট হয়নি! অনুগ্রহপূর্বক আবার চেষ্টা করুন</string>
+    <string name="java_singleteacheredithomeworkactivity_no_file_attached">কোন ফাইল সংযুক্ত হয়মি</string>
+    <string name="java_singleteacheredithomeworkactivity_select_subject">বিষয় নির্বাচন করুন</string>
+    <string name="java_singleteacheredithomeworkactivity_select_homework_type">হোমওয়ার্কের ধরণ নির্বাচম করুন</string>
+    <string name="java_singleteacheredithomeworkactivity_invalid_file_type">ফাইলটি অকার্যকর অবস্থায় রয়েছে</string>
 
     <!--SingleTeacherHomeworkActivity-->
-    <string name="java_singleteacherhomeworkactivity_done_by">"Done by "</string>
+    <string name="java_singleteacherhomeworkactivity_done_by">"সম্পাদন করেছে "</string>
 
     <!--StudentClassRoutineFragment-->
-    <string name="java_studentclassroutinefragment_select_day">Select day</string>
-    <string name="java_studentclassroutinefragment_no_class_available">No Class Available</string>
-    <string name="java_studentleavefragment_batch">, Batch:</string>
-    <string name="java_studentleavefragment_apply_date">"Apply Date: "</string>
-    <string name="java_studentleavefragment_duration">"Duration: "</string>
-    <string name="java_studentleavefragment_to">" to "</string>
-    <string name="java_studentleavefragment_successfully_done">Successfully done!</string>
+    <string name="java_studentclassroutinefragment_select_day">দিন নির্বাচন করুন</string>
+    <string name="java_studentclassroutinefragment_no_class_available">কোন ক্লাস পাওয়া যায়নি</string>
+    <string name="java_studentleavefragment_batch">, ব্যাচ:</string>
+    <string name="java_studentleavefragment_apply_date">"আবেদনের তারিখ: "</string>
+    <string name="java_studentleavefragment_duration">"সময়কাল: "</string>
+    <string name="java_studentleavefragment_to">" প্রতি "</string>
+    <string name="java_studentleavefragment_successfully_done">সফলভাবে করা হয়েছে!</string>
 
     <!--TeacherHomeWorkAddFragment-->
-    <string name="java_teacherhomeworkaddfragment_successfully_posted_homework">Successfully posted Homework!</string>
+    <string name="java_teacherhomeworkaddfragment_successfully_posted_homework">হোমওয়ার্কটি সফলভাবে পোস্ট করা হয়েছে!</string>
 
     <!--UIHelper-->
-    <string name="java_uihelper_error">Error</string>
-    <string name="java_uihelper_ok">OK</string>
-    <string name="java_uihelper_settings">Settings</string>
+    <string name="java_uihelper_error">ভুল</string>
+    <string name="java_uihelper_ok">ঠিক আছে</string>
+    <string name="java_uihelper_settings">সেটিংস</string>
 
     <!--UserSelectionActivity-->
-    <string name="java_userselectionactivity_register">Register</string>
-    <string name="java_userselectionactivity_free">" FREE "</string>
-    <string name="java_userselectionactivity_now">Now!</string>
+    <string name="java_userselectionactivity_register">রেজিস্টার</string>
+    <string name="java_userselectionactivity_free">" ফ্রি "</string>
+    <string name="java_userselectionactivity_now">এখনই</string>
 
     <!--UserTypeSelectionDialog-->
-    <string name="java_usertypeselectiondialog_select_user_type">Select User Type</string>
+    <string name="java_usertypeselectiondialog_select_user_type">ইউজার নির্বাচন করুন</string>
 
     <!--DialogLanguageChooser-->
-    <string name="java_dialoglanguagechooser_title">Choose your language</string>
+    <string name="java_dialoglanguagechooser_title">ভাষা নির্বাচন করুন</string>
     <string name="java_dialoglanguagechooser_lang_english">English</string>
     <string name="java_dialoglanguagechooser_lang_bangla">বাংলা</string>
-    <string name="java_dialoglanguagechooser_toast_select">You need to select at least one language.</string>
+    <string name="java_dialoglanguagechooser_toast_select">অন্তত একটি ভাষা নির্বাচন করুন</string>
 
     <!--LessonPlanView-->
-    <string name="fragment_lessonplan_view_assign_to_class">Assign to class</string>
+    <string name="fragment_lessonplan_view_assign_to_class">ক্লাসে অ্যাসাইন করুন</string>
 
     <!--SingleHomeworkActivity-->
-    <string name="activity_single_homework_btn_download">Download</string>
+    <string name="activity_single_homework_btn_download">ডাউনলোড </string>
 
     <!--MeetingFragment-->
-    <string name="fragment_meeting2_create_request">Create Request</string>
+    <string name="fragment_meeting2_create_request">রিকোয়েস্ট তৈরি করুন</string>
 
     <!--CreateMeetingRequest-->
-    <string name="activity_create_meeting_request_btn_go_back">Go Back</string>
-    <string name="activity_create_meeting_request_send_request">Send Request</string>
+    <string name="activity_create_meeting_request_btn_go_back">পিছনে</string>
+    <string name="activity_create_meeting_request_send_request">রিকোয়েস্ট পাঠান</string>
 
     <!--TeacherHomeWorkAddFragment-->
-    <string name="fragment_teacher_add_homework_btn_save_as_draft">Save as Draft</string>
+    <string name="fragment_teacher_add_homework_btn_save_as_draft">ড্রাফ্‌ট হিসেবে সেভ করুন</string> 
 
 
 </resources>
+

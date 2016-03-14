@@ -76,7 +76,7 @@
             android:textSize="14sp"
             android:textColor="@color/classtune_green_color"
             android:visibility="gone"
-            android:text="This notice has attachment" />
+            android:text="@string/fragment_notice_txt_attachment" />
 
         <com.classtune.app.schoolapp.viewhelpers.ExpandableTextView
             android:id="@+id/txt_notice_header"

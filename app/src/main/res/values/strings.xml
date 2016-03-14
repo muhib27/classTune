@@ -906,6 +906,7 @@
 
     <!--NoticeFragment--> <!--NoticeFragmentNew-->
     <string name="fragment_notice_txt_header">Notice</string>
+    <string name="fragment_notice_txt_attachment">This notice has attachment</string>
 
     <!--ParentEventFragment-->
     <string name="parent_event_layout_custom_txt_header">Events</string>
@@ -1041,6 +1042,7 @@
     <string name="fragment_syllabus_new_tap_select_batch">Tap here to select a batch</string>
     <string name="fragment_syllabus_new_txt_term_exam">Term Exam</string>
     <string name="fragment_syllabus_new_class_test">Class Test</string>
+    <string name="fragment_syllabus_new_yearly">Yearly</string>
 
     <!--InfoPageMainActivity-->
     <string name="activity_classtune_infopage_main_txt_what_is">What is</string>
