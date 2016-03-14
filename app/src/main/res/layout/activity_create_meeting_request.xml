@@ -307,29 +307,30 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/white" >
                     
-                    <ImageButton
+                    <Button
                         android:id="@+id/btnGoBack"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="38dp"
                         android:layout_weight="1"
                         android:layout_margin="10dp"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"
                         android:textSize="20sp"
-                        android:background="@drawable/btn_meeting_request_goback"/>
-                    
+                        android:text="@string/activity_create_meeting_request_btn_go_back"
+                        android:background="@drawable/btn_holder_homework"/>
                     
 
-                    <ImageButton
+                    <Button
                         android:id="@+id/btnSendMeetingRequest"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="38dp"
                         android:layout_weight="1"
                         android:layout_margin="10dp"
                         android:textColor="@android:color/white"
                         android:textStyle="bold"
                         android:textSize="20sp"
-                        android:background="@drawable/btn_meeting_request_send" />
+                        android:text="@string/activity_create_meeting_request_send_request"
+                        android:background="@drawable/btn_holder_homework" />
                     
                     
                     

@@ -60,12 +60,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
 
-            <ImageButton
+            <Button
                 android:id="@+id/btnView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/btn_lessonplan_view"/>
+                android:layout_height="38dp"
+                android:background="@drawable/btn_holder_homework"
+                android:text="@string/java_classreportteacherfragment_view"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"/>
         </LinearLayout>
 
 

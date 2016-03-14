@@ -9,14 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.classtune.app.freeversion.LessonPlanSubjectDetailsActivity;
 import com.classtune.app.R;
+import com.classtune.app.freeversion.LessonPlanSubjectDetailsActivity;
 import com.classtune.app.schoolapp.model.LessonPlanStudentParentSubject;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
@@ -227,7 +227,7 @@ public class LessonPlanStudentParent extends Fragment {
                 holder.imgViewSubjectIcon = (ImageView)convertView.findViewById(R.id.imgViewSubjectIcon);
                 holder.txtSubjectName = (TextView)convertView.findViewById(R.id.txtSubjectName);
                 holder.txtPublishDate = (TextView)convertView.findViewById(R.id.txtPublishDate);
-                holder.btnView = (ImageButton)convertView.findViewById(R.id.btnView);
+                holder.btnView = (Button)convertView.findViewById(R.id.btnView);
 
 
                 convertView.setTag(holder);
@@ -245,8 +245,7 @@ public class LessonPlanStudentParent extends Fragment {
             holder.btnView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    ImageButton btn = (ImageButton) v;
+                    Button btn = (Button) v;
                     int position = Integer.parseInt(btn.getTag().toString());
 
                     LessonPlanStudentParentSubject data = listSubject.get(position);
@@ -288,7 +287,7 @@ public class LessonPlanStudentParent extends Fragment {
             ImageView imgViewSubjectIcon;
             TextView txtSubjectName;
             TextView txtPublishDate;
-            ImageButton btnView;
+            Button btnView;
 
 
         }

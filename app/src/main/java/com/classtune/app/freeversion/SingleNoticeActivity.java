@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -54,7 +54,7 @@ public class SingleNoticeActivity extends ChildContainerActivity {
     private LinearLayout layoutDataContainer;
 
 	private LinearLayout layoutDownloadHolder;
-	private ImageButton btnDownload;
+	private Button btnDownload;
 
 
 
@@ -112,7 +112,7 @@ public class SingleNoticeActivity extends ChildContainerActivity {
         layoutDataContainer = (LinearLayout)this.findViewById(R.id.layoutDataContainer);
 
 		this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
-		this.btnDownload = (ImageButton)this.findViewById(R.id.btnDownload);
+		this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
 	}
 	
 	

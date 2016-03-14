@@ -36,11 +36,12 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtSubjectName"
+                    android:id="@+id/txtSubjectNameUpper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="18sp"
+                    android:visibility="gone"
                     android:textStyle="bold" />
 
                 <TextView

@@ -25,8 +25,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -47,7 +47,7 @@ public class AccountSettingsActivity extends ChildContainerActivity implements O
 	//private ImageView imgEditNewPass;
 	private EditText etRePass;
 	//private ImageView imgEditRePass;
-	private ImageButton saveButton;
+	private Button saveButton;
 	private TextView passwordEmainTextView;
 	private UserHelper userHelper;
 	private UIHelper uiHelper;
@@ -107,7 +107,7 @@ public class AccountSettingsActivity extends ChildContainerActivity implements O
     private void setUpEditProfileView() {
 		passwordEmainTextView = (TextView) findViewById(R.id.tv_pass_email);
 		passwordEmainTextView.setText(userHelper.getUser().getEmail());
-		saveButton = (ImageButton)findViewById(R.id.save_btn);
+		saveButton = (Button)findViewById(R.id.save_btn);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override

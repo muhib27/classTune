@@ -146,21 +146,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageButton
+                <Button
                     android:id="@+id/btnDeleteLesson"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_alignParentLeft="true"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/delete_lesson_deactive" />
+                    android:background="@drawable/delete_lesson_deactive" />
 
-                <ImageButton
+                <Button
                     android:id="@+id/btnAssignLesson"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_alignParentRight="true"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/assign_class_deactive" />
+                    android:textColor="@color/gray_assign_text"
+                    android:text="@string/fragment_lessonplan_view_assign_to_class"
+
+                    android:background="@drawable/assign_class_deactive" />
             </RelativeLayout>
 
             <RelativeLayout

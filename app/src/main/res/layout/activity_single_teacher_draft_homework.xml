@@ -98,10 +98,13 @@
                 android:layout_margin="10dp"
                 android:visibility="gone" >
 
-                <ImageButton
+                <Button
                     android:id="@+id/btnDownload"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="@string/activity_single_homework_btn_download"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
                     android:background="@drawable/btn_download" />
             </LinearLayout>
 

@@ -34,6 +34,8 @@
 	<color name="bg_disable">#ecedee</color>
 	<color name="bg_row_odd">#F4F6F7</color>
 	<color name="search_container_tap">#e7ecee</color>
+
+	<color name="gray_assign_text">#d9dcde</color>
 	
 	<color name="total_class">#11b4a7</color>
 	<color name="present_class">#952db3</color>

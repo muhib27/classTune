@@ -281,24 +281,32 @@
             android:gravity="center"
             android:layout_marginTop="15dp" >
 
-            <ImageButton
+            <Button
                 android:id="@+id/btn_save_draft_homework"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:layout_weight="1"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/btn_save_draft" />
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="@string/fragment_teacher_add_homework_btn_save_as_draft"
+                android:background="@drawable/btn_holder_homework" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/btn_publish_homework"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:layout_weight="1"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/btn_publish" />
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="@string/activity_single_teacher_draft_homework_btn_publish"
+                android:background="@drawable/btn_holder_homework" />
         </LinearLayout>
     </LinearLayout>
 

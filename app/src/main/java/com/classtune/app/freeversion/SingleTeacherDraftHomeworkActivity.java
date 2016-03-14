@@ -12,7 +12,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -59,7 +58,7 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 	private TeacherHomeworkData data;
 	private Gson gson;
 	
-	private ImageButton btnDownload;
+	private Button btnDownload;
 	private LinearLayout layoutDownloadHolder;
 
 	private Button btnPublish;
@@ -107,7 +106,7 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 		
 		this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
 		this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
-		this.btnDownload = (ImageButton)this.findViewById(R.id.btnDownload);
+		this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
 		this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
 
 		this.btnPublish = (Button)this.findViewById(R.id.btnPublish);

@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -66,8 +67,8 @@ public class CreateMeetingRequest extends ChildContainerActivity {
 
     private List<StudentParent> listStudentParent = new ArrayList<StudentParent>();
 
-    private ImageButton btnGoBack;
-    private ImageButton btnSendMeetingRequest;
+    private Button btnGoBack;
+    private Button btnSendMeetingRequest;
 
     private LinearLayout layoutSelectBatchSegmnent;
     private TextView txtHeaderParent;
@@ -114,8 +115,8 @@ public class CreateMeetingRequest extends ChildContainerActivity {
 
         this.txtDescription = (EditText) this.findViewById(R.id.txtDescription);
 
-        this.btnGoBack = (ImageButton) this.findViewById(R.id.btnGoBack);
-        this.btnSendMeetingRequest = (ImageButton) this.findViewById(R.id.btnSendMeetingRequest);
+        this.btnGoBack = (Button) this.findViewById(R.id.btnGoBack);
+        this.btnSendMeetingRequest = (Button) this.findViewById(R.id.btnSendMeetingRequest);
 
         this.layoutSelectBatchSegmnent = (LinearLayout) this.findViewById(R.id.layoutSelectBatchSegmnent);
         this.txtHeaderParent = (TextView) this.findViewById(R.id.txtHeaderParent);

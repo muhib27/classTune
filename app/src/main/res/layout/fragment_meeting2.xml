@@ -143,7 +143,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_create_meeting_request"
-            android:textColor="@android:color/white"
+            android:textColor="@color/text_btn_create_meeting_request"
+            android:textStyle="bold"
+            android:text="@string/fragment_meeting2_create_request"
             android:textSize="16sp" />
     </LinearLayout>
 

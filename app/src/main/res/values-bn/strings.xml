@@ -20,7 +20,7 @@
     <string-array name="free_settings_text_log_in">
         <item>Account Settings</item>
         <item>Terms \u0026 Policy</item>
-        <item>ভাষা পরিবর্তন করুন</item>
+        <item>Choose Language</item>
     </string-array>
     <string-array name="diary_images_student">
         <item>home</item>
@@ -1625,7 +1625,23 @@
     <string name="java_dialoglanguagechooser_title">Choose your language</string>
     <string name="java_dialoglanguagechooser_lang_english">English</string>
     <string name="java_dialoglanguagechooser_lang_bangla">বাংলা</string>
-    <string name="java_dialoglanguagechooser_toast_select">কমপক্ষে একটি ভাষা সিলেক্ট করুন</string>
+    <string name="java_dialoglanguagechooser_toast_select">You need to select at least one language.</string>
+
+    <!--LessonPlanView-->
+    <string name="fragment_lessonplan_view_assign_to_class">Assign to class</string>
+
+    <!--SingleHomeworkActivity-->
+    <string name="activity_single_homework_btn_download">Download</string>
+
+    <!--MeetingFragment-->
+    <string name="fragment_meeting2_create_request">Create Request</string>
+
+    <!--CreateMeetingRequest-->
+    <string name="activity_create_meeting_request_btn_go_back">Go Back</string>
+    <string name="activity_create_meeting_request_send_request">Send Request</string>
+
+    <!--TeacherHomeWorkAddFragment-->
+    <string name="fragment_teacher_add_homework_btn_save_as_draft">Save as Draft</string>
 
 
 </resources>

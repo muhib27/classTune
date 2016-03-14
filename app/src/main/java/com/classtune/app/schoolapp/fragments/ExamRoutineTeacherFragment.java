@@ -48,6 +48,7 @@ public class ExamRoutineTeacherFragment extends Fragment {
 
     private TextView txtMessage;
     private TextView txtDate;
+    private TextView txtSubjectNameUpper;
 
 
     @Override
@@ -86,6 +87,7 @@ public class ExamRoutineTeacherFragment extends Fragment {
 
         txtMessage = (TextView)view.findViewById(R.id.txtMessage);
         txtDate = (TextView)view.findViewById(R.id.txtDate);
+        txtSubjectNameUpper = (TextView)view.findViewById(R.id.txtSubjectNameUpper);
 
         txtDate.setText(AppUtility.getCurrentDate(AppUtility.DATE_FORMAT_APP));
     }

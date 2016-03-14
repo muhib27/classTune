@@ -1627,5 +1627,21 @@
     <string name="java_dialoglanguagechooser_lang_bangla">বাংলা</string>
     <string name="java_dialoglanguagechooser_toast_select">You need to select at least one language.</string>
 
+    <!--LessonPlanView-->
+    <string name="fragment_lessonplan_view_assign_to_class">Assign to class</string>
+
+    <!--SingleHomeworkActivity-->
+    <string name="activity_single_homework_btn_download">Download</string>
+
+    <!--MeetingFragment-->
+    <string name="fragment_meeting2_create_request">Create Request</string>
+
+    <!--CreateMeetingRequest-->
+    <string name="activity_create_meeting_request_btn_go_back">Go Back</string>
+    <string name="activity_create_meeting_request_send_request">Send Request</string>
+
+    <!--TeacherHomeWorkAddFragment-->
+    <string name="fragment_teacher_add_homework_btn_save_as_draft">Save as Draft</string>
+
 
 </resources>

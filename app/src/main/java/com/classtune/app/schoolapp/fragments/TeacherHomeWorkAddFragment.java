@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -32,8 +33,8 @@ import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
-import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
+import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.ipaulpro.afilechooser.utils.FileUtils;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -272,10 +273,10 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 		((CustomButton) view.findViewById(R.id.btn_teacher_ah_due_date))
 				.setOnClickListener(this);
-		((ImageButton) view.findViewById(R.id.btn_publish_homework))
+		((Button) view.findViewById(R.id.btn_publish_homework))
 				.setOnClickListener(this);
 
-		((ImageButton) view.findViewById(R.id.btn_save_draft_homework))
+		((Button) view.findViewById(R.id.btn_save_draft_homework))
 				.setOnClickListener(this);
 
 		layoutDate = (LinearLayout)view.findViewById(R.id.layoutDate);

@@ -11,7 +11,7 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -67,7 +67,7 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 	private HomeworkData data;
 	private Gson gson;
 	
-	private ImageButton btnDownload;
+	private Button btnDownload;
 	private LinearLayout layoutDownloadHolder;
 
     private RelativeLayout layoutMessage;
@@ -137,7 +137,7 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 		this.btnReminder = (CustomButton) this.findViewById(R.id.btn_reminder);
 		this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
 		this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
-		this.btnDownload = (ImageButton)this.findViewById(R.id.btnDownload);
+		this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
 		this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
 
         layoutMessage = (RelativeLayout)this.findViewById(R.id.layoutMessage);

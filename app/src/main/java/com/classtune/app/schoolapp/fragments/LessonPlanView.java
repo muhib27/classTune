@@ -1,5 +1,6 @@
 package com.classtune.app.schoolapp.fragments;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -25,8 +28,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.classtune.app.freeversion.SingleLessonPlan;
 import com.classtune.app.R;
+import com.classtune.app.freeversion.SingleLessonPlan;
 import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.LessonPlan;
 import com.classtune.app.schoolapp.model.LessonPlanCategory;
@@ -96,8 +99,8 @@ public class LessonPlanView extends Fragment {
     private List<String> listSelectedId;
 
 
-    private ImageButton btnDeleteLesson;
-    private ImageButton btnAssignLesson;
+    private Button btnDeleteLesson;
+    private Button btnAssignLesson;
 
     private TextView txtMessage;
 
@@ -182,29 +185,29 @@ public class LessonPlanView extends Fragment {
 
         layoutSelectCategoryActionHolder = (LinearLayout)view.findViewById(R.id.layoutSelectCategoryActionHolder);
 
-        layoutSelectCategoryActionHolder.setOnClickListener(new View.OnClickListener(){
+        layoutSelectCategoryActionHolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 initApiCallCategory();
             }
         });
 
-        btnDeleteLesson = (ImageButton)view.findViewById(R.id.btnDeleteLesson);
+        btnDeleteLesson = (Button)view.findViewById(R.id.btnDeleteLesson);
 
         btnDeleteLesson.setEnabled(false);
 
-        btnDeleteLesson.setOnClickListener(new View.OnClickListener(){
+        btnDeleteLesson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(listSelectedId.size() > 0)
+                if (listSelectedId.size() > 0)
                     showCustomDialogConfirmationDelete(getActivity().getString(R.string.java_lessonplanview_lesson_plan), getActivity().getString(R.string.java_lessonplanview_delete), getActivity().getString(R.string.java_lessonplanview_content_delete), R.drawable.lessonplan_icon_red, getActivity());
 
 
             }
         });
 
-        btnAssignLesson = (ImageButton)view.findViewById(R.id.btnAssignLesson);
+        btnAssignLesson = (Button)view.findViewById(R.id.btnAssignLesson);
 
         btnAssignLesson.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -768,7 +771,7 @@ public class LessonPlanView extends Fragment {
 
                 listSelectedId.clear();
                 btnDeleteLesson.setEnabled(false);
-                btnDeleteLesson.setImageResource(R.drawable.delete_lesson_deactive);
+                btnDeleteLesson.setBackgroundResource(R.drawable.delete_lesson_deactive);
 
 
             } else {
@@ -835,7 +838,8 @@ public class LessonPlanView extends Fragment {
 
                 listSelectedId.clear();
                 btnAssignLesson.setEnabled(false);
-                btnAssignLesson.setImageResource(R.drawable.assign_class_deactive);
+                btnAssignLesson.setBackgroundResource(R.drawable.assign_class_deactive);
+                btnAssignLesson.setTextColor(ContextCompat.getColor(getActivity(), R.color.gray_assign_text));
 
 
             } else {
@@ -1045,20 +1049,23 @@ public class LessonPlanView extends Fragment {
                     if(listSelectedId.size() > 0)
                     {
                         btnDeleteLesson.setEnabled(true);
-                        btnDeleteLesson.setImageResource(R.drawable.btn_delete_lesson);
+                        //btnDeleteLesson.setImageResource(R.drawable.btn_delete_lesson);
+                        btnDeleteLesson.setBackgroundResource(R.drawable.btn_delete_lesson);
 
 
 
                         btnAssignLesson.setEnabled(true);
-                        btnAssignLesson.setImageResource(R.drawable.btn_assign_class);
+                        btnAssignLesson.setBackgroundResource(R.drawable.btn_assign_class);
+                        btnAssignLesson.setTextColor(Color.BLACK);
                     }
                     else
                     {
                         btnDeleteLesson.setEnabled(false);
-                        btnDeleteLesson.setImageResource(R.drawable.delete_lesson_deactive);
+                        btnDeleteLesson.setBackgroundResource(R.drawable.delete_lesson_deactive);
 
                         btnAssignLesson.setEnabled(false);
-                        btnAssignLesson.setImageResource(R.drawable.assign_class_deactive);
+                        btnAssignLesson.setBackgroundResource(R.drawable.assign_class_deactive);
+                        btnAssignLesson.setTextColor(ContextCompat.getColor(getActivity(), R.color.gray_assign_text));
                     }
 
 
