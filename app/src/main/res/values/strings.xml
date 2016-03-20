@@ -15,7 +15,7 @@
     <string-array name="free_settings_images_log_in">
         <item>account_settings</item>
         <item>terms_and_policy</item>
-        <item>terms_and_policy</item>
+        <item>multiple_lang</item>
     </string-array>
     <string-array name="free_settings_text_log_in">
         <item>Account Settings</item>
@@ -705,7 +705,7 @@
     <string name="classtune_registration_teacher_position_title">Select Job Category First</string>
     <string name="title_activity_single_report_card_subject">SingleReportCardSubject</string>
 
-    <!--New work for language support-->
+    <!--New work for multiple_lang_normal support-->
 
 
     <!--User Type Selection-->

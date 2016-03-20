@@ -18,9 +18,9 @@
         <item>terms_and_policy</item>
     </string-array>
     <string-array name="free_settings_text_log_in">
-        <item>Account Settings</item>
-        <item>Terms \u0026 Policy</item>
-        <item>Choose Language</item>
+        <item>অ্যাকাউন্ট সেটিংস</item>
+        <item>শর্তাবলী</item>
+        <item>ভাষা নির্বাচন করুন</item>
     </string-array>
     <string-array name="diary_images_student">
         <item>home</item>
@@ -705,7 +705,7 @@
     <string name="classtune_registration_teacher_position_title">প্রথমে জব ক্যাটাগরি নির্বাচন করুন</string>
     <string name="title_activity_single_report_card_subject">একক রিপোর্ট কার্ড বিষয়</string>
 
-    <!--New work for language support-->
+    <!--New work for multiple_lang_normal support-->
 
 
     <!--User Type Selection-->
