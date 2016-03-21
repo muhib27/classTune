@@ -201,36 +201,82 @@
                     android:layout_weight="1"
                     android:background="#ebeced">
 
-                    <LinearLayout
-                        android:orientation="vertical"
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_margin="20dp"
-                        android:gravity="right">
+                        android:layout_height="match_parent">
 
-                        <TextView
-                            android:id="@+id/txtMember"
+                        <LinearLayout
+                            android:orientation="vertical"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/activity_userselection_layout2_txt_already_member"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:textSize="20sp" />
-                        <Button
-                            android:id="@+id/btnSignIn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="30dp"
-                            android:paddingRight="30dp"
-                            android:layout_marginTop="10dp"
-                            android:textSize="18sp"
-                            android:text="@string/activity_userselection_layout2_btn_log_in"
-                            android:textStyle="bold"
-                            android:textColor="@drawable/classtune_btn_user_selection_signin"
-                            android:background="@drawable/classtune_btn_background_user_selection_signin"/>
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="20dp"
+                            android:layout_alignParentRight="true"
+                            android:gravity="right">
 
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/txtMember"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/activity_userselection_layout2_txt_already_member"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:textSize="20sp" />
+                            <Button
+                                android:id="@+id/btnSignIn"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:layout_marginTop="10dp"
+                                android:textSize="18sp"
+                                android:text="@string/activity_userselection_layout2_btn_log_in"
+                                android:textStyle="bold"
+                                android:textColor="@drawable/classtune_btn_user_selection_signin"
+                                android:background="@drawable/classtune_btn_background_user_selection_signin"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="20dp"
+                            android:layout_alignParentLeft="true"
+                            android:gravity="left">
+
+                            <TextView
+                                android:id="@+id/txtMemberNotiing"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/activity_userselection_layout2_txt_already_member"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:visibility="invisible"
+                                android:textSize="20sp" />
+
+
+
+                            <Button
+                                android:id="@+id/btnChooseLanguage"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:textSize="18sp"
+                                android:text="@string/activity_userselection_layout2_btn_lang"
+                                android:textStyle="bold"
+                                android:textColor="@drawable/classtune_btn_user_selection_signin"
+                                android:background="@drawable/classtune_btn_background_user_selection_signin"/>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
 
                 </LinearLayout>
 

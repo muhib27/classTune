@@ -2,10 +2,12 @@ package com.classtune.app.schoolapp.classtune;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,6 +19,9 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.LoginActivity;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.SchoolApp;
+import com.classtune.app.schoolapp.viewhelpers.DialogLanguageChooser;
+
+import java.util.Locale;
 
 /**
  * Created by BLACK HAT on 08-Nov-15.
@@ -34,6 +39,7 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
     private Button btnSignIn;
     private ImageButton btnAbout;
     private TextView txtMidHeader;
+    private Button btnChooseLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,7 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
         btnSignIn = (Button)this.findViewById(R.id.btnSignIn);
         btnAbout = (ImageButton)this.findViewById(R.id.btnAbout);
         txtMidHeader = (TextView)this.findViewById(R.id.txtMidHeader);
+        btnChooseLanguage = (Button)this.findViewById(R.id.btnChooseLanguage);
     }
 
     private void initAction()
@@ -97,6 +104,31 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
             public void onClick(View view) {
                 Intent intent = new Intent(UserSelectionActivity.this, InfoPageMainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btnChooseLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogLanguageChooser dlc = new DialogLanguageChooser(UserSelectionActivity.this, new DialogLanguageChooser.IDialogLanguageOkButtonListener() {
+                    @Override
+                    public void onOkButtonPresse(String localIdentifier) {
+                        Log.e("HOME_PAGE_FREE", "ok clicked");
+
+
+                        String languageToLoad = localIdentifier; // your language
+                        Locale locale = new Locale(languageToLoad);
+                        Locale.setDefault(locale);
+                        Configuration config = new Configuration();
+                        config.locale = locale;
+                        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+                        Intent refresh = new Intent(UserSelectionActivity.this, UserSelectionActivity.class);
+                        startActivity(refresh);
+                        finish();
+                    }
+                });
+                dlc.show();
             }
         });
     }

@@ -1116,6 +1116,7 @@
     <string name="activity_userselection_layout2_txt_teacher">Teacher</string>
     <string name="activity_userselection_layout2_txt_already_member">Already a member?</string>
     <string name="activity_userselection_layout2_btn_log_in">Log in</string>
+    <string name="activity_userselection_layout2_btn_lang">Language</string>
 
     <!--PopupDialogAssessmentOk-->
     <string name="popup_layout_assessment_ok_zero_by_zero">0/0</string>
