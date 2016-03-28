@@ -267,7 +267,7 @@
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
                                 android:textSize="18sp"
-                                android:text="@string/activity_userselection_layout2_btn_lang"
+                                android:text="@string/java_dialoglanguagechooser_lang_english"
                                 android:textStyle="bold"
                                 android:textColor="@drawable/classtune_btn_user_selection_signin"
                                 android:background="@drawable/classtune_btn_background_user_selection_signin"/>

@@ -40,6 +40,7 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
     private ImageButton btnAbout;
     private TextView txtMidHeader;
     private Button btnChooseLanguage;
+    private String localIdentifier = "en";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,8 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_userselection_layout2);
+
+        localIdentifier = Locale.getDefault().getLanguage();
         initView();
         initAction();
     }
@@ -107,6 +110,8 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
             }
         });
 
+
+
         btnChooseLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,6 +136,13 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
                 dlc.show();
             }
         });
+
+        if(localIdentifier.equals("en")){
+            btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_english));
+        }
+        else if(localIdentifier.equals("bn")){
+            btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_bangla));
+        }
     }
 
     @Override

@@ -1050,6 +1050,7 @@
 
     <!--LeaveApplicationFragment-->
     <string name="leave_application_layout_txt_header">ছুটির আবেদন</string>
+    <string name="leave_application_layout_message_date">শুরুর তারিখ শেষের তারিখের আগে হতে হবে</string>
 
 
     <!--LeaveApplicationFragment-->
@@ -1644,7 +1645,10 @@
     <string name="activity_create_meeting_request_send_request">অনুরোধ প্রেরণ করুন</string>
 
     <!--TeacherHomeWorkAddFragment-->
-    <string name="fragment_teacher_add_homework_btn_save_as_draft">খসড়া আকারে সেভ করুন</string> 
+    <string name="fragment_teacher_add_homework_btn_save_as_draft">খসড়া আকারে সেভ করুন</string>
+
+    <!--CreateStudentActivity-->
+    <string name="activity_create_student2_message_filter">কেবলমাত্র A-Z, a-z, 0-9, \'_\' , \'-\' এবং \'.\' ব্যবহার করুন</string>
 
 
 </resources>

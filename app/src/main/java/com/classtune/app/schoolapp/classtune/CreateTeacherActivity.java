@@ -10,6 +10,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.CompleteProfileActivityContainer;
@@ -244,8 +247,37 @@ public class CreateTeacherActivity extends FragmentActivity implements UserAuthL
 
     }
 
+    InputFilter filter = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            if (end > start) {
+
+                char[] acceptedChars = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+                        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '_', '-'};
+
+                for (int index = start; index < end; index++) {
+                    if (!new String(acceptedChars).contains(String.valueOf(source.charAt(index)))) {
+                        Toast.makeText(CreateTeacherActivity.this, R.string.activity_create_student2_message_filter, Toast.LENGTH_SHORT).show();
+
+                        if(source.length()>0) {
+                            String subSequence = String.valueOf(source.subSequence(0, source.length() - 1));
+                            return subSequence;
+                        }
+
+                        else
+                            return source.toString();
+                    }
+                }
+            }
+            return null;
+        }
+    };
+
     private void initAction()
     {
+
+        txtEmployeeNumber.setFilters(new InputFilter[]{filter});
 
         txtEmployeeNumber.addTextChangedListener(new TextWatcher() {
 

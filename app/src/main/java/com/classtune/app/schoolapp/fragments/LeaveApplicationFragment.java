@@ -38,6 +38,7 @@ import com.ipaulpro.afilechooser.utils.FileUtils;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,7 +67,12 @@ public class LeaveApplicationFragment extends Fragment implements
 	private EditText etLeaveSubject;
 	
 	private TextView txtDate;
-	
+
+	private LinearLayout layoutStartDate;
+	private LinearLayout layoutEndDate;
+	private LinearLayout layoutReasonText;
+
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -110,6 +116,13 @@ public class LeaveApplicationFragment extends Fragment implements
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
+
+		if(isEndDateGreaterThanStartDate(startDateFormatServerString, endDateFormatServerString)==false){
+			Toast.makeText(getActivity(), R.string.leave_application_layout_message_date, Toast.LENGTH_SHORT).show();
+			return false;
+		}
+
+
 		return true;
 	}
 
@@ -276,7 +289,14 @@ public class LeaveApplicationFragment extends Fragment implements
 	}
 
 	private void intiviews(View view) {
-		
+
+		layoutStartDate = (LinearLayout)view.findViewById(R.id.layoutStartDate);
+		layoutStartDate.setOnClickListener(this);
+		layoutEndDate = (LinearLayout)view.findViewById(R.id.layoutEndDate);
+		layoutEndDate.setOnClickListener(this);
+		layoutReasonText = (LinearLayout)view.findViewById(R.id.layoutReasonText);
+		layoutReasonText.setOnClickListener(this);
+
 		leaveDescriptionEditText = (EditText) view
 				.findViewById(R.id.et_leave_description);
 		leaveReasonTextView = (TextView) view
@@ -375,7 +395,12 @@ public class LeaveApplicationFragment extends Fragment implements
 		case R.id.btn_leave_start_date:
 			showStartDatepicker();
 			break;
+		case R.id.layoutStartDate:
+			showStartDatepicker();
+			break;
 		case R.id.btn_leave_end_date:
+			showEndDatepicker();
+		case R.id.layoutEndDate:
 			showEndDatepicker();
 			break;
 		case R.id.btn_leave_apply:
@@ -386,6 +411,9 @@ public class LeaveApplicationFragment extends Fragment implements
 		case R.id.btn_leave_reason:
 			showStudentPicker(PickerType.LEAVE);
 			break;
+		case R.id.layoutReasonText:
+			showStudentPicker(PickerType.LEAVE);
+				break;
 		default:
 			break;
 		}
@@ -477,4 +505,25 @@ public class LeaveApplicationFragment extends Fragment implements
 			endDateFormatServerString = dateFormatServer;
 		}
 	};
+
+
+	private boolean isEndDateGreaterThanStartDate(String startDate, String endDate){
+
+		SimpleDateFormat formatter = new SimpleDateFormat(AppUtility.DATE_FORMAT_SERVER);
+		Date date1 = null;
+		Date date2 = null;
+		try {
+			date1 = formatter.parse(startDate);
+			date2 = formatter.parse(endDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		if (date1.compareTo(date2)<=0) {
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 }

@@ -1050,6 +1050,7 @@
 
     <!--LeaveApplicationFragment-->
     <string name="leave_application_layout_txt_header">Leave Application</string>
+    <string name="leave_application_layout_message_date">Start date must be earlier than end date!</string>
 
 
     <!--LeaveApplicationFragment-->
@@ -1463,10 +1464,10 @@
     <string name="java_myalarm_new_invite">New Invite!</string>
     <string name="java_myleavefragment_apply_date">Apply Date: </string>
     <string name="java_myleavefragment_duration">Duration: </string>
-    <string name="java_myleavefragment_declined">declined</string>
+    <string name="java_myleavefragment_declined">Declined</string>
     <string name="java_myleavefragment_to"> to </string>
-    <string name="java_myleavefragment_accepted">accepted</string>
-    <string name="java_myleavefragment_pending">pending</string>
+    <string name="java_myleavefragment_accepted">Accepted</string>
+    <string name="java_myleavefragment_pending">Pending</string>
 
     <!--NoticeFragment-->
     <string name="java_noticefragment_acknowledge">Acknowledged</string>
@@ -1645,6 +1646,9 @@
 
     <!--TeacherHomeWorkAddFragment-->
     <string name="fragment_teacher_add_homework_btn_save_as_draft">Save as Draft</string>
+
+    <!--CreateStudentActivity-->
+    <string name="activity_create_student2_message_filter">Only A-Z, a-z, 0-9, \'_\' , \'-\' and \'.\' are accepted.</string>
 
 
 </resources>
