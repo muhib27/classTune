@@ -1639,7 +1639,7 @@
     <string name="activity_single_homework_btn_download">Download</string>
 
     <!--MeetingFragment-->
-    <string name="fragment_meeting2_create_request">Create Request</string>
+    <string name="fragment_meeting2_create_request">สร้างการร้องขอ</string>
 
     <!--CreateMeetingRequest-->
     <string name="activity_create_meeting_request_btn_go_back">Go Back</string>

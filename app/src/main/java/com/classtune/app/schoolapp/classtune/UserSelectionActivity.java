@@ -143,6 +143,9 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
         else if(localIdentifier.equals("bn")){
             btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_bangla));
         }
+        else if(localIdentifier.equals("th")){
+            btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_thai));
+        }
     }
 
     @Override

@@ -43,6 +43,16 @@
             android:layout_marginTop="10dp"
             android:id="@+id/checkBoxBangla" />
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/java_dialoglanguagechooser_lang_thai"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/checkBoxThai" />
+
+
+
     </LinearLayout>
 
     <LinearLayout

@@ -1629,6 +1629,7 @@
     <string name="java_dialoglanguagechooser_title">ভাষা নির্বাচন করুন</string>
     <string name="java_dialoglanguagechooser_lang_english">English</string>
     <string name="java_dialoglanguagechooser_lang_bangla">বাংলা</string>
+    <string name="java_dialoglanguagechooser_lang_thai">ไทย</string>
     <string name="java_dialoglanguagechooser_toast_select">অন্তত একটি ভাষা নির্বাচন করুন</string>
 
     <!--LessonPlanView-->
