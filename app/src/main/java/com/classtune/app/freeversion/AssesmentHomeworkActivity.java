@@ -464,8 +464,8 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 		params.put("start_time", currentDate);
 		params.put("total_score", String.valueOf(getScore()));
 		params.put("total_time", String.valueOf(getEllaspsedSeconds()));
-		
-		
+
+
 		
 		
 		if(listAssessmentQuestionSummery.size() < listAssessmentQuestion.size())
@@ -519,6 +519,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 		
 		AppRestClient.post(URLHelper.URL_HOMEWORK_ASSESSMENT_ADDMARK, params,
 				assessmentAddMarkHandler);
+
 	}
 	
 	
