@@ -28,6 +28,7 @@ import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
+import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
@@ -38,6 +39,8 @@ import com.ipaulpro.afilechooser.utils.FileUtils;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -79,6 +82,11 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
     private LinearLayout layoutSelectSubject;
     private LinearLayout layoutSelectType;
+    private String mimeType = "";
+    private String fileSize = "";
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -231,6 +239,22 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
         params.put(RequestKeyHelper.HOMEWORK_DUEDATE, dateFormatServerString);
         params.put("id", id);
 
+        if(!selectedFilePath.equalsIgnoreCase(""))
+        {
+            File myFile= new File(selectedFilePath);
+            try {
+                params.put("attachment_file_name", myFile);
+
+                Log.e("FILE_NAME", "is: " + myFile.toString());
+            } catch(FileNotFoundException e) {}
+        }
+
+        if(!TextUtils.isEmpty(mimeType)){
+            params.put("mime_type", mimeType);
+        }
+        if(!TextUtils.isEmpty(fileSize)){
+            params.put("file_size", fileSize);
+        }
 
 
         AppRestClient.post(URLHelper.URL_TEACHER_ADD_HOMEWORK, params,
@@ -522,6 +546,13 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                                 selectedFilePath = path;
                                 choosenFileTextView
                                         .setText(getFileNameFromPath(selectedFilePath));
+
+                                mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                                File myFile= new File(selectedFilePath);
+                                fileSize = String.valueOf(myFile.length());
+
+                                Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                                Log.e("FILE_SIZE", "is: "+fileSize);
 
                             } catch (Exception e) {
                                 Log.e("FileSelectorTestAtivity",

@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -384,6 +385,15 @@ public class SchoolApp extends Application {
 		intent.putExtra(key, data);
 		intent.setAction("com.datacontext.CUSTOM_INTENT");
 		sendBroadcast(intent);
+	}
+
+	public String getMimeType(String url) {
+		String type = null;
+		String extension = MimeTypeMap.getFileExtensionFromUrl(url);
+		if (extension != null) {
+			type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+		}
+		return type;
 	}
 
 }
