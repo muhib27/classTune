@@ -1590,7 +1590,7 @@
     <string name="java_singleteacheredithomeworkactivity_subject_title_cannot_empty">Subject title cannot be Empty!</string>
     <string name="java_singleteacheredithomeworkactivity_homework_description_cannot_empty">Homework description cannot be Empty!</string>
     <string name="java_singleteacheredithomeworkactivity_choose_due_date">Please Choose a due date for Homework!</string>
-    <string name="java_singleteacheredithomeworkactivity_saved_as_draft">Successfully saved homework as draft!</string>
+    <string name="java_singleteacheredithomeworkactivity_saved_as_draft">Successfully saved as draft!</string>
     <string name="java_singleteacheredithomeworkactivity_failed_post">Failed to post Homework! Please try again.</string>
     <string name="java_singleteacheredithomeworkactivity_no_file_attached">No File Attached</string>
     <string name="java_singleteacheredithomeworkactivity_select_subject">Select your Subject</string>

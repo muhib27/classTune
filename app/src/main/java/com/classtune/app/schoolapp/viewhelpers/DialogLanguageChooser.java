@@ -24,7 +24,7 @@ public class DialogLanguageChooser extends Dialog {
     private Context context;
     private CheckBox checkBoxEnglish;
     private CheckBox checkBoxBangla;
-    private CheckBox checkBoxThai;
+    //private CheckBox checkBoxThai;
     private Button btnCancel;
     private Button btnOk;
 
@@ -66,9 +66,9 @@ public class DialogLanguageChooser extends Dialog {
         else if(localIdentifier.equals("bn")){
             checkBoxBangla.setChecked(true);
         }
-        else if(localIdentifier.equals("th")){
+        /*else if(localIdentifier.equals("th")){
             checkBoxThai.setChecked(true);
-        }
+        }*/
     }
 
     private void initView(){
@@ -77,12 +77,12 @@ public class DialogLanguageChooser extends Dialog {
         checkBoxEnglish.setButtonDrawable(R.drawable.check_btn);
         checkBoxBangla = (CheckBox)this.findViewById(R.id.checkBoxBangla);
         checkBoxBangla.setButtonDrawable(R.drawable.check_btn);
-        checkBoxThai = (CheckBox)this.findViewById(R.id.checkBoxThai);
-        checkBoxThai.setButtonDrawable(R.drawable.check_btn);
+        /*checkBoxThai = (CheckBox)this.findViewById(R.id.checkBoxThai);
+        checkBoxThai.setButtonDrawable(R.drawable.check_btn);*/
 
         listCheckBox.add(checkBoxEnglish);
         listCheckBox.add(checkBoxBangla);
-        listCheckBox.add(checkBoxThai);
+        //listCheckBox.add(checkBoxThai);
 
         btnCancel = (Button)this.findViewById(R.id.btnCancel);
         btnOk = (Button)this.findViewById(R.id.btnOk);
@@ -121,7 +121,7 @@ public class DialogLanguageChooser extends Dialog {
             }
         });
 
-        checkBoxThai.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        /*checkBoxThai.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
@@ -134,7 +134,7 @@ public class DialogLanguageChooser extends Dialog {
                     isSelected = false;
                 }
             }
-        });
+        });*/
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -791,7 +791,7 @@
     <string name="popup_layout_meeting_status_btn_accept">গ্রহণ</string>
 
     <!--AccountSettingsActivity-->
-    <string name="account_settings_layout_txt_user_id">ব্যবহারকারীর আইডি:</string>
+    <string name="account_settings_layout_txt_user_id">আইডি:</string>
 
     <!--LeaveApplicationDialogFragment-->
     <string name="leave_application_diolog_layout_title">ছুটির আবেদন</string>
@@ -1115,7 +1115,7 @@
     <string name="activity_userselection_layout2_im">আমি</string>
     <string name="activity_userselection_layout2_txt_parent">অভিভাবক</string>
     <string name="activity_userselection_layout2_txt_teacher">শিক্ষক</string>
-    <string name="activity_userselection_layout2_txt_already_member">ইতিমধ্যেই একজন সদস্য ?</string>
+    <string name="activity_userselection_layout2_txt_already_member">ইতোমধ্যেই সদস্য?</string>
     <string name="activity_userselection_layout2_btn_log_in">লগ ইন</string>
     <string name="activity_userselection_layout2_btn_lang">ভাষা</string>
 
@@ -1590,7 +1590,7 @@
     <string name="java_singleteacheredithomeworkactivity_subject_title_cannot_empty">বিষয়ের শিরোনাম খালি রাখা যাবে না!</string>
     <string name="java_singleteacheredithomeworkactivity_homework_description_cannot_empty">হোমওয়ার্কের বর্ণনা খালি রাখা যাবে না!</string>
     <string name="java_singleteacheredithomeworkactivity_choose_due_date">অনুগ্রহপূর্বক হোমওয়ার্ক জমাদানের তারিখ নির্বাচন করুন!</string>
-    <string name="java_singleteacheredithomeworkactivity_saved_as_draft">সফলভাবে হোমওয়ার্কটি খসড়া আকারে সেভ হলো!</string>
+    <string name="java_singleteacheredithomeworkactivity_saved_as_draft">সফলভাবে খসড়া আকারে সেভ হলো!</string>
     <string name="java_singleteacheredithomeworkactivity_failed_post">হোমওয়ার্কটি পোস্ট হয়নি! অনুগ্রহপূর্বক আবার চেষ্টা করুন</string>
     <string name="java_singleteacheredithomeworkactivity_no_file_attached">কোন ফাইল সংযুক্ত হয়মি</string>
     <string name="java_singleteacheredithomeworkactivity_select_subject">বিষয় নির্বাচন করুন</string>
@@ -1646,7 +1646,7 @@
     <string name="activity_create_meeting_request_send_request">অনুরোধ প্রেরণ করুন</string>
 
     <!--TeacherHomeWorkAddFragment-->
-    <string name="fragment_teacher_add_homework_btn_save_as_draft">খসড়া আকারে সেভ করুন</string>
+    <string name="fragment_teacher_add_homework_btn_save_as_draft">খসড়া রাখুন</string>
 
     <!--CreateStudentActivity-->
     <string name="activity_create_student2_message_filter">কেবলমাত্র A-Z, a-z, 0-9, \'_\' , \'-\' এবং \'.\' ব্যবহার করুন</string>
