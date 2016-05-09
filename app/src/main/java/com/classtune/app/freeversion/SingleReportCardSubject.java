@@ -30,7 +30,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SingleReportCardSubject extends ChildContainerActivity {
 
@@ -241,7 +243,7 @@ public class SingleReportCardSubject extends ChildContainerActivity {
 
     private ArrayList<IBarDataSet> getDataSet() {
         ArrayList<IBarDataSet> dataSets = null;
-
+        Log.e("DDD_DATA", ""+data.getMark());
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
         BarEntry v1e1 = new BarEntry(Float.parseFloat(getDecimalFormatNumber(data.getMark())), 0); // your mark
         valueSet1.add(v1e1);
@@ -372,7 +374,15 @@ public class SingleReportCardSubject extends ChildContainerActivity {
     {
         String value = "";
 
-        value = new DecimalFormat("#.##").format(number);
+        Locale locale  = new Locale("en", "UK");
+        String pattern = "#.##";
+
+        DecimalFormat decimalFormat = (DecimalFormat)
+                NumberFormat.getNumberInstance(locale);
+        decimalFormat.applyPattern(pattern);
+
+
+        value = decimalFormat.format(number);
 
         return value;
     }
@@ -389,7 +399,14 @@ public class SingleReportCardSubject extends ChildContainerActivity {
             return "0";
         }
 
-        value = new DecimalFormat("#.##").format(number);
+        Locale locale  = new Locale("en", "UK");
+        String pattern = "#.##";
+
+        DecimalFormat decimalFormat = (DecimalFormat)
+                NumberFormat.getNumberInstance(locale);
+        decimalFormat.applyPattern(pattern);
+
+        value = decimalFormat.format(number);
 
         return value;
     }

@@ -161,6 +161,11 @@ public class HomePageFreeVersion extends HomeContainerActivity {
             } else super.onBackPressed();
         } else{*/
             //Fragment homeFragment = getSupportFragmentManager().findFragmentByTag("HOME");
+
+        if(mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+            handler.postDelayed(loadRun, 500);
+        }
+        else {
             if(homeFragment == null) {
                 loadHome();
             } else {
@@ -170,6 +175,9 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                     loadHome();
                 }
             }
+        }
+
+
      //}
     }
 

@@ -85,7 +85,7 @@ public class TeacherHomeWorkDraftListFragment  extends Fragment implements UserA
         adapter = new GoodReadAdapter(getActivity());
         userHelper = new UserHelper(this, getActivity());
         allGooadReadPost.clear();
-        Log.e("SIZE OF ALLGOODREADPOST:", "" + allGooadReadPost.size());
+        Log.e("SIZE:", "" + allGooadReadPost.size());
 
         homeWorkSubject = new ArrayList<BaseType>();
 

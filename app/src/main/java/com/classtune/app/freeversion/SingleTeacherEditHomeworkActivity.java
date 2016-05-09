@@ -62,7 +62,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
     private List<BaseType> homeworkTypeCats;
     TextView subjectNameTextView, homeWorkTypeTextView, choosenFileTextView;
     private String subjectId="", homeworkTypeId="1";
-    private String selectedFilePath;
+    private String selectedFilePath = "";
     private TextView choosenDateTextView;
     private final static int REQUEST_CODE_FILE_CHOOSER = 101;
     private String dateFormatServerString = "";
