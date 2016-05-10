@@ -601,8 +601,19 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                     case TYPE_ITEM:
 
                         holder.headerTitle.setText(getcategoryName(list.get(position).getRtype()));
-                        holder.date.setText(list.get(position).getCreated());
-                        holder.titleTextVie.setText(Html.fromHtml(list.get(position).getTitle()));
+
+                        if(!TextUtils.isEmpty(list.get(position).getCreated())) {
+                            holder.date.setText(list.get(position).getCreated());
+                        }else{
+                            holder.date.setText("");
+                        }
+
+                        if(!TextUtils.isEmpty(list.get(position).getTitle())) {
+                            holder.titleTextVie.setText(Html.fromHtml(list.get(position).getTitle()));
+                        }else{
+                            holder.titleTextVie.setText("");
+                        }
+
                         setImgViewIcon(holder.icon, list.get(position).getRtype());
                         if(position%2==0){
                             holder.iconbg.setBackgroundColor(getResources().getColor(R.color.gray_4));
@@ -612,7 +623,6 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                             holder.icon.setColorFilter(Color.argb(255, 255, 255, 255));
                         }
 
-
                         if(list.get(position).getIs_read().equals("0")){
                             holder.newTextView.setVisibility(View.VISIBLE);
                         } else {
@@ -621,14 +631,20 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
                         if(!TextUtils.isEmpty(list.get(position).getBody1())) {
                             holder.body1.setText(Html.fromHtml( "\u2022 " + list.get(position).getBody1()));
+                        }else{
+                            holder.body1.setText("");
                         }
 
                         if(!TextUtils.isEmpty(list.get(position).getBody2())) {
                             holder.body2.setText(Html.fromHtml( "\u2022 " + list.get(position).getBody2()));
+                        }else{
+                            holder.body2.setText("");
                         }
 
                         if(!TextUtils.isEmpty(list.get(position).getBody3())) {
                             holder.body3.setText(Html.fromHtml( "\u2022 " + list.get(position).getBody3()));
+                        }else{
+                            holder.body3.setText("");
                         }
                         break;
                     default:
