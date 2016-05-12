@@ -294,5 +294,6 @@ public class URLHelper {
 	public final static String URL_GET_SINGLE_REPORT_CARD = "report/subjectreport";
 
 	public final static String URL_GET_APP_VERSION = "user/checkversion";
+	public final static String URL_TEACHER_IMPORTANCE_SWAP = "event/checkimportantnotice";
 	
 }

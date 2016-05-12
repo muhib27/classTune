@@ -1382,6 +1382,7 @@
     <string name="java_homepagefreeversion_something_wrong_internet">ইন্টারনেট সংযোগে কোন সমস্যা হয়েছে,  অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
     <string name="java_homepagefreeversion_device_registered">ডিভাইস রেজিস্টার করা হয়েছে, রেজিস্ট্রেশন আইডি=</string>
     <string name="java_homepagefreeversion_error">ভুল :</string>
+    <string name="java_homepagefreeversion_btn_seen">Seen</string>
 
     <!--HomeworkFragment-->
     <string name="java_homeworkfragment_choose_your_subject">বিষয় নির্বাচন করুন</string>

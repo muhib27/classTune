@@ -55,6 +55,7 @@ import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -652,6 +653,11 @@ public class HomePageFreeVersion extends HomeContainerActivity {
         }
 
         checkAppVersion();
+
+        if (userHelper.getUser().getType() == UserHelper.UserTypeEnum.PARENTS) {
+            initApiCallTeacherSwap();
+        }
+
     }
 
     private void checkAppVersion()
@@ -746,6 +752,72 @@ public class HomePageFreeVersion extends HomeContainerActivity {
         return vCode;
     }
 
+    private void initApiCallTeacherSwap()
+    {
+
+        RequestParams params = new RequestParams();
+        params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
+
+        AppRestClient.post(URLHelper.URL_TEACHER_IMPORTANCE_SWAP, params, checkTeacherSwapHandler);
+
+    }
+
+    AsyncHttpResponseHandler checkTeacherSwapHandler = new AsyncHttpResponseHandler() {
+
+        @Override
+        public void onFailure(Throwable arg0, String arg1) {
+            /*uiHelper.showMessage(arg1);
+            if (uiHelper.isDialogActive()) {
+                uiHelper.dismissLoadingDialog();
+            }*/
+        };
+
+        @Override
+        public void onStart() {
+
+            //uiHelper.showLoadingDialog("Please wait...");
+
+
+        };
+
+        @Override
+        public void onSuccess(int arg0, String responseString) {
+
+
+            //uiHelper.dismissLoadingDialog();
+
+
+            Wrapper modelContainer = GsonParser.getInstance()
+                    .parseServerResponse(responseString);
+
+            if (modelContainer.getStatus().getCode() == 200) {
+
+                JsonObject object = modelContainer.getData().get("notice").getAsJsonObject();
+                if(object != null){
+
+                    if(object.has("id")){
+                        String subject = object.get("subject").getAsString();
+                        String body = object.get("body").getAsString();
+                        String rType = object.get("rtype").getAsString();
+                        String rId = object.get("rid").getAsString();
+
+                        showTeacherSwapDialog(subject, body, rType, rId);
+                    }
+
+                }
+
+            }
+
+
+            else {
+
+            }
+
+
+
+        };
+    };
+
     private void showVersionDialog()
     {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(HomePageFreeVersion.this);
@@ -779,6 +851,86 @@ public class HomePageFreeVersion extends HomeContainerActivity {
         alert11.show();
 
     }
+
+
+    private void showTeacherSwapDialog(String subject, String body, final String rType, final String rId)
+    {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(HomePageFreeVersion.this);
+        builder1.setTitle(subject);
+        builder1.setMessage(body);
+        builder1.setCancelable(false);
+
+        builder1.setPositiveButton(
+                R.string.java_homepagefreeversion_btn_seen,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+
+                        initApiCallSeenTeacherSwap(rId, rType);
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+
+    }
+
+    private void initApiCallSeenTeacherSwap(String rId, String rType){
+        RequestParams params = new RequestParams();
+        params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
+
+
+        if(rId != null)
+        {
+            params.put("rid", rId);
+        }
+
+        if(rType != null)
+        {
+            params.put("rtype", rType);
+        }
+
+
+        AppRestClient.post(URLHelper.URL_EVENT_REMINDER, params, reminderHandler);
+    }
+
+    AsyncHttpResponseHandler reminderHandler = new AsyncHttpResponseHandler() {
+
+        @Override
+        public void onFailure(Throwable arg0, String arg1) {
+            uiHelper.showMessage(arg1);
+            if (uiHelper.isDialogActive()) {
+                uiHelper.dismissLoadingDialog();
+            }
+        };
+
+        @Override
+        public void onStart() {
+
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+
+
+        };
+
+        @Override
+        public void onSuccess(int arg0, String responseString) {
+
+
+            uiHelper.dismissLoadingDialog();
+
+
+            Wrapper modelContainer = GsonParser.getInstance()
+                    .parseServerResponse(responseString);
+
+            if (modelContainer.getStatus().getCode() == 200) {
+
+            }
+
+            else {
+
+            }
+        };
+    };
 
 
     private void showBannerPopup()

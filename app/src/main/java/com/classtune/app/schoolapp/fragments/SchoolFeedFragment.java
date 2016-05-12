@@ -94,6 +94,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         userHelper = new UserHelper(this, getActivity());
         allGooadReadPost.clear();
         //Log.e("SIZE OF ALLGOODREADPOST:", "" + allGooadReadPost.size());
+
     }
 
     @Override
@@ -1152,6 +1153,11 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                 intent.putExtra("class_name", "QuizFragment");
 
                 break;
+
+            //send case 20 to 'Task' feature
+            /*case 20:
+
+                break;*/
 
             default:
                 break;

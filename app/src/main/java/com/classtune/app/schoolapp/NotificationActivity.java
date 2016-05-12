@@ -708,6 +708,26 @@ public class NotificationActivity extends ChildContainerActivity {
 
                 break;
 
+			//send case 20 to 'Task' feature for now its going to SchoolFeedFragment as a dummy
+			case 20:
+				intent = new Intent(this, AnyFragmentLoadActivity.class);
+				intent.putExtra("class_name", "SchoolFeedFragment");
+
+				if(userHelper.getUser().getType() == UserHelper.UserTypeEnum.PARENTS)
+				{
+					Bundle extra = new Bundle();
+					extra.putString("student_id", data.getStudentId());
+					extra.putString("batch_id", data.getBatchId());
+					intent.putExtra("total_unread_extras", extra);
+				}
+
+				startActivityForResult(intent, REQUEST_REMINDER);
+
+				if(data.getIs_read().equalsIgnoreCase("0"))
+					initApiCall(data.getRid(), rType);
+
+				break;
+
 		default:
 			break;
 		}

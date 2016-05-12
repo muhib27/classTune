@@ -402,6 +402,16 @@ public class GcmIntentService extends IntentService {
 
                 break;
 
+            //send case 20 to 'Task' feature for now its going to SchoolFeedFragment as a dummy
+            case 20:
+                intent = new Intent(this, AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "SchoolFeedFragment");
+                intent.putExtra("total_unread_extras", extras);
+
+                //initApiCall(extras.getString("rid"), rType);
+
+                break;
+
             default:
 
 
