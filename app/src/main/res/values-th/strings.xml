@@ -1382,6 +1382,7 @@
     <string name="java_homepagefreeversion_something_wrong_internet">Something went wrong with your internet connectivity, pleaswe try again later.</string>
     <string name="java_homepagefreeversion_device_registered">Device registered, registration ID=</string>
     <string name="java_homepagefreeversion_error">Error :</string>
+    <string name="java_homepagefreeversion_btn_seen">Tap Here to Acknowledge</string>
 
     <!--HomeworkFragment-->
     <string name="java_homeworkfragment_choose_your_subject">Choose your subject</string>

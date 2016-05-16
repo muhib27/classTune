@@ -11,6 +11,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,14 +19,18 @@ import android.os.Handler;
 import android.provider.Settings.Secure;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.SupportV4App;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.classtune.app.R;
@@ -654,7 +659,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
 
         checkAppVersion();
 
-        if (userHelper.getUser().getType() == UserHelper.UserTypeEnum.PARENTS) {
+        if (userHelper.getUser().getType() == UserHelper.UserTypeEnum.TEACHER) {
             initApiCallTeacherSwap();
         }
 
@@ -856,22 +861,51 @@ public class HomePageFreeVersion extends HomeContainerActivity {
     private void showTeacherSwapDialog(String subject, String body, final String rType, final String rId)
     {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(HomePageFreeVersion.this);
-        builder1.setTitle(subject);
-        builder1.setMessage(body);
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.layout_teacher_swap_dialog, null);
+        builder1.setView(dialogView);
+
+        TextView txtBody = (TextView)dialogView.findViewById(R.id.txtBody);
+        txtBody.setText(body);
+        Button btnAcknowledge = (Button)dialogView.findViewById(R.id.btnAcknowledge);
+
+
+        //builder1.setTitle(subject);
+        //builder1.setMessage(body);
+
+
+        TextView title = new TextView(this);
+        title.setText(subject);
+        title.setPadding((int)AppUtility.getDeviceIndependentDpFromPixel(this, 10), (int)AppUtility.getDeviceIndependentDpFromPixel(this, 20), (int)AppUtility.getDeviceIndependentDpFromPixel(this, 10),
+                (int)AppUtility.getDeviceIndependentDpFromPixel(this, 20));
+        title.setGravity(Gravity.CENTER);
+        title.setTextColor(ContextCompat.getColor(context, R.color.classtune_green_color));
+        title.setTextSize(22);
+        title.setTypeface(null, Typeface.BOLD);
+        builder1.setCustomTitle(title);
+
         builder1.setCancelable(false);
 
-        builder1.setPositiveButton(
-                R.string.java_homepagefreeversion_btn_seen,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
 
-                        initApiCallSeenTeacherSwap(rId, rType);
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
+        final AlertDialog alert11 = builder1.create();
         alert11.show();
+
+        btnAcknowledge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert11.dismiss();
+                initApiCallSeenTeacherSwap(rId, rType);
+            }
+        });
+
+
+        int dividerId = alert11.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+        View divider = alert11.findViewById(dividerId);
+        divider.setBackgroundColor(ContextCompat.getColor(context, R.color.classtune_green_color));
+
+
+
 
     }
 
