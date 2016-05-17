@@ -98,7 +98,7 @@ public class NotificationActivity extends ChildContainerActivity {
 				//super.onFailure(arg0, responseString);
 				mSpinner.setVisibility(View.GONE);
 				Toast.makeText(NotificationActivity.this, responseString, Toast.LENGTH_LONG).show();
-				Log.e("Response FAIL", responseString.toString());
+				//Log.e("Response FAIL", responseString.toString());
 			}
 
 			@Override
@@ -710,6 +710,25 @@ public class NotificationActivity extends ChildContainerActivity {
 
 			//send case 20 to 'Task' feature for now its going to SchoolFeedFragment as a dummy
 			case 20:
+				intent = new Intent(this, AnyFragmentLoadActivity.class);
+				intent.putExtra("class_name", "SchoolFeedFragment");
+
+				if(userHelper.getUser().getType() == UserHelper.UserTypeEnum.PARENTS)
+				{
+					Bundle extra = new Bundle();
+					extra.putString("student_id", data.getStudentId());
+					extra.putString("batch_id", data.getBatchId());
+					intent.putExtra("total_unread_extras", extra);
+				}
+
+				startActivityForResult(intent, REQUEST_REMINDER);
+
+				if(data.getIs_read().equalsIgnoreCase("0"))
+					initApiCall(data.getRid(), rType);
+
+				break;
+
+			case 21:
 				intent = new Intent(this, AnyFragmentLoadActivity.class);
 				intent.putExtra("class_name", "SchoolFeedFragment");
 

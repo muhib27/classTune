@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.ChildSelectionActivity;
 import com.classtune.app.schoolapp.LoginActivity;
+import com.classtune.app.schoolapp.NotificationActivity;
 import com.classtune.app.schoolapp.model.CHILD_TYPE;
 import com.classtune.app.schoolapp.model.DrawerChildBase;
 import com.classtune.app.schoolapp.model.DrawerChildMenu;
@@ -663,6 +664,8 @@ public class HomePageFreeVersion extends HomeContainerActivity {
             initApiCallTeacherSwap();
         }
 
+        NotificationActivity.listenerActivity = this;
+
     }
 
     private void checkAppVersion()
@@ -957,6 +960,14 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                     .parseServerResponse(responseString);
 
             if (modelContainer.getStatus().getCode() == 200) {
+
+                modelContainer.getData().get("unread_total").getAsString();
+
+                SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+
+                userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
+
+                NotificationActivity.listenerActivity.onNotificationCountChangedFromActivity(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
 
             }
 

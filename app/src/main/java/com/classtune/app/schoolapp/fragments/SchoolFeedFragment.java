@@ -1154,7 +1154,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
                 break;
 
-            //send case 20 to 'Task' feature
+            //send case 20 or 21 to 'Task' feature
             /*case 20:
 
                 break;*/

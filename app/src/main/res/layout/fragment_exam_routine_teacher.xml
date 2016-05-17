@@ -39,9 +39,10 @@
                     android:id="@+id/txtSubjectNameUpper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray_1"
                     android:textSize="18sp"
-                    android:visibility="gone"
+                    android:visibility="visible"
+                    android:text="@string/title_exam_routine"
                     android:textStyle="bold" />
 
                 <TextView

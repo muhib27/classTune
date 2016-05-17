@@ -412,6 +412,15 @@ public class GcmIntentService extends IntentService {
 
                 break;
 
+            case 21:
+                intent = new Intent(this, AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "SchoolFeedFragment");
+                intent.putExtra("total_unread_extras", extras);
+
+                //initApiCall(extras.getString("rid"), rType);
+
+                break;
+
             default:
 
 
