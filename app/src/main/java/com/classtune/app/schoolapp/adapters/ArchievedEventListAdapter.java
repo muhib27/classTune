@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.SchoolEvent;
-import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,7 +25,7 @@ public class ArchievedEventListAdapter extends ArrayAdapter<SchoolEvent> {
 	static class ViewHolder {
 	    
 		TextView titleTextView;
-		ExpandableTextView descriptionTextView;
+		TextView descriptionTextView;
 		TextView eventCatName;
 		TextView txtTime, txtStartDate, txtEndDate;
 	  }
@@ -51,7 +50,7 @@ public class ArchievedEventListAdapter extends ArrayAdapter<SchoolEvent> {
 	      rowView = vi.inflate(R.layout.row_archieved_events, null);
 	      ViewHolder viewHolder = new ViewHolder();
 	      viewHolder.titleTextView = (TextView) rowView.findViewById(R.id.event_title_text);
-	      viewHolder.descriptionTextView=(ExpandableTextView)rowView.findViewById(R.id.event_details_text);
+	      viewHolder.descriptionTextView=(TextView)rowView.findViewById(R.id.event_details_text);
 	      viewHolder.eventCatName = (TextView)rowView.findViewById(R.id.event_cat_name);
 	      
 	      viewHolder.txtTime = (TextView)rowView.findViewById(R.id.txtTime);
@@ -82,6 +81,15 @@ public class ArchievedEventListAdapter extends ArrayAdapter<SchoolEvent> {
 	    
 	    holder.txtStartDate.setText(arrayStartDate[0]);
 	    holder.txtEndDate.setText(arrayEndDate[0]);
+
+		/*rowView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(context, SingleEventActivity.class);
+				intent.putExtra(AppConstant.ID_SINGLE_EVENT, items.get(position).getEventId());
+				context.startActivity(intent);
+			}
+		});*/
 	    
 	    
 	    return rowView;

@@ -180,11 +180,16 @@ public class TeacherRoutineFragment extends UserVisibleHintFragment implements O
 		
 		//nextClassDateText.setText(nextClass.getWeekDayText());
 		nextClassDateText.setText(dayName);
-		
-		
-		nextClassTimeText.setText(nextClass.getClassStartTime()+"-"+nextClass.getClassEndTime());
+
+		if(UserHelper.getRoutinePeriod() == 1){
+			nextClassTimeText.setText(nextClass.getPeriodName());
+		}else{
+			nextClassTimeText.setText(nextClass.getClassStartTime()+"-"+nextClass.getClassEndTime());
+		}
+
 		nextClassNameText.setText(nextClass.getClassName()+" "+nextClass.getBatchName());
 		nextSubjectNameText.setText(nextClass.getSubjectName());
+
 
 		if(TextUtils.isEmpty(nextClass.getClassName()) && TextUtils.isEmpty(nextClass.getBatchName()))
 			nextClassNameText.setText(getString(R.string.java_studentclassroutinefragment_no_class_available));

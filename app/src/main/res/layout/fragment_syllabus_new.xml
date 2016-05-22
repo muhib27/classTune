@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -46,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/fragment_syllabus_new_txt_header"
-                        android:textColor="@color/black"
+                        android:textColor="@color/gray_1"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -81,6 +80,8 @@
             android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:scrollbars="none" >
 
             <LinearLayout
@@ -165,6 +166,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="#eef2f3" >
 
             <LinearLayout
@@ -247,6 +250,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="vertical" >
 
             <ListView

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.RoutineTimeTable;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.UserHelper;
 
 import java.util.List;
 
@@ -67,12 +68,26 @@ public class TeacherRoutineAdapter extends BaseAdapter {
 		}
 
 		ViewHolder holder = (ViewHolder) rowView.getTag();
-		if(TextUtils.isEmpty(item.getClassName())){
-			holder.classNameText.setText(item.getTeacher_full_name());
-		}else 
-		holder.classNameText.setText(item.getClassName()+" "+item.getBatchName());
+
+		if(UserHelper.getRoutineShortCode() == 1 && !TextUtils.isEmpty(item.getTeacherShortCode())){
+			holder.classNameText.setText(item.getTeacherShortCode());
+		}
+		else{
+			if(TextUtils.isEmpty(item.getClassName())){
+				holder.classNameText.setText(item.getTeacher_full_name());
+			}else
+				holder.classNameText.setText(item.getClassName()+" "+item.getBatchName());
+		}
+
+		
 		holder.subjectNameText.setText(item.getSubjectName());
-		holder.classTimeText.setText(item.getClassStartTime()+"-"+item.getClassEndTime());
+
+		if(UserHelper.getRoutinePeriod() == 1){
+			holder.classTimeText.setText(item.getPeriodName());
+		}else{
+			holder.classTimeText.setText(item.getClassStartTime()+"-"+item.getClassEndTime());
+		}
+
 		holder.icon.setImageResource(AppUtility.getImageResourceId(item.getSubjectIconName(), activity));
 		return rowView;
 	}

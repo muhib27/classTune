@@ -24,7 +24,6 @@ import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButtonTest;
-import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -48,7 +47,7 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 	static class ViewHolder {
 	    
 		TextView titleTextView;
-		ExpandableTextView descriptionTextView;
+		TextView descriptionTextView;
 		CustomButtonTest joinInBtn;
 		CustomButtonTest remainderBtn;
 		//CustomButtonTest notGoingBtn;
@@ -78,7 +77,7 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 	      rowView = LayoutInflater.from(context).inflate(R.layout.row_upcoming_events, null);
 	      ViewHolder viewHolder = new ViewHolder();
 	      viewHolder.titleTextView = (TextView) rowView.findViewById(R.id.event_title_text);
-	      viewHolder.descriptionTextView=(ExpandableTextView)rowView.findViewById(R.id.event_details_text);
+	      viewHolder.descriptionTextView=(TextView)rowView.findViewById(R.id.event_details_text);
 	      viewHolder.joinInBtn=(CustomButtonTest)rowView.findViewById(R.id.btn_join_in);
 	      //viewHolder.notGoingBtn=(CustomButtonTest)rowView.findViewById(R.id.btn_not_going);
 	      viewHolder.remainderBtn=(CustomButtonTest)rowView.findViewById(R.id.btn_reminder);
@@ -232,6 +231,21 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 	    
 	    holder.txtStartDate.setText(arrayStartDate[0]);
 	    holder.txtEndDate.setText(arrayEndDate[0]);
+
+
+		/*rowView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(context, SingleEventActivity.class);
+				intent.putExtra(AppConstant.ID_SINGLE_EVENT, items.get(position).getEventId());
+				context.startActivity(intent);
+			}
+		});*/
+
+		if(items.get(position).getIsHoliday().equalsIgnoreCase("1") && !temp.getEventAck().equals(ackTypeEnum.JOIN_IN)){
+			setButtonState(holder.joinInBtn, R.drawable.done_normal, true, context.getString(R.string.java_singleeventactivity_joined));
+			holder.joinInBtn.setEnabled(false);
+		}
 	    
 	    return rowView;
 	  }

@@ -9,7 +9,7 @@
         android:id="@+id/top_panel_for_others"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"

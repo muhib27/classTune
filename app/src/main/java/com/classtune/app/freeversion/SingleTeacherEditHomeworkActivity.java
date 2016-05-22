@@ -536,7 +536,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                     if (data != null) {
                         // Get the URI of the selected file
                         final Uri uri = data.getData();
-                        if (uri.getLastPathSegment().endsWith("doc")
+                        /*if (uri.getLastPathSegment().endsWith("doc")
                                 || uri.getLastPathSegment().endsWith("docx")
                                 || uri.getLastPathSegment().endsWith("pdf")) {
                             try {
@@ -561,7 +561,28 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                         } else {
                             Toast.makeText(SingleTeacherEditHomeworkActivity.this, R.string.java_singleteacheredithomeworkactivity_invalid_file_type,
                                     Toast.LENGTH_SHORT).show();
-                        }
+                        }*/
+
+
+                            try {
+                                // Get the file path from the URI
+                                final String path = FileUtils.getPath(
+                                        SingleTeacherEditHomeworkActivity.this, uri);
+                                selectedFilePath = path;
+                                choosenFileTextView
+                                        .setText(getFileNameFromPath(selectedFilePath));
+
+                                mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                                File myFile= new File(selectedFilePath);
+                                fileSize = String.valueOf(myFile.length());
+
+                                Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                                Log.e("FILE_SIZE", "is: "+fileSize);
+
+                            } catch (Exception e) {
+                                Log.e("FileSelectorTestAtivity",
+                                        "File select error", e);
+                            }
                         Log.e("File", "Uri = " + uri.toString());
                     }
                 }

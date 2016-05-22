@@ -69,6 +69,12 @@ public class UserPaidInfo {
 
     @SerializedName("is_first_login")
     private String is_first_login;
+
+	@SerializedName("routine_shortcode")
+	private int routineShortcode;
+
+	@SerializedName("routine_period")
+	private int routinePeriod;
 	
 	
 	public String getSchool_name() {
@@ -241,4 +247,19 @@ public class UserPaidInfo {
         this.school_logo = school_logo;
     }
 
+	public int getRoutineShortcode() {
+		return routineShortcode;
+	}
+
+	public void setRoutineShortcode(int routineShortcode) {
+		this.routineShortcode = routineShortcode;
+	}
+
+	public int getRoutinePeriod() {
+		return routinePeriod;
+	}
+
+	public void setRoutinePeriod(int routinePeriod) {
+		this.routinePeriod = routinePeriod;
+	}
 }

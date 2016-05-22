@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_bg"
-    android:orientation="vertical"
-    android:padding="5dip" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="5dip" >
+        android:padding="5dp"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/rombus_icon"
@@ -20,6 +19,7 @@
             android:layout_centerVertical="true"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
+            android:layout_margin="5dp"
             android:src="@drawable/routine_rombus" />
 
         <LinearLayout
@@ -35,8 +35,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/routine_layout_txt_header"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textColor="@color/gray_1"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/curr_date_text"
@@ -50,7 +51,9 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_marginTop="1dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_weight=".2" >
 
         <LinearLayout
@@ -134,6 +137,8 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="2dip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="@color/classtune_green_color" />
 
     <LinearLayout
@@ -141,6 +146,8 @@
         android:layout_height="0dip"
         android:layout_marginTop="5dip"
         android:layout_weight="0.8"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:orientation="vertical" >
 
         <RelativeLayout

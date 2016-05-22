@@ -26,6 +26,10 @@ public class RoutineTimeTable {
 	private String weekDayText;
 	@SerializedName("teacher_full_name")
 	private String teacher_full_name;
+	@SerializedName("teacher_short_code")
+	private String teacherShortCode;
+	@SerializedName("period_name")
+	private String periodName;
 	
 	public String getTeacher_full_name() {
 		return teacher_full_name;
@@ -93,8 +97,20 @@ public class RoutineTimeTable {
 	public void setWeekDayText(String weekDayText) {
 		this.weekDayText = weekDayText;
 	}
-	
-	
-	
-	
+
+	public String getTeacherShortCode() {
+		return teacherShortCode;
+	}
+
+	public void setTeacherShortCode(String teacherShortCode) {
+		this.teacherShortCode = teacherShortCode;
+	}
+
+	public String getPeriodName() {
+		return periodName;
+	}
+
+	public void setPeriodName(String periodName) {
+		this.periodName = periodName;
+	}
 }

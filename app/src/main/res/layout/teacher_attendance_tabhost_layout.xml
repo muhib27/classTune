@@ -9,10 +9,7 @@
     <RelativeLayout 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="5dip"
-        android:layout_marginTop="10dip"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
+        android:padding="10dip"
         android:background="@color/white">
         
         <ImageView android:layout_width="wrap_content"
@@ -33,9 +30,10 @@
             
             <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/gray_1"
                 android:text="@string/teacher_attendance_tabhost_layout_txt_select_batch"
-                android:textSize="14sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:id="@+id/batch_text"/>
              <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

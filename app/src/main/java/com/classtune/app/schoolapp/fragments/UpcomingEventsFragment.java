@@ -2,6 +2,7 @@
 
  import android.annotation.SuppressLint;
  import android.content.Context;
+ import android.content.Intent;
  import android.os.AsyncTask;
  import android.os.Bundle;
  import android.support.v4.app.Fragment;
@@ -10,18 +11,21 @@
  import android.view.LayoutInflater;
  import android.view.View;
  import android.view.ViewGroup;
+ import android.widget.AdapterView;
  import android.widget.ListView;
  import android.widget.ProgressBar;
  import android.widget.TextView;
 
- import com.classtune.app.schoolapp.GcmIntentService;
  import com.classtune.app.R;
+ import com.classtune.app.freeversion.SingleEventActivity;
+ import com.classtune.app.schoolapp.GcmIntentService;
  import com.classtune.app.schoolapp.adapters.UpcomingEventListAdapter;
  import com.classtune.app.schoolapp.model.SchoolEvent;
  import com.classtune.app.schoolapp.model.SchoolEventWrapper;
  import com.classtune.app.schoolapp.model.UserAuthListener;
  import com.classtune.app.schoolapp.model.Wrapper;
  import com.classtune.app.schoolapp.networking.AppRestClient;
+ import com.classtune.app.schoolapp.utils.AppConstant;
  import com.classtune.app.schoolapp.utils.AppUtility;
  import com.classtune.app.schoolapp.utils.GsonParser;
  import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -58,7 +62,7 @@
      private UIHelper uiHelper;
      private UserHelper userHelper;
      private int pageNumber=1;
-     private int pageSize=3;
+     private int pageSize=10;
      private boolean isRefreshing=false;
      private boolean loading = false;
      private boolean stopLoadingData=false;
@@ -153,6 +157,16 @@
          items.clear();
          adapter=new UpcomingEventListAdapter(context, items,uiHelper);
          eventListView.setAdapter(adapter);
+
+         eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 SchoolEvent data = (SchoolEvent)adapter.getItem(position-1);
+                 Intent intent = new Intent(getActivity(), SingleEventActivity.class);
+                 intent.putExtra(AppConstant.ID_SINGLE_EVENT, data.getEventId());
+                 context.startActivity(intent);
+             }
+         });
 
      }
 

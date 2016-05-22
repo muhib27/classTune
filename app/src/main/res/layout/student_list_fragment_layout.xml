@@ -8,13 +8,10 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="10dip"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="5dip" >
+        android:padding="10dip" >
 
         <ImageView
             android:id="@+id/rombus_icon"
@@ -36,8 +33,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/student_list_fragment_layout_txt_header"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textColor="@color/gray_1"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/date_text"

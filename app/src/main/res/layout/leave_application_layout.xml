@@ -49,8 +49,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/leave_application_layout_txt_header"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textColor="@color/gray_1"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/date_text"

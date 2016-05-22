@@ -46,6 +46,9 @@ public class SchoolEvent {
 	@SerializedName("created_at")
 	private String createdAt;
 
+	@SerializedName("is_holiday")
+	private String isHoliday;
+
 
 	
 	public String getEventId() {
@@ -142,5 +145,13 @@ public class SchoolEvent {
 
 	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public void setIsHoliday(String isHoliday){
+		this.isHoliday = isHoliday;
+	}
+
+	public String getIsHoliday(){
+		return isHoliday;
 	}
 }

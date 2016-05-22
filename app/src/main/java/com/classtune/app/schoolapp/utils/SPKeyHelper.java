@@ -53,6 +53,8 @@ public class SPKeyHelper {
 	public final static String PROFILE_PICS = "PROFILE_PICS";
 	public final static String NICK_NAME = "NICK_NAME";
 	public final static String CITY = "CITY";
+	public final static String ROUTINE_SHORTCODE = "ROUTINE_SHORTCODE";
+	public final static String ROUTINE_PERIOD = "ROUTINE_PERIOD";
 	
 	
 	//$$$$$$$$$$$$$$$$$$$$$$$ CMART $$$$$$$$$$$$$$$$$$$$$$$$

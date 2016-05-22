@@ -8,9 +8,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="10dip"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -30,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="@string/teacher_homework_txt_homework"
-                android:textColor="@color/black"
+                android:textColor="@color/gray_1"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>

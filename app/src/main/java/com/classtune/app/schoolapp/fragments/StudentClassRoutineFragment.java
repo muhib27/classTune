@@ -190,10 +190,20 @@ public class StudentClassRoutineFragment extends UserVisibleHintFragment impleme
 	
 		//nextClassDateText.setText(nextClass.getWeekDayText());
 		nextClassDateText.setText(dayName);
-		
-		
-		nextClassTimeText.setText(nextClass.getClassStartTime()+"-"+nextClass.getClassEndTime());
-		nextClassNameText.setText(nextClass.getTeacher_full_name());
+
+		if(UserHelper.getRoutinePeriod() == 1){
+			nextClassTimeText.setText(nextClass.getPeriodName());
+		}else{
+			nextClassTimeText.setText(nextClass.getClassStartTime()+"-"+nextClass.getClassEndTime());
+		}
+
+		if(UserHelper.getRoutineShortCode() == 1 && !TextUtils.isEmpty(nextClass.getTeacherShortCode())){
+			nextClassNameText.setText(nextClass.getTeacherShortCode());
+		}else{
+			nextClassNameText.setText(nextClass.getTeacher_full_name());
+		}
+
+
 		nextSubjectNameText.setText(nextClass.getSubjectName());
 
 		if(TextUtils.isEmpty(nextClass.getClassName()) && TextUtils.isEmpty(nextClass.getBatchName()))

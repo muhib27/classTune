@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.fragments.SchoolFeedFragment;
@@ -257,7 +258,7 @@ public class PaidVersionHomeFragment extends Fragment implements
 		List<DrawerChildBase> diaryMenuStudent = new ArrayList<DrawerChildBase>();
 		ispaid = userHelper.getUser().getPaidInfo().getSchoolType() == 1 ? true: false;
 		for (int i = 0; i < myDiaryArrayText.length; i++) {
-			DrawerChildMenuDiary child = new DrawerChildMenuDiary();
+			final DrawerChildMenuDiary child = new DrawerChildMenuDiary();
 			child.setText(myDiaryArrayText[i]);
 			child.setId(i + "");
 			child.setImageName(myDiaryArrayImages[i]);
@@ -291,6 +292,13 @@ public class PaidVersionHomeFragment extends Fragment implements
 				iv.getBackground().setAlpha(255);
 			}
 			iv.setOnClickListener(this);
+			iv.setOnLongClickListener(new View.OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View view) {
+					Toast.makeText(getActivity(), child.getText().toString(), Toast.LENGTH_SHORT).show();
+					return true;
+				}
+			});
 			menuScrollView.addView(iv);
 		}
 

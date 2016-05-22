@@ -126,13 +126,15 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <com.classtune.app.schoolapp.viewhelpers.ExpandableTextView
+                <TextView
                     android:id="@+id/event_details_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/gray_1"
+                    android:ellipsize="end"
+                    android:maxLines="3"
                     android:textStyle="normal" />
             </LinearLayout>
 

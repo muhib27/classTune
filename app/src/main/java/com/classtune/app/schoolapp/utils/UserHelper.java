@@ -570,6 +570,14 @@ public class UserHelper {
         SharedPreferencesHelper.getInstance().setBoolean(SPKeyHelper.IS_FIRST_LOGIN, "1".equals(firstLogin));
     }
 
+    public void saveRoutineShortCode(int routineShortcode) {
+        SharedPreferencesHelper.getInstance().setInt(SPKeyHelper.ROUTINE_SHORTCODE, routineShortcode);
+    }
+
+    public void saveRoutinePeriod(int routinePeriod) {
+        SharedPreferencesHelper.getInstance().setInt(SPKeyHelper.ROUTINE_PERIOD, routinePeriod);
+    }
+
 
     public void saveUserSecret(String secret) {
         SharedPreferencesHelper.getInstance().setString(SPKeyHelper.TOKEN,
@@ -846,6 +854,16 @@ public class UserHelper {
 
     }
 
+    public static int getRoutineShortCode() {
+        return SharedPreferencesHelper.getInstance().getInt(
+                SPKeyHelper.ROUTINE_SHORTCODE, 0);
+    }
+
+    public static int getRoutinePeriod() {
+        return SharedPreferencesHelper.getInstance().getInt(
+                SPKeyHelper.ROUTINE_PERIOD, 0);
+    }
+
     public static boolean isRegistered() {
         return SharedPreferencesHelper.getInstance().getBoolean(
                 SPKeyHelper.IS_REGISTERED, false);
@@ -920,6 +938,8 @@ public class UserHelper {
                     saveSchoolCover(user.getPaidInfo().getSchool_cover());
                     saveTotalUnreadNotification(user.getPaidInfo().getUnread_total_notification());
                     saveIsFirstLogin(user.getPaidInfo().getIs_first_login());
+                    saveRoutineShortCode(user.getPaidInfo().getRoutineShortcode());
+                    saveRoutinePeriod(user.getPaidInfo().getRoutinePeriod());
 
 
                     if (user.getPaidInfo().isAdmin())
