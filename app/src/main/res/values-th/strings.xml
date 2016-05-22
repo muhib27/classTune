@@ -937,7 +937,7 @@
     <string name="fragment_lessonplan_add_btn_save_and_publish">Save and Publish</string>
 
     <!--TeachersAttendanceTabhostFragment-->
-    <string name="teacher_attendance_tabhost_layout_txt_select_batch">Select a batch</string>
+    <string name="teacher_attendance_tabhost_layout_txt_select_batch">Select a Batch</string>
 
     <!--StudentClassRoutineFragment--> <!--TeacherRoutineFragment-->
     <string name="teacher_routine_fragment_layout_txt_tap_to_select_the_day">Tap to select the day</string>
