@@ -214,6 +214,7 @@
                     custom:iconText="@string/btn_candle_attach_file" />
 
                 <LinearLayout
+                    android:id="@+id/layoutFileAttachRight"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"

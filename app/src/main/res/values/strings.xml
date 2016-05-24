@@ -1612,6 +1612,7 @@
 
     <!--TeacherHomeWorkAddFragment-->
     <string name="java_teacherhomeworkaddfragment_successfully_posted_homework">Successfully posted Homework!</string>
+    <string name="java_teacherhomeworkaddfragment_file_size_message">File size cannot be more than 5 MB.</string>
 
     <!--UIHelper-->
     <string name="java_uihelper_error">Error</string>

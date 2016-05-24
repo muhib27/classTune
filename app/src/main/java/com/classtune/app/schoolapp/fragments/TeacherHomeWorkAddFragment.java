@@ -74,6 +74,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 
 
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -290,6 +291,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 			layoutAttachmentHolder.setAlpha(1f);
 			((CustomButton) view.findViewById(R.id.btn_teacher_ah_attach_file))
 					.setOnClickListener(this);
+			((LinearLayout)view.findViewById(R.id.layoutFileAttachRight)).setOnClickListener(this);
 		}
 
 		/*((CustomButton) view.findViewById(R.id.btn_teacher_ah_attach_file))
@@ -327,6 +329,8 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 		layoutSelectType = (LinearLayout)view.findViewById(R.id.layoutSelectType);
 		layoutSelectType.setOnClickListener(this);
+
+		layoutSelectSubject = (LinearLayout)view.findViewById(R.id.layoutSelectSubject);
 
 	}
 
@@ -397,6 +401,8 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 				PublishHomeWork(true);
 			}
 			break;
+			case R.id.layoutFileAttachRight:
+				showChooser();
 
 		default:
 			break;
@@ -444,8 +450,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 							final String path = FileUtils.getPath(
 									getActivity(), uri);
 							selectedFilePath = path;
-							choosenFileTextView
-									.setText(getFileNameFromPath(selectedFilePath));
+
 
 							mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
 							File myFile= new File(selectedFilePath);
@@ -453,6 +458,21 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 							Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
 							Log.e("FILE_SIZE", "is: "+fileSize);
+
+							long fileSizeInKB = myFile.length() / 1024;
+							long fileSizeInMB = fileSizeInKB / 1024;
+
+							if(fileSizeInMB <= 5) {
+								choosenFileTextView.setText(getFileNameFromPath(selectedFilePath));
+							}
+							else {
+								selectedFilePath = "";
+								mimeType = "";
+								fileSize = "";
+								Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+							}
+
+
 
 						} catch (Exception e) {
 							Log.e("FileSelectorTestAtivity",
