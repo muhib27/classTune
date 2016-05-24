@@ -906,7 +906,7 @@
 
     <!--NoticeFragment--> <!--NoticeFragmentNew-->
     <string name="fragment_notice_txt_header">নোটিশ</string>
-    <string name="fragment_notice_txt_attachment">নোটিশটিতে ফাইল সংযুক্ত আছে</string>
+    <string name="fragment_notice_txt_attachment">নোটিশটির সাথে এটাচমেন্ট আছে।</string>
 
     <!--ParentEventFragment-->
     <string name="parent_event_layout_custom_txt_header">ইভেন্ট</string>
@@ -1020,7 +1020,7 @@
     <!--HomeworkFragment-->
     <string name="item_homework_feed_txt_due_date">জমাদানের তারিখ: </string>
     <string name="item_homework_feed_assigned_date">প্রদানের তারিখ: </string>
-    <string name="item_homework_feed_txt_worksheet">হোমওয়ার্কটির ওয়ার্কশিট রয়েছে</string>
+    <string name="item_homework_feed_txt_worksheet">হোমওয়ার্কটির সাথে এটাচমেন্ট আছে।</string>
 
 
     <!--DialogSelectChildren-->

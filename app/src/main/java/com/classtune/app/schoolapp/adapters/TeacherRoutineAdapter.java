@@ -69,7 +69,7 @@ public class TeacherRoutineAdapter extends BaseAdapter {
 
 		ViewHolder holder = (ViewHolder) rowView.getTag();
 
-		if(UserHelper.getRoutineShortCode() == 1 && !TextUtils.isEmpty(item.getTeacherShortCode())){
+		/*if(UserHelper.getRoutineShortCode() == 1 && !TextUtils.isEmpty(item.getTeacherShortCode())){
 			holder.classNameText.setText(item.getTeacherShortCode());
 		}
 		else{
@@ -77,8 +77,12 @@ public class TeacherRoutineAdapter extends BaseAdapter {
 				holder.classNameText.setText(item.getTeacher_full_name());
 			}else
 				holder.classNameText.setText(item.getClassName()+" "+item.getBatchName());
-		}
+		}*/
 
+		if(TextUtils.isEmpty(item.getClassName())){
+			holder.classNameText.setText(item.getTeacher_full_name());
+		}else
+			holder.classNameText.setText(item.getClassName()+" "+item.getBatchName());
 		
 		holder.subjectNameText.setText(item.getSubjectName());
 

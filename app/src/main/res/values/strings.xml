@@ -59,7 +59,7 @@
 
     <string-array name="diary_text_student">
 
-        <item>School Feed</item>
+        <item>ClassTune Home</item>
         <item>Homework</item>
         <item>Quiz</item>
         <item>Notice</item>
@@ -115,7 +115,7 @@
 
     <string-array name="diary_text_student_free">
 
-        <item>School Feed</item>
+        <item>ClassTune Home</item>
         <item>Homework</item>
         <item>Notice</item>
         <item>Quiz</item>
@@ -154,7 +154,7 @@
     </string-array>
 
     <string-array name="diary_text_parents">
-        <item>School Feed</item>
+        <item>ClassTune Home</item>
         <item>Homework</item>
         <item>Quiz</item>
         <item>Notice</item>
@@ -217,7 +217,7 @@
     </string-array>
 
     <string-array name="diary_text_parents_free">
-        <item>School Feed</item>
+        <item>ClassTune Home</item>
         <item>Homework</item>
         <item>Notice</item>
         <item>Quiz</item>
@@ -279,7 +279,7 @@
     </string-array>
 
     <string-array name="diary_text_teacher">
-        <item>School Feed</item>
+        <item>ClassTune Home</item>
         <item>Attendance</item>
         <item>Homework</item>
         <item>Routine</item>
@@ -338,7 +338,7 @@
     </string-array>
 
     <string-array name="diary_text_teacher_free">
-        <item>School Feed</item>
+        <item>ClassTune Home</item>
         <item>Homework</item>
         <item>Notice</item>
         <item>Attendance</item>
@@ -906,7 +906,7 @@
 
     <!--NoticeFragment--> <!--NoticeFragmentNew-->
     <string name="fragment_notice_txt_header">Notice</string>
-    <string name="fragment_notice_txt_attachment">This notice has attachment</string>
+    <string name="fragment_notice_txt_attachment">This notice has attachment.</string>
 
     <!--ParentEventFragment-->
     <string name="parent_event_layout_custom_txt_header">Events</string>
@@ -1020,7 +1020,7 @@
     <!--HomeworkFragment-->
     <string name="item_homework_feed_txt_due_date">Due Date: </string>
     <string name="item_homework_feed_assigned_date">Assigned Date: </string>
-    <string name="item_homework_feed_txt_worksheet">This homework has worksheet</string>
+    <string name="item_homework_feed_txt_worksheet">This homework has attachment.</string>
 
 
     <!--DialogSelectChildren-->

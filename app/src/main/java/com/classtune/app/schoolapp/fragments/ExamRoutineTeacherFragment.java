@@ -47,7 +47,7 @@ public class ExamRoutineTeacherFragment extends Fragment {
     private ExamRoutineTeacherAdapter adapter;
 
     private TextView txtMessage;
-    private TextView txtDate;
+    //private TextView txtDate;
     private TextView txtSubjectNameUpper;
 
 
@@ -86,10 +86,10 @@ public class ExamRoutineTeacherFragment extends Fragment {
         listViewExamRoutine.setAdapter(adapter);
 
         txtMessage = (TextView)view.findViewById(R.id.txtMessage);
-        txtDate = (TextView)view.findViewById(R.id.txtDate);
+        //txtDate = (TextView)view.findViewById(R.id.txtDate);
         txtSubjectNameUpper = (TextView)view.findViewById(R.id.txtSubjectNameUpper);
 
-        txtDate.setText(AppUtility.getCurrentDate(AppUtility.DATE_FORMAT_APP));
+        //txtDate.setText(AppUtility.getCurrentDate(AppUtility.DATE_FORMAT_APP));
     }
 
     private void initApiCall()

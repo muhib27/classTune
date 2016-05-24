@@ -197,12 +197,13 @@ public class StudentClassRoutineFragment extends UserVisibleHintFragment impleme
 			nextClassTimeText.setText(nextClass.getClassStartTime()+"-"+nextClass.getClassEndTime());
 		}
 
-		if(UserHelper.getRoutineShortCode() == 1 && !TextUtils.isEmpty(nextClass.getTeacherShortCode())){
+		/*if(UserHelper.getRoutineShortCode() == 1 && !TextUtils.isEmpty(nextClass.getTeacherShortCode())){
 			nextClassNameText.setText(nextClass.getTeacherShortCode());
 		}else{
 			nextClassNameText.setText(nextClass.getTeacher_full_name());
-		}
+		}*/
 
+		nextClassNameText.setText(nextClass.getTeacher_full_name());
 
 		nextSubjectNameText.setText(nextClass.getSubjectName());
 
