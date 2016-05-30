@@ -1,9 +1,11 @@
 package com.classtune.app.schoolapp.fragments;
 
-import android.content.ActivityNotFoundException;
+import android.Manifest;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -37,7 +39,6 @@ import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
-import com.ipaulpro.afilechooser.utils.FileUtils;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -47,6 +48,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import ru.bartwell.exfilepicker.ExFilePicker;
+import ru.bartwell.exfilepicker.ExFilePickerParcelObject;
 
 public class TeacherHomeWorkAddFragment extends Fragment implements
 		OnClickListener {
@@ -103,6 +107,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		return true;
 	}
 
+	File myFile;
 	public void PublishHomeWork(final boolean isForDraft) {
 
 		RequestParams params = new RequestParams();
@@ -122,14 +127,14 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 		}
 
-		if(!selectedFilePath.equalsIgnoreCase(""))
+		if(!TextUtils.isEmpty(selectedFilePath))
 		{
-			File myFile= new File(selectedFilePath);
+			myFile= new File(selectedFilePath);
 			try {
 				params.put("attachment_file_name", myFile);
 
 				Log.e("FILE_NAME", "is: " + myFile.toString());
-			} catch(FileNotFoundException e) {}
+			} catch(FileNotFoundException e) {e.printStackTrace();}
 		}
 
 		if(!TextUtils.isEmpty(mimeType)){
@@ -193,6 +198,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 						super.onSuccess(arg0, responseString);
 					}
 				});
+
 	}
 
 
@@ -221,6 +227,12 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		intiviews(rootView);
 		createHomeworkTypeCats();
 		fetchSubject();
+
+		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			isStoragePermissionGranted();
+		}
+
+
 		return rootView;
 	}
 
@@ -409,15 +421,15 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		}
 	}
 
-	@Override
+	/*@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
-		case REQUEST_CODE_FILE_CHOOSER:
-			if (resultCode == getActivity().RESULT_OK) {
-				if (data != null) {
-					// Get the URI of the selected file
-					final Uri uri = data.getData();
-					/*if (uri.getLastPathSegment().endsWith("doc")
+			case REQUEST_CODE_FILE_CHOOSER:
+				if (resultCode == getActivity().RESULT_OK) {
+					if (data != null) {
+						// Get the URI of the selected file
+						final Uri uri = data.getData();
+					*//*if (uri.getLastPathSegment().endsWith("doc")
 							|| uri.getLastPathSegment().endsWith("docx")
 							|| uri.getLastPathSegment().endsWith("pdf")) {
 						try {
@@ -427,14 +439,11 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 							selectedFilePath = path;
 							choosenFileTextView
 									.setText(getFileNameFromPath(selectedFilePath));
-
 							mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
 							File myFile= new File(selectedFilePath);
 							fileSize = String.valueOf(myFile.length());
-
 							Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
 							Log.e("FILE_SIZE", "is: "+fileSize);
-
 						} catch (Exception e) {
 							Log.e("FileSelectorTestAtivity",
 									"File select error", e);
@@ -442,7 +451,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 					} else {
 						Toast.makeText(getActivity(), getString(R.string.java_singleteacheredithomeworkactivity_invalid_file_type),
 								Toast.LENGTH_SHORT).show();
-					}*/
+					}*//*
 
 
 						try {
@@ -479,26 +488,75 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 									"File select error", e);
 						}
 
-					Log.e("File", "Uri = " + uri.toString());
+						Log.e("File", "Uri = " + uri.toString());
+					}
 				}
-			}
-			break;
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 		super.onActivityResult(requestCode, resultCode, data);
+	}*/
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 116) {
+
+			if (data != null) {
+				ExFilePickerParcelObject object = (ExFilePickerParcelObject) data.getParcelableExtra(ExFilePickerParcelObject.class.getCanonicalName());
+				if (object.count > 0) {
+					// Here is object contains selected files names and path
+					selectedFilePath = object.path+object.names.get(0);
+
+
+					mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+					File myFile= new File(selectedFilePath);
+					fileSize = String.valueOf(myFile.length());
+
+					Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+					Log.e("FILE_SIZE", "is: "+fileSize);
+
+					long fileSizeInKB = myFile.length() / 1024;
+					long fileSizeInMB = fileSizeInKB / 1024;
+
+					if(fileSizeInMB <= 5) {
+						choosenFileTextView.setText(object.names.get(0));
+					}
+					else {
+						selectedFilePath = "";
+						mimeType = "";
+						fileSize = "";
+						Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+					}
+				}
+			}
+
+		}
+
+
 	}
 
+
+
 	private void showChooser() {
-		Intent target = FileUtils.createGetContentIntent();
+		/*Intent target = FileUtils.createGetContentIntent();
 		Intent intent = Intent.createChooser(target,
 				getString(R.string.chooser_title));
 		try {
 			startActivityForResult(intent, REQUEST_CODE_FILE_CHOOSER);
 		} catch (ActivityNotFoundException e) {
 			// The reason for the existence of aFileChooser
-		}
+		}*/
+		Intent intent = new Intent(getActivity(), ru.bartwell.exfilepicker.ExFilePickerActivity.class);
+		intent.putExtra(ExFilePicker.SET_START_DIRECTORY, "/");
+		intent.putExtra(ExFilePicker.SET_ONLY_ONE_ITEM, true);
+		intent.putExtra(ExFilePicker.DISABLE_NEW_FOLDER_BUTTON, true);
+		intent.putExtra(ExFilePicker.DISABLE_SORT_BUTTON, true);
+		intent.putExtra(ExFilePicker.ENABLE_QUIT_BUTTON, true);
+		startActivityForResult(intent, 116);
+
+
 	}
 
 	private String getFileNameFromPath(String path) {
@@ -533,4 +591,39 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		 * // TODO Auto-generated catch block Log.e("ERROR", e.toString()); } }
 		 */
 	};
+
+
+	public boolean isStoragePermissionGranted() {
+		if (Build.VERSION.SDK_INT >= 23) {
+			if (getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+					== PackageManager.PERMISSION_GRANTED) {
+				Log.v("PERMISSION","Permission is granted");
+				return true;
+			} else {
+
+				Log.v("PERMISSION","Permission is revoked");
+				ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+				return false;
+			}
+		}
+		else { //permission is automatically granted on sdk<23 upon installation
+			Log.v("PERMISSION","Permission is granted");
+			return true;
+		}
+
+
+	}
+
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+			Log.v("PERMISSION","Permission: "+permissions[0]+ "was "+grantResults[0]);
+			//resume tasks needing this permission
+
+		}
+	}
+
+
 }

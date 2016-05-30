@@ -1,9 +1,11 @@
 package com.classtune.app.freeversion;
 
-import android.content.ActivityNotFoundException;
+import android.Manifest;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +37,6 @@ import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.ipaulpro.afilechooser.utils.FileUtils;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -45,6 +46,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import ru.bartwell.exfilepicker.ExFilePicker;
+import ru.bartwell.exfilepicker.ExFilePickerParcelObject;
 
 /**
  * Created by BLACK HAT on 25-Jan-16.
@@ -85,6 +89,8 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
     private String mimeType = "";
     private String fileSize = "";
 
+    private LinearLayout layoutFileAttachRight;
+
 
 
 
@@ -106,6 +112,10 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
         fetchSubject();
 
         initApiCall();
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            isStoragePermissionGranted();
+        }
     }
 
 
@@ -406,6 +416,14 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                     showChooser();
                 }
             });
+
+            layoutFileAttachRight = (LinearLayout)this.findViewById(R.id.layoutFileAttachRight);
+            layoutFileAttachRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showChooser();
+                }
+            });
         }
 
 		/*((CustomButton) view.findViewById(R.id.btn_teacher_ah_attach_file))
@@ -528,7 +546,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
         }
     }*/
 
-    @Override
+    /*@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case REQUEST_CODE_FILE_CHOOSER:
@@ -536,7 +554,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                     if (data != null) {
                         // Get the URI of the selected file
                         final Uri uri = data.getData();
-                        /*if (uri.getLastPathSegment().endsWith("doc")
+                        *//*if (uri.getLastPathSegment().endsWith("doc")
                                 || uri.getLastPathSegment().endsWith("docx")
                                 || uri.getLastPathSegment().endsWith("pdf")) {
                             try {
@@ -561,7 +579,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                         } else {
                             Toast.makeText(SingleTeacherEditHomeworkActivity.this, R.string.java_singleteacheredithomeworkactivity_invalid_file_type,
                                     Toast.LENGTH_SHORT).show();
-                        }*/
+                        }*//*
 
 
                             try {
@@ -592,17 +610,64 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }*/
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 119) {
+
+            if (data != null) {
+                ExFilePickerParcelObject object = (ExFilePickerParcelObject) data.getParcelableExtra(ExFilePickerParcelObject.class.getCanonicalName());
+                if (object.count > 0) {
+                    // Here is object contains selected files names and path
+                    selectedFilePath = object.path+object.names.get(0);
+
+
+                    mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                    File myFile= new File(selectedFilePath);
+                    fileSize = String.valueOf(myFile.length());
+
+                    Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                    Log.e("FILE_SIZE", "is: "+fileSize);
+
+                    long fileSizeInKB = myFile.length() / 1024;
+                    long fileSizeInMB = fileSizeInKB / 1024;
+
+                    if(fileSizeInMB <= 5) {
+                        choosenFileTextView.setText(object.names.get(0));
+                    }
+                    else {
+                        selectedFilePath = "";
+                        mimeType = "";
+                        fileSize = "";
+                        Toast.makeText(this, R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
+
     private void showChooser() {
-        Intent target = FileUtils.createGetContentIntent();
+        /*Intent target = FileUtils.createGetContentIntent();
         Intent intent = Intent.createChooser(target,
                 getString(R.string.chooser_title));
         try {
             startActivityForResult(intent, REQUEST_CODE_FILE_CHOOSER);
         } catch (ActivityNotFoundException e) {
             // The reason for the existence of aFileChooser
-        }
+        }*/
+
+        Intent intent = new Intent(this, ru.bartwell.exfilepicker.ExFilePickerActivity.class);
+        intent.putExtra(ExFilePicker.SET_START_DIRECTORY, "/");
+        intent.putExtra(ExFilePicker.SET_ONLY_ONE_ITEM, true);
+        intent.putExtra(ExFilePicker.DISABLE_NEW_FOLDER_BUTTON, true);
+        intent.putExtra(ExFilePicker.DISABLE_SORT_BUTTON, true);
+        intent.putExtra(ExFilePicker.ENABLE_QUIT_BUTTON, true);
+        startActivityForResult(intent, 119);
     }
 
     private String getFileNameFromPath(String path) {
@@ -644,4 +709,36 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
         finish();
         super.onBackPressed();
     }*/
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (this.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("PERMISSION","Permission is granted");
+                return true;
+            } else {
+
+                Log.v("PERMISSION","Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("PERMISSION","Permission is granted");
+            return true;
+        }
+
+
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            Log.v("PERMISSION","Permission: "+permissions[0]+ "was "+grantResults[0]);
+            //resume tasks needing this permission
+
+        }
+    }
 }
