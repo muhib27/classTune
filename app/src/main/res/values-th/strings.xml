@@ -461,8 +461,8 @@
     <string name="setting_drawer_logout_text">Log Out</string>
     <string name="setting_drawer_about_us_text">About Us</string>
     <string name="setting_drawer_current_password_hint_text">Current Password</string>
-    <string name="forget_password_username_label">username</string>
-    <string name="forget_password_email_label">email</string>
+    <string name="forget_password_username_label">Username</string>
+    <string name="forget_password_email_label">Email</string>
     <string name="setting_drawer_new_password_hint_text">New Password</string>
     <string name="setting_drawer_retype_password_hint_text">Retype Password</string>
     <string name="action_settings">Settings</string>

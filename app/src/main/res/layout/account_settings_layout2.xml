@@ -1,153 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center" 
     android:background="@color/gray_bg" >
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/topHolder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical" >
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/classtune_selectuser_top">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ct_splash" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_below="@+id/topHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dip" >
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dip"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight=".35"
-                android:text="@string/account_settings_layout_txt_user_id"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".35"
+                    android:text="@string/account_settings_layout_txt_user_id"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_pass_email"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dip"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_pass_email"
-                android:layout_width="0dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dip"
-                android:layout_weight="1"
+                android:layout_marginTop="5dip"
+                android:text="@string/popup_layout_change_pass_txt_password"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
-        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dip"
-            android:layout_marginTop="5dip"
-            android:text="@string/popup_layout_change_pass_txt_password"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dip" >
-
-            <EditText
-                android:id="@+id/et_current_pass"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-               	android:background="@drawable/username_field"
-                android:hint="@string/setting_drawer_current_password_hint_text"
-                android:paddingLeft="2dip"
-                android:password="true"
-                android:textColorHint="@color/white"
-                android:singleLine="true"
-                android:imeOptions="actionNext"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:padding="5dip" >
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dip" >
+                <EditText
+                    android:id="@+id/et_current_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/username_field"
+                    android:hint="@string/setting_drawer_current_password_hint_text"
+                    android:paddingLeft="2dip"
+                    android:password="true"
+                    android:textColorHint="@color/white"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/et_new_pass"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/username_field"
-                android:hint="@string/setting_drawer_new_password_hint_text"
-                android:paddingLeft="2dip"
-                android:password="true"
-                android:textColorHint="@color/white"
-                android:singleLine="true"
-                android:imeOptions="actionNext"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:padding="5dip" >
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dip" >
+                <EditText
+                    android:id="@+id/et_new_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/username_field"
+                    android:hint="@string/setting_drawer_new_password_hint_text"
+                    android:paddingLeft="2dip"
+                    android:password="true"
+                    android:textColorHint="@color/white"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/et_re_pass"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/username_field"
-                android:hint="@string/setting_drawer_retype_password_hint_text"
-                android:paddingLeft="2dip"
-                android:password="true"
-                android:textColorHint="@color/white"
-                android:singleLine="true"
-                android:imeOptions="actionDone"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:padding="5dip" >
 
-        <Button
-            android:id="@+id/save_btn"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5dip"
-            android:layout_marginTop="5dip"
-            android:text="Save"
-            android:textStyle="bold"
-            android:textColor="@color/text_btn_save_settings"
-            android:background="@drawable/btn_save_settings" />
+                <EditText
+                    android:id="@+id/et_re_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/username_field"
+                    android:hint="@string/setting_drawer_retype_password_hint_text"
+                    android:paddingLeft="2dip"
+                    android:password="true"
+                    android:textColorHint="@color/white"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layoutForgotPassword"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:id="@+id/txtForgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_login_txt_forgot_password"
-                android:textColor="@android:color/black"
+            <Button
+                android:id="@+id/save_btn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dip"
+                android:layout_marginTop="5dip"
+                android:text="Save"
                 android:textStyle="bold"
-                android:textSize="16sp"
-                android:padding="10dp"
-                android:clickable="true"
-                android:gravity="center"/>
+                android:textColor="@color/text_btn_save_settings"
+                android:background="@drawable/btn_save_settings" />
+
+            <LinearLayout
+                android:id="@+id/layoutForgotPassword"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/txtForgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_login_txt_forgot_password"
+                    android:textColor="@color/classtune_green_color"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:padding="10dp"
+                    android:clickable="true"
+                    android:gravity="center"/>
 
 
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-</LinearLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>
