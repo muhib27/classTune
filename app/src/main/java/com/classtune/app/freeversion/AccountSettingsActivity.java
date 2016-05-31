@@ -32,6 +32,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.LoginActivity;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogChangePassword;
@@ -51,6 +52,7 @@ public class AccountSettingsActivity extends ChildContainerActivity implements O
 	private TextView passwordEmainTextView;
 	private UserHelper userHelper;
 	private UIHelper uiHelper;
+	private TextView txtForgotPassword;
 
 	@Override
 	public void onAuthenticationStart() {
@@ -209,6 +211,17 @@ public class AccountSettingsActivity extends ChildContainerActivity implements O
 			}
 
 		});
+
+		txtForgotPassword = (TextView)this.findViewById(R.id.txtForgotPassword);
+		txtForgotPassword.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				Intent intent = new Intent(AccountSettingsActivity.this, ForgetPasswordActivity.class);
+				startActivity(intent);
+			}
+		});
+
 	}
 
 	private void showSoftKeyboard(final InputMethodManager im,

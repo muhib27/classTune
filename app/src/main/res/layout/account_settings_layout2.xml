@@ -124,6 +124,30 @@
             android:textStyle="bold"
             android:textColor="@color/text_btn_save_settings"
             android:background="@drawable/btn_save_settings" />
+
+        <LinearLayout
+            android:id="@+id/layoutForgotPassword"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/txtForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_login_txt_forgot_password"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:clickable="true"
+                android:gravity="center"/>
+
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -15,12 +15,14 @@
     <string-array name="free_settings_images_log_in">
         <item>account_settings</item>
         <item>terms_and_policy</item>
-        <item>terms_and_policy</item>
+        <item>multiple_lang</item>
+        <item>version</item>
     </string-array>
     <string-array name="free_settings_text_log_in">
-        <item>অ্যাকাউন্ট সেটিংস</item>
+        <item>পাসওয়ার্ড পরিবর্তন করুন</item>
         <item>শর্তাবলী</item>
         <item>ভাষা নির্বাচন করুন</item>
+        <item>বর্তমান সংস্করণ: 1.0.7</item>
     </string-array>
     <string-array name="diary_images_student">
         <item>home</item>
@@ -889,7 +891,7 @@
     <string name="fragment_transport_txt_last_update">সর্বশেষ আপডেট: </string>
     <string name="fragment_transport_txt_pick_up_location">পিক আপের অবস্থান</string>
     <string name="fragment_transport_txt_drop_location">ড্রপের অবস্থান</string>
-    <string name="fragment_transport_txt_transportation_schedule">পরিবহনের সময়তালিকা</string>
+    <string name="fragment_transport_txt_transportation_schedule">সময়তালিকা</string>
     <string name="fragment_transport_txt_day">দিন</string>
     <string name="fragment_transport_txt_home_pick_up_time">বাসা থেকে পিক আপের সময়</string>
     <string name="fragment_transport_txt_school_pick_up_time">স্কুল থেকে পিক আপের সময়</string>

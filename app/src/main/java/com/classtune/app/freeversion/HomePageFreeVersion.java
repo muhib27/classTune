@@ -534,6 +534,11 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                                 });
                                 dlc.show();
 
+                                break;
+
+                            case 3:
+                                final String appPackageName = getPackageName();
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
 
                                 break;
                             default:

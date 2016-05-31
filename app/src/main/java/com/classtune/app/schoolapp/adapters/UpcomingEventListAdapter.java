@@ -243,7 +243,7 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 		});*/
 
 		if(items.get(position).getIsHoliday().equalsIgnoreCase("1") && !temp.getEventAck().equals(ackTypeEnum.JOIN_IN)){
-			setButtonState(holder.joinInBtn, R.drawable.done_normal, true, context.getString(R.string.java_singleeventactivity_joined));
+			setButtonState(holder.joinInBtn, R.drawable.done_normal, true, context.getString(R.string.btn_join));
 			holder.joinInBtn.setEnabled(false);
 		}
 	    

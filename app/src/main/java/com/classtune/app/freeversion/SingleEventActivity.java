@@ -356,7 +356,7 @@ public class SingleEventActivity extends ChildContainerActivity {
         txtCreateDate.setText(splited[0]);
 
         if(data.getIsHoliday().equalsIgnoreCase("1") && !temp.getEventAck().equals(SchoolEvent.ackTypeEnum.JOIN_IN)){
-            setButtonState(joinInBtn, R.drawable.done_normal, true, getString(R.string.java_singleeventactivity_joined));
+            setButtonState(joinInBtn, R.drawable.done_normal, true, getString(R.string.btn_join));
             joinInBtn.setEnabled(false);
         }
 

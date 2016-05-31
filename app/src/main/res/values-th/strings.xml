@@ -16,11 +16,13 @@
         <item>account_settings</item>
         <item>terms_and_policy</item>
         <item>multiple_lang</item>
+        <item>version</item>
     </string-array>
     <string-array name="free_settings_text_log_in">
-        <item>Account Settings</item>
+        <item>Change Password</item>
         <item>Terms \u0026 Policy</item>
         <item>Choose Language</item>
+        <item>Current Version: 1.0.7</item>
     </string-array>
     <string-array name="diary_images_student">
         <item>home</item>
@@ -889,7 +891,7 @@
     <string name="fragment_transport_txt_last_update">Last update: </string>
     <string name="fragment_transport_txt_pick_up_location">Pick up location</string>
     <string name="fragment_transport_txt_drop_location">Drop location</string>
-    <string name="fragment_transport_txt_transportation_schedule">Transportation Schedule</string>
+    <string name="fragment_transport_txt_transportation_schedule">Schedule</string>
     <string name="fragment_transport_txt_day">Day</string>
     <string name="fragment_transport_txt_home_pick_up_time">Home Pick Up Time</string>
     <string name="fragment_transport_txt_school_pick_up_time">School Pick Up Time</string>
