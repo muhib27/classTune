@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -28,7 +29,6 @@ import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
-import com.classtune.app.schoolapp.viewhelpers.CustomTabButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -67,8 +67,8 @@ public class LessonPlanAdd extends Fragment {
 
     private EditText txtDescription;
 
-    private CustomTabButton btnSave;
-    private CustomTabButton btnSaveAndAssign;
+    private Button btnSave;
+    private Button btnSaveAndAssign;
 
 
     private List<LessonPlanCategory> listCategory;
@@ -120,7 +120,7 @@ public class LessonPlanAdd extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_lessonplan_add, container, false);
+        view = inflater.inflate(R.layout.fragment_lessonplan_add2, container, false);
 
         initView(view);
         return view;
@@ -148,11 +148,11 @@ public class LessonPlanAdd extends Fragment {
         txtDescription = (EditText)view.findViewById(R.id.txtDescription);
 
 
-        btnSave = (CustomTabButton)view.findViewById(R.id.btnSave);
-        btnSaveAndAssign = (CustomTabButton)view.findViewById(R.id.btnSaveAndAssign);
+        btnSave = (Button)view.findViewById(R.id.btnSave);
+        btnSaveAndAssign = (Button)view.findViewById(R.id.btnSaveAndAssign);
 
-        btnSave.setButtonSelected(true, R.color.black);
-        btnSaveAndAssign.setButtonSelected(true, R.color.black);
+        //btnSave.setButtonSelected(true, R.color.black);
+        //btnSaveAndAssign.setButtonSelected(true, R.color.black);
 
 
         btnSelectCategory.setOnClickListener(new View.OnClickListener(){

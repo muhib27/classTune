@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -29,7 +30,6 @@ import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
-import com.classtune.app.schoolapp.viewhelpers.CustomTabButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -59,8 +59,8 @@ public class EditLessonPlanActivity extends ChildContainerActivity{
 
     private String id;
 
-    private CustomTabButton btnSave;
-    private CustomTabButton btnSaveAndAssign;
+    private Button btnSave;
+    private Button btnSaveAndAssign;
 
     private TextView txtDate;
 
@@ -109,7 +109,7 @@ public class EditLessonPlanActivity extends ChildContainerActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_edit_lessonplan);
+        setContentView(R.layout.activity_edit_lessonplan2);
 
         uiHelper = new UIHelper(this);
         userHelper = new UserHelper(this);
@@ -145,11 +145,11 @@ public class EditLessonPlanActivity extends ChildContainerActivity{
 
     private void initView()
     {
-        btnSave = (CustomTabButton)this.findViewById(R.id.btnSave);
-        btnSaveAndAssign = (CustomTabButton)this.findViewById(R.id.btnSaveAndAssign);
+        btnSave = (Button)this.findViewById(R.id.btnSave);
+        btnSaveAndAssign = (Button)this.findViewById(R.id.btnSaveAndAssign);
 
-        btnSave.setButtonSelected(true, R.color.black);
-        btnSaveAndAssign.setButtonSelected(true, R.color.black);
+        //btnSave.setButtonSelected(true, R.color.black);
+        //btnSaveAndAssign.setButtonSelected(true, R.color.black);
 
         txtDate = (TextView)this.findViewById(R.id.txtDate);
 
