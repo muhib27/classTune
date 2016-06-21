@@ -134,6 +134,8 @@ public class ResultTermTesttFragment extends UserVisibleHintFragment implements
 		RequestParams params = new RequestParams();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.CATEGORY_ID, "3");
+		params.put("no_exams", "1");
+
 		if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
 
 
