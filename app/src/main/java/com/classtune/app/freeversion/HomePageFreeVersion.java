@@ -46,6 +46,7 @@ import com.classtune.app.schoolapp.model.DrawerChildSettings;
 import com.classtune.app.schoolapp.model.DrawerGroup;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.networking.VolleyRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
@@ -619,31 +620,37 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                         startActivity(assessmentScoreIntent);*/
                         break;
                     case 4:
+                        if(userHelper.getUserAccessType()== UserHelper.UserAccessType.PAID){
+                            if (AppUtility.isInternetConnected()) {
+                                initApiCallLogout();
+                            } else {
+                                Toast.makeText(context, R.string.java_homepagefreeversion_no_internet_connection, Toast.LENGTH_SHORT).show();
+                            }
 
-                    if(userHelper.getUserAccessType()== UserHelper.UserAccessType.PAID){
-                        if (AppUtility.isInternetConnected()) {
-                            initApiCallLogout();
-                        } else {
-                            Toast.makeText(context, R.string.java_homepagefreeversion_no_internet_connection, Toast.LENGTH_SHORT).show();
+                        }else {
+                            mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                        UserHelper.setLoggedIn(false);
+                        UserHelper.saveIsJoinedSchool(false);
+                        Intent intent = new Intent(HomePageFreeVersion.this,
+                                HomePageFreeVersion.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION
+                                | Intent.FLAG_ACTIVITY_NEW_TASK
+                                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                        VolleyRestClient volleyRestClient = new  VolleyRestClient();
+                        volleyRestClient.setContext(HomePageFreeVersion.this);
+                        volleyRestClient.getRequestQueue().getCache().clear();
+                        SchoolApp.getInstance().clearApplicationData();
+
+                        finish();
+                        overridePendingTransition(0, 0);
+
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
                         }
 
-                    }else {
-                        mDrawerLayout.closeDrawer(Gravity.RIGHT);
-					UserHelper.setLoggedIn(false);
-					UserHelper.saveIsJoinedSchool(false);
-					Intent intent = new Intent(HomePageFreeVersion.this,
-							HomePageFreeVersion.class);
-					intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION
-							| Intent.FLAG_ACTIVITY_NEW_TASK
-							| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-					finish();
-					overridePendingTransition(0, 0);
-
-					startActivity(intent);
-					overridePendingTransition(0, 0);
-                    }
-                       break;
+                    break;
 
                     default:
                         break;
@@ -1052,6 +1059,11 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION
                         | Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                VolleyRestClient volleyRestClient = new  VolleyRestClient();
+                volleyRestClient.setContext(HomePageFreeVersion.this);
+                volleyRestClient.getRequestQueue().getCache().clear();
+                SchoolApp.getInstance().clearApplicationData();
 
                 finish();
                 overridePendingTransition(0, 0);
