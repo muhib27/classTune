@@ -553,7 +553,7 @@
     <string name="title_exam_routine">Exam Routine</string>
 
     <!-- COMMON -->
-    <string name="internet_error_text">1rnet Connection!</string>
+    <string name="internet_error_text">No Internet Connection!</string>
     <string name="loading_text">Loading...</string>
     <string name="authenticating_text">Authenticating...</string>
 

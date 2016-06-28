@@ -25,6 +25,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.classtune.app.R;
 import com.classtune.app.freeversion.AnyFragmentLoadActivity;
 import com.classtune.app.freeversion.HomePageFreeVersion;
@@ -39,6 +42,7 @@ import com.classtune.app.schoolapp.model.FreeVersionPost;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.networking.VolleyRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
@@ -59,7 +63,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeSet;
 
 public class SchoolFeedFragment extends Fragment implements UserAuthListener {
@@ -133,6 +139,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         if (AppUtility.isInternetConnected()) {
             processFetchPost(URLHelper.URL_FREE_VERSION_CATEGORY, "");
         } else {
+            processFetchPost(URLHelper.URL_FREE_VERSION_CATEGORY, "");
             uiHelper.showMessage(getActivity().getString(
                     R.string.internet_error_text));
         }
@@ -170,36 +177,207 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
         adapter = new GoodReadAdapter(getActivity(), allGooadReadPost);
         listGoodread.setAdapter(adapter);
+
     }
 
     private void processFetchPost(String url, String categoryIndex) {
 
-        RequestParams params = new RequestParams();
-        params.put(RequestKeyHelper.PAGE_NUMBER, pageNumber + "");
-        params.put(RequestKeyHelper.PAGE_SIZE, pageSize + "");
-        //params.put(RequestKeyHelper.SCHOOL_ID, getArguments().getInt("school_id") + "");
-        // getArguments().getInt("school_id") + "");
-        //Log.e("SCHOOL_ID_FEED", getArguments().getInt("school_id") + "");
-        //params.put(RequestKeyHelper.TARGET, "school");
-        if (UserHelper.isLoggedIn()) {
-            if (userHelper.getUser().getAccessType() == UserAccessType.PAID) {
-                params.put(RequestKeyHelper.USER_SECRET,
-                        UserHelper.getUserSecret());
-                if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
-                    params.put("batch_id", userHelper.getUser()
-                            .getSelectedChild().getBatchId());
-                    params.put("student_id", userHelper.getUser()
-                            .getSelectedChild().getProfileId());
+        if(AppUtility.isInternetConnected()){
+            RequestParams params = new RequestParams();
+            params.put(RequestKeyHelper.PAGE_NUMBER, pageNumber + "");
+            params.put(RequestKeyHelper.PAGE_SIZE, pageSize + "");
+            //params.put(RequestKeyHelper.SCHOOL_ID, getArguments().getInt("school_id") + "");
+            // getArguments().getInt("school_id") + "");
+            //Log.e("SCHOOL_ID_FEED", getArguments().getInt("school_id") + "");
+            //params.put(RequestKeyHelper.TARGET, "school");
+            if (UserHelper.isLoggedIn()) {
+                if (userHelper.getUser().getAccessType() == UserAccessType.PAID) {
+                    params.put(RequestKeyHelper.USER_SECRET,
+                            UserHelper.getUserSecret());
+                    if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
+                        params.put("batch_id", userHelper.getUser()
+                                .getSelectedChild().getBatchId());
+                        params.put("student_id", userHelper.getUser()
+                                .getSelectedChild().getProfileId());
+                    }
+                    AppRestClient.post(URLHelper.URL_PAID_VERSION_CLASSTUNE_FEED,
+                            params, fitnessHandler);
+
+                } else {
+                    AppRestClient.post(URLHelper.URL_FREE_VERSION_SCHOOL_FEED,
+                            params, fitnessHandler);
                 }
-                AppRestClient.post(URLHelper.URL_PAID_VERSION_CLASSTUNE_FEED,
-                        params, fitnessHandler);
 
-            } else {
-                AppRestClient.post(URLHelper.URL_FREE_VERSION_SCHOOL_FEED,
-                        params, fitnessHandler);
             }
-
         }
+
+
+        if(pageNumber == 1){
+
+            Log.e("PAGE_NUMBER", "is: "+pageNumber);
+            Map<String, String> paramsVolley = new HashMap<String, String>();
+            paramsVolley.put(RequestKeyHelper.PAGE_NUMBER, "1");
+            paramsVolley.put(RequestKeyHelper.PAGE_SIZE, pageSize + "");
+
+            if (UserHelper.isLoggedIn()) {
+                if (userHelper.getUser().getAccessType() == UserAccessType.PAID) {
+                    paramsVolley.put(RequestKeyHelper.USER_SECRET,
+                            UserHelper.getUserSecret());
+                    if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
+                        paramsVolley.put("batch_id", userHelper.getUser()
+                                .getSelectedChild().getBatchId());
+                        paramsVolley.put("student_id", userHelper.getUser()
+                                .getSelectedChild().getProfileId());
+                    }
+
+                    VolleyRestClient volleyRestClient = new VolleyRestClient();
+                    volleyRestClient.setContext(getActivity());
+
+
+
+                    volleyRestClient.post(Request.Method.POST, paramsVolley, URLHelper.URL_BASE+URLHelper.URL_PAID_VERSION_CLASSTUNE_FEED, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String s) {
+                            Log.e("*** RESPONSE ***" , "is: "+s);
+
+                            if(AppUtility.isInternetConnected() == false){
+                                if (uiHelper.isDialogActive()) {
+                                    uiHelper.dismissLoadingDialog();
+                                }
+
+                                Wrapper modelContainer = GsonParser.getInstance()
+                                        .parseServerResponse(s);
+
+                                if (modelContainer.getStatus().getCode() == 200) {
+                                    hasNext = modelContainer.getData().get("has_next")
+                                            .getAsBoolean();
+
+                                    schoolName = modelContainer.getData().get("school_name").getAsString();
+                                    username = modelContainer.getData().get("user_name").getAsString();
+                                    profileurl = modelContainer.getData().get("profile_picture").getAsString();
+                                    attendance_status = modelContainer.getData().get("attandence").getAsInt();
+                                    userdetails = modelContainer.getData().get("user_details").getAsString();
+                                    lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
+
+                                    if (pageNumber == 1) {
+                                        adapter.clearList();
+                                        adapter.addSeparatorItem(new FreeFeed());
+                                    }
+
+                                    spinner.setVisibility(View.GONE);
+                                    if (!hasNext) {
+                                        // fitnessAdapter.setStopLoadingData(true);
+                                        stopLoadingData = true;
+                                    }
+                                    // fitnessAdapter.getList().addAll();
+                                    ArrayList<FreeFeed> allpost = GsonParser.getInstance()
+                                            .parsePost(
+                                                    modelContainer.getData().getAsJsonArray("feeds")
+                                                            .toString());
+
+                                    // if (pageNumber == 1)
+                                    for (int i = 0; i < allpost.size(); i++) {
+                                        adapter.addItem(allpost.get(i));
+                                    }
+                                    adapter.notifyDataSetChanged();
+
+                                    if (pageNumber != 0 || isRefreshing) {
+                                        listGoodread.onRefreshComplete();
+                                        loading = false;
+                                    }
+                                }
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+
+                            if(volleyError.networkResponse != null && volleyError.networkResponse.data != null){
+                                VolleyError error = new VolleyError(new String(volleyError.networkResponse.data));
+                                Log.e("ERROR", "is: "+error);
+                            }
+
+                        }
+                    });
+
+
+                } else {
+                    VolleyRestClient volleyRestClient = new VolleyRestClient();
+                    volleyRestClient.setContext(getActivity());
+
+                    volleyRestClient.post(Request.Method.POST, paramsVolley, URLHelper.URL_BASE+URLHelper.URL_FREE_VERSION_SCHOOL_FEED, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String s) {
+                            Log.e("*** RESPONSE ***" , "is: "+s);
+
+                            if(AppUtility.isInternetConnected() == false){
+                                if (uiHelper.isDialogActive()) {
+                                    uiHelper.dismissLoadingDialog();
+                                }
+
+                                Wrapper modelContainer = GsonParser.getInstance()
+                                        .parseServerResponse(s);
+
+                                if (modelContainer.getStatus().getCode() == 200) {
+                                    hasNext = modelContainer.getData().get("has_next")
+                                            .getAsBoolean();
+
+                                    schoolName = modelContainer.getData().get("school_name").getAsString();
+                                    username = modelContainer.getData().get("user_name").getAsString();
+                                    profileurl = modelContainer.getData().get("profile_picture").getAsString();
+                                    attendance_status = modelContainer.getData().get("attandence").getAsInt();
+                                    userdetails = modelContainer.getData().get("user_details").getAsString();
+                                    lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
+
+                                    if (pageNumber == 1) {
+                                        adapter.clearList();
+                                        adapter.addSeparatorItem(new FreeFeed());
+                                    }
+
+                                    spinner.setVisibility(View.GONE);
+                                    if (!hasNext) {
+                                        // fitnessAdapter.setStopLoadingData(true);
+                                        stopLoadingData = true;
+                                    }
+                                    // fitnessAdapter.getList().addAll();
+                                    ArrayList<FreeFeed> allpost = GsonParser.getInstance()
+                                            .parsePost(
+                                                    modelContainer.getData().getAsJsonArray("feeds")
+                                                            .toString());
+
+                                    // if (pageNumber == 1)
+                                    for (int i = 0; i < allpost.size(); i++) {
+                                        adapter.addItem(allpost.get(i));
+                                    }
+                                    adapter.notifyDataSetChanged();
+
+                                    if (pageNumber != 0 || isRefreshing) {
+                                        listGoodread.onRefreshComplete();
+                                        loading = false;
+                                    }
+                                }
+                            }
+
+
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+
+                            if(volleyError.networkResponse != null && volleyError.networkResponse.data != null){
+                                VolleyError error = new VolleyError(new String(volleyError.networkResponse.data));
+                                Log.e("ERROR", "is: "+error);
+                            }
+
+                        }
+                    });
+                }
+
+            }
+        }
+
 
         // Log.e("Params", params.toString());
         // if(getArguments().getInt("school_id")==-5)return;
