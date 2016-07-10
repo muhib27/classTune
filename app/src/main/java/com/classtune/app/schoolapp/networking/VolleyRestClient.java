@@ -184,7 +184,7 @@ public class VolleyRestClient {
         Cache.Entry var20 = new Cache.Entry();
         var20.data = response.data;
         var20.etag = serverEtag;
-        var20.ttl = now+24*60*60*1000;
+        var20.ttl = now+72*60*60*1000;
         var20.serverDate = serverDate;
         var20.responseHeaders = headers;
         return var20;
