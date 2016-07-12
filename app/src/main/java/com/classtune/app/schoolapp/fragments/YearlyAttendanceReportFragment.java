@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.R;
@@ -19,6 +20,7 @@ import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.model.YearlyAttendanceData;
 import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
@@ -349,6 +351,11 @@ public class YearlyAttendanceReportFragment extends Fragment implements UserAuth
 		// TODO Auto-generated method stub
 		super.onResume();
 		Log.e(TAG, "OnResume");
+
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
+
 		fetchYearlyAttendanceData();
 
 	}

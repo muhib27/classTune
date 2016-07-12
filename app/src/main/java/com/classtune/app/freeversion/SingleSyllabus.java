@@ -99,7 +99,7 @@ public class SingleSyllabus extends ChildContainerActivity {
 
 		@Override
 		public void onFailure(Throwable arg0, String arg1) {
-			uiHelper.showMessage(arg1);
+			uiHelper.showMessage(getString(R.string.internet_error_text));
 			if (uiHelper.isDialogActive()) {
 				uiHelper.dismissLoadingDialog();
 			}

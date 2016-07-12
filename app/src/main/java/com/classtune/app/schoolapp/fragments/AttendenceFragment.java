@@ -15,9 +15,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.schoolapp.adapters.CalendarAdapter;
 import com.classtune.app.schoolapp.model.Absent;
 import com.classtune.app.schoolapp.model.AttendenceEvents;
@@ -74,6 +75,11 @@ public class AttendenceFragment extends Fragment implements UserAuthListener{
 	public void onResume() {
 		super.onResume();
 		getParamData();
+
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
+
 		if(AppUtility.isInternetConnected())
 			fetchAttendenceData();
 		
@@ -421,7 +427,8 @@ public class AttendenceFragment extends Fragment implements UserAuthListener{
 				{*/
 				
 					eventTitleText.setText(adapter.getItem(position));
-					eventDescriptionText.setText(msgMap.get(adapter.getItem(position)));
+					if(msgMap!=null)
+						eventDescriptionText.setText(msgMap.get(adapter.getItem(position)));
 				//}
 				
 				/*desc = new ArrayList<String>();

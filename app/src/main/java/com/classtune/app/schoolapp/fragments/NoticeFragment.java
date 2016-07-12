@@ -91,7 +91,7 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 	AsyncHttpResponseHandler ackBtnHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			Log.e("button", "failed");
-			uiHelper.showMessage(arg1);
+			uiHelper.showMessage(getString(R.string.internet_error_text));
 			uiHelper.dismissLoadingDialog();
 		};
 

@@ -74,7 +74,7 @@ public class ClassRoutineFragment extends Fragment implements UserAuthListener{
 		public void onFailure(Throwable arg0, String arg1) {
 			super.onFailure(arg0, arg1);
 			// uListener.onServerAuthenticationFailed(arg1);
-			uiHelper.showMessage(arg1);
+			uiHelper.showMessage(getString(R.string.internet_error_text));
 			uiHelper.dismissLoadingDialog();
 		}
 

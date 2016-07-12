@@ -264,7 +264,7 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 	AsyncHttpResponseHandler ackBtnHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			Log.e("button", "failed");
-			uiHelper.showMessage(arg1);
+			uiHelper.showMessage(getString(R.string.internet_error_text));
 			uiHelper.dismissLoadingDialog();
 		};
 
@@ -315,7 +315,7 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 
 		@Override
 		public void onFailure(Throwable arg0, String arg1) {
-			uiHelper.showMessage(arg1);
+			uiHelper.showMessage(getString(R.string.internet_error_text));
 			if (uiHelper.isDialogActive()) {
 				uiHelper.dismissLoadingDialog();
 			}

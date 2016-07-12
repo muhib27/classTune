@@ -97,7 +97,7 @@ public class NotificationActivity extends ChildContainerActivity {
 			public void onFailure(Throwable arg0, String responseString) {
 				//super.onFailure(arg0, responseString);
 				mSpinner.setVisibility(View.GONE);
-				Toast.makeText(NotificationActivity.this, responseString, Toast.LENGTH_LONG).show();
+				Toast.makeText(NotificationActivity.this, R.string.internet_error_text, Toast.LENGTH_LONG).show();
 				//Log.e("Response FAIL", responseString.toString());
 			}
 
@@ -796,7 +796,7 @@ public class NotificationActivity extends ChildContainerActivity {
 
 		@Override
 		public void onFailure(Throwable arg0, String arg1) {
-			uiHelper.showMessage(arg1);
+			uiHelper.showMessage(getString(R.string.internet_error_text));
 			if (uiHelper.isDialogActive()) {
 				uiHelper.dismissLoadingDialog();
 			}

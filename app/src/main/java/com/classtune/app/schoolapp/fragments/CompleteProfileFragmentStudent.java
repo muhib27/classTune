@@ -170,7 +170,7 @@ public class CompleteProfileFragmentStudent extends Fragment implements
 			if (uiHelper.isDialogActive()) {
 				uiHelper.dismissLoadingDialog();
 			}
-			uiHelper.showMessage(arg1);
+			uiHelper.showMessage(getString(R.string.internet_error_text));
 
 		}
 
