@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.freeversion.CreateMeetingRequest;
 import com.classtune.app.freeversion.SingleMeetingRequestActivity;
@@ -34,6 +35,7 @@ import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.CustomDateTimePicker;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -103,8 +105,15 @@ public class MeetingFragment extends Fragment implements UserAuthListener{
 	private boolean stopLoadingData = false;
 
 	private TextView txtMessage;
-	
-	
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

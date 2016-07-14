@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.freeversion.SingleItemTermReportActivity;
@@ -354,6 +355,9 @@ public class ResultTermTesttFragment extends UserVisibleHintFragment implements
 	@Override
 	protected void onVisible() {
 		// TODO Auto-generated method stub
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
 		
 		if(userHelper.getUser().getType()==UserTypeEnum.TEACHER){
 			if(!PaidVersionHomeFragment.isBatchLoaded)

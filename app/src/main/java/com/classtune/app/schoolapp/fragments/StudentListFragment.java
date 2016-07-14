@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.R;
@@ -27,6 +28,7 @@ import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
@@ -50,6 +52,8 @@ public class StudentListFragment extends UserVisibleHintFragment {
 	private Context mContext;
 
 	private TextView txtMessage;
+
+
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -211,6 +215,11 @@ public class StudentListFragment extends UserVisibleHintFragment {
 	@Override
 	protected void onVisible() {
 		//showPicker(PickerType.TEACHER_BATCH);
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
+
+
 		if(!PaidVersionHomeFragment.isBatchLoaded){
 			RequestParams params=new RequestParams();
 			params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());

@@ -72,6 +72,13 @@ public class LeaveApplicationFragment extends Fragment implements
 	private LinearLayout layoutEndDate;
 	private LinearLayout layoutReasonText;
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

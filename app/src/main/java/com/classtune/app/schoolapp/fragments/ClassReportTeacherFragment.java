@@ -14,9 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
@@ -56,12 +58,18 @@ public class ClassReportTeacherFragment extends Fragment implements
 	private LinearLayout dateSelectionLayout;
 	private LinearLayout pbLayout;
 	private BatchSelectionChangedBroadcastReceiver reciever=new BatchSelectionChangedBroadcastReceiver(this);
+	private ImageButton selectDateBtn;
+
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 
 		super.onResume();
 		getActivity().registerReceiver(reciever, new IntentFilter("com.classtune.app.schoolapp.batch"));
+
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	@Override
@@ -131,6 +139,9 @@ public class ClassReportTeacherFragment extends Fragment implements
 				.findViewById(R.id.choose_date_btn);
 		dateSelectionLayout.setOnClickListener(this);
 		pbLayout = (LinearLayout) rootView.findViewById(R.id.pb);
+
+		selectDateBtn = (ImageButton)rootView.findViewById(R.id.select_date_btn);
+		selectDateBtn.setOnClickListener(this);
 		
 		totalViewLink=(TextView)rootView.findViewById(R.id.total_view_btn);
 		presentViewLink=(TextView)rootView.findViewById(R.id.present_view_btn);
@@ -164,10 +175,14 @@ public class ClassReportTeacherFragment extends Fragment implements
 	public void onClick(View v) {
 
 		switch (v.getId()) {
-		case R.id.choose_date_btn:
-			showDatepicker();
-			break;
+			case R.id.choose_date_btn:
+				if(AppUtility.isInternetConnected() == true)
+					showDatepicker();
+				break;
 
+			case R.id.select_date_btn:
+				if(AppUtility.isInternetConnected() == true)
+					showDatepicker();
 		default:
 			break;
 		}

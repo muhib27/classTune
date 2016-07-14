@@ -25,6 +25,7 @@ import com.classtune.app.schoolapp.model.LessonPlanCategory;
 import com.classtune.app.schoolapp.model.Subject;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
@@ -90,6 +91,13 @@ public class LessonPlanAdd extends Fragment {
 
     private boolean  isSubjectLayoutClicked = false;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(AppUtility.isInternetConnected() == false){
+            Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

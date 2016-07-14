@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.R;
@@ -20,6 +21,7 @@ import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ObservableObject;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -46,6 +48,14 @@ public class StudentReportTeacherFragment extends Fragment implements Observer{
 		super.onActivityCreated(savedInstanceState);
 		fetchData();
 
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	private void fetchData() {

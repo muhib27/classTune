@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
@@ -30,6 +31,7 @@ import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ObservableObject;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -191,9 +193,15 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 
 		}
 	};
-	
-	
-	
+
+
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
+	}
 
 	/*@Override
 	public void onResume() {
@@ -437,7 +445,8 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.save_btn:
-			saveData();
+			if(AppUtility.isInternetConnected() == true)
+				saveData();
 			break;
 		case R.id.reset_btn:
 

@@ -158,6 +158,11 @@ public class StudentLeaveFragment extends UserVisibleHintFragment{
 	};
 	@Override
 	protected void onVisible() {
+
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
+
 		fetchData();
 	}
 

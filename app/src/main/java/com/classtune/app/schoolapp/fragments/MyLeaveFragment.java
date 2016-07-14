@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.R;
@@ -190,6 +191,10 @@ public class MyLeaveFragment extends  UserVisibleHintFragment{
 	};
 	@Override
 	protected void onVisible() {
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
+
 		fetchData();
 	}
 

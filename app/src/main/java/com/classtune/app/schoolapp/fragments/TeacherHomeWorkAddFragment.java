@@ -77,7 +77,13 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	private String fileSize = "";
 
 
-
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(AppUtility.isInternetConnected() == false){
+			Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+		}
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.R;
@@ -28,6 +29,7 @@ import com.classtune.app.schoolapp.model.ProgressExam;
 import com.classtune.app.schoolapp.model.SubjectSeries;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
@@ -65,6 +67,13 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
     private RelativeLayout layoutSelectSubject;
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(AppUtility.isInternetConnected() == false){
+            Toast.makeText(getActivity(), R.string.internet_error_text, Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
