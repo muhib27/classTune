@@ -30,6 +30,7 @@ import com.classtune.app.R;
 import java.util.Locale;
 
 @SuppressLint("NewApi")
+@SuppressWarnings("ResourceType")
 public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 	public interface IconTabProvider {
