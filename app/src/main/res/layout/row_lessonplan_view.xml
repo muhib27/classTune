@@ -102,18 +102,40 @@
             android:orientation="horizontal"
             android:background="@color/gray_2">
 
+
         </LinearLayout>
 
 
 
-        <TextView
-            android:id="@+id/txtStatus"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:text="New Text"
-            android:gravity="center"
-            android:textColor="@android:color/black" />
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/txtStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:textColor="@color/classtune_green_color" />
+
+
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 </LinearLayout>

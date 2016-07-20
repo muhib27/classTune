@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -923,6 +924,7 @@ public class LessonPlanView extends Fragment {
                 holder.txtCategory = (TextView)convertView.findViewById(R.id.txtCategory);
                 holder.txtSubject = (TextView)convertView.findViewById(R.id.txtSubject);
                 holder.txtStatus = (TextView)convertView.findViewById(R.id.txtStatus);
+                holder.txtStar = (TextView)convertView.findViewById(R.id.txtStar);
 
 
                 convertView.setTag(holder);
@@ -1072,6 +1074,13 @@ public class LessonPlanView extends Fragment {
                 }
             });
 
+            //holder.txtStar
+            if(!TextUtils.isEmpty(listLessonPlan.get(position).getAttachmentFileName())){
+                holder.txtStar.setVisibility(View.VISIBLE);
+            }else{
+                holder.txtStar.setVisibility(View.GONE);
+            }
+
 
             return convertView;
         }
@@ -1086,6 +1095,7 @@ public class LessonPlanView extends Fragment {
             TextView txtCategory;
             TextView txtSubject;
             TextView txtStatus;
+            TextView txtStar;
 
 
         }

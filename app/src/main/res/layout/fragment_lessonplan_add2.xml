@@ -254,6 +254,43 @@
                         android:background="@drawable/spinner_btn" />
                 </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutAttachmentHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal" >
+
+                <com.classtune.app.schoolapp.viewhelpers.CustomButton
+                    android:id="@+id/btn_teacher_ah_attach_file"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:background="@drawable/general_btn"
+                    android:clickable="true"
+                    android:gravity="center"
+                    custom:iconImage="@drawable/attach_btn_normal"
+                    custom:iconText="@string/btn_candle_attach_file" />
+
+                <LinearLayout
+                    android:id="@+id/layoutFileAttachRight"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="4"
+                    android:background="@color/white"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:id="@+id/tv_teacher_ah_choosen_file_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_teacher_edit_homework_homework_txt_no_file_attached"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

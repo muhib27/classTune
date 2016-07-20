@@ -2,10 +2,13 @@ package com.classtune.app.freeversion;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +57,8 @@ public class SingleLessonPlan extends ChildContainerActivity {
     private CustomTabButton btnEdit;
 
     private LinearLayout layoutButtonHolder;
+    private Button btnDownload;
+    private LinearLayout layoutDownloadHolder;
 
 
     @Override
@@ -112,6 +117,9 @@ public class SingleLessonPlan extends ChildContainerActivity {
             layoutButtonHolder.setVisibility(View.VISIBLE);
         }
 
+        this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
+        this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
+
     }
 
     private void initAction()
@@ -146,6 +154,27 @@ public class SingleLessonPlan extends ChildContainerActivity {
                 intent.putExtra(AppConstant.ID_SINGLE_LESSON_PLAN, SingleLessonPlan.this.id);
 
                 startActivityForResult(intent, 77);
+            }
+        });
+
+        if(!TextUtils.isEmpty(data.getAttachmentFileName()))
+        {
+            layoutDownloadHolder.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            layoutDownloadHolder.setVisibility(View.GONE);
+        }
+
+
+        btnDownload.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri
+                        .parse("http://api.champs21.com/api/freeuser/downloadlessonplan?id=" + id)));
             }
         });
 

@@ -28,6 +28,9 @@ public class LessonPlan {
     @SerializedName("content")
     private String description;
 
+    @SerializedName("attachment_file_name")
+    private String attachmentFileName;
+
     public String getDescription() {
         return description;
     }
@@ -94,6 +97,11 @@ public class LessonPlan {
         this.id = id;
     }
 
+    public String getAttachmentFileName() {
+        return attachmentFileName;
+    }
 
-
+    public void setAttachmentFileName(String attachmentFileName) {
+        this.attachmentFileName = attachmentFileName;
+    }
 }

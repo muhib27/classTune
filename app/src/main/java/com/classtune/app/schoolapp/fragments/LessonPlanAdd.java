@@ -1,8 +1,13 @@
 package com.classtune.app.schoolapp.fragments;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -28,8 +33,10 @@ import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
+import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
+import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -37,10 +44,15 @@ import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+
+import ru.bartwell.exfilepicker.ExFilePicker;
+import ru.bartwell.exfilepicker.ExFilePickerParcelObject;
 
 /**
  * Created by BLACK HAT on 24-Mar-15.
@@ -90,6 +102,14 @@ public class LessonPlanAdd extends Fragment {
 
 
     private boolean  isSubjectLayoutClicked = false;
+    private LinearLayout layoutAttachmentHolder, layoutFileAttachRight;
+    private CustomButton btnTeacherAttachFile;
+
+    private String selectedFilePath = "";
+    private String mimeType = "";
+    private String fileSize = "";
+    private TextView choosenFileTextView;
+    private File myFile;
 
     @Override
     public void onResume() {
@@ -131,8 +151,45 @@ public class LessonPlanAdd extends Fragment {
         view = inflater.inflate(R.layout.fragment_lessonplan_add2, container, false);
 
         initView(view);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            isStoragePermissionGranted();
+        }
+
         return view;
 
+    }
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("PERMISSION","Permission is granted");
+                return true;
+            } else {
+
+                Log.v("PERMISSION","Permission is revoked");
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("PERMISSION","Permission is granted");
+            return true;
+        }
+
+
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            Log.v("PERMISSION","Permission: "+permissions[0]+ "was "+grantResults[0]);
+            //resume tasks needing this permission
+
+        }
     }
 
 
@@ -278,6 +335,96 @@ public class LessonPlanAdd extends Fragment {
 
         layoutSelectMultipleSubject = (LinearLayout)view.findViewById(R.id.layoutSelectMultipleSubject);
         layoutSelectMultipleSubject.setBackgroundColor(Color.parseColor("#eff0f4"));
+
+
+        choosenFileTextView = (TextView) view
+                .findViewById(R.id.tv_teacher_ah_choosen_file_name);
+        choosenFileTextView.setText(getString(R.string.java_singleteacheredithomeworkactivity_no_file_attached));
+
+
+        btnTeacherAttachFile = (CustomButton)view.findViewById(R.id.btn_teacher_ah_attach_file);
+        layoutAttachmentHolder = (LinearLayout)view.findViewById(R.id.layoutAttachmentHolder);
+        layoutFileAttachRight = (LinearLayout)view.findViewById(R.id.layoutFileAttachRight);
+
+        btnTeacherAttachFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                showChooser();
+            }
+        });
+        layoutAttachmentHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showChooser();
+            }
+        });
+
+        layoutFileAttachRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showChooser();
+            }
+        });
+
+
+    }
+
+    private void showChooser() {
+		/*Intent target = FileUtils.createGetContentIntent();
+		Intent intent = Intent.createChooser(target,
+				getString(R.string.chooser_title));
+		try {
+			startActivityForResult(intent, REQUEST_CODE_FILE_CHOOSER);
+		} catch (ActivityNotFoundException e) {
+			// The reason for the existence of aFileChooser
+		}*/
+        Intent intent = new Intent(getActivity(), ru.bartwell.exfilepicker.ExFilePickerActivity.class);
+        intent.putExtra(ExFilePicker.SET_START_DIRECTORY, "/");
+        intent.putExtra(ExFilePicker.SET_ONLY_ONE_ITEM, true);
+        intent.putExtra(ExFilePicker.DISABLE_NEW_FOLDER_BUTTON, true);
+        intent.putExtra(ExFilePicker.DISABLE_SORT_BUTTON, true);
+        intent.putExtra(ExFilePicker.ENABLE_QUIT_BUTTON, true);
+        startActivityForResult(intent, 116);
+
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 116) {
+
+            if (data != null) {
+                ExFilePickerParcelObject object = (ExFilePickerParcelObject) data.getParcelableExtra(ExFilePickerParcelObject.class.getCanonicalName());
+                if (object.count > 0) {
+                    // Here is object contains selected files names and path
+                    selectedFilePath = object.path+object.names.get(0);
+
+
+                    mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                    File myFile= new File(selectedFilePath);
+                    fileSize = String.valueOf(myFile.length());
+
+                    Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                    Log.e("FILE_SIZE", "is: "+fileSize);
+
+                    long fileSizeInKB = myFile.length() / 1024;
+                    long fileSizeInMB = fileSizeInKB / 1024;
+
+                    if(fileSizeInMB <= 5) {
+                        choosenFileTextView.setText(object.names.get(0));
+                    }
+                    else {
+                        selectedFilePath = "";
+                        mimeType = "";
+                        fileSize = "";
+                        Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+        }
+
 
     }
 
@@ -548,6 +695,23 @@ public class LessonPlanAdd extends Fragment {
             params.put("is_show", "0");
         }
 
+        if(!TextUtils.isEmpty(selectedFilePath))
+        {
+            myFile= new File(selectedFilePath);
+            try {
+                params.put("attachment_file_name", myFile);
+
+                Log.e("FILE_NAME", "is: " + myFile.toString());
+            } catch(FileNotFoundException e) {e.printStackTrace();}
+        }
+
+        if(!TextUtils.isEmpty(mimeType)){
+            params.put("mime_type", mimeType);
+        }
+        if(!TextUtils.isEmpty(fileSize)){
+            params.put("file_size", fileSize);
+        }
+
 
 
         AppRestClient.post(URLHelper.URL_LESSON_ADD, params, lessonAddHandler);
@@ -727,12 +891,6 @@ public class LessonPlanAdd extends Fragment {
         list.clear();
         list.addAll(hs);
     }
-
-
-
-
-
-
 
 
 
