@@ -5,7 +5,6 @@ package com.classtune.app.schoolapp.utils;
 
 
 import android.app.Activity;
-import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +12,8 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.provider.Settings;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 import android.support.v4.app.FragmentManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -50,7 +51,7 @@ import roboguice.activity.RoboFragmentActivity;
 //import io.fabric.sdk.android.Fabric;
 
 
-public class SchoolApp extends Application {
+public class SchoolApp extends MultiDexApplication {
 
 	public static final int REQUEST_CODE_CHILD_SELECTION = 123;
 	private ProgressDialog dlog;
@@ -265,6 +266,11 @@ public class SchoolApp extends Application {
     		.build();
     	
     	SimpleFacebook.setConfiguration(configuration);*/
+	}
+
+	protected void attachBaseContext(Context base) {
+		super.attachBaseContext(base);
+		MultiDex.install(this);
 	}
 	
 	private void initUnivarsalIamgeLoader()
