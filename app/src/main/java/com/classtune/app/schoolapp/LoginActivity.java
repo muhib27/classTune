@@ -3,6 +3,7 @@ package com.classtune.app.schoolapp;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -11,22 +12,30 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.CompleteProfileActivityContainer;
 import com.classtune.app.freeversion.ForgetPasswordActivity;
 import com.classtune.app.freeversion.HomePageFreeVersion;
+import com.classtune.app.schoolapp.classtune.InfoPageMainActivity;
+import com.classtune.app.schoolapp.classtune.UserSelectionActivity;
 import com.classtune.app.schoolapp.fragments.UserTypeSelectionDialog;
 import com.classtune.app.schoolapp.fragments.UserTypeSelectionDialog.UserTypeListener;
 import com.classtune.app.schoolapp.utils.SPKeyHelper;
 import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
+import com.classtune.app.schoolapp.viewhelpers.DialogLanguageChooser;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogChangePassword;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+
+import java.util.Locale;
 
 public class LoginActivity extends SocialBaseActivity implements
         OnClickListener, UserTypeListener, PopupDialogChangePassword.PassChangeCallBack {
@@ -46,10 +55,19 @@ public class LoginActivity extends SocialBaseActivity implements
     private String fromAssessment = "";
     private static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 125;
     private TextView tvForgetPassword;
+    private ImageButton btnAbout;
+    private Button btnChooseLanguage;
+    private Button btnRegister;
+    private String localIdentifier = "en";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_login);
         userHelper = new UserHelper(this, LoginActivity.this);
         uiHelper = new UIHelper(LoginActivity.this);
@@ -66,6 +84,40 @@ public class LoginActivity extends SocialBaseActivity implements
 
         if (getIntent() != null && getIntent().getExtras() != null)
             fromAssessment = getIntent().getExtras().getString("assessment_score");
+
+        btnAbout = (ImageButton)this.findViewById(R.id.btnAbout);
+        btnAbout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, InfoPageMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        btnRegister = (Button)this.findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, UserSelectionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        localIdentifier = Locale.getDefault().getLanguage();
+
+        btnChooseLanguage = (Button)this.findViewById(R.id.btnChooseLanguage);
+        btnChooseLanguage.setOnClickListener(this);
+        if(localIdentifier.equals("en")){
+            btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_english));
+        }
+        else if(localIdentifier.equals("bn")){
+            btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_bangla));
+        }
+        else if(localIdentifier.equals("th")){
+            btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_thai));
+        }
+
     }
 
     @Override
@@ -84,6 +136,27 @@ public class LoginActivity extends SocialBaseActivity implements
             case R.id.tv_forget_password:
                 Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.btnChooseLanguage:
+                DialogLanguageChooser dlc = new DialogLanguageChooser(LoginActivity.this, new DialogLanguageChooser.IDialogLanguageOkButtonListener() {
+                    @Override
+                    public void onOkButtonPresse(String localIdentifier) {
+                        Log.e("HOME_PAGE_FREE", "ok clicked");
+
+
+                        String languageToLoad = localIdentifier; // your language
+                        Locale locale = new Locale(languageToLoad);
+                        Locale.setDefault(locale);
+                        Configuration config = new Configuration();
+                        config.locale = locale;
+                        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+                        Intent refresh = new Intent(LoginActivity.this, LoginActivity.class);
+                        startActivity(refresh);
+                        finish();
+                    }
+                });
+                dlc.show();
                 break;
             default:
                 break;

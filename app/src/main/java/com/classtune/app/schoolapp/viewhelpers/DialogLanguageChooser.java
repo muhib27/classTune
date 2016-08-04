@@ -50,7 +50,8 @@ public class DialogLanguageChooser extends Dialog {
 
         int dividerId = this.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
         View divider = this.findViewById(dividerId);
-        divider.setBackgroundColor(ContextCompat.getColor(context, R.color.classtune_green_color));
+        if(divider!=null)
+            divider.setBackgroundColor(ContextCompat.getColor(context, R.color.classtune_green_color));
 
         setTitle(R.string.app_name);
 

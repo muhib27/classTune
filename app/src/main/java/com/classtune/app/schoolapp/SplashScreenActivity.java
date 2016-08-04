@@ -17,7 +17,6 @@ import android.widget.RelativeLayout;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.HomePageFreeVersion;
-import com.classtune.app.schoolapp.classtune.UserSelectionActivity;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.SPKeyHelper;
@@ -117,7 +116,7 @@ public class SplashScreenActivity extends Activity {
 						intent= new Intent(SplashScreenActivity.this, HomePageFreeVersion.class);
 						SplashScreenActivity.this.startActivity(intent);
 					} else {
-						intent= new Intent(SplashScreenActivity.this, UserSelectionActivity.class);
+						intent= new Intent(SplashScreenActivity.this, LoginActivity.class);
 						SplashScreenActivity.this.startActivity(intent);
 					}
 

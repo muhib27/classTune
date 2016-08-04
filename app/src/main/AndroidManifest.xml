@@ -65,7 +65,6 @@
             android:name=".schoolapp.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".schoolapp.ChildSelectionActivity"
