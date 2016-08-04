@@ -114,6 +114,22 @@
                     android:layout_weight="1" >
 
                     <com.classtune.app.schoolapp.viewhelpers.CustomTabButtonEllipsizeText
+                        android:id="@+id/btnYearly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tab_general_btn"
+                        android:clickable="true"
+                        android:gravity="center"
+                        custom:iconImageTab="@drawable/yearly_normal"
+                        custom:iconTextTab="@string/fragment_syllabus_new_yearly" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" >
+
+                    <com.classtune.app.schoolapp.viewhelpers.CustomTabButtonEllipsizeText
                         android:id="@+id/btnClassTest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -124,22 +140,6 @@
                         android:padding="5dp"
                         custom:iconImageTab="@drawable/syllabus_normal"
                         custom:iconTextTab="@string/fragment_syllabus_new_class_test" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" >
-
-                    <com.classtune.app.schoolapp.viewhelpers.CustomTabButtonEllipsizeText
-                        android:id="@+id/btnYearly"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/tab_general_btn"
-                        android:clickable="true"
-                        android:gravity="center"
-                        custom:iconImageTab="@drawable/yearly_normal"
-                        custom:iconTextTab="@string/fragment_syllabus_new_yearly" />
                 </LinearLayout>
 
                 <LinearLayout

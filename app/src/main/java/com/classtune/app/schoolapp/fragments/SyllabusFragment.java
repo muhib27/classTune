@@ -70,6 +70,7 @@ public class SyllabusFragment extends Fragment {
 	private String selectedBatchId = "";
 	private TextView selectedBatchTextView;
 	private ImageButton tapLayout;
+	private static final int REQ_YEARLY_ACTIVIVTY = 101;
 
 
 	@Override
@@ -180,19 +181,19 @@ public class SyllabusFragment extends Fragment {
 		listBtn.add(btnClassTest);
 		listBtn.add(btnProject);
 		listBtn.add(btnYearly);
-		
+
 		currentButton = btnTermExam;
 		btnTermExam.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.syllabus_tap);
 		
 		//initApiCall("3");
-		
+
 		btnTermExam.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(final View v) {
 				// TODO Auto-generated method stub
 				//int scrollX = (v.getLeft() - (getWindowWidth() / 2)) + (v.getWidth() / 2);
-			    //horizontalScrollView.smoothScrollTo(scrollX, 0);
+				//horizontalScrollView.smoothScrollTo(scrollX, 0);
 
 				currentButton = btnTermExam;
 				btnTermExam.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.syllabus_tap);
@@ -205,41 +206,17 @@ public class SyllabusFragment extends Fragment {
 			}
 		});
 
-		btnClassTest.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(final View v) {
-				// TODO Auto-generated method stub
-				//int scrollX = (v.getLeft() - (getWindowWidth() / 2)) + (v.getWidth() / 2);
-			    //horizontalScrollView.smoothScrollTo(scrollX, 0);
-
-				horizontalScrollView.postDelayed(new Runnable() {
-					public void run() {
-						horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_LEFT);
-					}
-				}, 100L);
-
-				currentButton = btnClassTest;
-				btnClassTest.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.syllabus_tap);
-
-				updateButtonUi();
-
-				initApiCall("1");
-			}
-		});
-
-
 		btnYearly.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(final View v) {
 				// TODO Auto-generated method stub
 				//int scrollX = (v.getLeft() - (getWindowWidth() / 2)) + (v.getWidth() / 2);
-			    //horizontalScrollView.smoothScrollTo(scrollX, 0);
+				//horizontalScrollView.smoothScrollTo(scrollX, 0);
 
 				horizontalScrollView.postDelayed(new Runnable() {
 					public void run() {
-						horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+						horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_LEFT);
 					}
 				}, 100L);
 
@@ -254,9 +231,35 @@ public class SyllabusFragment extends Fragment {
 				{
 					intent.putExtra(AppConstant.ID_BATCH, selectedBatchId);
 				}
-				startActivity(intent);
+				startActivityForResult(intent, REQ_YEARLY_ACTIVIVTY);
 			}
 		});
+		
+
+
+		btnClassTest.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(final View v) {
+				// TODO Auto-generated method stub
+				//int scrollX = (v.getLeft() - (getWindowWidth() / 2)) + (v.getWidth() / 2);
+			    //horizontalScrollView.smoothScrollTo(scrollX, 0);
+
+				horizontalScrollView.postDelayed(new Runnable() {
+					public void run() {
+						horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+					}
+				}, 100L);
+
+				currentButton = btnClassTest;
+				btnClassTest.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.syllabus_tap);
+
+				updateButtonUi();
+
+				initApiCall("1");
+			}
+		});
+
 
 		btnProject.setOnClickListener(new View.OnClickListener() {
 
@@ -278,6 +281,17 @@ public class SyllabusFragment extends Fragment {
 
 
 		//btnTermExam.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.term_icon_tap);
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if(requestCode == REQ_YEARLY_ACTIVIVTY){
+			currentButton = btnTermExam;
+			btnTermExam.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.syllabus_tap);
+			btnYearly.setButtonSelected(false, getResources().getColor(R.color.black), R.drawable.yearly_normal);
+			initApiCall("3");
+		}
 	}
 
 	AsyncHttpResponseHandler getBatchEventsHandler=new AsyncHttpResponseHandler()
