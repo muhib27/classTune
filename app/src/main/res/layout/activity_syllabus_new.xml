@@ -17,7 +17,7 @@
         android:layout_marginRight="10dp"
         android:background="@color/white"
         android:gravity="center"
-        android:text="@string/syllabus_mid_layer_activity_no_syllabus_found"
+        android:text="@string/fragment_archieved_events_txt_no_data_found"
         android:textColor="@color/classtune_green_color"
         android:textSize="20sp"
         android:textStyle="bold"

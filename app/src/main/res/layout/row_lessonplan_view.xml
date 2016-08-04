@@ -121,15 +121,13 @@
                 android:gravity="center"
                 android:textColor="@android:color/black" />
 
-            <TextView
-                android:id="@+id/txtStar"
+            <ImageView
+                android:id="@+id/imgAttach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="*"
-                android:textStyle="bold"
-                android:textSize="22sp"
-                android:gravity="center"
-                android:textColor="@color/classtune_green_color" />
+                android:src="@drawable/attach_btn_tap"
+                android:background="@android:color/transparent"
+                android:tint="@color/classtune_green_color"/>
 
 
 

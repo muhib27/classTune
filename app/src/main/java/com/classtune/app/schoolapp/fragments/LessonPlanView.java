@@ -924,7 +924,7 @@ public class LessonPlanView extends Fragment {
                 holder.txtCategory = (TextView)convertView.findViewById(R.id.txtCategory);
                 holder.txtSubject = (TextView)convertView.findViewById(R.id.txtSubject);
                 holder.txtStatus = (TextView)convertView.findViewById(R.id.txtStatus);
-                holder.txtStar = (TextView)convertView.findViewById(R.id.txtStar);
+                holder.imgAttach = (ImageView) convertView.findViewById(R.id.imgAttach);
 
 
                 convertView.setTag(holder);
@@ -1076,9 +1076,9 @@ public class LessonPlanView extends Fragment {
 
             //holder.txtStar
             if(!TextUtils.isEmpty(listLessonPlan.get(position).getAttachmentFileName())){
-                holder.txtStar.setVisibility(View.VISIBLE);
+                holder.imgAttach.setVisibility(View.VISIBLE);
             }else{
-                holder.txtStar.setVisibility(View.GONE);
+                holder.imgAttach.setVisibility(View.GONE);
             }
 
 
@@ -1095,7 +1095,7 @@ public class LessonPlanView extends Fragment {
             TextView txtCategory;
             TextView txtSubject;
             TextView txtStatus;
-            TextView txtStar;
+            ImageView imgAttach;
 
 
         }

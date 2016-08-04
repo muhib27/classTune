@@ -1,6 +1,6 @@
 package com.classtune.app.schoolapp.fragments;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
@@ -128,18 +129,17 @@ public class SyllabusFragment extends Fragment {
 		
 		return view;
 	}
-	
-	@SuppressLint("NewApi")
+
 	private int getWindowWidth()
 	{
-		Display display = getActivity().getWindowManager().getDefaultDisplay();
+		WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
 		Point size = new Point();
 		display.getSize(size);
 		final int width = size.x;
-		
+
 		return width;
 	}
-	
 	private void initView(View view)
 	{
 		
@@ -189,7 +189,7 @@ public class SyllabusFragment extends Fragment {
 		btnTermExam.setOnClickListener(new View.OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
+			public void onClick(final View v) {
 				// TODO Auto-generated method stub
 				//int scrollX = (v.getLeft() - (getWindowWidth() / 2)) + (v.getWidth() / 2);
 			    //horizontalScrollView.smoothScrollTo(scrollX, 0);
@@ -208,10 +208,16 @@ public class SyllabusFragment extends Fragment {
 		btnClassTest.setOnClickListener(new View.OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
+			public void onClick(final View v) {
 				// TODO Auto-generated method stub
 				//int scrollX = (v.getLeft() - (getWindowWidth() / 2)) + (v.getWidth() / 2);
 			    //horizontalScrollView.smoothScrollTo(scrollX, 0);
+
+				horizontalScrollView.postDelayed(new Runnable() {
+					public void run() {
+						horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_LEFT);
+					}
+				}, 100L);
 
 				currentButton = btnClassTest;
 				btnClassTest.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.syllabus_tap);
@@ -222,30 +228,20 @@ public class SyllabusFragment extends Fragment {
 			}
 		});
 
-		btnProject.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//int scrollX = (v.getLeft() - (getWindowWidth() / 2)) + (v.getWidth() / 2);
-			    //horizontalScrollView.smoothScrollTo(scrollX, 0);
-
-				currentButton = btnProject;
-				btnProject.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.syllabus_tap);
-
-				updateButtonUi();
-
-				initApiCall("2");
-			}
-		});
 
 		btnYearly.setOnClickListener(new View.OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
+			public void onClick(final View v) {
 				// TODO Auto-generated method stub
 				//int scrollX = (v.getLeft() - (getWindowWidth() / 2)) + (v.getWidth() / 2);
 			    //horizontalScrollView.smoothScrollTo(scrollX, 0);
+
+				horizontalScrollView.postDelayed(new Runnable() {
+					public void run() {
+						horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+					}
+				}, 100L);
 
 				currentButton = btnYearly;
 				btnYearly.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.yearly_tap);
@@ -262,6 +258,23 @@ public class SyllabusFragment extends Fragment {
 			}
 		});
 
+		btnProject.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(final View v) {
+				// TODO Auto-generated method stub
+				//int scrollX = (v.getLeft() - (getWindowWidth() / 2)) + (v.getWidth() / 2);
+				//horizontalScrollView.smoothScrollTo(scrollX, 0);
+
+
+				currentButton = btnProject;
+				btnProject.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.syllabus_tap);
+
+				updateButtonUi();
+
+				initApiCall("2");
+			}
+		});
 
 
 		//btnTermExam.setButtonSelected(true, getResources().getColor(R.color.black), R.drawable.term_icon_tap);
