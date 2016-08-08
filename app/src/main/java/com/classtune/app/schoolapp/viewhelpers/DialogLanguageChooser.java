@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.classtune.app.R;
@@ -50,8 +51,13 @@ public class DialogLanguageChooser extends Dialog {
 
         int dividerId = this.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
         View divider = this.findViewById(dividerId);
-        if(divider!=null)
+        if(divider != null)
             divider.setBackgroundColor(ContextCompat.getColor(context, R.color.classtune_green_color));
+
+        int textViewId = this.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+        TextView tv = (TextView) this.findViewById(textViewId);
+        if(tv != null)
+            tv.setTextColor(ContextCompat.getColor(context, R.color.classtune_green_color));
 
         setTitle(R.string.app_name);
 

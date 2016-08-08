@@ -137,7 +137,8 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
             }
         });
 
-        if(localIdentifier.equals("en")){
+        btnChooseLanguage.setText(getString(R.string.txt_language));
+        /*if(localIdentifier.equals("en")){
             btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_english));
         }
         else if(localIdentifier.equals("bn")){
@@ -145,7 +146,7 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
         }
         else if(localIdentifier.equals("th")){
             btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_thai));
-        }
+        }*/
     }
 
     @Override

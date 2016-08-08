@@ -22,7 +22,7 @@
         <item>পাসওয়ার্ড পরিবর্তন করুন</item>
         <item>শর্তাবলী</item>
         <item>ভাষা নির্বাচন করুন</item>
-        <item>বর্তমান সংস্করণ: 1.0.7</item>
+        <item>বর্তমান সংস্করণ: 1.0.9</item>
     </string-array>
     <string-array name="diary_images_student">
         <item>home</item>
@@ -879,7 +879,7 @@
 
     <!--LoginActivity-->
     <string name="activity_login_txt_sign_in">আপনার অ্যাকাউন্টে সাইন ইন করুন</string>
-    <string name="activity_login_txt_sign_in_txt_hint_username">ইউজারনেম</string>
+    <string name="activity_login_txt_sign_in_txt_hint_username">ইউজারনেইম</string>
     <string name="activity_login_btn_sign_in">সাইন ইন</string>
     <string name="activity_login_txt_forgot_password">পাসওয়ার্ড ভুলে গিয়েছেন?</string>
 
@@ -1654,6 +1654,9 @@
 
     <!--CreateStudentActivity-->
     <string name="activity_create_student2_message_filter">কেবলমাত্র A-Z, a-z, 0-9, \'_\' , \'-\' এবং \'.\' ব্যবহার করুন</string>
+    <string name="txt_login_register">রেজিস্টার</string>
+    <string name="txt_dont_have_an_account">নতুন অ্যাকাউন্ট দরকার?</string>
+    <string name="txt_language">ভাষা</string>
 
 
 </resources>

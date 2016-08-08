@@ -171,7 +171,7 @@
                         android:id="@+id/txtMember"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Don't have an account?"
+                        android:text="@string/txt_dont_have_an_account"
                         android:textColor="@android:color/black"
                         android:textStyle="bold"
                         android:gravity="center"
@@ -189,24 +189,24 @@
 
                         <Button
                             android:id="@+id/btnChooseLanguage"
-                            android:layout_width="120dp"
+                            android:layout_width="130dp"
                             android:layout_height="50dp"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
                             android:textSize="18sp"
-                            android:text="@string/java_dialoglanguagechooser_lang_english"
+                            android:text="@string/txt_language"
                             android:textStyle="bold"
                             android:textColor="@drawable/classtune_btn_user_selection_signin"
                             android:background="@drawable/classtune_btn_background_user_selection_signin"/>
 
                         <Button
                             android:id="@+id/btnRegister"
-                            android:layout_width="120dp"
+                            android:layout_width="130dp"
                             android:layout_height="50dp"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
                             android:textSize="18sp"
-                            android:text="Register"
+                            android:text="@string/txt_login_register"
                             android:textStyle="bold"
                             android:textColor="@drawable/classtune_btn_user_selection_signin"
                             android:background="@drawable/classtune_btn_background_user_selection_signin"

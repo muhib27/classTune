@@ -59,6 +59,7 @@ public class LoginActivity extends SocialBaseActivity implements
     private Button btnChooseLanguage;
     private Button btnRegister;
     private String localIdentifier = "en";
+    private static final int REQ_LANG = 520;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +101,7 @@ public class LoginActivity extends SocialBaseActivity implements
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, UserSelectionActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, REQ_LANG);
             }
         });
 
@@ -108,7 +109,8 @@ public class LoginActivity extends SocialBaseActivity implements
 
         btnChooseLanguage = (Button)this.findViewById(R.id.btnChooseLanguage);
         btnChooseLanguage.setOnClickListener(this);
-        if(localIdentifier.equals("en")){
+        btnChooseLanguage.setText(getString(R.string.txt_language));
+        /*if(localIdentifier.equals("en")){
             btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_english));
         }
         else if(localIdentifier.equals("bn")){
@@ -116,7 +118,7 @@ public class LoginActivity extends SocialBaseActivity implements
         }
         else if(localIdentifier.equals("th")){
             btnChooseLanguage.setText(getString(R.string.java_dialoglanguagechooser_lang_thai));
-        }
+        }*/
 
     }
 
@@ -302,6 +304,11 @@ public class LoginActivity extends SocialBaseActivity implements
         }
         if (requestCode == SchoolApp.REQUEST_CODE_CHILD_SELECTION) {
             doPaidNavigation();
+        }
+        if(requestCode == REQ_LANG){
+            finish();
+            Intent intent1 = getIntent();
+            startActivity(intent1);
         }
         super.onActivityResult(requestCode, responseCode, intent);
     }

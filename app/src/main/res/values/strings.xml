@@ -22,7 +22,7 @@
         <item>Change Password</item>
         <item>Terms \u0026 Policy</item>
         <item>Choose Language</item>
-        <item>Current Version: 1.0.7</item>
+        <item>Current Version: 1.0.9</item>
     </string-array>
     <string-array name="diary_images_student">
         <item>home</item>
@@ -1654,6 +1654,9 @@
 
     <!--CreateStudentActivity-->
     <string name="activity_create_student2_message_filter">Only A-Z, a-z, 0-9, \'_\' , \'-\' and \'.\' are accepted.</string>
+    <string name="txt_login_register">Register</string>
+    <string name="txt_dont_have_an_account">Don\'t have an account?</string>
+    <string name="txt_language">Language</string>
 
 
 </resources>

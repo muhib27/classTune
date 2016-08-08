@@ -31,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/java_dialoglanguagechooser_lang_english"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:layout_marginTop="10dp"
             android:id="@+id/checkBoxEnglish" />
@@ -39,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/java_dialoglanguagechooser_lang_bangla"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:layout_marginTop="10dp"
             android:id="@+id/checkBoxBangla" />
