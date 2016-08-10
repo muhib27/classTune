@@ -307,7 +307,7 @@
                 android:layout_height="120dp"
                 android:background="@color/white"
                 android:gravity="top"
-                android:hint="@string/activity_teacher_edit_homework_homework_txt_hint_homework_description"
+                android:hint="@string/leave_application_layout_txt_write_description"
                 android:textSize="14sp"
                 android:padding="10dp"
                 android:textColor="@color/black"
