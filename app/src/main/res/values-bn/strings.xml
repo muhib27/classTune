@@ -27,6 +27,7 @@
     <string-array name="diary_images_student">
         <item>home</item>
         <item>homework</item>
+        <item>homework</item>
         <item>quiz</item>
         <item>notice</item>
         <item>syllabus</item>
@@ -45,6 +46,7 @@
 
         <item>SchoolFeedFragment</item>
         <item>HomeworkFragment</item>
+        <item>TecherClassworkFragment</item>
         <item>QuizFragment</item>
         <item>NoticeFragmentNew</item>
         <item>SyllabusFragment</item>
@@ -63,6 +65,7 @@
 
         <item>School Feed</item>
         <item>Homework</item>
+        <item>Classwork</item>
         <item>Quiz</item>
         <item>Notice</item>
         <item>Syllabus</item>
@@ -80,6 +83,7 @@
 
     <string-array name="diary_images_student_free">
         <item>home</item>
+        <item>homework</item>
         <item>homework</item>
         <item>notice</item>
         <item>quiz</item>
@@ -100,6 +104,7 @@
 
         <item>SchoolFeedFragment</item>
         <item>HomeworkFragment</item>
+        <item>TecherClassworkFragment</item>
         <item>NoticeFragmentNew</item>
         <item>QuizFragment</item>
 
@@ -119,6 +124,7 @@
 
         <item>School Feed</item>
         <item>Homework</item>
+        <item>Classwork</item>
         <item>Notice</item>
         <item>Quiz</item>
 

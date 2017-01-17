@@ -27,6 +27,7 @@
     <string-array name="diary_images_student">
         <item>home</item>
         <item>homework</item>
+        <item>classwork</item>
         <item>quiz</item>
         <item>notice</item>
         <item>syllabus</item>
@@ -45,6 +46,7 @@
 
         <item>SchoolFeedFragment</item>
         <item>HomeworkFragment</item>
+        <item>ClassworkFragment</item>
         <item>QuizFragment</item>
         <item>NoticeFragmentNew</item>
         <item>SyllabusFragment</item>
@@ -63,6 +65,7 @@
 
         <item>ClassTune Home</item>
         <item>Homework</item>
+        <item>Classwork</item>
         <item>Quiz</item>
         <item>Notice</item>
         <item>Syllabus</item>
@@ -81,6 +84,7 @@
     <string-array name="diary_images_student_free">
         <item>home</item>
         <item>homework</item>
+        <item>classwork</item>
         <item>notice</item>
         <item>quiz</item>
 
@@ -100,6 +104,7 @@
 
         <item>SchoolFeedFragment</item>
         <item>HomeworkFragment</item>
+        <item>ClassworkFragment</item>
         <item>NoticeFragmentNew</item>
         <item>QuizFragment</item>
 
@@ -119,6 +124,7 @@
 
         <item>ClassTune Home</item>
         <item>Homework</item>
+        <item>Classwork</item>
         <item>Notice</item>
         <item>Quiz</item>
 
@@ -138,6 +144,7 @@
     <string-array name="diary_images_parents">
         <item>home</item>
         <item>homework</item>
+        <item>classwork</item>
         <item>quiz</item>
         <item>notice</item>
         <item>syllabus</item>
@@ -158,6 +165,7 @@
     <string-array name="diary_text_parents">
         <item>ClassTune Home</item>
         <item>Homework</item>
+        <item>Classwork</item>
         <item>Quiz</item>
         <item>Notice</item>
         <item>Syllabus</item>
@@ -178,6 +186,7 @@
     <string-array name="diary_class_parents">
         <item>SchoolFeedFragment</item>
         <item>HomeworkFragment</item>
+        <item>ClassworkFragment</item>
         <item>QuizFragment</item>
         <item>NoticeFragmentNew</item>
         <item>SyllabusFragment</item>
@@ -200,6 +209,7 @@
     <string-array name="diary_images_parents_free">
         <item>home</item>
         <item>homework</item>
+        <item>classwork</item>
         <item>notice</item>
         <item>quiz</item>
 
@@ -221,6 +231,7 @@
     <string-array name="diary_text_parents_free">
         <item>ClassTune Home</item>
         <item>Homework</item>
+        <item>Classwork</item>
         <item>Notice</item>
         <item>Quiz</item>
 
@@ -242,6 +253,7 @@
     <string-array name="diary_class_parents_free">
         <item>SchoolFeedFragment</item>
         <item>HomeworkFragment</item>
+        <item>ClassworkFragment</item>
         <item>NoticeFragmentNew</item>
         <item>QuizFragment</item>
 
@@ -265,6 +277,7 @@
         <item>home</item>
         <item>attendance</item>
         <item>homework</item>
+        <item>classwork</item>
         <item>routine</item>
         <item>exam_routine</item>
         <item>notice</item>
@@ -284,6 +297,7 @@
         <item>ClassTune Home</item>
         <item>Attendance</item>
         <item>Homework</item>
+        <item>Classwork</item>
         <item>Routine</item>
         <item>Exam Routine</item>
         <item>Notice</item>
@@ -303,6 +317,7 @@
         <item>SchoolFeedFragment</item>
         <item>TeachersAttendanceTabhostFragment</item>
         <item>TeacherHomeWorkFragment</item>
+        <item>TeacherClassWorkFragment</item>
         <item>TeacherRoutineFragment</item>
         <item>ExamRoutineTeacherFragment</item>
         <item>NoticeFragmentNew</item>
@@ -321,6 +336,7 @@
     <string-array name="diary_images_teacher_free">
         <item>home</item>
         <item>homework</item>
+        <item>classwork</item>
         <item>notice</item>
         <item>attendance</item>
 
@@ -342,6 +358,7 @@
     <string-array name="diary_text_teacher_free">
         <item>ClassTune Home</item>
         <item>Homework</item>
+        <item>Classwork</item>
         <item>Notice</item>
         <item>Attendance</item>
 
@@ -363,6 +380,7 @@
     <string-array name="diary_class_teacher_free">
         <item>SchoolFeedFragment</item>
         <item>TeacherHomeWorkFragment</item>
+        <item>TeacherClassWorkFragment</item>
         <item>NoticeFragmentNew</item>
         <item>TeachersAttendanceTabhostFragment</item>
 
@@ -437,7 +455,6 @@
     <string name="album_name_classtune">classtune</string>
 
 
-
     <!--Multiple Language Support-->
 
     <string name="test_string">Lorem Ipsum is simply dummy text of the printing  into electronic ining Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
@@ -483,6 +500,7 @@
     <string name="btn_reminder">Reminder</string>
     <string name="btn_previous">Previous</string>
     <string name="tab_homework">Homework</string>
+    <string name="tab_classwork">Claswork</string>
     <string name="tab_project">Project</string>
     <string name="tab_assessment">Quiz</string>
 
@@ -674,7 +692,6 @@
 
     ]]>
     </string>
-
 
 
     <string name="spinner_prompt_select_batch">Select Batch</string>
@@ -876,6 +893,10 @@
     <string name="teacher_homework_txt_homework">Homework</string>
     <string name="teacher_homework_txt_filter_by_subject">FILTER BY SUBJECT</string>
     <string name="teacher_homework_txt_filter_by_date">FILTER BY DATE</string>
+
+    <!--TeacherHomeWorkFragment-->
+    <string name="teacher_homework_txt_classwork">Classwork</string>
+
 
     <!--LoginActivity-->
     <string name="activity_login_txt_sign_in">Sign in to your account</string>
@@ -1641,6 +1662,11 @@
 
     <!--SingleHomeworkActivity-->
     <string name="activity_single_homework_btn_download">Download</string>
+    <string name="activity_single_homework_txt_class">Shift:</string>
+    <string name="activity_single_homework_txt_course">Class:</string>
+    <string name="activity_single_homework_txt_section">Section:</string>
+    <string name="activity_single_homework_txt_duedate">DueDate:</string>
+    <string name="activity_single_homework_txt_assigndate">AssignDate:</string>
 
     <!--MeetingFragment-->
     <string name="fragment_meeting2_create_request">Create Request</string>
@@ -1657,6 +1683,9 @@
     <string name="txt_login_register">Register</string>
     <string name="txt_dont_have_an_account">Don\'t have an account?</string>
     <string name="txt_language">Language</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

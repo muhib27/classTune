@@ -22,10 +22,16 @@ public class CommonData {
 	private ArrayList<Notice> allNotice;
 	@SerializedName("homework")
 	private ArrayList<HomeworkData> homeworkList;
+	@SerializedName("classwork")
+	private ArrayList<ClassworkData> classworkList;
 	@SerializedName("notice_ack")
 	private NoticeAcknowledge notice_ack;
 	@SerializedName("has_next")
 	private boolean hasNext;
+
+	public ArrayList<ClassworkData> getClassworkList() {
+		return classworkList;
+	}
 
 	public NoticeAcknowledge getNotice_ack() {
 		return notice_ack;

@@ -73,7 +73,19 @@
                         android:layout_marginRight="10dp"
                         android:background="@drawable/spinner_btn" />
                 </LinearLayout>
+
             </LinearLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/layoutSelectMultipleSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+            </ScrollView>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -231,42 +243,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:orientation="horizontal" >
-
-                <com.classtune.app.schoolapp.viewhelpers.CustomButton
-                    android:id="@+id/btn_teacher_ah_due_date"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:background="@drawable/general_btn"
-                    android:clickable="true"
-                    android:gravity="center"
-                    custom:iconImage="@drawable/small_calendar_icon"
-                    custom:iconText="@string/activity_teacher_edit_homework_homework_txt_due_date" />
-
-                <LinearLayout
-                    android:id="@+id/layoutDate"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="1dp"
-                    android:layout_weight="2"
-                    android:background="@color/white"
-                    android:gravity="center" >
-
-                    <TextView
-                        android:id="@+id/tv_teacher_ah_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="10-12-2014"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dip"
@@ -283,33 +259,31 @@
             android:layout_marginTop="15dp" >
 
             <Button
-                android:id="@+id/btnCancel"
+                android:id="@+id/btn_save_draft_homework"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="38dp"
                 android:layout_weight="1"
-                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="@string/btn_cancel"
+                android:layout_marginRight="5dp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:layout_marginRight="5dp"
+                android:textSize="18sp"
+                android:text="@string/fragment_teacher_add_homework_btn_save_as_draft"
                 android:background="@drawable/btn_holder_homework" />
 
             <Button
-                android:id="@+id/btnSave"
+                android:id="@+id/btn_publish_homework"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="38dp"
                 android:layout_weight="1"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="@string/popup_layout_change_pass_txt_save"
+                android:layout_marginLeft="5dp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:layout_marginLeft="5dp"
+                android:textSize="18sp"
+                android:text="@string/activity_single_teacher_draft_homework_btn_publish"
                 android:background="@drawable/btn_holder_homework" />
-
-
-
         </LinearLayout>
     </LinearLayout>
 

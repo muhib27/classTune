@@ -88,7 +88,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 		adapter = new GoodReadAdapter(getActivity());
 		userHelper = new UserHelper(this, getActivity());
 		allGooadReadPost.clear();
-		Log.e("SIZE OF ALLGOODREADPOST:", "" + allGooadReadPost.size());
+		Log.e("Size :", "SIZE OF ALLGOODREADPOST : " + allGooadReadPost.size());
 		
 		homeWorkSubject = new ArrayList<BaseType>();
 		
@@ -473,7 +473,10 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 				holder.subjectName = (TextView) convertView.findViewById(R.id.tv_teacher_feed_subject_name);
 				holder.date = (TextView) convertView.findViewById(R.id.tv_teacher_homewrok_feed_date);
 				//holder.classname = (TextView) convertView.findViewById(R.id.tv_teacher_homework_feed_class);
-				holder.section = (TextView) convertView.findViewById(R.id.tv_teavher_homework_feed_section);
+				//holder.section = (TextView) convertView.findViewById(R.id.tv_teavher_homework_feed_section);
+				holder.tvShift = (TextView)convertView.findViewById(R.id.tv_teacher_homewrok_feed_shift);
+				holder.tvCourse = (TextView)convertView.findViewById(R.id.tv_teacher_homework_feed_course);
+				holder.tvSection = (TextView) convertView.findViewById(R.id.tv_teacher_homework_feed_Section);
 				holder.doneBtn = (CustomButton) convertView.findViewById(R.id.btn_done);
 				holder.homeworkContent = (TextView) convertView.findViewById(R.id.tv_homework_content);
 				holder.txtAssignDate = (TextView)convertView.findViewById(R.id.txtAssignDate);
@@ -507,7 +510,12 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 				holder.subjectName.setText(hwork.getSubjects());
 				holder.date.setText(AppUtility.getDateString(hwork.getDuedate(), AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
 				//holder.classname.setText(hwork.getCourse());
-				holder.section.setText(hwork.getBatch());
+				//holder.section.setText(hwork.getBatch());
+				holder.tvShift.setText(hwork.getBatch());
+				holder.tvCourse.setText(hwork.getCourse());
+				holder.tvSection.setText(hwork.getSection().toString());
+				Log.e("sectionTest", "getView: "+hwork.getSection() );
+				//holder.tvSection.setText(hwork.getSection());
 				//holder.homeworkContent.setText(Html.fromHtml(hwork.getContent(),null,new MyTagHandler()));
 				holder.homeworkContent.setText(allGooadReadPost.get(position).getHomework_name());
 				/*holder.doneBtn.setTag(""+position);
@@ -561,7 +569,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 
 	class ViewHolder {
 		
-		TextView subjectName, date,classname, section, txtAssignDate, txtAttachment;
+		TextView subjectName, date,classname, section, txtAssignDate, txtAttachment, tvShift, tvCourse, tvSection;
 		TextView homeworkContent;
 		CustomButton doneBtn;
 		ImageView ivSubjectIcon;

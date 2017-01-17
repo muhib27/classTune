@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/gray_bg"
     android:orientation="vertical" >
-    
-    
+
+
     <LinearLayout
         android:id="@+id/toplay"
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-        <ImageView 
+        <ImageView
             android:layout_margin="5dp"
             android:id="@+id/imgViewCategoryMenuIcon"
             android:layout_width="60dp"
@@ -152,38 +152,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/white" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="@color/gray_2"
-            android:orientation="horizontal"
-            android:padding="5dp" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.19"
-                android:text="@string/item_homework_feed_txt_due_date"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtDueDate"
-                android:layout_weight="1.5"
-                android:text="English"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"

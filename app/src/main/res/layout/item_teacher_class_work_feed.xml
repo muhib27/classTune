@@ -96,37 +96,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/white" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@color/gray_2"
-                android:orientation="horizontal"
-                android:padding="5dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.19"
-                    android:text="@string/item_homework_feed_txt_due_date"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_teacher_homewrok_feed_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
-                    android:text="English"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,8 +141,8 @@
             android:textColor="@color/classtune_green_color"
             android:visibility="gone"
             android:text="@string/item_homework_feed_txt_worksheet" />
-        
-        
+
+
         <TextView
             android:id="@+id/tv_homework_content"
             android:layout_width="match_parent"
@@ -198,25 +167,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
                 android:background="@color/gray_2" >
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutBottomPanel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="visible" >
-
-                <com.classtune.app.schoolapp.viewhelpers.CustomButton
-                    android:id="@+id/btn_done"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/general_btn"
-                    android:clickable="true"
-                    android:gravity="center"
-                    custom:iconImage="@drawable/done_normal"
-                    custom:iconText="@string/btn_done" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

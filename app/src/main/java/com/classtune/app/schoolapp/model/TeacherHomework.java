@@ -15,6 +15,13 @@ public class TeacherHomework {
 
 	@SerializedName("course")
 	private String course;
+
+	public String getSection() {
+		return section;
+	}
+
+	@SerializedName("section")
+	private String section;
 	
 	@SerializedName("subjects_id")
 	private String subjects_id;

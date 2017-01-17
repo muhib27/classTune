@@ -47,11 +47,16 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	private UIHelper uiHelper;
 	private String id;
 	private TextView tvLesson;
+	private TextView tvShift;
+	private TextView tvCourse;
+	private TextView tvSection;
+	private TextView tvDueDate;
+	private TextView tvAssignDate;
+	private LinearLayout mLinearLayout;
 	//private WebView webViewContent;
 	
 	private ExpandableTextView txtContent;
 	private TextView tvSubject;
-	private TextView tvDate;
 	private CustomButton btnDone;
 	private ImageView ivSubjectIcon;
 	
@@ -101,7 +106,12 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		this.txtContent = (ExpandableTextView)this.findViewById(R.id.txtContent);
 		this.tvLesson = (TextView) this.findViewById(R.id.tv_homework_content);
 		this.tvSubject = (TextView) this.findViewById(R.id.tv_teacher_feed_subject_name);
-		this.tvDate = (TextView) this.findViewById(R.id.tv_teacher_homewrok_feed_date);
+		this.tvShift = (TextView)this.findViewById(R.id.tv_teacher_homewrok_feed_shift);
+		this.tvCourse = (TextView)this.findViewById(R.id.tv_teacher_homework_feed_course);
+		this.tvSection = (TextView)this.findViewById(R.id.tv_teacher_homework_feed_section);
+		this.tvDueDate = (TextView)this.findViewById(R.id.txtDueDate);
+		this.tvAssignDate = (TextView)this.findViewById(R.id.txtAssignDate);
+		this.mLinearLayout = (LinearLayout)this.findViewById(R.id.single_teacher_homework_detail_visibility);
 		
 		this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
 		this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
@@ -118,20 +128,20 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	
 	private void initAction()
 	{
+		mLinearLayout.setVisibility(View.VISIBLE);
 		this.tvLesson.setText(data.getName());
 		this.txtContent.setText(Html.fromHtml(data.getContent(), null, new MyTagHandler()));
 		
 		
 		btnDone.setTitleText(getString(R.string.java_singleteacherhomeworkactivity_done_by)+data.getDone());
 		btnDone.setTextSize(16);
-		
-		
+
 		this.tvSubject.setText(data.getSubjects());
-		
-		String[] parts = data.getDuedate().split(" ");
-		String part1 = parts[0];
-		this.tvDate.setText(part1);
-		
+		this.tvShift.setText(data.getBatch());
+		this.tvCourse.setText(data.getCourse());
+		this.tvSection.setText(data.getSection());
+		this.tvDueDate.setText(data.getDuedate());
+		this.tvAssignDate.setText(data.getAssign_date());
 	
 		
 		this.ivSubjectIcon.setImageResource(AppUtility.getImageResourceId(data.getSubjects_icon(), this));

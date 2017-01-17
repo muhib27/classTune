@@ -828,6 +828,7 @@ public class LessonPlanAdd extends Fragment {
                         getIdWithComma();
 
 
+                        Log.e("LessonPlan", "onCheckedChanged: "+listSubject.get(tag).getName() );
                         listSubjectName.add(listSubject.get(tag).getName());
                         refreshData(listSubjectName);
                         getNameWithComma();

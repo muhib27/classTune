@@ -39,6 +39,7 @@ public class URLHelper {
 	public final static String URL_GET_BATCH_CLASS_REPORT = "calender/studentAttendenceReport";
 
 	public final static String URL_HOMEWORK = "homework";
+	public final static String URL_CLASSWORK = "classwork";
 
 	public final static String URL_PROJECT = "homework/getproject";
 
@@ -57,10 +58,13 @@ public class URLHelper {
 	public final static String URL_GET_EVENT_LIST = "event";
 	
 	public final static String URL_TEACHER_GET_SUBJECT = "homework/getsubject";
+	public final static String URL_TEACHER_CLASSWORK_GET_SUBJECT = "classwork/getsubject";
 	
 	public final static String URL_TEACHER_ADD_HOMEWORK = "homework/addhomework";
+	public final static String URL_TEACHER_ADD_CLASSWORK = "classwork/addclasswork";
 	
 	public final static String URL_TEACHER_HOMEWORK_FEED = "homework/teacherhomework";
+	public final static String URL_TEACHER_CLASSWORK_FEED = "classwork/teacherclasswork";
 
 	public final static String URL_TEACHER_LEAVE = "event/addleaveteacher";
 	
@@ -201,12 +205,16 @@ public class URLHelper {
 	public final static String URL_HOMEWORK_STATUS= "homework/homeworkstatus";
 	
 	public final static String URL_SINGLE_TEACHER_HOMEWORK = "homework/singleteacher";
+	public final static String URL_SINGLE_TEACHER_CLASSWORK = "classwork/singleteacher";
 
 	public final static String URL_SINGLE_TEACHER_PUBLISH_HOMEWORK = "homework/publishhomework";
+	public final static String URL_SINGLE_TEACHER_PUBLISH_CLASSWORK = "classwork/publishclasswork";
 	
 	public final static String URL_HOMEWORK_SUBJECT = "homework/subjects";
+	public final static String URL_CLASSWORK_SUBJECT = "classwork/subjects";
 	
 	public final static String URL_HOMEWORK_SUBJECT_TEACHER = "homework/getsubject";
+	public final static String URL_CLASSWORK_SUBJECT_TEACHER = "classwork/getSubject";
 	
 	public final static String URL_APPROVE_LEAVE = "calender/approveLeave";
 	

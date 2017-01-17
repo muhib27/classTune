@@ -31,6 +31,7 @@ import com.classtune.app.schoolapp.model.SubCategory;
 import com.classtune.app.schoolapp.model.Subject;
 import com.classtune.app.schoolapp.model.SubjectSeries;
 import com.classtune.app.schoolapp.model.Syllabus;
+import com.classtune.app.schoolapp.model.TeacherClassWork;
 import com.classtune.app.schoolapp.model.TeacherHomework;
 import com.classtune.app.schoolapp.model.Term;
 import com.classtune.app.schoolapp.model.TermReportItem;
@@ -286,6 +287,12 @@ public class GsonParser {
 	public ArrayList<TeacherHomework> parseTeacherHomework(String object) {
 		ArrayList<TeacherHomework> allPost = new ArrayList<TeacherHomework>();
 		allPost = new Gson().fromJson(object, new TypeToken<ArrayList<TeacherHomework>>(){
+		}.getType());
+		return allPost;
+	}
+	public ArrayList<TeacherClassWork> parseTeacherClasswork(String object) {
+		ArrayList<TeacherClassWork> allPost = new ArrayList<TeacherClassWork>();
+		allPost = new Gson().fromJson(object, new TypeToken<ArrayList<TeacherClassWork>>(){
 		}.getType());
 		return allPost;
 	}

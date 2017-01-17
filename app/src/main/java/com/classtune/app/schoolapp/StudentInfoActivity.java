@@ -81,7 +81,7 @@ public class StudentInfoActivity extends ChildContainerActivity {
 
 	/*@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated  stub
 		super.onResume();
 		fetchStudentInfo();
 	}*/

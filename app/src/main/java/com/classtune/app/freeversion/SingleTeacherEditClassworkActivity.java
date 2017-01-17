@@ -4,8 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +22,7 @@ import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.Subject;
-import com.classtune.app.schoolapp.model.TeacherHomeworkData;
+import com.classtune.app.schoolapp.model.TeacherClassWork;
 import com.classtune.app.schoolapp.model.TypeHomeWork;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
@@ -50,21 +50,16 @@ import java.util.List;
 import ru.bartwell.exfilepicker.ExFilePicker;
 import ru.bartwell.exfilepicker.ExFilePickerParcelObject;
 
-/**
- * Created by BLACK HAT on 25-Jan-16.
- */
-public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
-
-
-    private TeacherHomeworkData data;
+public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
+    private TeacherClassWork data;
     private Gson gson;
 
     private String id;
     private UIHelper uiHelper;
-    EditText subjectEditText, homeworkDescriptionEditText;
+    EditText subjectEditText, classworkDescriptionEditText;
     private List<BaseType> subjectCats;
-    private List<BaseType> homeworkTypeCats;
-    TextView subjectNameTextView, homeWorkTypeTextView, choosenFileTextView;
+    private List<BaseType> classworkTypeCats;
+    TextView subjectNameTextView, classWorkTypeTextView, choosenFileTextView;
     private String subjectId="", homeworkTypeId="1";
     private String selectedFilePath = "";
     private TextView choosenDateTextView;
@@ -77,7 +72,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
 
     private ImageButton btnSubjectName;
-    private ImageButton btnHomeworkType;
+    private ImageButton btnclassworkType;
     private CustomButton btnAttachmentFile;
     private CustomButton btnDueDate;
 
@@ -93,11 +88,10 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
 
 
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_edit_homework);
+        setContentView(R.layout.activity_single_teacher_edit_classwork);
         gson = new Gson();
 
         subjectCats = new ArrayList<BaseType>();
@@ -130,7 +124,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
 
 
-        AppRestClient.post(URLHelper.URL_SINGLE_TEACHER_HOMEWORK, params, singleTeacherHomeWorkHandler);
+        AppRestClient.post(URLHelper.URL_SINGLE_TEACHER_CLASSWORK, params, singleTeacherHomeWorkHandler);
     }
 
     AsyncHttpResponseHandler singleTeacherHomeWorkHandler = new AsyncHttpResponseHandler() {
@@ -163,10 +157,10 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
             if (modelContainer.getStatus().getCode() == 200) {
 
-                JsonObject objHomework = modelContainer.getData().get("homework").getAsJsonObject();
-                data = gson.fromJson(objHomework.toString(), TeacherHomeworkData.class);
+                JsonObject objHomework = modelContainer.getData().get("classwork").getAsJsonObject();
+                data = gson.fromJson(objHomework.toString(), TeacherClassWork.class);
 
-                Log.e("HHH", "data: " + data.getName());
+                Log.e("HHH", "data: " + data.getClasswork_name());
 
                 initialDataPopulate();
 
@@ -185,29 +179,29 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
     private void initialDataPopulate()
     {
         subjectId = data.getSubjects_id();
-        homeworkTypeId = data.getType();
+        homeworkTypeId = data.getClasswork_type();
 
         subjectNameTextView.setText(data.getSubjects());
 
-        if(data.getType().equalsIgnoreCase("1"))
+        if(data.getClasswork_type().equalsIgnoreCase("1"))
         {
-            homeWorkTypeTextView.setText(R.string.java_singleteacheredithomeworkactivity_regular);
+            classWorkTypeTextView.setText(R.string.java_singleteacheredithomeworkactivity_regular);
         }
-        else if(data.getType().equalsIgnoreCase("2"))
+        else if(data.getClasswork_type().equalsIgnoreCase("2"))
         {
-            homeWorkTypeTextView.setText(R.string.java_singleteacheredithomeworkactivity_project);
+            classWorkTypeTextView.setText(R.string.java_singleteacheredithomeworkactivity_project);
         }
 
-        subjectEditText.setText(data.getName());
+        subjectEditText.setText(data.getClasswork_name());
 
-        homeworkDescriptionEditText.setText(data.getContent());
+        classworkDescriptionEditText.setText(data.getContent());
 
-        dateFormatServerString = data.getDuedate();
+       // dateFormatServerString = data.getDuedate();
 
         if(!TextUtils.isEmpty(data.getAttachment_file_name()))
             choosenFileTextView.setText(data.getAttachment_file_name());
 
-        choosenDateTextView.setText(data.getDuedate());
+        //choosenDateTextView.setText(data.getDuedate());
 
     }
 
@@ -224,12 +218,8 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
             Toast.makeText(this, R.string.java_singleteacheredithomeworkactivity_subject_title_cannot_empty, Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(homeworkDescriptionEditText.getText().toString().trim().equals("")){
+        if(classworkDescriptionEditText.getText().toString().trim().equals("")){
             Toast.makeText(this, R.string.java_singleteacheredithomeworkactivity_homework_description_cannot_empty, Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if(dateFormatServerString.equals("")){
-            Toast.makeText(this, R.string.java_singleteacheredithomeworkactivity_choose_due_date, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -241,12 +231,12 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put(RequestKeyHelper.SUBJECT_ID, subjectId);
-        params.put(RequestKeyHelper.CONTENT, homeworkDescriptionEditText
+        params.put(RequestKeyHelper.CONTENT, classworkDescriptionEditText
                 .getText().toString());
         params.put(RequestKeyHelper.SUBJECT_TITLE, subjectEditText.getText()
                 .toString());
         params.put(RequestKeyHelper.TYPE, homeworkTypeId);
-        params.put(RequestKeyHelper.HOMEWORK_DUEDATE, dateFormatServerString);
+       // params.put(RequestKeyHelper.HOMEWORK_DUEDATE, dateFormatServerString);
         params.put("id", id);
 
         if(!selectedFilePath.equalsIgnoreCase(""))
@@ -267,7 +257,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
         }
 
 
-        AppRestClient.post(URLHelper.URL_TEACHER_ADD_HOMEWORK, params,
+        AppRestClient.post(URLHelper.URL_TEACHER_ADD_CLASSWORK, params,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onStart() {
@@ -294,7 +284,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                                 .parseServerResponse(responseString);
                         if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
-                            Toast.makeText(SingleTeacherEditHomeworkActivity.this,
+                            Toast.makeText(SingleTeacherEditClassworkActivity.this,
                                     R.string.java_singleteacheredithomeworkactivity_saved_as_draft,
                                     Toast.LENGTH_SHORT).show();
 
@@ -303,7 +293,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                             finish();
                         } else
                             Toast.makeText(
-                                    SingleTeacherEditHomeworkActivity.this,
+                                    SingleTeacherEditClassworkActivity.this,
                                     R.string.java_singleteacheredithomeworkactivity_failed_post,
                                     Toast.LENGTH_SHORT).show();
                         super.onSuccess(arg0, responseString);
@@ -314,9 +304,9 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
     private void clearDataFields()
     {
         subjectNameTextView.setText("");
-        homeWorkTypeTextView.setText("");
+        classWorkTypeTextView.setText("");
         subjectEditText.setText("");
-        homeworkDescriptionEditText.setText("");
+        classworkDescriptionEditText.setText("");
         choosenFileTextView.setText(R.string.java_singleteacheredithomeworkactivity_no_file_attached);
 
         Date cDate = new Date();
@@ -328,16 +318,16 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
 
     private void createHomeworkTypeCats() {
-        homeworkTypeCats = new ArrayList<BaseType>();
-        homeworkTypeCats.add(new TypeHomeWork(getString(R.string.java_singleteacheredithomeworkactivity_regular), "1"));
-        homeworkTypeCats.add(new TypeHomeWork(getString(R.string.java_singleteacheredithomeworkactivity_project), "2"));
+        classworkTypeCats = new ArrayList<BaseType>();
+        classworkTypeCats.add(new TypeHomeWork(getString(R.string.java_singleteacheredithomeworkactivity_regular), "1"));
+        classworkTypeCats.add(new TypeHomeWork(getString(R.string.java_singleteacheredithomeworkactivity_project), "2"));
     }
 
     private void fetchSubject() {
 
         RequestParams params = new RequestParams();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-        AppRestClient.post(URLHelper.URL_TEACHER_GET_SUBJECT, params,
+        AppRestClient.post(URLHelper.URL_TEACHER_CLASSWORK_GET_SUBJECT, params,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onFailure(Throwable arg0, String response) {
@@ -369,11 +359,11 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
         layoutAttachmentHolder = (LinearLayout)this.findViewById(R.id.layoutAttachmentHolder);
 
-        homeworkDescriptionEditText = (EditText) this
+        classworkDescriptionEditText = (EditText) this
                 .findViewById(R.id.et_teacher_ah_homework_description);
         subjectNameTextView = (TextView) this
                 .findViewById(R.id.tv_teacher_ah_subject_name);
-        homeWorkTypeTextView = (TextView) this
+        classWorkTypeTextView = (TextView) this
                 .findViewById(R.id.tv_teacher_ah_homework_type);
         choosenFileTextView = (TextView) this
                 .findViewById(R.id.tv_teacher_ah_choosen_file_name);
@@ -391,11 +381,11 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
         });
 
 
-        btnHomeworkType = ((ImageButton) this.findViewById(R.id.btn_classwork_type));
-        btnHomeworkType.setOnClickListener(new View.OnClickListener() {
+        btnclassworkType = ((ImageButton) this.findViewById(R.id.btn_classwork_type));
+        btnclassworkType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPicker(PickerType.TEACHER_HOMEWORKTYPE, homeworkTypeCats,
+                showPicker(PickerType.TEACHER_HOMEWORKTYPE, classworkTypeCats,
                         getString(R.string.java_singleteacheredithomeworkactivity_select_homework_type));
             }
         });
@@ -432,16 +422,16 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
 
 
 
-        btnDueDate = ((CustomButton) this.findViewById(R.id.btn_teacher_ah_due_date));
+   /*     btnDueDate = ((CustomButton) this.findViewById(R.id.btn_teacher_ah_due_date));
         btnDueDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatepicker();
             }
-        });
+        });*/
 
 
-        layoutDate = (LinearLayout)this.findViewById(R.id.layoutDate);
+     /*   layoutDate = (LinearLayout)this.findViewById(R.id.layoutDate);
         layoutDate.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -449,13 +439,13 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                 // TODO Auto-generated method stub
                 showDatepicker();
             }
-        });
+        });*/
 
-
+/*
         Date cDate = new Date();
         String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
 
-        choosenDateTextView.setText(AppUtility.getDateString(fDate, AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
+        choosenDateTextView.setText(AppUtility.getDateString(fDate, AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));*/
 
 
         btnCancel = (Button)this.findViewById(R.id.btnCancel);
@@ -492,7 +482,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
         layoutSelectType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPicker(PickerType.TEACHER_HOMEWORKTYPE, homeworkTypeCats,
+                showPicker(PickerType.TEACHER_HOMEWORKTYPE, classworkTypeCats,
                         getString(R.string.java_singleteacheredithomeworkactivity_select_homework_type));
             }
         });
@@ -514,7 +504,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                         break;
                     case TEACHER_HOMEWORKTYPE:
                         TypeHomeWork data = (TypeHomeWork) item;
-                        homeWorkTypeTextView.setText(data.getTypeName());
+                        classWorkTypeTextView.setText(data.getTypeName());
                         homeworkTypeId = data.getTypeId();
                         break;
                     default:

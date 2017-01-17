@@ -3,6 +3,7 @@ package com.classtune.app.schoolapp.fragments;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -14,6 +15,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -47,6 +50,7 @@ import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import ru.bartwell.exfilepicker.ExFilePicker;
@@ -58,7 +62,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	View rootView;
 	private UIHelper uiHelper;
 	EditText subjectEditText, homeworkDescriptionEditText;
-	private List<BaseType> subjectCats;
+	private List<Subject> subjectCats;
 	private List<BaseType> homeworkTypeCats;
 	TextView subjectNameTextView, homeWorkTypeTextView, choosenFileTextView;
 	private String subjectId="", homeworkTypeId="1";
@@ -75,6 +79,11 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	private LinearLayout layoutSelectType;
 	private String mimeType = "";
 	private String fileSize = "";
+	private LinearLayout layoutSelectMultipleSubject;
+	private LinearLayout layoutSubjectClassActionHolder;
+	private List<String> listSubjectId;
+	private List<String> listSubjectName;
+	private boolean  isSubjectLayoutClicked = false;
 
 
 	@Override
@@ -88,9 +97,11 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		subjectCats = new ArrayList<BaseType>();
+		subjectCats = new ArrayList<>();
 		uiHelper = new UIHelper(getActivity());
 		userHelper=new UserHelper(getActivity());
+		listSubjectName = new ArrayList<>();
+		listSubjectId = new ArrayList<>();
 	}
 
 	private boolean isFormValid() {
@@ -119,6 +130,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		RequestParams params = new RequestParams();
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
+		Log.e("Subject id with coma", "PublishHomeWork: "+subjectId );
 		params.put(RequestKeyHelper.SUBJECT_ID, subjectId);
 		params.put(RequestKeyHelper.CONTENT, homeworkDescriptionEditText
 				.getText().toString());
@@ -127,6 +139,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		params.put(RequestKeyHelper.TYPE, homeworkTypeId);
 		params.put(RequestKeyHelper.HOMEWORK_DUEDATE, dateFormatServerString);
 
+		//Log.e("addhomwork", "PublishHomeWork: "+ subjectId+ " "+classworkDescriptionEditText.getText() +" "+ subjectEditText + " "+homeworkTypeId + " "+ dateFormatServerString);
 		if(isForDraft == true)
 		{
 			params.put("is_draft", "1");
@@ -232,7 +245,6 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 				container, false);
 		intiviews(rootView);
 		createHomeworkTypeCats();
-		fetchSubject();
 
 		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			isStoragePermissionGranted();
@@ -243,7 +255,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	}
 
 	private void createHomeworkTypeCats() {
-		homeworkTypeCats = new ArrayList<BaseType>();
+		homeworkTypeCats = new ArrayList<>();
 		homeworkTypeCats.add(new TypeHomeWork(getString(R.string.java_singleteacheredithomeworkactivity_regular), "1"));
 		homeworkTypeCats.add(new TypeHomeWork(getString(R.string.java_singleteacheredithomeworkactivity_project), "2"));
 	}
@@ -272,6 +284,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 									.parseSubject(
 											wrapper.getData().get("subjects")
 													.toString()));
+							generateSubjectChooserLayout(layoutSelectMultipleSubject);
 						}
 					}
 				});
@@ -296,9 +309,39 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 				.findViewById(R.id.tv_teacher_ah_date);
 		((ImageButton) view.findViewById(R.id.btn_subject_name))
 				.setOnClickListener(this);
-		((ImageButton) view.findViewById(R.id.btn_homework_type))
+		((ImageButton) view.findViewById(R.id.btn_classwork_type))
 				.setOnClickListener(this);
+		layoutSelectMultipleSubject = (LinearLayout)view.findViewById(R.id.layoutSelectMultipleSubject);
+		layoutSubjectClassActionHolder = (LinearLayout)view.findViewById(R.id.layoutSelectType);
+		layoutSelectMultipleSubject.setBackgroundColor(Color.parseColor("#eff0f4"));
+		layoutSubjectClassActionHolder.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
 
+				isSubjectLayoutClicked = !isSubjectLayoutClicked;
+
+				if(isSubjectLayoutClicked)
+				{
+					layoutSubjectClassActionHolder.setBackgroundColor(Color.parseColor("#eff0f4"));
+					layoutSelectMultipleSubject.setVisibility(View.VISIBLE);
+
+
+					if(subjectCats.size() <=0)
+						fetchSubject();
+				}
+				else
+				{
+					layoutSubjectClassActionHolder.setBackgroundColor(Color.WHITE);
+					//layoutSelectMultipleSubject.removeAllViews();
+					layoutSelectMultipleSubject.setVisibility(View.GONE);
+
+
+				}
+
+
+
+			}
+		});
 
 		if(userHelper.getUser().getPaidInfo().getSchoolType() == 0)
 		{
@@ -351,7 +394,88 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		layoutSelectSubject = (LinearLayout)view.findViewById(R.id.layoutSelectSubject);
 
 	}
+	private void generateSubjectChooserLayout(LinearLayout layout)
+	{
 
+		for (int i=0;i<subjectCats.size();i++)
+		{
+			CheckBox cb = new CheckBox(getActivity());
+			cb.setPadding(5, 5, 5, 5);
+			cb.setTag(i);
+			cb.setButtonDrawable(R.drawable.check_btn);
+			cb.setText(subjectCats.get(i).getText());
+			cb.setTextColor(Color.BLACK);
+
+			cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					CheckBox btn = (CheckBox)buttonView;
+					int tag = (Integer)btn.getTag();
+
+					if(isChecked)
+					{
+						listSubjectId.add(subjectCats.get(tag).getId());
+						refreshData(listSubjectId);
+						getIdWithComma();
+						listSubjectName.add(subjectCats.get(tag).getText());
+						refreshData(listSubjectName);
+						getNameWithComma();
+					}
+					else
+					{
+						listSubjectId.remove(subjectCats.get(tag).getId());
+						getIdWithComma();
+
+						listSubjectName.remove(subjectCats.get(tag).getText());
+						getNameWithComma();
+					}
+
+					subjectNameTextView.setText(getNameWithComma());
+					subjectId = getIdWithComma();
+					Log.e("SUB_ID", "is: " + getIdWithComma());
+
+				}
+
+
+			});
+
+			//if(i == listSubjectName.indexOf(""))
+
+			layout.addView(cb);
+		}
+
+	}
+
+	private void refreshData(List<String> list)
+	{
+		HashSet hs = new HashSet();
+		hs.addAll(list);
+		list.clear();
+		list.addAll(hs);
+	}
+	private String getIdWithComma()
+	{
+		StringBuilder result = new StringBuilder();
+		for ( String p : listSubjectId )
+		{
+			if (result.length() > 0) result.append( "," );
+			result.append( p );
+		}
+
+		return  result.toString();
+	}
+
+	private String getNameWithComma()
+	{
+		StringBuilder result = new StringBuilder();
+		for ( String p : listSubjectName )
+		{
+			if (result.length() > 0) result.append( "," );
+			result.append( p );
+		}
+
+		return  result.toString();
+	}
 	public void showPicker(PickerType type, List<BaseType> cats, String title) {
 
 		Picker picker = Picker.newInstance(0);
@@ -385,15 +509,52 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 		switch (v.getId()) {
 		case R.id.btn_subject_name:
-			showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
-					getString(R.string.java_singleteacheredithomeworkactivity_select_subject));
+			/*showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
+					getString(R.string.java_singleteacheredithomeworkactivity_select_subject));*/
+			isSubjectLayoutClicked = !isSubjectLayoutClicked;
+
+			if(isSubjectLayoutClicked)
+			{
+				layoutSubjectClassActionHolder.setBackgroundColor(Color.parseColor("#eff0f4"));
+				layoutSelectMultipleSubject.setVisibility(View.VISIBLE);
+
+				if(subjectCats.size() <=0)
+					fetchSubject();
+			}
+			else
+			{
+				layoutSubjectClassActionHolder.setBackgroundColor(Color.WHITE);
+				//layoutSelectMultipleSubject.removeAllViews();
+				layoutSelectMultipleSubject.setVisibility(View.GONE);
+
+
+			}
 			break;
 		case R.id.layoutSelectSubject:
-			showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
-					getString(R.string.java_singleteacheredithomeworkactivity_select_subject));
+			/*showPicker(PickerType.TEACHER_SUBJECT, subjectCats,
+					getString(R.string.java_singleteacheredithomeworkactivity_select_subject));*/
+			//generateSubjectChooserLayout(layoutSelectMultipleSubject);
+			isSubjectLayoutClicked = !isSubjectLayoutClicked;
+
+			if(isSubjectLayoutClicked)
+			{
+				layoutSubjectClassActionHolder.setBackgroundColor(Color.parseColor("#eff0f4"));
+				layoutSelectMultipleSubject.setVisibility(View.VISIBLE);
+
+				if(subjectCats.size() <=0)
+					fetchSubject();
+			}
+			else
+			{
+				layoutSubjectClassActionHolder.setBackgroundColor(Color.WHITE);
+				//layoutSelectMultipleSubject.removeAllViews();
+				layoutSelectMultipleSubject.setVisibility(View.GONE);
+
+
+			}
 			break;
 
-		case R.id.btn_homework_type:
+		case R.id.btn_classwork_type:
 			showPicker(PickerType.TEACHER_HOMEWORKTYPE, homeworkTypeCats,
 					getString(R.string.java_singleteacheredithomeworkactivity_select_homework_type));
 			break;

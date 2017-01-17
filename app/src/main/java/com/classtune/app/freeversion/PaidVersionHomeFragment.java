@@ -2,6 +2,7 @@ package com.classtune.app.freeversion;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -261,6 +262,7 @@ public class PaidVersionHomeFragment extends Fragment implements
 			final DrawerChildMenuDiary child = new DrawerChildMenuDiary();
 			child.setText(myDiaryArrayText[i]);
 			child.setId(i + "");
+			Log.e(TAG, "setUp: "+myDiaryArrayImages[i] );
 			child.setImageName(myDiaryArrayImages[i]);
 			child.setClazzName("com.classtune.app.schoolapp.fragments."
 					+ myDiaryArrayClazz[i]);

@@ -27,9 +27,8 @@
     <uses-permission android:name="com.champs21.schoolapp.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
-    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission-sdk-23>
-    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission-sdk-23>
-
+    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".schoolapp.utils.SchoolApp"
@@ -239,20 +238,14 @@
         <activity
             android:name=".freeversion.SingleEventActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".freeversion.SingleReportCardSubject"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
 
         <receiver android:name=".schoolapp.utils.AppBroadcastReceiver">
-
             <intent-filter>
-                <action android:name="com.datacontext.CUSTOM_INTENT">
-                </action>
+                <action android:name="com.datacontext.CUSTOM_INTENT" />
             </intent-filter>
-
         </receiver>
 
         <!--
@@ -269,8 +262,9 @@
             android:name="ru.bartwell.exfilepicker.ExFilePickerActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/ExFilePickerThemeDark" />
-
-
+        <activity android:name=".freeversion.SingleTeacherClassworkActivity" />
+        <activity android:name=".freeversion.SingleTeacherDraftClassworkActivity" />
+        <activity android:name=".freeversion.SingleTeacherEditClassworkActivity"></activity>
     </application>
 
 </manifest>

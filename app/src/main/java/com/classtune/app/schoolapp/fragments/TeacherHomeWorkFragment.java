@@ -134,7 +134,8 @@ public class TeacherHomeWorkFragment extends Fragment {
 		mTabHostEvts.setup(getActivity(), getChildFragmentManager(), R.id.realtabcontent_events);
         TabInfo tabInfo = null;
         MyFragmentTabHost.TabSpec spec   =   mTabHostEvts.newTabSpec(AppConstant.TAB_HOMEWORK_FEED);
-        spec.setIndicator(getIndicatorView(getString(R.string.title_homework_feed), R.drawable.tab_homework_feed));
+
+		spec.setIndicator(getIndicatorView(getString(R.string.title_homework_feed), R.drawable.tab_homework_feed));
         addTab(this.mTabHostEvts, spec, ( tabInfo = new TabInfo(AppConstant.TAB_HOMEWORK_FEED, TeacherHomeWorkFeedFragment.class, args)));
         
         spec   =   mTabHostEvts.newTabSpec(AppConstant.TAB_HOMEWORK_ADD);
@@ -237,13 +238,7 @@ public class TeacherHomeWorkFragment extends Fragment {
 		return tabIndicator;
 	}
 	
-	/**
-	 * @param activity
-	 * @param tabHost
-	 * @param tabSpec
-	 * @param clss
-	 * @param args
-	 */
+
 	private void addTab(MyFragmentTabHost tabHost, MyFragmentTabHost.TabSpec tabSpec, TabInfo tabInfo) {
 		// Attach a Tab view factory to the spec
 		tabSpec.setContent(new TabFactory(getActivity()));
