@@ -290,39 +290,10 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                 .findViewById(R.id.tv_teacher_ah_date);
         ((ImageButton) view.findViewById(R.id.btn_subject_name))
                 .setOnClickListener(this);
-        ((ImageButton) view.findViewById(R.id.btn_classwork_type))
-                .setOnClickListener(this);
+       /* ((ImageButton) view.findViewById(R.id.btn_classwork_type))
+                .setOnClickListener(this);*/
         layoutSelectMultipleSubject = (LinearLayout)view.findViewById(R.id.layoutSelectMultipleSubject);
-        layoutSubjectClassActionHolder = (LinearLayout)view.findViewById(R.id.layoutSelectType);
         layoutSelectMultipleSubject.setBackgroundColor(Color.parseColor("#eff0f4"));
-        layoutSubjectClassActionHolder.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-                isSubjectLayoutClicked = !isSubjectLayoutClicked;
-
-                if(isSubjectLayoutClicked)
-                {
-                    layoutSubjectClassActionHolder.setBackgroundColor(Color.parseColor("#eff0f4"));
-                    layoutSelectMultipleSubject.setVisibility(View.VISIBLE);
-
-
-                    if(subjectCats.size() <=0)
-                        fetchSubject();
-                }
-                else
-                {
-                    layoutSubjectClassActionHolder.setBackgroundColor(Color.WHITE);
-                    //layoutSelectMultipleSubject.removeAllViews();
-                    layoutSelectMultipleSubject.setVisibility(View.GONE);
-
-
-                }
-
-
-
-            }
-        });
 
         if(userHelper.getUser().getPaidInfo().getSchoolType() == 0)
         {
@@ -352,9 +323,6 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
 
         layoutSelectSubject = (LinearLayout)view.findViewById(R.id.layoutSelectSubject);
         layoutSelectSubject.setOnClickListener(this);
-
-        layoutSelectType = (LinearLayout)view.findViewById(R.id.layoutSelectType);
-        layoutSelectType.setOnClickListener(this);
 
         layoutSelectSubject = (LinearLayout)view.findViewById(R.id.layoutSelectSubject);
 
@@ -503,7 +471,6 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
 
                 if(isSubjectLayoutClicked)
                 {
-                    layoutSubjectClassActionHolder.setBackgroundColor(Color.parseColor("#eff0f4"));
                     layoutSelectMultipleSubject.setVisibility(View.VISIBLE);
 
                     if(subjectCats.size() <=0)
@@ -511,11 +478,8 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                 }
                 else
                 {
-                    layoutSubjectClassActionHolder.setBackgroundColor(Color.WHITE);
                     //layoutSelectMultipleSubject.removeAllViews();
                     layoutSelectMultipleSubject.setVisibility(View.GONE);
-
-
                 }
                 break;
 

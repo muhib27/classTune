@@ -64,7 +64,7 @@ public class TeacherClassWorkFragment extends Fragment {
         mTabHostEvts = (MyFragmentTabHost)rootView.findViewById(R.id.tabhost_homework_teacher);
         LinearLayout headerParent = (LinearLayout) rootView.findViewById(R.id.header_parent);
         CustomRhombusIcon icon = new CustomRhombusIcon(getActivity());
-        icon.setIconImage(R.drawable.homework_tap);
+        icon.setIconImage(R.drawable.classwork_tap);
         headerParent.addView(icon,0);
         initialiseTabHost(savedInstanceState);
         return rootView;
@@ -74,7 +74,7 @@ public class TeacherClassWorkFragment extends Fragment {
         TabInfo tabInfo = null;
         MyFragmentTabHost.TabSpec spec   =   mTabHostEvts.newTabSpec(AppConstant.TAB_CLASSWORK_FEED);
 
-        spec.setIndicator(getIndicatorView(getString(R.string.title_homework_feed), R.drawable.tab_homework_feed));
+        spec.setIndicator(getIndicatorView(getString(R.string.title_homework_feed), R.drawable.tab_classwork_feed));
         addTab(this.mTabHostEvts, spec, ( tabInfo = new TabInfo(AppConstant.TAB_HOMEWORK_FEED, TeacherClassWorkFeedFragment.class, args)));
 
         spec   =   mTabHostEvts.newTabSpec(AppConstant.TAB_CLASSWORK_ADD);

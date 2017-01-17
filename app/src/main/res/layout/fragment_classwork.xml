@@ -33,7 +33,7 @@
                 android:layout_marginRight="10dip"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/homework_tap" />
+                android:src="@drawable/classwork_tap" />
 
             <TextView
                 android:id="@+id/txt_category_name"
@@ -134,22 +134,6 @@
         android:layout_marginRight="10dip"
         android:layout_marginTop="7dip"
         android:orientation="horizontal" >
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" >
-
-            <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
-                android:id="@+id/tab_homework"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/tab_general_btn"
-                android:clickable="true"
-                android:gravity="center_vertical"
-                custom:iconImageTab="@drawable/homework_tap"
-                custom:iconTextTab="@string/tab_homework" />
-        </LinearLayout>
 
     </LinearLayout>
 

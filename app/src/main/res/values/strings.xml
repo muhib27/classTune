@@ -500,10 +500,11 @@
     <string name="btn_reminder">Reminder</string>
     <string name="btn_previous">Previous</string>
     <string name="tab_homework">Homework</string>
-    <string name="tab_classwork">Claswork</string>
     <string name="tab_project">Project</string>
     <string name="tab_assessment">Quiz</string>
 
+    <!-- Homework -->
+    <string name="tab_classwork">Claswork</string>
     <!-- Attendence -->
     <string name="percent_text">Percent</string>
     <string name="total_class_text">Total Class</string>
@@ -1007,6 +1008,9 @@
     <string name="activity_teacher_edit_homework_homework_txt_no_file_attached">No File Attached</string>
     <string name="activity_teacher_edit_homework_homework_txt_due_date">Due Date</string>
 
+    <!--SingleTeacherEditHomeworkActivity-->
+    <string name="activity_teacher_edit_classwork_classwork_type_title">Type Classwork Title</string>
+    <string name="activity_teacher_edit_classwork_classwork_txt_hint_classwork_description">Write Classwork Description...</string>
 
     <!--ReportClassTestFragment-->
     <string name="row_classtest_report_txt_your_mark">Your Mark</string>
