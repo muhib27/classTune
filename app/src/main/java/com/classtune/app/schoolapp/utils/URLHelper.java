@@ -93,7 +93,9 @@ public class URLHelper {
 	public final static String URL_GET_EXAM_ROUTINE_STUDENT_PARENT = "Routine/AllExam";
 	
 	public final static String URL_GET_RESULT_REPORT = "Report/allexam";
-	
+	public final static String URL_GET_RESULT_GROUP_REPORT = "report/getConnectExam";
+	public final static String URL_GET_RESULT_GROUP_AUTH_DOWNLOAD = "report/addauthforexam";
+
 	public final static String URL_GET_NEXT_CLASS_DATA = "routine/nextclass";
 	
 	public final static String URL_GET_NEXT_CLASS_STUDENT ="Routine/NextClassStudent";

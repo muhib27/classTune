@@ -14,6 +14,7 @@ import com.classtune.app.schoolapp.model.FreeFeed;
 import com.classtune.app.schoolapp.model.FreeVersionPost;
 import com.classtune.app.schoolapp.model.GoodReadPostAll;
 import com.classtune.app.schoolapp.model.GraphSubjectType;
+import com.classtune.app.schoolapp.model.GroupExam;
 import com.classtune.app.schoolapp.model.LeaveType;
 import com.classtune.app.schoolapp.model.MainCategory;
 import com.classtune.app.schoolapp.model.MenuData;
@@ -232,6 +233,13 @@ public class GsonParser {
 		List<ExamRoutine> events=new ArrayList<ExamRoutine>();
 		Type listType = new TypeToken<List<ExamRoutine>>(){}.getType();
 		events = (List<ExamRoutine>) gson.fromJson(object, listType);
+		return events;
+	}
+	public List<GroupExam> parseGroupRoutine(String object) {
+
+		List<GroupExam> events=new ArrayList<>();
+		Type listType = new TypeToken<List<GroupExam>>(){}.getType();
+		events = (List<GroupExam>) gson.fromJson(object, listType);
 		return events;
 	}
 	public ReportCardModel parseReports(String object) {

@@ -24,6 +24,7 @@ public class SPKeyHelper {
     public final static String SCHOOL_COVER = "SCHOOL_COVER";
     public final static String TOTAL_UNREAD_NOTIFICATION = "TOTAL_UNREAD_NOTIFICATION";
     public final static String TOKEN = "TOKEN";
+	public final static String PAID_ID = "PAID_ID";
 	public final static String IS_ADMIN = "IS_ADMIN";
 	public final static String IS_PARENT = "IS_PARENT";
 	public final static String IS_TEACHER = "IS_TEACHER";

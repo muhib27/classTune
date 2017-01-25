@@ -530,6 +530,7 @@
     <string name="no_class_title">You have no class on %1$s</string>
     <string name="title_date">Date</string>
     <string name="title_exam_calendar_action">Action</string>
+    <string name="title_exam_calendar_action_group_report">Action</string>
 
     <!-- Fees -->
     <string name="tab_fees_due">Due Payment</string>
@@ -565,6 +566,9 @@
     <!-- TERM REPORT -->
     <string name="title_term_report_tab">Term Report</string>
     <string name="title_progress_graph_tab">Progress Graph</string>
+
+    <!-- GROUP REPORT -->
+    <string name="title_group_report_tab">Group Report</string>
 
     <!-- ROUTINE -->
     <string name="title_class_routine">Class Routine</string>
@@ -749,6 +753,8 @@
 
     <!--StudentListAdapter-->
     <string name="student_row_item_view">View</string>
+    <!--GroupExamAdapter-->
+    <string name="student_row_item_download">Download</string>
 
     <!--RelatedPostFragment-->
     <string name="related_post_also_like_text">You May Also Like</string>

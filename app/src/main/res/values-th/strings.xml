@@ -517,6 +517,7 @@
     <string name="no_class_title">You have no class on %1$s</string>
     <string name="title_date">Date</string>
     <string name="title_exam_calendar_action">Action</string>
+    <string name="title_exam_calendar_action_group_report">Download</string>
 
     <!-- Fees -->
     <string name="tab_fees_due">Due Payment</string>

@@ -49,7 +49,7 @@ import java.util.List;
  *
  */
 public class ResultTermTesttFragment extends UserVisibleHintFragment implements
-		UserAuthListener {
+	UserAuthListener {
 	
 	private Batch selectedBatch;
 	private StudentAttendance selectedStudent;

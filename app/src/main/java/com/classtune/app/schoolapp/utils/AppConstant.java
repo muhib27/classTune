@@ -77,6 +77,7 @@ public class AppConstant {
 	public static final String TAB_TERM_REPORT = "tab_term_report_identifier";
 	public static final String TAB_PROJECT = "tab_result_project_identifier";
     public static final String TAB_PROGRESS_GRAPH = "tab_progress_graph_identifier";
+	public static final String TAB_Group_REPORT = "tab_group_report_identifier";
 
 	// ######################################### REMINDER
 	// #########################################

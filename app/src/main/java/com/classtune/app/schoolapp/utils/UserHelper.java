@@ -686,6 +686,11 @@ public class UserHelper {
                 .setString(SPKeyHelper.FREE_ID, id);
     }
 
+    public void savePaidId(String id) {
+        SharedPreferencesHelper.getInstance()
+                .setString(SPKeyHelper.PAID_ID, id);
+    }
+
     public void saveSpellingStatus (int status){
         SharedPreferencesHelper.getInstance()
                 .setInt(SPKeyHelper.SPELLING_STATUS, status);
@@ -706,6 +711,8 @@ public class UserHelper {
                 SPKeyHelper.BATCH_ID, ""));
         info.setProfileId(SharedPreferencesHelper.getInstance().getString(
                 SPKeyHelper.PROFILE_ID, ""));
+        info.setId(SharedPreferencesHelper.getInstance().getString(
+                SPKeyHelper.PAID_ID, ""));
         info.setSchool_logo(SharedPreferencesHelper.getInstance().getString(
                 SPKeyHelper.SCHOOL_ID, ""));
         info.setSchoolId(SharedPreferencesHelper.getInstance().getString(
@@ -932,6 +939,7 @@ public class UserHelper {
                     saveSchoolType(user.getPaidInfo().getSchoolType());
                     saveSchoolName(user.getPaidInfo().getSchool_name());
                     saveProfileId(user.getPaidInfo().getProfileId());
+                    savePaidId(user.getPaidInfo().getId());
                     saveBatchID(user.getPaidInfo().getBatchId());
                     saveSchoolLogo(user.getPaidInfo().getSchool_logo());
                     saveSchoolPicture(user.getPaidInfo().getSchool_picture());

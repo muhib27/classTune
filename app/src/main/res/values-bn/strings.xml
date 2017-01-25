@@ -517,6 +517,7 @@
     <string name="no_class_title">আপনার কোন ক্লাস নেই %1$s</string>
     <string name="title_date">তারিখ</string>
     <string name="title_exam_calendar_action">অ্যাকশন</string>
+    <string name="title_exam_calendar_action_group_report">ডাউনলোড</string>
 
     <!-- Fees -->
     <string name="tab_fees_due">পরিশোধিত</string>

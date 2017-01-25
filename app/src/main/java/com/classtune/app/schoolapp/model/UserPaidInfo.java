@@ -262,4 +262,8 @@ public class UserPaidInfo {
 	public void setRoutinePeriod(int routinePeriod) {
 		this.routinePeriod = routinePeriod;
 	}
+
+
 }
+
+

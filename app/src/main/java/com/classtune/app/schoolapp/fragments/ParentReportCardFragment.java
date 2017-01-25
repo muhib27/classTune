@@ -226,6 +226,7 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
         addTab(this.mTabHostReportCard, spec, (tabInfo = new TabInfo(AppConstant.TAB_CLASSTEST, ReportClassTestFragment.class, args)));
 		ReportClassTestFragment.pickedStudentNameListenerClassTest = this;
 
+
        /* spec   =   mTabHostReportCard.newTabSpec(AppConstant.TAB_PROJECT);
         spec.setIndicator(getIndicatorView(getString(R.string.tab_project), R.drawable.tab_result_project));
         addTab(this.mTabHostReportCard, spec, ( tabInfo = new TabInfo(AppConstant.TAB_PROJECT, ResultProjectFragment.class, args)));*/
@@ -235,12 +236,16 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
         addTab(this.mTabHostReportCard, spec, (tabInfo = new TabInfo(AppConstant.TAB_TERM_REPORT, ResultTermTesttFragment.class, args)));
 		ResultTermTesttFragment.pickedStudentNameListenerTermTest = this;
 
+		spec   =   mTabHostReportCard.newTabSpec(AppConstant.TAB_Group_REPORT);
+		spec.setIndicator(getIndicatorView(getString(R.string.title_group_report_tab), R.drawable.tap_group_report));
+		addTab(this.mTabHostReportCard, spec, (tabInfo = new TabInfo(AppConstant.TAB_Group_REPORT, GroupTermTestFragment.class, args)));
+		ResultTermTesttFragment.pickedStudentNameListenerTermTest = this;
+
         if(userHelper.getUser().getType()!= UserHelper.UserTypeEnum.TEACHER){
             spec   =   mTabHostReportCard.newTabSpec(AppConstant.TAB_PROGRESS_GRAPH);
             spec.setIndicator(getIndicatorView(getString(R.string.title_progress_graph_tab), R.drawable.tab_progress_graph));
             addTab(this.mTabHostReportCard, spec, ( tabInfo = new TabInfo(AppConstant.TAB_PROGRESS_GRAPH, ProgressGraphFragment.class, args)));
         }
-
 
 
         // Default to first tab
