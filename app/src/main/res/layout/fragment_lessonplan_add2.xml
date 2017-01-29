@@ -57,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:cursorVisible="true"
-                        android:hint="@string/activity_teacher_edit_homework_homework_type_title"
+                        android:hint="@string/lesson_plan_edit_lessonplan_txt_hints"
                         android:padding="10dp"
                         android:textColor="@color/black"
                         android:textCursorDrawable="@drawable/cursor_color"

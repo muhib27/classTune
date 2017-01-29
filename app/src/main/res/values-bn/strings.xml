@@ -491,7 +491,8 @@
     <string name="tab_homework">হোমওয়ার্ক</string>
     <string name="tab_project">প্রজেক্ট</string>
     <string name="tab_assessment">কুইজ</string>
-
+    <!-- Homework -->
+    <string name="tab_classwork">ক্লাসওয়ার্ক</string>
     <!-- Attendence -->
     <string name="percent_text">শতকরা</string>
     <string name="total_class_text">মোট ক্লাস</string>
@@ -553,7 +554,8 @@
     <!-- TERM REPORT -->
     <string name="title_term_report_tab">টার্ম রিপোর্ট</string>
     <string name="title_progress_graph_tab">অগ্রগতির গ্রাফ</string>
-
+    <!-- GROUP REPORT -->
+    <string name="title_group_report_tab">গ্রুপ রিপোর্ট</string>
     <!-- ROUTINE -->
     <string name="title_class_routine">ক্লাস রুটিন</string>
     <string name="title_weekly_routine">রুটিন</string>
@@ -738,7 +740,8 @@
 
     <!--StudentListAdapter-->
     <string name="student_row_item_view">দেখুন</string>
-
+    <!--GroupExamAdapter-->
+    <string name="student_row_item_download">ডাউনলোড</string>
     <!--RelatedPostFragment-->
     <string name="related_post_also_like_text">আপনি আরও পছন্দ করতে পারেন...</string>
 
@@ -883,7 +886,8 @@
     <string name="teacher_homework_txt_homework">হোমওয়ার্ক</string>
     <string name="teacher_homework_txt_filter_by_subject">বিষয়ভিত্তিক ফিল্টার করুন</string>
     <string name="teacher_homework_txt_filter_by_date">তারিখ দিয়ে ফিল্টার করুন</string>
-
+    <!--TeacherHomeWorkFragment-->
+    <string name="teacher_homework_txt_classwork">ক্লাসওয়ার্ক</string>
     <!--LoginActivity-->
     <string name="activity_login_txt_sign_in">আপনার অ্যাকাউন্টে সাইন ইন করুন</string>
     <string name="activity_login_txt_sign_in_txt_hint_username">ইউজারনেইম</string>
@@ -993,6 +997,9 @@
     <string name="activity_teacher_edit_homework_homework_txt_no_file_attached">কোন ফাইল সংযুক্ত হয়নি</string>
     <string name="activity_teacher_edit_homework_homework_txt_due_date">জমার তারিখ</string>
 
+    <!--SingleTeacherEditHomeworkActivity-->
+    <string name="activity_teacher_edit_classwork_classwork_type_title">টাইপ ক্লাসওয়ার্ক টাইটেল</string>
+    <string name="activity_teacher_edit_classwork_classwork_txt_hint_classwork_description">টাইপ ক্লাসওয়ার্ক ডেসক্রিপশন </string>
 
     <!--ReportClassTestFragment-->
     <string name="row_classtest_report_txt_your_mark">প্রাপ্ত নম্বর</string>
@@ -1562,6 +1569,11 @@
 
     <!--SingleHomeworkActivity-->
     <string name="java_singlehomeworkactivity_by">"হোমওয়ার্ক দিয়েছেন "</string>
+    <string name="activity_single_homework_txt_class">শিফট :</string>
+    <string name="activity_single_homework_txt_course">ক্লাস :</string>
+    <string name="activity_single_homework_txt_section">সেকশন :</string>
+    <string name="activity_single_homework_txt_duedate">ডিউ ডেট :</string>
+    <string name="activity_single_homework_txt_assigndate">এসাইন ডেট :</string>
     <string name="java_singlehomeworkactivity_error_in_operation">ক্রিয়াকলাপে ভুল হয়েছে !</string>
     <string name="java_singleitemtermreportactivity_gpa">জিপিএ</string>
     <string name="java_singleItemtermreportactivity_term_report">টার্ম রিপোর্ট</string>

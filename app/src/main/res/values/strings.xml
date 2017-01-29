@@ -946,7 +946,7 @@
 
     <!--LessonPlanView-->
     <string name="fragment_lessonplan_view_txt_select_batch">Select Batch</string>
-    <string name="fragment_lessonplan_view_txt_select_category">Select Category</string>
+    <string name="fragment_lessonplan_view_txt_select_category">Select</string>
     <string name="fragment_lessonplan_view_txt_category">Category</string>
     <string name="fragment_lessonplan_view_txt_status">Status</string>
 
@@ -959,10 +959,10 @@
 
     <!--LessonPlanAdd-->
     <string name="fragment_lessonplan_add_txt_hint_type_title">Type Title</string>
-    <string name="fragment_lessonplan_add_txt_subject_and_class">Subject and Class</string>
-    <string name="fragment_lessonplan_add_txt_hint_select_subject_and_class">Select Subject and Class</string>
+    <string name="fragment_lessonplan_add_txt_subject_and_class">Subject</string>
+    <string name="fragment_lessonplan_add_txt_hint_select_subject_and_class">Select</string>
     <string name="fragment_lessonplan_add_txt_lecture_date">Lecture Date</string>
-    <string name="fragment_lessonplan_add_txt_hint_select_lecture_date">Select Lecture Date</string>
+    <string name="fragment_lessonplan_add_txt_hint_select_lecture_date">Select</string>
     <string name="fragment_lessonplan_add_txt_hint_description">Type here...</string>
     <string name="fragment_lessonplan_add_btn_save_and_publish">Save and Publish</string>
 
@@ -1043,6 +1043,7 @@
 
     <!--EditLessonPlanActivity-->
     <string name="activity_edit_lessonplan_txt_header">Lesson Plan</string>
+    <string name="lesson_plan_edit_lessonplan_txt_hints">Type Title</string>
 
     <!--FeesDueFragment--> <!--FeesHistoryFragment-->
     <string name="fragment_feesduefragment_txt_header">Fees</string>
@@ -1695,7 +1696,7 @@
     <string name="txt_language">Language</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 </resources>

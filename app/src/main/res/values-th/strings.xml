@@ -491,7 +491,8 @@
     <string name="tab_homework">Homework</string>
     <string name="tab_project">Project</string>
     <string name="tab_assessment">Quiz</string>
-
+    <!-- Homework -->
+    <string name="tab_classwork">Claswork</string>
     <!-- Attendence -->
     <string name="percent_text">Percent</string>
     <string name="total_class_text">Total Class</string>
@@ -553,7 +554,8 @@
     <!-- TERM REPORT -->
     <string name="title_term_report_tab">Term Report</string>
     <string name="title_progress_graph_tab">Progress Graph</string>
-
+    <!-- GROUP REPORT -->
+    <string name="title_group_report_tab">Group Report</string>
     <!-- ROUTINE -->
     <string name="title_class_routine">Class Routine</string>
     <string name="title_weekly_routine">Weekly Routine</string>
@@ -738,7 +740,8 @@
 
     <!--StudentListAdapter-->
     <string name="student_row_item_view">View</string>
-
+    <!--GroupExamAdapter-->
+    <string name="student_row_item_download">Download</string>
     <!--RelatedPostFragment-->
     <string name="related_post_also_like_text">You May Also Like</string>
 
@@ -883,7 +886,8 @@
     <string name="teacher_homework_txt_homework">Homework</string>
     <string name="teacher_homework_txt_filter_by_subject">FILTER BY SUBJECT</string>
     <string name="teacher_homework_txt_filter_by_date">FILTER BY DATE</string>
-
+    <!--TeacherHomeWorkFragment-->
+    <string name="teacher_homework_txt_classwork">Classwork</string>
     <!--LoginActivity-->
     <string name="activity_login_txt_sign_in">Sign in to your account</string>
     <string name="activity_login_txt_sign_in_txt_hint_username">Username</string>
@@ -939,7 +943,7 @@
     <!--LessonPlanAdd-->
     <string name="fragment_lessonplan_add_txt_hint_type_title">Type Title</string>
     <string name="fragment_lessonplan_add_txt_subject_and_class">Subject and Class</string>
-    <string name="fragment_lessonplan_add_txt_hint_select_subject_and_class">Select Subject and Class</string>
+    <string name="fragment_lessonplan_add_txt_hint_select_subject_and_class">Select</string>
     <string name="fragment_lessonplan_add_txt_lecture_date">Lecture Date</string>
     <string name="fragment_lessonplan_add_txt_hint_select_lecture_date">Select Lecture Date</string>
     <string name="fragment_lessonplan_add_txt_hint_description">Type here...</string>
@@ -993,6 +997,9 @@
     <string name="activity_teacher_edit_homework_homework_txt_no_file_attached">No File Attached</string>
     <string name="activity_teacher_edit_homework_homework_txt_due_date">Due Date</string>
 
+    <!--SingleTeacherEditHomeworkActivity-->
+    <string name="activity_teacher_edit_classwork_classwork_type_title">Type Classwork Title</string>
+    <string name="activity_teacher_edit_classwork_classwork_txt_hint_classwork_description">Write Classwork Description...</string>
 
     <!--ReportClassTestFragment-->
     <string name="row_classtest_report_txt_your_mark">Your Mark</string>
@@ -1562,6 +1569,11 @@
 
     <!--SingleHomeworkActivity-->
     <string name="java_singlehomeworkactivity_by">"By "</string>
+    <string name="activity_single_homework_txt_class">Shift:</string>
+    <string name="activity_single_homework_txt_course">Class:</string>
+    <string name="activity_single_homework_txt_section">Section:</string>
+    <string name="activity_single_homework_txt_duedate">DueDate:</string>
+    <string name="activity_single_homework_txt_assigndate">AssignDate:</string>
     <string name="java_singlehomeworkactivity_error_in_operation">Error in operation!</string>
     <string name="java_singleitemtermreportactivity_gpa">GPA</string>
     <string name="java_singleItemtermreportactivity_term_report">Term Report</string>
