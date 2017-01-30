@@ -2,6 +2,7 @@ package com.classtune.app.schoolapp.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -101,6 +102,15 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         allGooadReadPost.clear();
         //Log.e("SIZE OF ALLGOODREADPOST:", "" + allGooadReadPost.size());
 
+    }
+
+
+    private SharedPreferences getGcmPreferences(Context context) {
+        // This sample app persists the registration ID in shared preferences,
+        // but
+        // how you store the regID in your app is up to you.
+        return getActivity().getSharedPreferences(HomePageFreeVersion.class.getSimpleName(),
+                Context.MODE_PRIVATE);
     }
 
     @Override

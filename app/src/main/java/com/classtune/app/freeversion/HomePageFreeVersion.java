@@ -52,6 +52,7 @@ import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
+import com.classtune.app.schoolapp.utils.SPKeyHelper;
 import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.SharedPreferencesHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
@@ -359,7 +360,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
 
         // Check device for Play Services APK. If check succeeds, proceed with
         // GCM registration.
-        if (checkPlayServices()) {
+        /*if (checkPlayServices()) {
             gcm = GoogleCloudMessaging.getInstance(this);
             regid = getRegistrationId(context);
 
@@ -370,7 +371,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
             }
         } else {
             Log.i(TAG, "No valid Google Play Services APK found.");
-        }
+        }*/
 
         expListView.setOnChildClickListener(new OnChildClickListener() {
 
@@ -678,7 +679,46 @@ public class HomePageFreeVersion extends HomeContainerActivity {
 
         NotificationActivity.listenerActivity = this;
 
+
+        if(SharedPreferencesHelper.getInstance().getBoolean(SPKeyHelper.KEY_EMPTY_AUTH_CALL, false) == false){
+            emptyAuthApiCallForServerSide();
+        }
+
     }
+
+    private void emptyAuthApiCallForServerSide(){
+
+        final SharedPreferences prefs = getGcmPreferences(getApplicationContext());
+        String registrationId = prefs.getString(
+                HomePageFreeVersion.PROPERTY_REG_ID, "");
+
+        RequestParams params = new RequestParams();
+        params.put("username", userHelper.getUser().getUsername());
+        params.put("password", userHelper.getUser().getPassword());
+        params.put("udid", SchoolApp.getInstance().getUDID());
+        Log.e("GCM_ID",registrationId);
+        params.put("gcm_id", registrationId);
+        AppRestClient.post(URLHelper.URL_LOGIN, params, logInHandler);
+    }
+
+    AsyncHttpResponseHandler logInHandler = new AsyncHttpResponseHandler() {
+        @Override
+        public void onStart() {
+            super.onStart();
+        }
+
+        @Override
+        public void onSuccess(String s) {
+            super.onSuccess(s);
+            SharedPreferencesHelper.getInstance().setBoolean(SPKeyHelper.KEY_EMPTY_AUTH_CALL,
+                    true);
+        }
+
+        @Override
+        public void onFailure(Throwable throwable, String s) {
+            super.onFailure(throwable, s);
+        }
+    };
 
     private void checkAppVersion()
     {

@@ -1362,6 +1362,7 @@
     <string name="java_editLessonplanactivity_select_lesson_plan_category">Please select lesson plan category.</string>
     <string name="java_editLessonplanactivity_insert_lesson_plan_description">Please insert description of your lesson plan.</string>
     <string name="java_editLessonplanactivity_successfully_edited_lesson_plan">Successfully edited lesson plan.</string>
+    <string name="lesson_plan_edit_lessonplan_txt_hints">Type Title</string>
 
     <!--ExamRoutineFragmentAll-->
     <string name="java_examroutinefragmentall_exam">Exam</string>

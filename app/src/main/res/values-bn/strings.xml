@@ -1362,6 +1362,7 @@
     <string name="java_editLessonplanactivity_select_lesson_plan_category">অনুগ্রহপূর্বক পাঠ পরিকল্পনার ক্যাটাগরি লিখুন</string>
     <string name="java_editLessonplanactivity_insert_lesson_plan_description">অনুগ্রহপূর্বক পাঠ পরিকল্পনার বর্ণনা লিখুন</string>
     <string name="java_editLessonplanactivity_successfully_edited_lesson_plan">পাঠ পরিকল্পনা সফলভাবে সম্পাদিত হয়েছে</string>
+    <string name="lesson_plan_edit_lessonplan_txt_hints">শিরোনাম লিখুন</string>
 
     <!--ExamRoutineFragmentAll-->
     <string name="java_examroutinefragmentall_exam">পরীক্ষা</string>
