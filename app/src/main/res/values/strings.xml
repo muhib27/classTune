@@ -1055,7 +1055,7 @@
     <string name="item_homework_feed_txt_due_date">Due Date: </string>
     <string name="item_homework_feed_assigned_date">Assigned Date: </string>
     <string name="item_homework_feed_txt_worksheet">This homework has attachment.</string>
-
+    <string name="item_classwork_feed_txt_worksheet">This classwork has attachment.</string>
 
     <!--DialogSelectChildren-->
     <string name="dialog_select_children_txt_child_id">Child ID</string>

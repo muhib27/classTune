@@ -112,7 +112,7 @@
             android:textSize="14sp"
             android:textColor="@color/classtune_green_color"
             android:visibility="gone"
-            android:text="@string/item_homework_feed_txt_worksheet" />
+            android:text="@string/item_classwork_feed_txt_worksheet" />
 
 
         <TextView

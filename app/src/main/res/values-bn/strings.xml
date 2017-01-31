@@ -1037,6 +1037,8 @@
     <string name="item_homework_feed_txt_due_date">জমাদানের তারিখ: </string>
     <string name="item_homework_feed_assigned_date">প্রদানের তারিখ: </string>
     <string name="item_homework_feed_txt_worksheet">হোমওয়ার্কটির সাথে এটাচমেন্ট আছে।</string>
+    <string name="item_classwork_feed_txt_worksheet">ক্লাসওয়ার্কটির সাথে এটাচমেন্ট আছে।</string>
+
 
 
     <!--DialogSelectChildren-->
