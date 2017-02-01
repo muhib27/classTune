@@ -482,7 +482,10 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
                 holder.subjectName = (TextView) convertView.findViewById(R.id.tv_teacher_feed_subject_name);
                 holder.date = (TextView) convertView.findViewById(R.id.tv_teacher_homewrok_feed_date);
                 //holder.classname = (TextView) convertView.findViewById(R.id.tv_teacher_homework_feed_class);
-                holder.section = (TextView) convertView.findViewById(R.id.tv_teavher_homework_feed_section);
+               // holder.section = (TextView) convertView.findViewById(R.id.tv_teavher_homework_feed_section);
+                holder.tvShift = (TextView)convertView.findViewById(R.id.tv_teacher_homewrok_feed_shift);
+                holder.tvCourse = (TextView)convertView.findViewById(R.id.tv_teacher_homework_feed_course);
+                holder.tvSection = (TextView) convertView.findViewById(R.id.tv_teacher_homework_feed_Section);
                 holder.homeworkContent = (TextView) convertView.findViewById(R.id.tv_homework_content);
                 holder.txtAssignDate = (TextView)convertView.findViewById(R.id.txtAssignDate);
                 holder.txtAttachment = (TextView)convertView.findViewById(R.id.txtAttachment);
@@ -515,7 +518,9 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
                 holder.subjectName.setText(hwork.getSubjects());
 
                 //holder.classname.setText(hwork.getCourse());
-                holder.section.setText(hwork.getBatch());
+                holder.tvShift.setText(hwork.getBatch());
+                holder.tvCourse.setText(hwork.getCourse());
+                holder.tvSection.setText(hwork.getSection());
                 //holder.homeworkContent.setText(Html.fromHtml(hwork.getContent(),null,new MyTagHandler()));
                 holder.homeworkContent.setText(allGooadReadPost.get(position).getClasswork_name());
 				/*holder.doneBtn.setTag(""+position);
@@ -548,7 +553,7 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
 
     class ViewHolder {
 
-        TextView subjectName, date,classname, section, txtAssignDate, txtAttachment;
+        TextView subjectName, date,classname, section, txtAssignDate, txtAttachment,tvShift, tvCourse, tvSection;
         TextView homeworkContent;
         ImageView ivSubjectIcon;
 

@@ -38,7 +38,7 @@ android:orientation="vertical" >
                     android:background="@color/white"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="@string/fragment_progress_graph_text_select_subject"
+                    android:text="@string/fragment_progress_graph_text_select_subject_title"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -62,7 +62,7 @@ android:orientation="vertical" >
                     android:gravity="center"
                     android:maxLines="1"
                     android:padding="10dp"
-                    android:hint="@string/fragment_progress_graph_text_select_subject"
+                    android:hint="@string/fragment_progress_graph_text_select_subject_Select"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 

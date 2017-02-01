@@ -848,7 +848,9 @@
     <string name="fragment_archieved_events_txt_no_data_found">No data found!</string>
 
     <!--ProgressGraphFragment-->
-    <string name="fragment_progress_graph_text_select_subject">Select Subject</string>
+    <string name="fragment_progress_graph_text_select_subject_title">Select Batch &amp; Subject</string>
+    <string name="fragment_progress_graph_text_select_subject">Select Batch &amp; Subject</string>
+    <string name="fragment_progress_graph_text_select_subject_Select">Select</string>
     <string name="fragment_progress_graph_text_no_subject_selected">No Subject Selected</string>
 
     <!--UpcomingEventListAdapter-->
@@ -1008,7 +1010,7 @@
 
     <!--SingleTeacherEditHomeworkActivity-->
     <string name="activity_teacher_edit_homework_homework_type">Homework Type</string>
-    <string name="activity_teacher_edit_homework_homework_select_type">Select Type</string>
+    <string name="activity_teacher_edit_homework_homework_select_type">Select</string>
     <string name="activity_teacher_edit_homework_homework_type_title">Type Homework Title</string>
     <string name="activity_teacher_edit_homework_homework_txt_hint_homework_description">Write Homework Description...</string>
     <string name="activity_teacher_edit_homework_homework_txt_no_file_attached">No File Attached</string>
