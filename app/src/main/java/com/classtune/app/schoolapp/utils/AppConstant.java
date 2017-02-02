@@ -271,5 +271,11 @@ public class AppConstant {
 	//################### key for getting batch from global broadcast
 	public static final String KEY_BATCH_FROM_TEACHERATTENDANCE_TAB = "key_batch_from_teacherattendance_tab";
 
+	//################### TeacherHomeWorkAddFragment
+	public static final int REQUEST_CODE_TEACHER_HOMEWORK_ATTACH_FILE = 201;
+
+	//################### TeacherClassWorkAddFragment
+	public static final int REQUEST_CODE_TEACHER_CLASSWORK_ATTACH_FILE = 202;
+
 
 }

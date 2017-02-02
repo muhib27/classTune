@@ -37,6 +37,8 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.ChildSelectionActivity;
 import com.classtune.app.schoolapp.LoginActivity;
 import com.classtune.app.schoolapp.NotificationActivity;
+import com.classtune.app.schoolapp.fragments.TeacherClassWorkAddFragment;
+import com.classtune.app.schoolapp.fragments.TeacherHomeWorkAddFragment;
 import com.classtune.app.schoolapp.model.CHILD_TYPE;
 import com.classtune.app.schoolapp.model.DrawerChildBase;
 import com.classtune.app.schoolapp.model.DrawerChildMenu;
@@ -238,71 +240,84 @@ public class HomePageFreeVersion extends HomeContainerActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        /*Log.e(LOG_TAG,
+         /*Log.e(LOG_TAG,
 				"Activity result requestCode does not correspond restrictions: 0x"
 						+ Integer.toHexString(requestCode));*/
-            if(requestCode== SchoolApp.REQUEST_CODE_CHILD_SELECTION){
-                if (data == null) {
-                    if (resultCode == RESULT_OK) {
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.pager_frame, PaidVersionHomeFragment.newInstance(0), "PAID").commitAllowingStateLoss();
-                        setActionBarTitle(userHelper.getUser().getPaidInfo()
-                                .getSchool_name());
-                    }
-                    if (resultCode == RESULT_CANCELED) {
-                        return;
-                    }
+        if(requestCode== SchoolApp.REQUEST_CODE_CHILD_SELECTION){
+            if (data == null) {
+                if (resultCode == RESULT_OK) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.pager_frame, PaidVersionHomeFragment.newInstance(0), "PAID").commitAllowingStateLoss();
+                    setActionBarTitle(userHelper.getUser().getPaidInfo()
+                            .getSchool_name());
                 }
-            }else {
-                if ((requestCode & 0xffff0000) != 0) {
-                    //&&(requestCode & 0x2009b) != 0
-                    Log.e(LOG_TAG,
-                            "Activity result requestCode does not correspond restrictions: 0x"
-                                    + Integer.toHexString(requestCode));
-                    super.onActivityResult(requestCode, resultCode, data);
+                if (resultCode == RESULT_CANCELED) {
                     return;
                 }
-
-                SupportV4App.activityFragmentsNoteStateNotSaved(this);
-
-                int chain = requestCode >>> REQUEST_CODE_EXT_BITS;
-                if (chain != 0) {
-                    ArrayList<Fragment> active = SupportV4App
-                            .activityFragmentsActive(this);
-                    Fragment fragment;
-
-                    do {
-                        int index = (chain & CHAIN_INDEX_MASK) - 1;
-                        if (active == null || index < 0 || index >= active.size()) {
-                            Log.e(LOG_TAG,
-                                    "Activity result fragment chain out of range: 0x"
-                                            + Integer.toHexString(requestCode));
-                            super.onActivityResult(requestCode, resultCode, data);
-                            return;
-                        }
-
-                        fragment = active.get(index);
-                        if (fragment == null) {
-                            break;
-                        }
-
-                        active = SupportV4App
-                                .fragmentChildFragmentManagerActive(fragment);
-                        chain = chain >>> CHAIN_BITS_FOR_INDEX;
-                    } while (chain != 0);
-
-                    if (fragment != null) {
-                        fragment.onActivityResult(requestCode & REQUEST_CODE_MASK,
-                                resultCode, data);
-                    } else {
-                        Log.e(LOG_TAG,
-                                "Activity result no fragment exists for chain: 0x"
-                                        + Integer.toHexString(requestCode));
-                    }
-                } else {
-                    super.onActivityResult(requestCode, resultCode, data);
-                }
             }
+        }
+        else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_ATTACH_FILE){
+            if(resultCode != RESULT_CANCELED){
+                TeacherHomeWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
+            }
+        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_ATTACH_FILE){
+            if(resultCode != RESULT_CANCELED){
+                TeacherClassWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
+            }
+        }
+
+
+        else {
+            if ((requestCode & 0xffff0000) != 0) {
+                //&&(requestCode & 0x2009b) != 0
+                Log.e(LOG_TAG,
+                        "Activity result requestCode does not correspond restrictions: 0x"
+                                + Integer.toHexString(requestCode));
+                super.onActivityResult(requestCode, resultCode, data);
+                return;
+            }
+
+            SupportV4App.activityFragmentsNoteStateNotSaved(this);
+
+            int chain = requestCode >>> REQUEST_CODE_EXT_BITS;
+            if (chain != 0) {
+                ArrayList<Fragment> active = SupportV4App
+                        .activityFragmentsActive(this);
+                Fragment fragment;
+
+                do {
+                    int index = (chain & CHAIN_INDEX_MASK) - 1;
+                    if (active == null || index < 0 || index >= active.size()) {
+                        Log.e(LOG_TAG,
+                                "Activity result fragment chain out of range: 0x"
+                                        + Integer.toHexString(requestCode));
+                        super.onActivityResult(requestCode, resultCode, data);
+                        return;
+                    }
+
+                    fragment = active.get(index);
+                    if (fragment == null) {
+                        break;
+                    }
+
+                    active = SupportV4App
+                            .fragmentChildFragmentManagerActive(fragment);
+                    chain = chain >>> CHAIN_BITS_FOR_INDEX;
+                } while (chain != 0);
+
+                if (fragment != null) {
+                    fragment.onActivityResult(requestCode & REQUEST_CODE_MASK,
+                            resultCode, data);
+                } else {
+                    Log.e(LOG_TAG,
+                            "Activity result no fragment exists for chain: 0x"
+                                    + Integer.toHexString(requestCode));
+                }
+            } else {
+                super.onActivityResult(requestCode, resultCode, data);
+            }
+        }
+
     }
 
     private void navigateTo(int position) {
