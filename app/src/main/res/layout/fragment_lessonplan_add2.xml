@@ -86,7 +86,7 @@
                         android:background="@color/white"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="@string/fragment_lessonplan_view_txt_select_category"
+                        android:text="@string/fragment_lessonplan_view_txt_select_category_add"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>

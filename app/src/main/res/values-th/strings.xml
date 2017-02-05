@@ -928,11 +928,13 @@
     <string name="fragment_academic_calendar_exam_txt_header">Exam Routine</string>
 
     <!--LessonPlanView-->
-    <string name="fragment_lessonplan_view_txt_select_batch">Select Batch</string>
-    <string name="fragment_lessonplan_view_txt_select_category">Select Category</string>
+    <string name="fragment_lessonplan_view_txt_select_batch_title">Select Batch</string>
+    <string name="fragment_lessonplan_view_txt_select_batch">Select</string>
+    <string name="fragment_lessonplan_view_txt_select_category_title">Select Category</string>
+    <string name="fragment_lessonplan_view_txt_select_category">Select</string>
+    <string name="fragment_lessonplan_view_txt_select_category_add">Select Category</string>
     <string name="fragment_lessonplan_view_txt_category">Category</string>
     <string name="fragment_lessonplan_view_txt_status">Status</string>
-
     <!--ParentAcademicCalender-->
     <string name="parent_academic_calender_layout_txt_header">Academic Calendar</string>
 
