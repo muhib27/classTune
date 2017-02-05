@@ -68,6 +68,7 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
 
     private TextView nodataMsg;
     private String mAuth_id ="";
+    private String mDomainName = "";
 
 
 
@@ -278,6 +279,7 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
             if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
                 mAuth_id =  wrapper.getData().get("auth_id").getAsString();
+                mDomainName = wrapper.getData().get("domain").getAsString();
                 Log.e(TAG, "onSuccess: authod: "+wrapper.getData().get("auth_id").getAsString() );
 
             } else if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SESSION_EXPIRED) {
@@ -310,17 +312,17 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
                 intent.putExtra("term_name", data.getName());
                 startActivity(intent);*/
                 if (userHelper.getUser().getType() == UserHelper.UserTypeEnum.PARENTS){
-                    if (!mAuth_id.equals("")){
-                        String url = "http://chs.classtune.com/user/login?username="+userHelper.getUser().getUsername()+"&password="+userHelper.getUser().getPassword()+"&user_id="+userHelper.getUser().getPaidInfo().getId()+"&auth_id="+ mAuth_id+"&connect_exam="+items.get(position).getId()+"&batch_id="+items.get(position).getBatch_id()+"&student="+userHelper.getUser().getSelectedChild().getProfileId();
+                    if (!mAuth_id.equals("") && !mDomainName.equals("")){
+                        Log.e(TAG, "onItemClick: "+mDomainName );
+                        String url = "http://"+mDomainName+"/user/login?username="+userHelper.getUser().getUsername()+"&password="+userHelper.getUser().getPassword()+"&user_id="+userHelper.getUser().getPaidInfo().getId()+"&auth_id="+ mAuth_id+"&connect_exam="+items.get(position).getId()+"&batch_id="+items.get(position).getBatch_id()+"&student="+userHelper.getUser().getSelectedChild().getProfileId();
                         Intent browse = new Intent(Intent.ACTION_VIEW , Uri.parse(url)) ;
                         startActivity( browse );
                        // groupReportDownload(userHelper.getUser().getUsername(), userHelper.getUser().getPassword(), userHelper.getUser().getUserId(), mAuth_id , items.get(position).getId(), items.get(position).getBatch_id(), userHelper.getUser().getSelectedChild().getProfileId())
                     }
 
                 }else{
-                    Toast.makeText(getActivity(), mAuth_id, Toast.LENGTH_SHORT).show();
                     if (!mAuth_id.equals("")){
-                        String url = "http://chs.classtune.com/user/login?username="+userHelper.getUser().getUsername()+"&password="+userHelper.getUser().getPassword()+"&user_id="+userHelper.getUser().getPaidInfo().getId()+"&auth_id="+ mAuth_id+"&connect_exam="+items.get(position).getId()+"&batch_id="+items.get(position).getBatch_id()+"&student="+userHelper.getUser().getPaidInfo().getProfileId();
+                        String url = "http://"+mDomainName+"/user/login?username="+userHelper.getUser().getUsername()+"&password="+userHelper.getUser().getPassword()+"&user_id="+userHelper.getUser().getPaidInfo().getId()+"&auth_id="+ mAuth_id+"&connect_exam="+items.get(position).getId()+"&batch_id="+items.get(position).getBatch_id()+"&student="+userHelper.getUser().getPaidInfo().getProfileId();
                         Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse(url));
                         startActivity( browse );
                     }
