@@ -109,7 +109,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
     private LinearLayout layoutAssessmentHolder;
 
-    private LinearLayout layoutFilter;
+    //private LinearLayout layoutFilter;
 
     private String selectedSubjectId;
     private String selectedDate;
@@ -120,7 +120,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
     private boolean isFilterClicked = false;
 
-    private ImageView imgFilter;
+    //private ImageView imgFilter;
 
     private LinearLayout layoutMidPanel;
 
@@ -229,22 +229,22 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
         listviewHomework.setAdapter(currentAdapter);
 
 
-        layoutFilter = (LinearLayout)view.findViewById(R.id.layoutFilter);
-        imgFilter = (ImageView)view.findViewById(R.id.imgFilter);
+        //layoutFilter = (LinearLayout)view.findViewById(R.id.layoutFilter);
+        //imgFilter = (ImageView)view.findViewById(R.id.imgFilter);
         layoutMidPanel = (LinearLayout)view.findViewById(R.id.layoutMidPanel);
 
         layoutSubject = (LinearLayout)view.findViewById(R.id.layoutSubject);
         layoutDate = (LinearLayout)view.findViewById(R.id.layoutDate);
 
 
-        if (userHelper.getUser().getType() == UserHelper.UserTypeEnum.TEACHER)
+        /*if (userHelper.getUser().getType() == UserHelper.UserTypeEnum.TEACHER)
         {
             layoutFilter.setVisibility(View.GONE);
         }
         else
         {
             layoutFilter.setVisibility(View.VISIBLE);
-        }
+        }*/
 
 
         layoutSubject.setOnClickListener(new View.OnClickListener() {
@@ -266,6 +266,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
         });
 
 
+/*
         if(userHelper.getUser().getPaidInfo().getSchoolType() == 0)
         {
             layoutFilter.setAlpha(.5f);
@@ -309,6 +310,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
                 }
             });
         }
+*/
 
 
         initListAction();

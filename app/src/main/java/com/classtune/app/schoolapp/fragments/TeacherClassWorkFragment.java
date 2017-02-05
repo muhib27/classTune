@@ -25,13 +25,13 @@ import java.util.HashMap;
  * A simple {@link Fragment} subclass.
  */
 public class TeacherClassWorkFragment extends Fragment {
-    private LinearLayout layoutFilter;
+    //private LinearLayout layoutFilter;
 
     public static IFilterClicked lsitener;
     public static IFilterInsideClicked lsitenerInside;
 
     private boolean isFilterClicked = false;
-    private ImageView imgFilter;
+    //private ImageView imgFilter;
     private LinearLayout layoutMidPanel;
 
     private LinearLayout layoutSubject;
@@ -52,8 +52,8 @@ public class TeacherClassWorkFragment extends Fragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_teacher_classwork, container, false);
 
-        layoutFilter = (LinearLayout)rootView.findViewById(R.id.layoutFilter);
-        imgFilter = (ImageView)rootView.findViewById(R.id.imgFilter);
+       // layoutFilter = (LinearLayout)rootView.findViewById(R.id.layoutFilter);
+       // imgFilter = (ImageView)rootView.findViewById(R.id.imgFilter);
         layoutMidPanel = (LinearLayout)rootView.findViewById(R.id.layoutMidPanel);
 
         layoutSubject = (LinearLayout)rootView.findViewById(R.id.layoutSubject);
@@ -91,7 +91,7 @@ public class TeacherClassWorkFragment extends Fragment {
         addTab(this.mTabHostEvts, spec, ( tabInfo = new TabInfo(AppConstant.TAB_DRAFT, TeacherHomeWorkDraftFragment.class, args)));*/
 
 
-        mTabHostEvts.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+      /*  mTabHostEvts.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 
             @Override
             public void onTabChanged(String tabId) {
@@ -109,11 +109,11 @@ public class TeacherClassWorkFragment extends Fragment {
 
 
             }
-        });
+        });*/
 
 
 
-        layoutFilter.setOnClickListener(new View.OnClickListener() {
+        /*layoutFilter.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -143,7 +143,7 @@ public class TeacherClassWorkFragment extends Fragment {
                 }
 
             }
-        });
+        });*/
 
 
 
