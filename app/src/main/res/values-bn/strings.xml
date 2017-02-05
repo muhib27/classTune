@@ -848,6 +848,10 @@
     <!--SingleHomeworkActivity-->
     <string name="activity_single_homework_txt_no_data_available">কোন তথ্য পাওয়া যায়নি!</string>
 
+    <!--ProgressGraphFragment-->
+    <string name="fragment_progress_graph_text_select_subject_title">বিষয় এবং ব্যাচ নির্বাচন করুন</string>
+    <string name="fragment_progress_graph_text_select_subject_Select">নির্বাচন করুন</string>
+
     <!--QuizFragment-->
     <string name="fragment_quiz_header">কুইজ</string>
     <string name="fragment_quiz_txt_no_quiz_available">কোন কুইজ এখন নেই!</string>
