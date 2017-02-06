@@ -504,7 +504,7 @@
     <string name="tab_assessment">Quiz</string>
 
     <!-- Homework -->
-    <string name="tab_classwork">Claswork</string>
+    <string name="tab_classwork">Classwork</string>
     <!-- Attendence -->
     <string name="percent_text">Percent</string>
     <string name="total_class_text">Total Class</string>

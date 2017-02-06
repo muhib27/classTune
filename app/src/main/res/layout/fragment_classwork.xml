@@ -6,6 +6,60 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/layoutMidPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#b1b8ba"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/layoutSubject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="15dp" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/teacher_homework_txt_filter_by_subject"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/white" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="15dp" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/teacher_homework_txt_filter_by_date"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/top_panel_for_others"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,60 +113,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layoutMidPanel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:background="#b1b8ba"
-        android:orientation="horizontal"
-        android:visibility="gone" >
-
-        <LinearLayout
-            android:id="@+id/layoutSubject"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="15dp" >
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/teacher_homework_txt_filter_by_subject"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/white" >
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="15dp" >
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/teacher_homework_txt_filter_by_date"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

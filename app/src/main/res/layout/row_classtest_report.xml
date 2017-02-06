@@ -4,6 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
+    <TextView
+        android:id="@+id/tv_name_ct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center"
+        android:textColor="@color/gray_1"
+        android:background="@color/white"
+        android:textSize="12sp"
+        android:visibility="visible" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -316,15 +328,6 @@
                 android:gravity="center"
                 android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/tv_name_ct"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dip"
-                    android:gravity="center"
-                    android:textColor="@color/gray_1"
-                    android:textSize="12sp"
-                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/tv_grade_ct"
