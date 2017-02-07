@@ -744,11 +744,11 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                         } else {
                             holder.todayTextView.setText(lastvisited.getNumber());
                         }
-                        holder.tomorrowLay.setTag("8");
-                        disableBlock(holder.tomorrowLay, true, 8);
+                        holder.tomorrowLay.setTag("9");
+                        disableBlock(holder.tomorrowLay, true, 9);
                         if (userHelper.getUser().getType() == UserTypeEnum.TEACHER) {
-                            holder.tomorrowLay.setTag("4");
-                            disableBlock(holder.tomorrowLay,true, 4);
+                            holder.tomorrowLay.setTag("5");
+                            disableBlock(holder.tomorrowLay,true, 5);
                             holder.statusImage.setVisibility(View.GONE);
                             holder.statusText.setVisibility(View.GONE);
                             if (!TextUtils.isEmpty(userHelper.getUser().getNickName())) {
