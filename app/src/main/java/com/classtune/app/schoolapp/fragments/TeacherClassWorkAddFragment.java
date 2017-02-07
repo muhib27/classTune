@@ -47,7 +47,9 @@ import com.loopj.android.http.RequestParams;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -202,7 +204,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                                         R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
                                         Toast.LENGTH_SHORT).show();
                             }
-
+                            clearDataFields();
                         } else
                             Toast.makeText(
                                     getActivity(),
@@ -216,7 +218,18 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
 
 
 
+    private void clearDataFields() {
+        subjectNameTextView.setText("");
+        classWorkTypeTextView.setText("");
+        subjectEditText.setText("");
+        classworkDescriptionEditText.setText("");
+        choosenFileTextView.setText(getString(R.string.java_singleteacheredithomeworkactivity_no_file_attached));
 
+        Date cDate = new Date();
+        String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+        choosenDateTextView.setText(AppUtility.getDateString(fDate, AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
+
+    }
 
 
     public TeacherClassWorkAddFragment() {
