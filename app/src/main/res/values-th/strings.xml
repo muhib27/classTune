@@ -1042,6 +1042,7 @@
     <!--HomeworkFragment-->
     <string name="item_homework_feed_txt_due_date">Due Date: </string>
     <string name="item_homework_feed_assigned_date">Assigned Date: </string>
+    <string name="item_classwork_feed_assigned_date">Date: </string>
     <string name="item_homework_feed_txt_worksheet">This homework has attachment.</string>
     <string name="item_classwork_feed_txt_worksheet">This classwork has attachment.</string>
 
