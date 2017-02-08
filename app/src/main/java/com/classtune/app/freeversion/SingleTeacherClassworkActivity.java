@@ -107,7 +107,7 @@ public class SingleTeacherClassworkActivity extends ChildContainerActivity {
         this.tvAssignDate = (TextView)this.findViewById(R.id.txtAssignDate);
         this.mLinearLayout = (LinearLayout)this.findViewById(R.id.single_teacher_homework_detail_visibility);
 
-        this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
+        //this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
         this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
         this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
         this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
@@ -144,7 +144,7 @@ public class SingleTeacherClassworkActivity extends ChildContainerActivity {
 
 
 
-        btnDone.setOnClickListener(new View.OnClickListener() {
+    /*    btnDone.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -153,7 +153,7 @@ public class SingleTeacherClassworkActivity extends ChildContainerActivity {
                 intent.putExtra(AppConstant.ID_TEACHER_HOMEWORK_DONE, data.getId());
                 startActivity(intent);
             }
-        });
+        });*/
 
 
 

@@ -135,8 +135,8 @@ public class SingleClassworkActivity extends ChildContainerActivity {
             //this.tvDueDate = (TextView) this.findViewById(R.id.tv_teacher_homewrok_feed_date);
             this.tvAssignDate = (TextView) this.findViewById(R.id.tv_teacher_homewrok_feed_date);
             this.section = (TextView) this.findViewById(R.id.tv_teavher_homework_feed_section);
-            this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
-            this.btnReminder = (CustomButton) this.findViewById(R.id.btn_reminder);
+            //this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
+            //this.btnReminder = (CustomButton) this.findViewById(R.id.btn_reminder);
             this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
             this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
             this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
@@ -199,15 +199,15 @@ public class SingleClassworkActivity extends ChildContainerActivity {
             }
 */
 
-            btnDone.setOnClickListener(new View.OnClickListener() {
+          /*  btnDone.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
                     processDoneButton((CustomButton) v);
                 }
-            });
+            });*/
 
-            btnReminder.setOnClickListener(new View.OnClickListener() {
+    /*        btnReminder.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
@@ -231,7 +231,7 @@ public class SingleClassworkActivity extends ChildContainerActivity {
 
                    // AppUtility.showDateTimePicker(AppConstant.KEY_HOMEWORK+data.getId(), data.getSubject()+ ": " + AppConstant.NOTIFICATION_HOMEWORK, data.getName(), SingleClassworkActivity.this);
                 }
-            });
+            });*/
 
 
 
@@ -260,17 +260,17 @@ public class SingleClassworkActivity extends ChildContainerActivity {
             });
 
 
-            if (ReminderHelper.getInstance().reminder_map.containsKey(AppConstant.KEY_HOMEWORK+data.getId())){
+        /*    if (ReminderHelper.getInstance().reminder_map.containsKey(AppConstant.KEY_HOMEWORK+data.getId())){
                 setButtonState(btnReminder, R.drawable.btn_reminder_tap, false, getString(R.string.btn_reminder));
 
             }else {
                 setButtonState(btnReminder, R.drawable.btn_reminder_normal, true, getString(R.string.btn_reminder));
             }
-
+*/
 
         }
 
-        @SuppressLint("ResourceAsColor")
+    /*    @SuppressLint("ResourceAsColor")
         private void setButtonState(CustomButton btn, int imgResId, boolean enable , String btnText) {
 
             btn.setImage(imgResId);
@@ -281,7 +281,7 @@ public class SingleClassworkActivity extends ChildContainerActivity {
             } else {
                 setBtnTitleColor(btn, R.color.classtune_green_color);
             }
-        }
+        }*/
         private void setBtnTitleColor(CustomButton btn, int colorId) {
             btn.setTitleColor(this.getResources().getColor(colorId));
         }

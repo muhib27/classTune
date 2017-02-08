@@ -177,6 +177,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -240,25 +241,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layoutBottomPanel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-
-                    <com.classtune.app.schoolapp.viewhelpers.CustomButton
-                        android:id="@+id/btn_done"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/general_btn"
-                        android:clickable="true"
-                        android:gravity="center"
-                        custom:iconImage="@drawable/done_normal"
-                        custom:iconText="@string/btn_done" />
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/layoutHorizontalBar"
                     android:layout_width="match_parent"
                     android:layout_height="1dip"
@@ -294,7 +276,6 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </LinearLayout>
