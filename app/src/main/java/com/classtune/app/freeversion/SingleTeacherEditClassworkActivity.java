@@ -99,7 +99,7 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
         userHelper=new UserHelper(this);
 
         if(getIntent().getExtras() != null)
-            this.id = getIntent().getExtras().getString(AppConstant.ID_SINGLE_HOMEWORK);
+            this.id = getIntent().getExtras().getString(AppConstant.ID_SINGLE_CLASSWORK);
 
         intiviews();
         createHomeworkTypeCats();

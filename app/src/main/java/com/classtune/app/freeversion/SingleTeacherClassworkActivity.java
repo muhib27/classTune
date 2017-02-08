@@ -90,7 +90,7 @@ public class SingleTeacherClassworkActivity extends ChildContainerActivity {
         uiHelper = new UIHelper(SingleTeacherClassworkActivity.this);
 
         if(getIntent().getExtras() != null)
-            this.id = getIntent().getExtras().getString(AppConstant.ID_SINGLE_HOMEWORK);
+            this.id = getIntent().getExtras().getString(AppConstant.ID_SINGLE_CLASSWORK);
 
         initView();
         initApicall();
@@ -200,8 +200,8 @@ public class SingleTeacherClassworkActivity extends ChildContainerActivity {
 
                 if(data.is_editable() == true)
                 {
-                    Intent intent = new Intent(SingleTeacherClassworkActivity.this, SingleTeacherEditHomeworkActivity.class);
-                    intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
+                    Intent intent = new Intent(SingleTeacherClassworkActivity.this, SingleTeacherEditClassworkActivity.class);
+                    intent.putExtra(AppConstant.ID_SINGLE_CLASSWORK, data.getId());
                     startActivityForResult(intent, REQUEST_EDIT_HOMEWORK);
                 }
                 else

@@ -1,6 +1,7 @@
 package com.classtune.app.schoolapp.fragments;
 
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import com.classtune.app.R;
 import com.classtune.app.freeversion.SingleTeacherDraftClassworkActivity;
 import com.classtune.app.freeversion.SingleTeacherDraftHomeworkActivity;
+import com.classtune.app.schoolapp.callbacks.IFeedRefreshCallBack;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.HomeWorkSubject;
 import com.classtune.app.schoolapp.model.Picker;
@@ -55,7 +57,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeacherClassWorkDraftListFragment extends Fragment implements UserAuthListener, TeacherClassWorkFragment.IFilterClicked, TeacherClassWorkFragment.IFilterInsideClicked{
+public class TeacherClassWorkDraftListFragment extends Fragment implements UserAuthListener, TeacherClassWorkFragment.IFilterClicked, TeacherClassWorkFragment.IFilterInsideClicked, IFeedRefreshCallBack{
     UIHelper uiHelper;
     UserHelper userHelper;
     private PullToRefreshListView listGoodread;
@@ -78,6 +80,7 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
     private TextView txtMessage;
 
     private static final int REQUEST_CODE_PUBLISH = 50;
+    public static TeacherClassWorkDraftListFragment instance;
 
 
     @Override
@@ -127,6 +130,7 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
     private void initListAction()
     {
 
+        instance = this;
         listGoodread.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -137,7 +141,8 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
 
                 Intent intent = new Intent(getActivity(), SingleTeacherDraftClassworkActivity.class);
                 intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
-                startActivityForResult(intent, REQUEST_CODE_PUBLISH);
+                getActivity().startActivityForResult(intent, AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_DRAFT);
+                getActivity().setResult(Activity.RESULT_OK);
 
                 Log.e("DATA_CLICKED", "is: " + data.getId());
 
@@ -732,7 +737,7 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
 
         if(resultCode == getActivity().RESULT_OK)
         {
-            if(requestCode == REQUEST_CODE_PUBLISH)
+            if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_DRAFT)
             {
                 allGooadReadPost.clear();
                 adapter.notifyDataSetChanged();
@@ -743,5 +748,19 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
         }
 
 
+    }
+
+    @Override
+    public void onRefresh(int requestCode, int resultCode, Intent data) {
+        if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_DRAFT)
+        {
+            allGooadReadPost.clear();
+            adapter.notifyDataSetChanged();
+
+            setUpList();
+            loadDataInToList();
+        }
+
+        instance = null;
     }
 }

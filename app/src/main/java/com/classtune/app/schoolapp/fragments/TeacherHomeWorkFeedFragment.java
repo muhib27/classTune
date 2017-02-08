@@ -1,5 +1,6 @@
 package com.classtune.app.schoolapp.fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import com.classtune.app.freeversion.SingleTeacherHomeworkActivity;
 import com.classtune.app.freeversion.TeacherHomeworkDoneActivity;
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.callbacks.IFeedRefreshCallBack;
 import com.classtune.app.schoolapp.fragments.TeacherHomeWorkFragment.IFilterClicked;
 import com.classtune.app.schoolapp.fragments.TeacherHomeWorkFragment.IFilterInsideClicked;
 import com.classtune.app.schoolapp.model.BaseType;
@@ -56,7 +58,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthListener, IFilterClicked, IFilterInsideClicked{
+import static com.classtune.app.schoolapp.utils.AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_FEED;
+
+public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthListener, IFilterClicked, IFilterInsideClicked, IFeedRefreshCallBack{
 	
 	UIHelper uiHelper;
 	UserHelper userHelper;
@@ -79,6 +83,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 
 	private TextView txtMessage;
 	private static final int REQUEST_SINGLE_PAGE = 60;
+	public static TeacherHomeWorkFeedFragment instance;
 	
 
 	@Override
@@ -121,7 +126,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 	
 	private void initListAction()
 	{
-		
+		instance = this;
 		listGoodread.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
@@ -132,7 +137,8 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 				
 				Intent intent = new Intent(getActivity(), SingleTeacherHomeworkActivity.class);
 				intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
-				startActivityForResult(intent, REQUEST_SINGLE_PAGE);
+				getActivity().startActivityForResult(intent, AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_FEED);
+				getActivity().setResult(Activity.RESULT_OK);
 				
 				Log.e("DATA_CLICKED", "is: " + data.getId());
 				
@@ -747,7 +753,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 
 
 
-		if(requestCode == REQUEST_SINGLE_PAGE)
+		if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_FEED)
 		{
 			allGooadReadPost.clear();
 			adapter.notifyDataSetChanged();
@@ -762,5 +768,19 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 
 
 	//kjhglkjhghglkjghlkjbglkjgblkjhglkjhlkjhlkjh
-	
+
+
+	@Override
+	public void onRefresh(int requestCode, int resultCode, Intent data) {
+		if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_FEED)
+		{
+			allGooadReadPost.clear();
+			adapter.notifyDataSetChanged();
+
+			setUpList();
+			loadDataInToList();
+		}
+
+		instance = null;
+	}
 }

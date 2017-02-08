@@ -38,7 +38,11 @@ import com.classtune.app.schoolapp.ChildSelectionActivity;
 import com.classtune.app.schoolapp.LoginActivity;
 import com.classtune.app.schoolapp.NotificationActivity;
 import com.classtune.app.schoolapp.fragments.TeacherClassWorkAddFragment;
+import com.classtune.app.schoolapp.fragments.TeacherClassWorkDraftListFragment;
+import com.classtune.app.schoolapp.fragments.TeacherClassWorkFeedFragment;
 import com.classtune.app.schoolapp.fragments.TeacherHomeWorkAddFragment;
+import com.classtune.app.schoolapp.fragments.TeacherHomeWorkDraftListFragment;
+import com.classtune.app.schoolapp.fragments.TeacherHomeWorkFeedFragment;
 import com.classtune.app.schoolapp.model.CHILD_TYPE;
 import com.classtune.app.schoolapp.model.DrawerChildBase;
 import com.classtune.app.schoolapp.model.DrawerChildMenu;
@@ -263,6 +267,22 @@ public class HomePageFreeVersion extends HomeContainerActivity {
         }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_ATTACH_FILE){
             if(resultCode != RESULT_CANCELED){
                 TeacherClassWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
+            }
+        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_FEED){
+            if(resultCode != RESULT_CANCELED){
+                TeacherClassWorkFeedFragment.instance.onRefresh(requestCode, resultCode, data);
+            }
+        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_DRAFT){
+            if(resultCode != RESULT_CANCELED){
+                TeacherClassWorkDraftListFragment.instance.onRefresh(requestCode, resultCode, data);
+            }
+        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_FEED){
+            if(resultCode != RESULT_CANCELED){
+                TeacherHomeWorkFeedFragment.instance.onRefresh(requestCode, resultCode, data);
+            }
+        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_DRAFT){
+            if(resultCode != RESULT_CANCELED){
+                TeacherHomeWorkDraftListFragment.instance.onRefresh(requestCode, resultCode, data);
             }
         }
 

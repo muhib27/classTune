@@ -56,6 +56,8 @@ import java.util.List;
 import ru.bartwell.exfilepicker.ExFilePicker;
 import ru.bartwell.exfilepicker.ExFilePickerParcelObject;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -105,6 +107,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
         listSubjectName = new ArrayList<>();
         listSubjectId = new ArrayList<>();
         listCheckSubject = new ArrayList<>();
+
     }
 
     private boolean isFormValid() {
@@ -249,7 +252,9 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             isStoragePermissionGranted();
         }
-
+        isSubjectLayoutClicked = false;
+        if(subjectCats!=null && subjectCats.size()>0)
+            subjectCats.clear();
         return rootView;
     }
     private void createHomeworkTypeCats() {
@@ -489,6 +494,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
 
                 if(isSubjectLayoutClicked)
                 {
+                    layoutSubjectClassActionHolder.setBackgroundColor(Color.parseColor("#eff0f4"));
                     layoutSelectMultipleSubject.setVisibility(View.VISIBLE);
 
                     if(subjectCats.size() <=0)
@@ -496,6 +502,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                 }
                 else
                 {
+                    layoutSubjectClassActionHolder.setBackgroundColor(Color.WHITE);
                     //layoutSelectMultipleSubject.removeAllViews();
                     layoutSelectMultipleSubject.setVisibility(View.GONE);
                 }

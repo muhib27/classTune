@@ -87,7 +87,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	private List<String> listSubjectName;
 	private boolean  isSubjectLayoutClicked = false;
 	public static TeacherHomeWorkAddFragment instance;
-
+	private List<CheckBox> listCheckBoxSubject;
 
 	@Override
 	public void onResume() {
@@ -106,6 +106,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		userHelper=new UserHelper(getActivity());
 		listSubjectName = new ArrayList<>();
 		listSubjectId = new ArrayList<>();
+		listCheckBoxSubject = new ArrayList<>();
 	}
 
 	private boolean isFormValid() {
@@ -239,6 +240,9 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
         String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
         choosenDateTextView.setText(AppUtility.getDateString(fDate, AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
 
+		for(int i=0;i<listCheckBoxSubject.size();i++){
+			listCheckBoxSubject.get(i).setChecked(false);
+		}
     }
 
 
@@ -253,6 +257,10 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			isStoragePermissionGranted();
 		}
+
+		isSubjectLayoutClicked = false;
+		if(subjectCats!=null && subjectCats.size()>0)
+			subjectCats.clear();
 
 		return rootView;
 	}
@@ -444,6 +452,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 			//if(i == listSubjectName.indexOf(""))
 
+			listCheckBoxSubject.add(cb);
 			layout.addView(cb);
 		}
 

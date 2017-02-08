@@ -1,5 +1,6 @@
 package com.classtune.app.schoolapp.fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.SingleTeacherDraftHomeworkActivity;
+import com.classtune.app.schoolapp.callbacks.IFeedRefreshCallBack;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.HomeWorkSubject;
 import com.classtune.app.schoolapp.model.Picker;
@@ -52,7 +54,7 @@ import java.util.List;
 /**
  * Created by BLACK HAT on 25-Jan-16.
  */
-public class TeacherHomeWorkDraftListFragment  extends Fragment implements UserAuthListener, TeacherHomeWorkFragment.IFilterClicked, TeacherHomeWorkFragment.IFilterInsideClicked {
+public class TeacherHomeWorkDraftListFragment  extends Fragment implements UserAuthListener, TeacherHomeWorkFragment.IFilterClicked, TeacherHomeWorkFragment.IFilterInsideClicked, IFeedRefreshCallBack {
 
     UIHelper uiHelper;
     UserHelper userHelper;
@@ -76,7 +78,7 @@ public class TeacherHomeWorkDraftListFragment  extends Fragment implements UserA
     private TextView txtMessage;
 
     private static final int REQUEST_CODE_PUBLISH = 50;
-
+    public static TeacherHomeWorkDraftListFragment instance;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -119,6 +121,7 @@ public class TeacherHomeWorkDraftListFragment  extends Fragment implements UserA
     private void initListAction()
     {
 
+        instance = this;
         listGoodread.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -129,7 +132,8 @@ public class TeacherHomeWorkDraftListFragment  extends Fragment implements UserA
 
                 Intent intent = new Intent(getActivity(), SingleTeacherDraftHomeworkActivity.class);
                 intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
-                startActivityForResult(intent, REQUEST_CODE_PUBLISH);
+                getActivity().startActivityForResult(intent, AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_DRAFT);
+                getActivity().setResult(Activity.RESULT_OK);
 
                 Log.e("DATA_CLICKED", "is: " + data.getId());
 
@@ -725,7 +729,7 @@ public class TeacherHomeWorkDraftListFragment  extends Fragment implements UserA
 
         if(resultCode == getActivity().RESULT_OK)
         {
-            if(requestCode == REQUEST_CODE_PUBLISH)
+            if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_DRAFT)
             {
                 allGooadReadPost.clear();
                 adapter.notifyDataSetChanged();
@@ -736,5 +740,17 @@ public class TeacherHomeWorkDraftListFragment  extends Fragment implements UserA
         }
 
 
+    }
+
+    @Override
+    public void onRefresh(int requestCode, int resultCode, Intent data) {
+        if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_DRAFT)
+        {
+            allGooadReadPost.clear();
+            adapter.notifyDataSetChanged();
+
+            setUpList();
+            loadDataInToList();
+        }
     }
 }

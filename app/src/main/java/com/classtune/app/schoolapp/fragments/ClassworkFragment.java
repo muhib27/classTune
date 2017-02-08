@@ -626,7 +626,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
                 ClassworkData  data = (ClassworkData)currentAdapter.getItem(position-1);
 
                 Intent intent = new Intent(getActivity(), SingleClassworkActivity.class);
-                intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
+                intent.putExtra(AppConstant.ID_SINGLE_CLASSWORK, data.getId());
                 startActivityForResult(intent, 50);
 
 

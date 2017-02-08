@@ -171,6 +171,9 @@ public class AppConstant {
 	//######################################## HomeworkFragment
 	public static final String ID_SINGLE_HOMEWORK = "id_single_homework";
 
+	//######################################## ClassworkFragment
+	public static final String ID_SINGLE_CLASSWORK = "id_single_classwork";
+
 
 	//######################################## SingleEventActivity
 	public static final String ID_SINGLE_EVENT = "id_single_event";
@@ -276,6 +279,18 @@ public class AppConstant {
 
 	//################### TeacherClassWorkAddFragment
 	public static final int REQUEST_CODE_TEACHER_CLASSWORK_ATTACH_FILE = 202;
+
+	//################### TeacherClassWorkFeedFragment
+	public static final int REQUEST_CODE_TEACHER_CLASSWORK_FEED = 203;
+
+	//################### TeacherClassWorkDraftListFragment
+	public static final int REQUEST_CODE_TEACHER_CLASSWORK_DRAFT = 204;
+
+	//################### TeacherHomeWorkFeedFragment
+	public static final int REQUEST_CODE_TEACHER_HOMEWORK_FEED = 205;
+
+	//################### TeacherHomeWorkDraftListFragment
+	public static final int REQUEST_CODE_TEACHER_HOMEWORK_DRAFT = 206;
 
 
 }

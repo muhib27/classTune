@@ -180,7 +180,7 @@ public class SingleTeacherDraftClassworkActivity extends ChildContainerActivity 
                 if(isEditable == true)
                 {
                     Intent intent = new Intent(SingleTeacherDraftClassworkActivity.this, SingleTeacherEditClassworkActivity.class);
-                    intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
+                    intent.putExtra(AppConstant.ID_SINGLE_CLASSWORK, data.getId());
                     startActivityForResult(intent, REQUEST_EDIT_HOMEWORK);
                 }
                 else
