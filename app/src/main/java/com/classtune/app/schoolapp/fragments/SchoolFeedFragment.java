@@ -33,11 +33,13 @@ import com.classtune.app.R;
 import com.classtune.app.freeversion.AnyFragmentLoadActivity;
 import com.classtune.app.freeversion.HomePageFreeVersion;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
+import com.classtune.app.freeversion.SingleClassworkActivity;
 import com.classtune.app.freeversion.SingleEventActivity;
 import com.classtune.app.freeversion.SingleExamRoutine;
 import com.classtune.app.freeversion.SingleHomeworkActivity;
 import com.classtune.app.freeversion.SingleMeetingRequestActivity;
 import com.classtune.app.freeversion.SingleNoticeActivity;
+import com.classtune.app.freeversion.SingleTeacherClassworkActivity;
 import com.classtune.app.schoolapp.model.FreeFeed;
 import com.classtune.app.schoolapp.model.FreeVersionPost;
 import com.classtune.app.schoolapp.model.UserAuthListener;
@@ -1346,6 +1348,19 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
             /*case 20:
 
                 break;*/
+
+            case 31:
+                if(userHelper.getUser().getType() == UserHelper.UserTypeEnum.TEACHER) {
+
+                    intent = new Intent(getActivity(), SingleTeacherClassworkActivity.class);
+                    intent.putExtra(AppConstant.ID_SINGLE_CLASSWORK, rid);
+
+                }else{
+                    intent = new Intent(getActivity(), SingleClassworkActivity.class);
+                    intent.putExtra(AppConstant.ID_SINGLE_CLASSWORK, rid);
+                }
+
+                break;
 
             default:
                 break;

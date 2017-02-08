@@ -29,11 +29,13 @@ import android.util.Log;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.AnyFragmentLoadActivity;
+import com.classtune.app.freeversion.SingleClassworkActivity;
 import com.classtune.app.freeversion.SingleEventActivity;
 import com.classtune.app.freeversion.SingleExamRoutine;
 import com.classtune.app.freeversion.SingleHomeworkActivity;
 import com.classtune.app.freeversion.SingleMeetingRequestActivity;
 import com.classtune.app.freeversion.SingleNoticeActivity;
+import com.classtune.app.freeversion.SingleTeacherClassworkActivity;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
@@ -45,6 +47,8 @@ import com.classtune.app.schoolapp.utils.UserHelper;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * This {@code IntentService} does the actual handling of the GCM message.
@@ -64,6 +68,7 @@ public class GcmIntentService extends IntentService {
     public static final String TAG = "GCM Demo";
 
     private static Context context;
+    private final static AtomicInteger c = new AtomicInteger(0);
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -203,9 +208,10 @@ public class GcmIntentService extends IntentService {
 
         Intent intent = invokeClassesPaidNotification(extras, rType, rId);//new Intent(getApplicationContext(), SingleItemShowActivity.class);
         //intent.putExtra(AppConstant.ITEM_ID, postId);
+        intent.setAction(Long.toString(System.currentTimeMillis()));
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+        PendingIntent contentIntent = PendingIntent.getActivity(this, getID(),
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder mBuilder =
@@ -220,11 +226,15 @@ public class GcmIntentService extends IntentService {
 
         //mBuilder.getNotification().flags |= Notification.FLAG_AUTO_CANCEL;
         mBuilder.setAutoCancel(true);
-        mNotificationManager.notify(NOTIFICATION_ID++, mBuilder.build());
+        mNotificationManager.notify(getID(), mBuilder.build());
 
 
 
 
+    }
+
+    public static int getID() {
+        return c.incrementAndGet();
     }
 
 
@@ -416,6 +426,28 @@ public class GcmIntentService extends IntentService {
                 intent = new Intent(this, AnyFragmentLoadActivity.class);
                 intent.putExtra("class_name", "SchoolFeedFragment");
                 intent.putExtra("total_unread_extras", extras);
+
+                //initApiCall(extras.getString("rid"), rType);
+
+                break;
+
+            case 31:
+                UserHelper userHelper = new UserHelper(this);
+                if(userHelper.getUser().getType() == UserHelper.UserTypeEnum.TEACHER) {
+
+                    intent = new Intent(this, SingleTeacherClassworkActivity.class);
+                    intent.putExtra(AppConstant.ID_SINGLE_CLASSWORK, rId);
+                    intent.putExtra("total_unread_extras", extras);
+
+                }else{
+                    intent = new Intent(this, SingleClassworkActivity.class);
+                    intent.putExtra(AppConstant.ID_SINGLE_CLASSWORK, rId);
+                    intent.putExtra("total_unread_extras", extras);
+                }
+
+
+
+
 
                 //initApiCall(extras.getString("rid"), rType);
 
