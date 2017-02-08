@@ -568,7 +568,7 @@
     <string name="title_progress_graph_tab">Progress Graph</string>
 
     <!-- GROUP REPORT -->
-    <string name="title_group_report_tab">Group Report</string>
+    <string name="title_group_report_tab">Summary</string>
 
     <!-- ROUTINE -->
     <string name="title_class_routine">Class Routine</string>
