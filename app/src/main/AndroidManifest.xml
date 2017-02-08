@@ -264,7 +264,8 @@
             android:theme="@style/ExFilePickerThemeDark" />
         <activity android:name=".freeversion.SingleTeacherClassworkActivity" />
         <activity android:name=".freeversion.SingleTeacherDraftClassworkActivity" />
-        <activity android:name=".freeversion.SingleTeacherEditClassworkActivity"></activity>
+        <activity android:name=".freeversion.SingleTeacherEditClassworkActivity" />
+        <activity android:name=".freeversion.SingleClassworkActivity"></activity>
     </application>
 
 </manifest>

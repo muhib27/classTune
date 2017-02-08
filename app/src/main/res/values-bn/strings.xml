@@ -1625,6 +1625,7 @@
     <string name="java_singleteacheredithomeworkactivity_choose_due_date">অনুগ্রহপূর্বক হোমওয়ার্ক জমাদানের তারিখ নির্বাচন করুন!</string>
     <string name="java_singleteacheredithomeworkactivity_saved_as_draft">সফলভাবে খসড়া আকারে সেভ হলো!</string>
     <string name="java_singleteacheredithomeworkactivity_failed_post">হোমওয়ার্কটি পোস্ট হয়নি! অনুগ্রহপূর্বক আবার চেষ্টা করুন</string>
+    <string name="java_singleteachereditclassworkactivity_failed_post">ক্লাসওয়ার্কটি পোস্ট হয়নি! অনুগ্রহপূর্বক আবার চেষ্টা করুন</string>
     <string name="java_singleteacheredithomeworkactivity_no_file_attached">কোন ফাইল সংযুক্ত হয়মি</string>
     <string name="java_singleteacheredithomeworkactivity_select_subject">বিষয় নির্বাচন করুন</string>
     <string name="java_singleteacheredithomeworkactivity_select_homework_type">হোমওয়ার্কের ধরণ নির্বাচম করুন</string>
@@ -1644,6 +1645,7 @@
 
     <!--TeacherHomeWorkAddFragment-->
     <string name="java_teacherhomeworkaddfragment_successfully_posted_homework">হোমওয়ার্কটি সফলভাবে পোস্ট করা হয়েছে!</string>
+    <string name="java_teacherclassworkaddfragment_successfully_posted_classwork">ক্লাসওয়ার্কটি সফলভাবে পোস্ট করা হয়েছে!</string>
     <string name="java_teacherhomeworkaddfragment_file_size_message">ফাইল সাইজ ৫ মেগাবাইটের বেশি হবে না।</string>
 
     <!--UIHelper-->

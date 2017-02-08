@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.AssesmentHomeworkActivity;
+import com.classtune.app.freeversion.SingleClassworkActivity;
 import com.classtune.app.freeversion.SingleHomeworkActivity;
 import com.classtune.app.schoolapp.model.AssessmentHomework;
 import com.classtune.app.schoolapp.model.BaseType;
@@ -622,9 +623,9 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
 
-                HomeworkData  data = (HomeworkData)currentAdapter.getItem(position-1);
+                ClassworkData  data = (ClassworkData)currentAdapter.getItem(position-1);
 
-                Intent intent = new Intent(getActivity(), SingleHomeworkActivity.class);
+                Intent intent = new Intent(getActivity(), SingleClassworkActivity.class);
                 intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
                 startActivityForResult(intent, 50);
 

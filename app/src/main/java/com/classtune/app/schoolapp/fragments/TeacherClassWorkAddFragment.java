@@ -68,7 +68,6 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
     TextView subjectNameTextView, classWorkTypeTextView, choosenFileTextView;
     private String subjectId="", classworkTypeId ="1";
     private String selectedFilePath = "";
-    private TextView choosenDateTextView;
     private final static int REQUEST_CODE_FILE_CHOOSER = 101;
 
 
@@ -86,6 +85,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
     private List<String> listSubjectName;
     private boolean  isSubjectLayoutClicked = false;
     public static TeacherClassWorkAddFragment instance;
+    private List<CheckBox> listCheckSubject;
 
 
     @Override
@@ -104,6 +104,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
         userHelper=new UserHelper(getActivity());
         listSubjectName = new ArrayList<>();
         listSubjectId = new ArrayList<>();
+        listCheckSubject = new ArrayList<>();
     }
 
     private boolean isFormValid() {
@@ -201,14 +202,14 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                             else
                             {
                                 Toast.makeText(getActivity(),
-                                        R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
+                                        R.string.java_teacherclassworkaddfragment_successfully_posted_classwork,
                                         Toast.LENGTH_SHORT).show();
                             }
                             clearDataFields();
                         } else
                             Toast.makeText(
                                     getActivity(),
-                                    getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
+                                    getString(R.string.java_singleteachereditclassworkactivity_failed_post),
                                     Toast.LENGTH_SHORT).show();
                         super.onSuccess(arg0, responseString);
                     }
@@ -225,9 +226,9 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
         classworkDescriptionEditText.setText("");
         choosenFileTextView.setText(getString(R.string.java_singleteacheredithomeworkactivity_no_file_attached));
 
-        Date cDate = new Date();
-        String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
-        choosenDateTextView.setText(AppUtility.getDateString(fDate, AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
+        for(int i=0;i<listCheckSubject.size();i++){
+            listCheckSubject.get(i).setChecked(false);
+        }
 
     }
 
@@ -297,15 +298,13 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
         layoutAttachmentHolder = (LinearLayout)view.findViewById(R.id.layoutAttachmentHolder);
 
         classworkDescriptionEditText = (EditText) view
-                .findViewById(R.id.et_teacher_ah_homework_description);
+                .findViewById(R.id.et_teacher_ah_classwork_description);
         subjectNameTextView = (TextView) view
                 .findViewById(R.id.tv_teacher_ah_subject_name);
         classWorkTypeTextView = (TextView) view
-                .findViewById(R.id.tv_teacher_ah_homework_type);
+                .findViewById(R.id.et_teacher_ah_subject_name);
         choosenFileTextView = (TextView) view
                 .findViewById(R.id.tv_teacher_ah_choosen_file_name);
-        choosenDateTextView = (TextView) view
-                .findViewById(R.id.tv_teacher_ah_date);
         ((ImageButton) view.findViewById(R.id.btn_subject_name))
                 .setOnClickListener(this);
        /* ((ImageButton) view.findViewById(R.id.btn_classwork_type))
@@ -347,7 +346,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
     }
     private void generateSubjectChooserLayout(LinearLayout layout)
     {
-
+        listCheckSubject.clear();
         for (int i=0;i<subjectCats.size();i++)
         {
             CheckBox cb = new CheckBox(getActivity());
@@ -393,6 +392,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
             //if(i == listSubjectName.indexOf(""))
 
             layout.addView(cb);
+            listCheckSubject.add(cb);
         }
 
     }

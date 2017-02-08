@@ -195,7 +195,8 @@ public class URLHelper {
 	public final static String URL_HOMEWORK_ASSESSMENT_ADDMARK= "homework/saveassessment";
 	
 	public final static String URL_SINGLE_HOMEWORK = "homework/singlehomework";
-	
+	public final static String URL_SINGLE_CLASSWORK = "classwork/singleclasswork";
+
 	public final static String URL_HOMEWORK_ASSESSMENT_RESULT= "homework/assessmentscore";
 	
 	public final static String URL_SINGLE_CALENDAR_EVENT= "event/getsingleevent";

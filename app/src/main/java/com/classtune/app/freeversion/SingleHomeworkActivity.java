@@ -56,7 +56,8 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 	
 	private ExpandableTextView txtContent;
 	private TextView tvSubject;
-	private TextView tvDate;
+	private TextView tvDueDate;
+	private TextView tvAssignDate;
 	private TextView section;
 	private CustomButton btnDone;
 	private CustomButton btnReminder;
@@ -131,7 +132,8 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 		this.txtContent = (ExpandableTextView)this.findViewById(R.id.txtContent);
 		this.tvLesson = (TextView) this.findViewById(R.id.tv_homework_content);
 		this.tvSubject = (TextView) this.findViewById(R.id.tv_teacher_feed_subject_name);
-		this.tvDate = (TextView) this.findViewById(R.id.tv_teacher_homewrok_feed_date);
+		this.tvDueDate = (TextView) this.findViewById(R.id.tv_teacher_homewrok_feed_date);
+		this.tvAssignDate = (TextView) this.findViewById(R.id.txtAssignDate);
 		this.section = (TextView) this.findViewById(R.id.tv_teavher_homework_feed_section);
 		this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
 		this.btnReminder = (CustomButton) this.findViewById(R.id.btn_reminder);
@@ -180,7 +182,8 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 		
 		String[] parts = data.getDueDate().split(" ");
 		String part1 = parts[0];
-		this.tvDate.setText(part1);
+		this.tvDueDate.setText(part1);
+		this.tvAssignDate.setText(data.getAssign_date());
 		
 		this.section.setText(getString(R.string.java_singlehomeworkactivity_by)+data.getTeacherName());
 		

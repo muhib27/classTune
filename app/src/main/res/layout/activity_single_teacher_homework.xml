@@ -79,7 +79,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:text="English"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -110,7 +109,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:text="English"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -140,7 +138,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:text="English"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -174,7 +171,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtDueDate"
                 android:layout_weight="1.5"
-                android:text="English"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -207,7 +203,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="English"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
         </LinearLayout>

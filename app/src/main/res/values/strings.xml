@@ -1633,6 +1633,7 @@
     <string name="java_singleteacheredithomeworkactivity_choose_due_date">Please Choose a due date for Homework!</string>
     <string name="java_singleteacheredithomeworkactivity_saved_as_draft">Successfully saved as draft!</string>
     <string name="java_singleteacheredithomeworkactivity_failed_post">Failed to post Homework! Please try again.</string>
+    <string name="java_singleteachereditclassworkactivity_failed_post">Failed to post classwork! Please try again.</string>
     <string name="java_singleteacheredithomeworkactivity_no_file_attached">No File Attached</string>
     <string name="java_singleteacheredithomeworkactivity_select_subject">Select your Subject</string>
     <string name="java_singleteacheredithomeworkactivity_select_homework_type">Select Homework type</string>
@@ -1652,6 +1653,7 @@
 
     <!--TeacherHomeWorkAddFragment-->
     <string name="java_teacherhomeworkaddfragment_successfully_posted_homework">Successfully posted Homework!</string>
+    <string name="java_teacherclassworkaddfragment_successfully_posted_classwork">Successfully posted classwork!</string>
     <string name="java_teacherhomeworkaddfragment_file_size_message">File size cannot be more than 5 MB.</string>
 
     <!--UIHelper-->
@@ -1702,7 +1704,6 @@
     <string name="txt_language">Language</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-
 
 
 </resources>
