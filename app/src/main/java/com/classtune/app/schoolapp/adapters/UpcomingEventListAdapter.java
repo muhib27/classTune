@@ -71,7 +71,7 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 		
 		
 		View rowView = convertView;
-	    
+
 		if (rowView == null) {
 	      /*LayoutInflater inflater = context.getLayoutInflater();*/
 	      rowView = LayoutInflater.from(context).inflate(R.layout.row_upcoming_events, null);
@@ -82,7 +82,7 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 	      //viewHolder.notGoingBtn=(CustomButtonTest)rowView.findViewById(R.id.btn_not_going);
 	      viewHolder.remainderBtn=(CustomButtonTest)rowView.findViewById(R.id.btn_reminder);
 	      viewHolder.eventCatName = (TextView)rowView.findViewById(R.id.event_cat_name);
-	      
+
 	      viewHolder.txtTime = (TextView)rowView.findViewById(R.id.txtTime);
 	      viewHolder.txtStartDate = (TextView)rowView.findViewById(R.id.txtStartDate);
 	      viewHolder.txtEndDate = (TextView)rowView.findViewById(R.id.txtEndDate);
@@ -91,12 +91,12 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 	      rowView.setTag(viewHolder);
 	    }
 	    
-	    
 
-	    
+
+
 
 	    final ViewHolder holder = (ViewHolder) rowView.getTag();
-	    
+
 	    holder.remainderBtn.setTag(items.get(position));
 	    
 	    SchoolEvent temp=items.get(position);
@@ -242,10 +242,10 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 			}
 		});*/
 
-		if(items.get(position).getIsHoliday().equalsIgnoreCase("1") && !temp.getEventAck().equals(ackTypeEnum.JOIN_IN)){
+		/*if(items.get(position).getIsHoliday().equalsIgnoreCase("1") && !temp.getEventAck().equals(ackTypeEnum.JOIN_IN)){
 			setButtonState(holder.joinInBtn, R.drawable.done_normal, true, context.getString(R.string.btn_join));
 			holder.joinInBtn.setEnabled(false);
-		}
+		}*/
 	    
 	    return rowView;
 	  }

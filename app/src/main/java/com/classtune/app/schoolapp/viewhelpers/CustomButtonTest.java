@@ -72,7 +72,7 @@ public class CustomButtonTest extends LinearLayout {
 	
 	public void setButtonSelected(boolean bol) {
 		if (bol) {
-			title.setTextColor(getResources().getColor(R.color.maroon));
+			title.setTextColor(getResources().getColor(R.color.classtune_green_color));
 			this.setBackgroundResource(R.drawable.white_btn);
 			image.setImageDrawable(iconImageTap);
 			isselected=true;
