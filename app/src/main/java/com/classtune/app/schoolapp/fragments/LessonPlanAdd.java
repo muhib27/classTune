@@ -790,6 +790,7 @@ public class LessonPlanAdd extends Fragment {
             if (modelContainer.getStatus().getCode() == 200) {
 
                 Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_successfully_added_lesson_plan, Toast.LENGTH_SHORT).show();
+                clearDataFields();
 
 
             } else {
@@ -853,9 +854,7 @@ public class LessonPlanAdd extends Fragment {
 
 
            //if(i == listSubjectName.indexOf(""))
-
-
-
+            
            layout.addView(cb);
         }
 
@@ -891,6 +890,17 @@ public class LessonPlanAdd extends Fragment {
         hs.addAll(list);
         list.clear();
         list.addAll(hs);
+    }
+
+    private void clearDataFields(){
+        txtTitle.setText("");
+        txtSelectCategory.setText(getString(R.string.fragment_lessonplan_view_txt_select_category));
+        txtSubjectClass.setText(getString(R.string.fragment_lessonplan_add_txt_hint_select_subject_and_class));
+        txtSubjectClass.setText(getString(R.string.fragment_lessonplan_add_txt_hint_select_subject_and_class));
+        txtLectureDate.setText(getString(R.string.fragment_lessonplan_add_txt_hint_select_lecture_date));
+        choosenFileTextView.setText(getString(R.string.java_singleteacheredithomeworkactivity_no_file_attached));
+        txtDescription.setText("");
+
     }
 
 
