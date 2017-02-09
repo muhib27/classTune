@@ -28,6 +28,7 @@ import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
+import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.MyFragmentTabHost;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.loopj.android.http.RequestParams;
@@ -236,10 +237,14 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
         addTab(this.mTabHostReportCard, spec, (tabInfo = new TabInfo(AppConstant.TAB_TERM_REPORT, ResultTermTesttFragment.class, args)));
 		ResultTermTesttFragment.pickedStudentNameListenerTermTest = this;
 
-		spec   =   mTabHostReportCard.newTabSpec(AppConstant.TAB_Group_REPORT);
-		spec.setIndicator(getIndicatorView(getString(R.string.title_group_report_tab), R.drawable.tap_group_report));
-		addTab(this.mTabHostReportCard, spec, (tabInfo = new TabInfo(AppConstant.TAB_Group_REPORT, GroupTermTestFragment.class, args)));
-		ResultTermTesttFragment.pickedStudentNameListenerTermTest = this;
+
+		if (userHelper.getUser().getType() != UserTypeEnum.TEACHER){
+			spec   =   mTabHostReportCard.newTabSpec(AppConstant.TAB_Group_REPORT);
+			spec.setIndicator(getIndicatorView(getString(R.string.title_group_report_tab), R.drawable.tap_group_report));
+			addTab(this.mTabHostReportCard, spec, (tabInfo = new TabInfo(AppConstant.TAB_Group_REPORT, GroupTermTestFragment.class, args)));
+			ResultTermTesttFragment.pickedStudentNameListenerTermTest = this;
+
+		}
 
         if(userHelper.getUser().getType()!= UserHelper.UserTypeEnum.TEACHER){
             spec   =   mTabHostReportCard.newTabSpec(AppConstant.TAB_PROGRESS_GRAPH);
