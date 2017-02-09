@@ -108,7 +108,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:padding="10dp"
-                        android:text="01/01/2015"
+                        android:text="@string/fragment_lessonplan_view_txt_select_batch"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -167,7 +167,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:padding="10dp"
-                        android:text="01/01/2015"
+                        android:text="@string/fragment_lessonplan_view_txt_select_batch"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 

@@ -44,6 +44,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.classtune.app.R.id.btn_leave_apply;
+
 public class LeaveApplicationFragment extends Fragment implements
 		OnClickListener {
 
@@ -196,6 +198,9 @@ public class LeaveApplicationFragment extends Fragment implements
 								leaveId="";
 								startDateFormatServerString="";
 								endDateFormatServerString = "";
+
+								clearDataFields();
+
 							} else
 								Toast.makeText(
 										getActivity(),
@@ -240,6 +245,9 @@ public class LeaveApplicationFragment extends Fragment implements
 								leaveId="";
 								startDateFormatServerString="";
 								endDateFormatServerString = "";
+
+								clearDataFields();
+
 							} else
 								Toast.makeText(
 										getActivity(),
@@ -275,13 +283,13 @@ public class LeaveApplicationFragment extends Fragment implements
 					@Override
 					public void onFailure(Throwable arg0, String response) {
 						super.onFailure(arg0, response);
-						Log.e("GET_SUBJECT_RESPONSE_FAIL", response + "");
+						Log.e("RESPONSE_FAIL", response + "");
 					}
 
 					@Override
 					public void onSuccess(int arg0, String response) {
 						super.onSuccess(arg0, response);
-						Log.e("GET_SUBJECT_RESPONSE_SUCCESS", response);
+						Log.e("RESPONSE_SUCCESS", response);
 						Wrapper wrapper = GsonParser.getInstance()
 								.parseServerResponse(response);
 						if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
@@ -319,7 +327,7 @@ public class LeaveApplicationFragment extends Fragment implements
 				.setOnClickListener(this);
 		((ImageButton) view.findViewById(R.id.btn_leave_start_date))
 		.setOnClickListener(this);
-		((Button) view.findViewById(R.id.btn_leave_apply))
+		((Button) view.findViewById(btn_leave_apply))
 				.setOnClickListener(this);
 		
 		this.layoutReasonHolder = (LinearLayout)view.findViewById(R.id.layoutReasonHolder);
@@ -407,10 +415,11 @@ public class LeaveApplicationFragment extends Fragment implements
 			break;
 		case R.id.btn_leave_end_date:
 			showEndDatepicker();
+			break;
 		case R.id.layoutEndDate:
 			showEndDatepicker();
 			break;
-		case R.id.btn_leave_apply:
+		case btn_leave_apply:
 			if (isFormValid()) {
 				RequestForLeave();
 			}
@@ -446,8 +455,7 @@ public class LeaveApplicationFragment extends Fragment implements
 									.setText(getFileNameFromPath(selectedFilePath));
 
 						} catch (Exception e) {
-							Log.e("FileSelectorTestActivity",
-									"File select error", e);
+							Log.e("ERROR", "error "+e);
 						}
 					} else {
 						Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_invalid_file_type,
@@ -531,6 +539,13 @@ public class LeaveApplicationFragment extends Fragment implements
 		else{
 			return false;
 		}
+	}
+	private void clearDataFields(){
+		chooseStartDateTextView.setText(getString(R.string.fragment_lessonplan_view_txt_select_batch));
+		chooseEndDateTextView.setText(getString(R.string.fragment_lessonplan_view_txt_select_batch));
+		leaveReasonTextView.setText(getString(R.string.leave_application_layout_txt_reason));
+		etLeaveSubject.setText("");
+		leaveDescriptionEditText.setText("");
 	}
 
 }
