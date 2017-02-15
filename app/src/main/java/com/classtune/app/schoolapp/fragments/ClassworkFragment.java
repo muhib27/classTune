@@ -5,11 +5,9 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,12 +25,10 @@ import android.widget.Toast;
 import com.classtune.app.R;
 import com.classtune.app.freeversion.AssesmentHomeworkActivity;
 import com.classtune.app.freeversion.SingleClassworkActivity;
-import com.classtune.app.freeversion.SingleHomeworkActivity;
 import com.classtune.app.schoolapp.model.AssessmentHomework;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.ClassworkData;
 import com.classtune.app.schoolapp.model.HomeWorkSubject;
-import com.classtune.app.schoolapp.model.HomeworkData;
 import com.classtune.app.schoolapp.model.ModelContainer;
 import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.PickerType;
@@ -43,7 +39,6 @@ import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.CustomDateTimePicker;
 import com.classtune.app.schoolapp.utils.GsonParser;
-import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
@@ -65,7 +60,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -653,7 +647,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
             initAdapters();
             currentAdapter = homeworkAdapter;
             initializePageing();
-            processFetchHomework(URLHelper.URL_HOMEWORK);
+            processFetchHomework(URLHelper.URL_CLASSWORK);
 
         }
 
