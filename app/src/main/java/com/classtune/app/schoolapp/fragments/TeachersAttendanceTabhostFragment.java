@@ -1,19 +1,21 @@
 package com.classtune.app.schoolapp.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
+import android.widget.TabWidget;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
@@ -22,7 +24,6 @@ import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.PickerType;
-import com.classtune.app.schoolapp.model.School;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
@@ -36,9 +37,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Objects;
-import java.util.Observable;
-import java.util.Observer;
 
 
 public class TeachersAttendanceTabhostFragment extends Fragment implements OnClickListener{
@@ -49,6 +47,7 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 	public static String dateString="";
 	
 	private TextView txtDate;
+	private  HorizontalScrollView horizontalScrollView;
 
 
 
@@ -232,9 +231,15 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 		txtDate = (TextView)rootView.findViewById(R.id.date_text);
 		txtDate.setText(AppUtility.getDateString(fDate, AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
 
+		horizontalScrollView = (HorizontalScrollView)rootView.findViewById(R.id.horizontalScrollView);
+
 		initialiseTabHost(savedInstanceState);
+
+
+
 		return rootView;
 	}
+
 
 	/**
 	 * (non-Javadoc)
@@ -278,6 +283,21 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 				AppConstant.TAB_STUDENT_REPORT_TEACHER,
 				StudentReportTeacherFragment.class, args)));
 
+		spec = mTabHostAttendanceTeacher
+				.newTabSpec(AppConstant.TAB_TEACHER_SUBJECT_ATTENDANCE_TAKE_ATTENDANCE);
+		spec.setIndicator(getIndicatorView(getString(R.string.take_attendance)));
+		addTab(this.mTabHostAttendanceTeacher, spec, (tabInfo = new TabInfo(
+				AppConstant.TAB_TEACHER_SUBJECT_ATTENDANCE_TAKE_ATTENDANCE,
+				TeacherSubjectAttendanceTakeAttendanceFragment.class, args)));
+
+
+		spec = mTabHostAttendanceTeacher
+				.newTabSpec(AppConstant.TAB_TEACHER_SUBJECT_ATTENDANCE_REPORT);
+		spec.setIndicator(getIndicatorView(getString(R.string.title_student_report_tab)));
+		addTab(this.mTabHostAttendanceTeacher, spec, (tabInfo = new TabInfo(
+				AppConstant.TAB_TEACHER_SUBJECT_ATTENDANCE_REPORT,
+				TeacherSubjectAttendanceReport.class, args)));
+
 
 		Log.e("SURRENT_TAB", "is: "+mTabHostAttendanceTeacher.getCurrentTab());
 
@@ -285,6 +305,31 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 		// this.onTabChanged(AppConstant.TAB_ROLLCALL_TEACHER);
 		//
 		// mTabHostAttendanceTeacher.setOnTabChangedListener(this);
+
+		mTabHostAttendanceTeacher.setOnTabChangedListener(new TabHost.OnTabChangeListener(){
+
+			@Override
+			public void onTabChanged(String s) {
+
+				DisplayMetrics displaymetrics = new DisplayMetrics();
+				getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+				int width = displaymetrics.widthPixels;
+
+				final TabWidget tabWidget = mTabHostAttendanceTeacher.getTabWidget();
+				final int screenWidth = width;
+				final int leftX = tabWidget.getChildAt(mTabHostAttendanceTeacher.getCurrentTab()).getLeft();
+				int newX = 0;
+
+				newX = leftX + (tabWidget.getChildAt(mTabHostAttendanceTeacher.getCurrentTab()).getWidth() / 2) - (screenWidth / 2);
+				if (newX < 0) {
+					newX = 0;
+				}
+				horizontalScrollView.smoothScrollTo(newX, 0);
+
+			}
+		});
+
+
 	}
 
 	private View getIndicatorView(String text) {
@@ -334,20 +379,8 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 		default:
 			break;
 		}
-	}
 
-	/*
-	 * public void onTabChanged(String tag) { TabInfo newTab =
-	 * this.mapTabInfo.get(tag); if (mLastTab != newTab) { FragmentTransaction
-	 * ft = this.getChildFragmentManager().beginTransaction(); if (mLastTab !=
-	 * null) { if (mLastTab.fragment != null) { ft.detach(mLastTab.fragment); }
-	 * } if (newTab != null) { if (newTab.fragment == null) { newTab.fragment =
-	 * Fragment.instantiate(getActivity(), newTab.clss.getName(), newTab.args);
-	 * ft.add(R.id.realtabcontent_attendance_teacher, newTab.fragment,
-	 * newTab.tag); } else { ft.attach(newTab.fragment); } } mLastTab = newTab;
-	 * ft.commit(); this.getChildFragmentManager().executePendingTransactions();
-	 * } }
-	 */
+	}
 
 
 }

@@ -266,6 +266,13 @@
         <activity android:name=".freeversion.SingleTeacherDraftClassworkActivity" />
         <activity android:name=".freeversion.SingleTeacherEditClassworkActivity" />
         <activity android:name=".freeversion.SingleClassworkActivity"></activity>
+
+
+        <activity
+            android:name=".freeversion.TeacherSubjectAttendanceTakeActivity"
+            android:screenOrientation="portrait" />
+
+
     </application>
 
 </manifest>

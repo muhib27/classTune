@@ -59,6 +59,8 @@ public class AppConstant {
 	public static final String TAB_LEAVE_APPLICATION = "tab_leave_application_identifier";
 	public static final String TAB_STUDENT_LEAVE = "tab_student_leave_identifier";
 	public static final String TAB_MY_LEAVE = "tab_my_leave_identifier";
+	public static final String TAB_TEACHER_SUBJECT_ATTENDANCE_TAKE_ATTENDANCE = "TAB_SUBJECT_ATTENDANCE_TAKE_ATTENDANCE";
+	public static final String TAB_TEACHER_SUBJECT_ATTENDANCE_REPORT = "TAB_TEACHER_SUBJECT_ATTENDANCE_REPORT";
 	// ######################################### HomeWork
 		// #########################################
 	public static final String TAB_DRAFT = "tab_draft_identifier";
@@ -291,6 +293,11 @@ public class AppConstant {
 
 	//################### TeacherHomeWorkDraftListFragment
 	public static final int REQUEST_CODE_TEACHER_HOMEWORK_DRAFT = 206;
+
+
+	//################### TeacherAssociatedSubjectAdapter
+	public static final String KEY_ASSOCIATED_SUBJECT_ID = "KEY_ASSOCIATED_SUBJECT_ID";
+
 
 
 }

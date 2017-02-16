@@ -1689,6 +1689,8 @@
     <string name="txt_login_register">রেজিস্টার</string>
     <string name="txt_dont_have_an_account">নতুন অ্যাকাউন্ট দরকার?</string>
     <string name="txt_language">ভাষা</string>
+    <string name="take_attendance">বিষয়ভিত্তিক উপস্থিতি গ্রহন করুন</string>
+    <string name="take_attendance_row">উপস্থিতি গ্রহন করুন</string>
 
 
 </resources>
