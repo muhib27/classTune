@@ -1,32 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
-
-
-
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/gray_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/layoutBottom"
+        android:layout_margin="5dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/txtSearch"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:hint="Search here by student name or roll no."
-            android:drawableRight="@drawable/ic_action_search"/>
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBoxRegistered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/check_in"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_bg"></View>
+
+
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_bg"></View>
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:divider="@color/gray_bg"
+            android:layout_marginTop="5dp"
             android:cacheColorHint="@android:color/transparent"
-            android:dividerHeight="2dp" />
+            android:dividerHeight="5dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:text="@string/activity_forget_password_txt_submit"
+            android:background="@drawable/btn_red_back"/>
+
 
     </LinearLayout>
 

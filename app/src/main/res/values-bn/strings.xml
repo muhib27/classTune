@@ -1691,6 +1691,14 @@
     <string name="txt_language">ভাষা</string>
     <string name="take_attendance">বিষয়ভিত্তিক উপস্থিতি গ্রহন করুন</string>
     <string name="take_attendance_row">উপস্থিতি গ্রহন করুন</string>
+    <string name="present">উপস্থিত</string>
+    <string name="absent">অনুপস্থিত</string>
+    <string name="late">বিলম্ব</string>
+    <string name="check_in">চেক ইন করুন</string>
+    <string name="message_register_room">অনুগ্রহপূর্বক প্রথমে চেক ইন করুন।</string>
+    <string name="not_registered">চেক ইন করতে ট্যাপ করুন</string>
+    <string name="registered">চেক ইন করা আছে</string>
+    <string name="no_student">যখন কোন ছাত্র নেই তখন চেক ইন করতে পারবেন না।</string>
 
 
 </resources>

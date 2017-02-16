@@ -1689,6 +1689,14 @@
     <string name="txt_language">ภาษา</string>
     <string name="take_attendance">Take Subject Attendance</string>
     <string name="take_attendance_row">Take Attendance</string>
+    <string name="present">Present</string>
+    <string name="absent">Absent</string>
+    <string name="late">Late</string>
+    <string name="check_in">Check in</string>
+    <string name="message_register_room">Please check in first.</string>
+    <string name="not_registered">Tap to check in</string>
+    <string name="registered">Checked in</string>
+    <string name="no_student">You cannot check in while there is no student.</string>
 
 
 </resources>
