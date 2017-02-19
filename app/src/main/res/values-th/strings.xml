@@ -1697,6 +1697,10 @@
     <string name="not_registered">Tap to check in</string>
     <string name="registered">Checked in</string>
     <string name="no_student">You cannot check in while there is no student.</string>
+    <string name="select_subject">Select Subject</string>
+    <string name="select_date">Select Date</string>
+    <string name="class_completed">Class Completed</string>
+    <string name="show_full_report">Show Full Report</string>
 
 
 </resources>

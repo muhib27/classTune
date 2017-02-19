@@ -1699,6 +1699,10 @@
     <string name="not_registered">চেক ইন করতে ট্যাপ করুন</string>
     <string name="registered">চেক ইন করা আছে</string>
     <string name="no_student">যখন কোন ছাত্র নেই তখন চেক ইন করতে পারবেন না।</string>
+    <string name="select_subject">বিষয় নির্বাচন করুন</string>
+    <string name="select_date">তারিখ নির্বাচন করুন </string>
+    <string name="class_completed">সম্পন্ন ক্লাসের সংখ্যা</string>
+    <string name="show_full_report">পূর্ণাঙ্গ রিপোর্ট দেখুন</string>
 
 
 </resources>

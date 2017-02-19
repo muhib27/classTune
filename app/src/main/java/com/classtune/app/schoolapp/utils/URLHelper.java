@@ -309,5 +309,6 @@ public class URLHelper {
 	public final static String URL_TEACHER_ASSOCIATED_SUBJECT = "attendance/associatesubject";
 	public final static String URL_TEACHER_ASSOCIATED_GET_STUDENT = "attendance/getstudents";
 	public final static String URL_TEACHER_SUBJECT_ATTENDANCE_ADD = "attendance/addattendence";
+	public final static String URL_TEACHER_SUBJECT_REPORT = "attendance/reportteacher";
 	
 }
