@@ -104,6 +104,7 @@ public class AppConstant {
 	// #########################################
 	public static final String TAB_MONTHLY_ATTENDANCE = "tab_monthly_attendance_identifier";
 	public static final String TAB_YEARLY_ATTENDANCE = "tab_yearly_attendance_identifier";
+	public static final String TAB_SUBJECT_ATTENDANCE = "tab_subject_attendance_identifier";
 	public static final String TAB_ROLLCALL_TEACHER = "tab_roll_call_identifier";
 	public static final String TAB_CLASS_REPORT_TEACHER = "tab_class_report_identifier";
 	public static final String TAB_STUDENT_REPORT_TEACHER = "tab_student_report_teacher_identifier";

@@ -311,5 +311,7 @@ public class URLHelper {
 	public final static String URL_TEACHER_SUBJECT_ATTENDANCE_ADD = "attendance/addattendence";
 	public final static String URL_TEACHER_SUBJECT_REPORT = "attendance/reportteacher";
 	public final static String URL_TEACHER_SUBJECT_REPORT_ALL = "attendance/reportallteacher";
+	public final static String URL_STD_PARENT_SUBJECT = "attendance/getsubject";
+	public final static String URL_STD_PARENT_SUBJECT_REPORT = "attendance/report";
 	
 }

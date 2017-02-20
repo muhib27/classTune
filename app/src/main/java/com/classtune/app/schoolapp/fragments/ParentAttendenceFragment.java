@@ -104,6 +104,10 @@ public class ParentAttendenceFragment extends Fragment implements MyFragmentTabH
         spec.setIndicator(getIndicatorView(getString(R.string.title_yearly_attendance_tab)));
         addTab(this.mTabHostAtt, spec, ( tabInfo = new TabInfo(AppConstant.TAB_YEARLY_ATTENDANCE, YearlyAttendanceReportFragment.class, args)));
 
+		spec   =   mTabHostAtt.newTabSpec(AppConstant.TAB_SUBJECT_ATTENDANCE);
+		spec.setIndicator(getIndicatorView(getString(R.string.title_subject_attendance_tab)));
+		addTab(this.mTabHostAtt, spec, ( tabInfo = new TabInfo(AppConstant.TAB_SUBJECT_ATTENDANCE, StudentParentSubjectReport.class, args)));
+
 
         // Default to first tab
         this.onTabChanged(AppConstant.TAB_MONTHLY_ATTENDANCE);

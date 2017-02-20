@@ -503,6 +503,7 @@
     <string name="holiday_text">ছুটির দিন</string>
     <string name="title_monthly_attendance_tab">মাসিক উপস্থিতির রিপোর্ট</string>
     <string name="title_yearly_attendance_tab">বাৎসরিক উপস্থিতির রিপোর্ট</string>
+    <string name="title_subject_attendance_tab">বিষয় ভিত্তিক উপস্থিতির রিপোর্ট</string>
     <string name="title_roll_call_tab">রোল কল</string>
     <string name="title_class_report_tab">ক্লাস রিপোর্ট</string>
     <string name="title_student_report_tab">শিক্ষার্থীর রিপোর্ট </string>
@@ -1704,6 +1705,8 @@
     <string name="class_completed">সম্পন্ন ক্লাসের সংখ্যা</string>
     <string name="show_full_report">পূর্ণাঙ্গ রিপোর্ট দেখুন</string>
     <string name="select_subject_first">প্রথমত একটি সাবজেক্ট নির্বাচন করুন।</string>
+    <string name="total_classes">মোট ক্লাস সংখ্যা</string>
+
 
 
 </resources>
