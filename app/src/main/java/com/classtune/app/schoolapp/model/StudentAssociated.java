@@ -21,6 +21,10 @@ public class StudentAssociated {
     @Expose
     private Integer att;
 
+    private boolean isClickedPresent = false;
+    private boolean isClickedAbsent = false;
+    private boolean isClickedLate = false;
+
     public String getStudentId() {
         return studentId;
     }
@@ -51,5 +55,29 @@ public class StudentAssociated {
 
     public void setAtt(Integer att) {
         this.att = att;
+    }
+
+    public boolean isClickedPresent() {
+        return isClickedPresent;
+    }
+
+    public void setClickedPresent(boolean clickedPresent) {
+        isClickedPresent = clickedPresent;
+    }
+
+    public boolean isClickedAbsent() {
+        return isClickedAbsent;
+    }
+
+    public void setClickedAbsent(boolean clickedAbsent) {
+        isClickedAbsent = clickedAbsent;
+    }
+
+    public boolean isClickedLate() {
+        return isClickedLate;
+    }
+
+    public void setClickedLate(boolean clickedLate) {
+        isClickedLate = clickedLate;
     }
 }

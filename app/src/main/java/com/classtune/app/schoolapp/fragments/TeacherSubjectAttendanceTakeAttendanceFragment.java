@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.adapters.TeacherAssociatedSubjectAdapter;
-import com.classtune.app.schoolapp.model.Subject;
+import com.classtune.app.schoolapp.model.RoutineTimeTable;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
@@ -38,7 +38,7 @@ import java.util.List;
 public class TeacherSubjectAttendanceTakeAttendanceFragment extends UserVisibleHintFragment {
 
     private View mainView;
-    private List<Subject> subjectList;
+    private List<RoutineTimeTable> subjectList;
     private UIHelper uiHelper;
     private UserHelper userHelper;
     private TeacherAssociatedSubjectAdapter adapter;
@@ -73,7 +73,7 @@ public class TeacherSubjectAttendanceTakeAttendanceFragment extends UserVisibleH
         RequestParams params = new RequestParams();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
-        AppRestClient.post(URLHelper.URL_TEACHER_ASSOCIATED_SUBJECT, params,
+        AppRestClient.post(URLHelper.URL_GET_WEEK_DAY_CLASSES, params,
                 subjectHandler);
     }
 
@@ -99,7 +99,7 @@ public class TeacherSubjectAttendanceTakeAttendanceFragment extends UserVisibleH
             Wrapper wrapper= GsonParser.getInstance().parseServerResponse(responseString);
             if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
 
-                JsonArray arraySubject = wrapper.getData().get("subjects").getAsJsonArray();
+                JsonArray arraySubject = wrapper.getData().get("time_table").getAsJsonArray();
                 subjectList.addAll(parseSubject(arraySubject.toString()));
                 adapter = new TeacherAssociatedSubjectAdapter(getActivity(), subjectList);
                 adapter.notifyDataSetChanged();
@@ -112,11 +112,11 @@ public class TeacherSubjectAttendanceTakeAttendanceFragment extends UserVisibleH
 
     };
 
-    public List<Subject> parseSubject(String object) {
+    public List<RoutineTimeTable> parseSubject(String object) {
 
-        List<Subject> tags = new ArrayList<>();
-        Type listType = new TypeToken<List<Subject>>() {}.getType();
-        tags = (List<Subject>) new Gson().fromJson(object, listType);
+        List<RoutineTimeTable> tags = new ArrayList<>();
+        Type listType = new TypeToken<List<RoutineTimeTable>>() {}.getType();
+        tags = (List<RoutineTimeTable>) new Gson().fromJson(object, listType);
         return tags;
     }
 

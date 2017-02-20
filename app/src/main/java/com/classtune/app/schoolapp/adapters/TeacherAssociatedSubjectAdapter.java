@@ -11,18 +11,18 @@ import android.widget.TextView;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.TeacherSubjectAttendanceTakeActivity;
-import com.classtune.app.schoolapp.model.Subject;
+import com.classtune.app.schoolapp.model.RoutineTimeTable;
 import com.classtune.app.schoolapp.utils.AppConstant;
 
 import java.util.List;
 
 public class TeacherAssociatedSubjectAdapter extends BaseAdapter {
 
-	private List<Subject> items;
+	private List<RoutineTimeTable> items;
 	private Context context;
 	private LayoutInflater inflater;
 
-	public TeacherAssociatedSubjectAdapter(Context context, List<Subject> items) {
+	public TeacherAssociatedSubjectAdapter(Context context, List<RoutineTimeTable> items) {
 		this.items = items;
 		this.context = context;
 		inflater = LayoutInflater.from(context);
@@ -59,7 +59,7 @@ public class TeacherAssociatedSubjectAdapter extends BaseAdapter {
 			holder = (ViewHolder) rowView.getTag();
 		}
 
-		holder.txtSubjectName.setText(items.get(index).getName());
+		holder.txtSubjectName.setText(items.get(index).getSubjectName());
 
 		holder.btnTakeAttendance.setOnClickListener(new View.OnClickListener() {
 			@Override

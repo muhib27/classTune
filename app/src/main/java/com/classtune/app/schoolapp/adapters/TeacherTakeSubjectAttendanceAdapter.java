@@ -50,7 +50,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 		this.listStudentStatusNew = new HashSet<>();
 		this.mList = new ArrayList<>();
 	}
-	
+
 	@Override
 	public int getCount() {
 		return filteredData.size();
@@ -115,7 +115,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 
 	@Override
 	public View getView(final int index, final View convertView, ViewGroup viewGroup) {
-		
+
 		View rowView = convertView;
 		final ViewHolder holder;
 		if (rowView == null) {
@@ -185,6 +185,9 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 				@Override
 				public void onClick(View view) {
 					validateCheckBoxSelected(holder.lisCheckBox, (LinearLayout)view);
+					student.setClickedPresent(true);
+					student.setClickedAbsent(false);
+					student.setClickedLate(false);
 
 					holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.white));
 					holder.txtAbsent.setTextColor(ContextCompat.getColor(context, R.color.black));
@@ -204,6 +207,9 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 				@Override
 				public void onClick(View view) {
 					validateCheckBoxSelected(holder.lisCheckBox, (LinearLayout)view);
+					student.setClickedPresent(false);
+					student.setClickedAbsent(true);
+					student.setClickedLate(false);
 
 					holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.black));
 					holder.txtAbsent.setTextColor(ContextCompat.getColor(context, R.color.white));
@@ -221,6 +227,9 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 				@Override
 				public void onClick(View view) {
 					validateCheckBoxSelected(holder.lisCheckBox, (LinearLayout)view);
+					student.setClickedPresent(false);
+					student.setClickedAbsent(false);
+					student.setClickedLate(true);
 
 					holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.black));
 					holder.txtAbsent.setTextColor(ContextCompat.getColor(context, R.color.black));
@@ -286,6 +295,44 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 
 				listStudentStatusNew.add(student.getStudentId()+"L");
 			}
+		}
+
+
+		if(student.isClickedPresent()){
+			validateCheckBoxSelected(holder.lisCheckBox, holder.layoutPresent);
+
+			holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.white));
+			holder.txtAbsent.setTextColor(ContextCompat.getColor(context, R.color.black));
+			holder.txtLate.setTextColor(ContextCompat.getColor(context, R.color.black));
+
+			if(listStudentStatusNew.contains(student.getStudentId()+"A")){
+				listStudentStatusNew.remove(student.getStudentId()+"A");
+			}
+			if(listStudentStatusNew.contains(student.getStudentId()+"L")){
+				listStudentStatusNew.remove(student.getStudentId()+"L");
+			}
+		}else if(student.isClickedAbsent()){
+			validateCheckBoxSelected(holder.lisCheckBox, holder.layoutAbsent);
+
+			holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.black));
+			holder.txtAbsent.setTextColor(ContextCompat.getColor(context, R.color.white));
+			holder.txtLate.setTextColor(ContextCompat.getColor(context, R.color.black));
+
+			if(listStudentStatusNew.contains(student.getStudentId()+"L")){
+				listStudentStatusNew.remove(student.getStudentId()+"L");
+			}
+			listStudentStatusNew.add(student.getStudentId()+"A");
+		}else if(student.isClickedLate()){
+			validateCheckBoxSelected(holder.lisCheckBox, holder.layoutLate);
+
+			holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.black));
+			holder.txtAbsent.setTextColor(ContextCompat.getColor(context, R.color.black));
+			holder.txtLate.setTextColor(ContextCompat.getColor(context, R.color.white));
+
+			if(listStudentStatusNew.contains(student.getStudentId()+"A")){
+				listStudentStatusNew.remove(student.getStudentId()+"A");
+			}
+			listStudentStatusNew.add(student.getStudentId()+"L");
 		}
 
 
@@ -372,5 +419,5 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 		};
 	}
 
-	
+
 } 

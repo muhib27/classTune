@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class RoutineTimeTable {
 
+	@SerializedName("id")
+	private String id;
 	@SerializedName("batch_name")
 	private String batchName;
 	@SerializedName("course_name")
@@ -112,5 +114,13 @@ public class RoutineTimeTable {
 
 	public void setPeriodName(String periodName) {
 		this.periodName = periodName;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }
