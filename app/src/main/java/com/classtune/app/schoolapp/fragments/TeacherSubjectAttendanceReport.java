@@ -338,7 +338,7 @@ public class TeacherSubjectAttendanceReport extends UserVisibleHintFragment {
                 isDatePickerCalledOnce = false;
 
             } else {
-
+                Toast.makeText(getActivity(), wrapper.getStatus().getMsg(), Toast.LENGTH_SHORT).show();
             }
 
         }
