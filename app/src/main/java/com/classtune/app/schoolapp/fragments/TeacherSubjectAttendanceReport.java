@@ -1,5 +1,6 @@
 package com.classtune.app.schoolapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.classtune.app.R;
+import com.classtune.app.freeversion.TeacherSubjectAttendanceFullReportActivity;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.PickerType;
@@ -280,8 +282,12 @@ public class TeacherSubjectAttendanceReport extends UserVisibleHintFragment {
             public void onClick(View view) {
                 if(!TextUtils.isEmpty(selectedSubjectId)){
                     // go to full list activity
+                    Intent intent = new Intent(getActivity(), TeacherSubjectAttendanceFullReportActivity.class);
+                    intent.putExtra(AppConstant.KEY_ASSOCIATED_SUBJECT_ID_REPORT, selectedSubjectId);
+                    startActivity(intent);
+
                 }else{
-                    Toast.makeText(getActivity(), "Please select a subject first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.select_subject_first, Toast.LENGTH_SHORT).show();
                 }
             }
         });

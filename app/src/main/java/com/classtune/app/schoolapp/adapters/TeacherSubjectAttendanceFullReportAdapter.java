@@ -79,7 +79,13 @@ public class TeacherSubjectAttendanceFullReportAdapter extends BaseAdapter imple
 		final StdAtt stdAtt = filteredData.get(index);
 
 		holder.txtStudentName.setText(stdAtt.getName());
-		holder.txtRollNo.setText(stdAtt.getRollNo());
+		if(TextUtils.isEmpty(stdAtt.getRollNo())){
+			holder.layoutRoll.setVisibility(View.GONE);
+		}else{
+			holder.layoutRoll.setVisibility(View.VISIBLE);
+			holder.txtRollNo.setText(stdAtt.getRollNo());
+		}
+
 		holder.txtPresent.setText(String.valueOf(stdAtt.getPresent()));
 		holder.txtAbsent.setText(String.valueOf(stdAtt.getAbsent()));
 		holder.txtLate.setText(String.valueOf(stdAtt.getLate()));

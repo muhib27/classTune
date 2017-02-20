@@ -1703,6 +1703,7 @@
     <string name="select_date">তারিখ নির্বাচন করুন </string>
     <string name="class_completed">সম্পন্ন ক্লাসের সংখ্যা</string>
     <string name="show_full_report">পূর্ণাঙ্গ রিপোর্ট দেখুন</string>
+    <string name="select_subject_first">প্রথমত একটি সাবজেক্ট নির্বাচন করুন।</string>
 
 
 </resources>

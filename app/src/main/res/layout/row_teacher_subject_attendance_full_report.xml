@@ -33,11 +33,6 @@
                 android:layout_weight=".5"
                 android:orientation="horizontal">
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/gray_bg"></View>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -58,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:text="1000"
                         android:textStyle="bold"
-                        android:textColor="@color/classtune_green_color"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -99,12 +94,11 @@
                         android:orientation="horizontal">
 
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:id="@+id/layoutPresent"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:gravity="center"
                             android:orientation="horizontal"
                             android:layout_weight="1">
 
@@ -112,32 +106,35 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/present"
+                                android:layout_alignParentLeft="true"
                                 android:textColor="@color/black"
-                                android:textSize="16sp"/>
+                                android:textSize="16sp"
+                                android:id="@+id/textView" />
 
                             <TextView
                                 android:id="@+id/txtPresent"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
                                 android:text="1000"
                                 android:textColor="@color/black"
-                                android:textSize="16sp"/>
+                                android:textSize="16sp"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginLeft="5dp"
+                                android:layout_toRightOf="@+id/textView" />
 
 
-                        </LinearLayout>
+                        </RelativeLayout>
 
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:background="@color/gray_bg"></View>
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:id="@+id/layoutAbsent"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:gravity="center"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
@@ -146,30 +143,33 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/absent"
                                 android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:layout_alignParentLeft="true"
+                                android:textSize="16sp"
+                                android:id="@+id/textView14" />
 
                             <TextView
                                 android:id="@+id/txtAbsent"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
                                 android:text="1000"
                                 android:textColor="@color/black"
-                                android:textSize="16sp"/>
+                                android:textSize="16sp"
+                                android:layout_alignParentTop="true"
+                                android:layout_toRightOf="@+id/textView14"
+                                android:layout_marginLeft="5dp" />
 
-                        </LinearLayout>
+                        </RelativeLayout>
 
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:background="@color/gray_bg"></View>
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:id="@+id/layoutLate"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:gravity="center"
                             android:orientation="horizontal"
                             android:layout_weight="1">
 
@@ -178,7 +178,9 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/late"
                                 android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:layout_alignParentLeft="true"
+                                android:textSize="16sp"
+                                android:id="@+id/textView16" />
 
                             <TextView
                                 android:id="@+id/txtLate"
@@ -186,10 +188,12 @@
                                 android:layout_height="wrap_content"
                                 android:text="1000"
                                 android:textColor="@color/black"
-                                android:layout_marginLeft="5dp"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                android:layout_alignParentTop="true"
+                                android:layout_toRightOf="@+id/textView16"
+                                android:layout_marginLeft="5dp" />
 
-                        </LinearLayout>
+                        </RelativeLayout>
 
 
 

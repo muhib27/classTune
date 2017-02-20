@@ -1701,6 +1701,7 @@
     <string name="select_date">Select Date</string>
     <string name="class_completed">Class Completed</string>
     <string name="show_full_report">Show Full Report</string>
+    <string name="select_subject_first">Please select a subject first.</string>
 
 
 </resources>
