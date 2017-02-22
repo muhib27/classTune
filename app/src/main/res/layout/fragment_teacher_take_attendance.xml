@@ -20,6 +20,17 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="You have no class today."
+        android:textColor="@color/classtune_green_color"
+        android:textStyle="bold"
+        android:textSize="22sp"/>
+
 
 
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.classtune.app.R;
@@ -43,6 +44,7 @@ public class TeacherSubjectAttendanceTakeAttendanceFragment extends UserVisibleH
     private UserHelper userHelper;
     private TeacherAssociatedSubjectAdapter adapter;
     private ListView listView;
+    private TextView txtMessage;
 
 
     @Override
@@ -66,6 +68,7 @@ public class TeacherSubjectAttendanceTakeAttendanceFragment extends UserVisibleH
 
     private void initView(View view){
         listView = (ListView)view.findViewById(R.id.listView);
+        txtMessage = (TextView)view.findViewById(R.id.txtMessage);
     }
 
 
@@ -105,8 +108,14 @@ public class TeacherSubjectAttendanceTakeAttendanceFragment extends UserVisibleH
                 adapter.notifyDataSetChanged();
                 listView.setAdapter(adapter);
 
-            } else {
+                if(subjectList.size()<=0){
+                    txtMessage.setVisibility(View.VISIBLE);
+                }else{
+                    txtMessage.setVisibility(View.GONE);
+                }
 
+            } else {
+                Toast.makeText(getActivity(), R.string.you_have_no_class_today, Toast.LENGTH_SHORT).show();
             }
         }
 
