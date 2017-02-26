@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.classtune.app.R;
@@ -16,6 +17,7 @@ import com.classtune.app.schoolapp.model.StudentAssociated;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
@@ -28,7 +30,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,6 +50,7 @@ public class TeacherSubjectAttendanceTakeActivity extends ChildContainerActivity
     private String registerId = "";
     private CheckBox checkBoxRegistered;
     private Button btnSubmit;
+    private TextView txtDate;
 
 
     @Override
@@ -84,6 +89,12 @@ public class TeacherSubjectAttendanceTakeActivity extends ChildContainerActivity
         checkBoxRegistered = (CheckBox)this.findViewById(R.id.checkBoxRegistered);
         //checkBoxRegistered.setButtonDrawable(R.drawable.check_btn);
         btnSubmit = (Button)this.findViewById(R.id.btnSubmit);
+        txtDate = (TextView)this.findViewById(R.id.txtDate);
+
+        Date cDate = new Date();
+        String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+        txtDate.setText(AppUtility.getDateString(fDate, AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
+
     }
 
     private String appendListWithComma(List<String> sellItems){

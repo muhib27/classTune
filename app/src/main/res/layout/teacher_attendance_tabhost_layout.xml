@@ -37,10 +37,10 @@
                 android:id="@+id/batch_text"/>
              <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray_1"
+                android:textColor="@color/black"
                 android:textSize="14sp"
                 android:id="@+id/date_text"/>
-            
+
         </LinearLayout>
         
         <ImageButton android:layout_width="wrap_content"

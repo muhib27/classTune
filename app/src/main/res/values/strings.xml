@@ -1722,6 +1722,7 @@
     <string name="select_subject_first">Please select a subject first.</string>
     <string name="total_classes">Total Classes</string>
     <string name="you_have_no_class_today">You have no class today.</string>
+    <string name="not_applicable">N/A</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 

@@ -11,11 +11,11 @@
         android:layout_margin="5dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <CheckBox
                 android:id="@+id/checkBoxRegistered"
@@ -24,10 +24,22 @@
                 android:layout_margin="10dp"
                 android:text="@string/check_in"
                 android:textColor="@color/black"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/gray_1"
+                android:textSize="14sp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"

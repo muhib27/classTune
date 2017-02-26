@@ -184,7 +184,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 			holder.layoutPresent.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					validateCheckBoxSelected(holder.lisCheckBox, (LinearLayout)view);
+					validateCheckBoxSelected(holder.lisCheckBox, (LinearLayout)view, R.color.leave);
 					student.setClickedPresent(true);
 					student.setClickedAbsent(false);
 					student.setClickedLate(false);
@@ -206,7 +206,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 			holder.layoutAbsent.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					validateCheckBoxSelected(holder.lisCheckBox, (LinearLayout)view);
+					validateCheckBoxSelected(holder.lisCheckBox, (LinearLayout)view, R.color.absent);
 					student.setClickedPresent(false);
 					student.setClickedAbsent(true);
 					student.setClickedLate(false);
@@ -226,7 +226,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 			holder.layoutLate.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					validateCheckBoxSelected(holder.lisCheckBox, (LinearLayout)view);
+					validateCheckBoxSelected(holder.lisCheckBox, (LinearLayout)view, R.color.late);
 					student.setClickedPresent(false);
 					student.setClickedAbsent(false);
 					student.setClickedLate(true);
@@ -247,7 +247,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 
 
 		if(isAllPresent){
-			holder.layoutPresent.setBackgroundColor(ContextCompat.getColor(context, R.color.classtune_green_color));
+			holder.layoutPresent.setBackgroundColor(ContextCompat.getColor(context, R.color.leave));
 			holder.layoutAbsent.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
 			holder.layoutLate.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
 
@@ -266,7 +266,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 				holder.txtLate.setTextColor(ContextCompat.getColor(context, R.color.black));
 
 			}else if(student.getAtt() == 1){
-				holder.layoutPresent.setBackgroundColor(ContextCompat.getColor(context, R.color.classtune_green_color));
+				holder.layoutPresent.setBackgroundColor(ContextCompat.getColor(context, R.color.leave));
 				holder.layoutAbsent.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
 				holder.layoutLate.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
 
@@ -276,7 +276,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 
 			}else if(student.getAtt() == 2){
 				holder.layoutPresent.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
-				holder.layoutAbsent.setBackgroundColor(ContextCompat.getColor(context, R.color.classtune_green_color));
+				holder.layoutAbsent.setBackgroundColor(ContextCompat.getColor(context, R.color.absent));
 				holder.layoutLate.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
 
 				holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.black));
@@ -287,7 +287,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 			}else if(student.getAtt() == 3){
 				holder.layoutPresent.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
 				holder.layoutAbsent.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
-				holder.layoutLate.setBackgroundColor(ContextCompat.getColor(context, R.color.classtune_green_color));
+				holder.layoutLate.setBackgroundColor(ContextCompat.getColor(context, R.color.late));
 
 				holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.black));
 				holder.txtAbsent.setTextColor(ContextCompat.getColor(context, R.color.black));
@@ -299,7 +299,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 
 
 		if(student.isClickedPresent()){
-			validateCheckBoxSelected(holder.lisCheckBox, holder.layoutPresent);
+			validateCheckBoxSelected(holder.lisCheckBox, holder.layoutPresent, R.color.leave);
 
 			holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.white));
 			holder.txtAbsent.setTextColor(ContextCompat.getColor(context, R.color.black));
@@ -312,7 +312,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 				listStudentStatusNew.remove(student.getStudentId()+"L");
 			}
 		}else if(student.isClickedAbsent()){
-			validateCheckBoxSelected(holder.lisCheckBox, holder.layoutAbsent);
+			validateCheckBoxSelected(holder.lisCheckBox, holder.layoutAbsent, R.color.absent);
 
 			holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.black));
 			holder.txtAbsent.setTextColor(ContextCompat.getColor(context, R.color.white));
@@ -323,7 +323,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 			}
 			listStudentStatusNew.add(student.getStudentId()+"A");
 		}else if(student.isClickedLate()){
-			validateCheckBoxSelected(holder.lisCheckBox, holder.layoutLate);
+			validateCheckBoxSelected(holder.lisCheckBox, holder.layoutLate, R.color.late);
 
 			holder.txtPresent.setTextColor(ContextCompat.getColor(context, R.color.black));
 			holder.txtAbsent.setTextColor(ContextCompat.getColor(context, R.color.black));
@@ -339,9 +339,9 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 		return rowView;
 	}
 
-	private void validateCheckBoxSelected(final List<LinearLayout> lisCheckBox, final LinearLayout appCompatCheckBox){
+	private void validateCheckBoxSelected(final List<LinearLayout> lisCheckBox, final LinearLayout appCompatCheckBox, int colorCode){
 
-		appCompatCheckBox.setBackgroundColor(ContextCompat.getColor(context, R.color.classtune_green_color));
+		appCompatCheckBox.setBackgroundColor(ContextCompat.getColor(context, colorCode));
 		for(int i=0; i<lisCheckBox.size();i++) {
 
 			if(!lisCheckBox.get(i).equals(appCompatCheckBox)){

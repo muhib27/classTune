@@ -329,10 +329,18 @@ public class StudentParentSubjectReport extends UserVisibleHintFragment{
 
     private void initActionAfterReportCall(int total, int present, int absent, int late){
 
-        txtTotalStudent.setText(String.valueOf(total));
-        txtPresent.setText(String.valueOf(present));
-        txtAbsent.setText(String.valueOf(absent));
-        txtLate.setText(String.valueOf(late));
+        if(total <= 0){
+            txtTotalStudent.setText(R.string.not_applicable);
+            txtPresent.setText(R.string.not_applicable);
+            txtAbsent.setText(R.string.not_applicable);
+            txtLate.setText(R.string.not_applicable);
+        }else{
+            txtTotalStudent.setText(String.valueOf(total));
+            txtPresent.setText(String.valueOf(present));
+            txtAbsent.setText(String.valueOf(absent));
+            txtLate.setText(String.valueOf(late));
+        }
+
 
     }
 }
