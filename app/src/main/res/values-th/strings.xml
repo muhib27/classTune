@@ -1706,6 +1706,9 @@
     <string name="total_classes">Total Classes</string>
     <string name="you_have_no_class_today">You have no class today.</string>
     <string name="not_applicable">N/A</string>
+    <string name="no_report_found">No report found</string>
+    <string name="subject_attentance">Subject Attendance</string>
+    <string name="subject_report">Subject Report</string>
 
 
 

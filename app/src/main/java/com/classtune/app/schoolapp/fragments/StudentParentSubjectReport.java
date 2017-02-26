@@ -63,6 +63,7 @@ public class StudentParentSubjectReport extends UserVisibleHintFragment{
     private Button btnFullReport;
     private LinearLayout layoutTeacherReport;
     private boolean isDatePickerCalledOnce = false;
+    private TextView txtMessage;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -169,6 +170,9 @@ public class StudentParentSubjectReport extends UserVisibleHintFragment{
 
         layoutTeacherReport = (LinearLayout)view.findViewById(R.id.layoutTeacherReport);
         layoutTeacherReport.setVisibility(View.GONE);
+
+        txtMessage = (TextView)view.findViewById(R.id.txtMessage);
+        txtMessage.setVisibility(View.GONE);
 
         initAction();
     }
@@ -318,9 +322,11 @@ public class StudentParentSubjectReport extends UserVisibleHintFragment{
                 initActionAfterReportCall(total, present, absent, late);
 
                 isDatePickerCalledOnce = false;
+                txtMessage.setVisibility(View.GONE);
 
             } else {
                 Toast.makeText(getActivity(), wrapper.getStatus().getMsg(), Toast.LENGTH_SHORT).show();
+                txtMessage.setVisibility(View.VISIBLE);
             }
 
         }

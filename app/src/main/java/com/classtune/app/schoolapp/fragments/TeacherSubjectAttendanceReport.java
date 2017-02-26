@@ -131,6 +131,7 @@ public class TeacherSubjectAttendanceReport extends UserVisibleHintFragment {
             // TODO Auto-generated method stub
             selectedDate = dateFormatServer;
             Log.e("SELECTED_ DATE", "is: " + selectedDate);
+            txtDate.setText(dateFormatApp);
             if(!TextUtils.isEmpty(selectedSubjectId)){
                 if(isDatePickerCalledOnce == false){
                     isDatePickerCalledOnce = true;
@@ -297,7 +298,8 @@ public class TeacherSubjectAttendanceReport extends UserVisibleHintFragment {
         RequestParams params = new RequestParams();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("subject_id", selectedSubjectId);
-        params.put("date", selectedDate);
+        if(!TextUtils.isEmpty(selectedDate))
+            params.put("date", selectedDate);
 
         AppRestClient.post(URLHelper.URL_TEACHER_SUBJECT_REPORT, params,
                 reportHandler);

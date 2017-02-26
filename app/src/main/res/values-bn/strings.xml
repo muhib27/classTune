@@ -1708,6 +1708,9 @@
     <string name="total_classes">মোট ক্লাস সংখ্যা</string>
     <string name="you_have_no_class_today">আপনার আজ কোন ক্লাস নেই।</string>
     <string name="not_applicable">প্রযোজ্য নয়</string>
+    <string name="no_report_found">রিপোর্ট পাওয়া যায় নি</string>
+    <string name="subject_attentance">বিষয়ভিত্তিক উপস্থিতি</string>
+    <string name="subject_report">বিষয়ভিত্তিক রিপোর্ট</string>
 
 
 

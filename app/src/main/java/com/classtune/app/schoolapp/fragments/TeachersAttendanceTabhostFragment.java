@@ -285,7 +285,7 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
 
 		spec = mTabHostAttendanceTeacher
 				.newTabSpec(AppConstant.TAB_TEACHER_SUBJECT_ATTENDANCE_TAKE_ATTENDANCE);
-		spec.setIndicator(getIndicatorView(getString(R.string.take_attendance)));
+		spec.setIndicator(getIndicatorView(getString(R.string.subject_attentance)));
 		addTab(this.mTabHostAttendanceTeacher, spec, (tabInfo = new TabInfo(
 				AppConstant.TAB_TEACHER_SUBJECT_ATTENDANCE_TAKE_ATTENDANCE,
 				TeacherSubjectAttendanceTakeAttendanceFragment.class, args)));
