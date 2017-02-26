@@ -87,7 +87,6 @@ public class TeacherSubjectAttendanceReport extends UserVisibleHintFragment {
         mainView = inflater.inflate(R.layout.fragment_teacher_subject_report, container, false);
         initView(mainView);
 
-        now.add(Calendar.DATE, 1);
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String formatted = format1.format(now.getTime());
         selectedDate = formatted;
