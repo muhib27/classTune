@@ -276,6 +276,8 @@
             android:name=".freeversion.TeacherSubjectAttendanceFullReportActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".freeversion.SingleStudentParentSubjectReport"
+            android:screenOrientation="portrait"/>
 
     </application>
 
