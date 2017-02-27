@@ -1569,7 +1569,7 @@
     <string name="java_resulttermtesttfragment_term_test">Term Test</string>
 
     <!--RollCallTeacherFragment-->
-    <string name="java_rollcallteacherfragment_report_saved">Todays report saved.</string>
+    <string name="java_rollcallteacherfragment_report_saved">Today\'s attendance saved successfully.</string>
 
     <!--SchoolFeedFragment-->
     <string name="java_schoolfeedfragment_holiday">Holiday</string>
@@ -1726,6 +1726,10 @@
     <string name="no_report_found">No report found</string>
     <string name="subject_attentance">Subject Attendance</string>
     <string name="subject_report">Subject Report</string>
+    <string name="attendance_saved_successfully">Attendance saved successfully.</string>
+    <string name="attendance_updated_successfully">Attendance updated successfully.</string>
+    <string name="attendance_subject_btn_update">Update</string>
+    <string name="attendance_subject_btn_submit">Submit</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 

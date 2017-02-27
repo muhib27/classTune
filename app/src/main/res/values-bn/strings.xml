@@ -1554,7 +1554,7 @@
     <string name="java_resulttermtesttfragment_term_test">টার্ম টেস্ট</string>
 
     <!--RollCallTeacherFragment-->
-    <string name="java_rollcallteacherfragment_report_saved">আজকের রিপোর্ট সেভ হয়েছে</string>
+    <string name="java_rollcallteacherfragment_report_saved">আজকের উপস্থিতি সফলভাবে সেভ হয়েছে।</string>
 
     <!--SchoolFeedFragment-->
     <string name="java_schoolfeedfragment_holiday">ছুটি</string>
@@ -1711,6 +1711,10 @@
     <string name="no_report_found">রিপোর্ট পাওয়া যায় নি</string>
     <string name="subject_attentance">বিষয়ভিত্তিক উপস্থিতি</string>
     <string name="subject_report">বিষয়ভিত্তিক রিপোর্ট</string>
+    <string name="attendance_saved_successfully">উপস্থিতি সফলভাবে গ্রহন করা হয়েছে।</string>
+    <string name="attendance_updated_successfully">উপস্থিতি সফলভাবে পরিবর্তন করা হয়েছে।</string>
+    <string name="attendance_subject_btn_update">আপডেট করুন</string>
+    <string name="attendance_subject_btn_submit">প্রেরণ করুন</string>
 
 
 

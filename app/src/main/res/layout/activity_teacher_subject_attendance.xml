@@ -82,7 +82,7 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:text="@string/activity_forget_password_txt_submit"
+            android:text="@string/attendance_subject_btn_submit"
             android:background="@drawable/btn_red_back"/>
 
 

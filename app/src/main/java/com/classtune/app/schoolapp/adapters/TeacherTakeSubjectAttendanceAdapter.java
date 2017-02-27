@@ -38,6 +38,7 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 	private Set<String> listStudentStatusNew;
 	private boolean isAllPresent = false;
 	private List<String> mList;
+	private boolean isUpdate = false;
 
 	public TeacherTakeSubjectAttendanceAdapter(Context context, List<StudentAssociated> studentList) {
 		this.studentList = studentList;
@@ -104,6 +105,13 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 		return mList;
 	}
 
+	public boolean isUpdate() {
+		return isUpdate;
+	}
+
+	public void setUpdate(boolean update) {
+		isUpdate = update;
+	}
 
 	public boolean isAllPresent() {
 		return isAllPresent;
@@ -178,9 +186,8 @@ public class TeacherTakeSubjectAttendanceAdapter extends BaseAdapter implements 
 			});
 
 
-
-
 		}else{
+
 			holder.layoutPresent.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {

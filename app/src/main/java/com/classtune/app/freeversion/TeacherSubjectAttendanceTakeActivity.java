@@ -169,7 +169,7 @@ public class TeacherSubjectAttendanceTakeActivity extends ChildContainerActivity
 
         if(!registerId.equals("0")){
             checkBoxRegistered.setChecked(true);
-            checkBoxRegistered.setText("Check in");
+            checkBoxRegistered.setText(R.string.registered);
             checkBoxRegistered.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -178,7 +178,7 @@ public class TeacherSubjectAttendanceTakeActivity extends ChildContainerActivity
             });
 
             adapter.setClickable(true);
-
+            adapter.setUpdate(true);
 
 
         }else{
@@ -216,6 +216,12 @@ public class TeacherSubjectAttendanceTakeActivity extends ChildContainerActivity
             adapter.setClickable(false);
         }
 
+
+        if(adapter.isUpdate()){
+            btnSubmit.setText(getString(R.string.attendance_subject_btn_update));
+        }else{
+            btnSubmit.setText(getString(R.string.attendance_subject_btn_submit));
+        }
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -265,7 +271,14 @@ public class TeacherSubjectAttendanceTakeActivity extends ChildContainerActivity
 
             Wrapper wrapper= GsonParser.getInstance().parseServerResponse(responseString);
             if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
-                Toast.makeText(TeacherSubjectAttendanceTakeActivity.this, R.string.java_singleteacherdrafthomeworkactivity_successfully_published, Toast.LENGTH_SHORT).show();
+
+                if(adapter.isUpdate()){
+                    Toast.makeText(TeacherSubjectAttendanceTakeActivity.this, R.string.attendance_updated_successfully, Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(TeacherSubjectAttendanceTakeActivity.this, R.string.attendance_saved_successfully, Toast.LENGTH_SHORT).show();
+                }
+
+
                 finish();
 
             } else {

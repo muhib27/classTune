@@ -59,7 +59,7 @@ public class TeacherAssociatedSubjectAdapter extends BaseAdapter {
 			holder = (ViewHolder) rowView.getTag();
 		}
 
-		holder.txtSubjectName.setText(items.get(index).getSubjectName());
+		holder.txtSubjectName.setText(items.get(index).getSubjectName()+" - "+items.get(index).getBatchName()+" "+items.get(index).getClassName());
 
 		holder.btnTakeAttendance.setOnClickListener(new View.OnClickListener() {
 			@Override
