@@ -21,8 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.classtune.app.schoolapp.NotifyServiceReceiver;
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.NotifyServiceReceiver;
 import com.classtune.app.schoolapp.model.AssessmentQuestion;
 import com.classtune.app.schoolapp.model.AssessmentQuestion.Option;
 import com.classtune.app.schoolapp.model.Wrapper;
@@ -1724,43 +1724,45 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 				countDownTimer.pause();
 			}
 			
-			
-			PopupDialogAssessmentNextQuestionHomework picker = PopupDialogAssessmentNextQuestionHomework.newInstance(0);
-			picker.setData(headerText,descriptionText,imgResId, AssesmentHomeworkActivity.this, answerText, questionText, explanationText, new PopupDialogAssessmentNextQuestionHomework.IButtonclick() {
-				
-				@Override
-				public void onNextButtonClick() {
-					// TODO Auto-generated method stub
-					enableDisableClickListener(true);
-					enableDisableClickListenerLinearView(listLayoutLinear, true);
-					layoutFrameDataHolder.setVisibility(View.GONE);
-					txtQuestion.setVisibility(View.GONE);
-					
-					
-					
-					populateDataQuestionAfterFirstTime(listAssessmentQuestion);
-					
-					//countDownTimer.start();
-					//if(countDownTimer != null)
-					//{
+			if(!isFinishing()){
+				PopupDialogAssessmentNextQuestionHomework picker = PopupDialogAssessmentNextQuestionHomework.newInstance(0);
+				picker.setData(headerText,descriptionText,imgResId, AssesmentHomeworkActivity.this, answerText, questionText, explanationText, new PopupDialogAssessmentNextQuestionHomework.IButtonclick() {
+
+					@Override
+					public void onNextButtonClick() {
+						// TODO Auto-generated method stub
+						enableDisableClickListener(true);
+						enableDisableClickListenerLinearView(listLayoutLinear, true);
+						layoutFrameDataHolder.setVisibility(View.GONE);
+						txtQuestion.setVisibility(View.GONE);
+
+
+
+						populateDataQuestionAfterFirstTime(listAssessmentQuestion);
+
+						//countDownTimer.start();
+						//if(countDownTimer != null)
+						//{
 						//countDownTimer.cancel();
 						//countDownTimer = null;
-						
+
 						countDownTimer = null;
 						if(currentPosition < listAssessmentQuestion.size())
 							initTimer(Long.parseLong(listAssessmentQuestion.get(currentPosition).getTime()) * 1000);
-					//}
-						
-						
-				}
-				
-				@Override
-				public void onExplanationButtonClick() {
-					// TODO Auto-generated method stub
-					
-				}
-			});
-			picker.show(getSupportFragmentManager(), null);
+						//}
+
+
+					}
+
+					@Override
+					public void onExplanationButtonClick() {
+						// TODO Auto-generated method stub
+
+					}
+				});
+				picker.show(getSupportFragmentManager(), null);
+			}
+
 	}
 	
 	
@@ -1782,42 +1784,45 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 		
 			setResult(Activity.RESULT_OK);
 			PopupDialogAssessmentOk picker = PopupDialogAssessmentOk.newInstance(0);
-			picker.setData(isLoggedIn, isShowRetryButton, titleText, scoreText, description, iconResId, AssesmentHomeworkActivity.this, new PopupDialogAssessmentOk.OkCallback() {
+			if(!isFinishing()){
+				picker.setData(isLoggedIn, isShowRetryButton, titleText, scoreText, description, iconResId, AssesmentHomeworkActivity.this, new PopupDialogAssessmentOk.OkCallback() {
 
-				@Override
-				public void onLoginCalled() {
-					// TODO Auto-generated method stub
-					if(isLoggedIn)
-					{
-						initApiCallAddmark();
+					@Override
+					public void onLoginCalled() {
+						// TODO Auto-generated method stub
+						if(isLoggedIn)
+						{
+							initApiCallAddmark();
+						}
 					}
-				}
 
-				@Override
-				public void onRetryCalled() {
-					// TODO Auto-generated method stub
-					reloadActivity();
-				}
+					@Override
+					public void onRetryCalled() {
+						// TODO Auto-generated method stub
+						reloadActivity();
+					}
 
-				@Override
-				public void onSummeryCalled() {
-					// TODO Auto-generated method stub
+					@Override
+					public void onSummeryCalled() {
+						// TODO Auto-generated method stub
 					/*Log.e("SUMMERY", "is: "+listAssessmentQuestionSummery.get(0).getQuestion());
 					Log.e("SUMMERY", "is: "+listAssessmentQuestionSummery.get(0).isRightAnswer());
 					Log.e("SUMMERY", "is: "+listAssessmentQuestionSummery.get(0).getExplanation());
 					Log.e("SUMMERY", "is: "+listAssessmentQuestionSummery.get(0).getAnswer());*/
-					
-					Gson gson = new Gson();
-					Intent intent = new Intent(AssesmentHomeworkActivity.this, AssessmentSummeryActivity.class);
-					intent.putExtra("assessment_summery", gson.toJson(listAssessmentQuestionSummery));
-					
-					startActivity(intent);
-					
-				}
-				
-				
-			});
-			picker.show(getSupportFragmentManager(), null);
+
+						Gson gson = new Gson();
+						Intent intent = new Intent(AssesmentHomeworkActivity.this, AssessmentSummeryActivity.class);
+						intent.putExtra("assessment_summery", gson.toJson(listAssessmentQuestionSummery));
+
+						startActivity(intent);
+
+					}
+
+
+				});
+				picker.show(getSupportFragmentManager(), null);
+			}
+
 	}
 	
 	
@@ -1829,28 +1834,30 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 			countDownTimer.pause();
 		}
 		
-		
-		PopupDialogAssessmentExitHomework picker = PopupDialogAssessmentExitHomework.newInstance(0);
-		picker.setData(titleText, description, iconResId, context, new PopupDialogAssessmentExitHomework.IButtonclick(){
+		if(!isFinishing()){
+			PopupDialogAssessmentExitHomework picker = PopupDialogAssessmentExitHomework.newInstance(0);
+			picker.setData(titleText, description, iconResId, context, new PopupDialogAssessmentExitHomework.IButtonclick(){
 
-			@Override
-			public void onExitButtonClick() {
-				// TODO Auto-generated method stub
-				initApiCallAddmark();
-			}
-
-			@Override
-			public void onCancelButtonClick() {
-				// TODO Auto-generated method stub
-				if(countDownTimer != null && countDownTimer.isPaused())
-				{
-					countDownTimer.start();
+				@Override
+				public void onExitButtonClick() {
+					// TODO Auto-generated method stub
+					initApiCallAddmark();
 				}
-				
-				
-				
-			}});
-		picker.show(getSupportFragmentManager(), null);
+
+				@Override
+				public void onCancelButtonClick() {
+					// TODO Auto-generated method stub
+					if(countDownTimer != null && countDownTimer.isPaused())
+					{
+						countDownTimer.start();
+					}
+
+
+
+				}});
+			picker.show(getSupportFragmentManager(), null);
+		}
+
 	}
 	
 	
