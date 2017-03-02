@@ -1182,6 +1182,10 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                 imgView.setImageResource(R.drawable.notice_meeting_request);
                 break;
 
+            case 15:
+                imgView.setImageResource(R.drawable.quiz_tap);
+                break;
+
             default:
                 imgView.setImageResource(R.drawable.notice_default);
 
@@ -1236,6 +1240,9 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
             case 14:
                 return getActivity().getString(R.string.java_schoolfeedfragment_meeting_request);
+
+            case 15:
+                return getActivity().getString(R.string.fragment_quiz_header);
 
             default:
                 return getActivity().getString(R.string.java_schoolfeedfragment_notice);
