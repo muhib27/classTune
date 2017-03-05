@@ -320,7 +320,11 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 		homeBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				showCustomialogExit(getString(R.string.java_assesmentactivity_title_quiz), getString(R.string.java_assesmentomeworkactivity_automatic_save), R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+				if(listAssessmentQuestionSummery.size() > 0){
+					showCustomialogExit(getString(R.string.java_assesmentactivity_title_quiz), getString(R.string.java_assesmentomeworkactivity_automatic_save), R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+				}else {
+					finish();
+				}
 			}
 		});
 		
@@ -1931,8 +1935,14 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 	public boolean onKeyDown(int keyCode, KeyEvent event)  {
 	    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 	        // do something on back.
+
+			if(listAssessmentQuestionSummery.size() > 0){
+				showCustomialogExit(getString(R.string.java_assesmentactivity_title_quiz), getString(R.string.java_assesmentomeworkactivity_automatic_save), R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+			}else {
+				finish();
+			}
 	    	
-	    	showCustomialogExit(getString(R.string.java_assesmentactivity_title_quiz), getString(R.string.java_assesmentomeworkactivity_automatic_save), R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+
 	    	
 	    	return true;
 	    }
