@@ -131,6 +131,16 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 	
 	private String currentDate = "";
 	private int passPercentage = 0;
+
+
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		homeBtn.setVisibility(View.VISIBLE);
+		logo.setVisibility(View.GONE);
+	}
 	
 	
 	
@@ -307,7 +317,12 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 		layoutChoice3.setOnClickListener(this);
 		layoutChoice4.setOnClickListener(this);
 		
-		
+		homeBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				showCustomialogExit(getString(R.string.java_assesmentactivity_title_quiz), getString(R.string.java_assesmentomeworkactivity_automatic_save), R.drawable.assessment_icon_popup, AssesmentHomeworkActivity.this);
+			}
+		});
 		
 	}
 	

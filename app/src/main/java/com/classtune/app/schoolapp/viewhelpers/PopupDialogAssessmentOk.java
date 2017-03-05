@@ -82,6 +82,7 @@ public class PopupDialogAssessmentOk extends DialogFragment {
 		btnLogin = (Button) view.findViewById(R.id.btnLogin);
 		btnRetry = (Button) view.findViewById(R.id.btnRetry);
 		btnResultSummery = (Button)view.findViewById(R.id.btnResultSummery);
+		btnResultSummery.setVisibility(View.GONE);
 		
 		txtScoreShow = (TextView)view.findViewById(R.id.txtScoreShow);
 		txtScoreShow.setText(scoreText);
@@ -145,6 +146,7 @@ public class PopupDialogAssessmentOk extends DialogFragment {
 		
 		
 		cancelBtn = (ImageButton) view.findViewById(R.id.popup_btn_close);
+		cancelBtn.setVisibility(View.INVISIBLE);
 		cancelBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
