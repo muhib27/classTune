@@ -44,12 +44,12 @@
                         android:scaleType="centerCrop"
                         android:layout_margin="5dip"/>
 
-                    <ImageView
+                    <!--<ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_margin="2dp"
-                        android:src="@drawable/profile_camera_icon"/>
+                        android:src="@drawable/profile_camera_icon"/>-->
 
 
                 </FrameLayout>

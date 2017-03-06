@@ -1038,7 +1038,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 
 			// gallery/camera chooser here
 
-			showPicChooserDialog();
+			//showPicChooserDialog();
 
 			break;
 		case R.id.back_btn_home:
