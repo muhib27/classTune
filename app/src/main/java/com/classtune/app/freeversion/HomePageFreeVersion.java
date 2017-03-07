@@ -262,27 +262,33 @@ public class HomePageFreeVersion extends HomeContainerActivity {
         }
         else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_ATTACH_FILE){
             if(resultCode != RESULT_CANCELED){
-                TeacherHomeWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
+                if(TeacherHomeWorkAddFragment.instance != null)
+                    TeacherHomeWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
             }
         }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_ATTACH_FILE){
             if(resultCode != RESULT_CANCELED){
-                TeacherClassWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
+                if(TeacherClassWorkAddFragment.instance != null)
+                    TeacherClassWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
             }
         }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_FEED){
             if(resultCode != RESULT_CANCELED){
-                TeacherClassWorkFeedFragment.instance.onRefresh(requestCode, resultCode, data);
+                if(TeacherClassWorkFeedFragment.instance!=null)
+                    TeacherClassWorkFeedFragment.instance.onRefresh(requestCode, resultCode, data);
             }
         }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_DRAFT){
             if(resultCode != RESULT_CANCELED){
+                if(TeacherClassWorkDraftListFragment.instance != null)
                 TeacherClassWorkDraftListFragment.instance.onRefresh(requestCode, resultCode, data);
             }
         }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_FEED){
             if(resultCode != RESULT_CANCELED){
-                TeacherHomeWorkFeedFragment.instance.onRefresh(requestCode, resultCode, data);
+                if(TeacherHomeWorkFeedFragment.instance != null)
+                    TeacherHomeWorkFeedFragment.instance.onRefresh(requestCode, resultCode, data);
             }
         }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_DRAFT){
             if(resultCode != RESULT_CANCELED){
-                TeacherHomeWorkDraftListFragment.instance.onRefresh(requestCode, resultCode, data);
+                if(TeacherHomeWorkDraftListFragment.instance != null)
+                    TeacherHomeWorkDraftListFragment.instance.onRefresh(requestCode, resultCode, data);
             }
         }
 

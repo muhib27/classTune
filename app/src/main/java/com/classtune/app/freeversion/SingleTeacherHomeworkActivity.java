@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -25,12 +24,10 @@ import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
-import com.classtune.app.schoolapp.utils.MyTagHandler;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
-import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -54,8 +51,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	private TextView tvAssignDate;
 	private LinearLayout mLinearLayout;
 	//private WebView webViewContent;
-	
-	private ExpandableTextView txtContent;
+
 	private TextView tvSubject;
 	private CustomButton btnDone;
 	private ImageView ivSubjectIcon;
@@ -71,6 +67,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	private LinearLayout layoutHorizontalBar;
 	private Button btnEdit;
 	private static final int REQUEST_EDIT_HOMEWORK = 56;
+	private WebView webView;
 	
 	
 	@Override
@@ -103,7 +100,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	private void initView()
 	{
 		//this.webViewContent = (WebView)this.findViewById(R.id.webViewContent);
-		this.txtContent = (ExpandableTextView)this.findViewById(R.id.txtContent);
+		this.webView = (WebView)this.findViewById(R.id.webView);
 		this.tvLesson = (TextView) this.findViewById(R.id.tv_homework_content);
 		this.tvSubject = (TextView) this.findViewById(R.id.tv_teacher_feed_subject_name);
 		this.tvShift = (TextView)this.findViewById(R.id.tv_teacher_homewrok_feed_shift);
@@ -130,7 +127,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	{
 		mLinearLayout.setVisibility(View.VISIBLE);
 		this.tvLesson.setText(data.getName());
-		this.txtContent.setText(Html.fromHtml(data.getContent(), null, new MyTagHandler()));
+		this.webView.loadData(data.getContent(), "text/html; charset=utf-8", "UTF-8");
 		
 		
 		btnDone.setTitleText(getString(R.string.java_singleteacherhomeworkactivity_done_by)+data.getDone());
