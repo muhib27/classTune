@@ -380,6 +380,7 @@ public class SyllabusFragment extends Fragment {
 			params.put(RequestKeyHelper.SCHOOL, userHelper.getUser().getPaidInfo().getSchoolId());
 			params.put(RequestKeyHelper.CATEGORY_ID, catId);
 
+
 		}
 
 		if(userHelper.getUser().getType() == UserTypeEnum.TEACHER)

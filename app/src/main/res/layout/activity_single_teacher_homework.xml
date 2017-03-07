@@ -67,18 +67,18 @@
                 android:padding="5dp" >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.19"
+                    android:layout_weight="1"
                     android:text="@string/activity_single_homework_txt_class"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_teacher_homewrok_feed_shift"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -97,18 +97,18 @@
                 android:padding="5dp" >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.19"
+                    android:layout_weight="1"
                     android:text="@string/activity_single_homework_txt_course"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_teacher_homework_feed_course"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -126,18 +126,18 @@
                 android:padding="5dp" >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.19"
+                    android:layout_weight="1"
                     android:text="@string/activity_single_homework_txt_section"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_teacher_homework_feed_section"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -159,18 +159,18 @@
             android:padding="5dp" >
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.19"
+                android:layout_weight="1"
                 android:text="@string/item_homework_feed_txt_due_date"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtDueDate"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -191,18 +191,18 @@
             android:padding="5dp" >
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.19"
+                android:layout_weight="1"
                 android:text="@string/item_homework_feed_assigned_date"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/txtAssignDate"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
         </LinearLayout>

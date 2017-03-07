@@ -37,16 +37,16 @@
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
-    
-    
-    <LinearLayout 
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp">
-        
+
         <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
                 android:id="@+id/tab_upcoming"
                 android:layout_width="0dp"
@@ -57,7 +57,7 @@
                 android:gravity="center"
                 custom:iconImageTab="@drawable/events_normal"
                 custom:iconTextTab="@string/title_events_tab" />
-        
+
         <com.classtune.app.schoolapp.viewhelpers.CustomTabButton
                 android:id="@+id/tab_archive"
                 android:layout_width="0dp"
@@ -68,10 +68,10 @@
                 android:gravity="center"
                 custom:iconImageTab="@drawable/archive_normal"
                 custom:iconTextTab="@string/title_archieve_tab" />
-        
+
     </LinearLayout>
-    
-    
+
+
     <RelativeLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"

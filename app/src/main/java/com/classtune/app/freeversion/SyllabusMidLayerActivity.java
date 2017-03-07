@@ -135,6 +135,9 @@ public class SyllabusMidLayerActivity extends ChildContainerActivity{
 			params.put(RequestKeyHelper.BATCH_ID, userHelper.getUser().getPaidInfo().getBatchId());
 			params.put(RequestKeyHelper.SCHOOL, userHelper.getUser().getPaidInfo().getSchoolId());
 			params.put(RequestKeyHelper.TERM_ID, termId);
+			Log.e("Yearly", "initApiCall: "+ userHelper.getUser().getPaidInfo().getBatchId()+
+					" "+userHelper.getUser().getPaidInfo().getSchoolId()+
+					" "+termId);
 		}
 		
 		if(userHelper.getUser().getType() == UserTypeEnum.TEACHER)
@@ -143,6 +146,10 @@ public class SyllabusMidLayerActivity extends ChildContainerActivity{
 			params.put(RequestKeyHelper.BATCH_ID, selectedBatchId);
 			params.put(RequestKeyHelper.SCHOOL, userHelper.getUser().getPaidInfo().getSchoolId());
 			params.put(RequestKeyHelper.TERM_ID, termId);
+
+			Log.e("Yearly", "initApiCall: "+ selectedBatchId+
+			" "+userHelper.getUser().getPaidInfo().getSchoolId()+
+			" "+termId);
 		}
 		
 		

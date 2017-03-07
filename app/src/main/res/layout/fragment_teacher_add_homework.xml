@@ -40,7 +40,8 @@ android:orientation="vertical" >
                     android:padding="10dp"
                     android:text="@string/fragment_progress_graph_text_select_subject_title"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:id="@+id/textView"/>
             </LinearLayout>
 
             <LinearLayout
