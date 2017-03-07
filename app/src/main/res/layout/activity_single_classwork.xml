@@ -6,10 +6,6 @@
     android:background="@color/gray_bg"
     android:orientation="vertical" >
 
-
-
-
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -104,18 +100,18 @@
                     android:padding="5dp" >
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.19"
+                        android:layout_weight="1"
                         android:text="@string/item_classwork_feed_assigned_date"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_teacher_homewrok_feed_date"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
+                        android:layout_weight="1"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 

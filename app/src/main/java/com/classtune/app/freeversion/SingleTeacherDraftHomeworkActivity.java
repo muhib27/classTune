@@ -48,6 +48,11 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 	private TextView tvSubject;
 	private TextView tvDate;
 	private ImageView ivSubjectIcon;
+	private TextView tvShift;
+	private TextView tvCourse;
+	private TextView tvSection;
+	private TextView tvDueDate;
+	private TextView tvAssignDate;
 	
 	private LinearLayout bottmlay;
 	
@@ -100,7 +105,11 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 		this.tvLesson = (TextView) this.findViewById(R.id.tv_homework_content);
 		this.tvSubject = (TextView) this.findViewById(R.id.tv_teacher_feed_subject_name);
 		this.tvDate = (TextView) this.findViewById(R.id.tv_teacher_homewrok_feed_date);
-		
+		this.tvShift = (TextView)this.findViewById(R.id.tv_teacher_homewrok_feed_shift);
+		this.tvCourse = (TextView)this.findViewById(R.id.tv_teacher_homework_feed_course);
+		this.tvSection = (TextView)this.findViewById(R.id.tv_teacher_homework_feed_section);
+		this.tvDueDate = (TextView)this.findViewById(R.id.txtDueDate);
+		this.tvAssignDate = (TextView)this.findViewById(R.id.txtAssignDate);
 		this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
 		this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
 		this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
@@ -123,6 +132,14 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 		String[] parts = data.getDuedate().split(" ");
 		String part1 = parts[0];
 		this.tvDate.setText(part1);
+
+
+		this.tvSubject.setText(data.getSubjects());
+		this.tvShift.setText(data.getBatch());
+		this.tvCourse.setText(data.getCourse());
+		this.tvSection.setText(data.getSection());
+		this.tvDueDate.setText(data.getDuedate());
+		this.tvAssignDate.setText(data.getAssign_date());
 		
 	
 		

@@ -43,6 +43,11 @@ public class SingleTeacherDraftClassworkActivity extends ChildContainerActivity 
     private String id;
     private TextView tvLesson;
     //private WebView webViewContent;
+    private TextView tvShift;
+    private TextView tvCourse;
+    private TextView tvSection;
+    private TextView tvDueDate;
+    private TextView tvAssignDateTwo;
 
     private TextView tvSubject;
     private TextView tvAssignDate;
@@ -99,6 +104,11 @@ public class SingleTeacherDraftClassworkActivity extends ChildContainerActivity 
         this.tvSubject = (TextView) this.findViewById(R.id.tv_teacher_feed_subject_name);
         this.tvAssignDate = (TextView) this.findViewById(R.id.tv_teacher_homewrok_feed_date);
 
+        this.tvShift = (TextView)this.findViewById(R.id.tv_teacher_homewrok_feed_shift);
+        this.tvCourse = (TextView)this.findViewById(R.id.tv_teacher_homework_feed_course);
+        this.tvSection = (TextView)this.findViewById(R.id.tv_teacher_homework_feed_section);
+        this.tvAssignDateTwo = (TextView)this.findViewById(R.id.txtAssignDate);
+
         this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
         this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
         this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
@@ -121,6 +131,11 @@ public class SingleTeacherDraftClassworkActivity extends ChildContainerActivity 
         String[] parts = data.getAssign_date().split(" ");
         String part1 = parts[0];
         this.tvAssignDate.setText(part1);
+
+        this.tvShift.setText(data.getBatch());
+        this.tvSection.setText(data.getSection());
+        this.tvCourse.setText(data.getCourse());
+        this.tvAssignDateTwo.setText(data.getAssign_date());
 
 
 
