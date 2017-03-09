@@ -1,29 +1,51 @@
 package com.classtune.app.schoolapp.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TextView;
 
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.model.Wrapper;
+import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.GsonParser;
+import com.classtune.app.schoolapp.utils.RequestKeyHelper;
+import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.MyFragmentTabHost;
+import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.android.gms.tasks.TaskExecutors;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import java.util.HashMap;
+
+import static android.R.attr.data;
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class ParentAcademicCalender extends UserVisibleHintFragment implements MyFragmentTabHost.OnTabChangeListener{
 
 	private Button btnDownload;
+	private UserHelper userHelper;
+	private UIHelper uiHelper;
+	private String attachmentId = "";
+	private LinearLayout layoutDownloadHolder;
 
 	public void clearAllTabsData(){
 		/*FragmentTransaction ft = this.getChildFragmentManager().beginTransaction();
@@ -37,6 +59,12 @@ public class ParentAcademicCalender extends UserVisibleHintFragment implements M
 		mLastTab=null;
 	}
 
+	@Override
+	public void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		userHelper = new UserHelper(getActivity());
+		uiHelper = new UIHelper(getActivity());
+	}
 
 	private void initEmptyTab(Bundle args) {
 		mTabHostAC.setup(getActivity(), getChildFragmentManager(), R.id.realtabcontent_ac);
@@ -75,6 +103,8 @@ public class ParentAcademicCalender extends UserVisibleHintFragment implements M
 				AppUtility.getCurrentYear());
 		//screenTitleText.setText(text);
 		//currentDateText.setText(AppUtility.getCurrentDate(AppUtility.DATE_FORMAT_APP));
+
+
 	}
 
 
@@ -147,12 +177,77 @@ public class ParentAcademicCalender extends UserVisibleHintFragment implements M
 			@Override
 			public void onClick(View view) {
 				Log.e("CLICKED", "ok");
+				initDownload();
 			}
 		});
 
+		layoutDownloadHolder = (LinearLayout)rootView.findViewById(R.id.layoutDownloadHolder);
+
+		initApiCallHasCalendar();
 
 		return rootView;
 	}
+
+
+	private void initApiCallHasCalendar(){
+		RequestParams params = new RequestParams();
+		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
+		if(userHelper.getUser().getType()==UserTypeEnum.PARENTS) {
+			params.put(RequestKeyHelper.BATCH_ID, userHelper.getUser().getSelectedChild().getBatchId());
+		}
+
+		AppRestClient.post(URLHelper.URL_HAS_ACADEMIC_CALENDAR, params,
+				hasDownloadHandler);
+	}
+
+	AsyncHttpResponseHandler hasDownloadHandler = new AsyncHttpResponseHandler() {
+		@Override
+		public void onFailure(Throwable arg0, String arg1) {
+			super.onFailure(arg0, arg1);
+			uiHelper.showMessage(getString(R.string.internet_error_text));
+			uiHelper.dismissLoadingDialog();
+		}
+
+		@Override
+		public void onStart() {
+			super.onStart();
+			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		}
+
+		@Override
+		public void onSuccess(int arg0, String responseString) {
+			super.onSuccess(arg0, responseString);
+			uiHelper.dismissLoadingDialog();
+
+
+			Wrapper modelContainer = GsonParser.getInstance()
+					.parseServerResponse(responseString);
+
+			if (modelContainer.getStatus().getCode() == 200) {
+
+				boolean hasId = modelContainer.getData().get("acacal").getAsJsonObject().has("id");
+
+				if(hasId){
+					layoutDownloadHolder.setVisibility(View.VISIBLE);
+					attachmentId = modelContainer.getData().get("acacal").getAsJsonObject().get("id").getAsString();
+				}else {
+					layoutDownloadHolder.setVisibility(View.GONE);
+				}
+
+
+
+			} else {
+
+			}
+		}
+	};
+
+
+	private void initDownload() {
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri
+				.parse("http://api.champs21.com/api/acacal/downloadattachment/id/" + attachmentId)));
+	}
+
 
 
 	/** (non-Javadoc)

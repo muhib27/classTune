@@ -313,5 +313,7 @@ public class URLHelper {
 	public final static String URL_TEACHER_SUBJECT_REPORT_ALL = "attendance/reportallteacher";
 	public final static String URL_STD_PARENT_SUBJECT = "attendance/getsubject";
 	public final static String URL_STD_PARENT_SUBJECT_REPORT = "attendance/report";
+	public final static String URL_HAS_ACADEMIC_CALENDAR = "acacal";
+	public final static String URL_DOWNLOAD_ACADEMIC_CALENDAR = "acacal/downloadattachment/id/";
 	
 }
