@@ -236,7 +236,7 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
         params.put(RequestKeyHelper.SUBJECT_TITLE, subjectEditText.getText()
                 .toString());
         params.put(RequestKeyHelper.TYPE, homeworkTypeId);
-       // params.put(RequestKeyHelper.HOMEWORK_DUEDATE, dateFormatServerString);
+        //params.put(RequestKeyHelper.HOMEWORK_DUEDATE, dateFormatServerString);
         params.put("id", id);
 
         if(!selectedFilePath.equalsIgnoreCase(""))
