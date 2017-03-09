@@ -11,32 +11,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:gravity="center_vertical">
 
-        <View
-            android:layout_width="1dip"
-            android:layout_height="50dp"
-            android:background="@color/gray_bg" />
-
-        <ImageView
-            android:id="@+id/img_cat_icon"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/academic_calendar_tap" />
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/txt_category_name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/parent_academic_calender_layout_txt_header"
-            android:textColor="@color/gray_1"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <View
+                android:layout_width="1dip"
+                android:layout_height="50dp"
+                android:background="@color/gray_bg" />
+
+            <ImageView
+                android:id="@+id/img_cat_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/academic_calendar_tap" />
+
+            <TextView
+                android:id="@+id/txt_category_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/parent_academic_calender_layout_txt_header"
+                android:textColor="@color/gray_1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_weight=".45">
+
+            <Button
+                android:id="@+id/btnDownload"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:text="@string/student_row_item_download"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:background="@drawable/btn_red_back"/>
+
+        </LinearLayout>
+
+
+
+
     </LinearLayout>
     
     <!-- <LinearLayout android:layout_width="fill_parent"

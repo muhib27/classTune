@@ -4,9 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import java.util.HashMap;
 
 public class ParentAcademicCalender extends UserVisibleHintFragment implements MyFragmentTabHost.OnTabChangeListener{
 
+	private Button btnDownload;
 
 	public void clearAllTabsData(){
 		/*FragmentTransaction ft = this.getChildFragmentManager().beginTransaction();
@@ -138,6 +141,16 @@ public class ParentAcademicCalender extends UserVisibleHintFragment implements M
 		bundle=savedInstanceState;
 		//initialiseTabHost(bundle);
 		initEmptyTab(bundle);
+
+		btnDownload = (Button)rootView.findViewById(R.id.btnDownload);
+		btnDownload.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Log.e("CLICKED", "ok");
+			}
+		});
+
+
 		return rootView;
 	}
 
