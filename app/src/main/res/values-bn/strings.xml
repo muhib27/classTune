@@ -1627,6 +1627,7 @@
     <string name="java_singleteacheredithomeworkactivity_saved_as_draft">সফলভাবে খসড়া আকারে সেভ হলো!</string>
     <string name="java_singleteacheredithomeworkactivity_failed_post">হোমওয়ার্কটি পোস্ট হয়নি! অনুগ্রহপূর্বক আবার চেষ্টা করুন</string>
     <string name="java_singleteachereditclassworkactivity_failed_post">ক্লাসওয়ার্কটি পোস্ট হয়নি! অনুগ্রহপূর্বক আবার চেষ্টা করুন</string>
+    <string name="java_singleteachereditclassworkactivity_Successfully_updated">সফলভাবে সংশোধিত হয়েছে</string>
     <string name="java_singleteacheredithomeworkactivity_no_file_attached">কোন ফাইল সংযুক্ত হয়মি</string>
     <string name="java_singleteacheredithomeworkactivity_select_subject">বিষয় নির্বাচন করুন</string>
     <string name="java_singleteacheredithomeworkactivity_select_homework_type">হোমওয়ার্কের ধরণ নির্বাচম করুন</string>

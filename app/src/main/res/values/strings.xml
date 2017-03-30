@@ -1637,6 +1637,7 @@
     <string name="java_singleteacheredithomeworkactivity_saved_as_draft">Successfully saved as draft!</string>
     <string name="java_singleteacheredithomeworkactivity_failed_post">Failed to post Homework! Please try again.</string>
     <string name="java_singleteachereditclassworkactivity_failed_post">Failed to post classwork! Please try again.</string>
+    <string name="java_singleteachereditclassworkactivity_Successfully_updated">Successfully updated</string>
     <string name="java_singleteacheredithomeworkactivity_no_file_attached">No File Attached</string>
     <string name="java_singleteacheredithomeworkactivity_select_subject">Select your Subject</string>
     <string name="java_singleteacheredithomeworkactivity_select_homework_type">Select Homework type</string>

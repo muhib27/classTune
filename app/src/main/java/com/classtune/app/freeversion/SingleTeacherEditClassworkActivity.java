@@ -4,8 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -27,7 +27,6 @@ import com.classtune.app.schoolapp.model.TypeHomeWork;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
-import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.SchoolApp;
@@ -42,7 +41,6 @@ import com.loopj.android.http.RequestParams;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -62,7 +60,6 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
     TextView subjectNameTextView, classWorkTypeTextView, choosenFileTextView;
     private String subjectId="", homeworkTypeId="1";
     private String selectedFilePath = "";
-    private TextView choosenDateTextView;
     private final static int REQUEST_CODE_FILE_CHOOSER = 101;
     private String dateFormatServerString = "";
 
@@ -285,7 +282,7 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
                         if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
                             Toast.makeText(SingleTeacherEditClassworkActivity.this,
-                                    R.string.java_singleteacheredithomeworkactivity_saved_as_draft,
+                                    R.string.java_singleteachereditclassworkactivity_Successfully_updated,
                                     Toast.LENGTH_SHORT).show();
 
                             setResult(RESULT_OK);
@@ -308,10 +305,6 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
         subjectEditText.setText("");
         classworkDescriptionEditText.setText("");
         choosenFileTextView.setText(R.string.java_singleteacheredithomeworkactivity_no_file_attached);
-
-        Date cDate = new Date();
-        String fDate = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
-        choosenDateTextView.setText(AppUtility.getDateString(fDate, AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
 
     }
 
@@ -367,8 +360,6 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
                 .findViewById(R.id.tv_teacher_ah_homework_type);
         choosenFileTextView = (TextView) this
                 .findViewById(R.id.tv_teacher_ah_choosen_file_name);
-        choosenDateTextView = (TextView) this
-                .findViewById(R.id.tv_teacher_ah_date);
 
 
         btnSubjectName = ((ImageButton) this.findViewById(R.id.btn_subject_name));
@@ -680,7 +671,6 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
                                    int year, String dateFormatServer, String dateFormatApp,
                                    Date date) {
             // TODO Auto-generated method stub
-            choosenDateTextView.setText(dateFormatApp);
             dateFormatServerString = dateFormatServer;
         }
 

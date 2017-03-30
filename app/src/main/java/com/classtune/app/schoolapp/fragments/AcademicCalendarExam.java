@@ -41,8 +41,6 @@ import java.util.List;
  */
 public class AcademicCalendarExam extends UserVisibleHintFragment implements UserAuthListener {
 
-	
-
 	private View view;
 	private ListView examList;
 	private UserHelper userHelper;

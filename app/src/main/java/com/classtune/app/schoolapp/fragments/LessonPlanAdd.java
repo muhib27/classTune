@@ -140,9 +140,6 @@ public class LessonPlanAdd extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
-
-
     }
 
 
@@ -860,8 +857,7 @@ public class LessonPlanAdd extends Fragment {
 
     }
 
-    private String getIdWithComma()
-    {
+    private String getIdWithComma() {
         StringBuilder result = new StringBuilder();
         for ( String p : listSubjectId )
         {
@@ -872,8 +868,7 @@ public class LessonPlanAdd extends Fragment {
         return  result.toString();
     }
 
-    private String getNameWithComma()
-    {
+    private String getNameWithComma() {
         StringBuilder result = new StringBuilder();
         for ( String p : listSubjectName )
         {
