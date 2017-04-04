@@ -4,6 +4,13 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
+	<style name="CustomAppCompatTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+		<!-- Customize your theme here. -->
+		<item name="colorPrimary">@color/classtune_green_color_light</item>
+		<item name="colorPrimaryDark">@color/classtune_green_color</item>
+		<item name="colorAccent">@color/classtune_green_color_light</item>
+		<item name="colorButtonNormal">@color/classtune_green_color_light</item>
+	</style>
     <style name="AppBaseTheme" parent="@android:style/Theme.Holo.Light">
         <!--
             Theme customizations available in newer API levels can go in

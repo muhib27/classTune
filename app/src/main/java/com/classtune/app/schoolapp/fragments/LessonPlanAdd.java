@@ -2,6 +2,8 @@ package com.classtune.app.schoolapp.fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -32,7 +34,6 @@ import com.classtune.app.schoolapp.model.LessonPlanCategory;
 import com.classtune.app.schoolapp.model.Subject;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
-import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -54,8 +55,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
-import ru.bartwell.exfilepicker.ExFilePicker;
-import ru.bartwell.exfilepicker.ExFilePickerParcelObject;
+import droidninja.filepicker.FilePickerBuilder;
+import droidninja.filepicker.FilePickerConst;
 
 /**
  * Created by BLACK HAT on 24-Mar-15.
@@ -114,6 +115,7 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
     private TextView choosenFileTextView;
     private File myFile;
     public static LessonPlanAdd instance;
+    private ArrayList<String> listFiles;
 
     @Override
     public void onResume() {
@@ -129,6 +131,8 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
 
         uiHelper = new UIHelper(getActivity());
         userHelper = new UserHelper(getActivity());
+
+        listFiles = new ArrayList<>();
 
         listCategory = new ArrayList<LessonPlanCategory>();
         listSubject = new ArrayList<Subject>();
@@ -381,20 +385,60 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
 			// The reason for the existence of aFileChooser
 		}*/
         instance = this;
-        Intent intent = new Intent(getActivity(), ru.bartwell.exfilepicker.ExFilePickerActivity.class);
+        showFileDialog();
+        getActivity().setResult(Activity.RESULT_OK);
+
+
+        /*Intent intent = new Intent(getActivity(), ru.bartwell.exfilepicker.ExFilePickerActivity.class);
         intent.putExtra(ExFilePicker.SET_START_DIRECTORY, "/");
         intent.putExtra(ExFilePicker.SET_ONLY_ONE_ITEM, true);
         intent.putExtra(ExFilePicker.DISABLE_NEW_FOLDER_BUTTON, true);
         intent.putExtra(ExFilePicker.DISABLE_SORT_BUTTON, true);
         intent.putExtra(ExFilePicker.ENABLE_QUIT_BUTTON, true);
         getActivity().startActivityForResult(intent, AppConstant.REQUEST_CODE_TEACHER_ADD_LESSON_PLAN);
-        getActivity().setResult(Activity.RESULT_OK);
+        getActivity().setResult(Activity.RESULT_OK);*/
 
+    }
+
+    private void showFileDialog(){
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        alertDialog.setTitle(getString(R.string.app_name));
+        alertDialog.setMessage(getString(R.string.file_chooser_message));
+        alertDialog.setIcon(android.R.drawable.ic_dialog_info);
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.file_chooser_type_photo),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                        listFiles.clear();
+                        FilePickerBuilder.getInstance().setMaxCount(1)
+                                .setSelectedFiles(listFiles)
+                                .setActivityTheme(R.style.CustomAppCompatTheme)
+                                .pickPhoto(getActivity());
+                    }
+                });
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.file_chooser_type_doc),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                        listFiles.clear();
+                        FilePickerBuilder.getInstance().setMaxCount(1)
+                                .setSelectedFiles(listFiles)
+                                .setActivityTheme(R.style.CustomAppCompatTheme)
+                                .pickFile(getActivity());
+                    }
+                });
+
+
+
+        alertDialog.show();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 116) {
+        /*if (requestCode == 116) {
 
             if (data != null) {
                 ExFilePickerParcelObject object = (ExFilePickerParcelObject) data.getParcelableExtra(ExFilePickerParcelObject.class.getCanonicalName());
@@ -425,8 +469,75 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                 }
             }
 
-        }
+        }*/
 
+        switch (requestCode)
+        {
+            case FilePickerConst.REQUEST_CODE_PHOTO:
+                if(resultCode== Activity.RESULT_OK && data!=null) {
+                    listFiles.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA));
+                    if(listFiles.size() > 0){
+                        String fileNamePath = listFiles.get(0);
+                        String fileName = fileNamePath.substring(fileNamePath.lastIndexOf("/")+1);
+
+                        selectedFilePath = fileNamePath;
+
+
+                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        File myFile= new File(selectedFilePath);
+                        fileSize = String.valueOf(myFile.length());
+
+                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("FILE_SIZE", "is: "+fileSize);
+
+                        long fileSizeInKB = myFile.length() / 1024;
+                        long fileSizeInMB = fileSizeInKB / 1024;
+
+                        if(fileSizeInMB <= 5) {
+                            choosenFileTextView.setText(fileName);
+                        }
+                        else {
+                            selectedFilePath = "";
+                            mimeType = "";
+                            fileSize = "";
+                            Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                break;
+            case FilePickerConst.REQUEST_CODE_DOC:
+                if(resultCode== Activity.RESULT_OK && data!=null) {
+                    listFiles.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS));
+                    if(listFiles.size() > 0){
+                        String fileNamePath = listFiles.get(0);
+                        String fileName = fileNamePath.substring(fileNamePath.lastIndexOf("/")+1);
+
+                        selectedFilePath = fileNamePath;
+
+
+                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        File myFile= new File(selectedFilePath);
+                        fileSize = String.valueOf(myFile.length());
+
+                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("FILE_SIZE", "is: "+fileSize);
+
+                        long fileSizeInKB = myFile.length() / 1024;
+                        long fileSizeInMB = fileSizeInKB / 1024;
+
+                        if(fileSizeInMB <= 5) {
+                            choosenFileTextView.setText(fileName);
+                        }
+                        else {
+                            selectedFilePath = "";
+                            mimeType = "";
+                            fileSize = "";
+                            Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                break;
+        }
 
     }
 
@@ -905,7 +1016,7 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
 
     @Override
     public void onAttachCallBack(int requestCode, int resultCode, Intent data) {
-        if (requestCode == AppConstant.REQUEST_CODE_TEACHER_ADD_LESSON_PLAN) {
+        /*if (requestCode == AppConstant.REQUEST_CODE_TEACHER_ADD_LESSON_PLAN) {
             if (data != null) {
                 ExFilePickerParcelObject object = (ExFilePickerParcelObject) data.getParcelableExtra(ExFilePickerParcelObject.class.getCanonicalName());
                 if (object.count > 0) {
@@ -934,6 +1045,74 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                     }
                 }
             }
+        }*/
+
+        switch (requestCode)
+        {
+            case FilePickerConst.REQUEST_CODE_PHOTO:
+                if(resultCode== Activity.RESULT_OK && data!=null) {
+                    listFiles.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA));
+                    if(listFiles.size() > 0){
+                        String fileNamePath = listFiles.get(0);
+                        String fileName = fileNamePath.substring(fileNamePath.lastIndexOf("/")+1);
+
+                        selectedFilePath = fileNamePath;
+
+
+                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        File myFile= new File(selectedFilePath);
+                        fileSize = String.valueOf(myFile.length());
+
+                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("FILE_SIZE", "is: "+fileSize);
+
+                        long fileSizeInKB = myFile.length() / 1024;
+                        long fileSizeInMB = fileSizeInKB / 1024;
+
+                        if(fileSizeInMB <= 5) {
+                            choosenFileTextView.setText(fileName);
+                        }
+                        else {
+                            selectedFilePath = "";
+                            mimeType = "";
+                            fileSize = "";
+                            Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                break;
+            case FilePickerConst.REQUEST_CODE_DOC:
+                if(resultCode== Activity.RESULT_OK && data!=null) {
+                    listFiles.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS));
+                    if(listFiles.size() > 0){
+                        String fileNamePath = listFiles.get(0);
+                        String fileName = fileNamePath.substring(fileNamePath.lastIndexOf("/")+1);
+
+                        selectedFilePath = fileNamePath;
+
+
+                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        File myFile= new File(selectedFilePath);
+                        fileSize = String.valueOf(myFile.length());
+
+                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("FILE_SIZE", "is: "+fileSize);
+
+                        long fileSizeInKB = myFile.length() / 1024;
+                        long fileSizeInMB = fileSizeInKB / 1024;
+
+                        if(fileSizeInMB <= 5) {
+                            choosenFileTextView.setText(fileName);
+                        }
+                        else {
+                            selectedFilePath = "";
+                            mimeType = "";
+                            fileSize = "";
+                            Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                break;
         }
 
         instance = null;

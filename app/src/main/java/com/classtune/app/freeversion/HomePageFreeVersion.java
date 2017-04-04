@@ -81,6 +81,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import droidninja.filepicker.FilePickerConst;
+
 @SuppressLint("NewApi")
 public class HomePageFreeVersion extends HomeContainerActivity {
 
@@ -261,12 +263,12 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                 }
             }
         }
-        else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_ATTACH_FILE){
+        else if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO || requestCode == FilePickerConst.REQUEST_CODE_DOC){
             if(resultCode != RESULT_CANCELED){
                 if(TeacherHomeWorkAddFragment.instance != null)
                     TeacherHomeWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
             }
-        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_ATTACH_FILE){
+        }else if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO || requestCode == FilePickerConst.REQUEST_CODE_DOC){
             if(resultCode != RESULT_CANCELED){
                 if(TeacherClassWorkAddFragment.instance != null)
                     TeacherClassWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
@@ -291,7 +293,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                 if(TeacherHomeWorkDraftListFragment.instance != null)
                     TeacherHomeWorkDraftListFragment.instance.onRefresh(requestCode, resultCode, data);
             }
-        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_ADD_LESSON_PLAN){
+        }else if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO || requestCode == FilePickerConst.REQUEST_CODE_DOC){
             if(resultCode != RESULT_CANCELED){
                 if(LessonPlanAdd.instance != null)
                     LessonPlanAdd.instance.onAttachCallBack(requestCode, resultCode, data);

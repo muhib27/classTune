@@ -1731,6 +1731,9 @@
     <string name="attendance_updated_successfully">Attendance updated successfully.</string>
     <string name="attendance_subject_btn_update">Update</string>
     <string name="attendance_subject_btn_submit">Submit</string>
+    <string name="file_chooser_message">Choose file from sources below</string>
+    <string name="file_chooser_type_photo">Photo</string>
+    <string name="file_chooser_type_doc">Documents</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 

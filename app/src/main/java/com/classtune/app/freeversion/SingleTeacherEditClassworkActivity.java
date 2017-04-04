@@ -1,6 +1,9 @@
 package com.classtune.app.freeversion;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -45,8 +48,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import ru.bartwell.exfilepicker.ExFilePicker;
-import ru.bartwell.exfilepicker.ExFilePickerParcelObject;
+import droidninja.filepicker.FilePickerBuilder;
+import droidninja.filepicker.FilePickerConst;
 
 public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
     private TeacherClassWork data;
@@ -82,6 +85,7 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
     private String fileSize = "";
 
     private LinearLayout layoutFileAttachRight;
+    private ArrayList<String> listFiles;
 
 
 
@@ -94,6 +98,8 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
         subjectCats = new ArrayList<BaseType>();
         uiHelper = new UIHelper(this);
         userHelper=new UserHelper(this);
+
+        listFiles = new ArrayList<>();
 
         if(getIntent().getExtras() != null)
             this.id = getIntent().getExtras().getString(AppConstant.ID_SINGLE_CLASSWORK);
@@ -597,7 +603,7 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 119) {
+        /*if (requestCode == 119) {
 
             if (data != null) {
                 ExFilePickerParcelObject object = (ExFilePickerParcelObject) data.getParcelableExtra(ExFilePickerParcelObject.class.getCanonicalName());
@@ -628,6 +634,77 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
                 }
             }
 
+        }*/
+
+        switch (requestCode)
+        {
+            case FilePickerConst.REQUEST_CODE_PHOTO:
+                if(resultCode== Activity.RESULT_OK && data!=null) {
+                    listFiles.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA));
+                    if(listFiles.size() > 0){
+                        String fileNamePath = listFiles.get(0);
+                        String fileName = fileNamePath.substring(fileNamePath.lastIndexOf("/")+1);
+
+                        selectedFilePath = fileNamePath;
+                        Log.e("selected file", ""+listFiles.get(0));
+
+                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        File myFile= new File(selectedFilePath);
+                        fileSize = String.valueOf(myFile.length());
+
+                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("FILE_SIZE", "is: "+fileSize);
+
+                        long fileSizeInKB = myFile.length() / 1024;
+                        long fileSizeInMB = fileSizeInKB / 1024;
+
+                        if(fileSizeInMB <= 5) {
+                            choosenFileTextView.setText(fileName);
+                        }
+                        else {
+                            selectedFilePath = "";
+                            mimeType = "";
+                            fileSize = "";
+                            Toast.makeText(this, R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                }
+                break;
+            case FilePickerConst.REQUEST_CODE_DOC:
+                if(resultCode== Activity.RESULT_OK && data!=null) {
+                    listFiles.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS));
+                    if(listFiles.size() > 0){
+                        String fileNamePath = listFiles.get(0);
+                        String fileName = fileNamePath.substring(fileNamePath.lastIndexOf("/")+1);
+
+                        selectedFilePath = fileNamePath;
+                        Log.e("selected file", ""+listFiles.get(0));
+
+                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        File myFile= new File(selectedFilePath);
+                        fileSize = String.valueOf(myFile.length());
+
+                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("FILE_SIZE", "is: "+fileSize);
+
+                        long fileSizeInKB = myFile.length() / 1024;
+                        long fileSizeInMB = fileSizeInKB / 1024;
+
+                        if(fileSizeInMB <= 5) {
+                            choosenFileTextView.setText(fileName);
+                        }
+                        else {
+                            selectedFilePath = "";
+                            mimeType = "";
+                            fileSize = "";
+                            Toast.makeText(this, R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                }
+                break;
+
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -644,13 +721,53 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
             // The reason for the existence of aFileChooser
         }*/
 
-        Intent intent = new Intent(this, ru.bartwell.exfilepicker.ExFilePickerActivity.class);
+
+        showFileDialog();
+
+
+        /*Intent intent = new Intent(this, ru.bartwell.exfilepicker.ExFilePickerActivity.class);
         intent.putExtra(ExFilePicker.SET_START_DIRECTORY, "/");
         intent.putExtra(ExFilePicker.SET_ONLY_ONE_ITEM, true);
         intent.putExtra(ExFilePicker.DISABLE_NEW_FOLDER_BUTTON, true);
         intent.putExtra(ExFilePicker.DISABLE_SORT_BUTTON, true);
         intent.putExtra(ExFilePicker.ENABLE_QUIT_BUTTON, true);
-        startActivityForResult(intent, 119);
+        startActivityForResult(intent, 119);*/
+    }
+
+    private void showFileDialog(){
+        AlertDialog alertDialog = new AlertDialog.Builder(SingleTeacherEditClassworkActivity.this).create();
+        alertDialog.setTitle(getString(R.string.app_name));
+        alertDialog.setMessage(getString(R.string.file_chooser_message));
+        alertDialog.setIcon(android.R.drawable.ic_dialog_info);
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.file_chooser_type_photo),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                        listFiles.clear();
+                        FilePickerBuilder.getInstance().setMaxCount(1)
+                                .setSelectedFiles(listFiles)
+                                .setActivityTheme(R.style.CustomAppCompatTheme)
+                                .pickPhoto(SingleTeacherEditClassworkActivity.this);
+                    }
+                });
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.file_chooser_type_doc),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                        listFiles.clear();
+                        FilePickerBuilder.getInstance().setMaxCount(1)
+                                .setSelectedFiles(listFiles)
+                                .setActivityTheme(R.style.CustomAppCompatTheme)
+                                .pickFile(SingleTeacherEditClassworkActivity.this);
+                    }
+                });
+
+
+
+        alertDialog.show();
     }
 
     private String getFileNameFromPath(String path) {

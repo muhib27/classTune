@@ -2,6 +2,8 @@ package com.classtune.app.schoolapp.fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -55,8 +57,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
-import ru.bartwell.exfilepicker.ExFilePicker;
-import ru.bartwell.exfilepicker.ExFilePickerParcelObject;
+import droidninja.filepicker.FilePickerBuilder;
+import droidninja.filepicker.FilePickerConst;
 
 public class TeacherHomeWorkAddFragment extends Fragment implements
 		OnClickListener, IAttachFile {
@@ -88,6 +90,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	private boolean  isSubjectLayoutClicked = false;
 	public static TeacherHomeWorkAddFragment instance;
 	private List<CheckBox> listCheckBoxSubject;
+	private ArrayList<String> listFiles;
 
 	@Override
 	public void onResume() {
@@ -107,6 +110,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		listSubjectName = new ArrayList<>();
 		listSubjectId = new ArrayList<>();
 		listCheckBoxSubject = new ArrayList<>();
+		listFiles = new ArrayList<>();
 	}
 
 	private boolean isFormValid() {
@@ -684,7 +688,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		Log.e("ACT_RES", ""+requestCode+" "+requestCode+" "+data);
 		super.onActivityResult(requestCode, resultCode, data);
 
-		if (requestCode == REQUEST_CODE_FILE_CHOOSER) {
+		/*if (requestCode == REQUEST_CODE_FILE_CHOOSER) {
 
 			if (data != null) {
 				ExFilePickerParcelObject object = (ExFilePickerParcelObject) data.getParcelableExtra(ExFilePickerParcelObject.class.getCanonicalName());
@@ -715,6 +719,74 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 				}
 			}
 
+		}*/
+
+		switch (requestCode)
+		{
+			case FilePickerConst.REQUEST_CODE_PHOTO:
+				if(resultCode== Activity.RESULT_OK && data!=null) {
+					listFiles.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA));
+					if(listFiles.size() > 0){
+						String fileNamePath = listFiles.get(0);
+						String fileName = fileNamePath.substring(fileNamePath.lastIndexOf("/")+1);
+
+						selectedFilePath = fileNamePath;
+
+
+						mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+						File myFile= new File(selectedFilePath);
+						fileSize = String.valueOf(myFile.length());
+
+						Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+						Log.e("FILE_SIZE", "is: "+fileSize);
+
+						long fileSizeInKB = myFile.length() / 1024;
+						long fileSizeInMB = fileSizeInKB / 1024;
+
+						if(fileSizeInMB <= 5) {
+							choosenFileTextView.setText(fileName);
+						}
+						else {
+							selectedFilePath = "";
+							mimeType = "";
+							fileSize = "";
+							Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+						}
+					}
+				}
+				break;
+			case FilePickerConst.REQUEST_CODE_DOC:
+				if(resultCode== Activity.RESULT_OK && data!=null) {
+					listFiles.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS));
+					if(listFiles.size() > 0){
+						String fileNamePath = listFiles.get(0);
+						String fileName = fileNamePath.substring(fileNamePath.lastIndexOf("/")+1);
+
+						selectedFilePath = fileNamePath;
+
+
+						mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+						File myFile= new File(selectedFilePath);
+						fileSize = String.valueOf(myFile.length());
+
+						Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+						Log.e("FILE_SIZE", "is: "+fileSize);
+
+						long fileSizeInKB = myFile.length() / 1024;
+						long fileSizeInMB = fileSizeInKB / 1024;
+
+						if(fileSizeInMB <= 5) {
+							choosenFileTextView.setText(fileName);
+						}
+						else {
+							selectedFilePath = "";
+							mimeType = "";
+							fileSize = "";
+							Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+						}
+					}
+				}
+				break;
 		}
 
 
@@ -732,16 +804,53 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 			// The reason for the existence of aFileChooser
 		}*/
 		instance = this;
-		Intent intent = new Intent(getActivity(), ru.bartwell.exfilepicker.ExFilePickerActivity.class);
+		showFileDialog();
+		/*Intent intent = new Intent(getActivity(), ru.bartwell.exfilepicker.ExFilePickerActivity.class);
 		intent.putExtra(ExFilePicker.SET_START_DIRECTORY, "/");
 		intent.putExtra(ExFilePicker.SET_ONLY_ONE_ITEM, true);
 		intent.putExtra(ExFilePicker.DISABLE_NEW_FOLDER_BUTTON, true);
 		intent.putExtra(ExFilePicker.DISABLE_SORT_BUTTON, true);
 		intent.putExtra(ExFilePicker.ENABLE_QUIT_BUTTON, true);
 		getActivity().startActivityForResult(intent, AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_ATTACH_FILE);
-		getActivity().setResult(Activity.RESULT_OK);
+		getActivity().setResult(Activity.RESULT_OK);*/
 
 
+	}
+
+	private void showFileDialog(){
+		AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+		alertDialog.setTitle(getString(R.string.app_name));
+		alertDialog.setMessage(getString(R.string.file_chooser_message));
+		alertDialog.setIcon(android.R.drawable.ic_dialog_info);
+		alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.file_chooser_type_photo),
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+
+						listFiles.clear();
+						FilePickerBuilder.getInstance().setMaxCount(1)
+								.setSelectedFiles(listFiles)
+								.setActivityTheme(R.style.CustomAppCompatTheme)
+								.pickPhoto(getActivity());
+					}
+				});
+
+		alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.file_chooser_type_doc),
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+
+						listFiles.clear();
+						FilePickerBuilder.getInstance().setMaxCount(1)
+								.setSelectedFiles(listFiles)
+								.setActivityTheme(R.style.CustomAppCompatTheme)
+								.pickFile(getActivity());
+					}
+				});
+
+
+
+		alertDialog.show();
 	}
 
 	private String getFileNameFromPath(String path) {
@@ -813,7 +922,7 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	@Override
 	public void onAttachCallBack(int requestCode, int resultCode, Intent data) {
 		Log.e("ACT_RES_INTERFACE", ""+requestCode+" "+requestCode+" "+data);
-		if (requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_ATTACH_FILE) {
+		/*if (requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_ATTACH_FILE) {
 
 			if (data != null) {
 				ExFilePickerParcelObject object = (ExFilePickerParcelObject) data.getParcelableExtra(ExFilePickerParcelObject.class.getCanonicalName());
@@ -844,6 +953,74 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 				}
 			}
 
+		}*/
+
+		switch (requestCode)
+		{
+			case FilePickerConst.REQUEST_CODE_PHOTO:
+				if(resultCode== Activity.RESULT_OK && data!=null) {
+					listFiles.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA));
+					if(listFiles.size() > 0){
+						String fileNamePath = listFiles.get(0);
+						String fileName = fileNamePath.substring(fileNamePath.lastIndexOf("/")+1);
+
+						selectedFilePath = fileNamePath;
+
+
+						mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+						File myFile= new File(selectedFilePath);
+						fileSize = String.valueOf(myFile.length());
+
+						Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+						Log.e("FILE_SIZE", "is: "+fileSize);
+
+						long fileSizeInKB = myFile.length() / 1024;
+						long fileSizeInMB = fileSizeInKB / 1024;
+
+						if(fileSizeInMB <= 5) {
+							choosenFileTextView.setText(fileName);
+						}
+						else {
+							selectedFilePath = "";
+							mimeType = "";
+							fileSize = "";
+							Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+						}
+					}
+				}
+				break;
+			case FilePickerConst.REQUEST_CODE_DOC:
+				if(resultCode== Activity.RESULT_OK && data!=null) {
+					listFiles.addAll(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS));
+					if(listFiles.size() > 0){
+						String fileNamePath = listFiles.get(0);
+						String fileName = fileNamePath.substring(fileNamePath.lastIndexOf("/")+1);
+
+						selectedFilePath = fileNamePath;
+
+
+						mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+						File myFile= new File(selectedFilePath);
+						fileSize = String.valueOf(myFile.length());
+
+						Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+						Log.e("FILE_SIZE", "is: "+fileSize);
+
+						long fileSizeInKB = myFile.length() / 1024;
+						long fileSizeInMB = fileSizeInKB / 1024;
+
+						if(fileSizeInMB <= 5) {
+							choosenFileTextView.setText(fileName);
+						}
+						else {
+							selectedFilePath = "";
+							mimeType = "";
+							fileSize = "";
+							Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+						}
+					}
+				}
+				break;
 		}
 
 		instance = null;
