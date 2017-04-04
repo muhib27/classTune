@@ -1,6 +1,7 @@
 package com.classtune.app.schoolapp.fragments;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -26,10 +27,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.callbacks.IAttachFile;
 import com.classtune.app.schoolapp.model.LessonPlanCategory;
 import com.classtune.app.schoolapp.model.Subject;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -57,7 +60,7 @@ import ru.bartwell.exfilepicker.ExFilePickerParcelObject;
 /**
  * Created by BLACK HAT on 24-Mar-15.
  */
-public class LessonPlanAdd extends Fragment {
+public class LessonPlanAdd extends Fragment implements IAttachFile {
 
 
     private View view;
@@ -110,6 +113,7 @@ public class LessonPlanAdd extends Fragment {
     private String fileSize = "";
     private TextView choosenFileTextView;
     private File myFile;
+    public static LessonPlanAdd instance;
 
     @Override
     public void onResume() {
@@ -376,14 +380,15 @@ public class LessonPlanAdd extends Fragment {
 		} catch (ActivityNotFoundException e) {
 			// The reason for the existence of aFileChooser
 		}*/
+        instance = this;
         Intent intent = new Intent(getActivity(), ru.bartwell.exfilepicker.ExFilePickerActivity.class);
         intent.putExtra(ExFilePicker.SET_START_DIRECTORY, "/");
         intent.putExtra(ExFilePicker.SET_ONLY_ONE_ITEM, true);
         intent.putExtra(ExFilePicker.DISABLE_NEW_FOLDER_BUTTON, true);
         intent.putExtra(ExFilePicker.DISABLE_SORT_BUTTON, true);
         intent.putExtra(ExFilePicker.ENABLE_QUIT_BUTTON, true);
-        startActivityForResult(intent, 116);
-
+        getActivity().startActivityForResult(intent, AppConstant.REQUEST_CODE_TEACHER_ADD_LESSON_PLAN);
+        getActivity().setResult(Activity.RESULT_OK);
 
     }
 
@@ -898,6 +903,39 @@ public class LessonPlanAdd extends Fragment {
 
     }
 
+    @Override
+    public void onAttachCallBack(int requestCode, int resultCode, Intent data) {
+        if (requestCode == AppConstant.REQUEST_CODE_TEACHER_ADD_LESSON_PLAN) {
+            if (data != null) {
+                ExFilePickerParcelObject object = (ExFilePickerParcelObject) data.getParcelableExtra(ExFilePickerParcelObject.class.getCanonicalName());
+                if (object.count > 0) {
+                    // Here is object contains selected files names and path
+                    selectedFilePath = object.path+object.names.get(0);
 
 
+                    mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                    File myFile= new File(selectedFilePath);
+                    fileSize = String.valueOf(myFile.length());
+
+                    Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                    Log.e("FILE_SIZE", "is: "+fileSize);
+
+                    long fileSizeInKB = myFile.length() / 1024;
+                    long fileSizeInMB = fileSizeInKB / 1024;
+
+                    if(fileSizeInMB <= 5) {
+                        choosenFileTextView.setText(object.names.get(0));
+                    }
+                    else {
+                        selectedFilePath = "";
+                        mimeType = "";
+                        fileSize = "";
+                        Toast.makeText(getActivity(), R.string.java_teacherhomeworkaddfragment_file_size_message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
+
+        instance = null;
+    }
 }

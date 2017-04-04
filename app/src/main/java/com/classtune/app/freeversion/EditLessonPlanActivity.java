@@ -430,6 +430,7 @@ public class EditLessonPlanActivity extends ChildContainerActivity{
         RequestParams params = new RequestParams();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("id", this.id);
+        Log.e("Testing", "initApiCallGetEditData: "+id );
 
         AppRestClient.post(URLHelper.URL_GET_LESSONPLAN_EDIT_DATA, params, lessonGetEditDataHandler);
     }

@@ -37,6 +37,7 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.ChildSelectionActivity;
 import com.classtune.app.schoolapp.LoginActivity;
 import com.classtune.app.schoolapp.NotificationActivity;
+import com.classtune.app.schoolapp.fragments.LessonPlanAdd;
 import com.classtune.app.schoolapp.fragments.TeacherClassWorkAddFragment;
 import com.classtune.app.schoolapp.fragments.TeacherClassWorkDraftListFragment;
 import com.classtune.app.schoolapp.fragments.TeacherClassWorkFeedFragment;
@@ -289,6 +290,11 @@ public class HomePageFreeVersion extends HomeContainerActivity {
             if(resultCode != RESULT_CANCELED){
                 if(TeacherHomeWorkDraftListFragment.instance != null)
                     TeacherHomeWorkDraftListFragment.instance.onRefresh(requestCode, resultCode, data);
+            }
+        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_ADD_LESSON_PLAN){
+            if(resultCode != RESULT_CANCELED){
+                if(LessonPlanAdd.instance != null)
+                    LessonPlanAdd.instance.onAttachCallBack(requestCode, resultCode, data);
             }
         }
 

@@ -295,6 +295,9 @@ public class AppConstant {
 	//################### TeacherHomeWorkDraftListFragment
 	public static final int REQUEST_CODE_TEACHER_HOMEWORK_DRAFT = 206;
 
+	//################### LessonPlanAdd
+	public static final int REQUEST_CODE_TEACHER_ADD_LESSON_PLAN = 207;
+
 
 	//################### TeacherAssociatedSubjectAdapter
 	public static final String KEY_ASSOCIATED_SUBJECT_ID = "KEY_ASSOCIATED_SUBJECT_ID";

@@ -357,7 +357,6 @@ public class LessonPlanView extends Fragment {
         if(categoryId != null)
             params.put("lessonplan_category_id", categoryId);
 
-
         AppRestClient.post(URLHelper.URL_LESSONPLAN, params, lessonplanHandler);
     }
 
