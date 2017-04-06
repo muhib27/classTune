@@ -489,7 +489,7 @@
     <string name="btn_reminder">রিমাইন্ডার</string>
     <string name="btn_previous">বিগত</string>
     <string name="tab_homework">হোমওয়ার্ক</string>
-    <string name="tab_project">প্রজেক্ট</string>
+    <string name="tab_project">অ্যাসাইনমেন্ট</string>
     <string name="tab_assessment">কুইজ</string>
     <!-- Homework -->
     <string name="tab_classwork">ক্লাসওয়ার্ক</string>
@@ -1441,7 +1441,7 @@
     <string name="java_infofeatureactivity_title_meeting_request">সাক্ষাৎ অনুরোধ</string>
     <string name="java_infofeatureactivity_content_meeting_request">স্কুল কর্তৃপক্ষ অভিভাবকদের সঙ্গে সাক্ষাৎ অনুরোধ এবং নোটিস পাঠানোর কাজটি করতে পারেন সহজেই। অভিভাবকরাও শিক্ষকদের সঙ্গে সাক্ষাতের অনুমতি চাইতে পারেন। এমনকি শিক্ষকরাও পৃথক পৃথক অভিভাবকদের সাক্ষাতের জন্য আমন্ত্রণ জানাতে পারেন।</string>
     <string name="java_infofeatureactivity_title_report_card">ফলাফল</string>
-    <string name="java_infofeatureactivity_content_report_card">শিক্ষক ক্লাস টেস্ট, অন্যান্য পরীক্ষা ও প্রজেক্টের রিপোর্ট কার্ড শিক্ষার্থীদের সুবিধার্থে অনলাইনে আপলোড করতে পারেন। শিক্ষার্থীরা তাদের রিপোর্ট কার্ড অভিভাবকদের প্রদর্শনের জন্য অনলাইনে জমা রাখবে এবং অভিভাবকরা পর্যালোচনা শেষে স্কুল কর্তৃপক্ষের অবগতির জন্য তা পাঠাবে।</string>
+    <string name="java_infofeatureactivity_content_report_card">শিক্ষক ক্লাস টেস্ট, অন্যান্য পরীক্ষা ও অ্যাসাইনমেন্টের রিপোর্ট কার্ড শিক্ষার্থীদের সুবিধার্থে অনলাইনে আপলোড করতে পারেন। শিক্ষার্থীরা তাদের রিপোর্ট কার্ড অভিভাবকদের প্রদর্শনের জন্য অনলাইনে জমা রাখবে এবং অভিভাবকরা পর্যালোচনা শেষে স্কুল কর্তৃপক্ষের অবগতির জন্য তা পাঠাবে।</string>
     <string name="java_infofeatureactivity_title_events">ইভেন্ট</string>
     <string name="java_infofeatureactivity_content_events">স্কুল আয়োজিত যে কোন ইভেন্টের তারিখ, সময় এবং স্থান সর্ম্পকিত হালনাগাদ তথ্য জানা যায় এ পেইজের মাধ্যমে। অনুষ্ঠান সর্ম্পকিত প্রয়োজনীয় রিমাইন্ডারও পাঠানো হয় এখান থেকে।</string>
     <string name="java_infofeatureactivity_title_transport">পরিবহন</string>
@@ -1619,7 +1619,7 @@
 
     <!--SingleTeacherEditHomeworkActivity-->
     <string name="java_singleteacheredithomeworkactivity_regular">রেগুলার</string>
-    <string name="java_singleteacheredithomeworkactivity_project">প্রজেক্ট</string>
+    <string name="java_singleteacheredithomeworkactivity_project">অ্যাসাইনমেন্ট</string>
     <string name="java_singleteacheredithomeworkactivity_choose_subject">অনুগ্রহপূর্বক বিষয় নির্বাচন করুন</string>
     <string name="java_singleteacheredithomeworkactivity_subject_title_cannot_empty">বিষয়ের শিরোনাম খালি রাখা যাবে না!</string>
     <string name="java_singleteacheredithomeworkactivity_homework_description_cannot_empty">হোমওয়ার্কের বর্ণনা খালি রাখা যাবে না!</string>

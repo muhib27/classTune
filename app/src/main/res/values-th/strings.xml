@@ -489,7 +489,7 @@
     <string name="btn_reminder">Reminder</string>
     <string name="btn_previous">Previous</string>
     <string name="tab_homework">Homework</string>
-    <string name="tab_project">Project</string>
+    <string name="tab_project">Assignment</string>
     <string name="tab_assessment">Quiz</string>
     <!-- Homework -->
     <string name="tab_classwork">Claswork</string>
@@ -1439,7 +1439,7 @@
     <string name="java_infofeatureactivity_title_meeting_request">Meeting Request</string>
     <string name="java_infofeatureactivity_content_meeting_request">School admin can organize parents meets and notify parents quickly. Parents can request to meet teachers. Even teachers can request an individual parent for meeting.</string>
     <string name="java_infofeatureactivity_title_report_card">Report Card</string>
-    <string name="java_infofeatureactivity_content_report_card">Teacher can upload the report card of class tests, exams, projects and students can see it online. Students can place it for parents view and after reviewing parents can send acknowledgement to school.</string>
+    <string name="java_infofeatureactivity_content_report_card">Teacher can upload the report card of class tests, exams, assignments and students can see it online. Students can place it for parents view and after reviewing parents can send acknowledgement to school.</string>
     <string name="java_infofeatureactivity_title_events">Events</string>
     <string name="java_infofeatureactivity_content_events">Events page keeps everyone updated about date, timing and venue of any event coming up in the school. It also sends necessary reminders.</string>
     <string name="java_infofeatureactivity_title_transport">Transport</string>
@@ -1617,7 +1617,7 @@
 
     <!--SingleTeacherEditHomeworkActivity-->
     <string name="java_singleteacheredithomeworkactivity_regular">Regular</string>
-    <string name="java_singleteacheredithomeworkactivity_project">Project</string>
+    <string name="java_singleteacheredithomeworkactivity_project">Assignment</string>
     <string name="java_singleteacheredithomeworkactivity_choose_subject">Please choose a subject</string>
     <string name="java_singleteacheredithomeworkactivity_subject_title_cannot_empty">Subject title cannot be Empty!</string>
     <string name="java_singleteacheredithomeworkactivity_homework_description_cannot_empty">Homework description cannot be Empty!</string>
