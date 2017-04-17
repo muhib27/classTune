@@ -3,7 +3,6 @@ package com.classtune.app.freeversion;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
@@ -21,15 +20,12 @@ import android.widget.TextView;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.schoolapp.model.ClassworkData;
-import com.classtune.app.schoolapp.model.HomeworkData;
 import com.classtune.app.schoolapp.model.ModelContainer;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
-import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.MyTagHandler;
-import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
@@ -235,14 +231,14 @@ public class SingleClassworkActivity extends ChildContainerActivity {
 
 
 
-          /*  if(!TextUtils.isEmpty(data.getAttachmentFileName()))
+           if(!TextUtils.isEmpty(data.getAttachment_file_name()))
             {
                 layoutDownloadHolder.setVisibility(View.VISIBLE);
             }
             else
             {
                 layoutDownloadHolder.setVisibility(View.GONE);
-            }*/
+            }
 
 
 

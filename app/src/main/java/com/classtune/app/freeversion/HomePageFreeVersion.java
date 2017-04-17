@@ -263,37 +263,43 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                 }
             }
         }
-        else if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO || requestCode == FilePickerConst.REQUEST_CODE_DOC){
+        if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO || requestCode == FilePickerConst.REQUEST_CODE_DOC){
             if(resultCode != RESULT_CANCELED){
                 if(TeacherHomeWorkAddFragment.instance != null)
                     TeacherHomeWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
             }
-        }else if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO || requestCode == FilePickerConst.REQUEST_CODE_DOC){
+        }
+        if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO || requestCode == FilePickerConst.REQUEST_CODE_DOC){
             if(resultCode != RESULT_CANCELED){
                 if(TeacherClassWorkAddFragment.instance != null)
                     TeacherClassWorkAddFragment.instance.onAttachCallBack(requestCode, resultCode, data);
             }
-        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_FEED){
+        }
+        if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_FEED){
             if(resultCode != RESULT_CANCELED){
                 if(TeacherClassWorkFeedFragment.instance!=null)
                     TeacherClassWorkFeedFragment.instance.onRefresh(requestCode, resultCode, data);
             }
-        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_DRAFT){
+        }
+        if(requestCode == AppConstant.REQUEST_CODE_TEACHER_CLASSWORK_DRAFT){
             if(resultCode != RESULT_CANCELED){
                 if(TeacherClassWorkDraftListFragment.instance != null)
                 TeacherClassWorkDraftListFragment.instance.onRefresh(requestCode, resultCode, data);
             }
-        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_FEED){
+        }
+        if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_FEED){
             if(resultCode != RESULT_CANCELED){
                 if(TeacherHomeWorkFeedFragment.instance != null)
                     TeacherHomeWorkFeedFragment.instance.onRefresh(requestCode, resultCode, data);
             }
-        }else if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_DRAFT){
+        }
+        if(requestCode == AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_DRAFT){
             if(resultCode != RESULT_CANCELED){
                 if(TeacherHomeWorkDraftListFragment.instance != null)
                     TeacherHomeWorkDraftListFragment.instance.onRefresh(requestCode, resultCode, data);
             }
-        }else if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO || requestCode == FilePickerConst.REQUEST_CODE_DOC){
+        }
+        if(requestCode == FilePickerConst.REQUEST_CODE_PHOTO || requestCode == FilePickerConst.REQUEST_CODE_DOC){
             if(resultCode != RESULT_CANCELED){
                 if(LessonPlanAdd.instance != null)
                     LessonPlanAdd.instance.onAttachCallBack(requestCode, resultCode, data);

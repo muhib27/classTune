@@ -213,6 +213,9 @@ public class AppConstant {
     //######################################## LessonPlanStudentParent
     public static final String DATA_LESSON_PLAN_SUBJECT = "data_lesson_plan_subject";
 
+	//######################################## SingleSubjectAttendance
+	public static final String ID_SINGLE_SUBJECT_ATTENDANCE = "id_single_subject_attendance";
+
 
 	//######################################## CALLS TUNE CONSTANTS ############################
 	public static final String USER_TYPE_CLASSTUNE = "user_type_classtune";

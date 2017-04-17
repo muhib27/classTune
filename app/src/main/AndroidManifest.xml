@@ -265,20 +265,19 @@
         <activity android:name=".freeversion.SingleTeacherClassworkActivity" />
         <activity android:name=".freeversion.SingleTeacherDraftClassworkActivity" />
         <activity android:name=".freeversion.SingleTeacherEditClassworkActivity" />
-        <activity android:name=".freeversion.SingleClassworkActivity"></activity>
-
-
+        <activity android:name=".freeversion.SingleClassworkActivity" />
         <activity
             android:name=".freeversion.TeacherSubjectAttendanceTakeActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".freeversion.TeacherSubjectAttendanceFullReportActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".freeversion.SingleStudentParentSubjectReport"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".freeversion.SingleStudentParentSubjectReport"
+        <activity android:name=".freeversion.SingleSubjectAttendance"
             android:screenOrientation="portrait"/>
-
     </application>
 
 </manifest>

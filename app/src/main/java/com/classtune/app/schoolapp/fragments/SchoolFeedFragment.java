@@ -39,6 +39,7 @@ import com.classtune.app.freeversion.SingleExamRoutine;
 import com.classtune.app.freeversion.SingleHomeworkActivity;
 import com.classtune.app.freeversion.SingleMeetingRequestActivity;
 import com.classtune.app.freeversion.SingleNoticeActivity;
+import com.classtune.app.freeversion.SingleSubjectAttendance;
 import com.classtune.app.freeversion.SingleTeacherClassworkActivity;
 import com.classtune.app.schoolapp.model.FreeFeed;
 import com.classtune.app.schoolapp.model.FreeVersionPost;
@@ -1186,6 +1187,14 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                 imgView.setImageResource(R.drawable.quiz_tap);
                 break;
 
+            case 31:
+                imgView.setImageResource(R.drawable.classwork_tap);
+                break;
+
+            case 45:
+                imgView.setImageResource(R.drawable.notice_attendance);
+                break;
+
             default:
                 imgView.setImageResource(R.drawable.notice_default);
 
@@ -1243,6 +1252,12 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
             case 15:
                 return getActivity().getString(R.string.fragment_quiz_header);
+
+            case 31:
+                return getActivity().getString(R.string.feed_cat_name_class_work);
+
+            case 45:
+                return getActivity().getString(R.string.feed_cat_name_subject_attendance);
 
             default:
                 return getActivity().getString(R.string.java_schoolfeedfragment_notice);
@@ -1368,6 +1383,14 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                 }
 
                 break;
+
+            case 45:
+                intent = new Intent(getActivity(), SingleSubjectAttendance.class);
+                intent.putExtra(AppConstant.ID_SINGLE_SUBJECT_ATTENDANCE, rid);
+
+                break;
+
+
 
             default:
                 break;

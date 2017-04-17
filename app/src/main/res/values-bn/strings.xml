@@ -22,7 +22,7 @@
         <item>পাসওয়ার্ড পরিবর্তন করুন</item>
         <item>শর্তাবলী</item>
         <item>ভাষা নির্বাচন করুন</item>
-        <item>বর্তমান সংস্করণ: 1.0.15</item>
+        <item>বর্তমান সংস্করণ: 1.0.16</item>
     </string-array>
     <string-array name="diary_images_student">
         <item>home</item>
@@ -602,7 +602,7 @@
             With realization to all the factor that are there in the system which demands an immediate action for a better educational method, Champs21.com is determined to provide the best standard education in every corner of the country.
         </p>
          <p>
-            <b>Current Version: 1.0.15</b>
+            <b>Current Version: 1.0.16</b>
         </p>
 
     ]]>
@@ -1716,6 +1716,12 @@
     <string name="attendance_updated_successfully">উপস্থিতি সফলভাবে পরিবর্তন করা হয়েছে।</string>
     <string name="attendance_subject_btn_update">আপডেট করুন</string>
     <string name="attendance_subject_btn_submit">প্রেরণ করুন</string>
+    <string name="file_chooser_message">নিম্নোক্ত উৎস থেকে ফাইল পছন্দ করুন</string>
+    <string name="file_chooser_type_photo">ছবি</string>
+    <string name="file_chooser_type_doc">ডকুমেন্টস</string>
+    <string name="feed_cat_name_class_work">ক্লাস ওয়ার্ক</string>
+    <string name="feed_cat_name_subject_attendance">সাবজেক্ট উপস্থিতি</string>
+    <string name="subject_name">বিষয়ের নাম</string>
 
 
 
