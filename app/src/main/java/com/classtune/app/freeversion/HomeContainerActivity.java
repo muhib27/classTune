@@ -730,7 +730,8 @@ public class HomeContainerActivity extends SocialBaseActivity implements
             MenuItem item = menu.getItem(i);
             if (item.getItemId() == R.id.action_notification_new) {
 
-                item.getActionView().setOnClickListener(new OnClickListener(){
+
+				item.getActionView().setOnClickListener(new OnClickListener(){
                     @Override
                     public void onClick(View v) {
 
@@ -744,6 +745,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
                 ib.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Log.e("gonta", "onCreateOptionsMenu: "+"Ok" );
                         startActivity(new Intent(HomeContainerActivity.this,
                                 NotificationActivity.class));
 

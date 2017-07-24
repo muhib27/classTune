@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -275,6 +276,16 @@ public class NotificationActivity extends ChildContainerActivity {
 
 			holder.txtTitle.setText(list.get(position).getSubject());
 			holder.txtBody.setText(list.get(position).getBody());
+			if(Integer.parseInt(list.get(position).getRtype()) > 21){
+
+				holder.txtBody.setEllipsize(null);
+				holder.txtBody.setSingleLine(false);
+
+			}else {
+				holder.txtBody.setEllipsize(TextUtils.TruncateAt.END);
+				holder.txtBody.setSingleLine(true);
+			}
+
 			setImgViewIcon(holder.imgViewIcon, list.get(position).getRtype());
 			
 			if(list.get(position).getIs_read().equalsIgnoreCase("0"))

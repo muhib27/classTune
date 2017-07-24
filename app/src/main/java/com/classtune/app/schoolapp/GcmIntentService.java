@@ -119,6 +119,7 @@ public class GcmIntentService extends IntentService {
 
                     if(extras.getString("key").equals("paid") && UserHelper.isLoggedIn())
                     {
+                        Log.e("notify", "onHandleIntent: "+extras.getString("message") +".." +extras.getString("rtype") +".."+extras.getString("rid"));
                         sendNotificationPaid(extras, extras.getString("message"), extras.getString("rtype"), extras.getString("rid"));
                     }
 
@@ -454,8 +455,11 @@ public class GcmIntentService extends IntentService {
                 break;
 
             default:
-
-
+                intent = new Intent(this, NotificationActivity.class);
+                intent.putExtra("total_unread_extras", extras);
+               /* intent = new Intent(this, AnyFragmentLoadActivity.class);
+                intent.putExtra("class_name", "SchoolFeedFragment");
+                intent.putExtra("total_unread_extras", extras);*/
 
                 break;
         }

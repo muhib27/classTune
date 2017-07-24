@@ -4,7 +4,7 @@
 package com.classtune.app.schoolapp.utils;
 
 public class URLHelper {
-	public final static String URL_BASE = "http://api.champs21.com/api/";
+	public final static String URL_BASE = "http://apimaster.classtune.com/api/";
 
 	public final static String URL_LOGIN = "user/auth";
 	
