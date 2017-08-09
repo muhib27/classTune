@@ -20,21 +20,25 @@ import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StudentLeaveFragment extends UserVisibleHintFragment{
 
@@ -64,13 +68,52 @@ public class StudentLeaveFragment extends UserVisibleHintFragment{
 
 	private void fetchData() {
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-		AppRestClient.post(URLHelper.URL_GET_STUDENT_LEAVE_LIST, params,
-				getStudentHandler);
+		//AppRestClient.post(URLHelper.URL_GET_STUDENT_LEAVE_LIST, params, getStudentHandler);
+		studentLeaveList(params);
 
 	}
 
+	private void studentLeaveList(HashMap<String,String> params){
+		pbLayout.setVisibility(View.VISIBLE);
+		arraylist.clear();
+		if(adapter!=null)
+			adapter.notifyDataSetChanged();
+		ApplicationSingleton.getInstance().getNetworkCallInterface().studentLeaveList(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						arraylist.clear();
+
+						pbLayout.setVisibility(View.GONE);
+						Log.e("Menu", ""+response.body());
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						arraylist.addAll(GsonParser.getInstance().parseStudentList(
+								(wrapper.getData().get("leaves")).toString()));
+						adapter = new StudentLeaveListAdapter(getActivity(), arraylist);
+						studentListView.setAdapter(adapter);
+
+
+						if(arraylist.size() <=0 )
+						{
+							txtMessage.setVisibility(View.VISIBLE);
+						}
+						else
+						{
+							txtMessage.setVisibility(View.GONE);
+						}
+
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getStudentHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			pbLayout.setVisibility(View.GONE);
@@ -269,16 +312,50 @@ public class StudentLeaveFragment extends UserVisibleHintFragment{
 	
 	private void initApiCallApprove(String studentId, String leaveId, String approveCode)
 	{
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.STUDENT_ID, studentId);
 		params.put("leave_id", leaveId);
 		params.put("status", approveCode);
 		
-		AppRestClient.post(URLHelper.URL_APPROVE_LEAVE, params,
-				approveHandler);
+		//AppRestClient.post(URLHelper.URL_APPROVE_LEAVE, params, approveHandler);
+		approveLeave(params);
 	}
-	
+
+	private void approveLeave(HashMap<String,String> params){
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(getString(R.string.loading_text));
+		else
+			uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().approveLeave(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Log.e("Response", ""+ response.body());
+
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+						{
+
+							fetchData();
+							Toast.makeText(getActivity(), R.string.java_studentleavefragment_successfully_done, Toast.LENGTH_SHORT).show();
+							adapter.notifyDataSetChanged();
+						}
+
+						else
+						{
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler approveHandler = new AsyncHttpResponseHandler() {
 
 		@Override

@@ -31,7 +31,7 @@
     <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".schoolapp.utils.SchoolApp"
+        android:name=".schoolapp.utils.ApplicationSingleton"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"

@@ -18,7 +18,7 @@ public class SharedPreferencesHelper {
  
     private SharedPreferencesHelper() {
     	
-        settings = SchoolApp.getInstance()
+        settings = ApplicationSingleton.getInstance()
                 .getSharedPreferences(AppConstant.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         editor = settings.edit();
     }

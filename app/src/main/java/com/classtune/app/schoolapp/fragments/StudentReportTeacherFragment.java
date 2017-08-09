@@ -14,26 +14,30 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.R;
+import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.schoolapp.adapters.StudentReportListAdapter;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ObservableObject;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StudentReportTeacherFragment extends Fragment implements Observer{
 	private View rootView;
@@ -60,15 +64,40 @@ public class StudentReportTeacherFragment extends Fragment implements Observer{
 
 	private void fetchData() {
 		if(PaidVersionHomeFragment.selectedBatch==null)return;
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.BATCH_ID,
 				PaidVersionHomeFragment.selectedBatch.getId());
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		
-		AppRestClient.post(URLHelper.URL_GET_STUDENTS_ATTENDANCE, params,
-				getStudentHandler);
+		//AppRestClient.post(URLHelper.URL_GET_STUDENTS_ATTENDANCE, params, getStudentHandler);
+		getStudentAttendence(params);
 	}
 
+	private void getStudentAttendence(HashMap<String,String> params){
+		pbLayout.setVisibility(View.VISIBLE);
+		arraylist.clear();
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getStudentAttendence(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						arraylist.clear();
+
+						pbLayout.setVisibility(View.GONE);
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						arraylist.addAll(GsonParser.getInstance().parseStudentList(
+								(wrapper.getData().get("batch_attendence")).toString()));
+						adapter = new StudentReportListAdapter(getActivity(), arraylist);
+						studentListView.setAdapter(adapter);
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getStudentHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			pbLayout.setVisibility(View.GONE);

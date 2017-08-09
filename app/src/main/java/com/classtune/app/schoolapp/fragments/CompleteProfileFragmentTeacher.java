@@ -17,9 +17,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.classtune.app.R;
 import com.classtune.app.freeversion.CompleteProfileActivityContainer;
 import com.classtune.app.freeversion.HomePageFreeVersion;
-import com.classtune.app.R;
 import com.classtune.app.schoolapp.callbacks.onGradeDialogButtonClickListener;
 import com.classtune.app.schoolapp.fragments.DatePickerFragment.DatePickerOnSetDateListener;
 import com.classtune.app.schoolapp.model.BaseType;
@@ -31,28 +31,31 @@ import com.classtune.app.schoolapp.model.User;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.UserWrapper;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.CustomDateTimePicker;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.ActionItem;
 import com.classtune.app.schoolapp.viewhelpers.GradeDialog;
 import com.classtune.app.schoolapp.viewhelpers.QuickAction;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CompleteProfileFragmentTeacher extends Fragment implements
 		OnFocusChangeListener, OnClickListener, UserAuthListener {
@@ -68,7 +71,7 @@ public class CompleteProfileFragmentTeacher extends Fragment implements
 	private static final int ID_BANGLA = 1;
 	private static final int ID_ENGLISH = 2;
 
-	SchoolApp app;
+	ApplicationSingleton app;
 	UIHelper uiHelper;
 	UserHelper userHelper;
 	String country = "", state = "", city = "", countryCode = "",
@@ -142,12 +145,43 @@ public class CompleteProfileFragmentTeacher extends Fragment implements
 	}
 
 	private void fetchUserInfo() {
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_ID, UserHelper.getUserFreeId());
-		AppRestClient.post(URLHelper.URL_FREE_VERSION_GET_USER, params,
-				getUserInfo);
+		//AppRestClient.post(URLHelper.URL_FREE_VERSION_GET_USER, params, getUserInfo);
+		freeVersionGetUser(params);
 	}
 
+	private void freeVersionGetUser(HashMap<String,String> params){
+		uiHelper.showLoadingDialog("Please wait...");
+		ApplicationSingleton.getInstance().getNetworkCallInterface().freeVersionGetUser(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+							UserWrapper userWrapper = GsonParser.getInstance()
+									.parseUserWrapper(wrapper.getData().toString());
+							user=userWrapper.getUser();
+							//user.setId(UserHelper.getUserFreeId());
+						}
+						updateUI();
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getUserInfo = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -253,7 +287,7 @@ public class CompleteProfileFragmentTeacher extends Fragment implements
 		radioMiddleName.setOnClickListener(this);
 		radioLastName.setOnClickListener(this);
 
-		app = (SchoolApp) getActivity().getApplicationContext();
+		app = (ApplicationSingleton) getActivity().getApplicationContext();
 
 		app.setupUI(view.findViewById(R.id.layout_parent), getActivity());
 
@@ -671,7 +705,7 @@ public class CompleteProfileFragmentTeacher extends Fragment implements
 	private RadioGroup rGGender;
 	private RadioButton rBMale, rBFemale;
 
-	SchoolApp app;
+	ApplicationSingleton app;
 	UIHelper uiHelper;
 	UserHelper userHelper;
 	String country = "", state = "", city = "", countryCode = "",
@@ -808,7 +842,7 @@ public class CompleteProfileFragmentTeacher extends Fragment implements
 		radioMiddleName.setEnabled(false);
 		radioLastName.setEnabled(false);
 
-		app = (SchoolApp) getActivity().getApplicationContext();
+		app = (ApplicationSingleton) getActivity().getApplicationContext();
 
 		app.setupUI(view.findViewById(R.id.layout_parent), getActivity());
 

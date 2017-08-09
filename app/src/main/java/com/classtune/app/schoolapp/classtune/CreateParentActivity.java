@@ -33,9 +33,9 @@ import com.classtune.app.schoolapp.fragments.UserTypeSelectionDialog;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogChangePassword;
@@ -786,7 +786,7 @@ public class CreateParentActivity extends FragmentActivity implements IDialogSel
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SchoolApp.REQUEST_CODE_CHILD_SELECTION){
+        if(requestCode == ApplicationSingleton.REQUEST_CODE_CHILD_SELECTION){
             if (data == null) {
                 if (resultCode == RESULT_OK) {
                     Intent intent = new Intent(CreateParentActivity.this,
@@ -834,7 +834,7 @@ public class CreateParentActivity extends FragmentActivity implements IDialogSel
                         } else {
                             startActivityForResult(new Intent(this,
                                             ChildSelectionActivity.class),
-                                    SchoolApp.REQUEST_CODE_CHILD_SELECTION);
+                                    ApplicationSingleton.REQUEST_CODE_CHILD_SELECTION);
                             //AppUtility.doPaidNavigation(userHelper, CreateParentActivity.this);
                         }
                         break;

@@ -16,32 +16,36 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.classtune.app.R;
 import com.classtune.app.freeversion.SingleEventActivity;
 import com.classtune.app.schoolapp.GcmIntentService;
-import com.classtune.app.R;
 import com.classtune.app.schoolapp.adapters.ArchievedEventListAdapter;
 import com.classtune.app.schoolapp.model.SchoolEvent;
 import com.classtune.app.schoolapp.model.SchoolEventWrapper;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 @SuppressLint("ValidFragment")
 public class ArchievePageFragment extends Fragment implements UserAuthListener{
@@ -182,7 +186,7 @@ public class ArchievePageFragment extends Fragment implements UserAuthListener{
 	
 	private void fetchDataFromServer() {
 		
-			RequestParams params=new RequestParams();
+			HashMap<String,String> params=new HashMap<>();
 			params.put("user_secret",UserHelper.getUserSecret());
 			
 			if (userHelper.getUser().getType() == UserTypeEnum.STUDENT) {
@@ -232,11 +236,69 @@ public class ArchievePageFragment extends Fragment implements UserAuthListener{
 			params.put("archive","true");
 			//params.put("category", pageSize+"");
 			
-			AppRestClient.post(URLHelper.URL_GET_EVENT_LIST, params, getEventsHandler);
+			//AppRestClient.post(URLHelper.URL_GET_EVENT_LIST, params, getEventsHandler);
+		eventList(params);
 			
 		
 	}
-	
+
+	private void eventList(HashMap<String,String> params){
+		if(pageNumber==0 && !isRefreshing){
+			if(!uiHelper.isDialogActive())
+				uiHelper.showLoadingDialog(getString(R.string.loading_text));
+			else
+				uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+		}
+		ApplicationSingleton.getInstance().getNetworkCallInterface().eventList(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==200)
+						{
+							SchoolEventWrapper schoolEventData=GsonParser.getInstance().parseEventWrapper(wrapper.getData().toString());
+							if(!schoolEventData.isHasnext())
+								stopLoadingData=true;
+							if(pageNumber==1)
+								items.clear();
+							items.addAll(schoolEventData.getEvents());
+							adapter.notifyDataSetChanged();
+							if(pageNumber!=0 || isRefreshing)
+							{
+								eventListView.onRefreshComplete();
+								loading=false;
+							}
+						}
+						else
+						{
+
+						}
+
+						if(items.size() > 0)
+						{
+							progressBar.setVisibility(View.GONE);
+
+							txtMessage.setVisibility(View.GONE);
+						}
+						else
+						{
+							progressBar.setVisibility(View.GONE);
+
+							txtMessage.setVisibility(View.VISIBLE);
+						}
+
+
+						Log.e("Events", ""+response.body());
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getEventsHandler=new AsyncHttpResponseHandler()
 	{
 		@Override

@@ -16,19 +16,23 @@ import android.widget.TextView;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.Syllabus;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SyllabusMidLayerActivity extends ChildContainerActivity{
 	
@@ -118,7 +122,7 @@ public class SyllabusMidLayerActivity extends ChildContainerActivity{
 	
 	private void initApiCall(String termId)
 	{
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		
 		
 		if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) 
@@ -156,9 +160,59 @@ public class SyllabusMidLayerActivity extends ChildContainerActivity{
 		
 		
 		
-		AppRestClient.post(URLHelper.URL_SYLLABUS, params, singleTermHandler);
+		//AppRestClient.post(URLHelper.URL_SYLLABUS, params, singleTermHandler);
+		syllabus(params);
 	}
-	
+
+	private void syllabus(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().syllabus(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						// uiHelper.dismissLoadingDialog();
+						uiHelper.dismissLoadingDialog();
+						Log.e("SINGLE TERM RESPONSE", ""+response.body());
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							syllabusList = GsonParser.getInstance().parseTermSyllabus(
+									modelContainer.getData().getAsJsonArray("syllabus")
+											.toString());
+
+							if(syllabusList.size() <= 0)
+							{
+								txtMessage.setVisibility(View.VISIBLE);
+							}
+							else
+							{
+								txtMessage.setVisibility(View.GONE);
+							}
+
+							adapter.notifyDataSetChanged();
+
+							initAction();
+
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	
 	AsyncHttpResponseHandler singleTermHandler = new AsyncHttpResponseHandler() {
 

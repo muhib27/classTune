@@ -70,12 +70,21 @@ public class GsonParser {
 
 		return model;
 	}
+	public ModelContainer parseGson2(JsonElement object) {
+		ModelContainer model = gson.fromJson(object, ModelContainer.class);
+
+		return model;
+	}
 
 	public Wrapper parseServerResponse(String object) {
 		Wrapper wrapper = gson.fromJson(object, Wrapper.class);
 		return wrapper;
 	}
-	
+
+	public Wrapper parseServerResponse2(JsonElement object) {
+		Wrapper wrapper = gson.fromJson(object, Wrapper.class);
+		return wrapper;
+	}
 	public FolderList parseFolderList(String object) {
 		FolderList data = gson.fromJson(object, FolderList.class);
 
@@ -137,6 +146,12 @@ public class GsonParser {
     }
     
 	public UserWrapper parseUserWrapper(String object) {
+		UserWrapper data = gson.fromJson(object, UserWrapper.class);
+		if(data.getUser()!=null)
+			data.getUser().setType();
+		return data;
+	}
+	public UserWrapper parseUserWrapper2(JsonElement object) {
 		UserWrapper data = gson.fromJson(object, UserWrapper.class);
 		if(data.getUser()!=null)
 			data.getUser().setType();

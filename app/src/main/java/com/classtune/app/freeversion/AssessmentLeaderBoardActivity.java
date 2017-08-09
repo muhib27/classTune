@@ -15,21 +15,24 @@ import android.widget.TextView;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.AssessmentLeaderBoard;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
-import com.classtune.app.schoolapp.utils.SchoolApp;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AssessmentLeaderBoardActivity extends ChildContainerActivity implements View.OnClickListener{
 	
@@ -97,14 +100,63 @@ public class AssessmentLeaderBoardActivity extends ChildContainerActivity implem
 	private void initApiCall() 
 	{
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put("id", id);
 		
 
-		AppRestClient.post(URLHelper.URL_ASSESSMENT_LEADERBOARD, params,
-				assessmentHandlerLeaderBoard);
+		//AppRestClient.post(URLHelper.URL_ASSESSMENT_LEADERBOARD, params, assessmentHandlerLeaderBoard);
+		accessmentLeaderBoad(params);
 	}
-	
+
+	private void accessmentLeaderBoad(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().accessmentLeaderBoad(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						//Log.e("ASSESSMENT", "data: "+responseString);
+
+						uiHelper.dismissLoadingDialog();
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							JsonArray assessment = modelContainer.getData().get("assesment").getAsJsonArray();
+
+
+
+							listLeaderBoard = parseAssessmentLeaderBoard(assessment.toString());
+
+							if(listLeaderBoard.size() <=0 )
+							{
+								//Toast.makeText(AssessmentLeaderBoardActivity.this, "No leader board found!", Toast.LENGTH_SHORT).show();
+								txtMessage.setVisibility(View.VISIBLE);
+							}
+							else
+								txtMessage.setVisibility(View.GONE);
+
+
+						}
+
+						else {
+
+						}
+
+						initAction();
+
+						adapter.notifyDataSetChanged();
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler assessmentHandlerLeaderBoard = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -239,7 +291,7 @@ public class AssessmentLeaderBoardActivity extends ChildContainerActivity implem
 				holder = (ViewHolder) convertView.getTag();
 			}
 			holder.txtPosition.setText(String.valueOf(position + 1)+". ");
-			SchoolApp.getInstance().displayUniversalImage(listLeaderBoard.get(position).getProfileImage(), holder.imgView , holder.progressBar);
+			ApplicationSingleton.getInstance().displayUniversalImage(listLeaderBoard.get(position).getProfileImage(), holder.imgView , holder.progressBar);
 			
 			holder.txtUserName.setText(listLeaderBoard.get(position).getUserName());
 			//holder.txtLeaderBoardTitle.setText("Title: "+listLeaderBoard.get(position).getTitle());

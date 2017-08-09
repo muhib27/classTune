@@ -14,19 +14,23 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.Transport;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TransportFragment extends UserVisibleHintFragment implements
 		UserAuthListener {
@@ -65,7 +69,7 @@ public class TransportFragment extends UserVisibleHintFragment implements
 
 	public void fetchTransportData() {
 		listSchedule.clear();
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
@@ -84,7 +88,8 @@ public class TransportFragment extends UserVisibleHintFragment implements
 					.getSelectedChild().getSchoolId());
 		}
 
-		AppRestClient.post(URLHelper.URL_TRANSPORT, params, transportHandler);
+		//AppRestClient.post(URLHelper.URL_TRANSPORT, params, transportHandler);
+		transport(params);
 	}
 
 	@Override
@@ -118,6 +123,105 @@ public class TransportFragment extends UserVisibleHintFragment implements
 		this.txtLastUpdate2.setText(AppConstant.LAST_UPDATE + lastUpdate);
 	}
 
+	private void transport(HashMap<String,String> params){
+		pbs.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().transports(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						// uiHelper.dismissLoadingDialog();
+						pbs.setVisibility(View.GONE);
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+			/*Toast.makeText(getActivity(),
+					"RESPONSE TRANSPORT:" + responseString, Toast.LENGTH_LONG)
+					.show();*/
+						if (modelContainer.getStatus().getCode() == 200) {
+							Log.e("TRANSPORT", "data: "
+									+ modelContainer.getData().getAsJsonObject().toString());
+
+							Log.e("TRANSPORT",
+									"data_loc1: "
+											+ modelContainer.getData().getAsJsonObject()
+											.get("transport").getAsJsonObject()
+											.get("location").getAsJsonObject()
+											.get("pickup"));
+							Log.e("TRANSPORT",
+									"data_loc2: "
+											+ modelContainer.getData().getAsJsonObject()
+											.get("transport").getAsJsonObject()
+											.get("location").getAsJsonObject()
+											.get("drop"));
+
+							pickupLocation = modelContainer.getData().getAsJsonObject()
+									.get("transport").getAsJsonObject().get("location")
+									.getAsJsonObject().get("pickup").getAsString();
+
+							dropLocation = modelContainer.getData().getAsJsonObject()
+									.get("transport").getAsJsonObject().get("location")
+									.getAsJsonObject().get("drop").getAsString();
+
+							lastUpdate = modelContainer.getData().getAsJsonObject()
+									.get("transport").getAsJsonObject().get("location")
+									.getAsJsonObject().get("last_updated").getAsString();
+
+							listSchedule = GsonParser.getInstance().parseTransportSchedule(
+									modelContainer.getData().getAsJsonObject()
+											.get("transport").getAsJsonObject()
+											.get("schedule").getAsJsonArray().toString());
+							if(listSchedule.size()>0) {
+								nodata.setVisibility(View.GONE);
+							}
+							else {
+								nodata.setVisibility(View.VISIBLE);
+							}
+							layoutListHolder.removeAllViews();
+							for (int i = 0; i < listSchedule.size(); i++) {
+
+								View row = LayoutInflater.from(mContext).inflate(
+										R.layout.fragment_transport_singledata, null);
+								if(i%2!=0){
+									((LinearLayout)row.findViewById(R.id.row_bg_transport)).setBackgroundColor(mContext.getResources().getColor(R.color.bg_row_odd));
+								}
+								TextView txtDayName = (TextView) row
+										.findViewById(R.id.txtDayName);
+								TextView txtHomePickUp = (TextView) row
+										.findViewById(R.id.txtHomePickUp);
+								TextView txtSchoolPickUp = (TextView) row
+										.findViewById(R.id.txtSchoolPickUp);
+
+								String myString = listSchedule.get(i).getWeekDayName();
+								String upperString = myString.substring(0,1).toUpperCase() + myString.substring(1);
+								txtDayName.setText(upperString);
+
+								txtHomePickUp
+										.setText(listSchedule.get(i).getHomePickTime());
+								txtSchoolPickUp.setText(listSchedule.get(i)
+										.getSchoolPickTime());
+
+								layoutListHolder.addView(row);
+
+							}
+
+							initViewActions();
+
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						// uiHelper.dismissLoadingDialog();
+						pbs.setVisibility(View.GONE);
+					}
+				}
+		);
+
+	}
 	private AsyncHttpResponseHandler transportHandler = new AsyncHttpResponseHandler() {
 
 		@Override

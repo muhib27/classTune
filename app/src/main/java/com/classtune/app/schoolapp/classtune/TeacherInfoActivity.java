@@ -13,18 +13,23 @@ import android.widget.TextView;
 
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 27-Dec-15.
@@ -132,14 +137,62 @@ public class TeacherInfoActivity extends Activity{
     {
 
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
-        AppRestClient.post(URLHelper.URL_GET_TEACHER_INFO, params, teacherInfoHandler);
+       // AppRestClient.post(URLHelper.URL_GET_TEACHER_INFO, params, teacherInfoHandler);
+
+        getTeacherInfo(params);
 
 
     }
 
+    private void getTeacherInfo(HashMap<String,String> params){
+        pbLayout.setVisibility(View.VISIBLE);
+        ApplicationSingleton.getInstance().getNetworkCallInterface().getTeacherInfo(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        pbLayout.setVisibility(View.GONE);
+
+
+                        Log.e("RES", "response string: " + response.body());
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            JsonObject objectEmployee = modelContainer.getData().get("employee").getAsJsonObject();
+
+                            String photoUrl = objectEmployee.get("user_image").getAsString();
+
+                            String name = objectEmployee.get("name").getAsString();
+                            String position = objectEmployee.get("position").getAsString();
+                            String employeeNumber = objectEmployee.get("employee_number").getAsString();
+                            String department = objectEmployee.get("department").getAsString();
+                            String category = objectEmployee.get("category").getAsString();
+                            String phone = objectEmployee.get("phone").getAsString();
+                            String dob = objectEmployee.get("date_of_birth").getAsString();
+                            String joiningDate = objectEmployee.get("joining_date").getAsString();
+
+                            initAction(photoUrl, name, position, employeeNumber, department, category, phone, dob, joiningDate);
+
+                        }
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        pbLayout.setVisibility(View.GONE);
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler teacherInfoHandler = new AsyncHttpResponseHandler() {
 
         @Override

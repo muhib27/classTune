@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.LoginActivity;
 import com.classtune.app.schoolapp.utils.AppConstant;
-import com.classtune.app.schoolapp.utils.SchoolApp;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.viewhelpers.DialogLanguageChooser;
 
 import java.util.Locale;
@@ -80,19 +80,19 @@ public class UserSelectionActivity extends Activity implements View.OnClickListe
         btnTeacherSelect.setOnClickListener(this);
         btnSignIn.setOnClickListener(this);
 
-        txtMeHeader.setTypeface(SchoolApp.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
+        txtMeHeader.setTypeface(ApplicationSingleton.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
         txtMeHeader.setText(getString(R.string.activity_userselection_layout2_im));
 
-        txtMember.setTypeface(SchoolApp.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
+        txtMember.setTypeface(ApplicationSingleton.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
 
-        txtStudentHeader.setTypeface(SchoolApp.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
-        txtParentHeader.setTypeface(SchoolApp.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
-        txtTeacherHeader.setTypeface(SchoolApp.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
+        txtStudentHeader.setTypeface(ApplicationSingleton.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
+        txtParentHeader.setTypeface(ApplicationSingleton.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
+        txtTeacherHeader.setTypeface(ApplicationSingleton.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
 
-        btnSignIn.setTypeface(SchoolApp.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
+        btnSignIn.setTypeface(ApplicationSingleton.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
 
 
-        txtMidHeader.setTypeface(SchoolApp.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
+        txtMidHeader.setTypeface(ApplicationSingleton.getInstance().getClassTuneFontRes(AppConstant.CLASSTUNE_FONT_NAME));
 
         String text1 = getString(R.string.java_userselectionactivity_register);
         String text2 = getString(R.string.java_userselectionactivity_free);

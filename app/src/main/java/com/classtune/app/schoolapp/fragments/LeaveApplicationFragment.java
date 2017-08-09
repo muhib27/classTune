@@ -25,24 +25,28 @@ import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.ipaulpro.afilechooser.utils.FileUtils;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.classtune.app.R.id.btn_leave_apply;
 
@@ -137,7 +141,7 @@ public class LeaveApplicationFragment extends Fragment implements
 
 	public void RequestForLeave() {
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		
@@ -163,9 +167,46 @@ public class LeaveApplicationFragment extends Fragment implements
 		
 		
 		
-		if(userHelper.getUser().getType() == UserTypeEnum.PARENTS)
-		{
-			AppRestClient.post(URLHelper.URL_PARENT_LEAVE, params,
+		if(userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
+			if (!uiHelper.isDialogActive())
+				uiHelper.showLoadingDialog(getString(R.string.loading_text));
+
+			ApplicationSingleton.getInstance().getNetworkCallInterface().parentLeave(params).enqueue(
+					new Callback<JsonElement>() {
+						@Override
+						public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+							if (uiHelper.isDialogActive())
+								uiHelper.dismissLoadingDialog();
+
+							Log.e("SERVERRESPONSE", ""+response.body());
+							Wrapper wrapper = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+							if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+								Toast.makeText(getActivity(),
+										R.string.java_leaveapplicationfragment_successfully_posted,
+										Toast.LENGTH_SHORT).show();
+								leaveDescriptionEditText.setText("");
+								leaveId="";
+								startDateFormatServerString="";
+								endDateFormatServerString = "";
+
+								clearDataFields();
+
+							} else
+								Toast.makeText(
+										getActivity(),
+										R.string.java_leaveapplicationfragment_failed_post,
+										Toast.LENGTH_SHORT).show();
+						}
+
+						@Override
+						public void onFailure(Call<JsonElement> call, Throwable t) {
+							if (uiHelper.isDialogActive())
+								uiHelper.dismissLoadingDialog();
+						}
+					}
+			);
+			/*AppRestClient.post(URLHelper.URL_PARENT_LEAVE, params,
 					new AsyncHttpResponseHandler() {
 						@Override
 						public void onStart() {
@@ -208,11 +249,48 @@ public class LeaveApplicationFragment extends Fragment implements
 										Toast.LENGTH_SHORT).show();
 							super.onSuccess(arg0, responseString);
 						}
-					});
+					});*/
 		}
 		else
 		{
-			AppRestClient.post(URLHelper.URL_TEACHER_LEAVE, params,
+			if (!uiHelper.isDialogActive())
+				uiHelper.showLoadingDialog(getString(R.string.loading_text));
+			ApplicationSingleton.getInstance().getNetworkCallInterface().teacherLeave(params).enqueue(
+					new Callback<JsonElement>() {
+						@Override
+						public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+							if (uiHelper.isDialogActive())
+								uiHelper.dismissLoadingDialog();
+
+							Log.e("SERVERRESPONSE", ""+response.body());
+							Wrapper wrapper = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+							if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+								Toast.makeText(getActivity(),
+										R.string.java_leaveapplicationfragment_successfully_posted,
+										Toast.LENGTH_SHORT).show();
+								leaveDescriptionEditText.setText("");
+								leaveId="";
+								startDateFormatServerString="";
+								endDateFormatServerString = "";
+
+								clearDataFields();
+
+							} else
+								Toast.makeText(
+										getActivity(),
+										R.string.java_leaveapplicationfragment_failed_post,
+										Toast.LENGTH_SHORT).show();
+						}
+
+						@Override
+						public void onFailure(Call<JsonElement> call, Throwable t) {
+							if (uiHelper.isDialogActive())
+								uiHelper.dismissLoadingDialog();
+						}
+					}
+			);
+			/*AppRestClient.post(URLHelper.URL_TEACHER_LEAVE, params,
 					new AsyncHttpResponseHandler() {
 						@Override
 						public void onStart() {
@@ -255,7 +333,7 @@ public class LeaveApplicationFragment extends Fragment implements
 										Toast.LENGTH_SHORT).show();
 							super.onSuccess(arg0, responseString);
 						}
-					});
+					});*/
 		}
 		
 		
@@ -276,9 +354,33 @@ public class LeaveApplicationFragment extends Fragment implements
 
 	private void fetchSubject() {
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-		AppRestClient.post(URLHelper.URL_TEACHER_GET_SUBJECT, params,
+
+		ApplicationSingleton.getInstance().getNetworkCallInterface().teacherHomeworkSubject(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Log.e("RESPONSE_SUCCESS",""+ response.body());
+						Wrapper wrapper = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+						if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+							subjectCats.clear();
+							subjectCats.addAll(GsonParser.getInstance()
+									.parseSubject(
+											wrapper.getData().get("subjects")
+													.toString()));
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+
+					}
+				}
+		);
+
+		/*AppRestClient.post(URLHelper.URL_TEACHER_GET_SUBJECT, params,
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onFailure(Throwable arg0, String response) {
@@ -300,7 +402,7 @@ public class LeaveApplicationFragment extends Fragment implements
 													.toString()));
 						}
 					}
-				});
+				});*/
 	}
 
 	private void intiviews(View view) {
@@ -389,7 +491,7 @@ public class LeaveApplicationFragment extends Fragment implements
 	public void showStudentPicker(PickerType type) {
 
 		CustomPickerWithLoadData picker = CustomPickerWithLoadData.newInstance(0);
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		picker.setData(PickerType.LEAVE, params, URLHelper.URL_GET_LEAVE_TYPE, new PickerItemSelectedListener() {
 

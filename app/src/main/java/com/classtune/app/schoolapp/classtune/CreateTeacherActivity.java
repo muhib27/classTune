@@ -36,9 +36,9 @@ import com.classtune.app.schoolapp.fragments.UserTypeSelectionDialog;
 import com.classtune.app.schoolapp.model.TeacherInfo;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.SPKeyHelper;
@@ -48,6 +48,7 @@ import com.classtune.app.schoolapp.viewhelpers.PopupDialogChangePassword;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -56,7 +57,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 12-Nov-15.
@@ -604,13 +610,85 @@ public class CreateTeacherActivity extends FragmentActivity implements UserAuthL
 
     private void initApiGetTeacherInfo()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         params.put("school_code", schoolCode);
 
-        AppRestClient.post(URLHelper.URL_TEACHER_INFO, params, teacherInfoHandler);
+       // AppRestClient.post(URLHelper.URL_TEACHER_INFO, params, teacherInfoHandler);
+        teacherInfo(params);
     }
 
+    private void teacherInfo(HashMap<String,String> params){
+        ApplicationSingleton.getInstance().getNetworkCallInterface().teacherInfo(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        Log.e("SCCCCC", "response: " + response.body());
+
+                        //uiHelper2.dismissLoadingDialog();
+
+                        listTeacherInfoGrade.clear();
+                        listTeacherInfoDepartment.clear();
+                        listTeacherInfoCategory.clear();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            Log.e("CODE 200", "code 200");
+                            JsonArray arrayGrades = modelContainer.getData().get("grades").getAsJsonArray();
+                            JsonArray arrayDepartment = modelContainer.getData().get("departments").getAsJsonArray();
+                            JsonArray arrayCategories = modelContainer.getData().get("categories").getAsJsonArray();
+
+
+                            for (int i = 0; i < parseTeacherInfo(arrayGrades.toString()).size(); i++)
+                            {
+                                listTeacherInfoGrade.add(parseTeacherInfo(arrayGrades.toString()).get(i));
+                            }
+
+                            for (int i = 0; i < parseTeacherInfo(arrayDepartment.toString()).size(); i++)
+                            {
+                                listTeacherInfoDepartment.add(parseTeacherInfo(arrayDepartment.toString()).get(i));
+                            }
+
+                            for (int i = 0; i < parseTeacherInfo(arrayCategories.toString()).size(); i++)
+                            {
+                                listTeacherInfoCategory.add(parseTeacherInfo(arrayCategories.toString()).get(i));
+                            }
+
+
+                            initTeacherInfoSpiners();
+
+                            //initApiCallPosition(selectedCategory);
+
+
+                        }
+
+                        else if(modelContainer.getStatus().getCode() == 401)
+                        {
+                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_EMPLOYEE_NECESSARY_INFO);
+                        }
+
+                        else if(modelContainer.getStatus().getCode() == 400)
+                        {
+                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                        }
+
+                        else {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler teacherInfoHandler = new AsyncHttpResponseHandler() {
 
 
@@ -704,14 +782,86 @@ public class CreateTeacherActivity extends FragmentActivity implements UserAuthL
 
     private void initApiCallPosition(String selectedCategory)
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         params.put("school_code", schoolCode);
         params.put("category_id", selectedCategory);
 
-        AppRestClient.post(URLHelper.URL_TEACHER_POSITION, params, teacherPositionHandler);
+        //AppRestClient.post(URLHelper.URL_TEACHER_POSITION, params, teacherPositionHandler);
+        teacherPosition(params);
     }
 
+    private void teacherPosition(HashMap<String,String> params){
+        pd = ProgressDialog.show(CreateTeacherActivity.this, "", getString(R.string.java_accountsettingsactivity_please_wait), true, false);
+        ApplicationSingleton.getInstance().getNetworkCallInterface().teacherPosition(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        pd.dismiss();
+
+                        Log.e("SCCCCC", "response: " + response.body());
+
+                        //uiHelper2.dismissLoadingDialog();
+                        listTeacherInfoPosition.clear();
+                        if(adapterPosition != null)
+                            adapterPosition.notifyDataSetChanged();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            Log.e("CODE 200", "code 200");
+
+                            JsonArray arrayPos = modelContainer.getData().get("position").getAsJsonArray();
+
+                            for (int i = 0; i < parseTeacherInfo(arrayPos.toString()).size(); i++)
+                            {
+                                listTeacherInfoPosition.add(parseTeacherInfo(arrayPos.toString()).get(i));
+                            }
+
+                            initPositionSpinner();
+
+
+
+                        }
+
+                        else if (modelContainer.getStatus().getCode() == 401)
+                        {
+
+                            Log.e("CODE 401", "code 401");
+
+                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_EMPLOYEE_POSITION);
+                            selectedPosition = "";
+
+                            showPositionMessageText(true);
+                        }
+
+                        else if(modelContainer.getStatus().getCode() == 400)
+                        {
+                            Log.e("CODE 400", "code 400");
+
+                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                            selectedPosition = "";
+
+                            showPositionMessageText(true);
+                        }
+
+                        else {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        if(pd.isShowing())
+                            pd.dismiss();
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler teacherPositionHandler = new AsyncHttpResponseHandler() {
 
 

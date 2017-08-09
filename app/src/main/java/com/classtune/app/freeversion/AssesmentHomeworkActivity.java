@@ -26,13 +26,11 @@ import com.classtune.app.schoolapp.NotifyServiceReceiver;
 import com.classtune.app.schoolapp.model.AssessmentQuestion;
 import com.classtune.app.schoolapp.model.AssessmentQuestion.Option;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.CountDownTimerPausable;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.SharedPreferencesHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogAssessmentExitHomework;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogAssessmentNextQuestionHomework;
@@ -41,15 +39,20 @@ import com.classtune.app.schoolapp.viewhelpers.PopupDialogAssessmentScore;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AssesmentHomeworkActivity extends ChildContainerActivity implements View.OnClickListener{
 	
@@ -463,20 +466,20 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 	private void initApiCall() {
 
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put("id", assesmentId);
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		
 
-		AppRestClient.post(URLHelper.URL_HOMEWORK_ASSESSMENT, params,
-				assessmentHandler);
+		//AppRestClient.post(URLHelper.URL_HOMEWORK_ASSESSMENT, params, assessmentHandler);
+        homeworkAccessment(params);
 	}
 	
 	private void initApiCallAddmark() {
 
 		
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		
 		params.put("id", assesmentId);
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
@@ -536,8 +539,8 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 		}
 		
 		
-		AppRestClient.post(URLHelper.URL_HOMEWORK_ASSESSMENT_ADDMARK, params,
-				assessmentAddMarkHandler);
+		//AppRestClient.post(URLHelper.URL_HOMEWORK_ASSESSMENT_ADDMARK, params, assessmentAddMarkHandler);
+		homeworkAccessmentAddmark(params);
 
 	}
 	
@@ -545,16 +548,89 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 	private void initApiCallPlayCount() {
 
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put("assessment_id", assesmentId);
 		
 		
 
-		AppRestClient.post(URLHelper.URL_ASSESSMENT_UPDATE_PLAY, params,
-				assessmentUpdatePlay);
+		//AppRestClient.post(URLHelper.URL_ASSESSMENT_UPDATE_PLAY, params, assessmentUpdatePlay);
+		accementUpdatePlay(params);
 	}
 	
-	
+	private void homeworkAccessment(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().homeworkAccessment(params).enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                tStart = System.currentTimeMillis();
+
+                uiHelper.dismissLoadingDialog();
+
+                Wrapper modelContainer = GsonParser.getInstance()
+                        .parseServerResponse2(response.body());
+
+                if (modelContainer.getStatus().getCode() == 200) {
+
+                    currentDate = modelContainer.getData().get("current_date").getAsString();
+
+
+
+                    JsonObject assessment = modelContainer.getData().get("assesment").getAsJsonObject();
+
+                    passPercentage = assessment.get("pass_percentage").getAsInt();
+
+
+                    String title = assessment.get("title").getAsString();
+
+
+                    JsonArray arrayquestion = assessment.get("question").getAsJsonArray();
+
+                    List<AssessmentQuestion> data = parseQuestion(arrayquestion.toString());
+                    listAssessmentQuestion = data;
+
+                    //Log.e("QQQ", "is: "+data.get(0).getListQuestion().get(0).getAnswer());
+                    AssesmentHomeworkActivity.this.title = title;
+
+
+                    populateDataQuestion(listAssessmentQuestion);
+
+                    for(int i=0;i<listAssessmentQuestion.size();i++)
+                    {
+
+                        float sc = Float.parseFloat(listAssessmentQuestion.get(i).getMark());
+                        totalScore = totalScore+sc;
+                    }
+
+                    populateData(title);
+
+                    initTimer(Long.parseLong(listAssessmentQuestion.get(0).getTime()) * 1000);
+
+
+                    totalQuestionNumber = listAssessmentQuestion.size();
+
+                }
+
+                if (modelContainer.getStatus().getCode() == 404)
+                {
+                    Toast.makeText(AssesmentHomeworkActivity.this, R.string.java_assesmenthomeworkactivity_already_completed_quiz, Toast.LENGTH_SHORT).show();
+                    AssesmentHomeworkActivity.this.finish();
+                }
+
+
+                else {
+
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                uiHelper.showMessage(getString(R.string.internet_error_text));
+                uiHelper.dismissLoadingDialog();
+            }
+        });
+    }
 	private AsyncHttpResponseHandler assessmentHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -646,7 +722,59 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 	}
 	
 	
-	
+	private void homeworkAccessmentAddmark(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().homeworkAccessmentAddmark(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
+
+						uiHelper.dismissLoadingDialog();
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200)
+						{
+
+							Toast.makeText(AssesmentHomeworkActivity.this, getString(R.string.java_assesmentactivity_marks_added_sussessfully), Toast.LENGTH_SHORT).show();
+
+							AssesmentHomeworkActivity.this.finish();
+						}
+
+						else {
+
+						}
+
+			/*if (modelContainer.getStatus().getCode() == 404)
+			{
+				Toast.makeText(AssesmentHomeworkActivity.this, "You are already in leader board!", Toast.LENGTH_LONG).show();
+
+				AssesmentHomeworkActivity.this.finish();
+			}
+			else if(modelContainer.getStatus().getCode() == 200)
+			{
+				Toast.makeText(AssesmentHomeworkActivity.this, "Marks added successfully", Toast.LENGTH_SHORT).show();
+				//sendNotification(AssesmentActivity.this.title+" quiz has beed activated now for you!", postId);
+				//startNotification(AssesmentActivity.this);
+				AssesmentHomeworkActivity.this.finish();
+			}*/
+
+
+						//sendNotification(AssesmentActivity.this.title+" quiz has beed activated now for you!", postId);
+
+
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler assessmentAddMarkHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -702,7 +830,35 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 		};
 
 	};
-	
+	private void accementUpdatePlay(HashMap<String,String> params){
+		ApplicationSingleton.getInstance().getNetworkCallInterface().accessMentUpdatePlay(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
+
+						//uiHelper.dismissLoadingDialog();
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler assessmentUpdatePlay = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -802,7 +958,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 					if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage()))
 					{
 						img.setVisibility(View.VISIBLE);
-						SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage(), img);
+						ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage(), img);
 					}
 					else
 						img.setVisibility(View.GONE);
@@ -897,7 +1053,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 			if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage()))
 			{
 				imgViewChoice1.setVisibility(View.VISIBLE);
-				SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice1);
+				ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice1);
 				/*ImageLoader.getInstance().displayImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage(), imgViewChoice1, AppUtility.getOption(), new ImageLoadingListener() {
 					
 					@Override
@@ -934,7 +1090,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 			if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage()))
 			{
 				imgViewChoice2.setVisibility(View.VISIBLE);
-				SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
+				ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
 			}
 			else
 			{
@@ -947,7 +1103,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 				if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage()))
 				{
 					imgViewChoice3.setVisibility(View.VISIBLE);
-					SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
+					ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
 				}
 				else
 				{
@@ -957,7 +1113,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 				if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage()))
 				{
 					imgViewChoice4.setVisibility(View.VISIBLE);
-					SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
+					ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
 				}
 				else
 				{
@@ -1097,7 +1253,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 							if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage()))
 							{
 								img.setVisibility(View.VISIBLE);
-								SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage(), img);
+								ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage(), img);
 							}
 							else
 								img.setVisibility(View.GONE);
@@ -1191,7 +1347,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 					if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage()))
 					{
 						imgViewChoice1.setVisibility(View.VISIBLE);
-						SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice1);
+						ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice1);
 						/*ImageLoader.getInstance().displayImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage(), imgViewChoice1, AppUtility.getOption(), new ImageLoadingListener() {
 							
 							@Override
@@ -1228,7 +1384,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 					if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage()))
 					{
 						imgViewChoice2.setVisibility(View.VISIBLE);
-						SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
+						ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
 					}
 					else
 					{
@@ -1241,7 +1397,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 						if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage()))
 						{
 							imgViewChoice3.setVisibility(View.VISIBLE);
-							SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
+							ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
 						}
 						else
 						{
@@ -1251,7 +1407,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 						if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage()))
 						{
 							imgViewChoice4.setVisibility(View.VISIBLE);
-							SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
+							ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
 						}
 						else
 						{
@@ -1340,7 +1496,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 				if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage()))
 				{
 					imgViewChoice1.setVisibility(View.VISIBLE);
-					SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage(), imgViewChoice1);
+					ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage(), imgViewChoice1);
 				}
 				else
 				{
@@ -1351,7 +1507,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 				if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage()))
 				{
 					imgViewChoice2.setVisibility(View.VISIBLE);
-					SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
+					ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
 				}
 				else
 				{
@@ -1364,7 +1520,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 					if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage()))
 					{
 						imgViewChoice3.setVisibility(View.VISIBLE);
-						SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
+						ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
 					}
 					else
 					{
@@ -1374,7 +1530,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 					if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage()))
 					{
 						imgViewChoice4.setVisibility(View.VISIBLE);
-						SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
+						ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
 					}
 					else
 					{

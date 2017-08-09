@@ -37,18 +37,22 @@ import com.classtune.app.freeversion.SingleMeetingRequestActivity;
 import com.classtune.app.freeversion.SingleNoticeActivity;
 import com.classtune.app.freeversion.SingleTeacherClassworkActivity;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.SharedPreferencesHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * This {@code IntentService} does the actual handling of the GCM message.
@@ -473,7 +477,7 @@ public class GcmIntentService extends IntentService {
     public static void initApiCall(String rId, String rTtype)
     {
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
 
@@ -489,10 +493,48 @@ public class GcmIntentService extends IntentService {
 
 
 
-        AppRestClient.post(URLHelper.URL_EVENT_REMINDER, params, reminderHandler);
+       // AppRestClient.post(URLHelper.URL_EVENT_REMINDER, params, reminderHandler);
+        eventReminder(params);
 
     }
 
+    private static void eventReminder(HashMap<String,String> params){
+        ApplicationSingleton.getInstance().getNetworkCallInterface().eventReminder(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            //listener.onNotificationCountChanged(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
+                            //SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+
+                            //
+                            SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+                            UserHelper userHelper = new UserHelper(context);
+                            userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
+
+                            if(listener != null)
+                                listener.onNotificationCountChanged(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
+
+
+                        }
+
+                        else {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                    }
+                }
+        );
+    }
 
     static AsyncHttpResponseHandler reminderHandler = new AsyncHttpResponseHandler() {
 

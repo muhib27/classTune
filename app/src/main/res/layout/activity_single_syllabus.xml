@@ -83,13 +83,18 @@
             android:background="@color/gray_2" >
         </LinearLayout>
 
-        <com.classtune.app.schoolapp.viewhelpers.ExpandableTextView
+            <WebView
+                android:id="@+id/txtContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </WebView>
+       <!-- <com.classtune.app.schoolapp.viewhelpers.ExpandableTextView
             android:id="@+id/txtContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dip"
             android:textColor="@color/black"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall" />-->
     </LinearLayout>
         
     </ScrollView>

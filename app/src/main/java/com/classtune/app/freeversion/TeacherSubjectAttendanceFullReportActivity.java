@@ -9,22 +9,26 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.adapters.TeacherSubjectAttendanceFullReportAdapter;
 import com.classtune.app.schoolapp.model.StdAtt;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 19-Feb-17.
@@ -70,14 +74,46 @@ public class TeacherSubjectAttendanceFullReportActivity extends ChildContainerAc
     }
 
     private void initApiCallStudent() {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("subject_id", subjectId);
 
-        AppRestClient.post(URLHelper.URL_TEACHER_SUBJECT_REPORT_ALL, params,
-                studentHandler);
+       // AppRestClient.post(URLHelper.URL_TEACHER_SUBJECT_REPORT_ALL, params, studentHandler);
+        teacherSubjectReportAll(params);
     }
 
+    private void teacherSubjectReportAll(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().teacherSubjectReportAll(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+                        Log.e("Response", ""+response.body());
+
+                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+
+
+                            JsonArray arrayStudent = wrapper.getData().get("std_att").getAsJsonArray();
+                            studentList.addAll(parseStudent(arrayStudent.toString()));
+                            adapter = new TeacherSubjectAttendanceFullReportAdapter(TeacherSubjectAttendanceFullReportActivity.this, studentList);
+                            adapter.notifyDataSetChanged();
+                            listView.setAdapter(adapter);
+
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler studentHandler = new AsyncHttpResponseHandler() {
 
         @Override

@@ -12,11 +12,10 @@ import android.widget.TextView;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.ClassTestItem;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.github.mikephil.charting.charts.BarChart;
@@ -25,14 +24,19 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SingleReportCardSubject extends ChildContainerActivity {
 
@@ -290,7 +294,7 @@ public class SingleReportCardSubject extends ChildContainerActivity {
     private void initApiCall()
     {
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put(RequestKeyHelper.SUBJECT_ID, subjectId);
         params.put("no_exams", "1");
@@ -316,10 +320,51 @@ public class SingleReportCardSubject extends ChildContainerActivity {
         }
 
 
-        AppRestClient.post(URLHelper.URL_GET_SINGLE_REPORT_CARD, params, singleReportCardHandler);
+        //AppRestClient.post(URLHelper.URL_GET_SINGLE_REPORT_CARD, params, singleReportCardHandler);
+        singleReportCard(params);
 
     }
 
+    private void singleReportCard(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().getSingleReportCard(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        Log.e("###RESPONSE", "is: "+response.body());
+
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+
+                            JsonObject object = modelContainer.getData().get("result").getAsJsonObject();
+                            data = gson.fromJson(object.toString(), ClassTestItem.class);
+
+                            initAction();
+
+                        }
+
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler singleReportCardHandler = new AsyncHttpResponseHandler() {
 
         @Override

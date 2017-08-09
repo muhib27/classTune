@@ -16,22 +16,26 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.SchoolEvent;
 import com.classtune.app.schoolapp.model.SchoolEvent.ackTypeEnum;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButtonTest;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 
@@ -282,14 +286,46 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 	
 	private void notifyServerAboutAck(int ackType,String id)
 	{
-		RequestParams params=new RequestParams();
+		HashMap<String,String> params=new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.EVENT_ID, id);
 		params.put(RequestKeyHelper.STATUS, String.valueOf(ackType));
 		
-		AppRestClient.post(URLHelper.URL_POST_ACK_EVENT, params, postAckHandler);
+		//AppRestClient.post(URLHelper.URL_POST_ACK_EVENT, params, postAckHandler);
+		eventAcknowledge(params);
 	}
-	
+
+	private void eventAcknowledge(HashMap<String,String> params){
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(context.getResources().getString(R.string.loading_text));
+		else
+			uiHelper.updateLoadingDialog(context.getResources().getString(R.string.loading_text));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().eventAcknowledge(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==200)
+						{
+							selectedEvent.setEventAcks(wrapper.getData().get("event_ack").getAsInt());
+							notifyDataSetChanged();
+						}
+						else
+						{
+
+						}
+						Log.e("Events", ""+response.body());
+
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler postAckHandler=new AsyncHttpResponseHandler()
 	{
 		@Override

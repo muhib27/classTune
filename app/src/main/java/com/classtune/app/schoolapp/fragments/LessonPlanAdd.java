@@ -33,30 +33,34 @@ import com.classtune.app.schoolapp.callbacks.IAttachFile;
 import com.classtune.app.schoolapp.model.LessonPlanCategory;
 import com.classtune.app.schoolapp.model.Subject;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
 import droidninja.filepicker.FilePickerBuilder;
 import droidninja.filepicker.FilePickerConst;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 24-Mar-15.
@@ -447,11 +451,11 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                     selectedFilePath = object.path+object.names.get(0);
 
 
-                    mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                    mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                     File myFile= new File(selectedFilePath);
                     fileSize = String.valueOf(myFile.length());
 
-                    Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                    Log.e("MIME_TYPE", "is: "+ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                     Log.e("FILE_SIZE", "is: "+fileSize);
 
                     long fileSizeInKB = myFile.length() / 1024;
@@ -483,11 +487,11 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                         selectedFilePath = fileNamePath;
 
 
-                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                         File myFile= new File(selectedFilePath);
                         fileSize = String.valueOf(myFile.length());
 
-                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("MIME_TYPE", "is: "+ ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                         Log.e("FILE_SIZE", "is: "+fileSize);
 
                         long fileSizeInKB = myFile.length() / 1024;
@@ -515,11 +519,11 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                         selectedFilePath = fileNamePath;
 
 
-                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                         File myFile= new File(selectedFilePath);
                         fileSize = String.valueOf(myFile.length());
 
-                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("MIME_TYPE", "is: "+ ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                         Log.e("FILE_SIZE", "is: "+fileSize);
 
                         long fileSizeInKB = myFile.length() / 1024;
@@ -548,13 +552,57 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
 
     private void initApiCallCategory()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
-        AppRestClient.post(URLHelper.URL_LESSON_CATEGORY, params, lessonCategoryHandler);
+        //AppRestClient.post(URLHelper.URL_LESSON_CATEGORY, params, lessonCategoryHandler);
+        lessonCategory(params);
     }
 
 
+    private void lessonCategory(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().lessonCategory(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        listCategory.clear();
+
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+
+                            JsonArray arrayCategory = modelContainer.getData().get("category").getAsJsonArray();
+                            for (int i = 0; i < parseCategory(arrayCategory.toString()).size(); i++)
+                            {
+                                listCategory.add(parseCategory(arrayCategory.toString()).get(i));
+                            }
+
+                            showCategoryPopup(btnSelectCategory);
+
+
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler lessonCategoryHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -654,13 +702,59 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
 
     private void initApiCallSubject()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
-        AppRestClient.post(URLHelper.URL_LESSON_SUBJECT, params, lessonSubjectHandler);
+        //AppRestClient.post(URLHelper.URL_LESSON_SUBJECT, params, lessonSubjectHandler);
+        lessonSubject(params);
     }
 
 
+    private void lessonSubject(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().lessonSubject(params).enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                //listSubject.clear();
+
+
+                uiHelper.dismissLoadingDialog();
+
+
+                Wrapper modelContainer = GsonParser.getInstance()
+                        .parseServerResponse2(response.body());
+
+
+
+                if (modelContainer.getStatus().getCode() == 200) {
+
+
+                    JsonArray arraySubject = modelContainer.getData().get("subjects").getAsJsonArray();
+                    for (int i = 0; i < parseSubject(arraySubject.toString()).size(); i++)
+                    {
+                        listSubject.add(parseSubject(arraySubject.toString()).get(i));
+                    }
+
+                    //showSubjectPopup(btnSubjectClass);
+                    generateSubjectChooserLayout(layoutSelectMultipleSubject);
+
+
+
+
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                uiHelper.showMessage(getString(R.string.internet_error_text));
+                if (uiHelper.isDialogActive()) {
+                    uiHelper.dismissLoadingDialog();
+                }
+            }
+        });
+    }
     AsyncHttpResponseHandler lessonSubjectHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -785,7 +879,125 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
 
     private void initApiCallAdd(boolean isShow)
     {
-        RequestParams params = new RequestParams();
+        if (!uiHelper.isDialogActive())
+            uiHelper.showLoadingDialog(getString(R.string.loading_text));
+
+        if(!TextUtils.isEmpty(selectedFilePath)){
+
+            File myFile= new File(selectedFilePath);
+            /*me.addPart("attachment_file_name", myFile, false);
+            Log.e("FILE_NAME", "is: " + myFile.toString());
+            if(!TextUtils.isEmpty(mimeType)){
+                me.addPart("mime_type", mimeType, false);
+            }
+            if(!TextUtils.isEmpty(fileSize)){
+                me.addPart("file_size", fileSize, false);
+            }*/
+
+
+            RequestBody user_secret = RequestBody.create(MediaType.parse("multipart/form-data"), UserHelper.getUserSecret());
+            RequestBody subject_ids = RequestBody.create(MediaType.parse("multipart/form-data"), getIdWithComma());
+            RequestBody categoryId = RequestBody.create(MediaType.parse("multipart/form-data"), selectedCategoryId);
+            RequestBody title = RequestBody.create(MediaType.parse("multipart/form-data"),  txtTitle.getText().toString());
+            RequestBody publisDate = RequestBody.create(MediaType.parse("multipart/form-data"), selectedDate);
+            RequestBody content = RequestBody.create(MediaType.parse("multipart/form-data"), txtDescription.getText().toString());
+            RequestBody mime_type;
+            if(!TextUtils.isEmpty(mimeType)){
+                mime_type = RequestBody.create(MediaType.parse("multipart/form-data"), mimeType);
+            }else {
+                mime_type = RequestBody.create(MediaType.parse("multipart/form-data"), "");
+            }
+            RequestBody file_size = RequestBody.create(MediaType.parse("multipart/form-data"), fileSize);
+
+            RequestBody is_Show;
+            if(isShow == true){
+                is_Show = RequestBody.create(MediaType.parse("multipart/form-data"), "1");
+            }else {
+                is_Show = RequestBody.create(MediaType.parse("multipart/form-data"), "0");
+            }
+
+            // create RequestBody instance from file
+            final RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), myFile);
+
+            // MultipartBody.Part is used to send also the actual file name
+            MultipartBody.Part body = MultipartBody.Part.createFormData("attachment_file_name", myFile.getName(), requestFile);
+
+
+            ApplicationSingleton.getInstance().getNetworkCallInterface().teacherAddLessonplan(user_secret, subject_ids, categoryId, title, publisDate, content, is_Show, body, mime_type, file_size).enqueue(
+                    new Callback<JsonElement>() {
+                        @Override
+                        public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                            listSubject.clear();
+
+                            uiHelper.dismissLoadingDialog();
+
+
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+
+
+                            if (modelContainer.getStatus().getCode() == 200) {
+
+                                Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_successfully_added_lesson_plan, Toast.LENGTH_SHORT).show();
+                                clearDataFields();
+
+
+                            } else {
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonElement> call, Throwable t) {
+                            if (uiHelper.isDialogActive())
+                                uiHelper.dismissLoadingDialog();
+                        }
+                    }
+            );
+
+        } else {
+
+            String is_Show;
+            if(isShow == true){
+                is_Show = "1";
+            } else {
+                is_Show = "0";
+            }
+            ApplicationSingleton.getInstance().getNetworkCallInterface().teacherAddLessonplan(UserHelper.getUserSecret(), getIdWithComma(), selectedCategoryId, txtTitle.getText().toString(), selectedDate, txtDescription.getText().toString(), is_Show).enqueue(
+                    new Callback<JsonElement>() {
+                        @Override
+                        public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                            listSubject.clear();
+
+                            uiHelper.dismissLoadingDialog();
+
+
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+
+
+                            if (modelContainer.getStatus().getCode() == 200) {
+
+                                Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_successfully_added_lesson_plan, Toast.LENGTH_SHORT).show();
+                                clearDataFields();
+
+
+                            } else {
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonElement> call, Throwable t) {
+                            if (uiHelper.isDialogActive())
+                                uiHelper.dismissLoadingDialog();
+                        }
+                    }
+            );
+        }
+/*        RequestParams params = new RequestParams();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
         if(!TextUtils.isEmpty(getIdWithComma()))
@@ -827,7 +1039,7 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
 
 
 
-        AppRestClient.post(URLHelper.URL_LESSON_ADD, params, lessonAddHandler);
+        AppRestClient.post(URLHelper.URL_LESSON_ADD, params, lessonAddHandler);*/
     }
 
 
@@ -1024,11 +1236,11 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                     selectedFilePath = object.path+object.names.get(0);
 
 
-                    mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                    mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                     File myFile= new File(selectedFilePath);
                     fileSize = String.valueOf(myFile.length());
 
-                    Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                    Log.e("MIME_TYPE", "is: "+ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                     Log.e("FILE_SIZE", "is: "+fileSize);
 
                     long fileSizeInKB = myFile.length() / 1024;
@@ -1059,11 +1271,11 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                         selectedFilePath = fileNamePath;
 
 
-                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                         File myFile= new File(selectedFilePath);
                         fileSize = String.valueOf(myFile.length());
 
-                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("MIME_TYPE", "is: "+ ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                         Log.e("FILE_SIZE", "is: "+fileSize);
 
                         long fileSizeInKB = myFile.length() / 1024;
@@ -1091,11 +1303,11 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                         selectedFilePath = fileNamePath;
 
 
-                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                         File myFile= new File(selectedFilePath);
                         fileSize = String.valueOf(myFile.length());
 
-                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("MIME_TYPE", "is: "+ ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                         Log.e("FILE_SIZE", "is: "+fileSize);
 
                         long fileSizeInKB = myFile.length() / 1024;

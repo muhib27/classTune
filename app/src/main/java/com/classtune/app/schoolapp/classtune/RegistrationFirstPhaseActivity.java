@@ -17,13 +17,18 @@ import android.widget.ImageButton;
 
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 08-Nov-15.
@@ -224,7 +229,7 @@ public class RegistrationFirstPhaseActivity extends Activity {
 
     private void initApicall()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         params.put("first_name", txtFirstName.getText().toString());
         params.put("last_name", txtLastName.getText().toString());
@@ -234,9 +239,122 @@ public class RegistrationFirstPhaseActivity extends Activity {
 
 
 
-        AppRestClient.post(URLHelper.URL_PAID_USERCHECK, params, checkUserHandler);
+        //AppRestClient.post(URLHelper.URL_PAID_USERCHECK, params, checkUserHandler);
+        paidUserCheck(params);
     }
 
+    private void paidUserCheck(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().paidUserCheck(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        Log.e("SCCCCC", "response: " + response.body());
+
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            String sId = modelContainer.getData().get("school_id").getAsString();
+                            String schoolId;
+
+
+
+                            int admissionCode = Integer.parseInt(sId);
+                            if(admissionCode <= 9)
+                            {
+                                schoolId = "0"+sId;
+                            }
+                            else
+                            {
+                                schoolId = sId;
+                            }
+
+
+                            if(ordinal == 2) //type student
+                            {
+                                Intent intent = new Intent(RegistrationFirstPhaseActivity.this, CreateStudentActivity.class);
+                                intent.putExtra(AppConstant.USER_TYPE_CLASSTUNE, ordinal);
+                                intent.putExtra(AppConstant.SCHOOL_ID_CLASSTUNE, schoolId);
+
+                                intent.putExtra(AppConstant.STUDENT_FIRST_NAME_CLASSTUNE, txtFirstName.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_LAST_NAME_CLASSTUNE, txtLastName.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_EMAIL_CLASSTUNE, txtEmail.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_PASSWORD_CLASSTUNE, txtPassword.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_SCHOOL_CODE_CLASSTUNE, txtSchoolCode.getText().toString());
+
+
+
+                                startActivity(intent);
+                            }
+
+                            else if(ordinal == 4) //type parent
+                            {
+                                Intent intent = new Intent(RegistrationFirstPhaseActivity.this, CreateParentActivity.class);
+                                intent.putExtra(AppConstant.USER_TYPE_CLASSTUNE, ordinal);
+                                intent.putExtra(AppConstant.SCHOOL_ID_CLASSTUNE, schoolId);
+
+                                intent.putExtra(AppConstant.STUDENT_FIRST_NAME_CLASSTUNE, txtFirstName.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_LAST_NAME_CLASSTUNE, txtLastName.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_EMAIL_CLASSTUNE, txtEmail.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_PASSWORD_CLASSTUNE, txtPassword.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_SCHOOL_CODE_CLASSTUNE, txtSchoolCode.getText().toString());
+
+                                startActivity(intent);
+                            }
+                            else if(ordinal == 3) //type teacher
+                            {
+                                Intent intent = new Intent(RegistrationFirstPhaseActivity.this, CreateTeacherActivity.class);
+                                intent.putExtra(AppConstant.USER_TYPE_CLASSTUNE, ordinal);
+                                intent.putExtra(AppConstant.SCHOOL_ID_CLASSTUNE, schoolId);
+
+                                intent.putExtra(AppConstant.STUDENT_FIRST_NAME_CLASSTUNE, txtFirstName.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_LAST_NAME_CLASSTUNE, txtLastName.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_EMAIL_CLASSTUNE, txtEmail.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_PASSWORD_CLASSTUNE, txtPassword.getText().toString());
+                                intent.putExtra(AppConstant.STUDENT_SCHOOL_CODE_CLASSTUNE, txtSchoolCode.getText().toString());
+
+                                startActivity(intent);
+                            }
+
+
+
+                            Log.e("CODE 200", "code 200");
+                        }
+
+                        else if (modelContainer.getStatus().getCode() == 401) {
+
+                            Log.e("CODE 401", "code 401");
+                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SCHOOL_CODE_VALID);
+                        }
+
+                        else if (modelContainer.getStatus().getCode() == 400) {
+
+                            Log.e("CODE 400", "code 400");
+                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                        }
+
+
+                        else {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler checkUserHandler = new AsyncHttpResponseHandler() {
 
         @Override

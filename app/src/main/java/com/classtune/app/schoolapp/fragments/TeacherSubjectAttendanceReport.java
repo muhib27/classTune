@@ -21,26 +21,30 @@ import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.Subject;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 15-Feb-17.
@@ -147,13 +151,44 @@ public class TeacherSubjectAttendanceReport extends UserVisibleHintFragment {
     };
 
     private void initApiCallSubjet() {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
-        AppRestClient.post(URLHelper.URL_TEACHER_ASSOCIATED_SUBJECT, params,
-                subjectHandler);
+        //AppRestClient.post(URLHelper.URL_TEACHER_ASSOCIATED_SUBJECT, params, subjectHandler);
+        teacherAssociatedSubject(params);
     }
 
+    private void teacherAssociatedSubject(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().teacherAssociatedSubject(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+                        Log.e("Response", ""+response.body());
+                        subjectList.clear();
+
+                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+
+                            JsonArray arraySubject = wrapper.getData().get("subjects").getAsJsonArray();
+                            subjectList.addAll(parseSubject(arraySubject.toString()));
+
+                        } else {
+
+                        }
+
+                        showSubjectPicker();
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler subjectHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -294,16 +329,53 @@ public class TeacherSubjectAttendanceReport extends UserVisibleHintFragment {
     }
 
     private void initApiCallReport() {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("subject_id", selectedSubjectId);
         if(!TextUtils.isEmpty(selectedDate))
             params.put("date", selectedDate);
 
-        AppRestClient.post(URLHelper.URL_TEACHER_SUBJECT_REPORT, params,
-                reportHandler);
+        //AppRestClient.post(URLHelper.URL_TEACHER_SUBJECT_REPORT, params, reportHandler);
+        teacherSubjectReport(params);
     }
 
+    private void teacherSubjectReport(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().teacherSubjectReport(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+                        Log.e("Response", ""+response.body());
+
+                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+
+                            layoutTeacherReport.setVisibility(View.VISIBLE);
+
+                            int classCompleted = wrapper.getData().get("class_completed").getAsInt();
+                            int total = wrapper.getData().get("total").getAsInt();
+                            int present = wrapper.getData().get("present").getAsInt();
+                            int absent = wrapper.getData().get("absent").getAsInt();
+                            int late = wrapper.getData().get("late").getAsInt();
+
+                            initActionAfterReportCall(classCompleted, total, present, absent, late);
+
+                            isDatePickerCalledOnce = false;
+
+                        } else {
+                            Toast.makeText(getActivity(), wrapper.getStatus().getMsg(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler reportHandler = new AsyncHttpResponseHandler() {
 
         @Override

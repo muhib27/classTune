@@ -28,22 +28,27 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.FreeVersionPost;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
-import com.classtune.app.schoolapp.utils.URLHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RelatedPostFragment extends Fragment {
 
@@ -155,10 +160,11 @@ public class RelatedPostFragment extends Fragment {
 
 	private void fetchRelatedPost()
 	{
-		RequestParams params=new RequestParams();
+		HashMap<String,String> params=new HashMap<>();
 		params.put("id",postId);
 		Log.e("ID", postId);
-		AppRestClient.post(URLHelper.URL_FREE_VERSION_RELATED_NEWS, params, relatedNewsHandler);
+		//AppRestClient.post(URLHelper.URL_FREE_VERSION_RELATED_NEWS, params, relatedNewsHandler);
+		freeVersionRelatedNews(params);
 	}
 	
 	@Override
@@ -182,6 +188,36 @@ public class RelatedPostFragment extends Fragment {
 		return view;
 	}
 
+	private void freeVersionRelatedNews(HashMap<String,String> params){
+		pb.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().freeVersionRelatedNews(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						pb.setVisibility(View.GONE);
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+							posts.clear();
+							posts.addAll(GsonParser.getInstance()
+									.parseFreeVersionPost(
+											modelContainer.getData().getAsJsonArray("post")
+													.toString()));
+							if(getActivity()==null)
+								return;
+							updateUi();
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pb.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler relatedNewsHandler = new AsyncHttpResponseHandler() {
 
 		@Override

@@ -20,24 +20,28 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.HomeworkData;
 import com.classtune.app.schoolapp.model.TeacherHomeworkData;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	
@@ -253,7 +257,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	
 	private void initApicall()
 	{
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		//app.showLog("adfsdfs", app.getUserSecret());
 
@@ -262,9 +266,47 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		
 		
 		
-		AppRestClient.post(URLHelper.URL_SINGLE_TEACHER_HOMEWORK, params, singleTeacherHomeWorkHandler);
+		//AppRestClient.post(URLHelper.URL_SINGLE_TEACHER_HOMEWORK, params, singleTeacherHomeWorkHandler);
+		singleTeacherHomework(params);
 	}
-	
+	private void singleTeacherHomework(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().singleTeacherHomework(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							JsonObject objHomework = modelContainer.getData().get("homework").getAsJsonObject();
+							data = gson.fromJson(objHomework.toString(), TeacherHomeworkData.class);
+
+							Log.e("HHH", "data: " + data.getName());
+
+							initAction();
+
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler singleTeacherHomeWorkHandler = new AsyncHttpResponseHandler() {
 
 		@Override

@@ -35,25 +35,29 @@ import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.LessonPlan;
 import com.classtune.app.schoolapp.model.LessonPlanCategory;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogLessonPlanConfirmation;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 24-Mar-15.
@@ -346,7 +350,7 @@ public class LessonPlanView extends Fragment {
 
 
     private void initApiCall(String batchId, String categoryId) {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("page_size", "10");
         params.put("page_number", String.valueOf(pageNumber));
@@ -357,9 +361,90 @@ public class LessonPlanView extends Fragment {
         if(categoryId != null)
             params.put("lessonplan_category_id", categoryId);
 
-        AppRestClient.post(URLHelper.URL_LESSONPLAN, params, lessonplanHandler);
+      //  AppRestClient.post(URLHelper.URL_LESSONPLAN, params, lessonplanHandler);
+        lessonPlan(params);
     }
 
+    private void lessonPlan(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().lessonPlan(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        hasNext = modelContainer.getData().get("has_next").getAsBoolean();
+                        Log.e("HAS_NEXT_MEETING", "is: " + hasNext);
+
+
+                        if (pageNumber == 1) {
+                            adapter.clearList();
+                        }
+
+                        if (!hasNext) {
+                            stopLoadingData = true;
+                        }
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            JsonArray arrayLesson = modelContainer.getData().get("lessonplans").getAsJsonArray();
+
+                            //listLessonPlan = parseLessonPlan(arrayLesson.toString());
+
+                            for (int i = 0; i < parseLessonPlan(arrayLesson.toString()).size(); i++)
+                            {
+                                listLessonPlan.add(parseLessonPlan(arrayLesson.toString()).get(i));
+                            }
+
+
+                            if (pageNumber != 0 || isRefreshing)
+                            {
+                                listViewLessonPlan.onRefreshComplete();
+                                loading = false;
+                            }
+
+
+                            adapter.notifyDataSetChanged();
+
+                            Log.e("S_SIZE", "is: " + listLessonPlan.size());
+
+                            if(listLessonPlan.size() <= 0)
+                            {
+                                //Toast.makeText(getActivity(), "No data found!", Toast.LENGTH_SHORT).show();
+
+                                txtMessage.setVisibility(View.VISIBLE);
+                            }
+
+                            else
+                            {
+                                txtMessage.setVisibility(View.GONE);
+                            }
+
+                            initAction();
+
+
+
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler lessonplanHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -458,12 +543,57 @@ public class LessonPlanView extends Fragment {
 
     private void initApiCallBatch()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
-        AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, batchHandler);
+      //  AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, batchHandler);
+        getBatch(params);
     }
+    private void getBatch(HashMap<String, String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
 
+        ApplicationSingleton.getInstance().getNetworkCallInterface().getBatch(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        listBatch.clear();
+
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+
+                            JsonArray arrayBatch = modelContainer.getData().get("batches").getAsJsonArray();
+                            for (int i = 0; i < parseBatch(arrayBatch.toString()).size(); i++)
+                            {
+                                listBatch.add(parseBatch(arrayBatch.toString()).get(i));
+                            }
+
+                            showBatchPopup(btnSelectBatch);
+
+
+                        } else {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
 
     AsyncHttpResponseHandler batchHandler = new AsyncHttpResponseHandler() {
 
@@ -525,13 +655,57 @@ public class LessonPlanView extends Fragment {
 
     private void initApiCallCategory()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
-        AppRestClient.post(URLHelper.URL_LESSON_CATEGORY, params, lessonCategoryHandler);
+        //AppRestClient.post(URLHelper.URL_LESSON_CATEGORY, params, lessonCategoryHandler);
+        lessonCategory(params);
     }
 
 
+    private void lessonCategory(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().lessonCategory(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        listCategory.clear();
+
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+
+                            JsonArray arrayCategory = modelContainer.getData().get("category").getAsJsonArray();
+                            for (int i = 0; i < parseCategory(arrayCategory.toString()).size(); i++)
+                            {
+                                listCategory.add(parseCategory(arrayCategory.toString()).get(i));
+                            }
+
+                            showCategoryPopup(btnSelectCategory);
+
+
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler lessonCategoryHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -722,13 +896,55 @@ public class LessonPlanView extends Fragment {
 
     private void initApiCallDeleteLessonPlan()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("id", getIdWithComma());
 
-        AppRestClient.post(URLHelper.URL_LESSON_DELETE, params, lessonDeleteHandler);
+       // AppRestClient.post(URLHelper.URL_LESSON_DELETE, params, lessonDeleteHandler);
+        lessonDelete(params);
     }
 
+    private void lessonDelete(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().lessonDelete(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+
+                            Toast.makeText(getActivity(), R.string.java_lessonplanview_successfully_deleted, Toast.LENGTH_SHORT).show();
+                            initApiCall(selectedBatchId, selectedCategoryId);
+
+                            listSelectedId.clear();
+                            btnDeleteLesson.setEnabled(false);
+                            btnDeleteLesson.setBackgroundResource(R.drawable.delete_lesson_deactive);
+
+
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler lessonDeleteHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -787,14 +1003,56 @@ public class LessonPlanView extends Fragment {
 
     private void initApiCallAssignLessonPlan()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("id", getIdWithComma());
         params.put("is_show", "1");
 
-        AppRestClient.post(URLHelper.URL_LESSON_ASSIGN, params, lessonAssignHandler);
+       // AppRestClient.post(URLHelper.URL_LESSON_ASSIGN, params, lessonAssignHandler);
+        lessonAssign(params);
     }
 
+    private void lessonAssign(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().lessonAssign(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+
+                            Toast.makeText(getActivity(), R.string.java_lessonplanview_successfully_assigned, Toast.LENGTH_SHORT).show();
+                            initApiCall(selectedBatchId, selectedCategoryId);
+
+                            listSelectedId.clear();
+                            btnAssignLesson.setEnabled(false);
+                            btnAssignLesson.setBackgroundResource(R.drawable.assign_class_deactive);
+                            btnAssignLesson.setTextColor(ContextCompat.getColor(getActivity(), R.color.gray_assign_text));
+
+
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler lessonAssignHandler = new AsyncHttpResponseHandler() {
 
         @Override

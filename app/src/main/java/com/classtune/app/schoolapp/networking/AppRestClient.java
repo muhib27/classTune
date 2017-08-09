@@ -4,7 +4,7 @@ package com.classtune.app.schoolapp.networking;
 import android.content.Context;
 import android.util.Log;
 
-import com.classtune.app.schoolapp.utils.SchoolApp;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -37,7 +37,7 @@ public class AppRestClient {
 	
 	private static void setCookiesStore()
 	  {
-		  PersistentCookieStore myCookieStore = new PersistentCookieStore(SchoolApp.getInstance());
+		  PersistentCookieStore myCookieStore = new PersistentCookieStore(ApplicationSingleton.getInstance());
 		  client.setCookieStore(myCookieStore);
 	  }
 	 

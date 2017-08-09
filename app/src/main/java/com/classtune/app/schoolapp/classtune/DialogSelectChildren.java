@@ -12,13 +12,18 @@ import android.widget.EditText;
 
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 11-Nov-15.
@@ -171,15 +176,80 @@ public class DialogSelectChildren extends Dialog {
 
     private void initApiCall(String studentId)
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         params.put("school_code", schoolCode);
         params.put("student_id", studentId);
 
 
-        AppRestClient.post(URLHelper.URL_CHECK_STUDENT, params, checkStudentHandler);
+        //AppRestClient.post(URLHelper.URL_CHECK_STUDENT, params, checkStudentHandler);
+        checkStudent(params);
     }
 
+    private void checkStudent(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(activity.getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().checkStudent(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        Log.e("SCCCCC", "response: " + response.body());
+
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            Log.e("CODE 200", "code 200");
+                            String fullName = modelContainer.getData().get("full_name").getAsString();
+
+                            //layoutChildInfoHolder.setVisibility(View.VISIBLE);
+                            //txtChildInfo.setText("Student Id: " + fullName);
+
+                            //String childrenParam = getChildrenParam();
+                            //doneListener.onDoneSelection(childrenParam);
+                            doneListener.onDoneSelection(new ChildrenModel(txtChildId.getText().toString(), txtRelation.getText().toString(), fullName));
+                            DialogSelectChildren.this.dismiss();
+
+                        }
+                        else
+                        {
+                            //layoutChildInfoHolder.setVisibility(View.GONE);
+                        }
+
+                        if (modelContainer.getStatus().getCode() == 401) {
+
+                            Log.e("CODE 401", "code 401");
+                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_STUDENT_NOT_EXISTS);
+                        }
+
+                        else if (modelContainer.getStatus().getCode() == 400) {
+
+                            Log.e("CODE 400", "code 400");
+                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                        }
+
+
+
+
+                        else {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(activity.getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler checkStudentHandler = new AsyncHttpResponseHandler() {
 
         @Override

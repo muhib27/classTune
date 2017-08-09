@@ -11,22 +11,26 @@ import android.widget.TextView;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.HomeWorkStatus;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TeacherHomeworkDoneActivity extends ChildContainerActivity {
 	
@@ -81,16 +85,63 @@ public class TeacherHomeworkDoneActivity extends ChildContainerActivity {
 	private void initApiCall()
 	{
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 	
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put("assignment_id", this.id);
 		
-		AppRestClient.post(URLHelper.URL_HOMEWORK_STATUS, params, homeworkStatusHandler);
+		//AppRestClient.post(URLHelper.URL_HOMEWORK_STATUS, params, homeworkStatusHandler);
+		homeworkStatus(params);
 	
 	}
-	
+	private void homeworkStatus(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().homeworkStatus(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+
+							JsonArray  arrayStatus = modelContainer.getData().get("homework_status").getAsJsonArray();
+
+							listStatus = parseHomeWorkStatus(arrayStatus.toString());
+
+							adapter.notifyDataSetChanged();
+
+							if(listStatus.size() <= 0)
+							{
+								txtMessage.setVisibility(View.VISIBLE);
+							}
+							else
+							{
+								txtMessage.setVisibility(View.GONE);
+							}
+
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler homeworkStatusHandler = new AsyncHttpResponseHandler() {
 
 		@Override

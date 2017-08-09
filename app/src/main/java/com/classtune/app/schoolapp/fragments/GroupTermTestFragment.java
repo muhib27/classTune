@@ -18,35 +18,34 @@ import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.PaidVersionHomeFragment;
-import com.classtune.app.freeversion.SingleItemTermReportActivity;
 import com.classtune.app.schoolapp.GcmIntentService;
-import com.classtune.app.schoolapp.adapters.ExamRoutineListAdapter;
 import com.classtune.app.schoolapp.adapters.GroupExamAdapters;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Batch;
-import com.classtune.app.schoolapp.model.ExamRoutine;
-import com.classtune.app.schoolapp.model.FreeVersionPost;
 import com.classtune.app.schoolapp.model.GroupExam;
 import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -122,7 +121,7 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
 
     private void fetchDataFromServer() {
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put(RequestKeyHelper.CATEGORY_ID, "3");
         params.put("no_exams", "1");
@@ -181,9 +180,53 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
 
         // params.put("category", pageSize+"");
 
-        AppRestClient.post(URLHelper.URL_GET_RESULT_GROUP_REPORT,
-                params, getAcademicEventsHandler);
+       // AppRestClient.post(URLHelper.URL_GET_RESULT_GROUP_REPORT, params, getAcademicEventsHandler);
+        getResultGroupReport(params);
 
+    }
+
+    private void getResultGroupReport(HashMap<String,String> params){
+
+        pbs.setVisibility(View.VISIBLE);
+        ApplicationSingleton.getInstance().getNetworkCallInterface().getResultGroupReport(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        // uiHelper.dismissLoadingDialog();
+                        pbs.setVisibility(View.GONE);
+                        Log.e("report term response", ""+response.body());
+                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                response.body());
+                        if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                            items.clear();
+                            items.addAll(GsonParser.getInstance()
+                                    .parseGroupRoutine(
+                                            wrapper.getData().getAsJsonArray("exams")
+                                                    .toString()));
+                            adapter.notifyDataSetChanged();
+
+                            if(items.size()>0) {
+                                nodataMsg.setVisibility(View.GONE);
+                            }
+                            else {
+                                nodataMsg.setVisibility(View.VISIBLE);
+                            }
+
+
+                        } else if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SESSION_EXPIRED) {
+                            // userHelper.doLogIn();
+                        }
+                        //Log.e("Events", responseString);
+
+                        initListActionClick();
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        pbs.setVisibility(View.GONE);
+                    }
+                }
+        );
     }
     AsyncHttpResponseHandler getAcademicEventsHandler = new AsyncHttpResponseHandler() {
         @Override
@@ -241,12 +284,46 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
     };
 
     private void callApiforAuthExam(){
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         if (userHelper.getUser().getType() == UserHelper.UserTypeEnum.PARENTS){
             params.put(RequestKeyHelper.BATCH_ID, userHelper.getUser().getSelectedChild().getBatchId());
         }
-        AppRestClient.post(URLHelper.URL_GET_RESULT_GROUP_AUTH_DOWNLOAD, params,getGroupReportHandler);
+       // AppRestClient.post(URLHelper.URL_GET_RESULT_GROUP_AUTH_DOWNLOAD, params,getGroupReportHandler);
+
+        resultGroupAuthDownload(params);
+    }
+    private void resultGroupAuthDownload(HashMap<String,String> params){
+        pbs.setVisibility(View.VISIBLE);
+        ApplicationSingleton.getInstance().getNetworkCallInterface().resultGrouptAuthDounload(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+// uiHelper.dismissLoadingDialog();
+                        pbs.setVisibility(View.GONE);
+                        Log.e("report term response", ""+response.body());
+                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                response.body());
+                        if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+
+                            mAuth_id =  wrapper.getData().get("auth_id").getAsString();
+                            mDomainName = wrapper.getData().get("domain").getAsString();
+                            Log.e(TAG, "onSuccess: authod: "+wrapper.getData().get("auth_id").getAsString() );
+
+                        } else if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SESSION_EXPIRED) {
+                            // userHelper.doLogIn();
+                        }
+
+
+                        initListActionClick();
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        pbs.setVisibility(View.GONE);
+                    }
+                }
+        );
     }
     AsyncHttpResponseHandler getGroupReportHandler = new AsyncHttpResponseHandler() {
         @Override
@@ -378,7 +455,7 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
     public void showStudentPicker(PickerType type) {
 
         CustomPickerWithLoadData picker = CustomPickerWithLoadData.newInstance(0);
-        RequestParams params = new RequestParams();
+        HashMap<String, String> params = new HashMap<>();
         params.put(RequestKeyHelper.BATCH_ID,selectedBatch.getId());
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         picker.setData(PickerType.TEACHER_STUDENT,params,URLHelper.URL_GET_STUDENTS_ATTENDANCE, PickerCallback , getString(R.string.java_parentreportcardfragment_select_student));
@@ -423,9 +500,10 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
         if(userHelper.getUser().getType()== UserHelper.UserTypeEnum.TEACHER){
             if(!PaidVersionHomeFragment.isBatchLoaded)
             {
-                RequestParams params=new RequestParams();
+                HashMap<String, String> params=new HashMap<>();
                 params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-                AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+                //AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+                getBatch(params);
             }else {
                 showPicker(PickerType.TEACHER_BATCH);
             }
@@ -436,6 +514,37 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
     }
 
 
+    private void getBatch(HashMap<String, String> params){
+        if(!uiHelper.isDialogActive())
+            uiHelper.showLoadingDialog(getString(R.string.loading_text));
+        else
+            uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+
+        ApplicationSingleton.getInstance().getNetworkCallInterface().getBatch(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+                        Log.e("Response", ""+response.body());
+                        Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+                        if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+                        {
+                            PaidVersionHomeFragment.isBatchLoaded=true;
+                            PaidVersionHomeFragment.batches.clear();
+                            String data=wrapper.getData().get("batches").toString();
+                            PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+                            showPicker(PickerType.TEACHER_BATCH);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler getBatchEventsHandler=new AsyncHttpResponseHandler()
     {
 

@@ -13,21 +13,24 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.TermReportExamSubjectItem;
 import com.classtune.app.schoolapp.model.TermReportItem;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SingleItemTermReportActivity extends ChildContainerActivity{
-	private SchoolApp app;
+	private ApplicationSingleton app;
 	private UIHelper uiHelper;
 	private LinearLayout layoutReport;
 	
@@ -43,7 +46,7 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 
 	
 	private void fetchDataFromServer() {
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.SCHOOL_ID, getIntent().getExtras().getString("id"));
 		params.put("no_exams", "1");
@@ -57,9 +60,41 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 			params.put(RequestKeyHelper.STUDENT_ID, getIntent().getExtras().getString("student_id"));
 		}
 		
-		AppRestClient.post(URLHelper.URL_GET_SINGLE_TERM_REPORT, params, reportCardHandler);
+		//AppRestClient.post(URLHelper.URL_GET_SINGLE_TERM_REPORT, params, reportCardHandler);
+		singleTermReport(params);
 	}
 
+	private void singleTermReport(HashMap<String, String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().singleTermReport(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+						//pbs.setVisibility(View.GONE);
+
+						//Toast.makeText(getActivity(), responseString, Toast.LENGTH_LONG).show();
+						Log.e("SINGLE_TERM_RESPONSE", ""+response.body());
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(response.body());
+
+						if (wrapper.getStatus().getCode() == 200) {
+							TermReportItem reportCardData = GsonParser.getInstance().parseTermReport(wrapper.getData().getAsJsonObject("report").toString());
+							arrangeAndShowTermReportData(reportCardData);
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler reportCardHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -102,7 +137,7 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 	private void init() {
 		// TODO Auto-generated method stub
 		uiHelper = new UIHelper(this);
-		app = (SchoolApp) this.getApplicationContext();
+		app = (ApplicationSingleton) this.getApplicationContext();
 		layoutReport = (LinearLayout) findViewById(R.id.layout_report);
 		examName = (TextView) findViewById(R.id.tv_report_exam_name);
 		examName.setText(getIntent().getExtras().getString("term_name"));

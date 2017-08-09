@@ -21,7 +21,7 @@ public class AppConstant {
 	public final static int RESPONSE_CODE_SUCCESS = 200;
 	public final static int RESPONSE_CODE_SESSION_EXPIRED = 406;
 
-	public final static String SHARED_PREF_NAME = "SchoolApp";
+	public final static String SHARED_PREF_NAME = "ApplicationSingleton";
 
 	public final static String NORMAL = "NORMAL";
 	public final static String SELECTED = "SELECTED";
@@ -97,7 +97,7 @@ public class AppConstant {
 	// ######################################### Notification Strings
 	// #########################################
 
-	public final static String NOTIFICATION_HOMEWORK = SchoolApp.getInstance().getString(R.string.java_appconstant_new_homework);
+	public final static String NOTIFICATION_HOMEWORK = ApplicationSingleton.getInstance().getString(R.string.java_appconstant_new_homework);
 	public final static int PAGE_SIZE = 10;
 
 	// ######################################### Attendence
@@ -111,7 +111,7 @@ public class AppConstant {
 
 	// ######################################### TRANSPORT
 	// #########################################
-	public static final String LAST_UPDATE = SchoolApp.getInstance().getString(R.string.java_appconstant_last_update);
+	public static final String LAST_UPDATE = ApplicationSingleton.getInstance().getString(R.string.java_appconstant_last_update);
 
 	// ######################################### Accademic Calendar
 	// #########################################
@@ -230,48 +230,48 @@ public class AppConstant {
 	public static final String CLASSTUNE_FONT_NAME = "breeserif_regular.otf";
 
 
-	public static final String CLASSTUNE_MESSAGE_INVALID_EMAIL = SchoolApp.getInstance().getString(R.string.java_classtune_registration_valid_email);
-	public static final String CLASSTUNE_MESSAGE_FIRST_NAME = SchoolApp.getInstance().getString(R.string.java_classtune_registration_first_name);
-	public static final String CLASSTUNE_MESSAGE_LAST_NAME = SchoolApp.getInstance().getString(R.string.java_classtune_registration_last_name);
-	public static final String CLASSTUNE_MESSAGE_EMAIL = SchoolApp.getInstance().getString(R.string.java_classtune_registration_provide_email_address);
-	public static final String CLASSTUNE_MESSAGE_PASSWORD = SchoolApp.getInstance().getString(R.string.java_classtune_registration_provide_password);
-	public static final String CLASSTUNE_MESSAGE_PASSWORD_CHAR_LENGTH = SchoolApp.getInstance().getString(R.string.java_classtune_registration_password_length);
-	public static final String CLASSTUNE_MESSAGE_PASSWORD_RETYPE = SchoolApp.getInstance().getString(R.string.java_classtune_registration_retype_password);
-	public static final String CLASSTUNE_MESSAGE_PASSWORD_MATCH = SchoolApp.getInstance().getString(R.string.java_classtune_registration_password_didnt_match);
-	public static final String CLASSTUNE_MESSAGE_SCHOOL_CODE_EMPTY = SchoolApp.getInstance().getString(R.string.java_classtune_registration_provide_school_code);
-	public static final String CLASSTUNE_MESSAGE_SCHOOL_CODE_VALID = SchoolApp.getInstance().getString(R.string.java_classtune_registration_schoolcode_not_valid);
+	public static final String CLASSTUNE_MESSAGE_INVALID_EMAIL = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_valid_email);
+	public static final String CLASSTUNE_MESSAGE_FIRST_NAME = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_first_name);
+	public static final String CLASSTUNE_MESSAGE_LAST_NAME = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_last_name);
+	public static final String CLASSTUNE_MESSAGE_EMAIL = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_provide_email_address);
+	public static final String CLASSTUNE_MESSAGE_PASSWORD = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_provide_password);
+	public static final String CLASSTUNE_MESSAGE_PASSWORD_CHAR_LENGTH = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_password_length);
+	public static final String CLASSTUNE_MESSAGE_PASSWORD_RETYPE = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_retype_password);
+	public static final String CLASSTUNE_MESSAGE_PASSWORD_MATCH = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_password_didnt_match);
+	public static final String CLASSTUNE_MESSAGE_SCHOOL_CODE_EMPTY = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_provide_school_code);
+	public static final String CLASSTUNE_MESSAGE_SCHOOL_CODE_VALID = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_schoolcode_not_valid);
 
-	public static final String CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG = SchoolApp.getInstance().getString(R.string.java_classtune_registration_something_went_wrong);
+	public static final String CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_something_went_wrong);
 
-	public static final String CLASSTUNE_MESSAGE_CLASS_YET = SchoolApp.getInstance().getString(R.string.java_classtune_registration_school_didnt_create_class_yet);
-	public static final String CLASSTUNE_MESSAGE_ADMISSION_NUMBER = SchoolApp.getInstance().getString(R.string.java_classtune_registration_provide_admission_no);
-	public static final String CLASSTUNE_MESSAGE_BATCH_SELECT = SchoolApp.getInstance().getString(R.string.java_classtune_registration_select_batch);
-	public static final String CLASSTUNE_MESSAGE_DOB_SELECT = SchoolApp.getInstance().getString(R.string.java_classtune_registration_select_dob);
-	public static final String CLASSTUNE_MESSAGE_GENDER_SELECT = SchoolApp.getInstance().getString(R.string.java_classtune_registration_select_gender);
-	public static final String CLASSTUNE_MESSAGE_CONTACT_NUMBER = SchoolApp.getInstance().getString(R.string.java_classtune_registration_provide_contact_no);
-	public static final String CLASSTUNE_MESSAGE_ADMISSION_NUMBER_EXISTS = SchoolApp.getInstance().getString(R.string.java_classtune_registration_already_exists); //need improved text
+	public static final String CLASSTUNE_MESSAGE_CLASS_YET = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_school_didnt_create_class_yet);
+	public static final String CLASSTUNE_MESSAGE_ADMISSION_NUMBER = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_provide_admission_no);
+	public static final String CLASSTUNE_MESSAGE_BATCH_SELECT = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_select_batch);
+	public static final String CLASSTUNE_MESSAGE_DOB_SELECT = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_select_dob);
+	public static final String CLASSTUNE_MESSAGE_GENDER_SELECT = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_select_gender);
+	public static final String CLASSTUNE_MESSAGE_CONTACT_NUMBER = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_provide_contact_no);
+	public static final String CLASSTUNE_MESSAGE_ADMISSION_NUMBER_EXISTS = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_already_exists); //need improved text
 
-	public static final String CLASSTUNE_MESSAGE_SELECT_SOURCE = SchoolApp.getInstance().getString(R.string.java_classtune_registration_select_source);
+	public static final String CLASSTUNE_MESSAGE_SELECT_SOURCE = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_select_source);
 
-	public static final String CLASSTUNE_MESSAGE_ADD_CHILD_MORE_THAN = SchoolApp.getInstance().getString(R.string.java_classtune_registration_add_more_child);
-	public static final String CLASSTUNE_MESSAGE_USER_ID = SchoolApp.getInstance().getString(R.string.java_classtune_registration_provide_user_id);
-	public static final String CLASSTUNE_MESSAGE_ADD_ONE_CHILD = SchoolApp.getInstance().getString(R.string.java_classtune_registration_add_one_child);
-	public static final String CLASSTUNE_MESSAGE_USER_NAME = SchoolApp.getInstance().getString(R.string.java_classtune_registration_already_exists); //need improved text
-	public static final String CLASSTUNE_MESSAGE_INVALID_STUDENT_ID = SchoolApp.getInstance().getString(R.string.java_classtune_registration_student_id_not_valid);
-	public static final String CLASSTUNE_MESSAGE_DUPLICATE_STUDENT_ID = SchoolApp.getInstance().getString(R.string.java_classtune_registration_duplicate_student_id);
-	public static final String CLASSTUNE_MESSAGE_DIALOG_TITLE = SchoolApp.getInstance().getString(R.string.java_classtune_registration_enter_children_id);
-	public static final String CLASSTUNE_MESSAGE_DIALOG_CHILD_ID = SchoolApp.getInstance().getString(R.string.java_classtune_registration_provide_child_id);
-	public static final String CLASSTUNE_MESSAGE_DIALOG_RELATION = SchoolApp.getInstance().getString(R.string.java_classtune_registration_field_cannot_be_empty); //need improved text
-	public static final String CLASSTUNE_MESSAGE_STUDENT_NOT_EXISTS = SchoolApp.getInstance().getString(R.string.java_classtune_registration_id_does_not_exist); //need improved text
-	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_NECESSARY_INFO = SchoolApp.getInstance().getString(R.string.java_classtune_registration_employee_necessaty_information_yet);
-	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_POSITION = SchoolApp.getInstance().getString(R.string.java_classtune_registration_employee_position_yet);
-	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_NUMBER = SchoolApp.getInstance().getString(R.string.java_classtune_registration_employee_no);
-	public static final String CLASSTUNE_MESSAGE_JOB_TITLE = SchoolApp.getInstance().getString(R.string.java_classtune_registration_provide_job_title);
-	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_CATEGORY = SchoolApp.getInstance().getString(R.string.java_classtune_registration_select_category);
-	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_DEPARTMENT = SchoolApp.getInstance().getString(R.string.java_classtune_registration_select_department);
-	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_POSITION_TYPE = SchoolApp.getInstance().getString(R.string.java_classtune_registration_select_position);
-	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_JOINING_DATE = SchoolApp.getInstance().getString(R.string.java_classtune_registration_select_joining_date);
-	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_EXISTS = SchoolApp.getInstance().getString(R.string.java_classtune_registration_number_already_exists);
+	public static final String CLASSTUNE_MESSAGE_ADD_CHILD_MORE_THAN = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_add_more_child);
+	public static final String CLASSTUNE_MESSAGE_USER_ID = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_provide_user_id);
+	public static final String CLASSTUNE_MESSAGE_ADD_ONE_CHILD = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_add_one_child);
+	public static final String CLASSTUNE_MESSAGE_USER_NAME = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_already_exists); //need improved text
+	public static final String CLASSTUNE_MESSAGE_INVALID_STUDENT_ID = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_student_id_not_valid);
+	public static final String CLASSTUNE_MESSAGE_DUPLICATE_STUDENT_ID = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_duplicate_student_id);
+	public static final String CLASSTUNE_MESSAGE_DIALOG_TITLE = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_enter_children_id);
+	public static final String CLASSTUNE_MESSAGE_DIALOG_CHILD_ID = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_provide_child_id);
+	public static final String CLASSTUNE_MESSAGE_DIALOG_RELATION = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_field_cannot_be_empty); //need improved text
+	public static final String CLASSTUNE_MESSAGE_STUDENT_NOT_EXISTS = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_id_does_not_exist); //need improved text
+	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_NECESSARY_INFO = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_employee_necessaty_information_yet);
+	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_POSITION = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_employee_position_yet);
+	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_NUMBER = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_employee_no);
+	public static final String CLASSTUNE_MESSAGE_JOB_TITLE = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_provide_job_title);
+	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_CATEGORY = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_select_category);
+	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_DEPARTMENT = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_select_department);
+	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_POSITION_TYPE = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_select_position);
+	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_JOINING_DATE = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_select_joining_date);
+	public static final String CLASSTUNE_MESSAGE_EMPLOYEE_EXISTS = ApplicationSingleton.getInstance().getString(R.string.java_classtune_registration_number_already_exists);
 
 	public static final long BANNER_POPUP_SHOW_TIME = 12000;
 	public static final long BANNER_POPUP_DISMISS_TIME = 5000;

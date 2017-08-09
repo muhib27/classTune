@@ -22,13 +22,18 @@ import com.classtune.app.schoolapp.model.GraphSubjectType;
 import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CustomPickerWithLoadData extends DialogFragment {
 
@@ -67,7 +72,7 @@ public class CustomPickerWithLoadData extends DialogFragment {
 	private List<BaseType> items;
 	private PickerAdapter adapter;
 	private PickerType type;
-	private RequestParams params;
+	private HashMap<String,String> params;
 	private String url;
 	private PickerItemSelectedListener listener;
 	private LinearLayout pbLayout;
@@ -103,7 +108,7 @@ public class CustomPickerWithLoadData extends DialogFragment {
 		return view;
 	}
 
-	public void setData(PickerType type, RequestParams params, String url,
+	public void setData(PickerType type, HashMap<String,String> params, String url,
 			PickerItemSelectedListener lis, String titleText) {
 		this.listener = lis;
 		this.type = type;
@@ -114,10 +119,40 @@ public class CustomPickerWithLoadData extends DialogFragment {
 
 	private void fetchData() {
 		if (this.type == PickerType.LEAVE) {
-			AppRestClient.post(url, params, getLeaveTypeHnadler);
-		} else if(this.type == PickerType.GRAPH)
-            AppRestClient.post(url,params,getGraphSubjectHandler);
-          else AppRestClient.post(url, params, getStudentHandler);
+			//AppRestClient.post(url, params, getLeaveTypeHnadler);
+			getpickerLeave(params, url);
+		} else if(this.type == PickerType.GRAPH){
+			//AppRestClient.post(url,params,getGraphSubjectHandler);
+			getPickerGraphSubject(params, url);
+		} else {
+			//AppRestClient.post(url, params, getStudentHandler);
+			getPickerStudent(params, url);
+		}
+	}
+
+	private void getpickerLeave(HashMap<String, String> params, String url){
+		pbLayout.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getPickerTypeLeave(params, url).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+						pbLayout.setVisibility(View.GONE);
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						items.addAll(GsonParser.getInstance().parseLeaveTypeList(
+								(wrapper.getData().get("type")).toString()));
+						adapter.notifyDataSetChanged();
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+
+					}
+				}
+		);
+
 	}
 	AsyncHttpResponseHandler getLeaveTypeHnadler = new AsyncHttpResponseHandler(){
 		public void onFailure(Throwable arg0, String arg1) {
@@ -140,6 +175,31 @@ public class CustomPickerWithLoadData extends DialogFragment {
 			adapter.notifyDataSetChanged();
 		};
 	};
+
+	private void getPickerGraphSubject(HashMap<String, String> params, String url){
+		pbLayout.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getPickerTypeGraphSubject(params, url).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						pbLayout.setVisibility(View.GONE);
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						items.add(new GraphSubjectType("All","-2"));
+						items.addAll(GsonParser.getInstance().parseGraphSubjectList(
+								(wrapper.getData().get("subjects")).toString()));
+
+						adapter.notifyDataSetChanged();
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+					}
+				}
+		);
+
+	}
     AsyncHttpResponseHandler getGraphSubjectHandler = new AsyncHttpResponseHandler(){
         public void onFailure(Throwable arg0, String arg1) {
             pbLayout.setVisibility(View.GONE);
@@ -163,6 +223,29 @@ public class CustomPickerWithLoadData extends DialogFragment {
             adapter.notifyDataSetChanged();
         };
     };
+
+    private void getPickerStudent(HashMap<String,String> params, String url){
+		pbLayout.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getPickerTypeStudent(params, url).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						pbLayout.setVisibility(View.GONE);
+
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						items.addAll(GsonParser.getInstance().parseStudentList(
+								(wrapper.getData().get("batch_attendence")).toString()));
+						adapter.notifyDataSetChanged();
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getStudentHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			pbLayout.setVisibility(View.GONE);

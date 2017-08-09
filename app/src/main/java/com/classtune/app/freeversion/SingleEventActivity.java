@@ -17,25 +17,29 @@ import android.widget.Toast;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.SchoolEvent;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButtonTest;
 import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SingleEventActivity extends ChildContainerActivity {
 
@@ -136,15 +140,54 @@ public class SingleEventActivity extends ChildContainerActivity {
     private void initApiCall()
     {
 
-        RequestParams params=new RequestParams();
+        HashMap<String,String> params=new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("id", id);
         Log.e("SINGLE_EVENT_ID", "is: "+id);
 
 
-        AppRestClient.post(URLHelper.URL_GET_SINGLE_EVENT, params, singleEventHandler);
+       // AppRestClient.post(URLHelper.URL_GET_SINGLE_EVENT, params, singleEventHandler);
+        getSingleEvent(params);
     }
 
+    private void getSingleEvent(HashMap<String,String> params){
+        if(!uiHelper.isDialogActive())
+            uiHelper.showLoadingDialog(context.getResources().getString(R.string.loading_text));
+        else
+            uiHelper.updateLoadingDialog(context.getResources().getString(R.string.loading_text));
+
+        ApplicationSingleton.getInstance().getNetworkCallInterface().getSingleEvent(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                        if(wrapper.getStatus().getCode()==200)
+                        {
+                            JsonObject objHomework = wrapper.getData().get("events").getAsJsonObject();
+                            data = gson.fromJson(objHomework.toString(), SchoolEvent.class);
+
+                            layoutRoot.setVisibility(View.VISIBLE);
+                            initAction();
+
+                        }
+                        else
+                        {
+                            layoutRoot.setVisibility(View.GONE);
+                            Toast.makeText(SingleEventActivity.this, R.string.java_singleeventactivity_event_removed, Toast.LENGTH_SHORT).show();
+
+                            finish();
+                        }
+                        Log.e("Events", ""+response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler singleEventHandler = new AsyncHttpResponseHandler()
     {
         @Override
@@ -394,14 +437,47 @@ public class SingleEventActivity extends ChildContainerActivity {
 
     private void notifyServerAboutAck(int ackType,String id)
     {
-        RequestParams params=new RequestParams();
+        HashMap<String,String> params=new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put(RequestKeyHelper.EVENT_ID, id);
         params.put(RequestKeyHelper.STATUS, String.valueOf(ackType));
 
-        AppRestClient.post(URLHelper.URL_POST_ACK_EVENT, params, postAckHandler);
+       // AppRestClient.post(URLHelper.URL_POST_ACK_EVENT, params, postAckHandler);
+        eventAcknowledge(params);
     }
 
+    private void eventAcknowledge(HashMap<String,String> params){
+        if(!uiHelper.isDialogActive())
+            uiHelper.showLoadingDialog(context.getResources().getString(R.string.loading_text));
+        else
+            uiHelper.updateLoadingDialog(context.getResources().getString(R.string.loading_text));
+
+        ApplicationSingleton.getInstance().getNetworkCallInterface().eventAcknowledge(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                        if(wrapper.getStatus().getCode()==200)
+                        {
+                            selectedEvent.setEventAcks(wrapper.getData().get("event_ack").getAsInt());
+
+                        }
+                        else
+                        {
+
+                        }
+                        Log.e("Events", ""+response.body());
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler postAckHandler=new AsyncHttpResponseHandler()
     {
         @Override

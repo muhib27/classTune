@@ -29,17 +29,16 @@ import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ObservableObject;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +46,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RollCallTeacherFragment extends Fragment implements LeaveApplicationStatusListener,onBatchIdChangeListener,OnClickListener,Observer {
 	private View rootView;
@@ -101,9 +104,10 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 		
 		if(PaidVersionHomeFragment.selectedBatch == null)
 		{
-			RequestParams params=new RequestParams();
+			HashMap<String, String> params=new HashMap<>();
 			params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-			AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+			//AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+			getBatch(params);
 		}
 		else
 		{
@@ -116,7 +120,38 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 		
 		
 	}
-	
+
+	private void getBatch(HashMap<String, String> params){
+
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(getString(R.string.loading_text));
+		else
+			uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getBatch(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Log.e("Response", ""+ response.body());
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+						{
+							PaidVersionHomeFragment.isBatchLoaded=true;
+							PaidVersionHomeFragment.batches.clear();
+							String data=wrapper.getData().get("batches").toString();
+							PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+							//showPicker(PickerType.TEACHER_BATCH);
+							showBatchPicker(PickerType.TEACHER_BATCH);
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	
 	AsyncHttpResponseHandler getBatchEventsHandler=new AsyncHttpResponseHandler()
 	{
@@ -218,10 +253,12 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 	}*/
 	private void fetchData() {
 		
-		RequestParams params=new RequestParams();
+		HashMap<String,String> params=new HashMap<>();
 		params.put(RequestKeyHelper.BATCH_ID,PaidVersionHomeFragment.selectedBatch.getId());
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-		AppRestClient.post(URLHelper.URL_GET_STUDENTS_ATTENDANCE, params, getStudentHandler);
+		//AppRestClient.post(URLHelper.URL_GET_STUDENTS_ATTENDANCE, params, getStudentHandler);
+		getStudentAttendence(params);
+
 		
 	}
 	
@@ -337,7 +374,38 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 		dialog.show(getChildFragmentManager(), null);
 	}
 	
-	
+	private void getStudentAttendence(HashMap<String,String> params){
+		pbLayout.setVisibility(View.VISIBLE);
+		allStudents.clear();
+		studentMap.clear();
+		containerList.removeAllViews();
+
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getStudentAttendence(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						allStudents.clear();
+						studentMap.clear();
+						pbLayout.setVisibility(View.GONE);
+
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						allStudents.addAll(GsonParser.getInstance().parseStudentList((wrapper.getData().get("batch_attendence")).toString()));
+						for(StudentAttendance s:allStudents)
+						{
+							studentMap.put(s.getId(), s);
+						}
+						updateUI();
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+					}
+				}
+		);
+
+	}
 	AsyncHttpResponseHandler getStudentHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			pbLayout.setVisibility(View.GONE);
@@ -384,16 +452,53 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 	
 	private void initApiCallApprove(String studentId, String leaveId, String approveCode)
 	{
-		RequestParams params = new RequestParams();
+		HashMap<String,String > params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.STUDENT_ID, studentId);
 		params.put("leave_id", leaveId);
 		params.put("status", approveCode);
 		
-		AppRestClient.post(URLHelper.URL_APPROVE_LEAVE, params,
-				approveHandler);
+		//AppRestClient.post(URLHelper.URL_APPROVE_LEAVE, params, approveHandler);
+		approveLeave(params);
 	}
-	
+
+	private void approveLeave(HashMap<String,String> params){
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(getString(R.string.loading_text));
+		else
+			uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().approveLeave(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Log.e("Response", ""+response.body());
+
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+						{
+
+							if(PaidVersionHomeFragment.isBatchLoaded)
+								fetchData();
+							else
+								updateUI();
+							//Toast.makeText(getActivity(), "Successfully done!", Toast.LENGTH_SHORT).show();
+
+						}
+
+						else
+						{
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler approveHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -462,7 +567,7 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 	}
 
 	private void saveData() {
-		RequestParams params=new RequestParams();
+		HashMap<String,String> params=new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET,UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.BATCH_ID, PaidVersionHomeFragment.selectedBatch.getId());
 		String studentIds="",late="";
@@ -494,9 +599,36 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 			Log.d("@@PARAM@@STRING@@##", params.toString());
 		}
 		
-		AppRestClient.post(URLHelper.URL_POST_ADD_ATTENDANCE, params, addAttendanceHandler);
+		//AppRestClient.post(URLHelper.URL_POST_ADD_ATTENDANCE, params, addAttendanceHandler);
+		addAttendence(params);
 	}
-	
+
+
+	private void addAttendence(HashMap<String,String> params){
+		pbLayout.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().addAttendence(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						pbLayout.setVisibility(View.GONE);
+						uiHelper.showMessage(getActivity().getString(R.string.java_rollcallteacherfragment_report_saved));
+			/*Wrapper wrapper = GsonParser.getInstance().parseServerResponse(
+					responseString);
+			allStudents.addAll(GsonParser.getInstance().parseStudentList((wrapper.getData().get("batch_attendence")).toString()));
+			for(StudentAttendance s:allStudents)
+			{
+				studentMap.put(s.getId(), s);
+			}
+			updateUI();*/
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler addAttendanceHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			pbLayout.setVisibility(View.GONE);

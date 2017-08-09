@@ -27,8 +27,8 @@ import com.classtune.app.schoolapp.classtune.InfoPageMainActivity;
 import com.classtune.app.schoolapp.classtune.UserSelectionActivity;
 import com.classtune.app.schoolapp.fragments.UserTypeSelectionDialog;
 import com.classtune.app.schoolapp.fragments.UserTypeSelectionDialog.UserTypeListener;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.SPKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.DialogLanguageChooser;
@@ -45,7 +45,7 @@ public class LoginActivity extends SocialBaseActivity implements
     Button btnLogin;
 
     private final int DIALOG_FRAGMENT = 101;
-    SchoolApp app;
+    ApplicationSingleton app;
     boolean isFirstTime;
     public UIHelper uiHelper;
     public UserHelper userHelper;
@@ -80,7 +80,7 @@ public class LoginActivity extends SocialBaseActivity implements
         //etPassword.setText("123456");
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(this);
-        app = (SchoolApp) getApplicationContext();
+        app = (ApplicationSingleton) getApplicationContext();
         app.setupUI(findViewById(R.id.layout_parent), this);
 
         if (getIntent() != null && getIntent().getExtras() != null)
@@ -268,7 +268,7 @@ public class LoginActivity extends SocialBaseActivity implements
                         } else {
                             startActivityForResult(new Intent(this,
                                             ChildSelectionActivity.class),
-                                    SchoolApp.REQUEST_CODE_CHILD_SELECTION);
+                                    ApplicationSingleton.REQUEST_CODE_CHILD_SELECTION);
                         }
                         //}
                         break;
@@ -302,7 +302,7 @@ public class LoginActivity extends SocialBaseActivity implements
         if (requestCode == REQUEST_COMPLETE_PROFILE) {
             doPaidNavigation();
         }
-        if (requestCode == SchoolApp.REQUEST_CODE_CHILD_SELECTION) {
+        if (requestCode == ApplicationSingleton.REQUEST_CODE_CHILD_SELECTION) {
             doPaidNavigation();
         }
         if(requestCode == REQ_LANG){

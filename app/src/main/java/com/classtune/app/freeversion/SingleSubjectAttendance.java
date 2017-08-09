@@ -8,16 +8,21 @@ import android.widget.Toast;
 
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SingleSubjectAttendance extends ChildContainerActivity {
 
@@ -72,7 +77,7 @@ public class SingleSubjectAttendance extends ChildContainerActivity {
 
 
     private void initApiCallReport() {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("subject_id", selectedSubjectId);
         //params.put("date", selectedDate);
@@ -81,10 +86,49 @@ public class SingleSubjectAttendance extends ChildContainerActivity {
             params.put(RequestKeyHelper.BATCH_ID, userHelper.getUser().getSelectedChild().getBatchId());
         }
 
-        AppRestClient.post(URLHelper.URL_STD_PARENT_SUBJECT_REPORT, params,
-                reportHandler);
+       // AppRestClient.post(URLHelper.URL_STD_PARENT_SUBJECT_REPORT, params, reportHandler);
+
+        parentSubjectReport(params);
     }
 
+    private void parentSubjectReport(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().stdParentSubjectReport(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+                        Log.e("Response", ""+response.body());
+
+                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+
+
+                            JsonObject jsonObject = wrapper.getData().get("report").getAsJsonObject();
+                            int total = jsonObject.get("total").getAsInt();
+                            int present = jsonObject.get("present").getAsInt();
+                            int absent = jsonObject.get("absent").getAsInt();
+                            int late = jsonObject.get("late").getAsInt();
+                            String subjectName = jsonObject.get("subject_name").getAsString();
+
+                            initActionAfterReportCall(total, present, absent, late, subjectName);
+
+                            txtMessage.setVisibility(View.GONE);
+
+                        } else {
+                            Toast.makeText(SingleSubjectAttendance.this, wrapper.getStatus().getMsg(), Toast.LENGTH_SHORT).show();
+                            txtMessage.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler reportHandler = new AsyncHttpResponseHandler() {
 
         @Override

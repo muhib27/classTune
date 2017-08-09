@@ -20,19 +20,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.classtune.app.schoolapp.NotifyServiceReceiver;
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.NotifyServiceReceiver;
 import com.classtune.app.schoolapp.model.AssessmentQuestion;
 import com.classtune.app.schoolapp.model.AssessmentQuestion.Option;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.CountDownTimerPausable;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.SharedPreferencesHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogAssessmentNextQuestion;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogAssessmentOk;
@@ -40,16 +38,21 @@ import com.classtune.app.schoolapp.viewhelpers.PopupDialogAssessmentScore;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AssesmentActivity extends ChildContainerActivity implements View.OnClickListener{
 	
@@ -452,7 +455,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 	private void initApiCall() {
 
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put("assesment_id", assesmentId);
 		
 		if(UserHelper.isLoggedIn())
@@ -460,15 +463,15 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 			params.put(RequestKeyHelper.USER_ID, UserHelper.getUserFreeId());
 		}
 
-		AppRestClient.post(URLHelper.URL_GET_ASSESSMENT, params,
-				assessmentHandler);
+		//AppRestClient.post(URLHelper.URL_GET_ASSESSMENT, params, assessmentHandler);
+		getAccessment(params);
 	}
 	
 	private void initApiCallAddmark() {
 
 		
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put("assessment_id", assesmentId);
 		params.put("mark", String.valueOf(getScore()));
 		params.put(RequestKeyHelper.USER_ID, UserHelper.getUserFreeId()); //time_taken
@@ -486,24 +489,90 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 		Log.e("ELLAPSED_TIME", "is: " + getEllaspsedSeconds());
 		Log.e("AVG_TIME", "is: " + df.format(avgTime));
 		
-		AppRestClient.post(URLHelper.URL_ASSESSMENT_ADDMARK, params,
-				assessmentAddMarkHandler);
+		//AppRestClient.post(URLHelper.URL_ASSESSMENT_ADDMARK, params, assessmentAddMarkHandler);
+		accessmentAddMark(params);
 	}
 	
 	
 	private void initApiCallPlayCount() {
 
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put("assessment_id", assesmentId);
 		
 		
 
-		AppRestClient.post(URLHelper.URL_ASSESSMENT_UPDATE_PLAY, params,
-				assessmentUpdatePlay);
+		//AppRestClient.post(URLHelper.URL_ASSESSMENT_UPDATE_PLAY, params, assessmentUpdatePlay);
+		accessmentUpdatePlay(params);
 	}
 	
-	
+	private void getAccessment(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getAccessment(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						tStart = System.currentTimeMillis();
+
+						uiHelper.dismissLoadingDialog();
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							JsonObject assessment = modelContainer.getData().get("assesment").getAsJsonObject();
+
+							String title = assessment.get("title").getAsString();
+							String topic = assessment.get("topic").getAsString();
+							String time = assessment.get("created_date").getAsString();
+							String playCount = assessment.get("played").getAsString();
+
+							JsonArray arrayquestion = assessment.get("question").getAsJsonArray();
+
+							List<AssessmentQuestion> data = parseQuestion(arrayquestion.toString());
+							listAssessmentQuestion = data;
+
+							//Log.e("QQQ", "is: "+data.get(0).getListQuestion().get(0).getAnswer());
+							AssesmentActivity.this.title = title;
+							populateData(title, topic, time, playCount);
+
+							populateDataQuestion(listAssessmentQuestion);
+
+							for(int i=0;i<listAssessmentQuestion.size();i++)
+							{
+
+								int sc = Integer.parseInt(listAssessmentQuestion.get(i).getMark());
+								totalScore = totalScore+sc;
+							}
+
+
+
+							initTimer(Long.parseLong(listAssessmentQuestion.get(0).getTime()) * 1000);
+
+
+							totalQuestionNumber = listAssessmentQuestion.size();
+
+						}
+
+
+
+
+
+						else {
+
+						}
+
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler assessmentHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -577,7 +646,58 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 		};
 
 	};
-	
+	private void accessmentAddMark(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().accessMentAddMark(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
+
+						uiHelper.dismissLoadingDialog();
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+			/*if (modelContainer.getStatus().getCode() == 200)
+			{
+
+				Toast.makeText(AssesmentActivity.this, "Marks added successfully", Toast.LENGTH_SHORT).show();
+
+				AssesmentActivity.this.finish();
+			}
+
+			else {
+
+			}*/
+
+						if (modelContainer.getStatus().getCode() == 404)
+						{
+							Toast.makeText(AssesmentActivity.this, R.string.java_assesmentactivity_already_in_leaderboard, Toast.LENGTH_LONG).show();
+
+							AssesmentActivity.this.finish();
+						}
+						else if(modelContainer.getStatus().getCode() == 200)
+						{
+							Toast.makeText(AssesmentActivity.this, R.string.java_assesmentactivity_marks_added_sussessfully, Toast.LENGTH_SHORT).show();
+							//sendNotification(AssesmentActivity.this.title+" quiz has beed activated now for you!", postId);
+							//startNotification(AssesmentActivity.this);
+							AssesmentActivity.this.finish();
+						}
+
+
+						//sendNotification(AssesmentActivity.this.title+" quiz has beed activated now for you!", postId);
+
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler assessmentAddMarkHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -633,7 +753,36 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 		};
 
 	};
-	
+
+	private void accessmentUpdatePlay(HashMap<String,String> params){
+		ApplicationSingleton.getInstance().getNetworkCallInterface().accessMentUpdatePlay(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
+
+						//uiHelper.dismissLoadingDialog();
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler assessmentUpdatePlay = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -740,7 +889,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 					if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage()))
 					{
 						img.setVisibility(View.VISIBLE);
-						SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage(), img);
+						ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage(), img);
 					}
 					else
 						img.setVisibility(View.GONE);
@@ -835,7 +984,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 			if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage()))
 			{
 				imgViewChoice1.setVisibility(View.VISIBLE);
-				SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice1);
+				ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice1);
 				/*ImageLoader.getInstance().displayImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage(), imgViewChoice1, AppUtility.getOption(), new ImageLoadingListener() {
 					
 					@Override
@@ -872,7 +1021,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 			if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage()))
 			{
 				imgViewChoice2.setVisibility(View.VISIBLE);
-				SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
+				ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
 			}
 			else
 			{
@@ -885,7 +1034,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 				if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage()))
 				{
 					imgViewChoice3.setVisibility(View.VISIBLE);
-					SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
+					ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
 				}
 				else
 				{
@@ -895,7 +1044,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 				if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage()))
 				{
 					imgViewChoice4.setVisibility(View.VISIBLE);
-					SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
+					ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
 				}
 				else
 				{
@@ -1035,7 +1184,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 							if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage()))
 							{
 								img.setVisibility(View.VISIBLE);
-								SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage(), img);
+								ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(i).getAnswerImage(), img);
 							}
 							else
 								img.setVisibility(View.GONE);
@@ -1129,7 +1278,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 					if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage()))
 					{
 						imgViewChoice1.setVisibility(View.VISIBLE);
-						SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice1);
+						ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice1);
 						/*ImageLoader.getInstance().displayImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage(), imgViewChoice1, AppUtility.getOption(), new ImageLoadingListener() {
 							
 							@Override
@@ -1166,7 +1315,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 					if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage()))
 					{
 						imgViewChoice2.setVisibility(View.VISIBLE);
-						SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
+						ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
 					}
 					else
 					{
@@ -1179,7 +1328,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 						if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage()))
 						{
 							imgViewChoice3.setVisibility(View.VISIBLE);
-							SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
+							ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
 						}
 						else
 						{
@@ -1189,7 +1338,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 						if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage()))
 						{
 							imgViewChoice4.setVisibility(View.VISIBLE);
-							SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
+							ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
 						}
 						else
 						{
@@ -1278,7 +1427,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 				if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage()))
 				{
 					imgViewChoice1.setVisibility(View.VISIBLE);
-					SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage(), imgViewChoice1);
+					ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(0).getAnswerImage(), imgViewChoice1);
 				}
 				else
 				{
@@ -1289,7 +1438,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 				if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage()))
 				{
 					imgViewChoice2.setVisibility(View.VISIBLE);
-					SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
+					ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(1).getAnswerImage(), imgViewChoice2);
 				}
 				else
 				{
@@ -1302,7 +1451,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 					if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage()))
 					{
 						imgViewChoice3.setVisibility(View.VISIBLE);
-						SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
+						ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(2).getAnswerImage(), imgViewChoice3);
 					}
 					else
 					{
@@ -1312,7 +1461,7 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 					if(!TextUtils.isEmpty(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage()))
 					{
 						imgViewChoice4.setVisibility(View.VISIBLE);
-						SchoolApp.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
+						ApplicationSingleton.getInstance().displayUniversalImage(listAssessmentQuestion.get(currentPosition).getListQuestion().get(3).getAnswerImage(), imgViewChoice4);
 					}
 					else
 					{

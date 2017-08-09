@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.UserPaidInfo;
 import com.classtune.app.schoolapp.utils.AppUtility;
-import com.classtune.app.schoolapp.utils.SchoolApp;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomIndicator;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
@@ -27,7 +27,7 @@ import roboguice.activity.RoboFragmentActivity;
 
 public class ChildSelectionActivity extends RoboFragmentActivity{
 
-	SchoolApp app;
+	ApplicationSingleton app;
 	UIHelper uiHelper;
 	UserHelper userHelper;
 	//ListView listView;
@@ -68,7 +68,7 @@ public class ChildSelectionActivity extends RoboFragmentActivity{
 
 	private void init() {
 		// TODO Auto-generated method stub
-		app = (SchoolApp) getApplicationContext();
+		app = (ApplicationSingleton) getApplicationContext();
 		userHelper = new UserHelper(this);
 		uiHelper = new UIHelper(this);
 
@@ -210,7 +210,7 @@ public class ChildSelectionActivity extends RoboFragmentActivity{
 	{
 		if(!TextUtils.isEmpty(childrenList.get(currentPosition).getProfile_image()))
 		{
-			SchoolApp.getInstance().displayUniversalImage(childrenList.get(currentPosition).getProfile_image(), imgViewProfile, progressBar);
+			ApplicationSingleton.getInstance().displayUniversalImage(childrenList.get(currentPosition).getProfile_image(), imgViewProfile, progressBar);
 		}
 		else
 		{
@@ -362,7 +362,7 @@ public class ChildSelectionActivity extends RoboFragmentActivity{
 			holder.tvSchool.setText(childInfo.getSchool_name());
 			holder.tvclassandSection.setText(childInfo.getBatch_name()+"  "+childInfo.getCourse_name()+"  Section "+childInfo.getSection_name());
 			if(!TextUtils.isEmpty(childInfo.getProfile_image()))
-				SchoolApp.getInstance().displayUniversalImage(childInfo.getProfile_image(), holder.imgStudent);
+				ApplicationSingleton.getInstance().displayUniversalImage(childInfo.getProfile_image(), holder.imgStudent);
 			
 
 			return convertView;

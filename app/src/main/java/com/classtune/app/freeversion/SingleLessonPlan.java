@@ -16,24 +16,28 @@ import android.widget.Toast;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.LessonPlan;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.MyTagHandler;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomTabButton;
 import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogLessonPlanConfirmation;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.Calendar;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 01-Apr-15.
@@ -206,16 +210,58 @@ public class SingleLessonPlan extends ChildContainerActivity {
     {
 
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("id", this.id);
 
 
-        AppRestClient.post(URLHelper.URL_SINGLE_LESSON_PLAN, params, singleLessonPlanHandler);
+        //AppRestClient.post(URLHelper.URL_SINGLE_LESSON_PLAN, params, singleLessonPlanHandler);
+        singleLessonPlan(params);
 
 
     }
 
+    private void singleLessonPlan(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().singleLessonPlan(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                        uiHelper.dismissLoadingDialog();
+
+                        Log.e("RES", "response string: " + response.body());
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            JsonObject objLessonPlan = modelContainer.getData().get("lessonplan").getAsJsonObject();
+                            data = gson.fromJson(objLessonPlan.toString(), LessonPlan.class);
+
+
+
+                            initAction();
+
+                        }
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler singleLessonPlanHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -272,13 +318,50 @@ public class SingleLessonPlan extends ChildContainerActivity {
 
     private void initApiCallDeleteLessonPlan()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("id", this.id);
 
-        AppRestClient.post(URLHelper.URL_LESSON_DELETE, params, lessonDeleteHandler);
+       // AppRestClient.post(URLHelper.URL_LESSON_DELETE, params, lessonDeleteHandler);
+        lessonDelete(params);
     }
 
+    private void lessonDelete(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().lessonDelete(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+
+                            Toast.makeText(SingleLessonPlan.this, R.string.java_singlelessonplan_successfully_deleetd, Toast.LENGTH_SHORT).show();
+                            finish();
+
+
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler lessonDeleteHandler = new AsyncHttpResponseHandler() {
 
         @Override

@@ -21,7 +21,7 @@ import com.classtune.app.schoolapp.BatchSelectionChangedBroadcastReceiver.onBatc
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.TermReportExamSubjectItem;
 import com.classtune.app.schoolapp.model.TermReportItem;
-import com.classtune.app.schoolapp.utils.SchoolApp;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 
@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class ReportTermFragment extends Fragment implements
 		onBatchIdChangeListener {
 
-	private SchoolApp app;
+	private ApplicationSingleton app;
 	private UIHelper uiHelper;
 	private View view;
 	private ArrayList<TermReportItem> items;
@@ -69,7 +69,7 @@ public class ReportTermFragment extends Fragment implements
 	private void init() {
 		// TODO Auto-generated method stub
 		uiHelper = new UIHelper(getActivity());
-		app = (SchoolApp) getActivity().getApplicationContext();
+		app = (ApplicationSingleton) getActivity().getApplicationContext();
 
 		items = app.getReportCardData().getTermReportItemList();
 		tabList = new ArrayList<CustomButton>();
@@ -85,7 +85,7 @@ public class ReportTermFragment extends Fragment implements
 				.inflate(R.layout.fragment_term_report, container, false);
 		layoutReport = (LinearLayout) view.findViewById(R.id.layout_report);
 
-		if (SchoolApp.getInstance().getReportCardData().getTermReportItemList()
+		if (ApplicationSingleton.getInstance().getReportCardData().getTermReportItemList()
 				.size() > 0) {
 			arrangeAndShowTabholders();
 			tabList.get(0).setReportButtonSelected(true);

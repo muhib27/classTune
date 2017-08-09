@@ -16,8 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.R;
+import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.schoolapp.adapters.StudentListAdapter;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Batch;
@@ -26,19 +26,23 @@ import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StudentListFragment extends UserVisibleHintFragment {
 	private View rootView;
@@ -65,14 +69,55 @@ public class StudentListFragment extends UserVisibleHintFragment {
 
 	private void fetchData() {
 		
-			RequestParams params = new RequestParams();
+			HashMap<String,String> params = new HashMap<>();
 			params.put(RequestKeyHelper.BATCH_ID,selectedBatch.getId());
 			params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-			AppRestClient.post(URLHelper.URL_GET_STUDENTS_ATTENDANCE, params,
-					getStudentHandler);
+			//AppRestClient.post(URLHelper.URL_GET_STUDENTS_ATTENDANCE, params,getStudentHandler);
+			getStudentAttendence(params);
 			
 	}
 
+	private void getStudentAttendence(HashMap<String,String> params){
+
+		pbLayout.setVisibility(View.VISIBLE);
+		arraylist.clear();
+		if(adapter!=null)
+			adapter.notifyDataSetChanged();
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getStudentAttendence(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						arraylist.clear();
+
+						pbLayout.setVisibility(View.GONE);
+
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						arraylist.addAll(GsonParser.getInstance().parseStudentList(
+								(wrapper.getData().get("batch_attendence")).toString()));
+						adapter = new StudentListAdapter(mContext, arraylist);
+						studentListView.setAdapter(adapter);
+						isStudentListloaded = true;
+
+
+
+						if(arraylist.size() <= 0)
+						{
+							txtMessage.setVisibility(View.VISIBLE);
+						}
+						else
+						{
+							txtMessage.setVisibility(View.GONE);
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getStudentHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			pbLayout.setVisibility(View.GONE);
@@ -221,9 +266,10 @@ public class StudentListFragment extends UserVisibleHintFragment {
 
 
 		if(!PaidVersionHomeFragment.isBatchLoaded){
-			RequestParams params=new RequestParams();
+			HashMap<String,String> params=new HashMap<>();
 			params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-			AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+			//AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+			getBatch(params);
 		}else {
 			if(PaidVersionHomeFragment.selectedBatch!=null){
 				selectedBatch=PaidVersionHomeFragment.selectedBatch;
@@ -234,7 +280,38 @@ public class StudentListFragment extends UserVisibleHintFragment {
 			}
 		}
 	}
-	
+
+	private void getBatch(HashMap<String, String> params){
+
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(getString(R.string.loading_text));
+		else
+			uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getBatch(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Log.e("Response", "" +response.body());
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+						{
+							PaidVersionHomeFragment.isBatchLoaded=true;
+							PaidVersionHomeFragment.batches.clear();
+							String data=wrapper.getData().get("batches").toString();
+							PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+							//showPicker(PickerType.TEACHER_BATCH);
+							showPicker(PickerType.TEACHER_BATCH);
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getBatchEventsHandler=new AsyncHttpResponseHandler()
 	{
 

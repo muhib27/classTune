@@ -27,21 +27,24 @@ import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.RoutineTimeTable;
 import com.classtune.app.schoolapp.model.WeekDay;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *
@@ -141,7 +144,7 @@ public class StudentClassRoutineFragment extends UserVisibleHintFragment impleme
 
 	
 	private void fetchWeekDayDataFromServer(String weekDayId) {
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		/*params.put(RequestKeyHelper.SCHOOL, userHelper.getUser().getPaidInfo()
 				.getSchoolId());*/
@@ -155,8 +158,8 @@ public class StudentClassRoutineFragment extends UserVisibleHintFragment impleme
 			params.put(RequestKeyHelper.DAY_ID, weekDayId);
 		}
 		
-		AppRestClient.post(URLHelper.URL_GET_WEEK_DAY_STUDENT_CLASSES, params,
-				getWeekDayClassesHandler);
+		//AppRestClient.post(URLHelper.URL_GET_WEEK_DAY_STUDENT_CLASSES, params, getWeekDayClassesHandler);
+		getWeekDayStudentClasses(params);
 	}
 	
 	
@@ -170,14 +173,14 @@ public class StudentClassRoutineFragment extends UserVisibleHintFragment impleme
 	}
 
 	private void fetchNextClassDataFromServer() {
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		
 		if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
 			params.put(RequestKeyHelper.BATCH_ID, userHelper.getUser().getSelectedChild().getBatchId());
 		}
-		AppRestClient.post(URLHelper.URL_GET_NEXT_CLASS_STUDENT, params,
-				getNextClassHandler);
+		//AppRestClient.post(URLHelper.URL_GET_NEXT_CLASS_STUDENT, params, getNextClassHandler);
+		getNextClassStudent(params);
 	}
 
 	private void updateNextClassPanel(RoutineTimeTable nextClass)
@@ -211,7 +214,82 @@ public class StudentClassRoutineFragment extends UserVisibleHintFragment impleme
 			nextClassNameText.setText(R.string.java_studentclassroutinefragment_no_class_available);
 	}
 	
-	
+
+	private void getWeekDayStudentClasses(HashMap<String,String> params){
+		listPb.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getWeekDayStudentClasses(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						listPb.setVisibility(View.GONE);
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+						{
+							weekDayClasses.clear();
+							weekDayClasses.addAll(GsonParser.getInstance().parseClassList(wrapper.getData().get("time_table").toString()));
+							days.clear();
+							days.addAll(GsonParser.getInstance().parseWeekDays(wrapper.getData().get("weekdays").toString()));
+							currentWeekDay=GsonParser.getInstance().parseGsonToString(wrapper.getData().get("cur_week"));
+
+							if(selectedWeekDayId.equalsIgnoreCase("current"))
+							{
+								String weekDayName=days.get(Integer.parseInt(currentWeekDay)).getText();
+
+								weekDayName.toLowerCase();
+								weekDayName = weekDayName.substring(0,1).toUpperCase() + weekDayName.substring(1).toLowerCase();
+
+								Resources res = mContext.getResources();
+								String text = String.format(res.getString(R.string.teacher_routine_title), weekDayName);
+
+
+								listHeaderTextView.setText(text);
+								String noClassText = String.format(res.getString(R.string.no_class_title), weekDayName);
+								noDataText.setText(noClassText);
+							}
+							else
+							{
+								String weekDayName="";
+					/*if(selectedWeekDayId.equals("current")){
+						weekDayName = "current";
+					}else {*/
+								weekDayName=days.get(Integer.parseInt(selectedWeekDayId)).getText();
+								//}
+
+								weekDayName.toLowerCase();
+								weekDayName = weekDayName.substring(0,1).toUpperCase() + weekDayName.substring(1).toLowerCase();
+
+
+								Resources res = getActivity().getResources();
+								String text = String.format(res.getString(R.string.teacher_routine_title), weekDayName);
+
+
+
+								listHeaderTextView.setText(text);
+								String noClassText = String.format(res.getString(R.string.no_class_title), weekDayName);
+								noDataText.setText(noClassText);
+							}
+							adapter.notifyDataSetChanged();
+							if(weekDayClasses.size()>0)
+							{
+								classList.setVisibility(View.VISIBLE);
+								noDataText.setVisibility(View.GONE);
+							}
+							else
+							{
+								classList.setVisibility(View.GONE);
+								noDataText.setVisibility(View.VISIBLE);
+							}
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						listPb.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getWeekDayClassesHandler = new AsyncHttpResponseHandler() {
 		@Override
 		public void onFailure(Throwable arg0, String arg1) {
@@ -291,7 +369,40 @@ public class StudentClassRoutineFragment extends UserVisibleHintFragment impleme
 		}
 	};
 	
-	
+	private void getNextClassStudent(HashMap<String,String> params){
+
+		nextClassPanelRefreshPb.setVisibility(View.VISIBLE);
+		nextClassRefreshBtn.setVisibility(View.GONE);
+
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getNextClassStudent(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						nextClassPanelRefreshPb.setVisibility(View.GONE);
+						nextClassRefreshBtn.setVisibility(View.VISIBLE);
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+						{
+							currentDateServer=GsonParser.getInstance().parseGsonToString(wrapper.getData().get("today"));
+							Log.e("Date", currentDateServer);
+							JsonElement e = wrapper.getData().get("time_table");
+							if(!e.isJsonArray()){
+								nextClass=GsonParser.getInstance().parseRoutineTimeTable(e.toString());
+								updateNextClassPanel(nextClass);
+							}
+
+						}
+						Log.e("NextClass", ""+response.body());
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						nextClassPanelRefreshPb.setVisibility(View.GONE);
+						nextClassRefreshBtn.setVisibility(View.VISIBLE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getNextClassHandler = new AsyncHttpResponseHandler() {
 		@Override
 		public void onFailure(Throwable arg0, String arg1) {

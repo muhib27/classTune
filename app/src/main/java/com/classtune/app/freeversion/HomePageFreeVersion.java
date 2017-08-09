@@ -56,11 +56,11 @@ import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.networking.VolleyRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.SPKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.SharedPreferencesHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
@@ -70,6 +70,7 @@ import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -78,10 +79,14 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import droidninja.filepicker.FilePickerConst;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 @SuppressLint("NewApi")
 public class HomePageFreeVersion extends HomeContainerActivity {
@@ -250,7 +255,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
          /*Log.e(LOG_TAG,
 				"Activity result requestCode does not correspond restrictions: 0x"
 						+ Integer.toHexString(requestCode));*/
-        if(requestCode== SchoolApp.REQUEST_CODE_CHILD_SELECTION){
+        if(requestCode== ApplicationSingleton.REQUEST_CODE_CHILD_SELECTION){
             if (data == null) {
                 if (resultCode == RESULT_OK) {
                     getSupportFragmentManager().beginTransaction()
@@ -666,7 +671,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                         mDrawerLayout.closeDrawer(Gravity.RIGHT);
                         startActivityForResult(new Intent(HomePageFreeVersion.this,
                                         ChildSelectionActivity.class),
-                                SchoolApp.REQUEST_CODE_CHILD_SELECTION);
+                                ApplicationSingleton.REQUEST_CODE_CHILD_SELECTION);
                         break;
                     case 3:
                        /* mDrawerLayout.closeDrawer(Gravity.RIGHT);
@@ -696,7 +701,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                         VolleyRestClient volleyRestClient = new  VolleyRestClient();
                         volleyRestClient.setContext(HomePageFreeVersion.this);
                         volleyRestClient.getRequestQueue().getCache().clear();
-                        SchoolApp.getInstance().clearApplicationData();
+                        ApplicationSingleton.getInstance().clearApplicationData();
 
                         finish();
                         overridePendingTransition(0, 0);
@@ -750,7 +755,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
         RequestParams params = new RequestParams();
         params.put("username", userHelper.getUser().getUsername());
         params.put("password", userHelper.getUser().getPassword());
-        params.put("udid", SchoolApp.getInstance().getUDID());
+        params.put("udid", ApplicationSingleton.getInstance().getUDID());
         Log.e("GCM_ID",registrationId);
         params.put("gcm_id", registrationId);
         AppRestClient.post(URLHelper.URL_LOGIN, params, logInHandler);
@@ -783,11 +788,59 @@ public class HomePageFreeVersion extends HomeContainerActivity {
     private void initApiCallCheckVersion()
     {
 
-        RequestParams params = new RequestParams();
-        AppRestClient.post(URLHelper.URL_GET_APP_VERSION, params, checkVersionHandler);
+        HashMap<String,String> params = new HashMap<>();
+        //AppRestClient.post(URLHelper.URL_GET_APP_VERSION, params, checkVersionHandler);
+        checkAppVersion(params);
 
     }
 
+    private void checkAppVersion(HashMap<String,String> params){
+        ApplicationSingleton.getInstance().getNetworkCallInterface().getAppVersion(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        //uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+
+                            int version = modelContainer.getData().get("version").getAsJsonObject().get("version").getAsInt();
+                            boolean toastUpdate = modelContainer.getData().get("version").getAsJsonObject().get("toast_update").getAsBoolean();
+                            boolean mustUpdate = modelContainer.getData().get("version").getAsJsonObject().get("must_update").getAsBoolean();
+
+                            if(version > getAppVersionCode())
+                            {
+                                if(mustUpdate==true)
+                                {
+                                    showVersionDialog();
+                                }
+                                else if(toastUpdate==true)
+                                {
+                                    Toast.makeText(HomePageFreeVersion.this, R.string.java_homepagefreeversion_new_update_available, Toast.LENGTH_LONG).show();
+                                }
+
+                            }
+
+
+                        }
+
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler checkVersionHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -870,11 +923,55 @@ public class HomePageFreeVersion extends HomeContainerActivity {
     private void initApiCallTeacherSwap()
     {
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
-        AppRestClient.post(URLHelper.URL_TEACHER_IMPORTANCE_SWAP, params, checkTeacherSwapHandler);
+       // AppRestClient.post(URLHelper.URL_TEACHER_IMPORTANCE_SWAP, params, checkTeacherSwapHandler);
+        teacherImportantSwap(params);
 
+    }
+
+    private void teacherImportantSwap(HashMap<String,String> params){
+        ApplicationSingleton.getInstance().getNetworkCallInterface().teacherImportantSwap(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        //uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            JsonObject object = modelContainer.getData().get("notice").getAsJsonObject();
+                            if(object != null){
+
+                                if(object.has("id")){
+                                    String subject = object.get("subject").getAsString();
+                                    String body = object.get("body").getAsString();
+                                    String rType = object.get("rtype").getAsString();
+                                    String rId = object.get("rid").getAsString();
+
+                                    showTeacherSwapDialog(subject, body, rType, rId);
+                                }
+
+                            }
+
+                        }
+
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                    }
+                }
+        );
     }
 
     AsyncHttpResponseHandler checkTeacherSwapHandler = new AsyncHttpResponseHandler() {
@@ -1020,7 +1117,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
     }
 
     private void initApiCallSeenTeacherSwap(String rId, String rType){
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
 
@@ -1035,9 +1132,49 @@ public class HomePageFreeVersion extends HomeContainerActivity {
         }
 
 
-        AppRestClient.post(URLHelper.URL_EVENT_REMINDER, params, reminderHandler);
+        //AppRestClient.post(URLHelper.URL_EVENT_REMINDER, params, reminderHandler);
+        eventReminder(params);
     }
 
+    private void eventReminder(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().eventReminder(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            modelContainer.getData().get("unread_total").getAsString();
+
+                            SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+
+                            userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
+
+                            NotificationActivity.listenerActivity.onNotificationCountChangedFromActivity(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
+
+                        }
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler reminderHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -1112,13 +1249,65 @@ public class HomePageFreeVersion extends HomeContainerActivity {
 
 
     private void initApiCallLogout() {
-        RequestParams params = new RequestParams();
+        HashMap<String, String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("gcm_id", getRegistrationId(this));
 
-        AppRestClient.post(URLHelper.URL_LOGOUT, params, logoutHandler);
+        //AppRestClient.post(URLHelper.URL_LOGOUT, params, logoutHandler);
+        logout(params);
     }
 
+    private void logout(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().logOut(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                            UserHelper.setLoggedIn(false);
+                            UserHelper.saveIsJoinedSchool(false);
+                            Intent intent = new Intent(HomePageFreeVersion.this,
+                                    LoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION
+                                    | Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                            VolleyRestClient volleyRestClient = new  VolleyRestClient();
+                            volleyRestClient.setContext(HomePageFreeVersion.this);
+                            volleyRestClient.getRequestQueue().getCache().clear();
+                            ApplicationSingleton.getInstance().clearApplicationData();
+
+                            finish();
+                            overridePendingTransition(0, 0);
+
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
+                        } else {
+
+                            Toast.makeText(context, R.string.java_homepagefreeversion_something_wrong_internet, Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler logoutHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -1158,7 +1347,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                 VolleyRestClient volleyRestClient = new  VolleyRestClient();
                 volleyRestClient.setContext(HomePageFreeVersion.this);
                 volleyRestClient.getRequestQueue().getCache().clear();
-                SchoolApp.getInstance().clearApplicationData();
+                ApplicationSingleton.getInstance().clearApplicationData();
 
                 finish();
                 overridePendingTransition(0, 0);
@@ -1335,11 +1524,12 @@ public class HomePageFreeVersion extends HomeContainerActivity {
     private void sendRegistrationIdToBackend() {
         String deviceId = Secure.getString(this.getContentResolver(),
                 Secure.ANDROID_ID);
-        RequestParams params = new RequestParams();
+        HashMap<String, String> params = new HashMap<>();
         params.put("gcm_id", regid);
         params.put("device_id", deviceId + "classtune");
-        AppRestClient.post(URLHelper.URL_GCM_REGISTER, params,
-                serverResponseHandler);
+       /* AppRestClient.post(URLHelper.URL_GCM_REGISTER, params,
+                serverResponseHandler);*/
+       serverResponseHandler(params);
 
     }
 
@@ -1355,6 +1545,30 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                 AppConstant.GCM_REGISTRATION_SERVER, false);
     }
 
+    private void serverResponseHandler(HashMap<String, String> params){
+        ApplicationSingleton.getInstance().getNetworkCallInterface().gcmRegister(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        Log.e("RESPONSE", ""+response.body());
+
+                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                response.body());
+
+                        if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                            setRegisteredToServer(true);
+                        } else {
+                            setRegisteredToServer(false);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler serverResponseHandler = new AsyncHttpResponseHandler() {
         @Override
         public void onFailure(Throwable arg0, String arg1) {

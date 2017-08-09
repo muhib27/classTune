@@ -13,13 +13,17 @@ import android.widget.Toast;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.User;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.google.gson.JsonElement;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Tasvir on 12/30/2015.
@@ -77,10 +81,31 @@ public class ForgetPasswordActivity extends ChildContainerActivity implements Vi
 
     public void sendEmail(User user, String username,
                                String email) {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put("username", username);
         params.put("email", email);
-        AppRestClient.post(URLHelper.URL_FORGET_PASSWORD, params,
+
+        ApplicationSingleton.getInstance().getNetworkCallInterface().forgetPassword(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                response.body());
+                        if (wrapper.getStatus().getCode() == 200) {
+                            Toast.makeText(ForgetPasswordActivity.this, R.string.java_forgetpasswordactivity_check_email,Toast.LENGTH_LONG).show();
+                            finish();
+                        } else if(wrapper.getStatus().getCode() == 404) {
+                            Toast.makeText(ForgetPasswordActivity.this, R.string.java_forgetpasswordactivity_email_incorrect,Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                    }
+                }
+        );
+        /*AppRestClient.post(URLHelper.URL_FORGET_PASSWORD, params,
                 new AsyncHttpResponseHandler(){
                     @Override
                     public void onSuccess(int i, String s) {
@@ -94,6 +119,6 @@ public class ForgetPasswordActivity extends ChildContainerActivity implements Vi
                             Toast.makeText(ForgetPasswordActivity.this, R.string.java_forgetpasswordactivity_email_incorrect,Toast.LENGTH_LONG).show();
                         }
                     }
-                });
+                });*/
     }
 }

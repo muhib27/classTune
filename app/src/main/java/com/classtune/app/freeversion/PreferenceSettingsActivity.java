@@ -16,19 +16,22 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.MainCategory;
 import com.classtune.app.schoolapp.model.SubCategory;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomTextView;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PreferenceSettingsActivity extends ChildContainerActivity implements OnCheckedChangeListener {
 
@@ -52,21 +55,21 @@ public class PreferenceSettingsActivity extends ChildContainerActivity implement
 	}
 
 	private void fetchPreferenceData() {
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		// UserHelper.getUserFreeId()
 		params.put(RequestKeyHelper.USER_ID, UserHelper.getUserFreeId());
-		AppRestClient.post(URLHelper.URL_PREFERENCE_SETTINGS_GET, params,
-				preferenceHandler);
+		//AppRestClient.post(URLHelper.URL_PREFERENCE_SETTINGS_GET, params, preferenceHandler);
+		preferenceSettingGet(params);
 	}
 
 	private void setPreferenceData(String category_ids) {
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		// UserHelper.getUserFreeId()
 		params.put(RequestKeyHelper.USER_ID, UserHelper.getUserFreeId());
 		params.put(RequestKeyHelper.CATEGORY_IDS, category_ids);
 
-		AppRestClient.post(URLHelper.URL_PREFERENCE_SETTINGS_SET, params,
-				set_preferenceHandler);
+		//AppRestClient.post(URLHelper.URL_PREFERENCE_SETTINGS_SET, params, set_preferenceHandler);
+		preferenceSettingSet(params);
 	}
 
 	private void initViews() {
@@ -75,6 +78,95 @@ public class PreferenceSettingsActivity extends ChildContainerActivity implement
 		scrollLinearLayout = (LinearLayout) findViewById(R.id.pref_ll_scroll);
 	}
 
+	private void preferenceSettingGet(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().preferenceSettingGet(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+
+						if (wrapper.getStatus().getCode() == 200
+								|| wrapper.getStatus().getCode() == 202) {
+
+							Log.e("PREFERENCE DATA", wrapper.getData().toString());
+							Log.e("STATUS CODE", "  " + wrapper.getStatus().getCode());
+							// postList = GsonParser.getInstance().parseGoodreadPostAll(
+							// wrapper.getData().toString());
+							mainCategories = GsonParser.getInstance().parseMainCategories(
+									wrapper.getData().getAsJsonArray("all_categories")
+											.toString());
+							selectedSubCateogryIds = wrapper.getData()
+									.get("preferred_categories").getAsString().split(",");
+							Log.e("PREFFERED CATEGORY STRING ",
+									wrapper.getData().get("preferred_categories")
+											.toString());
+							for (MainCategory mcat : mainCategories) {
+								View mainCatView = LayoutInflater.from(
+										PreferenceSettingsActivity.this).inflate(
+										R.layout.item_pref_settings, null);
+								CustomTextView ctvm = (CustomTextView) mainCatView
+										.findViewById(R.id.tv_main_cat_name);
+								ImageView icon = (ImageView) mainCatView
+										.findViewById(R.id.pref_cat_icon);
+								icon.setImageResource(AppUtility.getResourceImageId(
+										Integer.parseInt(mcat.getId()), true, true));
+								ctvm.setText(mcat.getName());
+								LinearLayout subView = (LinearLayout) mainCatView
+										.findViewById(R.id.pref_ll_subcat);
+								for (SubCategory sub : mcat.getSub_categories()) {
+									View subViewItem = LayoutInflater.from(
+											PreferenceSettingsActivity.this).inflate(
+											R.layout.item_pref_settings_subcat, null);
+									CheckBox cb = (CheckBox) subViewItem
+											.findViewById(R.id.cb_pref_subcat);
+
+									CustomTextView ctvs = (CustomTextView) subViewItem
+											.findViewById(R.id.tv_pref_subcat_name);
+									cb.setTag(sub.getId());
+									cb.setOnCheckedChangeListener(PreferenceSettingsActivity.this);
+									ctvs.setText(sub.getName());
+									subCategoriesMap.put(sub.getId(), sub);
+									// if(wrapper.getStatus().getCode()==202){
+
+						/*cb.setChecked(true);
+						// }else {
+						cb.setChecked(false);*/
+									if(wrapper.getStatus().getCode()==202){
+										cb.setChecked(true);
+									}else
+										for (String catId : selectedSubCateogryIds) {
+											Log.e("MATCHED SUBCATEGORY SELECTED", "" + catId);
+											if (sub.getId().equals(catId)) {
+												cb.setChecked(true);
+												break;
+											}
+										}
+									// }
+
+									subView.addView(subViewItem);
+								}
+								if (mcat.getSub_categories().size() > 0)
+									scrollLinearLayout.addView(mainCatView);
+							}
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler preferenceHandler = new AsyncHttpResponseHandler() {
 		public void onStart() {
 			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
@@ -162,6 +254,48 @@ public class PreferenceSettingsActivity extends ChildContainerActivity implement
 		};
 	};
 
+	private void preferenceSettingSet(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().preferenceSettingSet(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+
+						if (wrapper.getStatus().getCode() == 200) {
+
+							Log.e("SET_PREFERENCE DATA", wrapper.getData().toString());
+							finish();
+							Intent main = new Intent(PreferenceSettingsActivity.this,HomePageFreeVersion.class);
+							main.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION
+									| Intent.FLAG_ACTIVITY_NEW_TASK
+									| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+							startActivity(main);
+
+				/*
+				 * mainCategories =
+				 * GsonParser.getInstance().parseMainCategories(
+				 * wrapper.getData(
+				 * ).getAsJsonArray("all_categories").toString());
+				 */
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler set_preferenceHandler = new AsyncHttpResponseHandler() {
 		public void onStart() {
 			uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));

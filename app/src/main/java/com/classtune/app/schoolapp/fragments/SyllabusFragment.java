@@ -31,21 +31,25 @@ import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.Term;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.CustomTabButtonEllipsizeText;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SyllabusFragment extends Fragment {
 	
@@ -102,9 +106,10 @@ public class SyllabusFragment extends Fragment {
 		if(userHelper.getUser().getType() == UserTypeEnum.TEACHER)
 		{
 			if(!PaidVersionHomeFragment.isBatchLoaded){
-				RequestParams params=new RequestParams();
+				HashMap<String,String> params=new HashMap<>();
 				params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-				AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+				//AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+				getBatch(params);
 			}else {
 				if(PaidVersionHomeFragment.selectedBatch!=null){
 					selectedBatchId = PaidVersionHomeFragment.selectedBatch.getId();
@@ -156,9 +161,10 @@ public class SyllabusFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if(!PaidVersionHomeFragment.isBatchLoaded){
-					RequestParams params=new RequestParams();
+					HashMap<String,String> params=new HashMap<String, String>();
 					params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-					AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+					//AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+					getBatch(params);
 				}else {
 						showBatchPicker(PickerType.TEACHER_BATCH);
 				}
@@ -294,6 +300,40 @@ public class SyllabusFragment extends Fragment {
 		}
 	}
 
+	private void getBatch(HashMap<String, String> params){
+
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(getString(R.string.loading_text));
+		else
+			uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getBatch(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Log.e("Response", "" +response.body());
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+						{
+							PaidVersionHomeFragment.isBatchLoaded=true;
+							PaidVersionHomeFragment.batches.clear();
+							String data=wrapper.getData().get("batches").toString();
+							PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+							//showPicker(PickerType.TEACHER_BATCH);
+							showBatchPicker(PickerType.TEACHER_BATCH);
+						}
+
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+
+	}
 	AsyncHttpResponseHandler getBatchEventsHandler=new AsyncHttpResponseHandler()
 	{
 
@@ -361,7 +401,7 @@ public class SyllabusFragment extends Fragment {
 	{
 		listTerm.clear();
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 
 		if (userHelper.getUser().getType() == UserTypeEnum.PARENTS)
@@ -391,7 +431,8 @@ public class SyllabusFragment extends Fragment {
 			params.put(RequestKeyHelper.CATEGORY_ID, catId);
 		}
 
-		AppRestClient.post(URLHelper.URL_SYLLABUS_TERM, params, termHandler);
+		//AppRestClient.post(URLHelper.URL_SYLLABUS_TERM, params, termHandler);
+		syllabusTerm(params);
 	}
 
 
@@ -432,7 +473,44 @@ public class SyllabusFragment extends Fragment {
 	};
 
 
+	private void syllabusTerm(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().syllabusTerm(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
 
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							listTerm = GsonParser.getInstance().parseTerm(modelContainer.getData().getAsJsonArray("terms").toString());
+
+							adapter.notifyDataSetChanged();
+
+
+							if(listTerm.size() <= 0)
+							{
+								Toast.makeText(getActivity(), getString(R.string.fragment_archieved_events_txt_no_data_found), Toast.LENGTH_SHORT).show();
+							}
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler termHandler = new AsyncHttpResponseHandler() {
 
 		@Override

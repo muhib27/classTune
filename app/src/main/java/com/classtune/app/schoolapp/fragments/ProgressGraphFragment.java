@@ -18,8 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.GraphSubjectType;
@@ -28,15 +28,14 @@ import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.ProgressExam;
 import com.classtune.app.schoolapp.model.SubjectSeries;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -49,7 +48,12 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Tasvir on 4/8/2015.
@@ -116,7 +120,7 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
     public void showSubjectPicker() {
 
         CustomPickerWithLoadData picker = CustomPickerWithLoadData.newInstance(0);
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         if(userHelper.getUser().getType()== UserHelper.UserTypeEnum.PARENTS){
 
@@ -201,7 +205,7 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
         }
     };
     private void fetchGraphData(String subjectId,String examType){
-        RequestParams params = new RequestParams();
+        HashMap<String, String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put(RequestKeyHelper.SUBJECT_ID, subjectId);
         params.put(RequestKeyHelper.EXAM_CATEGORY,examType);
@@ -235,7 +239,7 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
             //params.put(RequestKeyHelper.BATCH_ID,userHelper.getUser().getSelectedChild().getBatchId());
             //params.put(RequestKeyHelper.STUDENT_ID,userHelper.getUser().getSelectedChild().getProfileId());
         }
-        AppRestClient.post(URLHelper.URL_GET_REPORT_PROGRESS, params,  new AsyncHttpResponseHandler(){
+        /*AppRestClient.post(URLHelper.URL_GET_REPORT_PROGRESS, params,  new AsyncHttpResponseHandler(){
             public void onFailure(Throwable arg0, String arg1) {
                 setGraphVisibility(true);
 //                Log.e("error", arg1);
@@ -257,12 +261,36 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
                         (progress.get("exam")).toString()));
                 //adapter.notifyDataSetChanged();
             };
-        });
+        });*/
 
+        getReportProgess(params);
     }
 
+    private void getReportProgess(HashMap<String, String> params){
+        setGraphVisibility(false);
+        ApplicationSingleton.getInstance().getNetworkCallInterface().getReportProgress(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        setGraphVisibility(true);
+                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                response.body());
+                        JsonObject progress = wrapper.getData().getAsJsonObject("progress");
+                        Log.e("response graph", (progress.get("exam")).toString());
+                        openChart(GsonParser.getInstance().parseGraphDataList(
+                                (progress.get("exam")).toString()));
+                        //adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        setGraphVisibility(true);
+                    }
+                }
+        );
+    }
     private void fetchAllGraphData(String examType){
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put(RequestKeyHelper.EXAM_CATEGORY,examType);
         if(userHelper.getUser().getType()== UserHelper.UserTypeEnum.PARENTS){
@@ -295,7 +323,7 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
             //params.put(RequestKeyHelper.BATCH_ID,userHelper.getUser().getSelectedChild().getBatchId());
             //params.put(RequestKeyHelper.STUDENT_ID,userHelper.getUser().getSelectedChild().getProfileId());
         }
-        AppRestClient.post(URLHelper.URL_GET_REPORT_PROGRESS_ALL, params,  new AsyncHttpResponseHandler(){
+       /* AppRestClient.post(URLHelper.URL_GET_REPORT_PROGRESS_ALL, params,  new AsyncHttpResponseHandler(){
             public void onFailure(Throwable arg0, String arg1) {
                 setGraphVisibility(true);
 //                Log.e("error", arg1);
@@ -317,9 +345,34 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
                         (progress.get("subject")).toString()));
                 //adapter.notifyDataSetChanged();
             };
-        });
+        });*/
+
+       getReportProgessAll(params);
     }
 
+    private void getReportProgessAll(HashMap<String, String> params){
+        setGraphVisibility(false);
+        ApplicationSingleton.getInstance().getNetworkCallInterface().getReportProgressAll(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        setGraphVisibility(true);
+                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                response.body());
+                        JsonObject progress = wrapper.getData().getAsJsonObject("progress");
+                        // Log.e("response graph",(progress.get("exam")).toString());
+                        openChartAll(GsonParser.getInstance().parseGraphDataListAll(
+                                (progress.get("subject")).toString()));
+                        //adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                    }
+                }
+        );
+    }
     private void openChartAll(List<SubjectSeries> exam){
         String[] titles = new String[exam.size()] ;//{ "Crete Air Temperature", "Skiathos Air Temperature" };
         List<double[]> x = new ArrayList<double[]>();

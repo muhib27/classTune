@@ -26,9 +26,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.classtune.app.R;
 import com.classtune.app.freeversion.AnyFragmentLoadActivity;
 import com.classtune.app.freeversion.HomePageFreeVersion;
@@ -45,13 +42,12 @@ import com.classtune.app.schoolapp.model.FreeFeed;
 import com.classtune.app.schoolapp.model.FreeVersionPost;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.networking.VolleyRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserAccessType;
@@ -59,18 +55,21 @@ import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.PagerContainer;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialog;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeSet;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
@@ -196,7 +195,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
     private void processFetchPost(String url, String categoryIndex) {
 
         if(AppUtility.isInternetConnected()){
-            RequestParams params = new RequestParams();
+            HashMap<String,String> params = new HashMap<>();
             params.put(RequestKeyHelper.PAGE_NUMBER, pageNumber + "");
             params.put(RequestKeyHelper.PAGE_SIZE, pageSize + "");
             //params.put(RequestKeyHelper.SCHOOL_ID, getArguments().getInt("school_id") + "");
@@ -213,12 +212,12 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                         params.put("student_id", userHelper.getUser()
                                 .getSelectedChild().getProfileId());
                     }
-                    AppRestClient.post(URLHelper.URL_PAID_VERSION_CLASSTUNE_FEED,
-                            params, fitnessHandler);
-
+                    Log.e("getuserFeed", "processFetchPost: " +UserHelper.getUserSecret()  );
+                    //AppRestClient.post(URLHelper.URL_PAID_VERSION_CLASSTUNE_FEED, params, fitnessHandler);
+                    getUserfeed(params);
                 } else {
-                    AppRestClient.post(URLHelper.URL_FREE_VERSION_SCHOOL_FEED,
-                            params, fitnessHandler);
+                    //AppRestClient.post(URLHelper.URL_FREE_VERSION_SCHOOL_FEED, params, fitnessHandler);
+                    getUserfeed(params);
                 }
 
             }
@@ -228,7 +227,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         if(pageNumber == 1){
 
             Log.e("PAGE_NUMBER", "is: "+pageNumber);
-            Map<String, String> paramsVolley = new HashMap<String, String>();
+            HashMap<String, String> paramsVolley = new HashMap<String, String>();
             paramsVolley.put(RequestKeyHelper.PAGE_NUMBER, "1");
             paramsVolley.put(RequestKeyHelper.PAGE_SIZE, pageSize + "");
 
@@ -243,12 +242,75 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                                 .getSelectedChild().getProfileId());
                     }
 
+
+                    ApplicationSingleton.getInstance().getNetworkCallInterface().freeVersionClassTuneFeed(paramsVolley).enqueue(
+                            new Callback<JsonElement>() {
+                                @Override
+                                public void onResponse(Call<JsonElement> call, retrofit2.Response<JsonElement> response) {
+                                    Log.e("*** RESPONSE ***" , "is: "+response.body());
+
+                                    if(AppUtility.isInternetConnected() == false){
+                                        if (uiHelper.isDialogActive()) {
+                                            uiHelper.dismissLoadingDialog();
+                                        }
+
+                                        Wrapper modelContainer = GsonParser.getInstance()
+                                                .parseServerResponse2(response.body());
+
+                                        if (modelContainer.getStatus().getCode() == 200) {
+                                            hasNext = modelContainer.getData().get("has_next")
+                                                    .getAsBoolean();
+
+                                            schoolName = modelContainer.getData().get("school_name").getAsString();
+                                            username = modelContainer.getData().get("user_name").getAsString();
+                                            profileurl = modelContainer.getData().get("profile_picture").getAsString();
+                                            attendance_status = modelContainer.getData().get("attandence").getAsInt();
+                                            userdetails = modelContainer.getData().get("user_details").getAsString();
+                                            lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
+
+                                            if (pageNumber == 1) {
+                                                adapter.clearList();
+                                                adapter.addSeparatorItem(new FreeFeed());
+                                            }
+
+                                            spinner.setVisibility(View.GONE);
+                                            if (!hasNext) {
+                                                // fitnessAdapter.setStopLoadingData(true);
+                                                stopLoadingData = true;
+                                            }
+                                            // fitnessAdapter.getList().addAll();
+                                            ArrayList<FreeFeed> allpost = GsonParser.getInstance()
+                                                    .parsePost(
+                                                            modelContainer.getData().getAsJsonArray("feeds")
+                                                                    .toString());
+
+                                            // if (pageNumber == 1)
+                                            for (int i = 0; i < allpost.size(); i++) {
+                                                adapter.addItem(allpost.get(i));
+                                            }
+                                            adapter.notifyDataSetChanged();
+
+                                            if (pageNumber != 0 || isRefreshing) {
+                                                listGoodread.onRefreshComplete();
+                                                loading = false;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                                }
+                            }
+                    );
+
                     VolleyRestClient volleyRestClient = new VolleyRestClient();
                     volleyRestClient.setContext(getActivity());
 
 
 
-                    volleyRestClient.post(Request.Method.POST, paramsVolley, URLHelper.URL_BASE+URLHelper.URL_PAID_VERSION_CLASSTUNE_FEED, new Response.Listener<String>() {
+                 /*   volleyRestClient.post(Request.Method.POST, paramsVolley, URLHelper.URL_BASE+URLHelper.URL_PAID_VERSION_CLASSTUNE_FEED, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String s) {
                             Log.e("*** RESPONSE ***" , "is: "+s);
@@ -312,11 +374,75 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                             }
 
                         }
-                    });
+                    });*/
 
 
                 } else {
-                    VolleyRestClient volleyRestClient = new VolleyRestClient();
+
+                    ApplicationSingleton.getInstance().getNetworkCallInterface().freeVersionSchoolFeed(paramsVolley).enqueue(
+                            new Callback<JsonElement>() {
+                                @Override
+                                public void onResponse(Call<JsonElement> call, retrofit2.Response<JsonElement> response) {
+                                    Log.e("*** RESPONSE ***" , "is: "+response.body());
+
+                                    if(AppUtility.isInternetConnected() == false){
+                                        if (uiHelper.isDialogActive()) {
+                                            uiHelper.dismissLoadingDialog();
+                                        }
+
+                                        Wrapper modelContainer = GsonParser.getInstance()
+                                                .parseServerResponse2(response.body());
+
+                                        if (modelContainer.getStatus().getCode() == 200) {
+                                            hasNext = modelContainer.getData().get("has_next")
+                                                    .getAsBoolean();
+
+                                            schoolName = modelContainer.getData().get("school_name").getAsString();
+                                            username = modelContainer.getData().get("user_name").getAsString();
+                                            profileurl = modelContainer.getData().get("profile_picture").getAsString();
+                                            attendance_status = modelContainer.getData().get("attandence").getAsInt();
+                                            userdetails = modelContainer.getData().get("user_details").getAsString();
+                                            lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
+
+                                            if (pageNumber == 1) {
+                                                adapter.clearList();
+                                                adapter.addSeparatorItem(new FreeFeed());
+                                            }
+
+                                            spinner.setVisibility(View.GONE);
+                                            if (!hasNext) {
+                                                // fitnessAdapter.setStopLoadingData(true);
+                                                stopLoadingData = true;
+                                            }
+                                            // fitnessAdapter.getList().addAll();
+                                            ArrayList<FreeFeed> allpost = GsonParser.getInstance()
+                                                    .parsePost(
+                                                            modelContainer.getData().getAsJsonArray("feeds")
+                                                                    .toString());
+
+                                            // if (pageNumber == 1)
+                                            for (int i = 0; i < allpost.size(); i++) {
+                                                adapter.addItem(allpost.get(i));
+                                            }
+                                            adapter.notifyDataSetChanged();
+
+                                            if (pageNumber != 0 || isRefreshing) {
+                                                listGoodread.onRefreshComplete();
+                                                loading = false;
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                                }
+                            }
+                    );
+
+                  /*  VolleyRestClient volleyRestClient = new VolleyRestClient();
                     volleyRestClient.setContext(getActivity());
 
                     volleyRestClient.post(Request.Method.POST, paramsVolley, URLHelper.URL_BASE+URLHelper.URL_FREE_VERSION_SCHOOL_FEED, new Response.Listener<String>() {
@@ -385,7 +511,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                             }
 
                         }
-                    });
+                    });*/
                 }
 
             }
@@ -397,6 +523,83 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
     }
 
+    private void getUserfeed(HashMap<String, String> params){
+        if (pageNumber == 0 && !isRefreshing) {
+            if (!uiHelper.isDialogActive())
+                uiHelper.showLoadingDialog(getString(R.string.loading_text));
+            else
+                uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+        }
+        if (pageNumber == 1) {
+            spinner.setVisibility(View.VISIBLE);
+        }
+    ApplicationSingleton.getInstance().getNetworkCallInterface().getUserFeed(params).enqueue(
+            new Callback<JsonElement>() {
+                @Override
+                public void onResponse(Call<JsonElement> call, retrofit2.Response<JsonElement> response) {
+                    if (uiHelper.isDialogActive()) {
+                        uiHelper.dismissLoadingDialog();
+                    }
+                    Log.e("@@@****@@@",""+response.body());
+            /*
+			 * if (fitnessAdapter.getPageNumber() == 1) {
+			 * fitnessAdapter.getList().clear(); // setupPoppyView(); }
+			 */
+                    //Log.e("Response CATEGORY", responseString);
+                    // app.showLog("Response", responseString);
+                    Wrapper modelContainer = GsonParser.getInstance()
+                            .parseServerResponse2(response.body());
+
+                    if (modelContainer.getStatus().getCode() == 200) {
+                        hasNext = modelContainer.getData().get("has_next")
+                                .getAsBoolean();
+
+                        schoolName = modelContainer.getData().get("school_name").getAsString();
+                        username = modelContainer.getData().get("user_name").getAsString();
+                        profileurl = modelContainer.getData().get("profile_picture").getAsString();
+                        attendance_status = modelContainer.getData().get("attandence").getAsInt();
+                        userdetails = modelContainer.getData().get("user_details").getAsString();
+                        lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
+
+                        if (pageNumber == 1) {
+                            adapter.clearList();
+                            adapter.addSeparatorItem(new FreeFeed());
+                        }
+
+                        spinner.setVisibility(View.GONE);
+                        if (!hasNext) {
+                            // fitnessAdapter.setStopLoadingData(true);
+                            stopLoadingData = true;
+                        }
+                        // fitnessAdapter.getList().addAll();
+                        ArrayList<FreeFeed> allpost = GsonParser.getInstance()
+                                .parsePost(
+                                        modelContainer.getData().getAsJsonArray("feeds")
+                                                .toString());
+
+                        // if (pageNumber == 1)
+                        for (int i = 0; i < allpost.size(); i++) {
+                            adapter.addItem(allpost.get(i));
+                        }
+                        adapter.notifyDataSetChanged();
+
+                        if (pageNumber != 0 || isRefreshing) {
+                            listGoodread.onRefreshComplete();
+                            loading = false;
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonElement> call, Throwable t) {
+                    uiHelper.showMessage(getString(R.string.internet_error_text));
+                    if (uiHelper.isDialogActive()) {
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+            }
+    );
+    }
     AsyncHttpResponseHandler fitnessHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -428,7 +631,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
             if (uiHelper.isDialogActive()) {
                 uiHelper.dismissLoadingDialog();
             }
-            Log.d("@@@****@@@",responseString);
+            Log.e("@@@****@@@",responseString);
             /*
 			 * if (fitnessAdapter.getPageNumber() == 1) {
 			 * fitnessAdapter.getList().clear(); // setupPoppyView(); }
@@ -780,11 +983,11 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
                         if (!TextUtils.isEmpty(profileurl)) {
                             if(userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
-                                SchoolApp.getInstance().displayUniversalImage(
+                                ApplicationSingleton.getInstance().displayUniversalImage(
                                         userHelper.getUser().getSelectedChild().getProfile_image(),
                                         holder.profilePicture);
                             } else {
-                                SchoolApp.getInstance().displayUniversalImage(
+                                ApplicationSingleton.getInstance().displayUniversalImage(
                                         profileurl,
                                         holder.profilePicture);
                             }
@@ -1032,7 +1235,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                     .findViewById(R.id.image);
             final ProgressBar spinner = (ProgressBar) imageLayout
                     .findViewById(R.id.loading);
-            SchoolApp.getInstance().displayUniversalImage(images.get(position),
+            ApplicationSingleton.getInstance().displayUniversalImage(images.get(position),
                     imageView);
             // imageLoader.displayImage(images.get(position), imageView,
             // options,
@@ -1408,7 +1611,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
     private void initApiCall(String rId, String rTtype)
     {
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
 
@@ -1423,7 +1626,8 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         }
 
 
-        AppRestClient.post(URLHelper.URL_EVENT_REMINDER, params, reminderHandler);
+        //AppRestClient.post(URLHelper.URL_EVENT_REMINDER, params, reminderHandler);
+        eventReminder(params);
 
     }
 
@@ -1433,6 +1637,47 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
         adapter.notifyDataSetChanged();
     }
 
+    private void eventReminder(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().eventReminder(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            //fetchNotification();
+
+               /* modelContainer.getData().get("unread_total").getAsString();
+
+                SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+
+                userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
+
+                listenerActivity.onNotificationCountChangedFromActivity(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));*/
+
+                        }
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler reminderHandler = new AsyncHttpResponseHandler() {
 
         @Override

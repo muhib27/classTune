@@ -34,27 +34,30 @@ import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.Subject;
 import com.classtune.app.schoolapp.model.TypeHomeWork;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.google.gson.JsonElement;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
 import droidninja.filepicker.FilePickerBuilder;
 import droidninja.filepicker.FilePickerConst;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -129,8 +132,192 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
 
     File myFile;
     public void PublishHomeWork(final boolean isForDraft) {
+        if (!uiHelper.isDialogActive())
+            uiHelper.showLoadingDialog(getString(R.string.loading_text));
+        if(!TextUtils.isEmpty(selectedFilePath)){
 
-        RequestParams params = new RequestParams();
+            File myFile= new File(selectedFilePath);
+            /*me.addPart("attachment_file_name", myFile, false);
+            Log.e("FILE_NAME", "is: " + myFile.toString());
+            if(!TextUtils.isEmpty(mimeType)){
+                me.addPart("mime_type", mimeType, false);
+            }
+            if(!TextUtils.isEmpty(fileSize)){
+                me.addPart("file_size", fileSize, false);
+            }*/
+
+
+            RequestBody user_secret = RequestBody.create(MediaType.parse("multipart/form-data"), UserHelper.getUserSecret());
+            RequestBody subject_id = RequestBody.create(MediaType.parse("multipart/form-data"), subjectId);
+            RequestBody content = RequestBody.create(MediaType.parse("multipart/form-data"), classworkDescriptionEditText
+                    .getText().toString());
+            RequestBody title = RequestBody.create(MediaType.parse("multipart/form-data"), subjectEditText.getText()
+                    .toString());
+            RequestBody type = RequestBody.create(MediaType.parse("multipart/form-data"), classworkTypeId);
+
+            RequestBody mime_type;
+            if(!TextUtils.isEmpty(mimeType)){
+                mime_type = RequestBody.create(MediaType.parse("multipart/form-data"), mimeType);
+            }else {
+                mime_type = RequestBody.create(MediaType.parse("multipart/form-data"), "");
+            }
+            RequestBody file_size = RequestBody.create(MediaType.parse("multipart/form-data"), fileSize);
+
+            RequestBody is_draft;
+            if(isForDraft == true){
+                is_draft = RequestBody.create(MediaType.parse("multipart/form-data"), "1");
+            }else {
+                is_draft = RequestBody.create(MediaType.parse("multipart/form-data"), "0");
+            }
+
+            // create RequestBody instance from file
+            final RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), myFile);
+
+            // MultipartBody.Part is used to send also the actual file name
+            MultipartBody.Part body = MultipartBody.Part.createFormData("attachment_file_name", myFile.getName(), requestFile);
+
+
+            ApplicationSingleton.getInstance().getNetworkCallInterface().teacherAddClasswork(user_secret, subject_id, content, title, type, body, mime_type, file_size, is_draft).enqueue(
+                    new Callback<JsonElement>() {
+                        @Override
+                        public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                            if (uiHelper.isDialogActive())
+                                uiHelper.dismissLoadingDialog();
+
+                            Log.e("SERVERRESPONSE", ""+ response.body());
+                            Wrapper wrapper = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+                            if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+
+                                if(isForDraft == true)
+                                {
+                                    Toast.makeText(getActivity(),
+                                            getString(R.string.java_singleteacheredithomeworkactivity_saved_as_draft),
+                                            Toast.LENGTH_SHORT).show();
+
+                                }
+                                else
+                                {
+                                    Toast.makeText(getActivity(),
+                                            R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
+
+
+                                clearDataFields();
+                            } else
+                                Toast.makeText(
+                                        getActivity(),
+                                        getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
+                                        Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonElement> call, Throwable t) {
+                            if (uiHelper.isDialogActive())
+                                uiHelper.dismissLoadingDialog();
+                        }
+                    }
+            );
+        }else {
+            if(isForDraft == true)
+            {
+                ApplicationSingleton.getInstance().getNetworkCallInterface().teacherAddClasswork(UserHelper.getUserSecret(), subjectId, classworkDescriptionEditText
+                        .getText().toString(), subjectEditText.getText().toString(), classworkTypeId, "1").enqueue(
+                        new Callback<JsonElement>() {
+                            @Override
+                            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                                if (uiHelper.isDialogActive())
+                                    uiHelper.dismissLoadingDialog();
+
+                                Log.e("SERVERRESPONSE", ""+ response.body());
+                                Wrapper wrapper = GsonParser.getInstance()
+                                        .parseServerResponse2(response.body());
+                                if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+
+                                    if(isForDraft == true)
+                                    {
+                                        Toast.makeText(getActivity(),
+                                                getString(R.string.java_singleteacheredithomeworkactivity_saved_as_draft),
+                                                Toast.LENGTH_SHORT).show();
+
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(getActivity(),
+                                                R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+
+
+
+                                    clearDataFields();
+                                } else
+                                    Toast.makeText(
+                                            getActivity(),
+                                            getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
+                                            Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<JsonElement> call, Throwable t) {
+                                if (uiHelper.isDialogActive())
+                                    uiHelper.dismissLoadingDialog();
+                            }
+                        }
+                );
+
+            }else {
+                ApplicationSingleton.getInstance().getNetworkCallInterface().teacherAddClasswork(UserHelper.getUserSecret(), subjectId, classworkDescriptionEditText
+                        .getText().toString(), subjectEditText.getText().toString(), classworkTypeId, "0").enqueue(
+                        new Callback<JsonElement>() {
+                            @Override
+                            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                                if (uiHelper.isDialogActive())
+                                    uiHelper.dismissLoadingDialog();
+
+                                Log.e("SERVERRESPONSE", ""+ response.body());
+                                Wrapper wrapper = GsonParser.getInstance()
+                                        .parseServerResponse2(response.body());
+                                if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+
+                                    if(isForDraft == true)
+                                    {
+                                        Toast.makeText(getActivity(),
+                                                getString(R.string.java_singleteacheredithomeworkactivity_saved_as_draft),
+                                                Toast.LENGTH_SHORT).show();
+
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(getActivity(),
+                                                R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+
+
+
+                                    clearDataFields();
+                                } else
+                                    Toast.makeText(
+                                            getActivity(),
+                                            getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
+                                            Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<JsonElement> call, Throwable t) {
+                                if (uiHelper.isDialogActive())
+                                    uiHelper.dismissLoadingDialog();
+                            }
+                        }
+                );
+            }
+
+        }
+
+      /*  RequestParams params = new RequestParams();
 
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         Log.e("Subject id with coma", "PublishHomeWork: "+subjectId );
@@ -216,7 +403,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                                     Toast.LENGTH_SHORT).show();
                         super.onSuccess(arg0, responseString);
                     }
-                });
+                });*/
 
     }
 
@@ -265,9 +452,34 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
 
     private void fetchSubject() {
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-        AppRestClient.post(URLHelper.URL_TEACHER_CLASSWORK_GET_SUBJECT, params,
+
+        ApplicationSingleton.getInstance().getNetworkCallInterface().teacherClassworkSubject(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        Log.e("GET_SUBJECT_SUCCESS", ""+ response.body());
+                        Wrapper wrapper = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+                        if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                            subjectCats.clear();
+                            subjectCats.addAll(GsonParser.getInstance()
+                                    .parseSubject(
+                                            wrapper.getData().get("subjects")
+                                                    .toString()));
+                            generateSubjectChooserLayout(layoutSelectMultipleSubject);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+
+                    }
+                }
+        );
+
+   /*     AppRestClient.post(URLHelper.URL_TEACHER_CLASSWORK_GET_SUBJECT, params,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onFailure(Throwable arg0, String response) {
@@ -290,7 +502,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                             generateSubjectChooserLayout(layoutSelectMultipleSubject);
                         }
                     }
-                });
+                });*/
     }
 
     private void intiviews(View view) {
@@ -557,10 +769,10 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
 							selectedFilePath = path;
 							choosenFileTextView
 									.setText(getFileNameFromPath(selectedFilePath));
-							mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+							mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
 							File myFile= new File(selectedFilePath);
 							fileSize = String.valueOf(myFile.length());
-							Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+							Log.e("MIME_TYPE", "is: "+ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
 							Log.e("FILE_SIZE", "is: "+fileSize);
 						} catch (Exception e) {
 							Log.e("FileSelectorTestAtivity",
@@ -579,11 +791,11 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
 							selectedFilePath = path;
 
 
-							mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+							mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
 							File myFile= new File(selectedFilePath);
 							fileSize = String.valueOf(myFile.length());
 
-							Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+							Log.e("MIME_TYPE", "is: "+ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
 							Log.e("FILE_SIZE", "is: "+fileSize);
 
 							long fileSizeInKB = myFile.length() / 1024;
@@ -628,11 +840,11 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                     selectedFilePath = object.path+object.names.get(0);
 
 
-                    mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                    mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                     File myFile= new File(selectedFilePath);
                     fileSize = String.valueOf(myFile.length());
 
-                    Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                    Log.e("MIME_TYPE", "is: "+ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                     Log.e("FILE_SIZE", "is: "+fileSize);
 
                     long fileSizeInKB = myFile.length() / 1024;
@@ -664,11 +876,11 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                         selectedFilePath = fileNamePath;
 
 
-                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                         File myFile= new File(selectedFilePath);
                         fileSize = String.valueOf(myFile.length());
 
-                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("MIME_TYPE", "is: "+ ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                         Log.e("FILE_SIZE", "is: "+fileSize);
 
                         long fileSizeInKB = myFile.length() / 1024;
@@ -696,11 +908,11 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                         selectedFilePath = fileNamePath;
 
 
-                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                         File myFile= new File(selectedFilePath);
                         fileSize = String.valueOf(myFile.length());
 
-                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("MIME_TYPE", "is: "+ ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                         Log.e("FILE_SIZE", "is: "+fileSize);
 
                         long fileSizeInKB = myFile.length() / 1024;
@@ -835,11 +1047,11 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                     selectedFilePath = object.path+object.names.get(0);
 
 
-                    mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                    mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                     File myFile= new File(selectedFilePath);
                     fileSize = String.valueOf(myFile.length());
 
-                    Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                    Log.e("MIME_TYPE", "is: "+ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                     Log.e("FILE_SIZE", "is: "+fileSize);
 
                     long fileSizeInKB = myFile.length() / 1024;
@@ -870,11 +1082,11 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                         selectedFilePath = fileNamePath;
 
 
-                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                         File myFile= new File(selectedFilePath);
                         fileSize = String.valueOf(myFile.length());
 
-                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("MIME_TYPE", "is: "+ ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                         Log.e("FILE_SIZE", "is: "+fileSize);
 
                         long fileSizeInKB = myFile.length() / 1024;
@@ -902,11 +1114,11 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                         selectedFilePath = fileNamePath;
 
 
-                        mimeType = SchoolApp.getInstance().getMimeType(selectedFilePath);
+                        mimeType = ApplicationSingleton.getInstance().getMimeType(selectedFilePath);
                         File myFile= new File(selectedFilePath);
                         fileSize = String.valueOf(myFile.length());
 
-                        Log.e("MIME_TYPE", "is: "+SchoolApp.getInstance().getMimeType(selectedFilePath));
+                        Log.e("MIME_TYPE", "is: "+ ApplicationSingleton.getInstance().getMimeType(selectedFilePath));
                         Log.e("FILE_SIZE", "is: "+fileSize);
 
                         long fileSizeInKB = myFile.length() / 1024;

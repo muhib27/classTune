@@ -20,24 +20,28 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.LessonPlanStudentParentSubject;
 import com.classtune.app.schoolapp.model.LessonPlanSubjectDetails;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 08-Apr-15.
@@ -137,7 +141,7 @@ public class LessonPlanSubjectDetailsActivity extends ChildContainerActivity{
 
     private void initApiCall()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String, String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("subject_id", data.getId());
 
@@ -155,10 +159,78 @@ public class LessonPlanSubjectDetailsActivity extends ChildContainerActivity{
         }
 
 
-        AppRestClient.post(URLHelper.URL_GET_LESSONPLAN_SUBJECT_DETAILS, params, lessonSubjectDetailsHandler);
+       // AppRestClient.post(URLHelper.URL_GET_LESSONPLAN_SUBJECT_DETAILS, params, lessonSubjectDetailsHandler);
+        lessonplanSubjectDetail(params);
     }
 
 
+    private void lessonplanSubjectDetail(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().lessonplanSubjectDetail(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        hasNext = modelContainer.getData().get("has_next").getAsBoolean();
+                        Log.e("HAS_NEXT_MEETING", "is: " + hasNext);
+
+
+                        if (pageNumber == 1) {
+                            adapter.clearList();
+                        }
+
+                        if (!hasNext) {
+                            stopLoadingData = true;
+                        }
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+
+                            JsonArray arrayLesson = modelContainer.getData().get("lessonplans").getAsJsonArray();
+
+                            //listLessonPlan = parseLessonPlan(arrayLesson.toString());
+
+                            for (int i = 0; i < parseLessonPlanSubjectDetails(arrayLesson.toString()).size(); i++)
+                            {
+                                listSubjectDetails.add(parseLessonPlanSubjectDetails(arrayLesson.toString()).get(i));
+                            }
+
+
+                            if (pageNumber != 0 || isRefreshing)
+                            {
+                                listViewLessonPlanSubjectDetails.onRefreshComplete();
+                                loading = false;
+                            }
+
+
+                            adapter.notifyDataSetChanged();
+
+                            Log.e("S_SIZE", "is: " + listSubjectDetails.size());
+
+
+                        }
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler lessonSubjectDetailsHandler = new AsyncHttpResponseHandler() {
 
         @Override

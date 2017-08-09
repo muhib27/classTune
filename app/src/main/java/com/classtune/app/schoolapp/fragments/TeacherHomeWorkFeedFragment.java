@@ -20,9 +20,9 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.classtune.app.R;
 import com.classtune.app.freeversion.SingleTeacherHomeworkActivity;
 import com.classtune.app.freeversion.TeacherHomeworkDoneActivity;
-import com.classtune.app.R;
 import com.classtune.app.schoolapp.callbacks.IFeedRefreshCallBack;
 import com.classtune.app.schoolapp.fragments.TeacherHomeWorkFragment.IFilterClicked;
 import com.classtune.app.schoolapp.fragments.TeacherHomeWorkFragment.IFilterInsideClicked;
@@ -34,9 +34,9 @@ import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.TeacherHomework;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.CustomDateTimePicker;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -45,20 +45,23 @@ import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
-import static com.classtune.app.schoolapp.utils.AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_FEED;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthListener, IFilterClicked, IFilterInsideClicked, IFeedRefreshCallBack{
 	
@@ -200,7 +203,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 	private void processFetchPost(String url, String categoryIndex) {
 		// TODO Auto-generated method stub
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		
 		if (UserHelper.isLoggedIn()) {
 			params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
@@ -213,15 +216,15 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 		// Log.e("Params", params.toString());
 
 			
-		AppRestClient.post(URLHelper.URL_TEACHER_HOMEWORK_FEED, params,
-					fitnessHandler);
-		
+		//AppRestClient.post(URLHelper.URL_TEACHER_HOMEWORK_FEED, params, fitnessHandler);
+		teacherHomeworkFeed(params);
 	}
 	
 	private void processFetchPost(String url, String categoryIndex, boolean isFilterApply) {
 		// TODO Auto-generated method stub
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
+
 		
 		if (UserHelper.isLoggedIn()) {
 			params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
@@ -238,8 +241,8 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 		// Log.e("Params", params.toString());
 
 			
-		AppRestClient.post(URLHelper.URL_TEACHER_HOMEWORK_FEED, params,
-					fitnessHandler);
+		//AppRestClient.post(URLHelper.URL_TEACHER_HOMEWORK_FEED, params, fitnessHandler);
+		teacherHomeworkFeed(params);
 		
 	}
 	
@@ -247,7 +250,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 	private void processFetchPostDate(String url, String categoryIndex, boolean isFilterApply) {
 		// TODO Auto-generated method stub
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		
 		if (UserHelper.isLoggedIn()) {
 			params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
@@ -264,13 +267,95 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 		// Log.e("Params", params.toString());
 
 			
-		AppRestClient.post(URLHelper.URL_TEACHER_HOMEWORK_FEED, params,
-					fitnessHandler);
+		//AppRestClient.post(URLHelper.URL_TEACHER_HOMEWORK_FEED, params, fitnessHandler);
+		teacherHomeworkFeed(params);
 		
 	}
 	
 	
-	
+	private void teacherHomeworkFeed(HashMap<String,String> params){
+		if (pageNumber == 0 && !isRefreshing) {
+			if (!uiHelper.isDialogActive())
+				uiHelper.showLoadingDialog(getString(R.string.loading_text));
+			else
+				uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+		}
+		if (pageNumber == 1) {
+			spinner.setVisibility(View.VISIBLE);
+		}
+		ApplicationSingleton.getInstance().getNetworkCallInterface().teacherHomeworkFeed(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+			/*
+			 * if (fitnessAdapter.getPageNumber() == 1) {
+			 * fitnessAdapter.getList().clear(); // setupPoppyView(); }
+			 */
+						Log.e("Response CATEGORY", ""+ response.body());
+						// app.showLog("Response", responseString);
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							hasNext = modelContainer.getData().get("has_next")
+									.getAsBoolean();
+
+							if (pageNumber == 1)
+								allGooadReadPost.clear();
+							spinner.setVisibility(View.GONE);
+							if (!hasNext) {
+								// fitnessAdapter.setStopLoadingData(true);
+								stopLoadingData = true;
+							}
+
+							// fitnessAdapter.getList().addAll();
+							ArrayList<TeacherHomework> allpost = GsonParser.getInstance()
+									.parseTeacherHomework(
+											modelContainer.getData().getAsJsonArray("homework")
+													.toString());
+
+
+
+							Log.e("pagenumber: " + pageNumber, "  size of list: " + allpost.size());
+							for (int i = 0; i < allpost.size(); i++) {
+
+								allGooadReadPost.add(allpost.get(i));
+							}
+							adapter.notifyDataSetChanged();
+
+							if (pageNumber != 0 || isRefreshing) {
+								listGoodread.onRefreshComplete();
+								loading = false;
+							}
+
+
+							if(allGooadReadPost.size() <= 0)
+							{
+								txtMessage.setVisibility(View.VISIBLE);
+							}
+							else
+							{
+								txtMessage.setVisibility(View.GONE);
+							}
+
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	
 	AsyncHttpResponseHandler fitnessHandler = new AsyncHttpResponseHandler() {
 
@@ -611,18 +696,67 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 	
 	private void initApiCallSubject()
 	{
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		//app.showLog("adfsdfs", app.getUserSecret());
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		
-		AppRestClient.post(URLHelper.URL_HOMEWORK_SUBJECT_TEACHER, params, subjectHandler);
+		//AppRestClient.post(URLHelper.URL_HOMEWORK_SUBJECT_TEACHER, params, subjectHandler);
+		homeworkSubjectTeacher(params);
 		
 		
 	}
 	
-	
+	private void homeworkSubjectTeacher(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().homeworkSubjectTeacher(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+
+						homeWorkSubject.clear();
+
+						Log.e("Response", ""+response.body());
+						//app.showLog("Response", responseString);
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							JsonArray array = modelContainer.getData().get("subjects").getAsJsonArray();
+
+							List<HomeWorkSubject> list = new ArrayList<HomeWorkSubject>();
+							for(int i=0;i<array.size();i++)
+							{
+
+								list.add(new HomeWorkSubject(array.get(i).getAsJsonObject().get("name").getAsString(), array.get(i).getAsJsonObject().get("id").getAsString()));
+
+
+							}
+
+							homeWorkSubject.addAll(list);
+
+							showSubjectPicker();
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler subjectHandler = new AsyncHttpResponseHandler() {
 
 		@Override

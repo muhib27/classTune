@@ -16,8 +16,8 @@ import android.widget.ImageView;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TextView;
 
-import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.R;
+import com.classtune.app.freeversion.PaidVersionHomeFragment;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.Picker;
@@ -31,7 +31,6 @@ import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.MyFragmentTabHost;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
-import com.loopj.android.http.RequestParams;
 
 import java.util.HashMap;
 
@@ -113,7 +112,7 @@ public class ParentReportCardFragment extends UserVisibleHintFragment implements
 	public void showStudentPicker(PickerType type) {
 
 		CustomPickerWithLoadData picker = CustomPickerWithLoadData.newInstance(0);
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.BATCH_ID,selectedBatch.getId());
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		picker.setData(PickerType.TEACHER_STUDENT, params, URLHelper.URL_GET_STUDENTS_ATTENDANCE, PickerCallback, getActivity().getString(R.string.java_parentreportcardfragment_select_student));

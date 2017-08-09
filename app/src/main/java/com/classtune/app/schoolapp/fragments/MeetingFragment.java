@@ -23,9 +23,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.classtune.app.R;
 import com.classtune.app.freeversion.CreateMeetingRequest;
 import com.classtune.app.freeversion.SingleMeetingRequestActivity;
-import com.classtune.app.R;
 import com.classtune.app.schoolapp.fragments.DatePickerFragment.DatePickerOnSetDateListener;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Batch;
@@ -33,13 +33,12 @@ import com.classtune.app.schoolapp.model.MeetingStatus;
 import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.CustomDateTimePicker;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialog;
@@ -48,18 +47,23 @@ import com.classtune.app.schoolapp.viewhelpers.PopupDialogMeetingStatus.PopupOkB
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MeetingFragment extends Fragment implements UserAuthListener{
 	
@@ -380,7 +384,7 @@ public class MeetingFragment extends Fragment implements UserAuthListener{
 	
 	private void initApiCall(int pageNumber, String type, String startDate, String endDate) {
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		params.put("page_size", "10");
 		params.put("page_number", String.valueOf(pageNumber));
@@ -411,13 +415,13 @@ public class MeetingFragment extends Fragment implements UserAuthListener{
 			
 		
 
-		AppRestClient.post(URLHelper.URL_MEETING_REQUEST, params,
-				meetingRequestHandler);
+		//AppRestClient.post(URLHelper.URL_MEETING_REQUEST, params, meetingRequestHandler);
+		meetingRequest(params);
 	}
 	
 	private void initApiCallStatus(String meetingId, String status) {
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put("meeting_id", meetingId);
@@ -434,10 +438,39 @@ public class MeetingFragment extends Fragment implements UserAuthListener{
 		Log.e("STAUSSSS", "meeting_id: " + meetingId);
 		Log.e("STAUSSSS", "status: " + status);
 		
-		AppRestClient.post(URLHelper.URL_MEETING_STATUS, params,
-				meetingStatusHandler);
+		//AppRestClient.post(URLHelper.URL_MEETING_STATUS, params, meetingStatusHandler);
+		meetingStatus(params);
 	}
-	
+	private void meetingStatus(HashMap<String,String> params){
+		ApplicationSingleton.getInstance().getNetworkCallInterface().mettingStatus(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						Log.e("RES", "is: " + response.body());
+
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							initApiCall(pageNumber, selectedType, null, null);
+
+
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler meetingStatusHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -512,7 +545,96 @@ public class MeetingFragment extends Fragment implements UserAuthListener{
 	}
 	
 	
-	
+	private void meetingRequest(HashMap<String,String> params){
+
+		if (pageNumber == 1) {
+			progressBar.setVisibility(View.VISIBLE);
+		} else {
+
+		}
+		ApplicationSingleton.getInstance().getNetworkCallInterface().mettingRequest(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						progressBar.setVisibility(View.GONE);
+
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							Log.e("meeting data", "is: " + response.body());
+							hasNext = modelContainer.getData().get("has_next").getAsBoolean();
+							Log.e("HAS_NEXT_MEETING", "is: " + hasNext);
+
+
+							if (pageNumber == 1)
+							{
+								adapter.clearList();
+							}
+
+							if (!hasNext)
+							{
+								stopLoadingData = true;
+							}
+
+							if (modelContainer.getStatus().getCode() == 200) {
+
+
+								//do parsing
+								JsonArray array = modelContainer.getData().get("meetings").getAsJsonArray();
+
+								for (int i = 0; i < parseMeetingStatus(array.toString()).size(); i++)
+								{
+									listStatus.add(parseMeetingStatus(array.toString()).get(i));
+								}
+
+								for(int i=0;i<listStatus.size();i++)
+									Log.e("MEET_POS", listStatus.get(i).getName());
+
+								if (pageNumber != 0 || isRefreshing)
+								{
+									listViewStatus.onRefreshComplete();
+									loading = false;
+								}
+
+
+								adapter.notifyDataSetChanged();
+
+				/*if(listStatus.size() <= 0 && selectedType.equalsIgnoreCase("1"))
+				{
+					Toast.makeText(MeetingFragment.this.getActivity(), "No incoming meeting request", Toast.LENGTH_SHORT).show();
+				}
+
+				else if(listStatus.size() <= 0 && selectedType.equalsIgnoreCase("2"))
+				{
+					Toast.makeText(MeetingFragment.this.getActivity(), "No outgoing meeting request", Toast.LENGTH_SHORT).show();
+				}*/
+
+								if(listStatus.size() <= 0)
+								{
+									txtMessage.setVisibility(View.VISIBLE);
+								}
+								else
+								{
+									txtMessage.setVisibility(View.GONE);
+								}
+
+							}
+
+							else {
+
+							}
+						}
+
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler meetingRequestHandler = new AsyncHttpResponseHandler() {
 
 		@Override

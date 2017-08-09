@@ -23,6 +23,7 @@ import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
@@ -31,10 +32,15 @@ import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.MyFragmentTabHost;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.android.gms.tasks.TaskExecutors;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.R.attr.data;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
@@ -190,16 +196,54 @@ public class ParentAcademicCalender extends UserVisibleHintFragment implements M
 
 
 	private void initApiCallHasCalendar(){
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		if(userHelper.getUser().getType()==UserTypeEnum.PARENTS) {
 			params.put(RequestKeyHelper.BATCH_ID, userHelper.getUser().getSelectedChild().getBatchId());
 		}
 
-		AppRestClient.post(URLHelper.URL_HAS_ACADEMIC_CALENDAR, params,
-				hasDownloadHandler);
+		//AppRestClient.post(URLHelper.URL_HAS_ACADEMIC_CALENDAR, params, hasDownloadHandler);
+		hasAcademicCalendar(params);
 	}
 
+	private void hasAcademicCalendar(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().hasAcademicCalendar(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							boolean hasId = modelContainer.getData().get("acacal").getAsJsonObject().has("id");
+
+							if(hasId){
+								layoutDownloadHolder.setVisibility(View.VISIBLE);
+								attachmentId = modelContainer.getData().get("acacal").getAsJsonObject().get("id").getAsString();
+							}else {
+								layoutDownloadHolder.setVisibility(View.GONE);
+							}
+
+
+
+						} else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler hasDownloadHandler = new AsyncHttpResponseHandler() {
 		@Override
 		public void onFailure(Throwable arg0, String arg1) {

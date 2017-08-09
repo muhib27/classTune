@@ -23,9 +23,9 @@ import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.StudentParent;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.CustomDateTimePicker;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -35,16 +35,21 @@ import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CreateMeetingRequest extends ChildContainerActivity {
 
@@ -158,9 +163,10 @@ public class CreateMeetingRequest extends ChildContainerActivity {
             @Override
             public void onClick(View v) {
                 //showBatchPicker(PickerType.TEACHER_BATCH);
-                RequestParams params = new RequestParams();
+                HashMap<String,String> params = new HashMap<String, String>();
                 params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-                AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+                //AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+                getBatch(params);
 
             }
         });
@@ -174,9 +180,10 @@ public class CreateMeetingRequest extends ChildContainerActivity {
                 // TODO Auto-generated method stub
                 //showBatchPicker(PickerType.TEACHER_BATCH);
 
-                RequestParams params = new RequestParams();
+                HashMap<String, String> params = new HashMap<String, String>();
                 params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-                AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+                //AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+                getBatch(params);
 
 
             }
@@ -304,6 +311,37 @@ public class CreateMeetingRequest extends ChildContainerActivity {
     }
 
 
+    private void getBatch(HashMap<String, String> params){
+        if (!uiHelper.isDialogActive())
+            uiHelper.showLoadingDialog(getString(R.string.loading_text));
+        else
+            uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+
+        ApplicationSingleton.getInstance().getNetworkCallInterface().getBatch(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+                        Log.e("Response", ""+response.body());
+                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(response.body());
+                        if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                            PaidVersionHomeFragment.isBatchLoaded = true;
+                            PaidVersionHomeFragment.batches.clear();
+                            String data = wrapper.getData().get("batches").toString();
+                            PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+                            //showPicker(PickerType.TEACHER_BATCH);
+                            showBatchPicker(PickerType.TEACHER_BATCH);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler getBatchEventsHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -424,20 +462,20 @@ public class CreateMeetingRequest extends ChildContainerActivity {
 
     private void initApiCall(String batchId) {
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         params.put("batch_id", batchId);
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
 
-        AppRestClient.post(URLHelper.URL_MEETING_GETSTUDENTPARENT, params,
-                getStudentParentHandler);
+        //AppRestClient.post(URLHelper.URL_MEETING_GETSTUDENTPARENT, params, getStudentParentHandler);
+        studentParent(params, URLHelper.URL_MEETING_GETSTUDENTPARENT );
     }
 
 
     private void initApiCallParent() {
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
 
         params.put(RequestKeyHelper.BATCH_ID, userHelper.getUser().getSelectedChild().getBatchId());
@@ -445,11 +483,47 @@ public class CreateMeetingRequest extends ChildContainerActivity {
 
         Log.e("BATCH_ID", "is: " + userHelper.getUser().getSelectedChild().getBatchId());
 
-        AppRestClient.post(URLHelper.URL_MEETING_GETTEACHERPARENT, params,
-                getStudentParentHandler);
+        //AppRestClient.post(URLHelper.URL_MEETING_GETTEACHERPARENT, params, getStudentParentHandler);
+        studentParent(params,URLHelper.URL_MEETING_GETTEACHERPARENT );
     }
 
 
+    private void studentParent(HashMap<String,String> params, String url){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().mettingStudentParent(params, url).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+                        Log.e("RES_PARENT", "is: " + response.body());
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            //do parsing
+                            JsonArray array = modelContainer.getData().get("student").getAsJsonArray();
+
+                            for (int i = 0; i < parseStudentParent(array.toString()).size(); i++) {
+                                listStudentParent.add(parseStudentParent(array.toString()).get(i));
+                            }
+
+
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+    }
     private AsyncHttpResponseHandler getStudentParentHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -521,7 +595,7 @@ public class CreateMeetingRequest extends ChildContainerActivity {
 
     private void initApiCallSendRequest() {
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
             params.put(RequestKeyHelper.BATCH_ID, userHelper.getUser().getSelectedChild().getBatchId());
@@ -543,15 +617,48 @@ public class CreateMeetingRequest extends ChildContainerActivity {
 
 
         if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
-            AppRestClient.post(URLHelper.URL_MEETING_SEND_REQUEST_PARENT, params,
-                    sendMeetingRequestHandler);
+            //AppRestClient.post(URLHelper.URL_MEETING_SEND_REQUEST_PARENT, params, sendMeetingRequestHandler);
+            meetingSendRequest(params, URLHelper.URL_MEETING_SEND_REQUEST_PARENT);
         } else {
-            AppRestClient.post(URLHelper.URL_MEETING_SEND_REQUEST, params,
-                    sendMeetingRequestHandler);
+            //AppRestClient.post(URLHelper.URL_MEETING_SEND_REQUEST, params, sendMeetingRequestHandler);
+            meetingSendRequest(params, URLHelper.URL_MEETING_SEND_REQUEST);
         }
 
     }
 
+    private void meetingSendRequest(HashMap<String,String> params,String url){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().mettingSendRequest(params, url).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            //do parsing
+                            Toast.makeText(CreateMeetingRequest.this, R.string.java_createmeetingrequest_meeting_request_success, Toast.LENGTH_SHORT).show();
+
+                            CreateMeetingRequest.this.finish();
+
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+    }
     private AsyncHttpResponseHandler sendMeetingRequestHandler = new AsyncHttpResponseHandler() {
 
         @Override

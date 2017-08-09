@@ -17,18 +17,17 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.classtune.app.freeversion.SingleNoticeActivity;
 import com.classtune.app.R;
+import com.classtune.app.freeversion.SingleNoticeActivity;
 import com.classtune.app.schoolapp.model.ModelContainer;
 import com.classtune.app.schoolapp.model.Notice;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.CustomTabButton;
@@ -36,16 +35,21 @@ import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
@@ -310,7 +314,7 @@ public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
 	
 	private void initApiCall(int pageNumber, String noticeType) {
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		params.put("page_size", "10");
 		params.put("page_number", String.valueOf(pageNumber));
@@ -320,10 +324,83 @@ public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
 			
 		
 
-		AppRestClient.post(URLHelper.URL_GET_NOTICE, params,
-				noticeHandler);
+		//AppRestClient.post(URLHelper.URL_GET_NOTICE, params, noticeHandler);
+		getNotice(params);
 	}
-	
+
+	private void getNotice(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getNotice(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						hasNext = modelContainer.getData().get("has_next").getAsBoolean();
+						Log.e("HAS_NEXT_MEETING", "is: " + hasNext);
+
+
+						if (pageNumber == 1)
+						{
+							adapter.clearList();
+						}
+
+						if (!hasNext)
+						{
+							stopLoadingData = true;
+						}
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							JsonArray array = modelContainer.getData().get("notice").getAsJsonArray();
+
+
+							for (int i = 0; i < array.size(); i++)
+							{
+								listNotice.add(parseNotice(array.toString()).get(i));
+							}
+
+							if (pageNumber != 0 || isRefreshing)
+							{
+								listViewNotice.onRefreshComplete();
+								loading = false;
+							}
+
+							Log.e("listnotice size", "is: " + listNotice.size());
+
+							adapter.notifyDataSetChanged();
+
+							if(listNotice.size() <= 0)
+							{
+								txtMessage.setVisibility(View.VISIBLE);
+							}
+							else
+							{
+								txtMessage.setVisibility(View.GONE);
+							}
+
+
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler noticeHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -417,17 +494,53 @@ public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
 		// TODO Auto-generated method stub
 		this.clickedAckBtn = btn;
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.NOTICE_ID, btn.getTag().toString());
 
-		AppRestClient.post(URLHelper.URL_NOTICE_ACKNOWLEDGE, params,
-				ackBtnHandler);
+		//AppRestClient.post(URLHelper.URL_NOTICE_ACKNOWLEDGE, params, ackBtnHandler);
+		noticAcknowledge(params);
 	}
-	
+
+	private void noticAcknowledge(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().noticeAcknowledge(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Log.e("response", ""+ response.body());
+						Log.e("button", "success");
+						uiHelper.dismissLoadingDialog();
+
+						ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
+								response.body());
+
+						// arrangeHomeworkData(modelContainer);
+
+						// adapter.notifyDataSetChanged();
+
+						// Log.e("status code", modelContainer.getStatus().getCode() + "");
+						if (modelContainer.getData().getNotice_ack()
+								.getAcknowledge_status().equals("1")) {
+							clickedAckBtn.setImage(R.drawable.done_tap);
+							clickedAckBtn.setTitleColor(NoticeFragmentNew.this.getActivity()
+									.getResources().getColor(R.color.classtune_green_color));
+							clickedAckBtn.setTitleText(getString(R.string.java_noticefragment_acknowledge));
+							clickedAckBtn.setEnabled(false);
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler ackBtnHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			Log.e("button", "failed");

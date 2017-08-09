@@ -31,24 +31,28 @@ import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.ReportCardModel;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * @author Amit
@@ -69,7 +73,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 
 	private ArrayList<ClassTestReportItem> items;
 	private UIHelper uiHelper;
-	private SchoolApp app;
+	private ApplicationSingleton app;
 	private View view;
 	private int currentType = 1;
 	ArrayList<ViewHolder> holderList;
@@ -89,7 +93,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 		// TODO Auto-generated method stub
 		super.onResume();
 		getActivity().registerReceiver(reciever, new IntentFilter("com.champs21.schoolapp.batch"));
-		processItemCallErAge(SchoolApp.getInstance().getReportCardData());
+		processItemCallErAge(ApplicationSingleton.getInstance().getReportCardData());
 		processItems();
 	}
 	
@@ -124,7 +128,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 	private void init() {
 		mContext = getActivity();
 		uiHelper=new UIHelper(getActivity());
-		app = (SchoolApp) mContext.getApplicationContext();
+		app = (ApplicationSingleton) mContext.getApplicationContext();
 		userHelper = new UserHelper(mContext);
 		items = new ArrayList<ClassTestReportItem>();
 
@@ -196,7 +200,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 
 	private void fetchClassTestReport() {
 		// TODO Auto-generated method stub
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put("no_exams", "1");
@@ -208,9 +212,50 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 			params.put(RequestKeyHelper.BATCH_ID, selectedBatch.getId());
 			params.put(RequestKeyHelper.STUDENT_ID, selectedStudent.getId());
 		}
-		AppRestClient.post(URLHelper.URL_REPORT_CARD, params, reportCardHandler);
+		//AppRestClient.post(URLHelper.URL_REPORT_CARD, params, reportCardHandler);
+		reportCard(params);
 	}
 
+	private void reportCard(HashMap<String,String> params){
+
+		pbs.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().reportCard(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+							/*if (uiHelper.isDialogActive()) {
+				uiHelper.dismissLoadingDialog();
+			}*/
+						pbs.setVisibility(View.GONE);
+
+						//Toast.makeText(getActivity(), responseString, Toast.LENGTH_LONG).show();
+						Log.e("##RESPONSE", "is: "+response.body());
+
+
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(response.body());
+
+						if (wrapper.getStatus().getCode() == 200) {
+							ReportCardModel reportCardData = GsonParser.getInstance().parseReports(wrapper.getData().toString());
+
+							app.setReportCardData(reportCardData);
+
+
+							processItemCallErAge(reportCardData);
+							processItems();
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+			/*if (uiHelper.isDialogActive()) {
+				uiHelper.dismissLoadingDialog();
+			}*/
+						pbs.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler reportCardHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -254,7 +299,38 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 
 		};
 	};
-		
+
+	private void getBatch(HashMap<String, String> params){
+
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(getString(R.string.loading_text));
+		else
+			uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getBatch(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Log.e("Response", ""+response.body());
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+						{
+							PaidVersionHomeFragment.isBatchLoaded=true;
+							PaidVersionHomeFragment.batches.clear();
+							String data=wrapper.getData().get("batches").toString();
+							PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+							showPicker(PickerType.TEACHER_BATCH);
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getBatchEventsHandler=new AsyncHttpResponseHandler()
 	{
 
@@ -721,7 +797,7 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 	public void showStudentPicker(PickerType type) {
 
 		CustomPickerWithLoadData picker = CustomPickerWithLoadData.newInstance(0);
-		RequestParams params = new RequestParams();
+		HashMap<String, String> params = new HashMap<>();
 		params.put(RequestKeyHelper.BATCH_ID,selectedBatch.getId());
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		picker.setData(PickerType.TEACHER_STUDENT,params,URLHelper.URL_GET_STUDENTS_ATTENDANCE, PickerCallback , getString(R.string.java_parentreportcardfragment_select_student));
@@ -767,9 +843,10 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 		if(userHelper.getUser().getType()==UserTypeEnum.TEACHER){
 			if(!PaidVersionHomeFragment.isBatchLoaded)
 			{
-				RequestParams params=new RequestParams();
+				HashMap<String,String> params=new HashMap<>();
 				params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-				AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+				//AppRestClient.post(URLHelper.URL_GET_TEACHER_BATCH, params, getBatchEventsHandler);
+				getBatch(params);
 			}else {
 				showPicker(PickerType.TEACHER_BATCH);
 			}

@@ -35,8 +35,8 @@ import com.classtune.app.schoolapp.fragments.UserTypeSelectionDialog;
 import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.SPKeyHelper;
@@ -46,6 +46,7 @@ import com.classtune.app.schoolapp.viewhelpers.PopupDialogChangePassword;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -54,7 +55,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 09-Nov-15.
@@ -157,13 +163,70 @@ public class CreateStudentActivity extends FragmentActivity implements UserAuthL
 
     private void initApiGetBatch()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         params.put("school_code", schoolCode);
 
-        AppRestClient.post(URLHelper.URL_PAID_BATCH, params, batchHandler);
+        //AppRestClient.post(URLHelper.URL_PAID_BATCH, params, batchHandler);
+        paidBatch(params);
     }
 
+    private void paidBatch(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().paidBatch(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        Log.e("SCCCCC", "response: " + response.body());
+
+                        uiHelper.dismissLoadingDialog();
+
+                        listBatch.clear();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            Log.e("CODE 200", "code 200");
+                            JsonArray arrayBatch = modelContainer.getData().get("batches").getAsJsonArray();
+                            for (int i = 0; i < parseBatch(arrayBatch.toString()).size(); i++)
+                            {
+                                listBatch.add(parseBatch(arrayBatch.toString()).get(i));
+                            }
+
+                            //batchId = listBatch.get(0).getId();
+                            initBatchSpinner();
+
+
+                        }
+
+                        else if(modelContainer.getStatus().getCode() == 401)
+                        {
+                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_CLASS_YET);
+                        }
+
+                        else if(modelContainer.getStatus().getCode() == 400)
+                        {
+                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                        }
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler batchHandler = new AsyncHttpResponseHandler() {
 
         @Override

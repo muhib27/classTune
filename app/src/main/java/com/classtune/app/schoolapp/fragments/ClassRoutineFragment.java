@@ -16,18 +16,22 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.Period;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ClassRoutineFragment extends Fragment implements UserAuthListener{
 
@@ -50,7 +54,7 @@ public class ClassRoutineFragment extends Fragment implements UserAuthListener{
 
 	private void fetchRoutine() {
 		// TODO Auto-generated method stub
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		// app.showLog("Secret before sending", app.getUserSecret());
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		if (userHelper.getUser().getType() == UserTypeEnum.STUDENT) {
@@ -65,9 +69,40 @@ public class ClassRoutineFragment extends Fragment implements UserAuthListener{
 		}
 		//params.put(RequestKeyHelper.DATE, AppUtility.getCurrentDate(AppUtility.DATE_FORMAT_SERVER));
 		params.put(RequestKeyHelper.DAILY, "1");
-		AppRestClient.post(URLHelper.URL_ROUTINE, params, routineHandler);
+		//AppRestClient.post(URLHelper.URL_ROUTINE, params, routineHandler);
+		routine(params);
 	}
 
+	private void routine(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getActivity().getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().routine(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Log.e("RESPONSE ROUTINE ", ""+response.body());
+						// uiHelper.showMessage(responseString);
+						Wrapper modelContainer = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						if(modelContainer.getStatus().getCode()==200) {
+							periodList = GsonParser.getInstance().parsePeriod(modelContainer.getData().getAsJsonArray("time_table").toString());
+
+						} else {
+
+						}
+						mAdapter.notifyDataSetChanged();
+						//			Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
+						//
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler routineHandler = new AsyncHttpResponseHandler() {
 
 		@Override

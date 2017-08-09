@@ -19,20 +19,24 @@ import com.classtune.app.schoolapp.adapters.ExamRoutineListAdapter;
 import com.classtune.app.schoolapp.model.ExamRoutine;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *
@@ -100,7 +104,7 @@ public class ResultProjectFragment extends UserVisibleHintFragment implements
 
 	private void fetchDataFromServer() {
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.CATEGORY_ID, "2");
 		params.put("no_exams", "1");
@@ -128,11 +132,43 @@ public class ResultProjectFragment extends UserVisibleHintFragment implements
 
 		// params.put("category", pageSize+"");
 
-		AppRestClient.post(URLHelper.URL_GET_RESULT_REPORT,
-				params, getAcademicEventsHandler);
+		//AppRestClient.post(URLHelper.URL_GET_RESULT_REPORT, params, getAcademicEventsHandler);
+		getResultReport(params);
 
 	}
 
+	private void getResultReport(HashMap<String,String> params){
+		pbs.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getResultReport(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						// uiHelper.dismissLoadingDialog();
+						pbs.setVisibility(View.GONE);
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+							items.clear();
+							items.addAll(GsonParser.getInstance()
+									.parseExamRoutine(
+											wrapper.getData().getAsJsonArray("all_exam")
+													.toString()));
+							adapter.notifyDataSetChanged();
+						} else if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SESSION_EXPIRED) {
+							// userHelper.doLogIn();
+						}
+						//Log.e("Events", responseString);
+
+						initListActionClick();
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbs.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getAcademicEventsHandler = new AsyncHttpResponseHandler() {
 		@Override
 		public void onFailure(Throwable arg0, String arg1) {

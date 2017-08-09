@@ -29,22 +29,26 @@ import com.classtune.app.schoolapp.fragments.DatePickerFragment.DatePickerOnSetD
 import com.classtune.app.schoolapp.model.ClassReport;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.ClickSpan;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ObservableObject;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ClassReportTeacherFragment extends Fragment implements
 		OnClickListener,onBatchIdChangeListener, Observer {
@@ -108,7 +112,7 @@ public class ClassReportTeacherFragment extends Fragment implements
 	}
 
 	private void getClassReport() {
-		RequestParams params = new RequestParams();
+		HashMap<String, String> params = new HashMap<>();
 		params.put(RequestKeyHelper.BATCH_ID,
 				PaidVersionHomeFragment.selectedBatch.getId());
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
@@ -116,9 +120,34 @@ public class ClassReportTeacherFragment extends Fragment implements
 
 			params.put("date", TeachersAttendanceTabhostFragment.dateString);
 		}
-		AppRestClient.post(URLHelper.URL_GET_BATCH_CLASS_REPORT, params, getClassReportHandler);
+		//AppRestClient.post(URLHelper.URL_GET_BATCH_CLASS_REPORT, params, getClassReportHandler);
+		getBatchClassReport(params);
 	}
 
+	private void getBatchClassReport(HashMap<String,String> params){
+		pbLayout.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getBatchClassReport(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						pbLayout.setVisibility(View.GONE);
+
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+						{
+							ClassReport report=GsonParser.getInstance().parseClassReport(wrapper.getData().toString());
+							updateUI(report);
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+					}
+				}
+		);
+
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

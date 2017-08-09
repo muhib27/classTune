@@ -30,6 +30,7 @@ import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
@@ -37,6 +38,7 @@ import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.ExpandableGridView;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -50,6 +52,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AttendenceFragment extends Fragment implements UserAuthListener{
 
@@ -85,6 +91,54 @@ public class AttendenceFragment extends Fragment implements UserAuthListener{
 		
 	}
 
+	private void getAttendenceEvent(HashMap<String,String> params){
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(getString(R.string.loading_text));
+		else
+			uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getAttendenceEvent(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Log.e("Response", ""+response.body());
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						AttendenceEvents data;
+						if(wrapper.getStatus().getCode()==200)
+						{
+							data=GsonParser.getInstance().parseAttendence(wrapper.getData().toString());
+
+							try {
+
+								msgMap =GsonParser.getInstance().parseMsg(wrapper.getData().getAsJsonObject("msg").toString());
+								parseEvents(data);
+								adapter.setEvents(eventMap);
+								adapter.notifyDataSetChanged();
+								totalClassNumber-=totalHolidays;
+								updateOverallReport(data.getTotalClass(), (float)data.getTotalClass()-(float)((float)totalLate*0.5)-(float)totalAbsent-(float)totalLeave, totalLeave, totalLate, totalAbsent);
+								eventTitleText.setText(data.getCurrent_date());
+								eventDescriptionText.setText(data.getCurrent_msg());
+
+
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							Log.e("Test", data.getHolidays().size() + "");
+						}
+						else if(wrapper.getStatus().getCode()==406)
+						{
+							userHelper.doLogIn();
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getAttendenceEventsHandler=new AsyncHttpResponseHandler()
 	{
 
@@ -257,7 +311,7 @@ public class AttendenceFragment extends Fragment implements UserAuthListener{
 
 	private void fetchAttendenceData() {
 		
-		RequestParams params=new RequestParams();
+		HashMap<String,String> params=new HashMap<>();
 		//Log.e("Secret", app.getUserSecret());
 		
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
@@ -298,7 +352,8 @@ public class AttendenceFragment extends Fragment implements UserAuthListener{
 		
 		Log.e("params attendance", params.toString());
 		
-		AppRestClient.post(URLHelper.URL_GET_ATTENDENCE_EVENTS, params,getAttendenceEventsHandler);
+		//AppRestClient.post(URLHelper.URL_GET_ATTENDENCE_EVENTS, params,getAttendenceEventsHandler);
+		getAttendenceEvent(params);
 	}
 
 

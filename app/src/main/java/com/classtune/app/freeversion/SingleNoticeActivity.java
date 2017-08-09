@@ -19,20 +19,25 @@ import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.schoolapp.model.ModelContainer;
 import com.classtune.app.schoolapp.model.Notice;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SingleNoticeActivity extends ChildContainerActivity {
 	
@@ -250,17 +255,53 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 		// TODO Auto-generated method stub
 		this.clickedAckBtn = btn;
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String > params = new HashMap<>();
 
 		
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.NOTICE_ID, btn.getTag().toString());
 
-		AppRestClient.post(URLHelper.URL_NOTICE_ACKNOWLEDGE, params,
-				ackBtnHandler);
+		//AppRestClient.post(URLHelper.URL_NOTICE_ACKNOWLEDGE, params, ackBtnHandler);
+		noticeAcknowledge(params);
 	}
 
+	private void noticeAcknowledge(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().noticeAcknowledge(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Log.e("response", ""+response.body());
+						Log.e("button", "success");
+						uiHelper.dismissLoadingDialog();
+
+						ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
+								response.body());
+
+						// arrangeHomeworkData(modelContainer);
+
+						// adapter.notifyDataSetChanged();
+
+						// Log.e("status code", modelContainer.getStatus().getCode() + "");
+						if (modelContainer.getData().getNotice_ack()
+								.getAcknowledge_status().equals("1")) {
+							clickedAckBtn.setImage(R.drawable.done_tap);
+							clickedAckBtn.setTitleColor(SingleNoticeActivity.this
+									.getResources().getColor(R.color.classtune_green_color));
+							clickedAckBtn.setTitleText(getString(R.string.java_singlenoticeactivity_acknowledged));
+							clickedAckBtn.setEnabled(false);
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler ackBtnHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			Log.e("button", "failed");
@@ -302,15 +343,63 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 	private void initApiCall()
 	{
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put("id", this.id);
 		
 		
-		AppRestClient.post(URLHelper.URL_SINGLE_NOTICE, params, singleNoticeHandler);
+		//AppRestClient.post(URLHelper.URL_SINGLE_NOTICE, params, singleNoticeHandler);
+		getSingleNotice(params);
 	
 	}
-	
+	private void getSingleNotice(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getSingleNotice(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+
+							layoutDataContainer.setVisibility(View.VISIBLE);
+							layoutMessage.setVisibility(View.GONE);
+
+							JsonObject objNotice = modelContainer.getData().get("notice").getAsJsonObject();
+							data = gson.fromJson(objNotice.toString(), Notice.class);
+
+
+
+							initAction();
+
+						}
+
+						else if(modelContainer.getStatus().getCode() == 400 && modelContainer.getStatus().getCode() != 404)
+						{
+							layoutDataContainer.setVisibility(View.GONE);
+							layoutMessage.setVisibility(View.VISIBLE);
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler singleNoticeHandler = new AsyncHttpResponseHandler() {
 
 		@Override

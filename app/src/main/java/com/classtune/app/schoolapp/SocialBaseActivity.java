@@ -11,6 +11,7 @@ import com.classtune.app.schoolapp.model.User;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.URLHelper;
@@ -20,10 +21,16 @@ import com.classtune.app.schoolapp.viewhelpers.PopupDialogShare.IShareButtonclic
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.plus.model.people.Person;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import roboguice.activity.RoboFragmentActivity;
 
 
@@ -44,16 +51,49 @@ public abstract class SocialBaseActivity extends RoboFragmentActivity implements
 
 	private void sharePostToMySchool()
 	{
-		RequestParams params=new RequestParams();
+		HashMap<String,String> params=new HashMap<>();
 		params.put(RequestKeyHelper.USER_ID, UserHelper.getUserFreeId());
 		params.put("id", post.getId());
-		AppRestClient.post(URLHelper.URL_FREE_VERSION_SHARE_TO_MY_SCHOOL, params, postToSchoolHandler);
+		//AppRestClient.post(URLHelper.URL_FREE_VERSION_SHARE_TO_MY_SCHOOL, params, postToSchoolHandler);
+		freeVersionShareMySchool(params);
 		
 	}
 	public void parentSetResult(){
 		setResult(RESULT_OK,new Intent());
 	}
-	
+
+	private void freeVersionShareMySchool(HashMap<String,String> params){
+		uiHelper.showLoadingDialog("Posting to my school...");
+		ApplicationSingleton.getInstance().getNetworkCallInterface().freeVersionShareMySchool(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+						Log.e("Response****", ""+response.body());
+
+						if(uiHelper.isDialogActive())
+						{
+							uiHelper.dismissLoadingDialog();
+						}
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						if (wrapper.getStatus().getCode() == 200) {
+							uiHelper.showMessage("Post is successfully sent.");
+						} else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						if(uiHelper.isDialogActive())
+						{
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler postToSchoolHandler = new AsyncHttpResponseHandler() {
 
 		@Override

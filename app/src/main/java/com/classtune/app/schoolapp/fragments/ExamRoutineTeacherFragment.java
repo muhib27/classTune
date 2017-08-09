@@ -14,21 +14,25 @@ import android.widget.TextView;
 import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.ExamRoutineTeacherModel;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by BLACK HAT on 27-Apr-15.
@@ -94,14 +98,68 @@ public class ExamRoutineTeacherFragment extends Fragment {
 
     private void initApiCall()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put("limit", "25");
 
 
-        AppRestClient.post(URLHelper.URL_EXAM_ROUTINE_TEACHER, params, examRoutineHandler);
+       // AppRestClient.post(URLHelper.URL_EXAM_ROUTINE_TEACHER, params, examRoutineHandler);
+        examRoutineTeacher(params);
     }
 
+    private void examRoutineTeacher(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().examRoutineTeacher(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                        uiHelper.dismissLoadingDialog();
+
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+
+                            JsonArray arrayExam = modelContainer.getData().get("time_table").getAsJsonArray();
+
+                            for (int i = 0; i < arrayExam.size(); i++)
+                            {
+                                listExamRoutine.add(parseExamRoutine(arrayExam.toString()).get(i));
+                            }
+
+                            if(listExamRoutine.size() == 0)
+                            {
+                                txtMessage.setVisibility(View.VISIBLE);
+                                listViewExamRoutine.setVisibility(View.GONE);
+                            }
+                            else
+                            {
+                                txtMessage.setVisibility(View.GONE);
+                                listViewExamRoutine.setVisibility(View.VISIBLE);
+                            }
+
+                            adapter.notifyDataSetChanged();
+
+                        }
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler examRoutineHandler = new AsyncHttpResponseHandler() {
 
         @Override

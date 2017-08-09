@@ -15,26 +15,30 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.classtune.app.freeversion.SingleCalendarEvent;
 import com.classtune.app.R;
+import com.classtune.app.freeversion.SingleCalendarEvent;
 import com.classtune.app.schoolapp.adapters.AcademicCalendarListAdapter;
 import com.classtune.app.schoolapp.model.AcademicCalendarDataItem;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *
@@ -101,7 +105,7 @@ public class AcademicCalendarExam extends UserVisibleHintFragment implements Use
 	}
 
 	private void fetchDataFromServer() {
-		RequestParams params = new RequestParams();
+		HashMap<String, String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.SCHOOL, userHelper.getUser().getPaidInfo()
 				.getSchoolId());
@@ -116,10 +120,44 @@ public class AcademicCalendarExam extends UserVisibleHintFragment implements Use
 					.getPaidInfo().getBatchId());
 		}
 		
-		AppRestClient.post(URLHelper.URL_GET_ACADEMIC_CALENDAR_EVENTS, params,
-				getAcademicEventsHandler);
+		//AppRestClient.post(URLHelper.URL_GET_ACADEMIC_CALENDAR_EVENTS, params, getAcademicEventsHandler);
+		getAcademicClendar(params);
 	}
 
+	private void getAcademicClendar(HashMap<String, String> params){
+		pbs.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().academicClender(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						//			uiHelper.dismissLoadingDialog();
+						pbs.setVisibility(View.GONE);
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+							items.clear();
+							items.addAll(GsonParser.getInstance()
+									.parseAcademicCalendarData(
+											wrapper.getData().getAsJsonArray("events")
+													.toString()));
+							adapter.notifyDataSetChanged();
+							nodata.setVisibility((items.size()>0)? View.GONE: View.VISIBLE);
+						} else if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SESSION_EXPIRED) {
+							// userHelper.doLogIn();
+						}
+
+						initListActionClick();
+
+						Log.e("Events", ""+response.body());
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbs.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getAcademicEventsHandler = new AsyncHttpResponseHandler() {
 		@Override
 		public void onFailure(Throwable arg0, String arg1) {

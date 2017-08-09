@@ -56,19 +56,17 @@ import com.classtune.app.schoolapp.model.DrawerGroup;
 import com.classtune.app.schoolapp.model.User;
 import com.classtune.app.schoolapp.model.WrapAllData;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
-import com.classtune.app.schoolapp.utils.SchoolApp;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserAccessType;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.CustomRhombusIcon;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
@@ -80,6 +78,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeContainerActivity extends SocialBaseActivity implements
 		OnQueryTextListener, OnClickListener, SearchView.OnCloseListener, GcmIntentService.INotificationCount, NotificationActivity.INotificationCountChangedFromActivity, IPictureCallback {
@@ -863,12 +865,70 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 
 	private void initApiCall(String term) {
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put("term", term);
-		AppRestClient.post(URLHelper.URL_FREE_VERSION_SEARCH, params,
-				searchHandler);
+		//AppRestClient.post(URLHelper.URL_FREE_VERSION_SEARCH, params, searchHandler);
+		freeVersionSearch(params);
 	}
 
+	private void freeVersionSearch(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().freeVersionSchoolSearch(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						layoutSearch.removeAllViews();
+
+						if (popup != null)
+							popup.dismiss();
+
+						if (mSearchView.isIconified()) {
+							if (popup != null) {
+								popup.dismiss();
+								layoutSearch.removeAllViews();
+							}
+						}
+
+						if (uiHelper != null)
+							uiHelper.dismissLoadingDialog();
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							Log.e("SEARCH", "data: "
+									+ modelContainer.getData().getAsJsonObject().toString());
+
+							JsonArray arrayPost = modelContainer.getData()
+									.getAsJsonObject().get("post").getAsJsonArray();
+
+							dataWrap = new WrapAllData(arrayPost.toString());
+
+							for (int i = 0; i < dataWrap.getListPost().size(); i++) {
+
+								createSearchRow(i, dataWrap);
+							}
+
+							if (popup != null) {
+								popup.showAsDropDown(mSearchView);
+								adjustPopupHeight();
+							}
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler searchHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -1187,7 +1247,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 			imageViewImageLogoRombus.setVisibility(View.GONE);
 			imageViewImageLogo.setVisibility(View.VISIBLE);
 
-			SchoolApp.getInstance().displayUniversalImage(
+			ApplicationSingleton.getInstance().displayUniversalImage(
 					dataWrap.getListPost().get(position).getImage(),
 					imageViewImageLogo);
 
@@ -1206,7 +1266,7 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 
 		// imageViewImageLogo.setImageResource(AppUtility.getResourceImageId(Integer.parseInt(dataWrap.getListPost().get(position).getCategoryId()),
 		// true));
-		// SchoolApp.getInstance().displayUniversalImage(dataWrap.getListPost().get(position).getCategoryIconUrl(),
+		// ApplicationSingleton.getInstance().displayUniversalImage(dataWrap.getListPost().get(position).getCategoryIconUrl(),
 		// imageViewImageLogo);
 
 		layoutSearch.addView(view);

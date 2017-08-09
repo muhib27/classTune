@@ -34,9 +34,9 @@ import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.CustomDateTimePicker;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -48,19 +48,24 @@ import com.classtune.app.schoolapp.viewhelpers.PopupDialogHomeworkAssessmentResu
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,7 +74,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
     boolean _areContentLoaded = false;
 
-    //SchoolApp app;
+    //ApplicationSingleton app;
     UIHelper uiHelper;
     UserHelper userHelper;
 
@@ -155,7 +160,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
 
-        //app = (SchoolApp) getActivity().getApplicationContext();
+        //app = (ApplicationSingleton) getActivity().getApplicationContext();
         uiHelper=new UIHelper(getActivity());
 
         homeWorkSubject = new ArrayList<BaseType>();
@@ -370,7 +375,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
     private void initApiCallSubject()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         //app.showLog("adfsdfs", app.getUserSecret());
 
@@ -384,12 +389,64 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
 
-        AppRestClient.post(URLHelper.URL_CLASSWORK_SUBJECT, params, subjectHandler);
+        //AppRestClient.post(URLHelper.URL_CLASSWORK_SUBJECT, params, subjectHandler);
+        classworkSubject(params);
 
 
     }
 
 
+    private void classworkSubject(HashMap<String,String> params){
+        if (currentAdapter.getPageNumber() == 1 && !currentAdapter.isRefreshing()) {
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        }
+        ApplicationSingleton.getInstance().getNetworkCallInterface().classworkSubject(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+
+                        homeWorkSubject.clear();
+
+                        Log.e("Response", ""+response.body());
+                        //app.showLog("Response", responseString);
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            JsonArray array = modelContainer.getData().get("subject").getAsJsonArray();
+
+                            List<HomeWorkSubject> list = new ArrayList<HomeWorkSubject>();
+                            for(int i=0;i<array.size();i++)
+                            {
+
+                                list.add(new HomeWorkSubject(array.get(i).getAsJsonObject().get("name").getAsString(), array.get(i).getAsJsonObject().get("id").getAsString()));
+
+
+                            }
+
+                            homeWorkSubject.addAll(list);
+
+                            showSubjectPicker();
+                        }
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler subjectHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -658,7 +715,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
     private void processFetchHomework(String url) {
         // TODO Auto-generated method stub
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         //app.showLog("adfsdfs", app.getUserSecret());
 
@@ -674,14 +731,15 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
         Log.e("Params", params.toString());
 
-        AppRestClient.post(url, params, homeworkHandler);
+       // AppRestClient.post(url, params, homeworkHandler);
+        classwork(params, url);
     }
 
 
     private void processFetchHomework(String url, boolean isFilterApply) {
         // TODO Auto-generated method stub
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         //app.showLog("adfsdfs", app.getUserSecret());
 
@@ -703,14 +761,16 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
         Log.e("Params", params.toString());
 
-        AppRestClient.post(url, params, homeworkHandler);
+        //AppRestClient.post(url, params, homeworkHandler);
+        classwork(params, url);
     }
 
 
     private void processFetchHomeworkDate(String url, boolean isFilterApply) {
         // TODO Auto-generated method stub
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
+
 
         //app.showLog("adfsdfs", app.getUserSecret());
 
@@ -732,14 +792,67 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
         Log.e("Params", params.toString());
 
-        AppRestClient.post(url, params, homeworkHandler);
+       // AppRestClient.post(url, params, homeworkHandler);
+        classwork(params, url);
     }
 
 
 
 
 
+    private void classwork(HashMap<String,String> params,String url){
+        if (currentAdapter.getPageNumber() == 1 && !currentAdapter.isRefreshing()) {
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        }
+        ApplicationSingleton.getInstance().getNetworkCallInterface().classwork(params, url).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
 
+                        if (currentAdapter.getPageNumber() == 1) {
+                            currentAdapter.getList().clear();
+                        }
+                        Log.e("Response", ""+response.body());
+                        //app.showLog("Response", responseString);
+                        ModelContainer modelContainer = GsonParser.getInstance().parseGson2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+                            hasNext = modelContainer.getData().isHasNext();
+
+                            if (!hasNext) {
+                                currentAdapter.setStopLoadingData(true);
+                            }
+
+                            currentAdapter.getList().addAll(modelContainer.getData().getClassworkList());
+                            currentAdapter.notifyDataSetChanged();
+
+
+                            // Call onRefreshComplete when the list has been refreshed.
+                            if(currentAdapter.getPageNumber() != 1 || currentAdapter.isRefreshing())
+                            {
+                                listviewHomework.onRefreshComplete();
+                            }
+
+                            if(modelContainer.getData().getClassworkList().size() <= 0)
+                            {
+                                Toast.makeText(getActivity(), getString(R.string.fragment_archieved_events_txt_no_data_found), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
 
     AsyncHttpResponseHandler homeworkHandler = new AsyncHttpResponseHandler() {
 
@@ -1047,7 +1160,47 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
 
 
+    private void homeworkDone(HashMap<String, String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().homeworkDone(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        Log.e("response", ""+response.body());
+                        Log.e("button", "success");
+                        uiHelper.dismissLoadingDialog();
 
+                        ModelContainer modelContainer = GsonParser.getInstance().parseGson2(response.body());
+/*
+
+            if (modelContainer.getStatus().getCode() == 200) {
+                currentAdapter.getList().get(itemPosition).setIsDone(AppConstant.ACCEPTED);
+
+                //btnDone.setImage(R.drawable.done_tap);
+                //btnDone.setTitleColor(getActivity().getResources().getColor(R.color.classtune_green_color));
+
+                //btnDone.setEnabled(false);
+
+
+            } else {
+                uiHelper.showMessage(getActivity().getString(R.string.java_homeworkfragment_erro_in_operation));
+            }
+*/
+
+
+                        currentAdapter.notifyDataSetChanged();
+
+                        Log.e("status code", modelContainer.getStatus().getCode() + "");
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler doneBtnHandler = new AsyncHttpResponseHandler() {
         public void onFailure(Throwable arg0, String arg1) {
             Log.e("button", "failed");
@@ -1099,7 +1252,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
         this.button = button;
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         Log.e("User secret", UserHelper.getUserSecret());
         Log.e("Ass_ID", button.getTag().toString());
@@ -1107,7 +1260,8 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put(RequestKeyHelper.ASSIGNMENT_ID, button.getTag().toString());
 
-        AppRestClient.post(URLHelper.URL_HOMEWORK_DONE, params, doneBtnHandler);
+        //AppRestClient.post(URLHelper.URL_HOMEWORK_DONE, params, doneBtnHandler);
+        homeworkDone(params);
     }
 
     protected void processPreviousButton(CustomButton v, String url) {
@@ -1119,7 +1273,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
         listviewHomework.setAdapter(currentAdapter);
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         Log.e("User secret", UserHelper.getUserSecret());
         Log.e("subject id", button.getTag().toString());
@@ -1127,24 +1281,100 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
         params.put(RequestKeyHelper.SUBJECT_ID, button.getTag().toString());
 
-        AppRestClient.post(url, params, homeworkHandler);
+       // AppRestClient.post(url, params, homeworkHandler);
+
+        classwork(params, url);
     }
 
 
 
     private void initApiCallAssessment(int pageNumber)
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
         params.put("page_size", "10");
         params.put("page_number", String.valueOf(pageNumber));
 
 
-        AppRestClient.post(URLHelper.URL_HOMEWORK_ASSESSMENT_LIST, params,
-                assessmentHomeworkHandler);
+        //AppRestClient.post(URLHelper.URL_HOMEWORK_ASSESSMENT_LIST, params, assessmentHomeworkHandler);
+        classAccessment(params);
     }
 
+    private void classAccessment(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().homeworkAccessmentList(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        hasNextAssessment = modelContainer.getData().get("has_next").getAsBoolean();
+
+
+                        if (pageNumber == 1)
+                        {
+                            assessmentAdapter.clearList();
+                        }
+
+                        if (!hasNextAssessment)
+                        {
+                            stopLoadingData = true;
+                        }
+
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+                            JsonArray arraHomework = modelContainer.getData().get("homework").getAsJsonArray();
+
+                            //listAssessmentHomework = parseAssessmentList(arraHomework.toString());
+
+
+                            for (int i = 0; i < parseAssessmentList(arraHomework.toString())
+                                    .size(); i++) {
+                                listAssessmentHomework.add(parseAssessmentList(arraHomework.toString()).get(i));
+                            }
+
+
+                            if (pageNumber != 0 || isRefreshing)
+                            {
+                                listViewAssessment.onRefreshComplete();
+                                loading = false;
+                            }
+
+                            assessmentAdapter.notifyDataSetChanged();
+
+                        }
+
+                        else {
+
+                        }
+
+
+                        if(listAssessmentHomework.size() <= 0)
+                        {
+                            txtNoData.setVisibility(View.VISIBLE);
+                            //listViewAssessment.setVisibility(View.GONE);
+                        }
+                        else
+                        {
+                            txtNoData.setVisibility(View.GONE);
+                            //listViewAssessment.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+
+    }
     private AsyncHttpResponseHandler assessmentHomeworkHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -1227,17 +1457,66 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
     private void initApiCallAssessmentResult(String id)
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
         params.put("id", id);
 
 
-        AppRestClient.post(URLHelper.URL_HOMEWORK_ASSESSMENT_RESULT, params,
-                assessmentHomeworkResultHandler);
+        //AppRestClient.post(URLHelper.URL_HOMEWORK_ASSESSMENT_RESULT, params, assessmentHomeworkResultHandler);
+        homeworkAccessmentResult(params);
     }
 
 
+    private void homeworkAccessmentResult(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().homeworkAccessmentResult(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        uiHelper.dismissLoadingDialog();
+
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            JsonObject obj = modelContainer.getData().get("assesment").getAsJsonObject();
+
+                            String nameText = obj.get("name").getAsString();
+                            String subjectText = obj.get("subject_name").getAsString();
+                            String totalStudent = obj.get("total_student").getAsString();
+                            String totaltotalParticipated = obj.get("total_participated").getAsString();
+                            String maxScore = obj.get("max_score").getAsString();
+                            String minScore = obj.get("min_score").getAsString();
+                            String totalTimeTaken = obj.get("total_time_taken").getAsString();
+
+                            String totalMarkText = obj.get("total_mark").getAsString();
+                            String isPassedText = obj.get("is_passed").getAsString();
+                            String totalScoreText = obj.get("total_score").getAsString();
+
+
+                            String studentCountText = totaltotalParticipated+"/"+totalStudent;
+
+
+                            showCustomDialogHomeworkAssessmentOk(getString(R.string.java_assesmentactivity_title_quiz), nameText, subjectText, studentCountText, maxScore, minScore, totalMarkText, totalTimeTaken, isPassedText, totalScoreText, R.drawable.assessment_icon_popup, getActivity());
+
+                        }
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        uiHelper.dismissLoadingDialog();
+                    }
+                }
+        );
+    }
     private AsyncHttpResponseHandler assessmentHomeworkResultHandler = new AsyncHttpResponseHandler() {
 
         @Override

@@ -30,21 +30,25 @@ import com.classtune.app.freeversion.SingleMeetingRequestActivity;
 import com.classtune.app.freeversion.SingleNoticeActivity;
 import com.classtune.app.schoolapp.model.NotificationReminder;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.SharedPreferencesHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
+import com.google.gson.JsonElement;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NotificationActivity extends ChildContainerActivity {
 	
@@ -82,11 +86,63 @@ public class NotificationActivity extends ChildContainerActivity {
 	}
 
 	private void fetchNotification() {
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put("user_secret", UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.PAGE_NUMBER, pageNumber + "");
 		params.put(RequestKeyHelper.PAGE_SIZE, pageSize + "");
-		AppRestClient.post(URLHelper.URL_NOTIFICATION, params, new AsyncHttpResponseHandler() {
+		mSpinner.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().notification(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						//Toast.makeText(NotificationActivity.this, responseString, Toast.LENGTH_LONG).show();
+						mSpinner.setVisibility(View.GONE);
+				/*
+				 * if (fitnessAdapter.getPageNumber() == 1) {
+				 * fitnessAdapter.getList().clear(); // setupPoppyView(); }
+				 */
+						Log.e("Response NOTIFICATION", ""+ response.body());
+						// app.showLog("Response", responseString);
+						Wrapper modelContainer = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							hasNext = modelContainer.getData().get("has_next").getAsBoolean();
+
+							if (pageNumber == 1)
+								mAdapter.clearList();
+
+							if (!hasNext) {
+								// fitnessAdapter.setStopLoadingData(true);
+								stopLoadingData = true;
+							}
+
+							// fitnessAdapter.getList().addAll();
+							ArrayList<NotificationReminder> allpost = GsonParser.getInstance()
+									.parseNotification(
+											modelContainer.getData().getAsJsonArray("reminder")
+													.toString());
+
+							mAdapter.addData(allpost);
+							Log.e("NOTIFICATION LIST SIZE", mAdapter.list.size() + "");
+							mAdapter.notifyDataSetChanged();
+
+							// if (pageNumber != 0 || isRefreshing) {
+							mListView.onRefreshComplete();
+							loading = false;
+							// }
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						mSpinner.setVisibility(View.GONE);
+						Toast.makeText(NotificationActivity.this, R.string.internet_error_text, Toast.LENGTH_LONG).show();
+					}
+				}
+		);
+		/*AppRestClient.post(URLHelper.URL_NOTIFICATION, params, new AsyncHttpResponseHandler() {
 
 			@Override
 			public void onStart() { if (pageNumber == 1) {
@@ -106,10 +162,10 @@ public class NotificationActivity extends ChildContainerActivity {
 			public void onSuccess(int arg0, String responseString) {
 				//Toast.makeText(NotificationActivity.this, responseString, Toast.LENGTH_LONG).show();
 				mSpinner.setVisibility(View.GONE);
-				/*
+				*//*
 				 * if (fitnessAdapter.getPageNumber() == 1) {
 				 * fitnessAdapter.getList().clear(); // setupPoppyView(); }
-				 */
+				 *//*
 				Log.e("Response NOTIFICATION", responseString.toString());
 				// app.showLog("Response", responseString);
 				Wrapper modelContainer = GsonParser.getInstance().parseServerResponse(
@@ -143,7 +199,7 @@ public class NotificationActivity extends ChildContainerActivity {
 					// }
 				}
 			}
-		});
+		});*/
 		
 	}
 
@@ -783,7 +839,7 @@ public class NotificationActivity extends ChildContainerActivity {
 	private void initApiCall(String rId, String rTtype)
 	{
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
 
@@ -798,10 +854,53 @@ public class NotificationActivity extends ChildContainerActivity {
 		}
 
 		
-		AppRestClient.post(URLHelper.URL_EVENT_REMINDER, params, reminderHandler);
+		//AppRestClient.post(URLHelper.URL_EVENT_REMINDER, params, reminderHandler);
+		eventReminder(params);
 	
 	}
-	
+
+	private void eventReminder(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().eventReminder(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+						uiHelper.dismissLoadingDialog();
+
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							//fetchNotification();
+
+							modelContainer.getData().get("unread_total").getAsString();
+
+							SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+
+							userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
+
+							listenerActivity.onNotificationCountChangedFromActivity(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
+
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 
 	AsyncHttpResponseHandler reminderHandler = new AsyncHttpResponseHandler() {
 

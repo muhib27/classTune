@@ -9,24 +9,29 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.schoolapp.model.MeetingStatus;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogMeetingStatus;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogMeetingStatus.PopupOkButtonClickListener;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class SingleMeetingRequestActivity extends ChildContainerActivity {
@@ -126,12 +131,13 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 	private void initApiCall()
 	{
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put("id", this.id);
 		
 		
-		AppRestClient.post(URLHelper.URL_SINGLE_MEETING_REQUEST, params, singleMeetingRequestHandler);
+		//AppRestClient.post(URLHelper.URL_SINGLE_MEETING_REQUEST, params, singleMeetingRequestHandler);
+		singleMeetingRequest(params);
 	
 	}
 	
@@ -211,7 +217,53 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 		
 	}
 	
-	
+	private void singleMeetingRequest(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().singleMeetingRequest(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+
+
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+							layoutDataContainer.setVisibility(View.VISIBLE);
+							layoutMessage.setVisibility(View.GONE);
+
+							JsonObject objNotice = modelContainer.getData().get("meetings").getAsJsonObject();
+							data = gson.fromJson(objNotice.toString(), MeetingStatus.class);
+
+
+
+							initAction();
+
+						}
+
+						else if(modelContainer.getStatus().getCode() != 200 || modelContainer.getStatus().getCode() != 404)
+						{
+							layoutDataContainer.setVisibility(View.GONE);
+							layoutMessage.setVisibility(View.VISIBLE);
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						if (uiHelper.isDialogActive()) {
+							uiHelper.dismissLoadingDialog();
+						}
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler singleMeetingRequestHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -317,7 +369,7 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 	
 	private void initApiCallStatus(String meetingId, String status) {
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put("meeting_id", meetingId);
@@ -358,10 +410,40 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 		Log.e("STAUSSSS", "meeting_id: " + meetingId);
 		Log.e("STAUSSSS", "status: " + status);
 		
-		AppRestClient.post(URLHelper.URL_MEETING_STATUS, params,
-				meetingStatusHandler);
+		//AppRestClient.post(URLHelper.URL_MEETING_STATUS, params, meetingStatusHandler);
+		meetingStatus(params);
 	}
-	
+
+	private void meetingStatus(HashMap<String,String> params){
+		ApplicationSingleton.getInstance().getNetworkCallInterface().mettingStatus(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Wrapper modelContainer = GsonParser.getInstance()
+								.parseServerResponse2(response.body());
+
+						Log.e("RES", "is: " + response.body());
+
+
+						if (modelContainer.getStatus().getCode() == 200) {
+
+
+
+
+						}
+
+						else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+
+					}
+				}
+		);
+	}
 	private AsyncHttpResponseHandler meetingStatusHandler = new AsyncHttpResponseHandler() {
 
 		@Override

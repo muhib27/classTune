@@ -12,27 +12,31 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Batch;
 import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.StudentAttendance;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MyLeaveFragment extends  UserVisibleHintFragment{
 
@@ -60,7 +64,7 @@ public class MyLeaveFragment extends  UserVisibleHintFragment{
 
 	private void fetchData() {
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 		
 		if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) 
 		{
@@ -91,14 +95,14 @@ public class MyLeaveFragment extends  UserVisibleHintFragment{
             }
 
 			//params.put(RequestKeyHelper.STUDENT_ID, userHelper.getUser().getSelectedChild().getProfileId());
-			AppRestClient.post(URLHelper.URL_GET_PARENT_LEAVE_LIST, params,
-					getStudentHandler);
+			//AppRestClient.post(URLHelper.URL_GET_PARENT_LEAVE_LIST, params, getStudentHandler);
+			techerLeaveList(params);
 		}
 		else
 		{
 			params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-			AppRestClient.post(URLHelper.URL_GET_TEACHER_LEAVE_LIST, params,
-					getStudentHandler);
+			//AppRestClient.post(URLHelper.URL_GET_TEACHER_LEAVE_LIST, params, getStudentHandler);
+			techerLeaveList(params);
 		}
 		
 		
@@ -106,6 +110,45 @@ public class MyLeaveFragment extends  UserVisibleHintFragment{
 
 	}
 
+	private void techerLeaveList(HashMap<String,String> params){
+		pbLayout.setVisibility(View.VISIBLE);
+		arraylist.clear();
+		if(adapter!=null)
+			adapter.notifyDataSetChanged();
+		ApplicationSingleton.getInstance().getNetworkCallInterface().teacherLeaveList(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						arraylist.clear();
+
+						pbLayout.setVisibility(View.GONE);
+						Log.e("Menu", ""+ response.body());
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						arraylist.addAll(GsonParser.getInstance().parseStudentList(
+								(wrapper.getData().get("leaves")).toString()));
+						adapter = new StudentLeaveListAdapter(getActivity(), arraylist);
+						studentListView.setAdapter(adapter);
+
+
+						if(arraylist.size() <=0 )
+						{
+							txtMessage.setVisibility(View.VISIBLE);
+						}
+						else
+						{
+							txtMessage.setVisibility(View.GONE);
+						}
+
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getStudentHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			pbLayout.setVisibility(View.GONE);

@@ -14,21 +14,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.R;
+import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.model.YearlyAttendanceData;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -41,6 +40,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class YearlyAttendanceReportFragment extends Fragment implements UserAuthListener{
 
@@ -90,7 +94,7 @@ public class YearlyAttendanceReportFragment extends Fragment implements UserAuth
 
 	private void fetchYearlyAttendanceData()
 	{
-		RequestParams params=new RequestParams();
+		HashMap<String,String> params=new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
 		if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
@@ -131,11 +135,48 @@ public class YearlyAttendanceReportFragment extends Fragment implements UserAuth
 
 		Log.e("params attendance", params.toString());
 
-		AppRestClient.post(URLHelper.URL_GET_ATTENDENCE_EVENTS, params, getYearlyAttendenceEventsHandler);
-
+		//AppRestClient.post(URLHelper.URL_GET_ATTENDENCE_EVENTS, params, getYearlyAttendenceEventsHandler);
+		getAttendenceEvent(params);
 	}
 
 
+	private void getAttendenceEvent(HashMap<String, String> params){
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(getString(R.string.loading_text));
+		else
+			uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getAttendenceEvent(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						uiHelper.dismissLoadingDialog();
+						Log.e("Response", ""+response.body());
+						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+						if(wrapper.getStatus().getCode() == 200)
+						{
+							mSeries.clear();
+							mRenderer.removeAllRenderers();
+							data=GsonParser.getInstance().parseYearlyAttendanceData(wrapper.getData().toString());
+							addValue(String.format("%.2f", calculatePercentage(data.getPresent(), data.getTotalClass())),getResources().getColor(R.color.present),getString(R.string.present_text));
+							addValue(String.format("%.2f", calculatePercentage(data.getAbsent(), data.getTotalClass())),getResources().getColor(R.color.absent),getString(R.string.absent_text));
+							addValue(String.format("%.2f", calculatePercentage(data.getLate(), data.getTotalClass())),getResources().getColor(R.color.late),getString(R.string.late_text));
+							addValue(String.format("%.2f", calculatePercentage(data.getLeave(), data.getTotalClass())),getResources().getColor(R.color.leave),getString(R.string.leave_text));
+							updateUI();
+						}
+						else if(wrapper.getStatus().getCode()==403)
+						{
+							userHelper.doLogIn();
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+
+	}
 	AsyncHttpResponseHandler getYearlyAttendenceEventsHandler=new AsyncHttpResponseHandler()
 	{
 

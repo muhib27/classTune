@@ -22,25 +22,29 @@ import com.classtune.app.schoolapp.GcmIntentService;
 import com.classtune.app.schoolapp.model.ClassworkData;
 import com.classtune.app.schoolapp.model.ModelContainer;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.MyTagHandler;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SingleClassworkActivity extends ChildContainerActivity {
 
@@ -284,7 +288,8 @@ public class SingleClassworkActivity extends ChildContainerActivity {
 
         protected void processDoneButton(CustomButton button) {
             // TODO Auto-generated method stub
-            RequestParams params = new RequestParams();
+            HashMap<String,String> params = new HashMap<>();
+
 
             Log.e("User secret", UserHelper.getUserSecret());
             Log.e("Ass_ID", button.getTag().toString());
@@ -292,9 +297,47 @@ public class SingleClassworkActivity extends ChildContainerActivity {
             params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
             params.put(RequestKeyHelper.ASSIGNMENT_ID, button.getTag().toString());
 
-            AppRestClient.post(URLHelper.URL_HOMEWORK_DONE, params, doneBtnHandler);
+            //AppRestClient.post(URLHelper.URL_HOMEWORK_DONE, params, doneBtnHandler);
+            homeworkDone(params);
         }
 
+        private void homeworkDone(HashMap<String,String> params){
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+            ApplicationSingleton.getInstance().getNetworkCallInterface().homeworkDone(params).enqueue(
+                    new Callback<JsonElement>() {
+                        @Override
+                        public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                            Log.e("response",""+ response.body());
+                            Log.e("button", "success");
+                            uiHelper.dismissLoadingDialog();
+
+                            ModelContainer modelContainer = GsonParser.getInstance().parseGson2(response.body());
+
+                /*if (modelContainer.getStatus().getCode() == 200) {
+                    data.setIsDone(AppConstant.ACCEPTED);
+
+                    btnDone.setImage(R.drawable.done_tap);
+                    btnDone.setTitleColor(SingleClassworkActivity.this.getResources().getColor(R.color.classtune_green_color));
+
+                    btnDone.setEnabled(false);
+
+                } else {
+                    uiHelper.showMessage(getString(R.string.java_singlehomeworkactivity_error_in_operation));
+                }*/
+
+
+
+                            Log.e("status code", modelContainer.getStatus().getCode() + "");
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonElement> call, Throwable t) {
+                            uiHelper.showMessage(getString(R.string.internet_error_text));
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+            );
+        }
         AsyncHttpResponseHandler doneBtnHandler = new AsyncHttpResponseHandler() {
             public void onFailure(Throwable arg0, String arg1) {
                 Log.e("button", "failed");
@@ -362,7 +405,7 @@ public class SingleClassworkActivity extends ChildContainerActivity {
 
         private void initApicall()
         {
-            RequestParams params = new RequestParams();
+            HashMap<String, String> params = new HashMap<>();
 
             //app.showLog("adfsdfs", app.getUserSecret());
 
@@ -407,9 +450,57 @@ public class SingleClassworkActivity extends ChildContainerActivity {
             }
 
 
-            AppRestClient.post(URLHelper.URL_SINGLE_CLASSWORK, params, singleHomeWorkHandler);
+            //AppRestClient.post(URLHelper.URL_SINGLE_CLASSWORK, params, singleHomeWorkHandler);
+            singleClasswork(params);
         }
 
+        private void singleClasswork(HashMap<String,String> params){
+            uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+            ApplicationSingleton.getInstance().getNetworkCallInterface().singleClasswork(params).enqueue(
+                    new Callback<JsonElement>() {
+                        @Override
+                        public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                            uiHelper.dismissLoadingDialog();
+
+
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
+
+                                layoutDataContainer.setVisibility(View.VISIBLE);
+                                layoutMessage.setVisibility(View.GONE);
+
+                                JsonObject objHomework = modelContainer.getData().get("classwork").getAsJsonObject();
+                                data = gson.fromJson(objHomework.toString(), ClassworkData.class);
+
+                                Log.e("HHH", "data: " + data.getName());
+
+                                initAction();
+
+                            }
+
+                            else if(modelContainer.getStatus().getCode() == 400 && modelContainer.getStatus().getCode() != 404)
+                            {
+                                layoutDataContainer.setVisibility(View.GONE);
+                                layoutMessage.setVisibility(View.VISIBLE);
+                            }
+
+                            else {
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonElement> call, Throwable t) {
+                            uiHelper.showMessage(getString(R.string.internet_error_text));
+                            if (uiHelper.isDialogActive()) {
+                                uiHelper.dismissLoadingDialog();
+                            }
+                        }
+                    }
+            );
+        }
         AsyncHttpResponseHandler singleHomeWorkHandler = new AsyncHttpResponseHandler() {
 
             @Override

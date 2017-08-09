@@ -25,6 +25,7 @@ import com.classtune.app.freeversion.HomePageFreeVersion;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.SPKeyHelper;
@@ -35,13 +36,19 @@ import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.classtune.app.freeversion.HomePageFreeVersion.PROPERTY_APP_VERSION;
 import static com.classtune.app.freeversion.HomePageFreeVersion.PROPERTY_REG_ID;
@@ -216,11 +223,27 @@ public class SplashScreenActivity extends Activity {
 			Log.e("INIT", responseString);
 			//navigateToNextPage();
 			//XmlParser.getInstance().parseCmartIndex(responseString);
-			AppRestClient.postCmart(URLHelper.URL_FREE_VERSION_C_MART_INDEX, null, indexCart);
+			//AppRestClient.postCmart(URLHelper.URL_FREE_VERSION_C_MART_INDEX, null, indexCart);
+			cMartIndex(null);
 		}
 
 	};
-	
+
+	private void cMartIndex(HashMap<String,String> params){
+		ApplicationSingleton.getInstance().getNetworkCallInterface().cMartIndex(params).enqueue(new Callback<JsonElement>() {
+			@Override
+			public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+				Log.e("INDEX", ""+response.body());
+				SharedPreferencesHelper.getInstance().setString(SPKeyHelper.CAMRT_CATS,response.toString());
+				navigateToNextPage();
+			}
+
+			@Override
+			public void onFailure(Call<JsonElement> call, Throwable t) {
+
+			}
+		});
+	}
 	AsyncHttpResponseHandler indexCart = new AsyncHttpResponseHandler() {
 		@Override
 		public void onFailure(Throwable arg0, String arg1) {

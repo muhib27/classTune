@@ -23,19 +23,17 @@ import android.widget.TextView;
 
 import com.classtune.app.R;
 import com.classtune.app.freeversion.SingleTeacherDraftClassworkActivity;
-import com.classtune.app.freeversion.SingleTeacherDraftHomeworkActivity;
 import com.classtune.app.schoolapp.callbacks.IFeedRefreshCallBack;
 import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.HomeWorkSubject;
 import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.TeacherClassWork;
-import com.classtune.app.schoolapp.model.TeacherHomework;
 import com.classtune.app.schoolapp.model.UserAuthListener;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.CustomDateTimePicker;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
@@ -43,16 +41,21 @@ import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -204,7 +207,7 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
     private void processFetchPost(String url, String categoryIndex) {
         // TODO Auto-generated method stub
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         if (UserHelper.isLoggedIn()) {
             params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
@@ -218,15 +221,15 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
         // Log.e("Params", params.toString());
 
 
-        AppRestClient.post(URLHelper.URL_TEACHER_CLASSWORK_FEED, params,
-                fitnessHandler);
+        //AppRestClient.post(URLHelper.URL_TEACHER_CLASSWORK_FEED, params, fitnessHandler);
+        classworkFeed(params);
 
     }
 
     private void processFetchPost(String url, String categoryIndex, boolean isFilterApply) {
         // TODO Auto-generated method stub
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String > params = new HashMap<>();
 
         if (UserHelper.isLoggedIn()) {
             params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
@@ -244,8 +247,8 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
         // Log.e("Params", params.toString());
 
 
-        AppRestClient.post(URLHelper.URL_TEACHER_CLASSWORK_FEED, params,
-                fitnessHandler);
+        //AppRestClient.post(URLHelper.URL_TEACHER_CLASSWORK_FEED, params, fitnessHandler);
+        classworkFeed(params);
 
     }
 
@@ -253,7 +256,7 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
     private void processFetchPostDate(String url, String categoryIndex, boolean isFilterApply) {
         // TODO Auto-generated method stub
 
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         if (UserHelper.isLoggedIn()) {
             params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
@@ -272,14 +275,98 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
         // Log.e("Params", params.toString());
 
 
-        AppRestClient.post(URLHelper.URL_TEACHER_CLASSWORK_FEED, params,
-                fitnessHandler);
+       // AppRestClient.post(URLHelper.URL_TEACHER_CLASSWORK_FEED, params,fitnessHandler);
+        classworkFeed(params);
 
     }
 
 
 
 
+    private void classworkFeed(HashMap<String,String> params){
+
+        if (pageNumber == 0 && !isRefreshing) {
+            if (!uiHelper.isDialogActive())
+                uiHelper.showLoadingDialog(getString(R.string.loading_text));
+            else
+                uiHelper.updateLoadingDialog(getString(R.string.loading_text));
+        }
+        if (pageNumber == 1) {
+            spinner.setVisibility(View.VISIBLE);
+        }
+        ApplicationSingleton.getInstance().getNetworkCallInterface().teacherClassworkFeed(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+			/*
+			 * if (fitnessAdapter.getPageNumber() == 1) {
+			 * fitnessAdapter.getList().clear(); // setupPoppyView(); }
+			 */
+                        Log.e("Response CATEGORY", ""+response.body());
+                        // app.showLog("Response", responseString);
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            hasNext = modelContainer.getData().get("has_next")
+                                    .getAsBoolean();
+
+                            if (pageNumber == 1)
+                                allGooadReadPost.clear();
+                            spinner.setVisibility(View.GONE);
+                            if (!hasNext) {
+                                // fitnessAdapter.setStopLoadingData(true);
+                                stopLoadingData = true;
+                            }
+
+                            // fitnessAdapter.getList().addAll();
+                            ArrayList<TeacherClassWork> allpost = GsonParser.getInstance()
+                                    .parseTeacherClasswork(
+                                            modelContainer.getData().getAsJsonArray("classwork")
+                                                    .toString());
+
+
+
+                            Log.e("pagenumber: " + pageNumber, "  size of list: " + allpost.size());
+                            for (int i = 0; i < allpost.size(); i++) {
+
+                                allGooadReadPost.add(allpost.get(i));
+                            }
+                            adapter.notifyDataSetChanged();
+
+                            if (pageNumber != 0 || isRefreshing) {
+                                listGoodread.onRefreshComplete();
+                                loading = false;
+                            }
+
+
+                            if(allGooadReadPost.size() <= 0)
+                            {
+                                txtMessage.setVisibility(View.VISIBLE);
+                            }
+                            else
+                            {
+                                txtMessage.setVisibility(View.GONE);
+                            }
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
     AsyncHttpResponseHandler fitnessHandler = new AsyncHttpResponseHandler() {
 
         @Override
@@ -593,17 +680,67 @@ public class TeacherClassWorkDraftListFragment extends Fragment implements UserA
 
     private void initApiCallSubject()
     {
-        RequestParams params = new RequestParams();
+        HashMap<String,String> params = new HashMap<>();
 
         //app.showLog("adfsdfs", app.getUserSecret());
 
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
-        AppRestClient.post(URLHelper.URL_CLASSWORK_SUBJECT_TEACHER, params, subjectHandler);
+        //AppRestClient.post(URLHelper.URL_CLASSWORK_SUBJECT_TEACHER, params, subjectHandler);
+        classworkSubjectTeacher(params);
 
 
     }
 
+    private void classworkSubjectTeacher(HashMap<String,String> params){
+        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        ApplicationSingleton.getInstance().getNetworkCallInterface().classworkSubjectTeacher(params).enqueue(
+                new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+
+                        classWorkSubject.clear();
+
+                        Log.e("Response", ""+response.body());
+                        //app.showLog("Response", responseString);
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
+                        if (modelContainer.getStatus().getCode() == 200) {
+
+                            JsonArray array = modelContainer.getData().get("subjects").getAsJsonArray();
+
+                            List<HomeWorkSubject> list = new ArrayList<HomeWorkSubject>();
+                            for(int i=0;i<array.size();i++)
+                            {
+
+                                list.add(new HomeWorkSubject(array.get(i).getAsJsonObject().get("name").getAsString(), array.get(i).getAsJsonObject().get("id").getAsString()));
+
+
+                            }
+
+                            classWorkSubject.addAll(list);
+
+                            showSubjectPicker();
+                        }
+
+                        else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        uiHelper.showMessage(getString(R.string.internet_error_text));
+                        if (uiHelper.isDialogActive()) {
+                            uiHelper.dismissLoadingDialog();
+                        }
+                    }
+                }
+        );
+    }
 
     AsyncHttpResponseHandler subjectHandler = new AsyncHttpResponseHandler() {
 

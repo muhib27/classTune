@@ -14,17 +14,22 @@ import com.classtune.app.R;
 import com.classtune.app.freeversion.ChildContainerActivity;
 import com.classtune.app.schoolapp.model.Student;
 import com.classtune.app.schoolapp.model.Wrapper;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StudentInfoActivity extends ChildContainerActivity {
 
@@ -88,7 +93,7 @@ public class StudentInfoActivity extends ChildContainerActivity {
 	
 	private void fetchStudentInfo()
 	{
-		RequestParams params=new RequestParams();
+		HashMap<String, String> params=new HashMap<>();
 
 		if(feedKeyValue == 1)
 		{
@@ -102,13 +107,15 @@ public class StudentInfoActivity extends ChildContainerActivity {
 			{
 				params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 			}
-			AppRestClient.post(URLHelper.URL_GET_INFO, params, getStudentInfoHandler);
+			//AppRestClient.post(URLHelper.URL_GET_INFO, params, getStudentInfoHandler);
+			getStudentInfo(params);
 		}
 		else
 		{
 			params.put(RequestKeyHelper.STUDENT_ID, studentId);
 			params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-			AppRestClient.post(URLHelper.URL_GET_STUDENT_INFO, params, getStudentInfoHandler);
+			//AppRestClient.post(URLHelper.URL_GET_STUDENT_INFO, params, getStudentInfoHandler);
+			getStudentInfo(params);
 		}
 
 	}
@@ -157,7 +164,34 @@ public class StudentInfoActivity extends ChildContainerActivity {
 		txtAddress.setText(student.getContact());
 		
 	}
-	
+
+	private void getStudentInfo(HashMap<String, String> params){
+		pbLayout.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().getStudentInfo(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						pbLayout.setVisibility(View.GONE);
+						Log.e("Response****", ""+response.body());
+
+						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+								response.body());
+						if (wrapper.getStatus().getCode() == 200) {
+							Student student=GsonParser.getInstance().parseStudentInfo(wrapper.getData().get("student").toString());
+							updateUI(student);
+
+						} else {
+
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbLayout.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler getStudentInfoHandler = new AsyncHttpResponseHandler() {
 
 		@Override

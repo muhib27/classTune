@@ -18,22 +18,25 @@ import com.classtune.app.R;
 import com.classtune.app.schoolapp.model.ModelContainer;
 import com.classtune.app.schoolapp.model.Notice;
 import com.classtune.app.schoolapp.model.UserAuthListener;
-import com.classtune.app.schoolapp.networking.AppRestClient;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
-import com.classtune.app.schoolapp.utils.URLHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.CustomTabButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.JsonElement;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NoticeFragment extends UserVisibleHintFragment implements OnClickListener,UserAuthListener {
 
@@ -88,6 +91,42 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 		return view;
 	}
 
+	private void noticeAcknowledge(HashMap<String,String> params){
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().noticeAcknowledge(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						Log.e("response", ""+response.body());
+						Log.e("button", "success");
+						uiHelper.dismissLoadingDialog();
+
+						ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
+								response.body());
+
+						// arrangeHomeworkData(modelContainer);
+
+						// adapter.notifyDataSetChanged();
+
+						// Log.e("status code", modelContainer.getStatus().getCode() + "");
+						if (modelContainer.getData().getNotice_ack()
+								.getAcknowledge_status().equals("1")) {
+							clickedAckBtn.setImage(R.drawable.done_tap);
+							clickedAckBtn.setTitleColor(NoticeFragment.this.getActivity()
+									.getResources().getColor(R.color.maroon));
+							clickedAckBtn.setTitleText(getActivity().getString(R.string.java_noticefragment_acknowledge));
+							clickedAckBtn.setEnabled(false);
+						}
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						uiHelper.showMessage(getString(R.string.internet_error_text));
+						uiHelper.dismissLoadingDialog();
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler ackBtnHandler = new AsyncHttpResponseHandler() {
 		public void onFailure(Throwable arg0, String arg1) {
 			Log.e("button", "failed");
@@ -166,6 +205,32 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 
 	}
 
+	private void notice(HashMap<String, String> params){
+		pbs.setVisibility(View.VISIBLE);
+		ApplicationSingleton.getInstance().getNetworkCallInterface().notice(params).enqueue(
+				new Callback<JsonElement>() {
+					@Override
+					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+						//			uiHelper.dismissLoadingDialog();
+						pbs.setVisibility(View.GONE);
+						//Toast.makeText(getActivity(), responseString, Toast.LENGTH_LONG).show();
+						Log.e("NOTICE RESPONSE ",""+ response.body());
+						// uiHelper.showMessage(responseString);
+						ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
+								response.body());
+						arrangeNoticeData(modelContainer);
+						adapter.notifyDataSetChanged();
+//			Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
+//					.getAllNotice().get(0).getNoticeTypeText());
+					}
+
+					@Override
+					public void onFailure(Call<JsonElement> call, Throwable t) {
+						pbs.setVisibility(View.GONE);
+					}
+				}
+		);
+	}
 	AsyncHttpResponseHandler NoticeHandler = new AsyncHttpResponseHandler() {
 
 		@Override
@@ -207,7 +272,7 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 
 	public void fetchNotice() {
 		
-		RequestParams params = new RequestParams();
+		HashMap<String, String> params = new HashMap<>();
 		
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		
@@ -225,7 +290,8 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 		
 		//params.put(RequestKeyHelper.TO_DATE, "2014-06-23");
 
-		AppRestClient.post(URLHelper.URL_NOTICE, params, NoticeHandler);
+		//AppRestClient.post(URLHelper.URL_NOTICE, params, NoticeHandler);
+		notice(params);
 
 	}
 	
@@ -429,15 +495,15 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 		// TODO Auto-generated method stub
 		this.clickedAckBtn = btn;
 
-		RequestParams params = new RequestParams();
+		HashMap<String,String> params = new HashMap<>();
 
 		
 
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put(RequestKeyHelper.NOTICE_ID, btn.getTag().toString());
 
-		AppRestClient.post(URLHelper.URL_NOTICE_ACKNOWLEDGE, params,
-				ackBtnHandler);
+		//AppRestClient.post(URLHelper.URL_NOTICE_ACKNOWLEDGE, params, ackBtnHandler);
+		noticeAcknowledge(params);
 	}
 
 	@SuppressWarnings("unchecked")

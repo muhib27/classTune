@@ -1,6 +1,6 @@
 package com.classtune.app.schoolapp.model;
 
-import com.classtune.app.schoolapp.utils.SchoolApp;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.google.gson.annotations.SerializedName;
 
 public class SchoolEvent {
@@ -132,7 +132,7 @@ public class SchoolEvent {
 	
 	public boolean isThisUser(String userProfileId)
 	{
-		if(userProfileId.equalsIgnoreCase(SchoolApp.getInstance().getCurrentUser().getPaidInfo().getProfileId()))
+		if(userProfileId.equalsIgnoreCase(ApplicationSingleton.getInstance().getCurrentUser().getPaidInfo().getProfileId()))
 			return true;
 		else
 			return false;

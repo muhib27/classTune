@@ -27,8 +27,8 @@ import com.classtune.app.schoolapp.model.PickerType;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
+import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
-import com.classtune.app.schoolapp.utils.SchoolApp;
 import com.classtune.app.schoolapp.viewhelpers.MyFragmentTabHost;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
@@ -136,7 +136,7 @@ public class TeachersAttendanceTabhostFragment extends Fragment implements OnCli
                 i.putExtra("batch_id", selectedBatch.getId());
                 getActivity().sendBroadcast(i);*/
 
-				SchoolApp.getInstance().globalBroadcastThroughApp(AppConstant.KEY_BATCH_FROM_TEACHERATTENDANCE_TAB, new Gson().toJson(selectedBatch));
+				ApplicationSingleton.getInstance().globalBroadcastThroughApp(AppConstant.KEY_BATCH_FROM_TEACHERATTENDANCE_TAB, new Gson().toJson(selectedBatch));
 
 
 				break;
