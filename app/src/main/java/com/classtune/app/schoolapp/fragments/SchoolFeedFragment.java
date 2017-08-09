@@ -159,7 +159,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
     private void setUpList() {
         initializePageing();
-        listGoodread.setMode(Mode.PULL_FROM_END);
+        listGoodread.setMode(PullToRefreshBase.Mode.BOTH);
         listGoodread.setOnRefreshListener(new OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
