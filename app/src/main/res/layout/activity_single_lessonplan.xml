@@ -101,13 +101,10 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/white">
 
-                    <com.classtune.app.schoolapp.viewhelpers.ExpandableTextView
+                    <WebView
                         android:id="@+id/txtDescription"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:textColor="@color/black"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:layout_height="wrap_content"/>
 
                     <LinearLayout
                         android:id="@+id/layoutDownloadHolder"

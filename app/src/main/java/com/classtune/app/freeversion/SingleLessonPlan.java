@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,11 +20,9 @@ import com.classtune.app.schoolapp.utils.AppConstant;
 import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
-import com.classtune.app.schoolapp.utils.MyTagHandler;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomTabButton;
-import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
 import com.classtune.app.schoolapp.viewhelpers.PopupDialogLessonPlanConfirmation;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
 import com.google.gson.Gson;
@@ -55,7 +53,7 @@ public class SingleLessonPlan extends ChildContainerActivity {
     private TextView txtSubject;
     private TextView txtCategory;
     private TextView txtDate;
-    private ExpandableTextView txtDescription;
+    private WebView txtDescription;
 
     private CustomTabButton btnDelete;
     private CustomTabButton btnEdit;
@@ -102,7 +100,7 @@ public class SingleLessonPlan extends ChildContainerActivity {
         txtSubject = (TextView)this.findViewById(R.id.txtSubject);
         txtCategory = (TextView)this.findViewById(R.id.txtCategory);
         txtDate = (TextView)this.findViewById(R.id.txtDate);
-        txtDescription = (ExpandableTextView)this.findViewById(R.id.txtDescription);
+        txtDescription = (WebView) this.findViewById(R.id.txtDescription);
 
         btnDelete = (CustomTabButton)this.findViewById(R.id.btnDelete);
         btnEdit = (CustomTabButton)this.findViewById(R.id.btnEdit);
@@ -134,7 +132,7 @@ public class SingleLessonPlan extends ChildContainerActivity {
         txtDate.setText(getString(R.string.java_singlelessonplan_published_date)+ AppUtility.getDateString(data.getPublishDate(), AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
 
 
-        txtDescription.setText(Html.fromHtml(data.getDescription(), null, new MyTagHandler()));
+        txtDescription.loadData(data.getDescription(), "text/html; charset=utf-8", "UTF-8");
 
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
