@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.text.Html;
 import android.text.TextUtils;
@@ -1014,6 +1015,9 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                             holder.iconbg.setBackgroundColor(getResources().getColor(R.color.gray_4));
                             holder.icon.setColorFilter(null);
                         } else {
+
+                        }
+                        if (list.get(position).getRtype().equals("160")){
                             holder.iconbg.setBackgroundColor(getResources().getColor(R.color.classtune_green_color));
                             holder.icon.setColorFilter(Color.argb(255, 255, 255, 255));
                         }
@@ -1397,6 +1401,10 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
             case 45:
                 imgView.setImageResource(R.drawable.notice_attendance);
                 break;
+            case 160:
+                imgView.setImageResource(R.drawable.ic_cake_black_24dp);
+                imgView.setColorFilter(ContextCompat.getColor(getActivity(), R.color.present), android.graphics.PorterDuff.Mode.MULTIPLY);
+                break;
 
             default:
                 imgView.setImageResource(R.drawable.notice_default);
@@ -1461,6 +1469,9 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
             case 45:
                 return getActivity().getString(R.string.feed_cat_name_subject_attendance);
+
+            case 160:
+                return getActivity().getString(R.string.birthday);
 
             default:
                 return getActivity().getString(R.string.java_schoolfeedfragment_notice);

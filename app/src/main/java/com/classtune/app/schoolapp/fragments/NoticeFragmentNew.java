@@ -29,6 +29,7 @@ import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.ReminderHelper;
 import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
+import com.classtune.app.schoolapp.utils.UserHelper.UserTypeEnum;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.CustomTabButton;
 import com.classtune.app.schoolapp.viewhelpers.ExpandableTextView;
@@ -321,6 +322,10 @@ public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
 		
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 		params.put("notice_type", noticeType);
+		if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
+			params.put(RequestKeyHelper.BATCH_ID, userHelper.getUser().getSelectedChild().getBatchId());
+		}
+
 			
 		
 
