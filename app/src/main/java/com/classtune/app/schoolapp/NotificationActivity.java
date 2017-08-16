@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.classtune.app.R;
 import com.classtune.app.freeversion.AnyFragmentLoadActivity;
 import com.classtune.app.freeversion.ChildContainerActivity;
+import com.classtune.app.freeversion.SingleClassworkActivity;
 import com.classtune.app.freeversion.SingleEventActivity;
 import com.classtune.app.freeversion.SingleExamRoutine;
 import com.classtune.app.freeversion.SingleHomeworkActivity;
@@ -353,6 +355,11 @@ public class NotificationActivity extends ChildContainerActivity {
 				holder.layoutRootView.setBackgroundColor(Color.WHITE);
 			}
 
+
+			if (list.get(position).getRtype().equals("160")){
+				holder.imgViewIcon.setColorFilter(getResources().getColor(R.color.classtune_green_color));
+
+			}
 			if(list.get(position).isAlreadyRead())
 			{
 				holder.layoutRootView.setBackgroundColor(Color.WHITE);
@@ -454,6 +461,16 @@ public class NotificationActivity extends ChildContainerActivity {
 		case 14:
 			imgView.setImageResource(R.drawable.notice_meeting_request);
 			break;
+
+		case 31:
+			imgView.setImageResource(R.drawable.classwork_tap);
+			break;
+
+		case 160:
+			imgView.setImageResource(R.drawable.ic_cake_black_24dp);
+			imgView.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.present), android.graphics.PorterDuff.Mode.MULTIPLY);
+			break;
+
 			
 		default:
 			imgView.setImageResource(R.drawable.notice_default);
@@ -813,6 +830,29 @@ public class NotificationActivity extends ChildContainerActivity {
 					initApiCall(data.getRid(), rType);
 
 				break;
+			case 31:
+				intent = new Intent(this, SingleClassworkActivity.class);
+				intent.putExtra(AppConstant.ID_SINGLE_CLASSWORK, data.getRid());
+
+
+				if(userHelper.getUser().getType() == UserHelper.UserTypeEnum.PARENTS)
+				{
+					Bundle extra = new Bundle();
+					extra.putString("student_id", data.getStudentId());
+					extra.putString("batch_id", data.getBatchId());
+					intent.putExtra("total_unread_extras", extra);
+				}
+
+
+				startActivityForResult(intent, REQUEST_REMINDER);
+
+				if(data.getIs_read().equalsIgnoreCase("0"))
+
+					initApiCall(data.getRid(), rType);
+
+				break;
+
+
 
 		default:
 			break;

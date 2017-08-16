@@ -1015,7 +1015,8 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                             holder.iconbg.setBackgroundColor(getResources().getColor(R.color.gray_4));
                             holder.icon.setColorFilter(null);
                         } else {
-
+                            holder.iconbg.setBackgroundColor(getResources().getColor(R.color.classtune_green_color));
+                            holder.icon.setColorFilter(Color.argb(255, 255, 255, 255));
                         }
                         if (list.get(position).getRtype().equals("160")){
                             holder.iconbg.setBackgroundColor(getResources().getColor(R.color.classtune_green_color));
