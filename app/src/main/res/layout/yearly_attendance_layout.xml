@@ -143,7 +143,7 @@
             
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="298"
+                android:text=""
                 android:textColor="@color/maroon"
                 android:gravity="center"
                 android:id="@+id/total_class_value"/>
@@ -163,7 +163,7 @@
             
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="200"
+                android:text=""
                 android:textColor="@android:color/black"
                 android:gravity="center"
                 android:id="@+id/present_value"/>
@@ -183,7 +183,7 @@
             
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="12"
+                android:text=""
                 android:textColor="@android:color/black"
                 android:gravity="center"
                 android:id="@+id/leave_value"/>
@@ -203,7 +203,7 @@
             
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="20"
+                android:text=""
                 android:textColor="@android:color/black"
                 android:gravity="center"
                 android:id="@+id/absent_value"/>
@@ -223,7 +223,7 @@
             
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="30"
+                android:text=""
                 android:textColor="@android:color/black"
                 android:gravity="center"
                 android:id="@+id/late_value"/>
@@ -242,7 +242,7 @@
             
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="80%"
+                android:text=""
                 android:textColor="@android:color/black"
                 android:gravity="center"
                 android:id="@+id/percent_value"/>
