@@ -328,7 +328,7 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
                             } else
                                 Toast.makeText(
                                         SingleTeacherEditClassworkActivity.this,
-                                        R.string.java_singleteacheredithomeworkactivity_failed_post,
+                                        R.string.java_singleteachereditclassworkactivity_failed_post,
                                         Toast.LENGTH_SHORT).show();
                         }
 
@@ -363,7 +363,7 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
                             } else
                                 Toast.makeText(
                                         SingleTeacherEditClassworkActivity.this,
-                                        R.string.java_singleteacheredithomeworkactivity_failed_post,
+                                        R.string.java_singleteachereditclassworkactivity_failed_post,
                                         Toast.LENGTH_SHORT).show();
                         }
 

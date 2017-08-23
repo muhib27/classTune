@@ -199,7 +199,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                                 else
                                 {
                                     Toast.makeText(getActivity(),
-                                            R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
+                                            R.string.java_teacherclassworkaddfragment_successfully_posted_classwork,
                                             Toast.LENGTH_SHORT).show();
                                 }
 
@@ -209,7 +209,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                             } else
                                 Toast.makeText(
                                         getActivity(),
-                                        getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
+                                        getString(R.string.java_singleteachereditclassworkactivity_failed_post),
                                         Toast.LENGTH_SHORT).show();
                         }
 
@@ -246,7 +246,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                                     else
                                     {
                                         Toast.makeText(getActivity(),
-                                                R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
+                                                R.string.java_teacherclassworkaddfragment_successfully_posted_classwork,
                                                 Toast.LENGTH_SHORT).show();
                                     }
 
@@ -256,7 +256,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                                 } else
                                     Toast.makeText(
                                             getActivity(),
-                                            getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
+                                            getString(R.string.java_singleteachereditclassworkactivity_failed_post),
                                             Toast.LENGTH_SHORT).show();
                             }
 
@@ -292,7 +292,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                                     else
                                     {
                                         Toast.makeText(getActivity(),
-                                                R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
+                                                R.string.java_teacherclassworkaddfragment_successfully_posted_classwork,
                                                 Toast.LENGTH_SHORT).show();
                                     }
 
@@ -302,7 +302,7 @@ public class TeacherClassWorkAddFragment extends Fragment implements View.OnClic
                                 } else
                                     Toast.makeText(
                                             getActivity(),
-                                            getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
+                                            getString(R.string.java_singleteachereditclassworkactivity_failed_post),
                                             Toast.LENGTH_SHORT).show();
                             }
 

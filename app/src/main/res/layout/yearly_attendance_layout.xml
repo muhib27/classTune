@@ -237,8 +237,7 @@
             android:orientation="horizontal"
             android:paddingTop="10dip"
             android:paddingBottom="10dip"
-            android:background="@android:color/white"
-            >
+            android:background="@android:color/white">
             
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
