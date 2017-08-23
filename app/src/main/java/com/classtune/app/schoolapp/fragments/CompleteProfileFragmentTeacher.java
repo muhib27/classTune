@@ -161,15 +161,17 @@ public class CompleteProfileFragmentTeacher extends Fragment implements
 							uiHelper.dismissLoadingDialog();
 						}
 
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-							UserWrapper userWrapper = GsonParser.getInstance()
-									.parseUserWrapper(wrapper.getData().toString());
-							user=userWrapper.getUser();
-							//user.setId(UserHelper.getUserFreeId());
+						if (response.body() != null){
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+								UserWrapper userWrapper = GsonParser.getInstance()
+										.parseUserWrapper(wrapper.getData().toString());
+								user=userWrapper.getUser();
+								//user.setId(UserHelper.getUserFreeId());
+							}
+							updateUI();
 						}
-						updateUI();
 					}
 
 					@Override

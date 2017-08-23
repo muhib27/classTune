@@ -446,22 +446,22 @@ public class MeetingFragment extends Fragment implements UserAuthListener{
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
 
-						Log.e("RES", "is: " + response.body());
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-
-						if (modelContainer.getStatus().getCode() == 200) {
-
-							initApiCall(pageNumber, selectedType, null, null);
+							Log.e("RES", "is: " + response.body());
 
 
+							if (modelContainer.getStatus().getCode() == 200) {
+
+								initApiCall(pageNumber, selectedType, null, null);
+
+
+							}
 						}
 
-						else {
-
-						}
 					}
 
 					@Override

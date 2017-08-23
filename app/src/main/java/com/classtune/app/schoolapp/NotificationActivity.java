@@ -99,41 +99,43 @@ public class NotificationActivity extends ChildContainerActivity {
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						//Toast.makeText(NotificationActivity.this, responseString, Toast.LENGTH_LONG).show();
 						mSpinner.setVisibility(View.GONE);
-				/*
+						if (response.body() != null){
+							/*
 				 * if (fitnessAdapter.getPageNumber() == 1) {
 				 * fitnessAdapter.getList().clear(); // setupPoppyView(); }
 				 */
-						Log.e("Response NOTIFICATION", ""+ response.body());
-						// app.showLog("Response", responseString);
-						Wrapper modelContainer = GsonParser.getInstance().parseServerResponse2(
-								response.body());
+							Log.e("Response NOTIFICATION", ""+ response.body());
+							// app.showLog("Response", responseString);
+							Wrapper modelContainer = GsonParser.getInstance().parseServerResponse2(
+									response.body());
 
-						if (modelContainer.getStatus().getCode() == 200) {
+							if (modelContainer.getStatus().getCode() == 200) {
 
-							hasNext = modelContainer.getData().get("has_next").getAsBoolean();
+								hasNext = modelContainer.getData().get("has_next").getAsBoolean();
 
-							if (pageNumber == 1)
-								mAdapter.clearList();
+								if (pageNumber == 1)
+									mAdapter.clearList();
 
-							if (!hasNext) {
-								// fitnessAdapter.setStopLoadingData(true);
-								stopLoadingData = true;
+								if (!hasNext) {
+									// fitnessAdapter.setStopLoadingData(true);
+									stopLoadingData = true;
+								}
+
+								// fitnessAdapter.getList().addAll();
+								ArrayList<NotificationReminder> allpost = GsonParser.getInstance()
+										.parseNotification(
+												modelContainer.getData().getAsJsonArray("reminder")
+														.toString());
+
+								mAdapter.addData(allpost);
+								Log.e("NOTIFICATION LIST SIZE", mAdapter.list.size() + "");
+								mAdapter.notifyDataSetChanged();
+
+								// if (pageNumber != 0 || isRefreshing) {
+								mListView.onRefreshComplete();
+								loading = false;
+								// }
 							}
-
-							// fitnessAdapter.getList().addAll();
-							ArrayList<NotificationReminder> allpost = GsonParser.getInstance()
-									.parseNotification(
-											modelContainer.getData().getAsJsonArray("reminder")
-													.toString());
-
-							mAdapter.addData(allpost);
-							Log.e("NOTIFICATION LIST SIZE", mAdapter.list.size() + "");
-							mAdapter.notifyDataSetChanged();
-
-							// if (pageNumber != 0 || isRefreshing) {
-							mListView.onRefreshComplete();
-							loading = false;
-							// }
 						}
 					}
 
@@ -907,27 +909,24 @@ public class NotificationActivity extends ChildContainerActivity {
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
 
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+							if (modelContainer.getStatus().getCode() == 200) {
 
-						if (modelContainer.getStatus().getCode() == 200) {
+								//fetchNotification();
 
-							//fetchNotification();
+								modelContainer.getData().get("unread_total").getAsString();
 
-							modelContainer.getData().get("unread_total").getAsString();
+								SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
 
-							SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+								userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
 
-							userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
+								listenerActivity.onNotificationCountChangedFromActivity(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
 
-							listenerActivity.onNotificationCountChangedFromActivity(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
-
-						}
-
-						else {
-
+							}
 						}
 					}
 

@@ -88,71 +88,73 @@ public class PreferenceSettingsActivity extends ChildContainerActivity implement
 							uiHelper.dismissLoadingDialog();
 						}
 
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
+						if (response.body() != null){
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
 
-						if (wrapper.getStatus().getCode() == 200
-								|| wrapper.getStatus().getCode() == 202) {
+							if (wrapper.getStatus().getCode() == 200
+									|| wrapper.getStatus().getCode() == 202) {
 
-							Log.e("PREFERENCE DATA", wrapper.getData().toString());
-							Log.e("STATUS CODE", "  " + wrapper.getStatus().getCode());
-							// postList = GsonParser.getInstance().parseGoodreadPostAll(
-							// wrapper.getData().toString());
-							mainCategories = GsonParser.getInstance().parseMainCategories(
-									wrapper.getData().getAsJsonArray("all_categories")
-											.toString());
-							selectedSubCateogryIds = wrapper.getData()
-									.get("preferred_categories").getAsString().split(",");
-							Log.e("PREFFERED CATEGORY STRING ",
-									wrapper.getData().get("preferred_categories")
-											.toString());
-							for (MainCategory mcat : mainCategories) {
-								View mainCatView = LayoutInflater.from(
-										PreferenceSettingsActivity.this).inflate(
-										R.layout.item_pref_settings, null);
-								CustomTextView ctvm = (CustomTextView) mainCatView
-										.findViewById(R.id.tv_main_cat_name);
-								ImageView icon = (ImageView) mainCatView
-										.findViewById(R.id.pref_cat_icon);
-								icon.setImageResource(AppUtility.getResourceImageId(
-										Integer.parseInt(mcat.getId()), true, true));
-								ctvm.setText(mcat.getName());
-								LinearLayout subView = (LinearLayout) mainCatView
-										.findViewById(R.id.pref_ll_subcat);
-								for (SubCategory sub : mcat.getSub_categories()) {
-									View subViewItem = LayoutInflater.from(
+								Log.e("PREFERENCE DATA", wrapper.getData().toString());
+								Log.e("STATUS CODE", "  " + wrapper.getStatus().getCode());
+								// postList = GsonParser.getInstance().parseGoodreadPostAll(
+								// wrapper.getData().toString());
+								mainCategories = GsonParser.getInstance().parseMainCategories(
+										wrapper.getData().getAsJsonArray("all_categories")
+												.toString());
+								selectedSubCateogryIds = wrapper.getData()
+										.get("preferred_categories").getAsString().split(",");
+								Log.e("PREFFERED CATEGORY STRING ",
+										wrapper.getData().get("preferred_categories")
+												.toString());
+								for (MainCategory mcat : mainCategories) {
+									View mainCatView = LayoutInflater.from(
 											PreferenceSettingsActivity.this).inflate(
-											R.layout.item_pref_settings_subcat, null);
-									CheckBox cb = (CheckBox) subViewItem
-											.findViewById(R.id.cb_pref_subcat);
+											R.layout.item_pref_settings, null);
+									CustomTextView ctvm = (CustomTextView) mainCatView
+											.findViewById(R.id.tv_main_cat_name);
+									ImageView icon = (ImageView) mainCatView
+											.findViewById(R.id.pref_cat_icon);
+									icon.setImageResource(AppUtility.getResourceImageId(
+											Integer.parseInt(mcat.getId()), true, true));
+									ctvm.setText(mcat.getName());
+									LinearLayout subView = (LinearLayout) mainCatView
+											.findViewById(R.id.pref_ll_subcat);
+									for (SubCategory sub : mcat.getSub_categories()) {
+										View subViewItem = LayoutInflater.from(
+												PreferenceSettingsActivity.this).inflate(
+												R.layout.item_pref_settings_subcat, null);
+										CheckBox cb = (CheckBox) subViewItem
+												.findViewById(R.id.cb_pref_subcat);
 
-									CustomTextView ctvs = (CustomTextView) subViewItem
-											.findViewById(R.id.tv_pref_subcat_name);
-									cb.setTag(sub.getId());
-									cb.setOnCheckedChangeListener(PreferenceSettingsActivity.this);
-									ctvs.setText(sub.getName());
-									subCategoriesMap.put(sub.getId(), sub);
-									// if(wrapper.getStatus().getCode()==202){
+										CustomTextView ctvs = (CustomTextView) subViewItem
+												.findViewById(R.id.tv_pref_subcat_name);
+										cb.setTag(sub.getId());
+										cb.setOnCheckedChangeListener(PreferenceSettingsActivity.this);
+										ctvs.setText(sub.getName());
+										subCategoriesMap.put(sub.getId(), sub);
+										// if(wrapper.getStatus().getCode()==202){
 
 						/*cb.setChecked(true);
 						// }else {
 						cb.setChecked(false);*/
-									if(wrapper.getStatus().getCode()==202){
-										cb.setChecked(true);
-									}else
-										for (String catId : selectedSubCateogryIds) {
-											Log.e("MATCHED SUBCATEGORY SELECTED", "" + catId);
-											if (sub.getId().equals(catId)) {
-												cb.setChecked(true);
-												break;
+										if(wrapper.getStatus().getCode()==202){
+											cb.setChecked(true);
+										}else
+											for (String catId : selectedSubCateogryIds) {
+												Log.e("MATCHED SUBCATEGORY SELECTED", "" + catId);
+												if (sub.getId().equals(catId)) {
+													cb.setChecked(true);
+													break;
+												}
 											}
-										}
-									// }
+										// }
 
-									subView.addView(subViewItem);
+										subView.addView(subViewItem);
+									}
+									if (mcat.getSub_categories().size() > 0)
+										scrollLinearLayout.addView(mainCatView);
 								}
-								if (mcat.getSub_categories().size() > 0)
-									scrollLinearLayout.addView(mainCatView);
 							}
 						}
 					}
@@ -264,18 +266,19 @@ public class PreferenceSettingsActivity extends ChildContainerActivity implement
 							uiHelper.dismissLoadingDialog();
 						}
 
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
+						if (response.body() != null){
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
 
-						if (wrapper.getStatus().getCode() == 200) {
+							if (wrapper.getStatus().getCode() == 200) {
 
-							Log.e("SET_PREFERENCE DATA", wrapper.getData().toString());
-							finish();
-							Intent main = new Intent(PreferenceSettingsActivity.this,HomePageFreeVersion.class);
-							main.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION
-									| Intent.FLAG_ACTIVITY_NEW_TASK
-									| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-							startActivity(main);
+								Log.e("SET_PREFERENCE DATA", wrapper.getData().toString());
+								finish();
+								Intent main = new Intent(PreferenceSettingsActivity.this,HomePageFreeVersion.class);
+								main.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION
+										| Intent.FLAG_ACTIVITY_NEW_TASK
+										| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+								startActivity(main);
 
 				/*
 				 * mainCategories =
@@ -283,6 +286,7 @@ public class PreferenceSettingsActivity extends ChildContainerActivity implement
 				 * wrapper.getData(
 				 * ).getAsJsonArray("all_categories").toString());
 				 */
+							}
 						}
 					}
 

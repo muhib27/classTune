@@ -177,26 +177,28 @@ public class LeaveApplicationFragment extends Fragment implements
 						public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 							if (uiHelper.isDialogActive())
 								uiHelper.dismissLoadingDialog();
+							if (response.body() != null){
+								Log.e("SERVERRESPONSE", ""+response.body());
+								Wrapper wrapper = GsonParser.getInstance()
+										.parseServerResponse2(response.body());
+								if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+									Toast.makeText(getActivity(),
+											R.string.java_leaveapplicationfragment_successfully_posted,
+											Toast.LENGTH_SHORT).show();
+									leaveDescriptionEditText.setText("");
+									leaveId="";
+									startDateFormatServerString="";
+									endDateFormatServerString = "";
 
-							Log.e("SERVERRESPONSE", ""+response.body());
-							Wrapper wrapper = GsonParser.getInstance()
-									.parseServerResponse2(response.body());
-							if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-								Toast.makeText(getActivity(),
-										R.string.java_leaveapplicationfragment_successfully_posted,
-										Toast.LENGTH_SHORT).show();
-								leaveDescriptionEditText.setText("");
-								leaveId="";
-								startDateFormatServerString="";
-								endDateFormatServerString = "";
+									clearDataFields();
 
-								clearDataFields();
+								} else
+									Toast.makeText(
+											getActivity(),
+											R.string.java_leaveapplicationfragment_failed_post,
+											Toast.LENGTH_SHORT).show();
+							}
 
-							} else
-								Toast.makeText(
-										getActivity(),
-										R.string.java_leaveapplicationfragment_failed_post,
-										Toast.LENGTH_SHORT).show();
 						}
 
 						@Override
@@ -262,25 +264,29 @@ public class LeaveApplicationFragment extends Fragment implements
 							if (uiHelper.isDialogActive())
 								uiHelper.dismissLoadingDialog();
 
-							Log.e("SERVERRESPONSE", ""+response.body());
-							Wrapper wrapper = GsonParser.getInstance()
-									.parseServerResponse2(response.body());
-							if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-								Toast.makeText(getActivity(),
-										R.string.java_leaveapplicationfragment_successfully_posted,
-										Toast.LENGTH_SHORT).show();
-								leaveDescriptionEditText.setText("");
-								leaveId="";
-								startDateFormatServerString="";
-								endDateFormatServerString = "";
+							if (response.body() != null){
 
-								clearDataFields();
+								Log.e("SERVERRESPONSE", ""+response.body());
+								Wrapper wrapper = GsonParser.getInstance()
+										.parseServerResponse2(response.body());
+								if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+									Toast.makeText(getActivity(),
+											R.string.java_leaveapplicationfragment_successfully_posted,
+											Toast.LENGTH_SHORT).show();
+									leaveDescriptionEditText.setText("");
+									leaveId="";
+									startDateFormatServerString="";
+									endDateFormatServerString = "";
 
-							} else
-								Toast.makeText(
-										getActivity(),
-										R.string.java_leaveapplicationfragment_failed_post,
-										Toast.LENGTH_SHORT).show();
+									clearDataFields();
+
+								} else
+									Toast.makeText(
+											getActivity(),
+											R.string.java_leaveapplicationfragment_failed_post,
+											Toast.LENGTH_SHORT).show();
+							}
+
 						}
 
 						@Override
@@ -357,19 +363,24 @@ public class LeaveApplicationFragment extends Fragment implements
 		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
 
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(getString(R.string.loading_text));
 		ApplicationSingleton.getInstance().getNetworkCallInterface().teacherHomeworkSubject(params).enqueue(
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("RESPONSE_SUCCESS",""+ response.body());
-						Wrapper wrapper = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
-						if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-							subjectCats.clear();
-							subjectCats.addAll(GsonParser.getInstance()
-									.parseSubject(
-											wrapper.getData().get("subjects")
-													.toString()));
+						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Log.e("RESPONSE_SUCCESS",""+ response.body());
+							Wrapper wrapper = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+							if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+								subjectCats.clear();
+								subjectCats.addAll(GsonParser.getInstance()
+										.parseSubject(
+												wrapper.getData().get("subjects")
+														.toString()));
+							}
 						}
 					}
 

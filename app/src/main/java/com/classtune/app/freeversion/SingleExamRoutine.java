@@ -132,34 +132,33 @@ public class SingleExamRoutine extends ChildContainerActivity {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("RESPONSE ROUTINE ", ""+response.body());
-						// uiHelper.showMessage(responseString);
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
-						if (modelContainer.getStatus().getCode() == 200) {
 
-							layoutDataContainer.setVisibility(View.VISIBLE);
-							layoutMessage.setVisibility(View.GONE);
+						if (response.body() != null ){
+							Log.e("RESPONSE ROUTINE ", ""+response.body());
+							// uiHelper.showMessage(responseString);
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+							if (modelContainer.getStatus().getCode() == 200) {
 
-							listData = GsonParser.getInstance().parseExam(
-									modelContainer.getData()
-											.getAsJsonArray("exam_time_table").toString());
+								layoutDataContainer.setVisibility(View.VISIBLE);
+								layoutMessage.setVisibility(View.GONE);
 
-							Log.e("ListData SIZE: ", listData.size() + "");
+								listData = GsonParser.getInstance().parseExam(
+										modelContainer.getData()
+												.getAsJsonArray("exam_time_table").toString());
+
+								Log.e("ListData SIZE: ", listData.size() + "");
+							}
+
+							else if(modelContainer.getStatus().getCode() != 200 || modelContainer.getStatus().getCode() != 404)
+							{
+								layoutDataContainer.setVisibility(View.GONE);
+								layoutMessage.setVisibility(View.VISIBLE);
+							}
+							mAdapter.notifyDataSetChanged();
+							// Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
+							// .getAllNotice().get(0).getNoticeTypeText());
 						}
-
-						else if(modelContainer.getStatus().getCode() != 200 || modelContainer.getStatus().getCode() != 404)
-						{
-							layoutDataContainer.setVisibility(View.GONE);
-							layoutMessage.setVisibility(View.VISIBLE);
-						}
-
-						else {
-
-						}
-						mAdapter.notifyDataSetChanged();
-						// Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
-						// .getAllNotice().get(0).getNoticeTypeText());
 					}
 
 					@Override

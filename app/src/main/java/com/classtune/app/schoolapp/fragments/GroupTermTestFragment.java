@@ -194,31 +194,33 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         // uiHelper.dismissLoadingDialog();
                         pbs.setVisibility(View.GONE);
-                        Log.e("report term response", ""+response.body());
-                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-                                response.body());
-                        if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-                            items.clear();
-                            items.addAll(GsonParser.getInstance()
-                                    .parseGroupRoutine(
-                                            wrapper.getData().getAsJsonArray("exams")
-                                                    .toString()));
-                            adapter.notifyDataSetChanged();
+                        if (response.body() != null){
+                            Log.e("report term response", ""+response.body());
+                            Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                    response.body());
+                            if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                                items.clear();
+                                items.addAll(GsonParser.getInstance()
+                                        .parseGroupRoutine(
+                                                wrapper.getData().getAsJsonArray("exams")
+                                                        .toString()));
+                                adapter.notifyDataSetChanged();
 
-                            if(items.size()>0) {
-                                nodataMsg.setVisibility(View.GONE);
+                                if(items.size()>0) {
+                                    nodataMsg.setVisibility(View.GONE);
+                                }
+                                else {
+                                    nodataMsg.setVisibility(View.VISIBLE);
+                                }
+
+
+                            } else if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SESSION_EXPIRED) {
+                                // userHelper.doLogIn();
                             }
-                            else {
-                                nodataMsg.setVisibility(View.VISIBLE);
-                            }
+                            //Log.e("Events", responseString);
 
-
-                        } else if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SESSION_EXPIRED) {
-                            // userHelper.doLogIn();
+                            initListActionClick();
                         }
-                        //Log.e("Events", responseString);
-
-                        initListActionClick();
                     }
 
                     @Override
@@ -301,21 +303,23 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 // uiHelper.dismissLoadingDialog();
                         pbs.setVisibility(View.GONE);
-                        Log.e("report term response", ""+response.body());
-                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-                                response.body());
-                        if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                        if (response.body() != null){
+                            Log.e("report term response", ""+response.body());
+                            Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                    response.body());
+                            if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
-                            mAuth_id =  wrapper.getData().get("auth_id").getAsString();
-                            mDomainName = wrapper.getData().get("domain").getAsString();
-                            Log.e(TAG, "onSuccess: authod: "+wrapper.getData().get("auth_id").getAsString() );
+                                mAuth_id =  wrapper.getData().get("auth_id").getAsString();
+                                mDomainName = wrapper.getData().get("domain").getAsString();
+                                Log.e(TAG, "onSuccess: authod: "+wrapper.getData().get("auth_id").getAsString() );
 
-                        } else if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SESSION_EXPIRED) {
-                            // userHelper.doLogIn();
+                            } else if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SESSION_EXPIRED) {
+                                // userHelper.doLogIn();
+                            }
+
+
+                            initListActionClick();
                         }
-
-
-                        initListActionClick();
                     }
 
                     @Override
@@ -525,16 +529,19 @@ public class GroupTermTestFragment  extends UserVisibleHintFragment implements
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Log.e("Response", ""+response.body());
-                        Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-                        if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
-                        {
-                            PaidVersionHomeFragment.isBatchLoaded=true;
-                            PaidVersionHomeFragment.batches.clear();
-                            String data=wrapper.getData().get("batches").toString();
-                            PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
-                            showPicker(PickerType.TEACHER_BATCH);
+                        if (response.body() != null){
+                            Log.e("Response", ""+response.body());
+                            Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+                            {
+                                PaidVersionHomeFragment.isBatchLoaded=true;
+                                PaidVersionHomeFragment.batches.clear();
+                                String data=wrapper.getData().get("batches").toString();
+                                PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+                                showPicker(PickerType.TEACHER_BATCH);
+                            }
                         }
+
 
                     }
 

@@ -131,84 +131,83 @@ public class TransportFragment extends UserVisibleHintFragment implements
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						// uiHelper.dismissLoadingDialog();
 						pbs.setVisibility(View.GONE);
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 			/*Toast.makeText(getActivity(),
 					"RESPONSE TRANSPORT:" + responseString, Toast.LENGTH_LONG)
 					.show();*/
-						if (modelContainer.getStatus().getCode() == 200) {
-							Log.e("TRANSPORT", "data: "
-									+ modelContainer.getData().getAsJsonObject().toString());
+							if (modelContainer.getStatus().getCode() == 200) {
+								Log.e("TRANSPORT", "data: "
+										+ modelContainer.getData().getAsJsonObject().toString());
 
-							Log.e("TRANSPORT",
-									"data_loc1: "
-											+ modelContainer.getData().getAsJsonObject()
-											.get("transport").getAsJsonObject()
-											.get("location").getAsJsonObject()
-											.get("pickup"));
-							Log.e("TRANSPORT",
-									"data_loc2: "
-											+ modelContainer.getData().getAsJsonObject()
-											.get("transport").getAsJsonObject()
-											.get("location").getAsJsonObject()
-											.get("drop"));
+								Log.e("TRANSPORT",
+										"data_loc1: "
+												+ modelContainer.getData().getAsJsonObject()
+												.get("transport").getAsJsonObject()
+												.get("location").getAsJsonObject()
+												.get("pickup"));
+								Log.e("TRANSPORT",
+										"data_loc2: "
+												+ modelContainer.getData().getAsJsonObject()
+												.get("transport").getAsJsonObject()
+												.get("location").getAsJsonObject()
+												.get("drop"));
 
-							pickupLocation = modelContainer.getData().getAsJsonObject()
-									.get("transport").getAsJsonObject().get("location")
-									.getAsJsonObject().get("pickup").getAsString();
+								pickupLocation = modelContainer.getData().getAsJsonObject()
+										.get("transport").getAsJsonObject().get("location")
+										.getAsJsonObject().get("pickup").getAsString();
 
-							dropLocation = modelContainer.getData().getAsJsonObject()
-									.get("transport").getAsJsonObject().get("location")
-									.getAsJsonObject().get("drop").getAsString();
+								dropLocation = modelContainer.getData().getAsJsonObject()
+										.get("transport").getAsJsonObject().get("location")
+										.getAsJsonObject().get("drop").getAsString();
 
-							lastUpdate = modelContainer.getData().getAsJsonObject()
-									.get("transport").getAsJsonObject().get("location")
-									.getAsJsonObject().get("last_updated").getAsString();
+								lastUpdate = modelContainer.getData().getAsJsonObject()
+										.get("transport").getAsJsonObject().get("location")
+										.getAsJsonObject().get("last_updated").getAsString();
 
-							listSchedule = GsonParser.getInstance().parseTransportSchedule(
-									modelContainer.getData().getAsJsonObject()
-											.get("transport").getAsJsonObject()
-											.get("schedule").getAsJsonArray().toString());
-							if(listSchedule.size()>0) {
-								nodata.setVisibility(View.GONE);
-							}
-							else {
-								nodata.setVisibility(View.VISIBLE);
-							}
-							layoutListHolder.removeAllViews();
-							for (int i = 0; i < listSchedule.size(); i++) {
-
-								View row = LayoutInflater.from(mContext).inflate(
-										R.layout.fragment_transport_singledata, null);
-								if(i%2!=0){
-									((LinearLayout)row.findViewById(R.id.row_bg_transport)).setBackgroundColor(mContext.getResources().getColor(R.color.bg_row_odd));
+								listSchedule = GsonParser.getInstance().parseTransportSchedule(
+										modelContainer.getData().getAsJsonObject()
+												.get("transport").getAsJsonObject()
+												.get("schedule").getAsJsonArray().toString());
+								if(listSchedule.size()>0) {
+									nodata.setVisibility(View.GONE);
 								}
-								TextView txtDayName = (TextView) row
-										.findViewById(R.id.txtDayName);
-								TextView txtHomePickUp = (TextView) row
-										.findViewById(R.id.txtHomePickUp);
-								TextView txtSchoolPickUp = (TextView) row
-										.findViewById(R.id.txtSchoolPickUp);
+								else {
+									nodata.setVisibility(View.VISIBLE);
+								}
+								layoutListHolder.removeAllViews();
+								for (int i = 0; i < listSchedule.size(); i++) {
 
-								String myString = listSchedule.get(i).getWeekDayName();
-								String upperString = myString.substring(0,1).toUpperCase() + myString.substring(1);
-								txtDayName.setText(upperString);
+									View row = LayoutInflater.from(mContext).inflate(
+											R.layout.fragment_transport_singledata, null);
+									if(i%2!=0){
+										((LinearLayout)row.findViewById(R.id.row_bg_transport)).setBackgroundColor(mContext.getResources().getColor(R.color.bg_row_odd));
+									}
+									TextView txtDayName = (TextView) row
+											.findViewById(R.id.txtDayName);
+									TextView txtHomePickUp = (TextView) row
+											.findViewById(R.id.txtHomePickUp);
+									TextView txtSchoolPickUp = (TextView) row
+											.findViewById(R.id.txtSchoolPickUp);
 
-								txtHomePickUp
-										.setText(listSchedule.get(i).getHomePickTime());
-								txtSchoolPickUp.setText(listSchedule.get(i)
-										.getSchoolPickTime());
+									String myString = listSchedule.get(i).getWeekDayName();
+									String upperString = myString.substring(0,1).toUpperCase() + myString.substring(1);
+									txtDayName.setText(upperString);
 
-								layoutListHolder.addView(row);
+									txtHomePickUp
+											.setText(listSchedule.get(i).getHomePickTime());
+									txtSchoolPickUp.setText(listSchedule.get(i)
+											.getSchoolPickTime());
+
+									layoutListHolder.addView(row);
+
+								}
+
+								initViewActions();
 
 							}
-
-							initViewActions();
-
-						}
-
-						else {
-
 						}
 					}
 

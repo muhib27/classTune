@@ -130,22 +130,22 @@ public class TeacherSubjectAttendanceTakeActivity extends ChildContainerActivity
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Log.e("Response", ""+response.body());
+                        if (response.body() != null){
+                            Log.e("Response", ""+response.body());
 
-                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
-                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+                            Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
 
-                            registerId = wrapper.getData().get("register").getAsString();
+                                registerId = wrapper.getData().get("register").getAsString();
 
-                            JsonArray arrayStudent = wrapper.getData().get("students").getAsJsonArray();
-                            studentAssociateds.addAll(parseStudent(arrayStudent.toString()));
-                            adapter = new TeacherTakeSubjectAttendanceAdapter(TeacherSubjectAttendanceTakeActivity.this, studentAssociateds);
-                            adapter.notifyDataSetChanged();
-                            listView.setAdapter(adapter);
-                            initAction();
+                                JsonArray arrayStudent = wrapper.getData().get("students").getAsJsonArray();
+                                studentAssociateds.addAll(parseStudent(arrayStudent.toString()));
+                                adapter = new TeacherTakeSubjectAttendanceAdapter(TeacherSubjectAttendanceTakeActivity.this, studentAssociateds);
+                                adapter.notifyDataSetChanged();
+                                listView.setAdapter(adapter);
+                                initAction();
 
-                        } else {
-
+                            }
                         }
                     }
 
@@ -296,22 +296,22 @@ public class TeacherSubjectAttendanceTakeActivity extends ChildContainerActivity
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Log.e("Response", ""+response.body());
+                        if(response.body() != null){
+                            Log.e("Response", ""+response.body());
 
-                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
-                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+                            Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
 
-                            if(adapter.isUpdate()){
-                                Toast.makeText(TeacherSubjectAttendanceTakeActivity.this, R.string.attendance_updated_successfully, Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(TeacherSubjectAttendanceTakeActivity.this, R.string.attendance_saved_successfully, Toast.LENGTH_SHORT).show();
+                                if(adapter.isUpdate()){
+                                    Toast.makeText(TeacherSubjectAttendanceTakeActivity.this, R.string.attendance_updated_successfully, Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(TeacherSubjectAttendanceTakeActivity.this, R.string.attendance_saved_successfully, Toast.LENGTH_SHORT).show();
+                                }
+
+
+                                finish();
+
                             }
-
-
-                            finish();
-
-                        } else {
-
                         }
                     }
 

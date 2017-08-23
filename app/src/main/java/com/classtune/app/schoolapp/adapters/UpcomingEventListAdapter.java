@@ -305,18 +305,16 @@ public class UpcomingEventListAdapter extends ArrayAdapter<SchoolEvent> {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==200)
-						{
-							selectedEvent.setEventAcks(wrapper.getData().get("event_ack").getAsInt());
-							notifyDataSetChanged();
-						}
-						else
-						{
 
+						if (response.body() != null){
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode()==200)
+							{
+								selectedEvent.setEventAcks(wrapper.getData().get("event_ack").getAsInt());
+								notifyDataSetChanged();
+							}
+							Log.e("Events", ""+response.body());
 						}
-						Log.e("Events", ""+response.body());
-
 					}
 
 					@Override

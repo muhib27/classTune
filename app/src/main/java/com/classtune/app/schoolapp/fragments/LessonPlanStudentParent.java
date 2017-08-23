@@ -141,37 +141,33 @@ public class LessonPlanStudentParent extends Fragment {
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                JsonArray arraySubject = modelContainer.getData().get("subject").getAsJsonArray();
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                for (int i = 0; i < arraySubject.size(); i++)
+                                {
+                                    listSubject.add(parseLessonPlanSubject(arraySubject.toString()).get(i));
+                                }
+
+                                adapter.notifyDataSetChanged();
 
 
-                            JsonArray arraySubject = modelContainer.getData().get("subject").getAsJsonArray();
+                                if(listSubject.size() <= 0)
+                                {
+                                    txtMessage.setVisibility(View.VISIBLE);
+                                }
+                                else
+                                {
+                                    txtMessage.setVisibility(View.GONE);
+                                }
 
-                            for (int i = 0; i < arraySubject.size(); i++)
-                            {
-                                listSubject.add(parseLessonPlanSubject(arraySubject.toString()).get(i));
                             }
-
-                            adapter.notifyDataSetChanged();
-
-
-                            if(listSubject.size() <= 0)
-                            {
-                                txtMessage.setVisibility(View.VISIBLE);
-                            }
-                            else
-                            {
-                                txtMessage.setVisibility(View.GONE);
-                            }
-
-                        }
-
-                        else {
-
                         }
                     }
 

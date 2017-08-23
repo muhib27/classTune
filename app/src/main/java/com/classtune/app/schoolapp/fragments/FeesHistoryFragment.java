@@ -142,32 +142,28 @@ public class FeesHistoryFragment extends Fragment {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							if (modelContainer.getStatus().getCode() == 200) {
 
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+								JsonArray  arrayHistory = modelContainer.getData().get("history").getAsJsonArray();
+								listDue = parseFeesHistoryList(arrayHistory.toString());
 
-						if (modelContainer.getStatus().getCode() == 200) {
+								adapter.notifyDataSetChanged();
 
+								if(listDue.size() <= 0)
+								{
+									txtMessage.setVisibility(View.VISIBLE);
+								}
+								else
+								{
+									txtMessage.setVisibility(View.GONE);
+								}
 
-							JsonArray  arrayHistory = modelContainer.getData().get("history").getAsJsonArray();
-							listDue = parseFeesHistoryList(arrayHistory.toString());
-
-							adapter.notifyDataSetChanged();
-
-							if(listDue.size() <= 0)
-							{
-								txtMessage.setVisibility(View.VISIBLE);
 							}
-							else
-							{
-								txtMessage.setVisibility(View.GONE);
-							}
-
-						}
-
-						else {
-
 						}
 					}
 

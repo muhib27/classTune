@@ -428,115 +428,118 @@ public class UserHelper {
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-
-                        Log.e("login", "onResponse: "+response.body());
-                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-                                response.body());
-                        Log.e("logininfo", "onResponse: "+wrapper.getData());
-                        if (wrapper.getStatus().getCode() == 200) {
-
-
-                            //if user is free user then don't let him log in
-                            int userTypeUpper = wrapper.getData().get("user_type").getAsInt();
-                            if(wrapper.getData().get("user_type") != null && userTypeUpper == 0)
-                            {
-                                //Toast.makeText(context, "User not found", Toast.LENGTH_SHORT).show();
-                                uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_user_not_found));
-                            }
-                            else
-                            {
-                                UserWrapper userData = GsonParser.getInstance()
-                                        .parseUserWrapper(wrapper.getData().toString());
-                                User u = new User();
-                                u = userData.getUser();
-                                u.setUsername(logedInUser.getUsername());
-                                u.setPassword(logedInUser.getPassword());
-                                u.setSessionID(userData.getSession());
-                                u.setChildren(userData.getChildren());
-                                if (userData.getUserType() == 0)
-                                    u.setAccessType(UserAccessType.FREE);
-                                else {
-                                    u.setAccessType(UserAccessType.PAID);
-                                    u.setPaidInfo(userData.getInfo());
-                                }
-
-                                //if paid user is admin then don't let him log in
-                                if(u.getPaidInfo().isAdmin())
-                                {
-                                    uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_admin_user));
-                                }
-                                else
-                                {
-                                    storeLoggedInUser(u);
-                                    setLoggedIn(true);
-                                    setRegistered(true);
-                                    uListener.onAuthenticationSuccessful();
-                                }
-
-
-
-                            }
-
-
-
-                        } else {
-                            uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_user_not_found));
-                        }
-
-                        if(ordinal == 2) //student
-                        {
-                            if (wrapper.getStatus().getCode() == 401) {
-
-                                Log.e("CODE 401", "code 401");
-                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_ADMISSION_NUMBER_EXISTS);
-                            }
-
-                            else if (wrapper.getStatus().getCode() == 400) {
-
-                                Log.e("CODE 400", "code 400");
-                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
-                            }
-                        }
-
-                        if(ordinal == 4) //parent
-                        {
-                            if (wrapper.getStatus().getCode() == 401) {
-
-                                Log.e("CODE 401", "code 401");
-                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_USER_NAME);
-                            }
-
-                            else if (wrapper.getStatus().getCode() == 400) {
-
-                                Log.e("CODE 400", "code 400");
-                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
-                            }
-
-                            else if (wrapper.getStatus().getCode() == 402) {
-
-                                Log.e("CODE 402", "code 402");
-                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_INVALID_STUDENT_ID);
-                            }
-                        }
-
-                        if(ordinal == 3) //teacher
-                        {
-                            if (wrapper.getStatus().getCode() == 401) {
-
-                                Log.e("CODE 401", "code 401");
-                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_EMPLOYEE_EXISTS);
-                            }
-
-                            else if (wrapper.getStatus().getCode() == 400) {
-
-                                Log.e("CODE 400", "code 400");
-                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
-                            }
-                        }
-
                         if (uiHelper!= null && uiHelper.isDialogActive()) {
                             uiHelper.dismissLoadingDialog();
                         }
+                        if(response.body() != null ){
+                            Log.e("login", "onResponse: "+response.body());
+                            Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                    response.body());
+                            Log.e("logininfo", "onResponse: "+wrapper.getData());
+                            if (wrapper.getStatus().getCode() == 200) {
+
+
+                                //if user is free user then don't let him log in
+                                int userTypeUpper = wrapper.getData().get("user_type").getAsInt();
+                                if(wrapper.getData().get("user_type") != null && userTypeUpper == 0)
+                                {
+                                    //Toast.makeText(context, "User not found", Toast.LENGTH_SHORT).show();
+                                    uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_user_not_found));
+                                }
+                                else
+                                {
+                                    UserWrapper userData = GsonParser.getInstance()
+                                            .parseUserWrapper(wrapper.getData().toString());
+                                    User u = new User();
+                                    u = userData.getUser();
+                                    u.setUsername(logedInUser.getUsername());
+                                    u.setPassword(logedInUser.getPassword());
+                                    u.setSessionID(userData.getSession());
+                                    u.setChildren(userData.getChildren());
+                                    if (userData.getUserType() == 0)
+                                        u.setAccessType(UserAccessType.FREE);
+                                    else {
+                                        u.setAccessType(UserAccessType.PAID);
+                                        u.setPaidInfo(userData.getInfo());
+                                    }
+
+                                    //if paid user is admin then don't let him log in
+                                    if(u.getPaidInfo().isAdmin())
+                                    {
+                                        uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_admin_user));
+                                    }
+                                    else
+                                    {
+                                        storeLoggedInUser(u);
+                                        setLoggedIn(true);
+                                        setRegistered(true);
+                                        uListener.onAuthenticationSuccessful();
+                                    }
+
+
+
+                                }
+
+
+
+                            } else {
+                                uListener.onAuthenticationFailed(context.getResources().getString(R.string.msg_user_not_found));
+                            }
+
+                            if(ordinal == 2) //student
+                            {
+                                if (wrapper.getStatus().getCode() == 401) {
+
+                                    Log.e("CODE 401", "code 401");
+                                    uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_ADMISSION_NUMBER_EXISTS);
+                                }
+
+                                else if (wrapper.getStatus().getCode() == 400) {
+
+                                    Log.e("CODE 400", "code 400");
+                                    uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                                }
+                            }
+
+                            if(ordinal == 4) //parent
+                            {
+                                if (wrapper.getStatus().getCode() == 401) {
+
+                                    Log.e("CODE 401", "code 401");
+                                    uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_USER_NAME);
+                                }
+
+                                else if (wrapper.getStatus().getCode() == 400) {
+
+                                    Log.e("CODE 400", "code 400");
+                                    uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                                }
+
+                                else if (wrapper.getStatus().getCode() == 402) {
+
+                                    Log.e("CODE 402", "code 402");
+                                    uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_INVALID_STUDENT_ID);
+                                }
+                            }
+
+                            if(ordinal == 3) //teacher
+                            {
+                                if (wrapper.getStatus().getCode() == 401) {
+
+                                    Log.e("CODE 401", "code 401");
+                                    uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_EMPLOYEE_EXISTS);
+                                }
+
+                                else if (wrapper.getStatus().getCode() == 400) {
+
+                                    Log.e("CODE 400", "code 400");
+                                    uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                                }
+                            }
+                        }
+
+
+
 
                     }
 

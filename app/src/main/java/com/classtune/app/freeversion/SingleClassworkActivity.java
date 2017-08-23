@@ -307,11 +307,12 @@ public class SingleClassworkActivity extends ChildContainerActivity {
                     new Callback<JsonElement>() {
                         @Override
                         public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                            Log.e("response",""+ response.body());
-                            Log.e("button", "success");
-                            uiHelper.dismissLoadingDialog();
 
-                            ModelContainer modelContainer = GsonParser.getInstance().parseGson2(response.body());
+                            uiHelper.dismissLoadingDialog();
+                            if (response.body() != null){
+                                Log.e("response",""+ response.body());
+                                Log.e("button", "success");
+                                ModelContainer modelContainer = GsonParser.getInstance().parseGson2(response.body());
 
                 /*if (modelContainer.getStatus().getCode() == 200) {
                     data.setIsDone(AppConstant.ACCEPTED);
@@ -327,7 +328,10 @@ public class SingleClassworkActivity extends ChildContainerActivity {
 
 
 
-                            Log.e("status code", modelContainer.getStatus().getCode() + "");
+                                Log.e("status code", modelContainer.getStatus().getCode() + "");
+                            }
+
+
                         }
 
                         @Override
@@ -461,33 +465,30 @@ public class SingleClassworkActivity extends ChildContainerActivity {
                         @Override
                         public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                             uiHelper.dismissLoadingDialog();
+                            if (response.body() != null){
 
+                                Wrapper modelContainer = GsonParser.getInstance()
+                                        .parseServerResponse2(response.body());
 
-                            Wrapper modelContainer = GsonParser.getInstance()
-                                    .parseServerResponse2(response.body());
+                                if (modelContainer.getStatus().getCode() == 200) {
 
-                            if (modelContainer.getStatus().getCode() == 200) {
+                                    layoutDataContainer.setVisibility(View.VISIBLE);
+                                    layoutMessage.setVisibility(View.GONE);
 
-                                layoutDataContainer.setVisibility(View.VISIBLE);
-                                layoutMessage.setVisibility(View.GONE);
+                                    JsonObject objHomework = modelContainer.getData().get("classwork").getAsJsonObject();
+                                    data = gson.fromJson(objHomework.toString(), ClassworkData.class);
 
-                                JsonObject objHomework = modelContainer.getData().get("classwork").getAsJsonObject();
-                                data = gson.fromJson(objHomework.toString(), ClassworkData.class);
+                                    Log.e("HHH", "data: " + data.getName());
 
-                                Log.e("HHH", "data: " + data.getName());
+                                    initAction();
 
-                                initAction();
+                                }
 
-                            }
-
-                            else if(modelContainer.getStatus().getCode() == 400 && modelContainer.getStatus().getCode() != 404)
-                            {
-                                layoutDataContainer.setVisibility(View.GONE);
-                                layoutMessage.setVisibility(View.VISIBLE);
-                            }
-
-                            else {
-
+                                else if(modelContainer.getStatus().getCode() == 400 && modelContainer.getStatus().getCode() != 404)
+                                {
+                                    layoutDataContainer.setVisibility(View.GONE);
+                                    layoutMessage.setVisibility(View.VISIBLE);
+                                }
                             }
                         }
 

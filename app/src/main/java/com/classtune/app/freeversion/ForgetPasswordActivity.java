@@ -89,14 +89,17 @@ public class ForgetPasswordActivity extends ChildContainerActivity implements Vi
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-                                response.body());
-                        if (wrapper.getStatus().getCode() == 200) {
-                            Toast.makeText(ForgetPasswordActivity.this, R.string.java_forgetpasswordactivity_check_email,Toast.LENGTH_LONG).show();
-                            finish();
-                        } else if(wrapper.getStatus().getCode() == 404) {
-                            Toast.makeText(ForgetPasswordActivity.this, R.string.java_forgetpasswordactivity_email_incorrect,Toast.LENGTH_LONG).show();
-                        }
+
+                       if (response.body() != null){
+                           Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                   response.body());
+                           if (wrapper.getStatus().getCode() == 200) {
+                               Toast.makeText(ForgetPasswordActivity.this, R.string.java_forgetpasswordactivity_check_email,Toast.LENGTH_LONG).show();
+                               finish();
+                           } else if(wrapper.getStatus().getCode() == 404) {
+                               Toast.makeText(ForgetPasswordActivity.this, R.string.java_forgetpasswordactivity_email_incorrect,Toast.LENGTH_LONG).show();
+                           }
+                       }
                     }
 
                     @Override

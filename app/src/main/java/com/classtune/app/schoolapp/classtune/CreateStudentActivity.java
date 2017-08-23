@@ -177,44 +177,42 @@ public class CreateStudentActivity extends FragmentActivity implements UserAuthL
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        Log.e("SCCCCC", "response: " + response.body());
 
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Log.e("SCCCCC", "response: " + response.body());
+                            listBatch.clear();
 
-                        listBatch.clear();
+
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
+
+                                Log.e("CODE 200", "code 200");
+                                JsonArray arrayBatch = modelContainer.getData().get("batches").getAsJsonArray();
+                                for (int i = 0; i < parseBatch(arrayBatch.toString()).size(); i++)
+                                {
+                                    listBatch.add(parseBatch(arrayBatch.toString()).get(i));
+                                }
+
+                                //batchId = listBatch.get(0).getId();
+                                initBatchSpinner();
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
-
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-                            Log.e("CODE 200", "code 200");
-                            JsonArray arrayBatch = modelContainer.getData().get("batches").getAsJsonArray();
-                            for (int i = 0; i < parseBatch(arrayBatch.toString()).size(); i++)
-                            {
-                                listBatch.add(parseBatch(arrayBatch.toString()).get(i));
                             }
 
-                            //batchId = listBatch.get(0).getId();
-                            initBatchSpinner();
+                            else if(modelContainer.getStatus().getCode() == 401)
+                            {
+                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_CLASS_YET);
+                            }
 
-
+                            else if(modelContainer.getStatus().getCode() == 400)
+                            {
+                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                            }
                         }
 
-                        else if(modelContainer.getStatus().getCode() == 401)
-                        {
-                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_CLASS_YET);
-                        }
-
-                        else if(modelContainer.getStatus().getCode() == 400)
-                        {
-                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
-                        }
-
-                        else {
-
-                        }
                     }
 
                     @Override

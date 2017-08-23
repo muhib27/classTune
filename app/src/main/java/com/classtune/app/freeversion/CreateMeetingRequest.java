@@ -322,16 +322,20 @@ public class CreateMeetingRequest extends ChildContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Log.e("Response", ""+response.body());
-                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(response.body());
-                        if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-                            PaidVersionHomeFragment.isBatchLoaded = true;
-                            PaidVersionHomeFragment.batches.clear();
-                            String data = wrapper.getData().get("batches").toString();
-                            PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
-                            //showPicker(PickerType.TEACHER_BATCH);
-                            showBatchPicker(PickerType.TEACHER_BATCH);
+
+                        if (response.body() != null){
+                            Log.e("Response", ""+response.body());
+                            Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(response.body());
+                            if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                                PaidVersionHomeFragment.isBatchLoaded = true;
+                                PaidVersionHomeFragment.batches.clear();
+                                String data = wrapper.getData().get("batches").toString();
+                                PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+                                //showPicker(PickerType.TEACHER_BATCH);
+                                showBatchPicker(PickerType.TEACHER_BATCH);
+                            }
                         }
+
 
                     }
 
@@ -495,24 +499,25 @@ public class CreateMeetingRequest extends ChildContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Log.e("RES_PARENT", "is: " + response.body());
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                        if (response.body() != null){
+                            Log.e("RES_PARENT", "is: " + response.body());
+
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                            //do parsing
-                            JsonArray array = modelContainer.getData().get("student").getAsJsonArray();
+                                //do parsing
+                                JsonArray array = modelContainer.getData().get("student").getAsJsonArray();
 
-                            for (int i = 0; i < parseStudentParent(array.toString()).size(); i++) {
-                                listStudentParent.add(parseStudentParent(array.toString()).get(i));
+                                for (int i = 0; i < parseStudentParent(array.toString()).size(); i++) {
+                                    listStudentParent.add(parseStudentParent(array.toString()).get(i));
+                                }
+
+
                             }
-
-
-                        } else {
-
                         }
                     }
 
@@ -634,20 +639,19 @@ public class CreateMeetingRequest extends ChildContainerActivity {
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
 
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
 
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                //do parsing
+                                Toast.makeText(CreateMeetingRequest.this, R.string.java_createmeetingrequest_meeting_request_success, Toast.LENGTH_SHORT).show();
 
-                            //do parsing
-                            Toast.makeText(CreateMeetingRequest.this, R.string.java_createmeetingrequest_meeting_request_success, Toast.LENGTH_SHORT).show();
+                                CreateMeetingRequest.this.finish();
 
-                            CreateMeetingRequest.this.finish();
-
-                        } else {
-
+                            }
                         }
                     }
 

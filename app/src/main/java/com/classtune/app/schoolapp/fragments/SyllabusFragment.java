@@ -312,17 +312,20 @@ public class SyllabusFragment extends Fragment {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("Response", "" +response.body());
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
-						{
-							PaidVersionHomeFragment.isBatchLoaded=true;
-							PaidVersionHomeFragment.batches.clear();
-							String data=wrapper.getData().get("batches").toString();
-							PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
-							//showPicker(PickerType.TEACHER_BATCH);
-							showBatchPicker(PickerType.TEACHER_BATCH);
+						if (response.body() != null){
+							Log.e("Response", "" +response.body());
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+							{
+								PaidVersionHomeFragment.isBatchLoaded=true;
+								PaidVersionHomeFragment.batches.clear();
+								String data=wrapper.getData().get("batches").toString();
+								PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+								//showPicker(PickerType.TEACHER_BATCH);
+								showBatchPicker(PickerType.TEACHER_BATCH);
+							}
 						}
+
 
 					}
 
@@ -480,25 +483,25 @@ public class SyllabusFragment extends Fragment {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
 
-						if (modelContainer.getStatus().getCode() == 200) {
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-							listTerm = GsonParser.getInstance().parseTerm(modelContainer.getData().getAsJsonArray("terms").toString());
+							if (modelContainer.getStatus().getCode() == 200) {
 
-							adapter.notifyDataSetChanged();
+								listTerm = GsonParser.getInstance().parseTerm(modelContainer.getData().getAsJsonArray("terms").toString());
+
+								adapter.notifyDataSetChanged();
 
 
-							if(listTerm.size() <= 0)
-							{
-								Toast.makeText(getActivity(), getString(R.string.fragment_archieved_events_txt_no_data_found), Toast.LENGTH_SHORT).show();
+								if(listTerm.size() <= 0)
+								{
+									Toast.makeText(getActivity(), getString(R.string.fragment_archieved_events_txt_no_data_found), Toast.LENGTH_SHORT).show();
+								}
 							}
 						}
 
-						else {
-
-						}
 					}
 
 					@Override

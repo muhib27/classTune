@@ -340,59 +340,55 @@ public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							hasNext = modelContainer.getData().get("has_next").getAsBoolean();
+							Log.e("HAS_NEXT_MEETING", "is: " + hasNext);
 
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
-
-						hasNext = modelContainer.getData().get("has_next").getAsBoolean();
-						Log.e("HAS_NEXT_MEETING", "is: " + hasNext);
-
-
-						if (pageNumber == 1)
-						{
-							adapter.clearList();
-						}
-
-						if (!hasNext)
-						{
-							stopLoadingData = true;
-						}
-
-						if (modelContainer.getStatus().getCode() == 200) {
-
-							JsonArray array = modelContainer.getData().get("notice").getAsJsonArray();
-
-
-							for (int i = 0; i < array.size(); i++)
+							if (pageNumber == 1)
 							{
-								listNotice.add(parseNotice(array.toString()).get(i));
+								adapter.clearList();
 							}
 
-							if (pageNumber != 0 || isRefreshing)
+							if (!hasNext)
 							{
-								listViewNotice.onRefreshComplete();
-								loading = false;
+								stopLoadingData = true;
 							}
 
-							Log.e("listnotice size", "is: " + listNotice.size());
+							if (modelContainer.getStatus().getCode() == 200) {
 
-							adapter.notifyDataSetChanged();
+								JsonArray array = modelContainer.getData().get("notice").getAsJsonArray();
 
-							if(listNotice.size() <= 0)
-							{
-								txtMessage.setVisibility(View.VISIBLE);
+
+								for (int i = 0; i < array.size(); i++)
+								{
+									listNotice.add(parseNotice(array.toString()).get(i));
+								}
+
+								if (pageNumber != 0 || isRefreshing)
+								{
+									listViewNotice.onRefreshComplete();
+									loading = false;
+								}
+
+								Log.e("listnotice size", "is: " + listNotice.size());
+
+								adapter.notifyDataSetChanged();
+
+								if(listNotice.size() <= 0)
+								{
+									txtMessage.setVisibility(View.VISIBLE);
+								}
+								else
+								{
+									txtMessage.setVisibility(View.GONE);
+								}
+
+
 							}
-							else
-							{
-								txtMessage.setVisibility(View.GONE);
-							}
-
-
-						}
-
-						else {
-
 						}
 					}
 
@@ -516,26 +512,30 @@ public class NoticeFragmentNew extends Fragment implements View.OnClickListener{
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("response", ""+ response.body());
-						Log.e("button", "success");
+
 						uiHelper.dismissLoadingDialog();
 
-						ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
-								response.body());
+						if (response.body() != null){
+							Log.e("response", ""+ response.body());
+							Log.e("button", "success");
+							ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
+									response.body());
 
-						// arrangeHomeworkData(modelContainer);
+							// arrangeHomeworkData(modelContainer);
 
-						// adapter.notifyDataSetChanged();
+							// adapter.notifyDataSetChanged();
 
-						// Log.e("status code", modelContainer.getStatus().getCode() + "");
-						if (modelContainer.getData().getNotice_ack()
-								.getAcknowledge_status().equals("1")) {
-							clickedAckBtn.setImage(R.drawable.done_tap);
-							clickedAckBtn.setTitleColor(NoticeFragmentNew.this.getActivity()
-									.getResources().getColor(R.color.classtune_green_color));
-							clickedAckBtn.setTitleText(getString(R.string.java_noticefragment_acknowledge));
-							clickedAckBtn.setEnabled(false);
+							// Log.e("status code", modelContainer.getStatus().getCode() + "");
+							if (modelContainer.getData().getNotice_ack()
+									.getAcknowledge_status().equals("1")) {
+								clickedAckBtn.setImage(R.drawable.done_tap);
+								clickedAckBtn.setTitleColor(NoticeFragmentNew.this.getActivity()
+										.getResources().getColor(R.color.classtune_green_color));
+								clickedAckBtn.setTitleText(getString(R.string.java_noticefragment_acknowledge));
+								clickedAckBtn.setEnabled(false);
+							}
 						}
+
 					}
 
 					@Override

@@ -132,17 +132,21 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("Response", ""+ response.body());
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
-						{
-							PaidVersionHomeFragment.isBatchLoaded=true;
-							PaidVersionHomeFragment.batches.clear();
-							String data=wrapper.getData().get("batches").toString();
-							PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
-							//showPicker(PickerType.TEACHER_BATCH);
-							showBatchPicker(PickerType.TEACHER_BATCH);
+
+						if (response.body() != null){
+							Log.e("Response", ""+ response.body());
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+							{
+								PaidVersionHomeFragment.isBatchLoaded=true;
+								PaidVersionHomeFragment.batches.clear();
+								String data=wrapper.getData().get("batches").toString();
+								PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+								//showPicker(PickerType.TEACHER_BATCH);
+								showBatchPicker(PickerType.TEACHER_BATCH);
+							}
 						}
+
 					}
 
 					@Override
@@ -388,14 +392,17 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 						studentMap.clear();
 						pbLayout.setVisibility(View.GONE);
 
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						allStudents.addAll(GsonParser.getInstance().parseStudentList((wrapper.getData().get("batch_attendence")).toString()));
-						for(StudentAttendance s:allStudents)
-						{
-							studentMap.put(s.getId(), s);
+						if (response.body() != null ){
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							allStudents.addAll(GsonParser.getInstance().parseStudentList((wrapper.getData().get("batch_attendence")).toString()));
+							for(StudentAttendance s:allStudents)
+							{
+								studentMap.put(s.getId(), s);
+							}
+							updateUI();
 						}
-						updateUI();
+
 					}
 
 					@Override
@@ -472,23 +479,20 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("Response", ""+response.body());
+						if (response.body() != null){
+							Log.e("Response", ""+response.body());
 
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
-						{
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+							{
 
-							if(PaidVersionHomeFragment.isBatchLoaded)
-								fetchData();
-							else
-								updateUI();
-							//Toast.makeText(getActivity(), "Successfully done!", Toast.LENGTH_SHORT).show();
+								if(PaidVersionHomeFragment.isBatchLoaded)
+									fetchData();
+								else
+									updateUI();
+								//Toast.makeText(getActivity(), "Successfully done!", Toast.LENGTH_SHORT).show();
 
-						}
-
-						else
-						{
-
+							}
 						}
 					}
 
@@ -611,7 +615,9 @@ public class RollCallTeacherFragment extends Fragment implements LeaveApplicatio
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						pbLayout.setVisibility(View.GONE);
-						uiHelper.showMessage(getActivity().getString(R.string.java_rollcallteacherfragment_report_saved));
+						if (response.body() != null){
+							uiHelper.showMessage(getActivity().getString(R.string.java_rollcallteacherfragment_report_saved));
+						}
 			/*Wrapper wrapper = GsonParser.getInstance().parseServerResponse(
 					responseString);
 			allStudents.addAll(GsonParser.getInstance().parseStudentList((wrapper.getData().get("batch_attendence")).toString()));

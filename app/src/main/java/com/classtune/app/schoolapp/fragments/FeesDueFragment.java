@@ -133,35 +133,34 @@ public class FeesDueFragment extends Fragment {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							if (modelContainer.getStatus().getCode() == 200) {
 
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+								JsonArray  arrayDue = modelContainer.getData().get("due").getAsJsonArray();
+								listDue = parseFeesDueList(arrayDue.toString());
 
-						if (modelContainer.getStatus().getCode() == 200) {
-
-
-							JsonArray  arrayDue = modelContainer.getData().get("due").getAsJsonArray();
-							listDue = parseFeesDueList(arrayDue.toString());
-
-							adapter.notifyDataSetChanged();
+								adapter.notifyDataSetChanged();
 
 
-							if(listDue.size() <= 0)
-							{
-								txtMessage.setVisibility(View.VISIBLE);
+								if(listDue.size() <= 0)
+								{
+									txtMessage.setVisibility(View.VISIBLE);
+								}
+								else
+								{
+									txtMessage.setVisibility(View.GONE);
+								}
+
 							}
-							else
-							{
-								txtMessage.setVisibility(View.GONE);
+
+							else {
+
 							}
-
 						}
-
-						else {
-
-						}
-
 					}
 
 					@Override

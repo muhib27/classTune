@@ -97,26 +97,31 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("response", ""+response.body());
-						Log.e("button", "success");
+
 						uiHelper.dismissLoadingDialog();
 
-						ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
-								response.body());
+						if (response.body() != null){
+							Log.e("response", ""+response.body());
+							Log.e("button", "success");
 
-						// arrangeHomeworkData(modelContainer);
+							ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
+									response.body());
 
-						// adapter.notifyDataSetChanged();
+							// arrangeHomeworkData(modelContainer);
 
-						// Log.e("status code", modelContainer.getStatus().getCode() + "");
-						if (modelContainer.getData().getNotice_ack()
-								.getAcknowledge_status().equals("1")) {
-							clickedAckBtn.setImage(R.drawable.done_tap);
-							clickedAckBtn.setTitleColor(NoticeFragment.this.getActivity()
-									.getResources().getColor(R.color.maroon));
-							clickedAckBtn.setTitleText(getActivity().getString(R.string.java_noticefragment_acknowledge));
-							clickedAckBtn.setEnabled(false);
+							// adapter.notifyDataSetChanged();
+
+							// Log.e("status code", modelContainer.getStatus().getCode() + "");
+							if (modelContainer.getData().getNotice_ack()
+									.getAcknowledge_status().equals("1")) {
+								clickedAckBtn.setImage(R.drawable.done_tap);
+								clickedAckBtn.setTitleColor(NoticeFragment.this.getActivity()
+										.getResources().getColor(R.color.maroon));
+								clickedAckBtn.setTitleText(getActivity().getString(R.string.java_noticefragment_acknowledge));
+								clickedAckBtn.setEnabled(false);
+							}
 						}
+
 					}
 
 					@Override
@@ -213,15 +218,19 @@ public class NoticeFragment extends UserVisibleHintFragment implements OnClickLi
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						//			uiHelper.dismissLoadingDialog();
 						pbs.setVisibility(View.GONE);
-						//Toast.makeText(getActivity(), responseString, Toast.LENGTH_LONG).show();
-						Log.e("NOTICE RESPONSE ",""+ response.body());
-						// uiHelper.showMessage(responseString);
-						ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
-								response.body());
-						arrangeNoticeData(modelContainer);
-						adapter.notifyDataSetChanged();
+
+						if (response.body() != null ){
+							//Toast.makeText(getActivity(), responseString, Toast.LENGTH_LONG).show();
+							Log.e("NOTICE RESPONSE ",""+ response.body());
+							// uiHelper.showMessage(responseString);
+							ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
+									response.body());
+							arrangeNoticeData(modelContainer);
+							adapter.notifyDataSetChanged();
 //			Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
 //					.getAllNotice().get(0).getNoticeTypeText());
+						}
+
 					}
 
 					@Override

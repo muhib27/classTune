@@ -192,50 +192,43 @@ public class DialogSelectChildren extends Dialog {
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        Log.e("SCCCCC", "response: " + response.body());
 
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Log.e("SCCCCC", "response: " + response.body());
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                Log.e("CODE 200", "code 200");
+                                String fullName = modelContainer.getData().get("full_name").getAsString();
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                //layoutChildInfoHolder.setVisibility(View.VISIBLE);
+                                //txtChildInfo.setText("Student Id: " + fullName);
 
-                            Log.e("CODE 200", "code 200");
-                            String fullName = modelContainer.getData().get("full_name").getAsString();
+                                //String childrenParam = getChildrenParam();
+                                //doneListener.onDoneSelection(childrenParam);
+                                doneListener.onDoneSelection(new ChildrenModel(txtChildId.getText().toString(), txtRelation.getText().toString(), fullName));
+                                DialogSelectChildren.this.dismiss();
 
-                            //layoutChildInfoHolder.setVisibility(View.VISIBLE);
-                            //txtChildInfo.setText("Student Id: " + fullName);
+                            }
+                            else
+                            {
+                                //layoutChildInfoHolder.setVisibility(View.GONE);
+                            }
 
-                            //String childrenParam = getChildrenParam();
-                            //doneListener.onDoneSelection(childrenParam);
-                            doneListener.onDoneSelection(new ChildrenModel(txtChildId.getText().toString(), txtRelation.getText().toString(), fullName));
-                            DialogSelectChildren.this.dismiss();
+                            if (modelContainer.getStatus().getCode() == 401) {
 
-                        }
-                        else
-                        {
-                            //layoutChildInfoHolder.setVisibility(View.GONE);
-                        }
+                                Log.e("CODE 401", "code 401");
+                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_STUDENT_NOT_EXISTS);
+                            }
 
-                        if (modelContainer.getStatus().getCode() == 401) {
+                            else if (modelContainer.getStatus().getCode() == 400) {
 
-                            Log.e("CODE 401", "code 401");
-                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_STUDENT_NOT_EXISTS);
-                        }
-
-                        else if (modelContainer.getStatus().getCode() == 400) {
-
-                            Log.e("CODE 400", "code 400");
-                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
-                        }
-
-
-
-
-                        else {
-
+                                Log.e("CODE 400", "code 400");
+                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                            }
                         }
 
                     }

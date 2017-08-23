@@ -227,21 +227,22 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 				uiHelper.dismissLoadingDialog();
 			}*/
 						pbs.setVisibility(View.GONE);
-
-						//Toast.makeText(getActivity(), responseString, Toast.LENGTH_LONG).show();
-						Log.e("##RESPONSE", "is: "+response.body());
-
-
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(response.body());
-
-						if (wrapper.getStatus().getCode() == 200) {
-							ReportCardModel reportCardData = GsonParser.getInstance().parseReports(wrapper.getData().toString());
-
-							app.setReportCardData(reportCardData);
+						if (response.body() != null){
+							//Toast.makeText(getActivity(), responseString, Toast.LENGTH_LONG).show();
+							Log.e("##RESPONSE", "is: "+response.body());
 
 
-							processItemCallErAge(reportCardData);
-							processItems();
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(response.body());
+
+							if (wrapper.getStatus().getCode() == 200) {
+								ReportCardModel reportCardData = GsonParser.getInstance().parseReports(wrapper.getData().toString());
+
+								app.setReportCardData(reportCardData);
+
+
+								processItemCallErAge(reportCardData);
+								processItems();
+							}
 						}
 					}
 
@@ -312,16 +313,20 @@ public class ReportClassTestFragment extends UserVisibleHintFragment implements 
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("Response", ""+response.body());
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
-						{
-							PaidVersionHomeFragment.isBatchLoaded=true;
-							PaidVersionHomeFragment.batches.clear();
-							String data=wrapper.getData().get("batches").toString();
-							PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
-							showPicker(PickerType.TEACHER_BATCH);
+
+						if (response.body() != null){
+							Log.e("Response", ""+response.body());
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+							{
+								PaidVersionHomeFragment.isBatchLoaded=true;
+								PaidVersionHomeFragment.batches.clear();
+								String data=wrapper.getData().get("batches").toString();
+								PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+								showPicker(PickerType.TEACHER_BATCH);
+							}
 						}
+
 					}
 
 					@Override

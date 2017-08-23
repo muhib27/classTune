@@ -224,33 +224,29 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							if (modelContainer.getStatus().getCode() == 200) {
+
+								layoutDataContainer.setVisibility(View.VISIBLE);
+								layoutMessage.setVisibility(View.GONE);
+
+								JsonObject objNotice = modelContainer.getData().get("meetings").getAsJsonObject();
+								data = gson.fromJson(objNotice.toString(), MeetingStatus.class);
 
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
 
-						if (modelContainer.getStatus().getCode() == 200) {
+								initAction();
 
-							layoutDataContainer.setVisibility(View.VISIBLE);
-							layoutMessage.setVisibility(View.GONE);
+							}
 
-							JsonObject objNotice = modelContainer.getData().get("meetings").getAsJsonObject();
-							data = gson.fromJson(objNotice.toString(), MeetingStatus.class);
-
-
-
-							initAction();
-
-						}
-
-						else if(modelContainer.getStatus().getCode() != 200 || modelContainer.getStatus().getCode() != 404)
-						{
-							layoutDataContainer.setVisibility(View.GONE);
-							layoutMessage.setVisibility(View.VISIBLE);
-						}
-
-						else {
-
+							else if(modelContainer.getStatus().getCode() != 200 || modelContainer.getStatus().getCode() != 404)
+							{
+								layoutDataContainer.setVisibility(View.GONE);
+								layoutMessage.setVisibility(View.VISIBLE);
+							}
 						}
 					}
 
@@ -419,22 +415,22 @@ public class SingleMeetingRequestActivity extends ChildContainerActivity {
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
 
-						Log.e("RES", "is: " + response.body());
+						if (response.body() != null ){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-
-						if (modelContainer.getStatus().getCode() == 200) {
-
+							Log.e("RES", "is: " + response.body());
 
 
+							if (modelContainer.getStatus().getCode() == 200) {
 
+
+
+
+							}
 						}
 
-						else {
-
-						}
 					}
 
 					@Override

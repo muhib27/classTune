@@ -106,23 +106,20 @@ public class SingleSyllabus extends ChildContainerActivity {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							if (modelContainer.getStatus().getCode() == 200) {
+
+								JsonObject objSyllabus = modelContainer.getData().get("syllabus").getAsJsonObject();
+								data = gson.fromJson(objSyllabus.toString(), Syllabus.class);
 
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+								initAction();
 
-						if (modelContainer.getStatus().getCode() == 200) {
-
-							JsonObject objSyllabus = modelContainer.getData().get("syllabus").getAsJsonObject();
-							data = gson.fromJson(objSyllabus.toString(), Syllabus.class);
-
-
-							initAction();
-
-						}
-
-						else {
-
+							}
 						}
 					}
 

@@ -227,26 +227,23 @@ public class SingleLessonPlan extends ChildContainerActivity {
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
                         uiHelper.dismissLoadingDialog();
-
-                        Log.e("RES", "response string: " + response.body());
-
-
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
-
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-                            JsonObject objLessonPlan = modelContainer.getData().get("lessonplan").getAsJsonObject();
-                            data = gson.fromJson(objLessonPlan.toString(), LessonPlan.class);
+                        if (response.body() != null){
+                            Log.e("RES", "response string: " + response.body());
 
 
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
-                            initAction();
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        }
+                                JsonObject objLessonPlan = modelContainer.getData().get("lessonplan").getAsJsonObject();
+                                data = gson.fromJson(objLessonPlan.toString(), LessonPlan.class);
 
-                        else {
 
+
+                                initAction();
+
+                            }
                         }
                     }
 
@@ -331,22 +328,20 @@ public class SingleLessonPlan extends ChildContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
-
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-
-                            Toast.makeText(SingleLessonPlan.this, R.string.java_singlelessonplan_successfully_deleetd, Toast.LENGTH_SHORT).show();
-                            finish();
+                                Toast.makeText(SingleLessonPlan.this, R.string.java_singlelessonplan_successfully_deleetd, Toast.LENGTH_SHORT).show();
+                                finish();
 
 
-                        } else {
-
+                            }
                         }
                     }
 

@@ -172,35 +172,35 @@ public class SyllabusMidLayerActivity extends ChildContainerActivity{
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						// uiHelper.dismissLoadingDialog();
 						uiHelper.dismissLoadingDialog();
-						Log.e("SINGLE TERM RESPONSE", ""+response.body());
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+						if (response.body() != null){
+							Log.e("SINGLE TERM RESPONSE", ""+response.body());
 
-						if (modelContainer.getStatus().getCode() == 200) {
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-							syllabusList = GsonParser.getInstance().parseTermSyllabus(
-									modelContainer.getData().getAsJsonArray("syllabus")
-											.toString());
+							if (modelContainer.getStatus().getCode() == 200) {
 
-							if(syllabusList.size() <= 0)
-							{
-								txtMessage.setVisibility(View.VISIBLE);
+								syllabusList = GsonParser.getInstance().parseTermSyllabus(
+										modelContainer.getData().getAsJsonArray("syllabus")
+												.toString());
+
+								if(syllabusList.size() <= 0)
+								{
+									txtMessage.setVisibility(View.VISIBLE);
+								}
+								else
+								{
+									txtMessage.setVisibility(View.GONE);
+								}
+
+								adapter.notifyDataSetChanged();
+
+								initAction();
+
 							}
-							else
-							{
-								txtMessage.setVisibility(View.GONE);
-							}
-
-							adapter.notifyDataSetChanged();
-
-							initAction();
-
 						}
 
-						else {
-
-						}
 					}
 
 					@Override

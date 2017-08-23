@@ -154,36 +154,33 @@ public class TeacherInfoActivity extends Activity{
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         pbLayout.setVisibility(View.GONE);
+                        if (response.body() != null){
+                            Log.e("RES", "response string: " + response.body());
 
 
-                        Log.e("RES", "response string: " + response.body());
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                JsonObject objectEmployee = modelContainer.getData().get("employee").getAsJsonObject();
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                String photoUrl = objectEmployee.get("user_image").getAsString();
 
-                            JsonObject objectEmployee = modelContainer.getData().get("employee").getAsJsonObject();
+                                String name = objectEmployee.get("name").getAsString();
+                                String position = objectEmployee.get("position").getAsString();
+                                String employeeNumber = objectEmployee.get("employee_number").getAsString();
+                                String department = objectEmployee.get("department").getAsString();
+                                String category = objectEmployee.get("category").getAsString();
+                                String phone = objectEmployee.get("phone").getAsString();
+                                String dob = objectEmployee.get("date_of_birth").getAsString();
+                                String joiningDate = objectEmployee.get("joining_date").getAsString();
 
-                            String photoUrl = objectEmployee.get("user_image").getAsString();
+                                initAction(photoUrl, name, position, employeeNumber, department, category, phone, dob, joiningDate);
 
-                            String name = objectEmployee.get("name").getAsString();
-                            String position = objectEmployee.get("position").getAsString();
-                            String employeeNumber = objectEmployee.get("employee_number").getAsString();
-                            String department = objectEmployee.get("department").getAsString();
-                            String category = objectEmployee.get("category").getAsString();
-                            String phone = objectEmployee.get("phone").getAsString();
-                            String dob = objectEmployee.get("date_of_birth").getAsString();
-                            String joiningDate = objectEmployee.get("joining_date").getAsString();
-
-                            initAction(photoUrl, name, position, employeeNumber, department, category, phone, dob, joiningDate);
-
+                            }
                         }
 
-                        else {
-
-                        }
                     }
 
                     @Override

@@ -132,11 +132,13 @@ public class ClassReportTeacherFragment extends Fragment implements
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						pbLayout.setVisibility(View.GONE);
 
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
-						{
-							ClassReport report=GsonParser.getInstance().parseClassReport(wrapper.getData().toString());
-							updateUI(report);
+						if (response.body() != null){
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+							{
+								ClassReport report=GsonParser.getInstance().parseClassReport(wrapper.getData().toString());
+								updateUI(report);
+							}
 						}
 					}
 

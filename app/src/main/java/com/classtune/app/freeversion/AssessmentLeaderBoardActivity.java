@@ -117,36 +117,32 @@ public class AssessmentLeaderBoardActivity extends ChildContainerActivity implem
 						//Log.e("ASSESSMENT", "data: "+responseString);
 
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+							if (modelContainer.getStatus().getCode() == 200) {
 
-						if (modelContainer.getStatus().getCode() == 200) {
-
-							JsonArray assessment = modelContainer.getData().get("assesment").getAsJsonArray();
+								JsonArray assessment = modelContainer.getData().get("assesment").getAsJsonArray();
 
 
 
-							listLeaderBoard = parseAssessmentLeaderBoard(assessment.toString());
+								listLeaderBoard = parseAssessmentLeaderBoard(assessment.toString());
 
-							if(listLeaderBoard.size() <=0 )
-							{
-								//Toast.makeText(AssessmentLeaderBoardActivity.this, "No leader board found!", Toast.LENGTH_SHORT).show();
-								txtMessage.setVisibility(View.VISIBLE);
+								if(listLeaderBoard.size() <=0 )
+								{
+									//Toast.makeText(AssessmentLeaderBoardActivity.this, "No leader board found!", Toast.LENGTH_SHORT).show();
+									txtMessage.setVisibility(View.VISIBLE);
+								}
+								else
+									txtMessage.setVisibility(View.GONE);
+
+
 							}
-							else
-								txtMessage.setVisibility(View.GONE);
+							initAction();
 
-
+							adapter.notifyDataSetChanged();
 						}
-
-						else {
-
-						}
-
-						initAction();
-
-						adapter.notifyDataSetChanged();
 					}
 
 					@Override

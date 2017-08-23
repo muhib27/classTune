@@ -161,24 +161,26 @@ public class SingleEventActivity extends ChildContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
-                        if(wrapper.getStatus().getCode()==200)
-                        {
-                            JsonObject objHomework = wrapper.getData().get("events").getAsJsonObject();
-                            data = gson.fromJson(objHomework.toString(), SchoolEvent.class);
+                        if (response.body() != null){
+                            Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()==200)
+                            {
+                                JsonObject objHomework = wrapper.getData().get("events").getAsJsonObject();
+                                data = gson.fromJson(objHomework.toString(), SchoolEvent.class);
 
-                            layoutRoot.setVisibility(View.VISIBLE);
-                            initAction();
+                                layoutRoot.setVisibility(View.VISIBLE);
+                                initAction();
 
+                            }
+                            else
+                            {
+                                layoutRoot.setVisibility(View.GONE);
+                                Toast.makeText(SingleEventActivity.this, R.string.java_singleeventactivity_event_removed, Toast.LENGTH_SHORT).show();
+
+                                finish();
+                            }
+                            Log.e("Events", ""+response.body());
                         }
-                        else
-                        {
-                            layoutRoot.setVisibility(View.GONE);
-                            Toast.makeText(SingleEventActivity.this, R.string.java_singleeventactivity_event_removed, Toast.LENGTH_SHORT).show();
-
-                            finish();
-                        }
-                        Log.e("Events", ""+response.body());
                     }
 
                     @Override
@@ -457,17 +459,20 @@ public class SingleEventActivity extends ChildContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
-                        if(wrapper.getStatus().getCode()==200)
-                        {
-                            selectedEvent.setEventAcks(wrapper.getData().get("event_ack").getAsInt());
 
-                        }
-                        else
-                        {
+                        if (response.body() != null){
+                            Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()==200)
+                            {
+                                selectedEvent.setEventAcks(wrapper.getData().get("event_ack").getAsInt());
 
+                            }
+                            else
+                            {
+
+                            }
+                            Log.e("Events", ""+response.body());
                         }
-                        Log.e("Events", ""+response.body());
 
                     }
 

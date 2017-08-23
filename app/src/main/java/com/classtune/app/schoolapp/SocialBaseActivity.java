@@ -69,19 +69,19 @@ public abstract class SocialBaseActivity extends RoboFragmentActivity implements
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
-						Log.e("Response****", ""+response.body());
-
 						if(uiHelper.isDialogActive())
 						{
 							uiHelper.dismissLoadingDialog();
 						}
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						if (wrapper.getStatus().getCode() == 200) {
-							uiHelper.showMessage("Post is successfully sent.");
-						} else {
-
+						if (response.body() != null){
+							Log.e("Response****", ""+response.body());
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							if (wrapper.getStatus().getCode() == 200) {
+								uiHelper.showMessage("Post is successfully sent.");
+							}
 						}
+
 					}
 
 					@Override

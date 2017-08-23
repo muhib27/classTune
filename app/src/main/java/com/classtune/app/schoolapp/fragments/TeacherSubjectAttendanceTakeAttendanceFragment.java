@@ -92,25 +92,28 @@ public class TeacherSubjectAttendanceTakeAttendanceFragment extends UserVisibleH
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Log.e("Response", ""+response.body());
 
-                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
-                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+                        if (response.body() != null){
+                            Log.e("Response", ""+response.body());
 
-                            JsonArray arraySubject = wrapper.getData().get("time_table").getAsJsonArray();
-                            subjectList.addAll(parseSubject(arraySubject.toString()));
-                            adapter = new TeacherAssociatedSubjectAdapter(getActivity(), subjectList);
-                            adapter.notifyDataSetChanged();
-                            listView.setAdapter(adapter);
+                            Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
 
-                            if(subjectList.size()<=0){
-                                txtMessage.setVisibility(View.VISIBLE);
-                            }else{
-                                txtMessage.setVisibility(View.GONE);
+                                JsonArray arraySubject = wrapper.getData().get("time_table").getAsJsonArray();
+                                subjectList.addAll(parseSubject(arraySubject.toString()));
+                                adapter = new TeacherAssociatedSubjectAdapter(getActivity(), subjectList);
+                                adapter.notifyDataSetChanged();
+                                listView.setAdapter(adapter);
+
+                                if(subjectList.size()<=0){
+                                    txtMessage.setVisibility(View.VISIBLE);
+                                }else{
+                                    txtMessage.setVisibility(View.GONE);
+                                }
+
+                            } else {
+                                Toast.makeText(getActivity(), R.string.you_have_no_class_today, Toast.LENGTH_SHORT).show();
                             }
-
-                        } else {
-                            Toast.makeText(getActivity(), R.string.you_have_no_class_today, Toast.LENGTH_SHORT).show();
                         }
                     }
 

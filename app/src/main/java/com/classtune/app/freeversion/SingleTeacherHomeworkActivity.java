@@ -276,24 +276,20 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
+							if (modelContainer.getStatus().getCode() == 200) {
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+								JsonObject objHomework = modelContainer.getData().get("homework").getAsJsonObject();
+								data = gson.fromJson(objHomework.toString(), TeacherHomeworkData.class);
 
-						if (modelContainer.getStatus().getCode() == 200) {
+								Log.e("HHH", "data: " + data.getName());
 
-							JsonObject objHomework = modelContainer.getData().get("homework").getAsJsonObject();
-							data = gson.fromJson(objHomework.toString(), TeacherHomeworkData.class);
+								initAction();
 
-							Log.e("HHH", "data: " + data.getName());
-
-							initAction();
-
-						}
-
-						else {
-
+							}
 						}
 					}
 

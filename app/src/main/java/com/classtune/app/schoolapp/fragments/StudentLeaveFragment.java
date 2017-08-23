@@ -85,26 +85,27 @@ public class StudentLeaveFragment extends UserVisibleHintFragment{
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						arraylist.clear();
-
 						pbLayout.setVisibility(View.GONE);
-						Log.e("Menu", ""+response.body());
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						arraylist.addAll(GsonParser.getInstance().parseStudentList(
-								(wrapper.getData().get("leaves")).toString()));
-						adapter = new StudentLeaveListAdapter(getActivity(), arraylist);
-						studentListView.setAdapter(adapter);
+						if (response.body() != null){
+							Log.e("Menu", ""+response.body());
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							arraylist.addAll(GsonParser.getInstance().parseStudentList(
+									(wrapper.getData().get("leaves")).toString()));
+							adapter = new StudentLeaveListAdapter(getActivity(), arraylist);
+							studentListView.setAdapter(adapter);
 
 
-						if(arraylist.size() <=0 )
-						{
-							txtMessage.setVisibility(View.VISIBLE);
+							if(arraylist.size() <=0 )
+							{
+								txtMessage.setVisibility(View.VISIBLE);
+							}
+							else
+							{
+								txtMessage.setVisibility(View.GONE);
+							}
+
 						}
-						else
-						{
-							txtMessage.setVisibility(View.GONE);
-						}
-
 					}
 
 					@Override
@@ -332,20 +333,17 @@ public class StudentLeaveFragment extends UserVisibleHintFragment{
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("Response", ""+ response.body());
+						if (response.body() != null){
+							Log.e("Response", ""+ response.body());
 
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
-						{
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+							{
 
-							fetchData();
-							Toast.makeText(getActivity(), R.string.java_studentleavefragment_successfully_done, Toast.LENGTH_SHORT).show();
-							adapter.notifyDataSetChanged();
-						}
-
-						else
-						{
-
+								fetchData();
+								Toast.makeText(getActivity(), R.string.java_studentleavefragment_successfully_done, Toast.LENGTH_SHORT).show();
+								adapter.notifyDataSetChanged();
+							}
 						}
 					}
 

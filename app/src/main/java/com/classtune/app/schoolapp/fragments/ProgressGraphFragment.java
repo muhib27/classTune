@@ -273,13 +273,15 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         setGraphVisibility(true);
-                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-                                response.body());
-                        JsonObject progress = wrapper.getData().getAsJsonObject("progress");
-                        Log.e("response graph", (progress.get("exam")).toString());
-                        openChart(GsonParser.getInstance().parseGraphDataList(
-                                (progress.get("exam")).toString()));
-                        //adapter.notifyDataSetChanged();
+                        if (response.body() != null){
+                            Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                    response.body());
+                            JsonObject progress = wrapper.getData().getAsJsonObject("progress");
+                            Log.e("response graph", (progress.get("exam")).toString());
+                            openChart(GsonParser.getInstance().parseGraphDataList(
+                                    (progress.get("exam")).toString()));
+                            //adapter.notifyDataSetChanged();
+                        }
                     }
 
                     @Override
@@ -357,13 +359,15 @@ public class ProgressGraphFragment extends Fragment implements View.OnClickListe
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         setGraphVisibility(true);
-                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-                                response.body());
-                        JsonObject progress = wrapper.getData().getAsJsonObject("progress");
-                        // Log.e("response graph",(progress.get("exam")).toString());
-                        openChartAll(GsonParser.getInstance().parseGraphDataListAll(
-                                (progress.get("subject")).toString()));
-                        //adapter.notifyDataSetChanged();
+                        if (response.body() != null){
+                            Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                    response.body());
+                            JsonObject progress = wrapper.getData().getAsJsonObject("progress");
+                            // Log.e("response graph",(progress.get("exam")).toString());
+                            openChartAll(GsonParser.getInstance().parseGraphDataListAll(
+                                    (progress.get("subject")).toString()));
+                            //adapter.notifyDataSetChanged();
+                        }
                     }
 
                     @Override

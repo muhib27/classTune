@@ -73,15 +73,17 @@ public class SingleItemTermReportActivity extends ChildContainerActivity{
 						if (uiHelper.isDialogActive()) {
 							uiHelper.dismissLoadingDialog();
 						}
-						//pbs.setVisibility(View.GONE);
+						if (response.body() != null){
+							//pbs.setVisibility(View.GONE);
 
-						//Toast.makeText(getActivity(), responseString, Toast.LENGTH_LONG).show();
-						Log.e("SINGLE_TERM_RESPONSE", ""+response.body());
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(response.body());
+							//Toast.makeText(getActivity(), responseString, Toast.LENGTH_LONG).show();
+							Log.e("SINGLE_TERM_RESPONSE", ""+response.body());
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(response.body());
 
-						if (wrapper.getStatus().getCode() == 200) {
-							TermReportItem reportCardData = GsonParser.getInstance().parseTermReport(wrapper.getData().getAsJsonObject("report").toString());
-							arrangeAndShowTermReportData(reportCardData);
+							if (wrapper.getStatus().getCode() == 200) {
+								TermReportItem reportCardData = GsonParser.getInstance().parseTermReport(wrapper.getData().getAsJsonObject("report").toString());
+								arrangeAndShowTermReportData(reportCardData);
+							}
 						}
 					}
 

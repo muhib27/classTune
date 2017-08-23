@@ -253,44 +253,48 @@ import retrofit2.Response;
                  new Callback<JsonElement>() {
                      @Override
                      public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                         Log.e("EVENT RESPONSE", ""+response.body());
+
                          uiHelper.dismissLoadingDialog();
-                         Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-                         if(wrapper.getStatus().getCode()==200)
-                         {
-                             SchoolEventWrapper schoolEventData=GsonParser.getInstance().parseEventWrapper(wrapper.getData().toString());
-                             if(!schoolEventData.isHasnext())
-                                 stopLoadingData=true;
-                             if(pageNumber==1)
-                                 items.clear();
-                             items.addAll(schoolEventData.getEvents());
-                             adapter.notifyDataSetChanged();
-                             if(pageNumber!=0 || isRefreshing)
+                         if (response.body() != null){
+                             Log.e("EVENT RESPONSE", ""+response.body());
+                             Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+                             if(wrapper.getStatus().getCode()==200)
                              {
-                                 eventListView.onRefreshComplete();
-                                 loading=false;
+                                 SchoolEventWrapper schoolEventData=GsonParser.getInstance().parseEventWrapper(wrapper.getData().toString());
+                                 if(!schoolEventData.isHasnext())
+                                     stopLoadingData=true;
+                                 if(pageNumber==1)
+                                     items.clear();
+                                 items.addAll(schoolEventData.getEvents());
+                                 adapter.notifyDataSetChanged();
+                                 if(pageNumber!=0 || isRefreshing)
+                                 {
+                                     eventListView.onRefreshComplete();
+                                     loading=false;
+                                 }
                              }
+                             else
+                             {
+
+                             }
+
+
+                             if(items.size() > 0)
+                             {
+                                 progressBar.setVisibility(View.GONE);
+
+                                 txtMessage.setVisibility(View.GONE);
+                             }
+                             else
+                             {
+                                 progressBar.setVisibility(View.GONE);
+
+                                 txtMessage.setVisibility(View.VISIBLE);
+                             }
+
+                             Log.e("Events", ""+response.body());
                          }
-                         else
-                         {
 
-                         }
-
-
-                         if(items.size() > 0)
-                         {
-                             progressBar.setVisibility(View.GONE);
-
-                             txtMessage.setVisibility(View.GONE);
-                         }
-                         else
-                         {
-                             progressBar.setVisibility(View.GONE);
-
-                             txtMessage.setVisibility(View.VISIBLE);
-                         }
-
-                         Log.e("Events", ""+response.body());
                      }
 
                      @Override

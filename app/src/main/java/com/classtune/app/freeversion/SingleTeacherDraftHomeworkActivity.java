@@ -270,26 +270,22 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
+							if (modelContainer.getStatus().getCode() == 200) {
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+								JsonObject objHomework = modelContainer.getData().get("homework").getAsJsonObject();
+								data = gson.fromJson(objHomework.toString(), TeacherHomeworkData.class);
 
-						if (modelContainer.getStatus().getCode() == 200) {
+								isEditable = data.getIsEditable();
 
-							JsonObject objHomework = modelContainer.getData().get("homework").getAsJsonObject();
-							data = gson.fromJson(objHomework.toString(), TeacherHomeworkData.class);
+								Log.e("HHH", "data: " + data.getName());
 
-							isEditable = data.getIsEditable();
+								initAction();
 
-							Log.e("HHH", "data: " + data.getName());
-
-							initAction();
-
-						}
-
-						else {
-
+							}
 						}
 					}
 
@@ -379,22 +375,18 @@ public class SingleTeacherDraftHomeworkActivity extends ChildContainerActivity {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							if (modelContainer.getStatus().getCode() == 200) {
 
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+								Toast.makeText(SingleTeacherDraftHomeworkActivity.this, R.string.java_singleteacherdrafthomeworkactivity_successfully_published, Toast.LENGTH_SHORT).show();
+								setResult(RESULT_OK);
+								finish();
 
-						if (modelContainer.getStatus().getCode() == 200) {
-
-
-							Toast.makeText(SingleTeacherDraftHomeworkActivity.this, R.string.java_singleteacherdrafthomeworkactivity_successfully_published, Toast.LENGTH_SHORT).show();
-							setResult(RESULT_OK);
-							finish();
-
-						}
-
-						else {
-
+							}
 						}
 					}
 

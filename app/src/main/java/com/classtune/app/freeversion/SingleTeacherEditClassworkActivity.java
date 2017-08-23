@@ -142,24 +142,20 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                JsonObject objHomework = modelContainer.getData().get("classwork").getAsJsonObject();
+                                data = gson.fromJson(objHomework.toString(), TeacherClassWork.class);
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                Log.e("HHH", "data: " + data.getClasswork_name());
 
-                            JsonObject objHomework = modelContainer.getData().get("classwork").getAsJsonObject();
-                            data = gson.fromJson(objHomework.toString(), TeacherClassWork.class);
+                                initialDataPopulate();
 
-                            Log.e("HHH", "data: " + data.getClasswork_name());
-
-                            initialDataPopulate();
-
-                        }
-
-                        else {
-
+                            }
                         }
                     }
 
@@ -312,24 +308,25 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
                         public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                             if (uiHelper.isDialogActive())
                                 uiHelper.dismissLoadingDialog();
+                            if (response.body() != null){
+                                Log.e("SERVERRESPONSE", ""+response.body());
+                                Wrapper wrapper = GsonParser.getInstance()
+                                        .parseServerResponse2(response.body());
+                                if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
-                            Log.e("SERVERRESPONSE", ""+response.body());
-                            Wrapper wrapper = GsonParser.getInstance()
-                                    .parseServerResponse2(response.body());
-                            if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                                    Toast.makeText(SingleTeacherEditClassworkActivity.this,
+                                            R.string.java_singleteachereditclassworkactivity_Successfully_updated,
+                                            Toast.LENGTH_SHORT).show();
 
-                                Toast.makeText(SingleTeacherEditClassworkActivity.this,
-                                        R.string.java_singleteachereditclassworkactivity_Successfully_updated,
-                                        Toast.LENGTH_SHORT).show();
-
-                                setResult(RESULT_OK);
-                                clearDataFields();
-                                finish();
-                            } else
-                                Toast.makeText(
-                                        SingleTeacherEditClassworkActivity.this,
-                                        R.string.java_singleteachereditclassworkactivity_failed_post,
-                                        Toast.LENGTH_SHORT).show();
+                                    setResult(RESULT_OK);
+                                    clearDataFields();
+                                    finish();
+                                } else
+                                    Toast.makeText(
+                                            SingleTeacherEditClassworkActivity.this,
+                                            R.string.java_singleteachereditclassworkactivity_failed_post,
+                                            Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         @Override
@@ -347,24 +344,25 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
                         public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                             if (uiHelper.isDialogActive())
                                 uiHelper.dismissLoadingDialog();
+                            if (response.body() != null){
+                                Log.e("SERVERRESPONSE", ""+response.body());
+                                Wrapper wrapper = GsonParser.getInstance()
+                                        .parseServerResponse2(response.body());
+                                if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
-                            Log.e("SERVERRESPONSE", ""+response.body());
-                            Wrapper wrapper = GsonParser.getInstance()
-                                    .parseServerResponse2(response.body());
-                            if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                                    Toast.makeText(SingleTeacherEditClassworkActivity.this,
+                                            R.string.java_singleteachereditclassworkactivity_Successfully_updated,
+                                            Toast.LENGTH_SHORT).show();
 
-                                Toast.makeText(SingleTeacherEditClassworkActivity.this,
-                                        R.string.java_singleteachereditclassworkactivity_Successfully_updated,
-                                        Toast.LENGTH_SHORT).show();
-
-                                setResult(RESULT_OK);
-                                clearDataFields();
-                                finish();
-                            } else
-                                Toast.makeText(
-                                        SingleTeacherEditClassworkActivity.this,
-                                        R.string.java_singleteachereditclassworkactivity_failed_post,
-                                        Toast.LENGTH_SHORT).show();
+                                    setResult(RESULT_OK);
+                                    clearDataFields();
+                                    finish();
+                                } else
+                                    Toast.makeText(
+                                            SingleTeacherEditClassworkActivity.this,
+                                            R.string.java_singleteachereditclassworkactivity_failed_post,
+                                            Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         @Override
@@ -472,21 +470,27 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
 
         HashMap<String,String> params = new HashMap<>();
         params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-
+        if(!uiHelper.isDialogActive())
+            uiHelper.showLoadingDialog(getString(R.string.loading_text));
         ApplicationSingleton.getInstance().getNetworkCallInterface().teacherClassworkSubject(params).enqueue(
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        Log.e("GET_SUBJECT_SUCCESS", ""+response.body());
-                        Wrapper wrapper = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
-                        if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-                            subjectCats.clear();
-                            subjectCats.addAll(GsonParser.getInstance()
-                                    .parseSubject(
-                                            wrapper.getData().get("subjects")
-                                                    .toString()));
+
+                            uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Log.e("GET_SUBJECT_SUCCESS", ""+response.body());
+                            Wrapper wrapper = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+                            if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                                subjectCats.clear();
+                                subjectCats.addAll(GsonParser.getInstance()
+                                        .parseSubject(
+                                                wrapper.getData().get("subjects")
+                                                        .toString()));
+                            }
                         }
+
                     }
 
                     @Override

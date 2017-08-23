@@ -565,63 +565,58 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
                 tStart = System.currentTimeMillis();
 
                 uiHelper.dismissLoadingDialog();
+				if (response.body() != null){
+					Wrapper modelContainer = GsonParser.getInstance()
+							.parseServerResponse2(response.body());
 
-                Wrapper modelContainer = GsonParser.getInstance()
-                        .parseServerResponse2(response.body());
+					if (modelContainer.getStatus().getCode() == 200) {
 
-                if (modelContainer.getStatus().getCode() == 200) {
-
-                    currentDate = modelContainer.getData().get("current_date").getAsString();
-
-
-
-                    JsonObject assessment = modelContainer.getData().get("assesment").getAsJsonObject();
-
-                    passPercentage = assessment.get("pass_percentage").getAsInt();
-
-
-                    String title = assessment.get("title").getAsString();
-
-
-                    JsonArray arrayquestion = assessment.get("question").getAsJsonArray();
-
-                    List<AssessmentQuestion> data = parseQuestion(arrayquestion.toString());
-                    listAssessmentQuestion = data;
-
-                    //Log.e("QQQ", "is: "+data.get(0).getListQuestion().get(0).getAnswer());
-                    AssesmentHomeworkActivity.this.title = title;
-
-
-                    populateDataQuestion(listAssessmentQuestion);
-
-                    for(int i=0;i<listAssessmentQuestion.size();i++)
-                    {
-
-                        float sc = Float.parseFloat(listAssessmentQuestion.get(i).getMark());
-                        totalScore = totalScore+sc;
-                    }
-
-                    populateData(title);
-
-                    initTimer(Long.parseLong(listAssessmentQuestion.get(0).getTime()) * 1000);
-
-
-                    totalQuestionNumber = listAssessmentQuestion.size();
-
-                }
-
-                if (modelContainer.getStatus().getCode() == 404)
-                {
-                    Toast.makeText(AssesmentHomeworkActivity.this, R.string.java_assesmenthomeworkactivity_already_completed_quiz, Toast.LENGTH_SHORT).show();
-                    AssesmentHomeworkActivity.this.finish();
-                }
-
-
-                else {
+						currentDate = modelContainer.getData().get("current_date").getAsString();
 
 
 
-                }
+						JsonObject assessment = modelContainer.getData().get("assesment").getAsJsonObject();
+
+						passPercentage = assessment.get("pass_percentage").getAsInt();
+
+
+						String title = assessment.get("title").getAsString();
+
+
+						JsonArray arrayquestion = assessment.get("question").getAsJsonArray();
+
+						List<AssessmentQuestion> data = parseQuestion(arrayquestion.toString());
+						listAssessmentQuestion = data;
+
+						//Log.e("QQQ", "is: "+data.get(0).getListQuestion().get(0).getAnswer());
+						AssesmentHomeworkActivity.this.title = title;
+
+
+						populateDataQuestion(listAssessmentQuestion);
+
+						for(int i=0;i<listAssessmentQuestion.size();i++)
+						{
+
+							float sc = Float.parseFloat(listAssessmentQuestion.get(i).getMark());
+							totalScore = totalScore+sc;
+						}
+
+						populateData(title);
+
+						initTimer(Long.parseLong(listAssessmentQuestion.get(0).getTime()) * 1000);
+
+
+						totalQuestionNumber = listAssessmentQuestion.size();
+
+					}
+
+					if (modelContainer.getStatus().getCode() == 404)
+					{
+						Toast.makeText(AssesmentHomeworkActivity.this, R.string.java_assesmenthomeworkactivity_already_completed_quiz, Toast.LENGTH_SHORT).show();
+						AssesmentHomeworkActivity.this.finish();
+					}
+				}
+
             }
 
             @Override
@@ -728,24 +723,22 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
+
 
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-						if (modelContainer.getStatus().getCode() == 200)
-						{
+							if (modelContainer.getStatus().getCode() == 200)
+							{
 
-							Toast.makeText(AssesmentHomeworkActivity.this, getString(R.string.java_assesmentactivity_marks_added_sussessfully), Toast.LENGTH_SHORT).show();
+								Toast.makeText(AssesmentHomeworkActivity.this, getString(R.string.java_assesmentactivity_marks_added_sussessfully), Toast.LENGTH_SHORT).show();
 
-							AssesmentHomeworkActivity.this.finish();
-						}
-
-						else {
-
-						}
+								AssesmentHomeworkActivity.this.finish();
+							}
 
 			/*if (modelContainer.getStatus().getCode() == 404)
 			{
@@ -762,9 +755,10 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 			}*/
 
 
-						//sendNotification(AssesmentActivity.this.title+" quiz has beed activated now for you!", postId);
+							//sendNotification(AssesmentActivity.this.title+" quiz has beed activated now for you!", postId);
 
 
+						}
 					}
 
 					@Override
@@ -835,20 +829,19 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
 
-						//uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+							//uiHelper.dismissLoadingDialog();
 
-						if (modelContainer.getStatus().getCode() == 200) {
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							if (modelContainer.getStatus().getCode() == 200) {
 
 
-						}
-
-						else {
-
+							}
 						}
 					}
 

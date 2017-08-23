@@ -96,32 +96,32 @@ public class WeeklyRoutineFragment extends Fragment implements
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("RESPONSE ROUTINE ", ""+response.body());
-						// uiHelper.showMessage(responseString);
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
-						if (modelContainer.getStatus().getCode() == 200) {
+						if (response.body() != null){
+							Log.e("RESPONSE ROUTINE ", ""+response.body());
+							// uiHelper.showMessage(responseString);
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+							if (modelContainer.getStatus().getCode() == 200) {
 //				weekMap = GsonParser.getInstance().parseWeekPeriod(
 //						modelContainer.getData().getAsJsonArray("time_table")
 //								.toString());
-							for(JsonElement obj: modelContainer.getData().getAsJsonArray("time_table")) {
-								Set<Map.Entry<String,JsonElement>> entryset = obj.getAsJsonObject().entrySet();
-								for(Map.Entry<String,JsonElement> entry:entryset){
-									// User newUser=gson.fromJson(p.getAsJsonObject(entry.getKey()),User.class);
-									Log.e("TIME: ", entry.getKey());
-									String[]key = entry.getKey().split("-");
-									String newKey = key[0]+"\n"+key[1];
-									ArrayList<Period> allPeriod = GsonParser.getInstance().parseWeekPeriod(entry.getValue().getAsJsonArray().toString());
-									weekList.add(new WeekRoutine(newKey, allPeriod));
+								for(JsonElement obj: modelContainer.getData().getAsJsonArray("time_table")) {
+									Set<Map.Entry<String,JsonElement>> entryset = obj.getAsJsonObject().entrySet();
+									for(Map.Entry<String,JsonElement> entry:entryset){
+										// User newUser=gson.fromJson(p.getAsJsonObject(entry.getKey()),User.class);
+										Log.e("TIME: ", entry.getKey());
+										String[]key = entry.getKey().split("-");
+										String newKey = key[0]+"\n"+key[1];
+										ArrayList<Period> allPeriod = GsonParser.getInstance().parseWeekPeriod(entry.getValue().getAsJsonArray().toString());
+										weekList.add(new WeekRoutine(newKey, allPeriod));
+									}
 								}
+
 							}
-
-						} else {
-
+							mAdapter.notifyDataSetChanged();
+							// Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
+							// .getAllNotice().get(0).getNoticeTypeText());
 						}
-						mAdapter.notifyDataSetChanged();
-						// Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
-						// .getAllNotice().get(0).getNoticeTypeText());
 					}
 
 					@Override

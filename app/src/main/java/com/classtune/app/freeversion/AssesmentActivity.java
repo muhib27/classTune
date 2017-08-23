@@ -515,54 +515,48 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 						tStart = System.currentTimeMillis();
 
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-						if (modelContainer.getStatus().getCode() == 200) {
+							if (modelContainer.getStatus().getCode() == 200) {
 
-							JsonObject assessment = modelContainer.getData().get("assesment").getAsJsonObject();
+								JsonObject assessment = modelContainer.getData().get("assesment").getAsJsonObject();
 
-							String title = assessment.get("title").getAsString();
-							String topic = assessment.get("topic").getAsString();
-							String time = assessment.get("created_date").getAsString();
-							String playCount = assessment.get("played").getAsString();
+								String title = assessment.get("title").getAsString();
+								String topic = assessment.get("topic").getAsString();
+								String time = assessment.get("created_date").getAsString();
+								String playCount = assessment.get("played").getAsString();
 
-							JsonArray arrayquestion = assessment.get("question").getAsJsonArray();
+								JsonArray arrayquestion = assessment.get("question").getAsJsonArray();
 
-							List<AssessmentQuestion> data = parseQuestion(arrayquestion.toString());
-							listAssessmentQuestion = data;
+								List<AssessmentQuestion> data = parseQuestion(arrayquestion.toString());
+								listAssessmentQuestion = data;
 
-							//Log.e("QQQ", "is: "+data.get(0).getListQuestion().get(0).getAnswer());
-							AssesmentActivity.this.title = title;
-							populateData(title, topic, time, playCount);
+								//Log.e("QQQ", "is: "+data.get(0).getListQuestion().get(0).getAnswer());
+								AssesmentActivity.this.title = title;
+								populateData(title, topic, time, playCount);
 
-							populateDataQuestion(listAssessmentQuestion);
+								populateDataQuestion(listAssessmentQuestion);
 
-							for(int i=0;i<listAssessmentQuestion.size();i++)
-							{
+								for(int i=0;i<listAssessmentQuestion.size();i++)
+								{
 
-								int sc = Integer.parseInt(listAssessmentQuestion.get(i).getMark());
-								totalScore = totalScore+sc;
+									int sc = Integer.parseInt(listAssessmentQuestion.get(i).getMark());
+									totalScore = totalScore+sc;
+								}
+
+
+
+								initTimer(Long.parseLong(listAssessmentQuestion.get(0).getTime()) * 1000);
+
+
+								totalQuestionNumber = listAssessmentQuestion.size();
+
 							}
 
-
-
-							initTimer(Long.parseLong(listAssessmentQuestion.get(0).getTime()) * 1000);
-
-
-							totalQuestionNumber = listAssessmentQuestion.size();
-
 						}
-
-
-
-
-
-						else {
-
-						}
-
 					}
 
 					@Override
@@ -652,12 +646,12 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
 
 						uiHelper.dismissLoadingDialog();
-
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+						if (response.body() != null){
+							Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
 			/*if (modelContainer.getStatus().getCode() == 200)
 			{
@@ -671,23 +665,24 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 
 			}*/
 
-						if (modelContainer.getStatus().getCode() == 404)
-						{
-							Toast.makeText(AssesmentActivity.this, R.string.java_assesmentactivity_already_in_leaderboard, Toast.LENGTH_LONG).show();
+							if (modelContainer.getStatus().getCode() == 404)
+							{
+								Toast.makeText(AssesmentActivity.this, R.string.java_assesmentactivity_already_in_leaderboard, Toast.LENGTH_LONG).show();
 
-							AssesmentActivity.this.finish();
-						}
-						else if(modelContainer.getStatus().getCode() == 200)
-						{
-							Toast.makeText(AssesmentActivity.this, R.string.java_assesmentactivity_marks_added_sussessfully, Toast.LENGTH_SHORT).show();
+								AssesmentActivity.this.finish();
+							}
+							else if(modelContainer.getStatus().getCode() == 200)
+							{
+								Toast.makeText(AssesmentActivity.this, R.string.java_assesmentactivity_marks_added_sussessfully, Toast.LENGTH_SHORT).show();
+								//sendNotification(AssesmentActivity.this.title+" quiz has beed activated now for you!", postId);
+								//startNotification(AssesmentActivity.this);
+								AssesmentActivity.this.finish();
+							}
+
+
 							//sendNotification(AssesmentActivity.this.title+" quiz has beed activated now for you!", postId);
-							//startNotification(AssesmentActivity.this);
-							AssesmentActivity.this.finish();
+
 						}
-
-
-						//sendNotification(AssesmentActivity.this.title+" quiz has beed activated now for you!", postId);
-
 					}
 
 					@Override
@@ -759,21 +754,21 @@ public class AssesmentActivity extends ChildContainerActivity implements View.On
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
 
-						//uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Log.e("ASSESSMENT_ADDMARKS", "data: " + response.body());
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+							//uiHelper.dismissLoadingDialog();
 
-						if (modelContainer.getStatus().getCode() == 200) {
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							if (modelContainer.getStatus().getCode() == 200) {
 
 
+							}
 						}
 
-						else {
-
-						}
 					}
 
 					@Override

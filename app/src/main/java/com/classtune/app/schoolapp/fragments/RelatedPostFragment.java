@@ -195,19 +195,21 @@ public class RelatedPostFragment extends Fragment {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						pb.setVisibility(View.GONE);
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-						if (modelContainer.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-							posts.clear();
-							posts.addAll(GsonParser.getInstance()
-									.parseFreeVersionPost(
-											modelContainer.getData().getAsJsonArray("post")
-													.toString()));
-							if(getActivity()==null)
-								return;
-							updateUi();
+							if (modelContainer.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+								posts.clear();
+								posts.addAll(GsonParser.getInstance()
+										.parseFreeVersionPost(
+												modelContainer.getData().getAsJsonArray("post")
+														.toString()));
+								if(getActivity()==null)
+									return;
+								updateUi();
 
+							}
 						}
 					}
 

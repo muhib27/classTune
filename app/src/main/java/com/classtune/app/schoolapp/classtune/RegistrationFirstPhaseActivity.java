@@ -249,97 +249,93 @@ public class RegistrationFirstPhaseActivity extends Activity {
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        Log.e("SCCCCC", "response: " + response.body());
 
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Log.e("SCCCCC", "response: " + response.body());
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
+
+                                String sId = modelContainer.getData().get("school_id").getAsString();
+                                String schoolId;
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                int admissionCode = Integer.parseInt(sId);
+                                if(admissionCode <= 9)
+                                {
+                                    schoolId = "0"+sId;
+                                }
+                                else
+                                {
+                                    schoolId = sId;
+                                }
 
-                            String sId = modelContainer.getData().get("school_id").getAsString();
-                            String schoolId;
+
+                                if(ordinal == 2) //type student
+                                {
+                                    Intent intent = new Intent(RegistrationFirstPhaseActivity.this, CreateStudentActivity.class);
+                                    intent.putExtra(AppConstant.USER_TYPE_CLASSTUNE, ordinal);
+                                    intent.putExtra(AppConstant.SCHOOL_ID_CLASSTUNE, schoolId);
+
+                                    intent.putExtra(AppConstant.STUDENT_FIRST_NAME_CLASSTUNE, txtFirstName.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_LAST_NAME_CLASSTUNE, txtLastName.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_EMAIL_CLASSTUNE, txtEmail.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_PASSWORD_CLASSTUNE, txtPassword.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_SCHOOL_CODE_CLASSTUNE, txtSchoolCode.getText().toString());
 
 
 
-                            int admissionCode = Integer.parseInt(sId);
-                            if(admissionCode <= 9)
-                            {
-                                schoolId = "0"+sId;
+                                    startActivity(intent);
+                                }
+
+                                else if(ordinal == 4) //type parent
+                                {
+                                    Intent intent = new Intent(RegistrationFirstPhaseActivity.this, CreateParentActivity.class);
+                                    intent.putExtra(AppConstant.USER_TYPE_CLASSTUNE, ordinal);
+                                    intent.putExtra(AppConstant.SCHOOL_ID_CLASSTUNE, schoolId);
+
+                                    intent.putExtra(AppConstant.STUDENT_FIRST_NAME_CLASSTUNE, txtFirstName.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_LAST_NAME_CLASSTUNE, txtLastName.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_EMAIL_CLASSTUNE, txtEmail.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_PASSWORD_CLASSTUNE, txtPassword.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_SCHOOL_CODE_CLASSTUNE, txtSchoolCode.getText().toString());
+
+                                    startActivity(intent);
+                                }
+                                else if(ordinal == 3) //type teacher
+                                {
+                                    Intent intent = new Intent(RegistrationFirstPhaseActivity.this, CreateTeacherActivity.class);
+                                    intent.putExtra(AppConstant.USER_TYPE_CLASSTUNE, ordinal);
+                                    intent.putExtra(AppConstant.SCHOOL_ID_CLASSTUNE, schoolId);
+
+                                    intent.putExtra(AppConstant.STUDENT_FIRST_NAME_CLASSTUNE, txtFirstName.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_LAST_NAME_CLASSTUNE, txtLastName.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_EMAIL_CLASSTUNE, txtEmail.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_PASSWORD_CLASSTUNE, txtPassword.getText().toString());
+                                    intent.putExtra(AppConstant.STUDENT_SCHOOL_CODE_CLASSTUNE, txtSchoolCode.getText().toString());
+
+                                    startActivity(intent);
+                                }
+
+
+
+                                Log.e("CODE 200", "code 200");
                             }
-                            else
-                            {
-                                schoolId = sId;
+
+                            else if (modelContainer.getStatus().getCode() == 401) {
+
+                                Log.e("CODE 401", "code 401");
+                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SCHOOL_CODE_VALID);
                             }
 
+                            else if (modelContainer.getStatus().getCode() == 400) {
 
-                            if(ordinal == 2) //type student
-                            {
-                                Intent intent = new Intent(RegistrationFirstPhaseActivity.this, CreateStudentActivity.class);
-                                intent.putExtra(AppConstant.USER_TYPE_CLASSTUNE, ordinal);
-                                intent.putExtra(AppConstant.SCHOOL_ID_CLASSTUNE, schoolId);
-
-                                intent.putExtra(AppConstant.STUDENT_FIRST_NAME_CLASSTUNE, txtFirstName.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_LAST_NAME_CLASSTUNE, txtLastName.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_EMAIL_CLASSTUNE, txtEmail.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_PASSWORD_CLASSTUNE, txtPassword.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_SCHOOL_CODE_CLASSTUNE, txtSchoolCode.getText().toString());
-
-
-
-                                startActivity(intent);
+                                Log.e("CODE 400", "code 400");
+                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
                             }
-
-                            else if(ordinal == 4) //type parent
-                            {
-                                Intent intent = new Intent(RegistrationFirstPhaseActivity.this, CreateParentActivity.class);
-                                intent.putExtra(AppConstant.USER_TYPE_CLASSTUNE, ordinal);
-                                intent.putExtra(AppConstant.SCHOOL_ID_CLASSTUNE, schoolId);
-
-                                intent.putExtra(AppConstant.STUDENT_FIRST_NAME_CLASSTUNE, txtFirstName.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_LAST_NAME_CLASSTUNE, txtLastName.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_EMAIL_CLASSTUNE, txtEmail.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_PASSWORD_CLASSTUNE, txtPassword.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_SCHOOL_CODE_CLASSTUNE, txtSchoolCode.getText().toString());
-
-                                startActivity(intent);
-                            }
-                            else if(ordinal == 3) //type teacher
-                            {
-                                Intent intent = new Intent(RegistrationFirstPhaseActivity.this, CreateTeacherActivity.class);
-                                intent.putExtra(AppConstant.USER_TYPE_CLASSTUNE, ordinal);
-                                intent.putExtra(AppConstant.SCHOOL_ID_CLASSTUNE, schoolId);
-
-                                intent.putExtra(AppConstant.STUDENT_FIRST_NAME_CLASSTUNE, txtFirstName.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_LAST_NAME_CLASSTUNE, txtLastName.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_EMAIL_CLASSTUNE, txtEmail.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_PASSWORD_CLASSTUNE, txtPassword.getText().toString());
-                                intent.putExtra(AppConstant.STUDENT_SCHOOL_CODE_CLASSTUNE, txtSchoolCode.getText().toString());
-
-                                startActivity(intent);
-                            }
-
-
-
-                            Log.e("CODE 200", "code 200");
-                        }
-
-                        else if (modelContainer.getStatus().getCode() == 401) {
-
-                            Log.e("CODE 401", "code 401");
-                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SCHOOL_CODE_VALID);
-                        }
-
-                        else if (modelContainer.getStatus().getCode() == 400) {
-
-                            Log.e("CODE 400", "code 400");
-                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
-                        }
-
-
-                        else {
 
                         }
 

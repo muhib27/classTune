@@ -138,11 +138,13 @@ public class CustomPickerWithLoadData extends DialogFragment {
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
 						pbLayout.setVisibility(View.GONE);
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						items.addAll(GsonParser.getInstance().parseLeaveTypeList(
-								(wrapper.getData().get("type")).toString()));
-						adapter.notifyDataSetChanged();
+						if (response.body() != null){
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							items.addAll(GsonParser.getInstance().parseLeaveTypeList(
+									(wrapper.getData().get("type")).toString()));
+							adapter.notifyDataSetChanged();
+						}
 					}
 
 					@Override
@@ -183,13 +185,16 @@ public class CustomPickerWithLoadData extends DialogFragment {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						pbLayout.setVisibility(View.GONE);
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						items.add(new GraphSubjectType("All","-2"));
-						items.addAll(GsonParser.getInstance().parseGraphSubjectList(
-								(wrapper.getData().get("subjects")).toString()));
+						if (response.body() != null){
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							items.add(new GraphSubjectType("All","-2"));
+							items.addAll(GsonParser.getInstance().parseGraphSubjectList(
+									(wrapper.getData().get("subjects")).toString()));
 
-						adapter.notifyDataSetChanged();
+							adapter.notifyDataSetChanged();
+						}
+
 					}
 
 					@Override
@@ -231,12 +236,14 @@ public class CustomPickerWithLoadData extends DialogFragment {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						pbLayout.setVisibility(View.GONE);
+						if (response.body() != null){
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							items.addAll(GsonParser.getInstance().parseStudentList(
+									(wrapper.getData().get("batch_attendence")).toString()));
+							adapter.notifyDataSetChanged();
+						}
 
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						items.addAll(GsonParser.getInstance().parseStudentList(
-								(wrapper.getData().get("batch_attendence")).toString()));
-						adapter.notifyDataSetChanged();
 					}
 
 					@Override

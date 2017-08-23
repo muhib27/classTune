@@ -150,22 +150,25 @@ public class YearlyAttendanceReportFragment extends Fragment implements UserAuth
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("Response", ""+response.body());
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode() == 200)
-						{
-							mSeries.clear();
-							mRenderer.removeAllRenderers();
-							data=GsonParser.getInstance().parseYearlyAttendanceData(wrapper.getData().toString());
-							addValue(String.format("%.2f", calculatePercentage(data.getPresent(), data.getTotalClass())),getResources().getColor(R.color.present),getString(R.string.present_text));
-							addValue(String.format("%.2f", calculatePercentage(data.getAbsent(), data.getTotalClass())),getResources().getColor(R.color.absent),getString(R.string.absent_text));
-							addValue(String.format("%.2f", calculatePercentage(data.getLate(), data.getTotalClass())),getResources().getColor(R.color.late),getString(R.string.late_text));
-							addValue(String.format("%.2f", calculatePercentage(data.getLeave(), data.getTotalClass())),getResources().getColor(R.color.leave),getString(R.string.leave_text));
-							updateUI();
-						}
-						else if(wrapper.getStatus().getCode()==403)
-						{
-							userHelper.doLogIn();
+
+						if (response.body() != null){
+							Log.e("Response", ""+response.body());
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode() == 200)
+							{
+								mSeries.clear();
+								mRenderer.removeAllRenderers();
+								data=GsonParser.getInstance().parseYearlyAttendanceData(wrapper.getData().toString());
+								addValue(String.format("%.2f", calculatePercentage(data.getPresent(), data.getTotalClass())),getResources().getColor(R.color.present),getString(R.string.present_text));
+								addValue(String.format("%.2f", calculatePercentage(data.getAbsent(), data.getTotalClass())),getResources().getColor(R.color.absent),getString(R.string.absent_text));
+								addValue(String.format("%.2f", calculatePercentage(data.getLate(), data.getTotalClass())),getResources().getColor(R.color.late),getString(R.string.late_text));
+								addValue(String.format("%.2f", calculatePercentage(data.getLeave(), data.getTotalClass())),getResources().getColor(R.color.leave),getString(R.string.leave_text));
+								updateUI();
+							}
+							else if(wrapper.getStatus().getCode()==403)
+							{
+								userHelper.doLogIn();
+							}
 						}
 					}
 

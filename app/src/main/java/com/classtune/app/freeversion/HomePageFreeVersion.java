@@ -800,37 +800,32 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         //uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                int version = modelContainer.getData().get("version").getAsJsonObject().get("version").getAsInt();
+                                boolean toastUpdate = modelContainer.getData().get("version").getAsJsonObject().get("toast_update").getAsBoolean();
+                                boolean mustUpdate = modelContainer.getData().get("version").getAsJsonObject().get("must_update").getAsBoolean();
 
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-
-                            int version = modelContainer.getData().get("version").getAsJsonObject().get("version").getAsInt();
-                            boolean toastUpdate = modelContainer.getData().get("version").getAsJsonObject().get("toast_update").getAsBoolean();
-                            boolean mustUpdate = modelContainer.getData().get("version").getAsJsonObject().get("must_update").getAsBoolean();
-
-                            if(version > getAppVersionCode())
-                            {
-                                if(mustUpdate==true)
+                                if(version > getAppVersionCode())
                                 {
-                                    showVersionDialog();
+                                    if(mustUpdate==true)
+                                    {
+                                        showVersionDialog();
+                                    }
+                                    else if(toastUpdate==true)
+                                    {
+                                        Toast.makeText(HomePageFreeVersion.this, R.string.java_homepagefreeversion_new_update_available, Toast.LENGTH_LONG).show();
+                                    }
+
                                 }
-                                else if(toastUpdate==true)
-                                {
-                                    Toast.makeText(HomePageFreeVersion.this, R.string.java_homepagefreeversion_new_update_available, Toast.LENGTH_LONG).show();
-                                }
+
 
                             }
-
-
-                        }
-
-
-                        else {
-
                         }
                     }
 
@@ -937,32 +932,27 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         //uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                JsonObject object = modelContainer.getData().get("notice").getAsJsonObject();
+                                if(object != null){
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                    if(object.has("id")){
+                                        String subject = object.get("subject").getAsString();
+                                        String body = object.get("body").getAsString();
+                                        String rType = object.get("rtype").getAsString();
+                                        String rId = object.get("rid").getAsString();
 
-                            JsonObject object = modelContainer.getData().get("notice").getAsJsonObject();
-                            if(object != null){
+                                        showTeacherSwapDialog(subject, body, rType, rId);
+                                    }
 
-                                if(object.has("id")){
-                                    String subject = object.get("subject").getAsString();
-                                    String body = object.get("body").getAsString();
-                                    String rType = object.get("rtype").getAsString();
-                                    String rId = object.get("rid").getAsString();
-
-                                    showTeacherSwapDialog(subject, body, rType, rId);
                                 }
 
                             }
-
-                        }
-
-
-                        else {
-
                         }
                     }
 
@@ -1143,25 +1133,21 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                modelContainer.getData().get("unread_total").getAsString();
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
 
-                            modelContainer.getData().get("unread_total").getAsString();
+                                userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
 
-                            SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+                                NotificationActivity.listenerActivity.onNotificationCountChangedFromActivity(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
 
-                            userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
-
-                            NotificationActivity.listenerActivity.onNotificationCountChangedFromActivity(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
-
-                        }
-
-                        else {
-
+                            }
                         }
                     }
 
@@ -1265,36 +1251,36 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                                UserHelper.setLoggedIn(false);
+                                UserHelper.saveIsJoinedSchool(false);
+                                Intent intent = new Intent(HomePageFreeVersion.this,
+                                        LoginActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION
+                                        | Intent.FLAG_ACTIVITY_NEW_TASK
+                                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                VolleyRestClient volleyRestClient = new  VolleyRestClient();
+                                volleyRestClient.setContext(HomePageFreeVersion.this);
+                                volleyRestClient.getRequestQueue().getCache().clear();
+                                ApplicationSingleton.getInstance().clearApplicationData();
 
-                            mDrawerLayout.closeDrawer(Gravity.RIGHT);
-                            UserHelper.setLoggedIn(false);
-                            UserHelper.saveIsJoinedSchool(false);
-                            Intent intent = new Intent(HomePageFreeVersion.this,
-                                    LoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION
-                                    | Intent.FLAG_ACTIVITY_NEW_TASK
-                                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                finish();
+                                overridePendingTransition(0, 0);
 
-                            VolleyRestClient volleyRestClient = new  VolleyRestClient();
-                            volleyRestClient.setContext(HomePageFreeVersion.this);
-                            volleyRestClient.getRequestQueue().getCache().clear();
-                            ApplicationSingleton.getInstance().clearApplicationData();
+                                startActivity(intent);
+                                overridePendingTransition(0, 0);
+                            } else {
 
-                            finish();
-                            overridePendingTransition(0, 0);
+                                Toast.makeText(context, R.string.java_homepagefreeversion_something_wrong_internet, Toast.LENGTH_SHORT).show();
 
-                            startActivity(intent);
-                            overridePendingTransition(0, 0);
-                        } else {
-
-                            Toast.makeText(context, R.string.java_homepagefreeversion_something_wrong_internet, Toast.LENGTH_SHORT).show();
-
+                            }
                         }
                     }
 
@@ -1550,16 +1536,20 @@ public class HomePageFreeVersion extends HomeContainerActivity {
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        Log.e("RESPONSE", ""+response.body());
 
-                        Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-                                response.body());
+                        if (response.body() != null){
+                            Log.e("RESPONSE", ""+response.body());
 
-                        if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-                            setRegisteredToServer(true);
-                        } else {
-                            setRegisteredToServer(false);
+                            Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+                                    response.body());
+
+                            if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+                                setRegisteredToServer(true);
+                            } else {
+                                setRegisteredToServer(false);
+                            }
                         }
+
                     }
 
                     @Override

@@ -247,60 +247,57 @@ public class QuizFragment extends Fragment {
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-						hasNextAssessment = modelContainer.getData().get("has_next").getAsBoolean();
-
-
-						if (pageNumber == 1)
-						{
-							assessmentAdapter.clearList();
-						}
-
-						if (!hasNextAssessment)
-						{
-							stopLoadingData = true;
-						}
+							hasNextAssessment = modelContainer.getData().get("has_next").getAsBoolean();
 
 
-
-						if (modelContainer.getStatus().getCode() == 200) {
-							JsonArray arraHomework = modelContainer.getData().get("homework").getAsJsonArray();
-
-							//listAssessmentHomework = parseAssessmentList(arraHomework.toString());
-
-
-							for (int i = 0; i < parseAssessmentList(arraHomework.toString())
-									.size(); i++) {
-								listAssessmentHomework.add(parseAssessmentList(arraHomework.toString()).get(i));
-							}
-
-
-							if (pageNumber != 0 || isRefreshing)
+							if (pageNumber == 1)
 							{
-								listViewAssessment.onRefreshComplete();
-								loading = false;
+								assessmentAdapter.clearList();
 							}
 
-							assessmentAdapter.notifyDataSetChanged();
-
-						}
-
-						else {
-
-						}
+							if (!hasNextAssessment)
+							{
+								stopLoadingData = true;
+							}
 
 
-						if(listAssessmentHomework.size() <= 0)
-						{
-							txtNoData.setVisibility(View.VISIBLE);
-							//listViewAssessment.setVisibility(View.GONE);
-						}
-						else
-						{
-							txtNoData.setVisibility(View.GONE);
-							//listViewAssessment.setVisibility(View.VISIBLE);
+
+							if (modelContainer.getStatus().getCode() == 200) {
+								JsonArray arraHomework = modelContainer.getData().get("homework").getAsJsonArray();
+
+								//listAssessmentHomework = parseAssessmentList(arraHomework.toString());
+
+
+								for (int i = 0; i < parseAssessmentList(arraHomework.toString())
+										.size(); i++) {
+									listAssessmentHomework.add(parseAssessmentList(arraHomework.toString()).get(i));
+								}
+
+
+								if (pageNumber != 0 || isRefreshing)
+								{
+									listViewAssessment.onRefreshComplete();
+									loading = false;
+								}
+
+								assessmentAdapter.notifyDataSetChanged();
+
+							}
+
+							if(listAssessmentHomework.size() <= 0)
+							{
+								txtNoData.setVisibility(View.VISIBLE);
+								//listViewAssessment.setVisibility(View.GONE);
+							}
+							else
+							{
+								txtNoData.setVisibility(View.GONE);
+								//listViewAssessment.setVisibility(View.VISIBLE);
+							}
 						}
 					}
 
@@ -444,38 +441,36 @@ public class QuizFragment extends Fragment {
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
 
-						if (modelContainer.getStatus().getCode() == 200) {
+							if (modelContainer.getStatus().getCode() == 200) {
 
-							JsonObject obj = modelContainer.getData().get("assesment").getAsJsonObject();
+								JsonObject obj = modelContainer.getData().get("assesment").getAsJsonObject();
 
-							String nameText = obj.get("name").getAsString();
-							String subjectText = obj.get("subject_name").getAsString();
-							String totalStudent = obj.get("total_student").getAsString();
-							String totaltotalParticipated = obj.get("total_participated").getAsString();
-							String maxScore = obj.get("max_score").getAsString();
-							String minScore = obj.get("min_score").getAsString();
-							String totalTimeTaken = obj.get("total_time_taken").getAsString();
+								String nameText = obj.get("name").getAsString();
+								String subjectText = obj.get("subject_name").getAsString();
+								String totalStudent = obj.get("total_student").getAsString();
+								String totaltotalParticipated = obj.get("total_participated").getAsString();
+								String maxScore = obj.get("max_score").getAsString();
+								String minScore = obj.get("min_score").getAsString();
+								String totalTimeTaken = obj.get("total_time_taken").getAsString();
 
-							String totalMarkText = obj.get("total_mark").getAsString();
-							String isPassedText = obj.get("is_passed").getAsString();
-							String totalScoreText = obj.get("total_score").getAsString();
-
-
-							String studentCountText = totaltotalParticipated+"/"+totalStudent;
+								String totalMarkText = obj.get("total_mark").getAsString();
+								String isPassedText = obj.get("is_passed").getAsString();
+								String totalScoreText = obj.get("total_score").getAsString();
 
 
-							showCustomDialogHomeworkAssessmentOk(getString(R.string.fragment_quiz_header), nameText, subjectText, studentCountText, maxScore, minScore, totalMarkText, totalTimeTaken, isPassedText, totalScoreText, R.drawable.assessment_icon_popup, getActivity());
+								String studentCountText = totaltotalParticipated+"/"+totalStudent;
+
+
+								showCustomDialogHomeworkAssessmentOk(getString(R.string.fragment_quiz_header), nameText, subjectText, studentCountText, maxScore, minScore, totalMarkText, totalTimeTaken, isPassedText, totalScoreText, R.drawable.assessment_icon_popup, getActivity());
 
 
 
-						}
-
-						else {
-
+							}
 						}
 
 					}

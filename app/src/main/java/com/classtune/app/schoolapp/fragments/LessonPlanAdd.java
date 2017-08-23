@@ -567,29 +567,26 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         listCategory.clear();
-
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
+                                JsonArray arrayCategory = modelContainer.getData().get("category").getAsJsonArray();
+                                for (int i = 0; i < parseCategory(arrayCategory.toString()).size(); i++)
+                                {
+                                    listCategory.add(parseCategory(arrayCategory.toString()).get(i));
+                                }
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                showCategoryPopup(btnSelectCategory);
 
 
-                            JsonArray arrayCategory = modelContainer.getData().get("category").getAsJsonArray();
-                            for (int i = 0; i < parseCategory(arrayCategory.toString()).size(); i++)
-                            {
-                                listCategory.add(parseCategory(arrayCategory.toString()).get(i));
                             }
-
-                            showCategoryPopup(btnSelectCategory);
-
-
-                        } else {
-
                         }
                     }
 
@@ -716,33 +713,25 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 //listSubject.clear();
-
-
                 uiHelper.dismissLoadingDialog();
+                if (response.body() != null){
+                    Wrapper modelContainer = GsonParser.getInstance()
+                            .parseServerResponse2(response.body());
 
 
-                Wrapper modelContainer = GsonParser.getInstance()
-                        .parseServerResponse2(response.body());
+
+                    if (modelContainer.getStatus().getCode() == 200) {
 
 
+                        JsonArray arraySubject = modelContainer.getData().get("subjects").getAsJsonArray();
+                        for (int i = 0; i < parseSubject(arraySubject.toString()).size(); i++)
+                        {
+                            listSubject.add(parseSubject(arraySubject.toString()).get(i));
+                        }
 
-                if (modelContainer.getStatus().getCode() == 200) {
-
-
-                    JsonArray arraySubject = modelContainer.getData().get("subjects").getAsJsonArray();
-                    for (int i = 0; i < parseSubject(arraySubject.toString()).size(); i++)
-                    {
-                        listSubject.add(parseSubject(arraySubject.toString()).get(i));
+                        //showSubjectPopup(btnSubjectClass);
+                        generateSubjectChooserLayout(layoutSelectMultipleSubject);
                     }
-
-                    //showSubjectPopup(btnSubjectClass);
-                    generateSubjectChooserLayout(layoutSelectMultipleSubject);
-
-
-
-
-                } else {
-
                 }
             }
 
@@ -928,23 +917,20 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                         @Override
                         public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                             listSubject.clear();
-
                             uiHelper.dismissLoadingDialog();
+                            if (response.body() != null){
+                                Wrapper modelContainer = GsonParser.getInstance()
+                                        .parseServerResponse2(response.body());
 
 
-                            Wrapper modelContainer = GsonParser.getInstance()
-                                    .parseServerResponse2(response.body());
+
+                                if (modelContainer.getStatus().getCode() == 200) {
+
+                                    Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_successfully_added_lesson_plan, Toast.LENGTH_SHORT).show();
+                                    clearDataFields();
 
 
-
-                            if (modelContainer.getStatus().getCode() == 200) {
-
-                                Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_successfully_added_lesson_plan, Toast.LENGTH_SHORT).show();
-                                clearDataFields();
-
-
-                            } else {
-
+                                }
                             }
                         }
 
@@ -971,21 +957,19 @@ public class LessonPlanAdd extends Fragment implements IAttachFile {
                             listSubject.clear();
 
                             uiHelper.dismissLoadingDialog();
+                            if (response.body() != null){
+                                Wrapper modelContainer = GsonParser.getInstance()
+                                        .parseServerResponse2(response.body());
 
 
-                            Wrapper modelContainer = GsonParser.getInstance()
-                                    .parseServerResponse2(response.body());
+
+                                if (modelContainer.getStatus().getCode() == 200) {
+
+                                    Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_successfully_added_lesson_plan, Toast.LENGTH_SHORT).show();
+                                    clearDataFields();
 
 
-
-                            if (modelContainer.getStatus().getCode() == 200) {
-
-                                Toast.makeText(getActivity(), R.string.java_leaveapplicationfragment_successfully_added_lesson_plan, Toast.LENGTH_SHORT).show();
-                                clearDataFields();
-
-
-                            } else {
-
+                                }
                             }
                         }
 

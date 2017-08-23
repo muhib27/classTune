@@ -248,55 +248,58 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                             new Callback<JsonElement>() {
                                 @Override
                                 public void onResponse(Call<JsonElement> call, retrofit2.Response<JsonElement> response) {
-                                    Log.e("*** RESPONSE ***" , "is: "+response.body());
 
-                                    if(AppUtility.isInternetConnected() == false){
-                                        if (uiHelper.isDialogActive()) {
-                                            uiHelper.dismissLoadingDialog();
-                                        }
+                                   if (response.body() != null){
+                                       Log.e("*** RESPONSE ***" , "is: "+response.body());
 
-                                        Wrapper modelContainer = GsonParser.getInstance()
-                                                .parseServerResponse2(response.body());
+                                       if(AppUtility.isInternetConnected() == false){
+                                           if (uiHelper.isDialogActive()) {
+                                               uiHelper.dismissLoadingDialog();
+                                           }
 
-                                        if (modelContainer.getStatus().getCode() == 200) {
-                                            hasNext = modelContainer.getData().get("has_next")
-                                                    .getAsBoolean();
+                                           Wrapper modelContainer = GsonParser.getInstance()
+                                                   .parseServerResponse2(response.body());
 
-                                            schoolName = modelContainer.getData().get("school_name").getAsString();
-                                            username = modelContainer.getData().get("user_name").getAsString();
-                                            profileurl = modelContainer.getData().get("profile_picture").getAsString();
-                                            attendance_status = modelContainer.getData().get("attandence").getAsInt();
-                                            userdetails = modelContainer.getData().get("user_details").getAsString();
-                                            lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
+                                           if (modelContainer.getStatus().getCode() == 200) {
+                                               hasNext = modelContainer.getData().get("has_next")
+                                                       .getAsBoolean();
 
-                                            if (pageNumber == 1) {
-                                                adapter.clearList();
-                                                adapter.addSeparatorItem(new FreeFeed());
-                                            }
+                                               schoolName = modelContainer.getData().get("school_name").getAsString();
+                                               username = modelContainer.getData().get("user_name").getAsString();
+                                               profileurl = modelContainer.getData().get("profile_picture").getAsString();
+                                               attendance_status = modelContainer.getData().get("attandence").getAsInt();
+                                               userdetails = modelContainer.getData().get("user_details").getAsString();
+                                               lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
 
-                                            spinner.setVisibility(View.GONE);
-                                            if (!hasNext) {
-                                                // fitnessAdapter.setStopLoadingData(true);
-                                                stopLoadingData = true;
-                                            }
-                                            // fitnessAdapter.getList().addAll();
-                                            ArrayList<FreeFeed> allpost = GsonParser.getInstance()
-                                                    .parsePost(
-                                                            modelContainer.getData().getAsJsonArray("feeds")
-                                                                    .toString());
+                                               if (pageNumber == 1) {
+                                                   adapter.clearList();
+                                                   adapter.addSeparatorItem(new FreeFeed());
+                                               }
 
-                                            // if (pageNumber == 1)
-                                            for (int i = 0; i < allpost.size(); i++) {
-                                                adapter.addItem(allpost.get(i));
-                                            }
-                                            adapter.notifyDataSetChanged();
+                                               spinner.setVisibility(View.GONE);
+                                               if (!hasNext) {
+                                                   // fitnessAdapter.setStopLoadingData(true);
+                                                   stopLoadingData = true;
+                                               }
+                                               // fitnessAdapter.getList().addAll();
+                                               ArrayList<FreeFeed> allpost = GsonParser.getInstance()
+                                                       .parsePost(
+                                                               modelContainer.getData().getAsJsonArray("feeds")
+                                                                       .toString());
 
-                                            if (pageNumber != 0 || isRefreshing) {
-                                                listGoodread.onRefreshComplete();
-                                                loading = false;
-                                            }
-                                        }
-                                    }
+                                               // if (pageNumber == 1)
+                                               for (int i = 0; i < allpost.size(); i++) {
+                                                   adapter.addItem(allpost.get(i));
+                                               }
+                                               adapter.notifyDataSetChanged();
+
+                                               if (pageNumber != 0 || isRefreshing) {
+                                                   listGoodread.onRefreshComplete();
+                                                   loading = false;
+                                               }
+                                           }
+                                       }
+                                   }
                                 }
 
                                 @Override
@@ -384,52 +387,55 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                             new Callback<JsonElement>() {
                                 @Override
                                 public void onResponse(Call<JsonElement> call, retrofit2.Response<JsonElement> response) {
-                                    Log.e("*** RESPONSE ***" , "is: "+response.body());
 
-                                    if(AppUtility.isInternetConnected() == false){
-                                        if (uiHelper.isDialogActive()) {
-                                            uiHelper.dismissLoadingDialog();
-                                        }
+                                    if (response.body() != null){
+                                        Log.e("*** RESPONSE ***" , "is: "+response.body());
 
-                                        Wrapper modelContainer = GsonParser.getInstance()
-                                                .parseServerResponse2(response.body());
-
-                                        if (modelContainer.getStatus().getCode() == 200) {
-                                            hasNext = modelContainer.getData().get("has_next")
-                                                    .getAsBoolean();
-
-                                            schoolName = modelContainer.getData().get("school_name").getAsString();
-                                            username = modelContainer.getData().get("user_name").getAsString();
-                                            profileurl = modelContainer.getData().get("profile_picture").getAsString();
-                                            attendance_status = modelContainer.getData().get("attandence").getAsInt();
-                                            userdetails = modelContainer.getData().get("user_details").getAsString();
-                                            lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
-
-                                            if (pageNumber == 1) {
-                                                adapter.clearList();
-                                                adapter.addSeparatorItem(new FreeFeed());
+                                        if(AppUtility.isInternetConnected() == false){
+                                            if (uiHelper.isDialogActive()) {
+                                                uiHelper.dismissLoadingDialog();
                                             }
 
-                                            spinner.setVisibility(View.GONE);
-                                            if (!hasNext) {
-                                                // fitnessAdapter.setStopLoadingData(true);
-                                                stopLoadingData = true;
-                                            }
-                                            // fitnessAdapter.getList().addAll();
-                                            ArrayList<FreeFeed> allpost = GsonParser.getInstance()
-                                                    .parsePost(
-                                                            modelContainer.getData().getAsJsonArray("feeds")
-                                                                    .toString());
+                                            Wrapper modelContainer = GsonParser.getInstance()
+                                                    .parseServerResponse2(response.body());
 
-                                            // if (pageNumber == 1)
-                                            for (int i = 0; i < allpost.size(); i++) {
-                                                adapter.addItem(allpost.get(i));
-                                            }
-                                            adapter.notifyDataSetChanged();
+                                            if (modelContainer.getStatus().getCode() == 200) {
+                                                hasNext = modelContainer.getData().get("has_next")
+                                                        .getAsBoolean();
 
-                                            if (pageNumber != 0 || isRefreshing) {
-                                                listGoodread.onRefreshComplete();
-                                                loading = false;
+                                                schoolName = modelContainer.getData().get("school_name").getAsString();
+                                                username = modelContainer.getData().get("user_name").getAsString();
+                                                profileurl = modelContainer.getData().get("profile_picture").getAsString();
+                                                attendance_status = modelContainer.getData().get("attandence").getAsInt();
+                                                userdetails = modelContainer.getData().get("user_details").getAsString();
+                                                lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
+
+                                                if (pageNumber == 1) {
+                                                    adapter.clearList();
+                                                    adapter.addSeparatorItem(new FreeFeed());
+                                                }
+
+                                                spinner.setVisibility(View.GONE);
+                                                if (!hasNext) {
+                                                    // fitnessAdapter.setStopLoadingData(true);
+                                                    stopLoadingData = true;
+                                                }
+                                                // fitnessAdapter.getList().addAll();
+                                                ArrayList<FreeFeed> allpost = GsonParser.getInstance()
+                                                        .parsePost(
+                                                                modelContainer.getData().getAsJsonArray("feeds")
+                                                                        .toString());
+
+                                                // if (pageNumber == 1)
+                                                for (int i = 0; i < allpost.size(); i++) {
+                                                    adapter.addItem(allpost.get(i));
+                                                }
+                                                adapter.notifyDataSetChanged();
+
+                                                if (pageNumber != 0 || isRefreshing) {
+                                                    listGoodread.onRefreshComplete();
+                                                    loading = false;
+                                                }
                                             }
                                         }
                                     }
@@ -541,54 +547,58 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                     if (uiHelper.isDialogActive()) {
                         uiHelper.dismissLoadingDialog();
                     }
-                    Log.e("@@@****@@@",""+response.body());
+
+                    if (response.body() != null){
+                        Log.e("@@@****@@@",""+response.body());
             /*
 			 * if (fitnessAdapter.getPageNumber() == 1) {
 			 * fitnessAdapter.getList().clear(); // setupPoppyView(); }
 			 */
-                    //Log.e("Response CATEGORY", responseString);
-                    // app.showLog("Response", responseString);
-                    Wrapper modelContainer = GsonParser.getInstance()
-                            .parseServerResponse2(response.body());
+                        //Log.e("Response CATEGORY", responseString);
+                        // app.showLog("Response", responseString);
+                        Wrapper modelContainer = GsonParser.getInstance()
+                                .parseServerResponse2(response.body());
 
-                    if (modelContainer.getStatus().getCode() == 200) {
-                        hasNext = modelContainer.getData().get("has_next")
-                                .getAsBoolean();
+                        if (modelContainer.getStatus().getCode() == 200) {
+                            hasNext = modelContainer.getData().get("has_next")
+                                    .getAsBoolean();
 
-                        schoolName = modelContainer.getData().get("school_name").getAsString();
-                        username = modelContainer.getData().get("user_name").getAsString();
-                        profileurl = modelContainer.getData().get("profile_picture").getAsString();
-                        attendance_status = modelContainer.getData().get("attandence").getAsInt();
-                        userdetails = modelContainer.getData().get("user_details").getAsString();
-                        lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
+                            schoolName = modelContainer.getData().get("school_name").getAsString();
+                            username = modelContainer.getData().get("user_name").getAsString();
+                            profileurl = modelContainer.getData().get("profile_picture").getAsString();
+                            attendance_status = modelContainer.getData().get("attandence").getAsInt();
+                            userdetails = modelContainer.getData().get("user_details").getAsString();
+                            lastvisited = GsonParser.getInstance().parseLastVisited(modelContainer.getData().getAsJsonObject("last_visited").toString());
 
-                        if (pageNumber == 1) {
-                            adapter.clearList();
-                            adapter.addSeparatorItem(new FreeFeed());
-                        }
+                            if (pageNumber == 1) {
+                                adapter.clearList();
+                                adapter.addSeparatorItem(new FreeFeed());
+                            }
 
-                        spinner.setVisibility(View.GONE);
-                        if (!hasNext) {
-                            // fitnessAdapter.setStopLoadingData(true);
-                            stopLoadingData = true;
-                        }
-                        // fitnessAdapter.getList().addAll();
-                        ArrayList<FreeFeed> allpost = GsonParser.getInstance()
-                                .parsePost(
-                                        modelContainer.getData().getAsJsonArray("feeds")
-                                                .toString());
+                            spinner.setVisibility(View.GONE);
+                            if (!hasNext) {
+                                // fitnessAdapter.setStopLoadingData(true);
+                                stopLoadingData = true;
+                            }
+                            // fitnessAdapter.getList().addAll();
+                            ArrayList<FreeFeed> allpost = GsonParser.getInstance()
+                                    .parsePost(
+                                            modelContainer.getData().getAsJsonArray("feeds")
+                                                    .toString());
 
-                        // if (pageNumber == 1)
-                        for (int i = 0; i < allpost.size(); i++) {
-                            adapter.addItem(allpost.get(i));
-                        }
-                        adapter.notifyDataSetChanged();
+                            // if (pageNumber == 1)
+                            for (int i = 0; i < allpost.size(); i++) {
+                                adapter.addItem(allpost.get(i));
+                            }
+                            adapter.notifyDataSetChanged();
 
-                        if (pageNumber != 0 || isRefreshing) {
-                            listGoodread.onRefreshComplete();
-                            loading = false;
+                            if (pageNumber != 0 || isRefreshing) {
+                                listGoodread.onRefreshComplete();
+                                loading = false;
+                            }
                         }
                     }
+
                 }
 
                 @Override
@@ -1656,14 +1666,13 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
-
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-                            //fetchNotification();
+                                //fetchNotification();
 
                /* modelContainer.getData().get("unread_total").getAsString();
 
@@ -1673,10 +1682,7 @@ public class SchoolFeedFragment extends Fragment implements UserAuthListener {
 
                 listenerActivity.onNotificationCountChangedFromActivity(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));*/
 
-                        }
-
-                        else {
-
+                            }
                         }
                     }
 

@@ -331,27 +331,22 @@ public class SingleReportCardSubject extends ChildContainerActivity {
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        Log.e("###RESPONSE", "is: "+response.body());
 
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Log.e("###RESPONSE", "is: "+response.body());
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                JsonObject object = modelContainer.getData().get("result").getAsJsonObject();
+                                data = gson.fromJson(object.toString(), ClassTestItem.class);
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                initAction();
 
-
-                            JsonObject object = modelContainer.getData().get("result").getAsJsonObject();
-                            data = gson.fromJson(object.toString(), ClassTestItem.class);
-
-                            initAction();
-
-                        }
-
-
-                        else {
-
+                            }
                         }
                     }
 

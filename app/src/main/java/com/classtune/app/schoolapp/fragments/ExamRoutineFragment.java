@@ -81,22 +81,22 @@ public class ExamRoutineFragment extends Fragment implements UserAuthListener {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("RESPONSE ROUTINE ", ""+response.body());
-						// uiHelper.showMessage(responseString);
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
-						if (modelContainer.getStatus().getCode() == 200) {
-							listData = GsonParser.getInstance().parseExam(
-									modelContainer.getData()
-											.getAsJsonArray("exam_time_table").toString());
+						if (response.body() != null){
+							Log.e("RESPONSE ROUTINE ", ""+response.body());
+							// uiHelper.showMessage(responseString);
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+							if (modelContainer.getStatus().getCode() == 200) {
+								listData = GsonParser.getInstance().parseExam(
+										modelContainer.getData()
+												.getAsJsonArray("exam_time_table").toString());
 
-							Log.e("ListData SIZE: ", listData.size() + "");
-						} else {
-
+								Log.e("ListData SIZE: ", listData.size() + "");
+							}
+							mAdapter.notifyDataSetChanged();
+							// Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
+							// .getAllNotice().get(0).getNoticeTypeText());
 						}
-						mAdapter.notifyDataSetChanged();
-						// Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
-						// .getAllNotice().get(0).getNoticeTypeText());
 					}
 
 					@Override

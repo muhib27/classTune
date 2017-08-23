@@ -322,29 +322,26 @@ public class EditLessonPlanActivity extends ChildContainerActivity{
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
                         listCategory.clear();
-
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
+                                JsonArray arrayCategory = modelContainer.getData().get("category").getAsJsonArray();
+                                for (int i = 0; i < parseCategory(arrayCategory.toString()).size(); i++)
+                                {
+                                    listCategory.add(parseCategory(arrayCategory.toString()).get(i));
+                                }
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                showCategoryPopup(btnSelectCategory);
 
 
-                            JsonArray arrayCategory = modelContainer.getData().get("category").getAsJsonArray();
-                            for (int i = 0; i < parseCategory(arrayCategory.toString()).size(); i++)
-                            {
-                                listCategory.add(parseCategory(arrayCategory.toString()).get(i));
                             }
-
-                            showCategoryPopup(btnSelectCategory);
-
-
-                        } else {
-
                         }
                     }
 
@@ -492,35 +489,32 @@ public class EditLessonPlanActivity extends ChildContainerActivity{
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         listCategory.clear();
-
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                            initApiCallSubject();
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
-                        initApiCallSubject();
+                                JsonArray arrayCategory = modelContainer.getData().get("category").getAsJsonArray();
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                JsonArray arraySubject = modelContainer.getData().get("subjects").getAsJsonArray();
 
-
-                            JsonArray arrayCategory = modelContainer.getData().get("category").getAsJsonArray();
-
-                            JsonArray arraySubject = modelContainer.getData().get("subjects").getAsJsonArray();
-
-                            txtSelectCategory.setText(arrayCategory.get(0).getAsJsonObject().get("name").getAsString());
-                            selectedCategoryId = arrayCategory.get(0).getAsJsonObject().get("id").getAsString();
+                                txtSelectCategory.setText(arrayCategory.get(0).getAsJsonObject().get("name").getAsString());
+                                selectedCategoryId = arrayCategory.get(0).getAsJsonObject().get("id").getAsString();
 
 
-                            JsonObject objLessonPlan = modelContainer.getData().get("lessonplan").getAsJsonObject();
-                            data = gson.fromJson(objLessonPlan.toString(), LessonPlan.class);
+                                JsonObject objLessonPlan = modelContainer.getData().get("lessonplan").getAsJsonObject();
+                                data = gson.fromJson(objLessonPlan.toString(), LessonPlan.class);
 
-                            populateData(data);
+                                populateData(data);
 
 
-                        } else {
-
+                            }
                         }
                     }
 
@@ -635,35 +629,26 @@ public class EditLessonPlanActivity extends ChildContainerActivity{
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
                         //listSubject.clear();
-
-
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
+                                JsonArray arraySubject = modelContainer.getData().get("subjects").getAsJsonArray();
+                                for (int i = 0; i < parseSubject(arraySubject.toString()).size(); i++)
+                                {
+                                    listSubject.add(parseSubject(arraySubject.toString()).get(i));
+                                }
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                //showSubjectPopup(btnSubjectClass);
+                                generateSubjectChooserLayout(layoutSelectMultipleSubject);
 
-
-                            JsonArray arraySubject = modelContainer.getData().get("subjects").getAsJsonArray();
-                            for (int i = 0; i < parseSubject(arraySubject.toString()).size(); i++)
-                            {
-                                listSubject.add(parseSubject(arraySubject.toString()).get(i));
                             }
-
-                            //showSubjectPopup(btnSubjectClass);
-                            generateSubjectChooserLayout(layoutSelectMultipleSubject);
-
-
-
-
-
-
-                        } else {
-
                         }
                     }
 
@@ -900,22 +885,20 @@ public class EditLessonPlanActivity extends ChildContainerActivity{
                         listSubject.clear();
 
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
+
+                                Toast.makeText(EditLessonPlanActivity.this, R.string.java_editLessonplanactivity_successfully_edited_lesson_plan, Toast.LENGTH_SHORT).show();
+
+                                finish();
 
 
-
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-                            Toast.makeText(EditLessonPlanActivity.this, R.string.java_editLessonplanactivity_successfully_edited_lesson_plan, Toast.LENGTH_SHORT).show();
-
-                            finish();
-
-
-                        } else {
-
+                            }
                         }
                     }
 

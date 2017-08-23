@@ -892,32 +892,30 @@ public class HomeContainerActivity extends SocialBaseActivity implements
 						if (uiHelper != null)
 							uiHelper.dismissLoadingDialog();
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-						if (modelContainer.getStatus().getCode() == 200) {
+							if (modelContainer.getStatus().getCode() == 200) {
 
-							Log.e("SEARCH", "data: "
-									+ modelContainer.getData().getAsJsonObject().toString());
+								Log.e("SEARCH", "data: "
+										+ modelContainer.getData().getAsJsonObject().toString());
 
-							JsonArray arrayPost = modelContainer.getData()
-									.getAsJsonObject().get("post").getAsJsonArray();
+								JsonArray arrayPost = modelContainer.getData()
+										.getAsJsonObject().get("post").getAsJsonArray();
 
-							dataWrap = new WrapAllData(arrayPost.toString());
+								dataWrap = new WrapAllData(arrayPost.toString());
 
-							for (int i = 0; i < dataWrap.getListPost().size(); i++) {
+								for (int i = 0; i < dataWrap.getListPost().size(); i++) {
 
-								createSearchRow(i, dataWrap);
+									createSearchRow(i, dataWrap);
+								}
+
+								if (popup != null) {
+									popup.showAsDropDown(mSearchView);
+									adjustPopupHeight();
+								}
 							}
-
-							if (popup != null) {
-								popup.showAsDropDown(mSearchView);
-								adjustPopupHeight();
-							}
-						}
-
-						else {
-
 						}
 					}
 

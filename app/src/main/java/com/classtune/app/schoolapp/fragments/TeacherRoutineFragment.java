@@ -206,48 +206,50 @@ public class TeacherRoutineFragment extends UserVisibleHintFragment implements O
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						listPb.setVisibility(View.GONE);
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS) {
-							weekDayClasses.clear();
-							weekDayClasses.addAll(GsonParser.getInstance().parseClassList(wrapper.getData().get("time_table").toString()));
-							days.clear();
-							days.addAll(GsonParser.getInstance().parseWeekDays(wrapper.getData().get("weekdays").toString()));
-							currentWeekDay = GsonParser.getInstance().parseGsonToString(wrapper.getData().get("cur_week"));
+                        if (response.body() != null){
+                            Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS) {
+                                weekDayClasses.clear();
+                                weekDayClasses.addAll(GsonParser.getInstance().parseClassList(wrapper.getData().get("time_table").toString()));
+                                days.clear();
+                                days.addAll(GsonParser.getInstance().parseWeekDays(wrapper.getData().get("weekdays").toString()));
+                                currentWeekDay = GsonParser.getInstance().parseGsonToString(wrapper.getData().get("cur_week"));
 
-							if (selectedWeekDayId.equalsIgnoreCase("")) {
-								String weekDayName = days.get(Integer.parseInt(currentWeekDay)).getText();
-								Resources res = mContext.getResources();
+                                if (selectedWeekDayId.equalsIgnoreCase("")) {
+                                    String weekDayName = days.get(Integer.parseInt(currentWeekDay)).getText();
+                                    Resources res = mContext.getResources();
 
-								weekDayName.toLowerCase();
-								weekDayName = weekDayName.substring(0, 1).toUpperCase() + weekDayName.substring(1).toLowerCase();
-
-
-								String text = String.format(res.getString(R.string.teacher_routine_title), weekDayName);
-								listHeaderTextView.setText(text);
-								String noClassText = String.format(res.getString(R.string.no_class_title), weekDayName);
-								noDataText.setText(noClassText);
-							} else {
-								String weekDayName = days.get(Integer.parseInt(selectedWeekDayId)).getText();
-
-								weekDayName.toLowerCase();
-								weekDayName = weekDayName.substring(0, 1).toUpperCase() + weekDayName.substring(1).toLowerCase();
+                                    weekDayName.toLowerCase();
+                                    weekDayName = weekDayName.substring(0, 1).toUpperCase() + weekDayName.substring(1).toLowerCase();
 
 
-								Resources res = mContext.getResources();
-								String text = String.format(res.getString(R.string.teacher_routine_title), weekDayName);
-								listHeaderTextView.setText(text);
-								String noClassText = String.format(res.getString(R.string.no_class_title), weekDayName);
-								noDataText.setText(noClassText);
-							}
-							adapter.notifyDataSetChanged();
-							if (weekDayClasses.size() > 0) {
-								classList.setVisibility(View.VISIBLE);
-								noDataText.setVisibility(View.GONE);
-							} else {
-								classList.setVisibility(View.GONE);
-								noDataText.setVisibility(View.VISIBLE);
-							}
-						}
+                                    String text = String.format(res.getString(R.string.teacher_routine_title), weekDayName);
+                                    listHeaderTextView.setText(text);
+                                    String noClassText = String.format(res.getString(R.string.no_class_title), weekDayName);
+                                    noDataText.setText(noClassText);
+                                } else {
+                                    String weekDayName = days.get(Integer.parseInt(selectedWeekDayId)).getText();
+
+                                    weekDayName.toLowerCase();
+                                    weekDayName = weekDayName.substring(0, 1).toUpperCase() + weekDayName.substring(1).toLowerCase();
+
+
+                                    Resources res = mContext.getResources();
+                                    String text = String.format(res.getString(R.string.teacher_routine_title), weekDayName);
+                                    listHeaderTextView.setText(text);
+                                    String noClassText = String.format(res.getString(R.string.no_class_title), weekDayName);
+                                    noDataText.setText(noClassText);
+                                }
+                                adapter.notifyDataSetChanged();
+                                if (weekDayClasses.size() > 0) {
+                                    classList.setVisibility(View.VISIBLE);
+                                    noDataText.setVisibility(View.GONE);
+                                } else {
+                                    classList.setVisibility(View.GONE);
+                                    noDataText.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        }
 					}
 
 					@Override
@@ -338,19 +340,22 @@ public class TeacherRoutineFragment extends UserVisibleHintFragment implements O
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						nextClassPanelRefreshPb.setVisibility(View.GONE);
 						nextClassRefreshBtn.setVisibility(View.VISIBLE);
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
-						{
-							currentDateServer=GsonParser.getInstance().parseGsonToString(wrapper.getData().get("today"));
-							Log.e("Date", currentDateServer);
-							JsonElement e = wrapper.getData().get("time_table");
-							if(!e.isJsonArray()){
-								nextClass=GsonParser.getInstance().parseRoutineTimeTable(e.toString());
-								updateNextClassPanel(nextClass);
-							}
 
+						if (response.body() != null){
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+							{
+								currentDateServer=GsonParser.getInstance().parseGsonToString(wrapper.getData().get("today"));
+								Log.e("Date", currentDateServer);
+								JsonElement e = wrapper.getData().get("time_table");
+								if(!e.isJsonArray()){
+									nextClass=GsonParser.getInstance().parseRoutineTimeTable(e.toString());
+									updateNextClassPanel(nextClass);
+								}
+
+							}
+							Log.e("NextClass", ""+ response.body());
 						}
-						Log.e("NextClass", ""+ response.body());
 					}
 
 					@Override

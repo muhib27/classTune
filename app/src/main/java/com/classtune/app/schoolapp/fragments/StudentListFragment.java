@@ -90,25 +90,27 @@ public class StudentListFragment extends UserVisibleHintFragment {
 						arraylist.clear();
 
 						pbLayout.setVisibility(View.GONE);
+						if (response.body() != null){
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							arraylist.addAll(GsonParser.getInstance().parseStudentList(
+									(wrapper.getData().get("batch_attendence")).toString()));
+							adapter = new StudentListAdapter(mContext, arraylist);
+							studentListView.setAdapter(adapter);
+							isStudentListloaded = true;
 
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						arraylist.addAll(GsonParser.getInstance().parseStudentList(
-								(wrapper.getData().get("batch_attendence")).toString()));
-						adapter = new StudentListAdapter(mContext, arraylist);
-						studentListView.setAdapter(adapter);
-						isStudentListloaded = true;
 
 
-
-						if(arraylist.size() <= 0)
-						{
-							txtMessage.setVisibility(View.VISIBLE);
+							if(arraylist.size() <= 0)
+							{
+								txtMessage.setVisibility(View.VISIBLE);
+							}
+							else
+							{
+								txtMessage.setVisibility(View.GONE);
+							}
 						}
-						else
-						{
-							txtMessage.setVisibility(View.GONE);
-						}
+
 					}
 
 					@Override
@@ -292,17 +294,22 @@ public class StudentListFragment extends UserVisibleHintFragment {
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("Response", "" +response.body());
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
-						{
-							PaidVersionHomeFragment.isBatchLoaded=true;
-							PaidVersionHomeFragment.batches.clear();
-							String data=wrapper.getData().get("batches").toString();
-							PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
-							//showPicker(PickerType.TEACHER_BATCH);
-							showPicker(PickerType.TEACHER_BATCH);
+
+						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Log.e("Response", "" +response.body());
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+							{
+								PaidVersionHomeFragment.isBatchLoaded=true;
+								PaidVersionHomeFragment.batches.clear();
+								String data=wrapper.getData().get("batches").toString();
+								PaidVersionHomeFragment.batches.addAll(GsonParser.getInstance().parseBatchList(data));
+								//showPicker(PickerType.TEACHER_BATCH);
+								showPicker(PickerType.TEACHER_BATCH);
+							}
 						}
+
 					}
 
 					@Override

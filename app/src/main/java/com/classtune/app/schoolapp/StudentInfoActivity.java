@@ -172,17 +172,19 @@ public class StudentInfoActivity extends ChildContainerActivity {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						pbLayout.setVisibility(View.GONE);
-						Log.e("Response****", ""+response.body());
 
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						if (wrapper.getStatus().getCode() == 200) {
-							Student student=GsonParser.getInstance().parseStudentInfo(wrapper.getData().get("student").toString());
-							updateUI(student);
+						if (response.body() != null ){
+							Log.e("Response****", ""+response.body());
 
-						} else {
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							if (wrapper.getStatus().getCode() == 200) {
+								Student student=GsonParser.getInstance().parseStudentInfo(wrapper.getData().get("student").toString());
+								updateUI(student);
 
+							}
 						}
+
 					}
 
 					@Override

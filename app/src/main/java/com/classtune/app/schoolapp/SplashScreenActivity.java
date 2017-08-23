@@ -233,9 +233,12 @@ public class SplashScreenActivity extends Activity {
 		ApplicationSingleton.getInstance().getNetworkCallInterface().cMartIndex(params).enqueue(new Callback<JsonElement>() {
 			@Override
 			public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-				Log.e("INDEX", ""+response.body());
-				SharedPreferencesHelper.getInstance().setString(SPKeyHelper.CAMRT_CATS,response.toString());
-				navigateToNextPage();
+
+				if (response.body() != null){
+					Log.e("INDEX", ""+response.body());
+					SharedPreferencesHelper.getInstance().setString(SPKeyHelper.CAMRT_CATS,response.toString());
+					navigateToNextPage();
+				}
 			}
 
 			@Override

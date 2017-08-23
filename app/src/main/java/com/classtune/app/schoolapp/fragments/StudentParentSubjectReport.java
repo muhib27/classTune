@@ -109,20 +109,20 @@ public class StudentParentSubjectReport extends UserVisibleHintFragment{
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Log.e("Response", ""+response.body());
-                        subjectList.clear();
+                        if (response.body() != null){
+                            Log.e("Response", ""+response.body());
+                            subjectList.clear();
 
-                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
-                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+                            Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
 
-                            JsonArray arraySubject = wrapper.getData().get("subject").getAsJsonArray();
-                            subjectList.addAll(parseSubject(arraySubject.toString()));
+                                JsonArray arraySubject = wrapper.getData().get("subject").getAsJsonArray();
+                                subjectList.addAll(parseSubject(arraySubject.toString()));
 
-                        } else {
+                            }
 
+                            showSubjectPicker();
                         }
-
-                        showSubjectPicker();
                     }
 
                     @Override
@@ -331,27 +331,29 @@ public class StudentParentSubjectReport extends UserVisibleHintFragment{
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Log.e("Response", ""+response.body());
+                        if (response.body() != null){
+                            Log.e("Response", ""+response.body());
 
-                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
-                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+                            Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
 
-                            layoutTeacherReport.setVisibility(View.VISIBLE);
+                                layoutTeacherReport.setVisibility(View.VISIBLE);
 
-                            JsonObject jsonObject = wrapper.getData().get("report").getAsJsonObject();
-                            int total = jsonObject.get("total").getAsInt();
-                            int present = jsonObject.get("present").getAsInt();
-                            int absent = jsonObject.get("absent").getAsInt();
-                            int late = jsonObject.get("late").getAsInt();
+                                JsonObject jsonObject = wrapper.getData().get("report").getAsJsonObject();
+                                int total = jsonObject.get("total").getAsInt();
+                                int present = jsonObject.get("present").getAsInt();
+                                int absent = jsonObject.get("absent").getAsInt();
+                                int late = jsonObject.get("late").getAsInt();
 
-                            initActionAfterReportCall(total, present, absent, late);
+                                initActionAfterReportCall(total, present, absent, late);
 
-                            isDatePickerCalledOnce = false;
-                            txtMessage.setVisibility(View.GONE);
+                                isDatePickerCalledOnce = false;
+                                txtMessage.setVisibility(View.GONE);
 
-                        } else {
-                            Toast.makeText(getActivity(), wrapper.getStatus().getMsg(), Toast.LENGTH_SHORT).show();
-                            txtMessage.setVisibility(View.VISIBLE);
+                            } else {
+                                Toast.makeText(getActivity(), wrapper.getStatus().getMsg(), Toast.LENGTH_SHORT).show();
+                                txtMessage.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
 

@@ -213,26 +213,24 @@ public class ParentAcademicCalender extends UserVisibleHintFragment implements M
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							if (modelContainer.getStatus().getCode() == 200) {
+
+								boolean hasId = modelContainer.getData().get("acacal").getAsJsonObject().has("id");
+
+								if(hasId){
+									layoutDownloadHolder.setVisibility(View.VISIBLE);
+									attachmentId = modelContainer.getData().get("acacal").getAsJsonObject().get("id").getAsString();
+								}else {
+									layoutDownloadHolder.setVisibility(View.GONE);
+								}
 
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
 
-						if (modelContainer.getStatus().getCode() == 200) {
-
-							boolean hasId = modelContainer.getData().get("acacal").getAsJsonObject().has("id");
-
-							if(hasId){
-								layoutDownloadHolder.setVisibility(View.VISIBLE);
-								attachmentId = modelContainer.getData().get("acacal").getAsJsonObject().get("id").getAsString();
-							}else {
-								layoutDownloadHolder.setVisibility(View.GONE);
 							}
-
-
-
-						} else {
-
 						}
 					}
 

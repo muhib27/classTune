@@ -265,28 +265,24 @@ public class SingleTeacherDraftClassworkActivity extends ChildContainerActivity 
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                JsonObject objHomework = modelContainer.getData().get("classwork").getAsJsonObject();
+                                data = gson.fromJson(objHomework.toString(), TeacherClassWork.class);
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                isEditable = data.is_editable();
 
-                            JsonObject objHomework = modelContainer.getData().get("classwork").getAsJsonObject();
-                            data = gson.fromJson(objHomework.toString(), TeacherClassWork.class);
+                                Log.e("HHH", "data: " + data.getClasswork_name());
 
-                            isEditable = data.is_editable();
+                                initAction();
 
-                            Log.e("HHH", "data: " + data.getClasswork_name());
-
-                            initAction();
-
-                        }
-
-                        else {
+                            }
 
                         }
-
                     }
 
                     @Override
@@ -375,22 +371,18 @@ public class SingleTeacherDraftClassworkActivity extends ChildContainerActivity 
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                Toast.makeText(SingleTeacherDraftClassworkActivity.this, R.string.java_singleteacherdrafthomeworkactivity_successfully_published, Toast.LENGTH_SHORT).show();
+                                setResult(RESULT_OK);
+                                finish();
 
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-
-                            Toast.makeText(SingleTeacherDraftClassworkActivity.this, R.string.java_singleteacherdrafthomeworkactivity_successfully_published, Toast.LENGTH_SHORT).show();
-                            setResult(RESULT_OK);
-                            finish();
-
-                        }
-
-                        else {
-
+                            }
                         }
                     }
 

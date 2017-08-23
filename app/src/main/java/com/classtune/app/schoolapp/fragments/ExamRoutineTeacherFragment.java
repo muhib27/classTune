@@ -115,38 +115,34 @@ public class ExamRoutineTeacherFragment extends Fragment {
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                                JsonArray arrayExam = modelContainer.getData().get("time_table").getAsJsonArray();
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                for (int i = 0; i < arrayExam.size(); i++)
+                                {
+                                    listExamRoutine.add(parseExamRoutine(arrayExam.toString()).get(i));
+                                }
 
+                                if(listExamRoutine.size() == 0)
+                                {
+                                    txtMessage.setVisibility(View.VISIBLE);
+                                    listViewExamRoutine.setVisibility(View.GONE);
+                                }
+                                else
+                                {
+                                    txtMessage.setVisibility(View.GONE);
+                                    listViewExamRoutine.setVisibility(View.VISIBLE);
+                                }
 
-                            JsonArray arrayExam = modelContainer.getData().get("time_table").getAsJsonArray();
+                                adapter.notifyDataSetChanged();
 
-                            for (int i = 0; i < arrayExam.size(); i++)
-                            {
-                                listExamRoutine.add(parseExamRoutine(arrayExam.toString()).get(i));
                             }
-
-                            if(listExamRoutine.size() == 0)
-                            {
-                                txtMessage.setVisibility(View.VISIBLE);
-                                listViewExamRoutine.setVisibility(View.GONE);
-                            }
-                            else
-                            {
-                                txtMessage.setVisibility(View.GONE);
-                                listViewExamRoutine.setVisibility(View.VISIBLE);
-                            }
-
-                            adapter.notifyDataSetChanged();
-
-                        }
-
-                        else {
-
                         }
                     }
 

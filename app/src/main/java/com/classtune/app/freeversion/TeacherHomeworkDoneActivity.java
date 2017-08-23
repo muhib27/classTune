@@ -102,33 +102,30 @@ public class TeacherHomeworkDoneActivity extends ChildContainerActivity {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							if (modelContainer.getStatus().getCode() == 200) {
 
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+								JsonArray  arrayStatus = modelContainer.getData().get("homework_status").getAsJsonArray();
 
-						if (modelContainer.getStatus().getCode() == 200) {
+								listStatus = parseHomeWorkStatus(arrayStatus.toString());
 
+								adapter.notifyDataSetChanged();
 
-							JsonArray  arrayStatus = modelContainer.getData().get("homework_status").getAsJsonArray();
+								if(listStatus.size() <= 0)
+								{
+									txtMessage.setVisibility(View.VISIBLE);
+								}
+								else
+								{
+									txtMessage.setVisibility(View.GONE);
+								}
 
-							listStatus = parseHomeWorkStatus(arrayStatus.toString());
-
-							adapter.notifyDataSetChanged();
-
-							if(listStatus.size() <= 0)
-							{
-								txtMessage.setVisibility(View.VISIBLE);
 							}
-							else
-							{
-								txtMessage.setVisibility(View.GONE);
-							}
-
-						}
-
-						else {
-
 						}
 					}
 

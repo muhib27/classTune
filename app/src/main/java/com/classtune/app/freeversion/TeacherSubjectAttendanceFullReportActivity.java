@@ -89,20 +89,20 @@ public class TeacherSubjectAttendanceFullReportActivity extends ChildContainerAc
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Log.e("Response", ""+response.body());
+                        if (response.body() != null){
+                            Log.e("Response", ""+response.body());
 
-                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
-                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+                            Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
 
 
-                            JsonArray arrayStudent = wrapper.getData().get("std_att").getAsJsonArray();
-                            studentList.addAll(parseStudent(arrayStudent.toString()));
-                            adapter = new TeacherSubjectAttendanceFullReportAdapter(TeacherSubjectAttendanceFullReportActivity.this, studentList);
-                            adapter.notifyDataSetChanged();
-                            listView.setAdapter(adapter);
+                                JsonArray arrayStudent = wrapper.getData().get("std_att").getAsJsonArray();
+                                studentList.addAll(parseStudent(arrayStudent.toString()));
+                                adapter = new TeacherSubjectAttendanceFullReportAdapter(TeacherSubjectAttendanceFullReportActivity.this, studentList);
+                                adapter.notifyDataSetChanged();
+                                listView.setAdapter(adapter);
 
-                        } else {
-
+                            }
                         }
                     }
 

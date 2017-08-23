@@ -98,26 +98,28 @@ public class SingleSubjectAttendance extends ChildContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
-                        Log.e("Response", ""+response.body());
+                        if (response.body() != null){
+                            Log.e("Response", ""+response.body());
 
-                        Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
-                        if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
+                            Wrapper wrapper= GsonParser.getInstance().parseServerResponse2(response.body());
+                            if(wrapper.getStatus().getCode()== AppConstant.RESPONSE_CODE_SUCCESS) {
 
 
-                            JsonObject jsonObject = wrapper.getData().get("report").getAsJsonObject();
-                            int total = jsonObject.get("total").getAsInt();
-                            int present = jsonObject.get("present").getAsInt();
-                            int absent = jsonObject.get("absent").getAsInt();
-                            int late = jsonObject.get("late").getAsInt();
-                            String subjectName = jsonObject.get("subject_name").getAsString();
+                                JsonObject jsonObject = wrapper.getData().get("report").getAsJsonObject();
+                                int total = jsonObject.get("total").getAsInt();
+                                int present = jsonObject.get("present").getAsInt();
+                                int absent = jsonObject.get("absent").getAsInt();
+                                int late = jsonObject.get("late").getAsInt();
+                                String subjectName = jsonObject.get("subject_name").getAsString();
 
-                            initActionAfterReportCall(total, present, absent, late, subjectName);
+                                initActionAfterReportCall(total, present, absent, late, subjectName);
 
-                            txtMessage.setVisibility(View.GONE);
+                                txtMessage.setVisibility(View.GONE);
 
-                        } else {
-                            Toast.makeText(SingleSubjectAttendance.this, wrapper.getStatus().getMsg(), Toast.LENGTH_SHORT).show();
-                            txtMessage.setVisibility(View.VISIBLE);
+                            } else {
+                                Toast.makeText(SingleSubjectAttendance.this, wrapper.getStatus().getMsg(), Toast.LENGTH_SHORT).show();
+                                txtMessage.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
 

@@ -101,34 +101,37 @@ public class AttendenceFragment extends Fragment implements UserAuthListener{
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("Response", ""+response.body());
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						AttendenceEvents data;
-						if(wrapper.getStatus().getCode()==200)
-						{
-							data=GsonParser.getInstance().parseAttendence(wrapper.getData().toString());
 
-							try {
+						if (response.body() != null){
+							Log.e("Response", ""+response.body());
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							AttendenceEvents data;
+							if(wrapper.getStatus().getCode()==200)
+							{
+								data=GsonParser.getInstance().parseAttendence(wrapper.getData().toString());
 
-								msgMap =GsonParser.getInstance().parseMsg(wrapper.getData().getAsJsonObject("msg").toString());
-								parseEvents(data);
-								adapter.setEvents(eventMap);
-								adapter.notifyDataSetChanged();
-								totalClassNumber-=totalHolidays;
-								updateOverallReport(data.getTotalClass(), (float)data.getTotalClass()-(float)((float)totalLate*0.5)-(float)totalAbsent-(float)totalLeave, totalLeave, totalLate, totalAbsent);
-								eventTitleText.setText(data.getCurrent_date());
-								eventDescriptionText.setText(data.getCurrent_msg());
+								try {
+
+									msgMap =GsonParser.getInstance().parseMsg(wrapper.getData().getAsJsonObject("msg").toString());
+									parseEvents(data);
+									adapter.setEvents(eventMap);
+									adapter.notifyDataSetChanged();
+									totalClassNumber-=totalHolidays;
+									updateOverallReport(data.getTotalClass(), (float)data.getTotalClass()-(float)((float)totalLate*0.5)-(float)totalAbsent-(float)totalLeave, totalLeave, totalLate, totalAbsent);
+									eventTitleText.setText(data.getCurrent_date());
+									eventDescriptionText.setText(data.getCurrent_msg());
 
 
-							} catch (ParseException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+								} catch (ParseException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								Log.e("Test", data.getHolidays().size() + "");
 							}
-							Log.e("Test", data.getHolidays().size() + "");
-						}
-						else if(wrapper.getStatus().getCode()==406)
-						{
-							userHelper.doLogIn();
+							else if(wrapper.getStatus().getCode()==406)
+							{
+								userHelper.doLogIn();
+							}
 						}
 					}
 

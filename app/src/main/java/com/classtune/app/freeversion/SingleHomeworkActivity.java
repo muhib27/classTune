@@ -309,27 +309,31 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("response", ""+response.body());
-						Log.e("button", "success");
+
 						uiHelper.dismissLoadingDialog();
 
-						ModelContainer modelContainer = GsonParser.getInstance().parseGson2(response.body());
+						if (response.body() != null){
+							Log.e("response", ""+response.body());
+							Log.e("button", "success");
 
-						if (modelContainer.getStatus().getCode() == 200) {
-							data.setIsDone(AppConstant.ACCEPTED);
+							ModelContainer modelContainer = GsonParser.getInstance().parseGson2(response.body());
 
-							btnDone.setImage(R.drawable.done_tap);
-							btnDone.setTitleColor(SingleHomeworkActivity.this.getResources().getColor(R.color.classtune_green_color));
+							if (modelContainer.getStatus().getCode() == 200) {
+								data.setIsDone(AppConstant.ACCEPTED);
 
-							btnDone.setEnabled(false);
+								btnDone.setImage(R.drawable.done_tap);
+								btnDone.setTitleColor(SingleHomeworkActivity.this.getResources().getColor(R.color.classtune_green_color));
 
-						} else {
-							uiHelper.showMessage(getString(R.string.java_singlehomeworkactivity_error_in_operation));
+								btnDone.setEnabled(false);
+
+							} else {
+								uiHelper.showMessage(getString(R.string.java_singlehomeworkactivity_error_in_operation));
+							}
+
+
+
+							Log.e("status code", modelContainer.getStatus().getCode() + "");
 						}
-
-
-
-						Log.e("status code", modelContainer.getStatus().getCode() + "");
 					}
 
 					@Override
@@ -464,34 +468,31 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
 
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+							if (modelContainer.getStatus().getCode() == 200) {
 
-						if (modelContainer.getStatus().getCode() == 200) {
+								layoutDataContainer.setVisibility(View.VISIBLE);
+								layoutMessage.setVisibility(View.GONE);
 
-							layoutDataContainer.setVisibility(View.VISIBLE);
-							layoutMessage.setVisibility(View.GONE);
+								JsonObject objHomework = modelContainer.getData().get("homework").getAsJsonObject();
+								data = gson.fromJson(objHomework.toString(), HomeworkData.class);
 
-							JsonObject objHomework = modelContainer.getData().get("homework").getAsJsonObject();
-							data = gson.fromJson(objHomework.toString(), HomeworkData.class);
+								Log.e("HHH", "data: " + data.getName());
 
-							Log.e("HHH", "data: " + data.getName());
+								initAction();
 
-							initAction();
+							}
 
-						}
-
-						else if(modelContainer.getStatus().getCode() == 400 && modelContainer.getStatus().getCode() != 404)
-						{
-							layoutDataContainer.setVisibility(View.GONE);
-							layoutMessage.setVisibility(View.VISIBLE);
-						}
-
-						else {
+							else if(modelContainer.getStatus().getCode() == 400 && modelContainer.getStatus().getCode() != 404)
+							{
+								layoutDataContainer.setVisibility(View.GONE);
+								layoutMessage.setVisibility(View.VISIBLE);
+							}
 
 						}
-
 					}
 
 					@Override

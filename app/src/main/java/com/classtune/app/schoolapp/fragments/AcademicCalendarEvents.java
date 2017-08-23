@@ -132,22 +132,24 @@ public class AcademicCalendarEvents extends UserVisibleHintFragment implements U
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						pbs.setVisibility(View.GONE);
-						Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
-						if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
-						{
-							items.clear();
-							items.addAll(GsonParser.getInstance().parseAcademicCalendarData(wrapper.getData().getAsJsonArray("events").toString()));
-							adapter.notifyDataSetChanged();
-							nodata.setVisibility((items.size() > 0)? View.GONE: View.VISIBLE);
-						}
-						else if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SESSION_EXPIRED)
-						{
-							//userHelper.doLogIn();
-						}
-						Log.e("Events", ""+response.body());
+						if (response.body() != null){
+							Wrapper wrapper=GsonParser.getInstance().parseServerResponse2(response.body());
+							if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SUCCESS)
+							{
+								items.clear();
+								items.addAll(GsonParser.getInstance().parseAcademicCalendarData(wrapper.getData().getAsJsonArray("events").toString()));
+								adapter.notifyDataSetChanged();
+								nodata.setVisibility((items.size() > 0)? View.GONE: View.VISIBLE);
+							}
+							else if(wrapper.getStatus().getCode()==AppConstant.RESPONSE_CODE_SESSION_EXPIRED)
+							{
+								//userHelper.doLogIn();
+							}
+							Log.e("Events", ""+response.body());
 
+							initListActionClick();
+						}
 
-						initListActionClick();
 					}
 
 					@Override

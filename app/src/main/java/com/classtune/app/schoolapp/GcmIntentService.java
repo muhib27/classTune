@@ -503,27 +503,26 @@ public class GcmIntentService extends IntentService {
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
-                            //listener.onNotificationCountChanged(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
-                            //SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                            //
-                            SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
-                            UserHelper userHelper = new UserHelper(context);
-                            userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
+                                //listener.onNotificationCountChanged(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
+                                //SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
 
-                            if(listener != null)
-                                listener.onNotificationCountChanged(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
+                                //
+                                SharedPreferencesHelper.getInstance().setString("total_unread", modelContainer.getData().get("unread_total").getAsString());
+                                UserHelper userHelper = new UserHelper(context);
+                                userHelper.saveTotalUnreadNotification( modelContainer.getData().get("unread_total").getAsString());
+
+                                if(listener != null)
+                                    listener.onNotificationCountChanged(Integer.parseInt(modelContainer.getData().get("unread_total").getAsString()));
 
 
-                        }
-
-                        else {
-
+                            }
                         }
 
                     }

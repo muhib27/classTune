@@ -171,53 +171,49 @@ public class LessonPlanSubjectDetailsActivity extends ChildContainerActivity{
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+                            hasNext = modelContainer.getData().get("has_next").getAsBoolean();
+                            Log.e("HAS_NEXT_MEETING", "is: " + hasNext);
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                            if (pageNumber == 1) {
+                                adapter.clearList();
+                            }
 
-                        hasNext = modelContainer.getData().get("has_next").getAsBoolean();
-                        Log.e("HAS_NEXT_MEETING", "is: " + hasNext);
-
-
-                        if (pageNumber == 1) {
-                            adapter.clearList();
-                        }
-
-                        if (!hasNext) {
-                            stopLoadingData = true;
-                        }
-
-
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-
-                            JsonArray arrayLesson = modelContainer.getData().get("lessonplans").getAsJsonArray();
-
-                            //listLessonPlan = parseLessonPlan(arrayLesson.toString());
-
-                            for (int i = 0; i < parseLessonPlanSubjectDetails(arrayLesson.toString()).size(); i++)
-                            {
-                                listSubjectDetails.add(parseLessonPlanSubjectDetails(arrayLesson.toString()).get(i));
+                            if (!hasNext) {
+                                stopLoadingData = true;
                             }
 
 
-                            if (pageNumber != 0 || isRefreshing)
-                            {
-                                listViewLessonPlanSubjectDetails.onRefreshComplete();
-                                loading = false;
+                            if (modelContainer.getStatus().getCode() == 200) {
+
+
+                                JsonArray arrayLesson = modelContainer.getData().get("lessonplans").getAsJsonArray();
+
+                                //listLessonPlan = parseLessonPlan(arrayLesson.toString());
+
+                                for (int i = 0; i < parseLessonPlanSubjectDetails(arrayLesson.toString()).size(); i++)
+                                {
+                                    listSubjectDetails.add(parseLessonPlanSubjectDetails(arrayLesson.toString()).get(i));
+                                }
+
+
+                                if (pageNumber != 0 || isRefreshing)
+                                {
+                                    listViewLessonPlanSubjectDetails.onRefreshComplete();
+                                    loading = false;
+                                }
+
+
+                                adapter.notifyDataSetChanged();
+
+                                Log.e("S_SIZE", "is: " + listSubjectDetails.size());
+
+
                             }
-
-
-                            adapter.notifyDataSetChanged();
-
-                            Log.e("S_SIZE", "is: " + listSubjectDetails.size());
-
-
-                        }
-
-                        else {
-
                         }
                     }
 

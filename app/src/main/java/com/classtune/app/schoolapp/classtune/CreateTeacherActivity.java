@@ -623,63 +623,62 @@ public class CreateTeacherActivity extends FragmentActivity implements UserAuthL
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        Log.e("SCCCCC", "response: " + response.body());
 
-                        //uiHelper2.dismissLoadingDialog();
+                       if (response.body() != null){
+                           Log.e("SCCCCC", "response: " + response.body());
 
-                        listTeacherInfoGrade.clear();
-                        listTeacherInfoDepartment.clear();
-                        listTeacherInfoCategory.clear();
+                           //uiHelper2.dismissLoadingDialog();
 
-
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
-
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-                            Log.e("CODE 200", "code 200");
-                            JsonArray arrayGrades = modelContainer.getData().get("grades").getAsJsonArray();
-                            JsonArray arrayDepartment = modelContainer.getData().get("departments").getAsJsonArray();
-                            JsonArray arrayCategories = modelContainer.getData().get("categories").getAsJsonArray();
+                           listTeacherInfoGrade.clear();
+                           listTeacherInfoDepartment.clear();
+                           listTeacherInfoCategory.clear();
 
 
-                            for (int i = 0; i < parseTeacherInfo(arrayGrades.toString()).size(); i++)
-                            {
-                                listTeacherInfoGrade.add(parseTeacherInfo(arrayGrades.toString()).get(i));
-                            }
+                           Wrapper modelContainer = GsonParser.getInstance()
+                                   .parseServerResponse2(response.body());
 
-                            for (int i = 0; i < parseTeacherInfo(arrayDepartment.toString()).size(); i++)
-                            {
-                                listTeacherInfoDepartment.add(parseTeacherInfo(arrayDepartment.toString()).get(i));
-                            }
+                           if (modelContainer.getStatus().getCode() == 200) {
 
-                            for (int i = 0; i < parseTeacherInfo(arrayCategories.toString()).size(); i++)
-                            {
-                                listTeacherInfoCategory.add(parseTeacherInfo(arrayCategories.toString()).get(i));
-                            }
+                               Log.e("CODE 200", "code 200");
+                               JsonArray arrayGrades = modelContainer.getData().get("grades").getAsJsonArray();
+                               JsonArray arrayDepartment = modelContainer.getData().get("departments").getAsJsonArray();
+                               JsonArray arrayCategories = modelContainer.getData().get("categories").getAsJsonArray();
 
 
-                            initTeacherInfoSpiners();
+                               for (int i = 0; i < parseTeacherInfo(arrayGrades.toString()).size(); i++)
+                               {
+                                   listTeacherInfoGrade.add(parseTeacherInfo(arrayGrades.toString()).get(i));
+                               }
 
-                            //initApiCallPosition(selectedCategory);
+                               for (int i = 0; i < parseTeacherInfo(arrayDepartment.toString()).size(); i++)
+                               {
+                                   listTeacherInfoDepartment.add(parseTeacherInfo(arrayDepartment.toString()).get(i));
+                               }
+
+                               for (int i = 0; i < parseTeacherInfo(arrayCategories.toString()).size(); i++)
+                               {
+                                   listTeacherInfoCategory.add(parseTeacherInfo(arrayCategories.toString()).get(i));
+                               }
 
 
-                        }
+                               initTeacherInfoSpiners();
 
-                        else if(modelContainer.getStatus().getCode() == 401)
-                        {
-                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_EMPLOYEE_NECESSARY_INFO);
-                        }
+                               //initApiCallPosition(selectedCategory);
 
-                        else if(modelContainer.getStatus().getCode() == 400)
-                        {
-                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
-                        }
 
-                        else {
+                           }
 
-                        }
+                           else if(modelContainer.getStatus().getCode() == 401)
+                           {
+                               uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_EMPLOYEE_NECESSARY_INFO);
+                           }
 
+                           else if(modelContainer.getStatus().getCode() == 400)
+                           {
+                               uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                           }
+
+                       }
                     }
 
                     @Override
@@ -799,57 +798,55 @@ public class CreateTeacherActivity extends FragmentActivity implements UserAuthL
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         pd.dismiss();
 
-                        Log.e("SCCCCC", "response: " + response.body());
+                        if (response.body() != null){
+                            Log.e("SCCCCC", "response: " + response.body());
 
-                        //uiHelper2.dismissLoadingDialog();
-                        listTeacherInfoPosition.clear();
-                        if(adapterPosition != null)
-                            adapterPosition.notifyDataSetChanged();
+                            //uiHelper2.dismissLoadingDialog();
+                            listTeacherInfoPosition.clear();
+                            if(adapterPosition != null)
+                                adapterPosition.notifyDataSetChanged();
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                            Log.e("CODE 200", "code 200");
+                                Log.e("CODE 200", "code 200");
 
-                            JsonArray arrayPos = modelContainer.getData().get("position").getAsJsonArray();
+                                JsonArray arrayPos = modelContainer.getData().get("position").getAsJsonArray();
 
-                            for (int i = 0; i < parseTeacherInfo(arrayPos.toString()).size(); i++)
-                            {
-                                listTeacherInfoPosition.add(parseTeacherInfo(arrayPos.toString()).get(i));
+                                for (int i = 0; i < parseTeacherInfo(arrayPos.toString()).size(); i++)
+                                {
+                                    listTeacherInfoPosition.add(parseTeacherInfo(arrayPos.toString()).get(i));
+                                }
+
+                                initPositionSpinner();
+
+
+
                             }
 
-                            initPositionSpinner();
+                            else if (modelContainer.getStatus().getCode() == 401)
+                            {
 
+                                Log.e("CODE 401", "code 401");
 
+                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_EMPLOYEE_POSITION);
+                                selectedPosition = "";
 
-                        }
+                                showPositionMessageText(true);
+                            }
 
-                        else if (modelContainer.getStatus().getCode() == 401)
-                        {
+                            else if(modelContainer.getStatus().getCode() == 400)
+                            {
+                                Log.e("CODE 400", "code 400");
 
-                            Log.e("CODE 401", "code 401");
+                                uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
+                                selectedPosition = "";
 
-                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_EMPLOYEE_POSITION);
-                            selectedPosition = "";
-
-                            showPositionMessageText(true);
-                        }
-
-                        else if(modelContainer.getStatus().getCode() == 400)
-                        {
-                            Log.e("CODE 400", "code 400");
-
-                            uiHelper.showErrorDialog(AppConstant.CLASSTUNE_MESSAGE_SOMETHING_WENT_WRONG);
-                            selectedPosition = "";
-
-                            showPositionMessageText(true);
-                        }
-
-                        else {
-
+                                showPositionMessageText(true);
+                            }
                         }
 
                     }

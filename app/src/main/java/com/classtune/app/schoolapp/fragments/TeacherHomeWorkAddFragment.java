@@ -193,33 +193,35 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 								if (uiHelper.isDialogActive())
 									uiHelper.dismissLoadingDialog();
 
-								Log.e("SERVERRESPONSE", ""+ response.body());
-								Wrapper wrapper = GsonParser.getInstance()
-										.parseServerResponse2(response.body());
-								if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+								if (response.body() != null){
+									Log.e("SERVERRESPONSE", ""+ response.body());
+									Wrapper wrapper = GsonParser.getInstance()
+											.parseServerResponse2(response.body());
+									if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
-									if(isForDraft == true)
-									{
-										Toast.makeText(getActivity(),
-												getString(R.string.java_singleteacheredithomeworkactivity_saved_as_draft),
+										if(isForDraft == true)
+										{
+											Toast.makeText(getActivity(),
+													getString(R.string.java_singleteacheredithomeworkactivity_saved_as_draft),
+													Toast.LENGTH_SHORT).show();
+
+										}
+										else
+										{
+											Toast.makeText(getActivity(),
+													R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
+													Toast.LENGTH_SHORT).show();
+										}
+
+
+
+										clearDataFields();
+									} else
+										Toast.makeText(
+												getActivity(),
+												getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
 												Toast.LENGTH_SHORT).show();
-
-									}
-									else
-									{
-										Toast.makeText(getActivity(),
-												R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
-												Toast.LENGTH_SHORT).show();
-									}
-
-
-
-									clearDataFields();
-								} else
-									Toast.makeText(
-											getActivity(),
-											getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
-											Toast.LENGTH_SHORT).show();
+								}
 							}
 
 							@Override
@@ -240,34 +242,36 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 							public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 								if (uiHelper.isDialogActive())
 									uiHelper.dismissLoadingDialog();
+								if (response.body() != null){
+									Log.e("SERVERRESPONSE", ""+ response.body());
+									Wrapper wrapper = GsonParser.getInstance()
+											.parseServerResponse2(response.body());
+									if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
-								Log.e("SERVERRESPONSE", ""+ response.body());
-								Wrapper wrapper = GsonParser.getInstance()
-										.parseServerResponse2(response.body());
-								if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+										if(isForDraft == true)
+										{
+											Toast.makeText(getActivity(),
+													getString(R.string.java_singleteacheredithomeworkactivity_saved_as_draft),
+													Toast.LENGTH_SHORT).show();
 
-									if(isForDraft == true)
-									{
-										Toast.makeText(getActivity(),
-												getString(R.string.java_singleteacheredithomeworkactivity_saved_as_draft),
+										}
+										else
+										{
+											Toast.makeText(getActivity(),
+													R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
+													Toast.LENGTH_SHORT).show();
+										}
+
+
+
+										clearDataFields();
+									} else
+										Toast.makeText(
+												getActivity(),
+												getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
 												Toast.LENGTH_SHORT).show();
+								}
 
-									}
-									else
-									{
-										Toast.makeText(getActivity(),
-												R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
-												Toast.LENGTH_SHORT).show();
-									}
-
-
-
-									clearDataFields();
-								} else
-									Toast.makeText(
-											getActivity(),
-											getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
-											Toast.LENGTH_SHORT).show();
 							}
 
 							@Override
@@ -287,33 +291,35 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 								if (uiHelper.isDialogActive())
 									uiHelper.dismissLoadingDialog();
 
-								Log.e("SERVERRESPONSE", ""+ response.body());
-								Wrapper wrapper = GsonParser.getInstance()
-										.parseServerResponse2(response.body());
-								if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+								if (response.body() != null){
+									Log.e("SERVERRESPONSE", ""+ response.body());
+									Wrapper wrapper = GsonParser.getInstance()
+											.parseServerResponse2(response.body());
+									if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
-									if(isForDraft == true)
-									{
-										Toast.makeText(getActivity(),
-												getString(R.string.java_singleteacheredithomeworkactivity_saved_as_draft),
+										if(isForDraft == true)
+										{
+											Toast.makeText(getActivity(),
+													getString(R.string.java_singleteacheredithomeworkactivity_saved_as_draft),
+													Toast.LENGTH_SHORT).show();
+
+										}
+										else
+										{
+											Toast.makeText(getActivity(),
+													R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
+													Toast.LENGTH_SHORT).show();
+										}
+
+
+
+										clearDataFields();
+									} else
+										Toast.makeText(
+												getActivity(),
+												getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
 												Toast.LENGTH_SHORT).show();
-
-									}
-									else
-									{
-										Toast.makeText(getActivity(),
-												R.string.java_teacherhomeworkaddfragment_successfully_posted_homework,
-												Toast.LENGTH_SHORT).show();
-									}
-
-
-
-									clearDataFields();
-								} else
-									Toast.makeText(
-											getActivity(),
-											getString(R.string.java_singleteacheredithomeworkactivity_failed_post),
-											Toast.LENGTH_SHORT).show();
+								}
 							}
 
 							@Override
@@ -469,22 +475,28 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 		HashMap<String,String> params = new HashMap<>();
 		params.put(RequestKeyHelper.USER_SECRET, UserHelper.getUserSecret());
-
+		if(!uiHelper.isDialogActive())
+			uiHelper.showLoadingDialog(getString(R.string.loading_text));
 		ApplicationSingleton.getInstance().getNetworkCallInterface().teacherHomeworkSubject(params).enqueue(
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("GET_SUBJECT_SUCCESS", ""+response.body());
-						Wrapper wrapper = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
-						if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
-							subjectCats.clear();
-							subjectCats.addAll(GsonParser.getInstance()
-									.parseSubject(
-											wrapper.getData().get("subjects")
-													.toString()));
-							generateSubjectChooserLayout(layoutSelectMultipleSubject);
+
+							uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Log.e("GET_SUBJECT_SUCCESS", ""+response.body());
+							Wrapper wrapper = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+							if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
+								subjectCats.clear();
+								subjectCats.addAll(GsonParser.getInstance()
+										.parseSubject(
+												wrapper.getData().get("subjects")
+														.toString()));
+								generateSubjectChooserLayout(layoutSelectMultipleSubject);
+							}
 						}
+
 					}
 
 					@Override

@@ -272,26 +272,30 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 				new Callback<JsonElement>() {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-						Log.e("response", ""+response.body());
-						Log.e("button", "success");
+
 						uiHelper.dismissLoadingDialog();
 
-						ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
-								response.body());
+						if (response.body() != null){
+							Log.e("response", ""+response.body());
+							Log.e("button", "success");
+							ModelContainer modelContainer = GsonParser.getInstance().parseGson2(
+									response.body());
 
-						// arrangeHomeworkData(modelContainer);
+							// arrangeHomeworkData(modelContainer);
 
-						// adapter.notifyDataSetChanged();
+							// adapter.notifyDataSetChanged();
 
-						// Log.e("status code", modelContainer.getStatus().getCode() + "");
-						if (modelContainer.getData().getNotice_ack()
-								.getAcknowledge_status().equals("1")) {
-							clickedAckBtn.setImage(R.drawable.done_tap);
-							clickedAckBtn.setTitleColor(SingleNoticeActivity.this
-									.getResources().getColor(R.color.classtune_green_color));
-							clickedAckBtn.setTitleText(getString(R.string.java_singlenoticeactivity_acknowledged));
-							clickedAckBtn.setEnabled(false);
+							// Log.e("status code", modelContainer.getStatus().getCode() + "");
+							if (modelContainer.getData().getNotice_ack()
+									.getAcknowledge_status().equals("1")) {
+								clickedAckBtn.setImage(R.drawable.done_tap);
+								clickedAckBtn.setTitleColor(SingleNoticeActivity.this
+										.getResources().getColor(R.color.classtune_green_color));
+								clickedAckBtn.setTitleText(getString(R.string.java_singlenoticeactivity_acknowledged));
+								clickedAckBtn.setEnabled(false);
+							}
 						}
+
 					}
 
 					@Override
@@ -359,34 +363,30 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+
+							if (modelContainer.getStatus().getCode() == 200) {
 
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+								layoutDataContainer.setVisibility(View.VISIBLE);
+								layoutMessage.setVisibility(View.GONE);
 
-						if (modelContainer.getStatus().getCode() == 200) {
-
-
-							layoutDataContainer.setVisibility(View.VISIBLE);
-							layoutMessage.setVisibility(View.GONE);
-
-							JsonObject objNotice = modelContainer.getData().get("notice").getAsJsonObject();
-							data = gson.fromJson(objNotice.toString(), Notice.class);
+								JsonObject objNotice = modelContainer.getData().get("notice").getAsJsonObject();
+								data = gson.fromJson(objNotice.toString(), Notice.class);
 
 
 
-							initAction();
+								initAction();
 
-						}
+							}
 
-						else if(modelContainer.getStatus().getCode() == 400 && modelContainer.getStatus().getCode() != 404)
-						{
-							layoutDataContainer.setVisibility(View.GONE);
-							layoutMessage.setVisibility(View.VISIBLE);
-						}
-
-						else {
-
+							else if(modelContainer.getStatus().getCode() == 400 && modelContainer.getStatus().getCode() != 404)
+							{
+								layoutDataContainer.setVisibility(View.GONE);
+								layoutMessage.setVisibility(View.VISIBLE);
+							}
 						}
 					}
 

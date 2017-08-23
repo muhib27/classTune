@@ -80,19 +80,22 @@ public class ClassRoutineFragment extends Fragment implements UserAuthListener{
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
-						Log.e("RESPONSE ROUTINE ", ""+response.body());
-						// uiHelper.showMessage(responseString);
-						Wrapper modelContainer = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						if(modelContainer.getStatus().getCode()==200) {
-							periodList = GsonParser.getInstance().parsePeriod(modelContainer.getData().getAsJsonArray("time_table").toString());
 
-						} else {
+						if (response.body() != null){
+							Log.e("RESPONSE ROUTINE ", ""+response.body());
+							// uiHelper.showMessage(responseString);
+							Wrapper modelContainer = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							if(modelContainer.getStatus().getCode()==200) {
+								periodList = GsonParser.getInstance().parsePeriod(modelContainer.getData().getAsJsonArray("time_table").toString());
 
+							} else {
+
+							}
+							mAdapter.notifyDataSetChanged();
+							//			Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
+							//
 						}
-						mAdapter.notifyDataSetChanged();
-						//			Log.e("GSON NOTICE TYPE TEXT:", modelContainer.getData()
-						//
 					}
 
 					@Override

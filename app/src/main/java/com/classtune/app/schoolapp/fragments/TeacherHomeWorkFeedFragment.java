@@ -290,60 +290,63 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 						if (uiHelper.isDialogActive()) {
 							uiHelper.dismissLoadingDialog();
 						}
-			/*
+						if (response.body() != null){
+							/*
 			 * if (fitnessAdapter.getPageNumber() == 1) {
 			 * fitnessAdapter.getList().clear(); // setupPoppyView(); }
 			 */
-						Log.e("Response CATEGORY", ""+ response.body());
-						// app.showLog("Response", responseString);
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+							Log.e("Response CATEGORY", ""+ response.body());
+							// app.showLog("Response", responseString);
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
-						if (modelContainer.getStatus().getCode() == 200) {
+							if (modelContainer.getStatus().getCode() == 200) {
 
-							hasNext = modelContainer.getData().get("has_next")
-									.getAsBoolean();
+								hasNext = modelContainer.getData().get("has_next")
+										.getAsBoolean();
 
-							if (pageNumber == 1)
-								allGooadReadPost.clear();
-							spinner.setVisibility(View.GONE);
-							if (!hasNext) {
-								// fitnessAdapter.setStopLoadingData(true);
-								stopLoadingData = true;
+								if (pageNumber == 1)
+									allGooadReadPost.clear();
+								spinner.setVisibility(View.GONE);
+								if (!hasNext) {
+									// fitnessAdapter.setStopLoadingData(true);
+									stopLoadingData = true;
+								}
+
+								// fitnessAdapter.getList().addAll();
+								ArrayList<TeacherHomework> allpost = GsonParser.getInstance()
+										.parseTeacherHomework(
+												modelContainer.getData().getAsJsonArray("homework")
+														.toString());
+
+
+
+								Log.e("pagenumber: " + pageNumber, "  size of list: " + allpost.size());
+								for (int i = 0; i < allpost.size(); i++) {
+
+									allGooadReadPost.add(allpost.get(i));
+								}
+								adapter.notifyDataSetChanged();
+
+								if (pageNumber != 0 || isRefreshing) {
+									listGoodread.onRefreshComplete();
+									loading = false;
+								}
+
+
+								if(allGooadReadPost.size() <= 0)
+								{
+									txtMessage.setVisibility(View.VISIBLE);
+								}
+								else
+								{
+									txtMessage.setVisibility(View.GONE);
+								}
+
+
 							}
-
-							// fitnessAdapter.getList().addAll();
-							ArrayList<TeacherHomework> allpost = GsonParser.getInstance()
-									.parseTeacherHomework(
-											modelContainer.getData().getAsJsonArray("homework")
-													.toString());
-
-
-
-							Log.e("pagenumber: " + pageNumber, "  size of list: " + allpost.size());
-							for (int i = 0; i < allpost.size(); i++) {
-
-								allGooadReadPost.add(allpost.get(i));
-							}
-							adapter.notifyDataSetChanged();
-
-							if (pageNumber != 0 || isRefreshing) {
-								listGoodread.onRefreshComplete();
-								loading = false;
-							}
-
-
-							if(allGooadReadPost.size() <= 0)
-							{
-								txtMessage.setVisibility(View.VISIBLE);
-							}
-							else
-							{
-								txtMessage.setVisibility(View.GONE);
-							}
-
-
 						}
+
 					}
 
 					@Override
@@ -717,33 +720,30 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 						if (uiHelper.isDialogActive()) {
 							uiHelper.dismissLoadingDialog();
 						}
+						if (response.body() != null){
+							homeWorkSubject.clear();
 
-						homeWorkSubject.clear();
+							Log.e("Response", ""+response.body());
+							//app.showLog("Response", responseString);
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
+							if (modelContainer.getStatus().getCode() == 200) {
 
-						Log.e("Response", ""+response.body());
-						//app.showLog("Response", responseString);
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
-						if (modelContainer.getStatus().getCode() == 200) {
+								JsonArray array = modelContainer.getData().get("subjects").getAsJsonArray();
 
-							JsonArray array = modelContainer.getData().get("subjects").getAsJsonArray();
+								List<HomeWorkSubject> list = new ArrayList<HomeWorkSubject>();
+								for(int i=0;i<array.size();i++)
+								{
 
-							List<HomeWorkSubject> list = new ArrayList<HomeWorkSubject>();
-							for(int i=0;i<array.size();i++)
-							{
-
-								list.add(new HomeWorkSubject(array.get(i).getAsJsonObject().get("name").getAsString(), array.get(i).getAsJsonObject().get("id").getAsString()));
+									list.add(new HomeWorkSubject(array.get(i).getAsJsonObject().get("name").getAsString(), array.get(i).getAsJsonObject().get("id").getAsString()));
 
 
+								}
+
+								homeWorkSubject.addAll(list);
+
+								showSubjectPicker();
 							}
-
-							homeWorkSubject.addAll(list);
-
-							showSubjectPicker();
-						}
-
-						else {
-
 						}
 					}
 

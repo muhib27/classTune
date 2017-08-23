@@ -272,26 +272,22 @@ public class SingleTeacherClassworkActivity extends ChildContainerActivity {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
 
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                            if (modelContainer.getStatus().getCode() == 200) {
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                JsonObject objHomework = modelContainer.getData().get("classwork").getAsJsonObject();
+                                data = gson.fromJson(objHomework.toString(), TeacherClassWork.class);
 
-                            JsonObject objHomework = modelContainer.getData().get("classwork").getAsJsonObject();
-                            data = gson.fromJson(objHomework.toString(), TeacherClassWork.class);
+                                Log.e("HHH", "data: " + data.getClasswork_name());
 
-                            Log.e("HHH", "data: " + data.getClasswork_name());
+                                initAction();
 
-                            initAction();
-
+                            }
                         }
-
-                        else {
-
-                        }
-
                     }
 
                     @Override

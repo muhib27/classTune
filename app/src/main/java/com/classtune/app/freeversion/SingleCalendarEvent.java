@@ -116,23 +116,20 @@ public class SingleCalendarEvent extends ChildContainerActivity {
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						uiHelper.dismissLoadingDialog();
+						if (response.body() != null){
+							Wrapper modelContainer = GsonParser.getInstance()
+									.parseServerResponse2(response.body());
 
+							if (modelContainer.getStatus().getCode() == 200) {
 
-						Wrapper modelContainer = GsonParser.getInstance()
-								.parseServerResponse2(response.body());
+								JsonObject objEvent = modelContainer.getData().get("events").getAsJsonObject();
+								data = gson.fromJson(objEvent.toString(), AcademicCalendarDataItem.class);
 
-						if (modelContainer.getStatus().getCode() == 200) {
+								initAction();
 
-							JsonObject objEvent = modelContainer.getData().get("events").getAsJsonObject();
-							data = gson.fromJson(objEvent.toString(), AcademicCalendarDataItem.class);
-
-							initAction();
-
+							}
 						}
 
-						else {
-
-						}
 					}
 
 					@Override

@@ -120,26 +120,26 @@ public class MyLeaveFragment extends  UserVisibleHintFragment{
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						arraylist.clear();
-
 						pbLayout.setVisibility(View.GONE);
-						Log.e("Menu", ""+ response.body());
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						arraylist.addAll(GsonParser.getInstance().parseStudentList(
-								(wrapper.getData().get("leaves")).toString()));
-						adapter = new StudentLeaveListAdapter(getActivity(), arraylist);
-						studentListView.setAdapter(adapter);
+						if (response.body() != null){
+							Log.e("Menu", ""+ response.body());
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							arraylist.addAll(GsonParser.getInstance().parseStudentList(
+									(wrapper.getData().get("leaves")).toString()));
+							adapter = new StudentLeaveListAdapter(getActivity(), arraylist);
+							studentListView.setAdapter(adapter);
 
 
-						if(arraylist.size() <=0 )
-						{
-							txtMessage.setVisibility(View.VISIBLE);
+							if(arraylist.size() <=0 )
+							{
+								txtMessage.setVisibility(View.VISIBLE);
+							}
+							else
+							{
+								txtMessage.setVisibility(View.GONE);
+							}
 						}
-						else
-						{
-							txtMessage.setVisibility(View.GONE);
-						}
-
 					}
 
 					@Override

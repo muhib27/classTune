@@ -81,14 +81,16 @@ public class StudentReportTeacherFragment extends Fragment implements Observer{
 					@Override
 					public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 						arraylist.clear();
-
 						pbLayout.setVisibility(View.GONE);
-						Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
-								response.body());
-						arraylist.addAll(GsonParser.getInstance().parseStudentList(
-								(wrapper.getData().get("batch_attendence")).toString()));
-						adapter = new StudentReportListAdapter(getActivity(), arraylist);
-						studentListView.setAdapter(adapter);
+
+						if (response.body() != null ){
+							Wrapper wrapper = GsonParser.getInstance().parseServerResponse2(
+									response.body());
+							arraylist.addAll(GsonParser.getInstance().parseStudentList(
+									(wrapper.getData().get("batch_attendence")).toString()));
+							adapter = new StudentReportListAdapter(getActivity(), arraylist);
+							studentListView.setAdapter(adapter);
+						}
 					}
 
 					@Override

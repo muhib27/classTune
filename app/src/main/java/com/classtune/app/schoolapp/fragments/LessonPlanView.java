@@ -373,65 +373,63 @@ public class LessonPlanView extends Fragment {
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
+
+                            hasNext = modelContainer.getData().get("has_next").getAsBoolean();
+                            Log.e("HAS_NEXT_MEETING", "is: " + hasNext);
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+                            if (pageNumber == 1) {
+                                adapter.clearList();
+                            }
 
-                        hasNext = modelContainer.getData().get("has_next").getAsBoolean();
-                        Log.e("HAS_NEXT_MEETING", "is: " + hasNext);
-
-
-                        if (pageNumber == 1) {
-                            adapter.clearList();
-                        }
-
-                        if (!hasNext) {
-                            stopLoadingData = true;
-                        }
-
-
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-                            JsonArray arrayLesson = modelContainer.getData().get("lessonplans").getAsJsonArray();
-
-                            //listLessonPlan = parseLessonPlan(arrayLesson.toString());
-
-                            for (int i = 0; i < parseLessonPlan(arrayLesson.toString()).size(); i++)
-                            {
-                                listLessonPlan.add(parseLessonPlan(arrayLesson.toString()).get(i));
+                            if (!hasNext) {
+                                stopLoadingData = true;
                             }
 
 
-                            if (pageNumber != 0 || isRefreshing)
-                            {
-                                listViewLessonPlan.onRefreshComplete();
-                                loading = false;
+                            if (modelContainer.getStatus().getCode() == 200) {
+
+                                JsonArray arrayLesson = modelContainer.getData().get("lessonplans").getAsJsonArray();
+
+                                //listLessonPlan = parseLessonPlan(arrayLesson.toString());
+
+                                for (int i = 0; i < parseLessonPlan(arrayLesson.toString()).size(); i++)
+                                {
+                                    listLessonPlan.add(parseLessonPlan(arrayLesson.toString()).get(i));
+                                }
+
+
+                                if (pageNumber != 0 || isRefreshing)
+                                {
+                                    listViewLessonPlan.onRefreshComplete();
+                                    loading = false;
+                                }
+
+
+                                adapter.notifyDataSetChanged();
+
+                                Log.e("S_SIZE", "is: " + listLessonPlan.size());
+
+                                if(listLessonPlan.size() <= 0)
+                                {
+                                    //Toast.makeText(getActivity(), "No data found!", Toast.LENGTH_SHORT).show();
+
+                                    txtMessage.setVisibility(View.VISIBLE);
+                                }
+
+                                else
+                                {
+                                    txtMessage.setVisibility(View.GONE);
+                                }
+
+                                initAction();
+
+
+
                             }
-
-
-                            adapter.notifyDataSetChanged();
-
-                            Log.e("S_SIZE", "is: " + listLessonPlan.size());
-
-                            if(listLessonPlan.size() <= 0)
-                            {
-                                //Toast.makeText(getActivity(), "No data found!", Toast.LENGTH_SHORT).show();
-
-                                txtMessage.setVisibility(View.VISIBLE);
-                            }
-
-                            else
-                            {
-                                txtMessage.setVisibility(View.GONE);
-                            }
-
-                            initAction();
-
-
-
-                        } else {
-
                         }
                     }
 
@@ -560,27 +558,27 @@ public class LessonPlanView extends Fragment {
 
                         uiHelper.dismissLoadingDialog();
 
-
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
-
-
-
-                        if (modelContainer.getStatus().getCode() == 200) {
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                            JsonArray arrayBatch = modelContainer.getData().get("batches").getAsJsonArray();
-                            for (int i = 0; i < parseBatch(arrayBatch.toString()).size(); i++)
-                            {
-                                listBatch.add(parseBatch(arrayBatch.toString()).get(i));
+
+                            if (modelContainer.getStatus().getCode() == 200) {
+
+
+                                JsonArray arrayBatch = modelContainer.getData().get("batches").getAsJsonArray();
+                                for (int i = 0; i < parseBatch(arrayBatch.toString()).size(); i++)
+                                {
+                                    listBatch.add(parseBatch(arrayBatch.toString()).get(i));
+                                }
+
+                                showBatchPopup(btnSelectBatch);
+
+
                             }
-
-                            showBatchPopup(btnSelectBatch);
-
-
-                        } else {
-
                         }
+
 
                     }
 
@@ -670,29 +668,26 @@ public class LessonPlanView extends Fragment {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         listCategory.clear();
-
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
+                                JsonArray arrayCategory = modelContainer.getData().get("category").getAsJsonArray();
+                                for (int i = 0; i < parseCategory(arrayCategory.toString()).size(); i++)
+                                {
+                                    listCategory.add(parseCategory(arrayCategory.toString()).get(i));
+                                }
 
-                        if (modelContainer.getStatus().getCode() == 200) {
+                                showCategoryPopup(btnSelectCategory);
 
 
-                            JsonArray arrayCategory = modelContainer.getData().get("category").getAsJsonArray();
-                            for (int i = 0; i < parseCategory(arrayCategory.toString()).size(); i++)
-                            {
-                                listCategory.add(parseCategory(arrayCategory.toString()).get(i));
                             }
-
-                            showCategoryPopup(btnSelectCategory);
-
-
-                        } else {
-
                         }
                     }
 
@@ -912,26 +907,24 @@ public class LessonPlanView extends Fragment {
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
 
                         uiHelper.dismissLoadingDialog();
+                        if(response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
+                                Toast.makeText(getActivity(), R.string.java_lessonplanview_successfully_deleted, Toast.LENGTH_SHORT).show();
+                                initApiCall(selectedBatchId, selectedCategoryId);
 
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-
-                            Toast.makeText(getActivity(), R.string.java_lessonplanview_successfully_deleted, Toast.LENGTH_SHORT).show();
-                            initApiCall(selectedBatchId, selectedCategoryId);
-
-                            listSelectedId.clear();
-                            btnDeleteLesson.setEnabled(false);
-                            btnDeleteLesson.setBackgroundResource(R.drawable.delete_lesson_deactive);
+                                listSelectedId.clear();
+                                btnDeleteLesson.setEnabled(false);
+                                btnDeleteLesson.setBackgroundResource(R.drawable.delete_lesson_deactive);
 
 
-                        } else {
-
+                            }
                         }
                     }
 
@@ -1019,27 +1012,25 @@ public class LessonPlanView extends Fragment {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                         uiHelper.dismissLoadingDialog();
+                        if (response.body() != null){
+                            Wrapper modelContainer = GsonParser.getInstance()
+                                    .parseServerResponse2(response.body());
 
 
-                        Wrapper modelContainer = GsonParser.getInstance()
-                                .parseServerResponse2(response.body());
+
+                            if (modelContainer.getStatus().getCode() == 200) {
 
 
+                                Toast.makeText(getActivity(), R.string.java_lessonplanview_successfully_assigned, Toast.LENGTH_SHORT).show();
+                                initApiCall(selectedBatchId, selectedCategoryId);
 
-                        if (modelContainer.getStatus().getCode() == 200) {
-
-
-                            Toast.makeText(getActivity(), R.string.java_lessonplanview_successfully_assigned, Toast.LENGTH_SHORT).show();
-                            initApiCall(selectedBatchId, selectedCategoryId);
-
-                            listSelectedId.clear();
-                            btnAssignLesson.setEnabled(false);
-                            btnAssignLesson.setBackgroundResource(R.drawable.assign_class_deactive);
-                            btnAssignLesson.setTextColor(ContextCompat.getColor(getActivity(), R.color.gray_assign_text));
+                                listSelectedId.clear();
+                                btnAssignLesson.setEnabled(false);
+                                btnAssignLesson.setBackgroundResource(R.drawable.assign_class_deactive);
+                                btnAssignLesson.setTextColor(ContextCompat.getColor(getActivity(), R.color.gray_assign_text));
 
 
-                        } else {
-
+                            }
                         }
                     }
 
