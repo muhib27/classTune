@@ -45,6 +45,7 @@ import com.classtune.app.schoolapp.model.User;
 import com.classtune.app.schoolapp.networking.ApiClient;
 import com.classtune.app.schoolapp.networking.LruBitmapCache;
 import com.classtune.app.schoolapp.networking.NetworkCallInterface;
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -55,6 +56,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
+import io.fabric.sdk.android.Fabric;
 import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -264,6 +266,7 @@ public class ApplicationSingleton extends MultiDexApplication {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
+		Fabric.with(this, new Crashlytics());
 		//Fabric.with(this, new Crashlytics());
 		//Fabric.with(this, new Crashlytics());
 		singleton = this;

@@ -67,6 +67,7 @@ import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.BannerDialog;
 import com.classtune.app.schoolapp.viewhelpers.DialogLanguageChooser;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -84,6 +85,7 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import droidninja.filepicker.FilePickerConst;
+import io.fabric.sdk.android.Fabric;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -415,6 +417,7 @@ public class HomePageFreeVersion extends HomeContainerActivity {
         navigateTo(1);
 
         context = getApplicationContext();
+        Fabric.with(this, new Crashlytics());
 
 
 
