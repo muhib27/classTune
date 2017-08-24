@@ -24,8 +24,8 @@ android {
         applicationId "com.classtune.app"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 20
-        versionName "1.0.19"
+        versionCode 21
+        versionName "1.0.20"
         multiDexEnabled true
     }
     buildTypes {
