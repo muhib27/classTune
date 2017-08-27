@@ -136,12 +136,14 @@ public class SingleTeacherEditClassworkActivity extends ChildContainerActivity {
     }
 
     private void singleTeacherClasswork(HashMap<String,String> params){
-        uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+        if (!uiHelper.isDialogActive())
+            uiHelper.showLoadingDialog(getString(R.string.loading_text));
         ApplicationSingleton.getInstance().getNetworkCallInterface().singleTeacherClasswork(params).enqueue(
                 new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        uiHelper.dismissLoadingDialog();
+                        if (uiHelper.isDialogActive())
+                            uiHelper.showLoadingDialog(getString(R.string.loading_text));
                         if (response.body() != null){
                             Wrapper modelContainer = GsonParser.getInstance()
                                     .parseServerResponse2(response.body());
