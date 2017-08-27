@@ -15,3 +15,18 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-dontwarn org.apache.http.**
+-dontwarn android.net.http.AndroidHttpClient
+-dontwarn com.google.android.gms.**
+-dontwarn com.android.volley.toolbox.**
+-dontwarn roboguice.**
+-dontwarn com.github.mikephil.**
+-keep public class android.util.FloatMath
+-dontwarn okio.**
+-dontwarn retrofit2.Platform$Java8
+-dontwarn javax.xml.stream.events.**
+-dontwarn org.simpleframework.xml.stream.**
+-libraryjars <java.home>/lib/rt.jar(java/**,javax/**)
+-keepattributes Signature
+-ignorewarnings
+-keepattributes *Annotation*
