@@ -22,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import com.classtune.app.schoolapp.model.BaseType;
 import com.classtune.app.schoolapp.model.Picker;
 import com.classtune.app.schoolapp.model.Picker.PickerItemSelectedListener;
 import com.classtune.app.schoolapp.model.PickerType;
+import com.classtune.app.schoolapp.model.StudentAssociated;
 import com.classtune.app.schoolapp.model.Subject;
 import com.classtune.app.schoolapp.model.TypeHomeWork;
 import com.classtune.app.schoolapp.model.Wrapper;
@@ -43,9 +45,16 @@ import com.classtune.app.schoolapp.utils.RequestKeyHelper;
 import com.classtune.app.schoolapp.utils.UserHelper;
 import com.classtune.app.schoolapp.viewhelpers.CustomButton;
 import com.classtune.app.schoolapp.viewhelpers.UIHelper;
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -95,6 +104,11 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	public static TeacherHomeWorkAddFragment instance;
 	private List<CheckBox> listCheckBoxSubject;
 	private ArrayList<String> listFiles;
+	private Switch switchToggle;
+	private String switchStatus = "NO";
+	private CheckBox lastSelectedButton = null;
+	private List<StudentAssociated> listStudent;
+	private List<String> listStudentIds;
 
 	@Override
 	public void onResume() {
@@ -115,6 +129,8 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		listSubjectId = new ArrayList<>();
 		listCheckBoxSubject = new ArrayList<>();
 		listFiles = new ArrayList<>();
+		listStudent = new ArrayList<>();
+        listStudentIds = new ArrayList<>();
 	}
 
 	private boolean isFormValid() {
@@ -185,8 +201,10 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 			// MultipartBody.Part is used to send also the actual file name
 			MultipartBody.Part body = MultipartBody.Part.createFormData("attachment_file_name", myFile.getName(), requestFile);
 
+			RequestBody studentIds = RequestBody.create(MediaType.parse("multipart/form-data"), getStudentIdWithComma());
 
-				ApplicationSingleton.getInstance().getNetworkCallInterface().teacherAddHomework(user_secret, subject_id, content, title, type, duedate, body, mime_type, file_size, is_draft).enqueue(
+
+				ApplicationSingleton.getInstance().getNetworkCallInterface().teacherAddHomework(user_secret, subject_id, content, title, type, duedate, body, mime_type, file_size, is_draft, studentIds).enqueue(
 						new Callback<JsonElement>() {
 							@Override
 							public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
@@ -635,6 +653,9 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 		layoutSelectSubject = (LinearLayout)view.findViewById(R.id.layoutSelectSubject);
 
+		switchToggle = (Switch) view.findViewById(R.id.switchToggle);
+		toggleManagment();
+
 	}
 	private void generateSubjectChooserLayout(LinearLayout layout)
 	{
@@ -662,6 +683,21 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 						listSubjectName.add(subjectCats.get(tag).getText());
 						refreshData(listSubjectName);
 						getNameWithComma();
+
+						lastSelectedButton = btn;
+
+						if(switchStatus.equalsIgnoreCase("YES")){
+							for(int i=0;i<listCheckBoxSubject.size();i++){
+								listCheckBoxSubject.get(i).setChecked(false);
+							}
+
+							lastSelectedButton.setChecked(true);
+
+							showMultipleStudentDialog(subjectCats.get(tag).getId());
+						}
+
+
+
 					}
 					else
 					{
@@ -670,11 +706,15 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 						listSubjectName.remove(subjectCats.get(tag).getText());
 						getNameWithComma();
+
+						//lastSelectedButton = null;
 					}
 
 					subjectNameTextView.setText(getNameWithComma());
 					subjectId = getIdWithComma();
 					Log.e("SUB_ID", "is: " + getIdWithComma());
+
+
 
 				}
 
@@ -687,7 +727,184 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 			layout.addView(cb);
 		}
 
+
+
+		//workign with toggling
+		//toggleManagement();
+
 	}
+
+	private void toggleManagment(){
+		switchToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				if(switchStatus.equals("NO")){
+					switchStatus = "YES";
+				}else {
+					switchStatus = "NO";
+				}
+
+				Log.e("TOGGLE", "is: "+switchStatus);
+
+				toggleSelection();
+			}
+
+
+		});
+
+
+	}
+
+
+	private void toggleSelection(){
+
+		for (int i = 0; i < listCheckBoxSubject.size(); i++) {
+			listCheckBoxSubject.get(i).setChecked(false);
+		}
+
+	}
+
+	private void showMultipleStudentDialog(final String studentId){
+
+		initApiCallStudentSelection(studentId);
+	}
+
+	private void initApiCallStudentSelection(final String subjectId){
+		listStudent.clear();
+        listStudentIds.clear();
+
+		uiHelper.showLoadingDialog(getString(R.string.java_accountsettingsactivity_please_wait));
+		ApplicationSingleton.getInstance().getNetworkCallInterface().showStudentList(UserHelper.getUserSecret(), subjectId).enqueue(new Callback<JsonElement>() {
+			@Override
+			public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+				uiHelper.dismissLoadingDialog();
+				Log.e("***RESPONSE***", "is: "+new Gson().toJson(response));
+				if(response.body()!=null && response.isSuccessful()){
+
+
+					String strObject = ApplicationSingleton.getInstance().convertJsonElementToString(response.body());
+					try {
+						JSONObject jsonObject = new JSONObject(strObject);
+
+						JSONArray jsonArray = jsonObject.getJSONObject("data").getJSONArray("students");
+						listStudent.addAll(convertStudentArrayList(jsonArray));
+						if(listStudent.size() > 0)
+							showDialog(listStudent);
+						else
+							Toast.makeText(getActivity(), R.string.fragment_archieved_events_txt_no_data_found, Toast.LENGTH_SHORT).show();
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+
+
+
+				}
+			}
+
+			@Override
+			public void onFailure(Call<JsonElement> call, Throwable t) {
+				t.printStackTrace();
+				uiHelper.dismissLoadingDialog();
+			}
+		});
+	}
+
+	private List<StudentAssociated> convertStudentArrayList(JSONArray jsonArray){
+		Gson gson = new Gson();
+		Type type = new TypeToken<List<StudentAssociated>>(){}.getType();
+		List<StudentAssociated> listStudent = gson.fromJson(jsonArray.toString(), type);
+		return listStudent;
+	}
+
+
+	private void showDialog(final List<StudentAssociated> listStudent){
+		final ArrayList seletedItems = new ArrayList();
+
+		for(int i=0; i<listStudent.size(); i++){
+			String data = "";
+			if(TextUtils.isEmpty(listStudent.get(i).getRollNo())){
+				data = listStudent.get(i).getStudentName();
+			}else {
+				data = listStudent.get(i).getStudentName()+"\n"+listStudent.get(i).getRollNo();
+			}
+
+			seletedItems.add(data);
+
+		}
+
+
+
+
+		/*seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");
+		seletedItems.add("Easy\n"+"Roll 121231325545");*/
+
+
+		AlertDialog dialog = new AlertDialog.Builder(getActivity())
+				.setTitle("Select The Difficulty Level")
+				.setMultiChoiceItems((CharSequence[])seletedItems.toArray(new CharSequence[0]), null, new DialogInterface.OnMultiChoiceClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
+						if (isChecked) {
+							// If the user checked the item, add it to the selected items
+							seletedItems.add(indexSelected);
+							listStudentIds.add(listStudent.get(indexSelected).getStudentId());
+						} else if (seletedItems.contains(indexSelected)) {
+							// Else, if the item is already in the array, remove it
+							seletedItems.remove(Integer.valueOf(indexSelected));
+							listStudentIds.remove(Integer.valueOf(indexSelected));
+						}
+					}
+				}).setPositiveButton(R.string.java_uihelper_ok, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int id) {
+						//  Your code when user clicked on OK
+						//  You can write the code  to save the selected item here
+					}
+				}).setNegativeButton(R.string.attachment_dialog_cancel, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int id) {
+						//  Your code when user clicked on Cancel
+					}
+				}).create();
+		dialog.show();
+	}
+
+
+	private String getStudentIdWithComma()
+	{
+		StringBuilder result = new StringBuilder();
+		for ( String p : listStudentIds )
+		{
+			if (result.length() > 0) result.append( "," );
+			result.append( p );
+		}
+
+		return  result.toString();
+	}
+
+
 
 	private void refreshData(List<String> list)
 	{

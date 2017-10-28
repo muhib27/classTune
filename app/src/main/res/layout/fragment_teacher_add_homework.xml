@@ -14,10 +14,55 @@ android:orientation="vertical" >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:text="@string/select_specific_student"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+           <Switch
+               android:id="@+id/switchToggle"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:textOff="@string/popup_layout_delete_btn_no"
+               android:textOn="@string/popup_layout_delete_btn_yes"
+               android:checked="false"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
         android:background="@color/gray_2"
         android:orientation="vertical" >
 
@@ -33,6 +78,7 @@ android:orientation="vertical" >
                 android:layout_weight="4" >
 
                 <TextView
+                    android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -40,8 +86,7 @@ android:orientation="vertical" >
                     android:padding="10dp"
                     android:text="@string/fragment_progress_graph_text_select_subject_title"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:id="@+id/textView"/>
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout

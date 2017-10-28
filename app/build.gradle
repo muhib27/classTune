@@ -96,6 +96,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:10.2.0'
     compile 'com.google.android.gms:play-services-gcm:10.2.0'
     compile 'com.droidninja:filepicker:2.0.3'
+    compile 'us.belka:androidtoggleswitch:1.2.2'
 
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
