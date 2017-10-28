@@ -59,10 +59,10 @@ public class StudentInfoActivity extends ChildContainerActivity {
 			studentId = getIntent().getExtras().getString("student_id");
 			feedKeyValue = getIntent().getExtras().getInt("key_from_feed", 0);
 		}
-		
+		init();
 		fetchStudentInfo();
 		
-		init();
+
 	}
 	
 	private void init() {
