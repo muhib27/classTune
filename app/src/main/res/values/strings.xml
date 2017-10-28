@@ -1738,6 +1738,7 @@
     <string name="feed_cat_name_subject_attendance">Subject Attendance</string>
     <string name="subject_name">Subject Name</string>
     <string name="birthday">Birthday</string>
+    <string name="select_specific_student">Specific Student</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 

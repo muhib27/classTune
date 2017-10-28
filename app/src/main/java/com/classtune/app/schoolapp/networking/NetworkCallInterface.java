@@ -507,7 +507,7 @@ public interface NetworkCallInterface {
     @POST(URLHelper.URL_TEACHER_ADD_HOMEWORK)
     Call<JsonElement> teacherAddHomework(@Part("user_secret") RequestBody user_secret, @Part("subject_id")RequestBody subject_id, @Part("content")RequestBody content, @Part("title")RequestBody title, @Part("type")RequestBody type,
                                          @Part("duedate") RequestBody duedate,
-                                         @Part MultipartBody.Part attachment_file_name, @Part("mime_type") RequestBody mime_type, @Part("file_size")RequestBody file_size, @Part("is_draft") RequestBody is_draft);
+                                         @Part MultipartBody.Part attachment_file_name, @Part("mime_type") RequestBody mime_type, @Part("file_size")RequestBody file_size, @Part("is_draft") RequestBody is_draft, @Part("students")RequestBody student);
 
     @FormUrlEncoded
     @POST(URLHelper.URL_TEACHER_ADD_HOMEWORK)
@@ -575,6 +575,11 @@ public interface NetworkCallInterface {
     @POST(URLHelper.URL_LESSON_ADD)
     Call<JsonElement> teacherAddLessonplankEdit(@Field("user_secret") String user_secret, @Field("subject_id")String subject_id, @Field("content")String content, @Field("title")String title, @Field("type")String type, @Field("id") String id);
 */
+
+
+    @FormUrlEncoded
+    @POST(URLHelper.URL_SELECT_STUDENT_HW_ADD)
+    Call<JsonElement> showStudentList(@Field("user_secret") String user_secret, @Field("subject_id") String subject_id);
 
 
 }
