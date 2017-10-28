@@ -161,21 +161,18 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 		
 		
 		//postId = objectPost.get("id").getAsString();
+
 		
-		
-		assesmentId = getIntent().getExtras().getString("ASSESSMENT_HOMEWORK_ID");  
-		
+		assesmentId = getIntent().getExtras().getString("ASSESSMENT_HOMEWORK_ID");
+		initView();
+		userHelper = new UserHelper(this);
+		uiHelper = new UIHelper(this);
+
 		if(!TextUtils.isEmpty(assesmentId))
 		{
 			initApiCall();
 		}
-			
-		
-		
-		userHelper = new UserHelper(this);
-		uiHelper = new UIHelper(this);
-		
-		initView();
+
 		initAction();
 		
 		
@@ -736,7 +733,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 							{
 
 								Toast.makeText(AssesmentHomeworkActivity.this, getString(R.string.java_assesmentactivity_marks_added_sussessfully), Toast.LENGTH_SHORT).show();
-
+								setResult(Activity.RESULT_OK);
 								AssesmentHomeworkActivity.this.finish();
 							}
 
@@ -795,7 +792,7 @@ public class AssesmentHomeworkActivity extends ChildContainerActivity implements
 			{
 				
 				Toast.makeText(AssesmentHomeworkActivity.this, getString(R.string.java_assesmentactivity_marks_added_sussessfully), Toast.LENGTH_SHORT).show();
-				
+				setResult(1);
 				AssesmentHomeworkActivity.this.finish();
 			}
 
