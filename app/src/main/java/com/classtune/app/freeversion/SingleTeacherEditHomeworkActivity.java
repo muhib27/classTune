@@ -334,7 +334,7 @@ public class SingleTeacherEditHomeworkActivity extends ChildContainerActivity{
                            if (wrapper.getStatus().getCode() == AppConstant.RESPONSE_CODE_SUCCESS) {
 
                                Toast.makeText(SingleTeacherEditHomeworkActivity.this,
-                                       R.string.java_singleteacheredithomeworkactivity_saved_as_draft,
+                                       R.string.java_singleteachereditclassworkactivity_Successfully_updated,
                                        Toast.LENGTH_SHORT).show();
 
                                setResult(RESULT_OK);

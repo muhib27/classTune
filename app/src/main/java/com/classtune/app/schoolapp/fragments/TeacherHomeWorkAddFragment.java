@@ -461,6 +461,12 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		for(int i=0;i<listCheckBoxSubject.size();i++){
 			listCheckBoxSubject.get(i).setChecked(false);
 		}
+
+		switchStatus = "NO";
+		lastSelectedButton = null;
+		listStudent.clear();
+		listStudentIds.clear();
+		switchToggle.setChecked(false);
     }
 
 
@@ -701,12 +707,13 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 					}
 					else
 					{
-						listSubjectId.remove(subjectCats.get(tag).getId());
-						getIdWithComma();
+						if(subjectCats.get(tag)!=null){
+							listSubjectId.remove(subjectCats.get(tag).getId());
+							getIdWithComma();
 
-						listSubjectName.remove(subjectCats.get(tag).getText());
-						getNameWithComma();
-
+							listSubjectName.remove(subjectCats.get(tag).getText());
+							getNameWithComma();
+						}
 						//lastSelectedButton = null;
 					}
 
