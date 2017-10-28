@@ -1,5 +1,6 @@
 package com.classtune.app.schoolapp.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -673,7 +674,7 @@ public class QuizFragment extends Fragment {
 
 								Intent intent = new Intent(getActivity(), AssesmentHomeworkActivity.class);
 								intent.putExtra("ASSESSMENT_HOMEWORK_ID", listAssessmentHomework.get((Integer) btn.getTag()).getId());
-								startActivity(intent);
+								startActivityForResult(intent, 1);
 
 
 							}
@@ -771,5 +772,15 @@ public class QuizFragment extends Fragment {
 			
 			picker.show(getActivity().getSupportFragmentManager(), null);
 	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == Activity.RESULT_OK) {
+			//if(resultCode == Activity.RESULT_OK){
+				initApiCallAssessment(pageNumber);
+			//}
+		}
+	}//onActivityResult
 
 }
