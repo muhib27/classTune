@@ -255,7 +255,7 @@ public class SingleClassworkActivity extends ChildContainerActivity {
 
 
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri
-                            .parse("http://api.champs21.com/api/freeuser/downloadattachment?id=" + data.getId())));
+                            .parse("http://apimaster.classtune.com/api/freeuser/downloadclasswork?id=" + data.getId())));
                 }
             });
 

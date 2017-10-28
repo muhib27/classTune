@@ -176,7 +176,7 @@ public class SingleLessonPlan extends ChildContainerActivity {
                 // TODO Auto-generated method stub
 
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri
-                        .parse("http://api.champs21.com/api/freeuser/downloadlessonplan?id=" + id)));
+                        .parse("http://apimaster.classtune.com/api/freeuser/downloadlessonplan?id=" + id)));
             }
         });
 

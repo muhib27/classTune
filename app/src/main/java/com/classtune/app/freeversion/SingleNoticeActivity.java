@@ -226,7 +226,7 @@ public class SingleNoticeActivity extends ChildContainerActivity {
 
 
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri
-						.parse("http://api.champs21.com/api/notice/downloadnoticeattachment?id=" + data.getNoticeId())));
+						.parse("http://apimaster.classtune.com/api/notice/downloadnoticeattachment?id=" + data.getNoticeId())));
 			}
 		});
 		
