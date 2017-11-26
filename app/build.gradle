@@ -24,8 +24,8 @@ android {
         applicationId "com.classtune.app"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 23
-        versionName "2.1"
+        versionCode 24
+        versionName "2.2"
         multiDexEnabled true
     }
     buildTypes {
@@ -84,6 +84,11 @@ dependencies {
     }
 
 
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }
+    //    compile 'com.droidninja:filepicker:2.1.0'
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.android.support:support-v4:25.2.0'
@@ -95,14 +100,14 @@ dependencies {
     compile 'com.google.android.gms:play-services-ads:10.2.0'
     compile 'com.google.android.gms:play-services-auth:10.2.0'
     compile 'com.google.android.gms:play-services-gcm:10.2.0'
-    compile 'com.droidninja:filepicker:2.0.3'
+//    compile 'com.droidninja:filepicker:2.0.3'
     compile 'us.belka:androidtoggleswitch:1.2.2'
-
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
-        transitive = true;
-    }
+    compile 'com.droidninja:filepicker:2.0.8'
+    compile 'com.android.support:design:25.2.0'
+//    compile 'com.github.bumptech.glide:glide:3.7.0'
 }

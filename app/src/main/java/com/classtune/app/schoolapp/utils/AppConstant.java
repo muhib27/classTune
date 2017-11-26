@@ -309,5 +309,9 @@ public class AppConstant {
 	public static final String KEY_ASSOCIATED_SUBJECT_ID_REPORT = "KEY_ASSOCIATED_SUBJECT_ID_REPORT";
 
 
+	public static final String KEY_HOMEWORK_ID = "homework_id";
+	public static final String KEY_REGISTERED = "registered";
+
+
 
 }

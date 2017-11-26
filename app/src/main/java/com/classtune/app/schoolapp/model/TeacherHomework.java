@@ -4,155 +4,177 @@ import com.google.gson.annotations.SerializedName;
 
 public class TeacherHomework {
 
-	@SerializedName("subjects")
-	private String subjects;
-	
-	@SerializedName("batch")
-	private String batch;
-	
-	@SerializedName("attachment_file_name")
-	private String attachment_file_name;
+    @SerializedName("subjects")
+    private String subjects;
 
-	@SerializedName("course")
-	private String course;
+    @SerializedName("batch")
+    private String batch;
 
-	public String getSection() {
-		return section;
-	}
+    @SerializedName("attachment_file_name")
+    private String attachment_file_name;
 
-	@SerializedName("section")
-	private String section;
-	
-	@SerializedName("subjects_id")
-	private String subjects_id;
-	
-	@SerializedName("subjects_icon")
-	private String subjects_icon;
-	
-	@SerializedName("assign_date")
-	private String assign_date;
-	
-	@SerializedName("duedate")
-	private String duedate;
-	
-	@SerializedName("name")
-	private String homework_name;
-	
-	@SerializedName("content")
-	private String content;
-	
-	@SerializedName("type")
-	private String homework_type;
-	
-	@SerializedName("id")
-	private String id;
-	
-	@SerializedName("done")
-	private String done;
+    @SerializedName("course")
+    private String course;
 
-	public String getSubjects() {
-		return subjects;
-	}
+    public String getSection() {
+        return section;
+    }
 
-	public void setSubjects(String subjects) {
-		this.subjects = subjects;
-	}
+    @SerializedName("section")
+    private String section;
 
-	public String getBatch() {
-		return batch;
-	}
+    @SerializedName("subjects_id")
+    private String subjects_id;
 
-	public void setBatch(String batch) {
-		this.batch = batch;
-	}
+    @SerializedName("subjects_icon")
+    private String subjects_icon;
 
-	public String getAttachment_file_name() {
-		return attachment_file_name;
-	}
+    @SerializedName("assign_date")
+    private String assign_date;
 
-	public void setAttachment_file_name(String attachment_file_name) {
-		this.attachment_file_name = attachment_file_name;
-	}
-	
-	public String getCourse() {
-		return course;
-	}
+    @SerializedName("duedate")
+    private String duedate;
 
-	public void setCourse(String course) {
-		this.course = course;
-	}
+    @SerializedName("name")
+    private String homework_name;
 
-	public String getSubjects_id() {
-		return subjects_id;
-	}
+    @SerializedName("content")
+    private String content;
 
-	public void setSubjects_id(String subjects_id) {
-		this.subjects_id = subjects_id;
-	}
+    @SerializedName("type")
+    private String homework_type;
 
-	public String getSubjects_icon() {
-		return subjects_icon;
-	}
+    @SerializedName("id")
+    private String id;
 
-	public void setSubjects_icon(String subjects_icon) {
-		this.subjects_icon = subjects_icon;
-	}
-	
-	public String getAssign_date() {
-		return assign_date;
-	}
+    @SerializedName("done")
+    private String done;
 
-	public void setAssign_date(String assign_date) {
-		this.assign_date = assign_date;
-	}
+    @SerializedName("is_published")
+    private String is_published;
 
-	public String getDuedate() {
-		return duedate;
-	}
-	
+    @SerializedName("defaulter_registration")
+    private int defaulter_registration;
 
-	public void setDuedate(String duedate) {
-		this.duedate = duedate;
-	}
 
-	public String getHomework_name() {
-		return homework_name;
-	}
+    public String getSubjects() {
+        return subjects;
+    }
 
-	public void setHomework_name(String homework_name) {
-		this.homework_name = homework_name;
-	}
+    public void setSubjects(String subjects) {
+        this.subjects = subjects;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public String getBatch() {
+        return batch;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
 
-	public String getHomework_type() {
-		return homework_type;
-	}
+    public String getAttachment_file_name() {
+        return attachment_file_name;
+    }
 
-	public void setHomework_type(String homework_type) {
-		this.homework_type = homework_type;
-	}
+    public void setAttachment_file_name(String attachment_file_name) {
+        this.attachment_file_name = attachment_file_name;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getCourse() {
+        return course;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setCourse(String course) {
+        this.course = course;
+    }
 
-	public String getDone() {
-		return done;
-	}
+    public String getSubjects_id() {
+        return subjects_id;
+    }
 
-	public void setDone(String done) {
-		this.done = done;
-	}
+    public void setSubjects_id(String subjects_id) {
+        this.subjects_id = subjects_id;
+    }
 
+    public String getSubjects_icon() {
+        return subjects_icon;
+    }
+
+    public void setSubjects_icon(String subjects_icon) {
+        this.subjects_icon = subjects_icon;
+    }
+
+    public String getAssign_date() {
+        return assign_date;
+    }
+
+    public void setAssign_date(String assign_date) {
+        this.assign_date = assign_date;
+    }
+
+    public String getDuedate() {
+        return duedate;
+    }
+
+
+    public void setDuedate(String duedate) {
+        this.duedate = duedate;
+    }
+
+    public String getHomework_name() {
+        return homework_name;
+    }
+
+    public void setHomework_name(String homework_name) {
+        this.homework_name = homework_name;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getHomework_type() {
+        return homework_type;
+    }
+
+    public void setHomework_type(String homework_type) {
+        this.homework_type = homework_type;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDone() {
+        return done;
+    }
+
+    public void setDone(String done) {
+        this.done = done;
+    }
+
+    public String getIs_published() {
+        return is_published;
+    }
+
+    public void setIs_published(String is_published) {
+        this.is_published = is_published;
+    }
+
+    public int getDefaulter_registration() {
+        return defaulter_registration;
+    }
+
+    public void setDefaulter_registration(int defaulter_registration) {
+        this.defaulter_registration = defaulter_registration;
+    }
 }

@@ -22,7 +22,7 @@
         <item>পাসওয়ার্ড পরিবর্তন করুন</item>
         <item>শর্তাবলী</item>
         <item>ভাষা নির্বাচন করুন</item>
-        <item>বর্তমান সংস্করণ: 2.0</item>
+        <item>বর্তমান সংস্করণ: 2.2</item>
     </string-array>
     <string-array name="diary_images_student">
         <item>home</item>
@@ -1723,6 +1723,19 @@
     <string name="feed_cat_name_subject_attendance">সাবজেক্ট উপস্থিতি</string>
     <string name="subject_name">বিষয়ের নাম</string>
     <string name="select_specific_student">নির্দিষ্ট ছাত্র</string>
+
+    //muhib
+
+    <string name="roll_text">রোল</string>
+    <string name="name_text">নাম</string>
+    <string name="defaulter">ডিফল্টার </string>
+    <string name="defaulter_registration">ডিফল্টার নিবন্ধন</string>
+    <string name="defaulter_saved_successfully">ডিফল্টার সফলভাবে সংরক্ষিত হয়েছে</string>
+    <string name="defaulter_updated_successfully">ডিফল্টার হালনাগাদ সফল হয়েছে</string>
+    <string name="default_text">ডিফল্টার নিবন্ধন</string>
+    <string name="defaulter_list">ডিফল্টার তালিকা</string>
+    <string name="message_defaulter_register">অনুগ্রহ করে প্রথমে ডিফল্টার নিবন্ধন চেক ইন করুন</string>
+
 
 
 </resources>

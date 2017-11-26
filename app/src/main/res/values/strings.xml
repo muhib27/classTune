@@ -22,7 +22,7 @@
         <item>Change Password</item>
         <item>Terms \u0026 Policy</item>
         <item>Choose Language</item>
-        <item>Current Version: 2.0</item>
+        <item>Current Version: 2.2</item>
     </string-array>
     <string-array name="diary_images_student">
         <item>home</item>
@@ -1495,7 +1495,7 @@
     <string name="java_lessonplanview_active">Active</string>
 
     <!--LoginActivity-->
-    <string name="java_loginactivity_enter_user_name">Please enter UserName!!</string>
+    <string name="java_loginactivity_enter_user_name">Please enter Username!!</string>
     <string name="java_loginactivity_enter_password">Please enter Password!!</string>
 
     <!--MeetingFragment-->
@@ -1741,6 +1741,21 @@
     <string name="select_specific_student">Specific Student</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+
+
+
+    <string name="roll_text">Roll</string>
+    <string name="name_text">Name</string>
+    <!--<string name="status_text">Status</string>-->
+    <string name="defaulter">Defaulter</string>
+
+    <!--<string name="defaulter_not_registered">Tap to Defaulter Registeration</string>-->
+    <string name="defaulter_registration">Defaulter Registration</string>
+    <string name="defaulter_saved_successfully">Defaulter saved successfully.</string>
+    <string name="defaulter_updated_successfully">Defaulter updated successfully.</string>
+    <string name="default_text">Defaulter Registration</string>
+    <string name="defaulter_list">Defaulter List</string>
+    <string name="message_defaulter_register">Please check in defaulter registration first.</string>
 
 
 </resources>

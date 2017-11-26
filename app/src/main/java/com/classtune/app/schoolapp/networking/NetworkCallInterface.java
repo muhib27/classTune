@@ -582,4 +582,17 @@ public interface NetworkCallInterface {
     Call<JsonElement> showStudentList(@Field("user_secret") String user_secret, @Field("subject_id") String subject_id);
 
 
+    //muhib
+    @FormUrlEncoded
+    @POST(URLHelper.URL_DEFAULTER_STUDENT_LIST)
+    Call<JsonElement> getDefaulterStudentList(@FieldMap HashMap<String, String> params);
+
+    @FormUrlEncoded
+    @POST(URLHelper.URL_TEACHER_DEFAULTER_ADD)
+    Call<JsonElement> teacherDefaulterAdd(@FieldMap HashMap<String, String> params);
+
+    @FormUrlEncoded
+    @POST(URLHelper.URL_DEFAULTER_LIST)
+    Call<JsonElement> getDefaultertList(@FieldMap HashMap<String, String> params);
+
 }

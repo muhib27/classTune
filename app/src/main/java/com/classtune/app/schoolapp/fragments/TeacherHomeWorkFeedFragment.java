@@ -16,13 +16,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.classtune.app.R;
+import com.classtune.app.freeversion.DefaulterRegistrationActivity;
 import com.classtune.app.freeversion.SingleTeacherHomeworkActivity;
 import com.classtune.app.freeversion.TeacherHomeworkDoneActivity;
+import com.classtune.app.freeversion.TeacherSubjectAttendanceTakeActivity;
 import com.classtune.app.schoolapp.callbacks.IFeedRefreshCallBack;
 import com.classtune.app.schoolapp.fragments.TeacherHomeWorkFragment.IFilterClicked;
 import com.classtune.app.schoolapp.fragments.TeacherHomeWorkFragment.IFilterInsideClicked;
@@ -69,8 +73,9 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 	UserHelper userHelper;
 	private PullToRefreshListView listGoodread;
 	private GoodReadAdapter adapter;
-	private ArrayList<TeacherHomework> allGooadReadPost = new ArrayList<TeacherHomework>();
+	public static ArrayList<TeacherHomework> allGooadReadPost = new ArrayList<TeacherHomework>();
 	private ProgressBar spinner;
+
 	
 	
 	boolean hasNext = false;
@@ -125,9 +130,14 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 		
 		return view;
 	}
-	
-	
-	private void initListAction()
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpList();
+    }
+
+    private void initListAction()
 	{
 		instance = this;
 		listGoodread.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -140,6 +150,8 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 				
 				Intent intent = new Intent(getActivity(), SingleTeacherHomeworkActivity.class);
 				intent.putExtra(AppConstant.ID_SINGLE_HOMEWORK, data.getId());
+                intent.putExtra(AppConstant.KEY_REGISTERED, data.getDefaulter_registration());
+                intent.putExtra("list_pos", position);
 				getActivity().startActivityForResult(intent, AppConstant.REQUEST_CODE_TEACHER_HOMEWORK_FEED);
 				getActivity().setResult(Activity.RESULT_OK);
 				
@@ -497,7 +509,14 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 		return f;
 	}
 
-	private class NoDataTask extends AsyncTask<Void, Void, String[]> {
+//    @Override
+//    public void onButtonClickListner(int list_pos) {
+//        allGooadReadPost.get(list_pos).setDefaulter_registration(1);
+//        GoodReadAdapter goodReadAdapter = new GoodReadAdapter();
+//        goodReadAdapter.notifyDataSetChanged();
+//    }
+
+    private class NoDataTask extends AsyncTask<Void, Void, String[]> {
 
 		@Override
 		protected String[] doInBackground(Void... params) {
@@ -520,7 +539,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 			super.onPostExecute(result);
 		}
 	}
-	
+
 	public class GoodReadAdapter extends BaseAdapter {
 
 		private Context context;
@@ -548,13 +567,14 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 		{
 			allGooadReadPost.clear();
 		}
-		
-		
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+        public GoodReadAdapter() {
+        }
 
-			final int i = position;
+        @Override
+		public View getView(final int position, View convertView, ViewGroup parent) {
+
+			//final int i = position;
 
 			ViewHolder holder;
 
@@ -571,12 +591,13 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 				holder.tvShift = (TextView)convertView.findViewById(R.id.tv_teacher_homewrok_feed_shift);
 				holder.tvCourse = (TextView)convertView.findViewById(R.id.tv_teacher_homework_feed_course);
 				holder.tvSection = (TextView) convertView.findViewById(R.id.tv_teacher_homework_feed_Section);
-				holder.doneBtn = (CustomButton) convertView.findViewById(R.id.btn_done);
+				//holder.doneBtn = (CustomButton) convertView.findViewById(R.id.btn_done);
 				holder.homeworkContent = (TextView) convertView.findViewById(R.id.tv_homework_content);
 				holder.txtAssignDate = (TextView)convertView.findViewById(R.id.txtAssignDate);
 				holder.txtAttachment = (TextView)convertView.findViewById(R.id.txtAttachment);
 				
 				holder.ivSubjectIcon = (ImageView)convertView.findViewById(R.id.imgViewCategoryMenuIcon);
+				holder.defaulterBtn = (TextView)convertView.findViewById(R.id.btn_default);
 				
 				//holder.reminderBtn = (CustomButton) convertView.findViewById(R.id.btn_reminder);
 				
@@ -615,14 +636,25 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 				/*holder.doneBtn.setTag(""+position);
 				holder.reminderBtn.setTag(""+position);*/
 				
-				holder.doneBtn.setTag(allGooadReadPost.get(position).getId());
-				
-				holder.doneBtn.setTitleText(getString(R.string.java_singleteacherhomeworkactivity_done_by)+allGooadReadPost.get(position).getDone());
-				holder.doneBtn.setTextSize(16);
+//				holder.doneBtn.setTag(allGooadReadPost.get(position).getId());
+//
+//				holder.doneBtn.setTitleText(getString(R.string.java_singleteacherhomeworkactivity_done_by)+allGooadReadPost.get(position).getDone());
+//				holder.doneBtn.setTextSize(16);
 				
 				holder.txtAssignDate.setText(AppUtility.getDateString(hwork.getAssign_date(), AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
 				
 				holder.ivSubjectIcon.setImageResource(AppUtility.getImageResourceId(allGooadReadPost.get(position).getSubjects_icon(), context));
+				if(allGooadReadPost.get(position).getDefaulter_registration()==1 && allGooadReadPost.get(position).getIs_published().equals("1"))
+				{
+					holder.defaulterBtn.setVisibility(View.VISIBLE);
+					holder.defaulterBtn.setText(getString(R.string.defaulter_list));
+				}
+				else if(allGooadReadPost.get(position).getDefaulter_registration()==0 && allGooadReadPost.get(position).getIs_published().equals("1")) {
+					holder.defaulterBtn.setVisibility(View.VISIBLE);
+					holder.defaulterBtn.setText(getString(R.string.default_text));
+				}
+				else
+					holder.defaulterBtn.setVisibility(View.GONE);
 				
 			} else {
 				Log.e("FREE_HOME_API", "array is empty!");
@@ -637,23 +669,33 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 			{
 				holder.txtAttachment.setVisibility(View.GONE);
 			}
+			holder.defaulterBtn.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(context, DefaulterRegistrationActivity.class);
+					intent.putExtra(AppConstant.KEY_HOMEWORK_ID, allGooadReadPost.get(position).getId());
+                    intent.putExtra(AppConstant.KEY_REGISTERED, allGooadReadPost.get(position).getDefaulter_registration());
+                    intent.putExtra("list_pos", position);
+					context.startActivity(intent);
+					//Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG).show();
+				}
+			});
 			
-			
-			if(!allGooadReadPost.get(position).getDone().equals("0"))
-			{
-				holder.doneBtn.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						String id = (String) ((CustomButton)v).getTag();
-						
-						Intent intent = new Intent(getActivity(), TeacherHomeworkDoneActivity.class);
-						intent.putExtra(AppConstant.ID_TEACHER_HOMEWORK_DONE, id);
-						startActivity(intent);
-					}
-				});
-			}
+//			if(!allGooadReadPost.get(position).getDone().equals("0"))
+//			{
+//				holder.doneBtn.setOnClickListener(new View.OnClickListener() {
+//
+//					@Override
+//					public void onClick(View v) {
+//						// TODO Auto-generated method stub
+//						String id = (String) ((CustomButton)v).getTag();
+//
+//						Intent intent = new Intent(getActivity(), TeacherHomeworkDoneActivity.class);
+//						intent.putExtra(AppConstant.ID_TEACHER_HOMEWORK_DONE, id);
+//						startActivity(intent);
+//					}
+//				});
+//			}
 			
 			
 
@@ -666,6 +708,7 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 		TextView subjectName, date,classname, section, txtAssignDate, txtAttachment, tvShift, tvCourse, tvSection;
 		TextView homeworkContent;
 		CustomButton doneBtn;
+		private TextView defaulterBtn;
 		ImageView ivSubjectIcon;
 
 	}
@@ -895,6 +938,9 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
 			setUpList();
 			loadDataInToList();
 		}
+//		if(requestCode ==2){
+//
+//        }
 
 
 

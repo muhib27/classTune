@@ -13,6 +13,8 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +45,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
+public class SingleTeacherHomeworkActivity extends ChildContainerActivity implements View.OnClickListener{
 	
 	private UIHelper uiHelper;
 	private String id;
@@ -54,6 +56,7 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	private TextView tvDueDate;
 	private TextView tvAssignDate;
 	private LinearLayout mLinearLayout;
+	private Button defaultRegBtn;
 	//private WebView webViewContent;
 
 	private TextView tvSubject;
@@ -65,13 +68,16 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	private TeacherHomeworkData data;
 	private Gson gson;
 	
-	private Button btnDownload;
-	private LinearLayout layoutDownloadHolder;
+	private TextView btnDownload;
+	private RelativeLayout layoutDownloadHolder;
 
 	private LinearLayout layoutHorizontalBar;
 	private Button btnEdit;
 	private static final int REQUEST_EDIT_HOMEWORK = 56;
 	private WebView webView;
+	private int defaulter_registration;
+	private int list_pos;
+    private LinearLayout attachmentLayout;
 	
 	
 	@Override
@@ -91,8 +97,11 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		
 		uiHelper = new UIHelper(SingleTeacherHomeworkActivity.this);
 		
-		if(getIntent().getExtras() != null)
+		if(getIntent().getExtras() != null) {
 			this.id = getIntent().getExtras().getString(AppConstant.ID_SINGLE_HOMEWORK);
+			defaulter_registration = getIntent().getExtras().getInt(AppConstant.KEY_REGISTERED);
+			list_pos = getIntent().getExtras().getInt("list_pos");
+		}
 		
 		initView();
 		initApicall();
@@ -113,15 +122,19 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		this.tvDueDate = (TextView)this.findViewById(R.id.txtDueDate);
 		this.tvAssignDate = (TextView)this.findViewById(R.id.txtAssignDate);
 		this.mLinearLayout = (LinearLayout)this.findViewById(R.id.single_teacher_homework_detail_visibility);
+        this.attachmentLayout = (LinearLayout)this.findViewById(R.id.attachment);
 		
-		this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
+		//this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
 		this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
 		this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
-		this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
-		this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
+		this.btnDownload = (TextView) this.findViewById(R.id.btnDownload);
+		this.layoutDownloadHolder = (RelativeLayout) this.findViewById(R.id.layoutDownloadHolder);
 
 		this.layoutHorizontalBar = (LinearLayout)this.findViewById(R.id.layoutHorizontalBar);
 		this.btnEdit = (Button)this.findViewById(R.id.btnEdit);
+		this.defaultRegBtn = (Button)this.findViewById(R.id.btnDefaulterReg);
+		defaultRegBtn.setOnClickListener(this);
+        this.homeBtn.setOnClickListener(this);
 
 	}
 	
@@ -134,8 +147,8 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		this.webView.loadData(data.getContent(), "text/html; charset=utf-8", "UTF-8");
 		
 		
-		btnDone.setTitleText(getString(R.string.java_singleteacherhomeworkactivity_done_by)+data.getDone());
-		btnDone.setTextSize(16);
+//		btnDone.setTitleText(getString(R.string.java_singleteacherhomeworkactivity_done_by)+data.getDone());
+//		btnDone.setTextSize(16);
 
 		this.tvSubject.setText(data.getSubjects());
 		this.tvShift.setText(data.getBatch());
@@ -146,36 +159,45 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 	
 		
 		this.ivSubjectIcon.setImageResource(AppUtility.getImageResourceId(data.getSubjects_icon(), this));
-		
-		
-		
-		
-		btnDone.setOnClickListener(new View.OnClickListener() {
+		if(data.getIs_published().equals("1")) {
+			defaultRegBtn.setVisibility(View.VISIBLE);
+			if(defaulter_registration==1)
+				defaultRegBtn.setText(getString(R.string.defaulter_list));
+			else
+				defaultRegBtn.setText(getString(R.string.default_text));
 
-			@Override
-			public void onClick(View v) {
-				
-				Intent intent = new Intent(SingleTeacherHomeworkActivity.this, TeacherHomeworkDoneActivity.class);
-				intent.putExtra(AppConstant.ID_TEACHER_HOMEWORK_DONE, data.getId());
-				startActivity(intent);
-			}
-		});
+		}
+        else
+            defaultRegBtn.setVisibility(View.GONE);
 		
+		
+		
+//		btnDone.setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//
+//				Intent intent = new Intent(SingleTeacherHomeworkActivity.this, TeacherHomeworkDoneActivity.class);
+//				intent.putExtra(AppConstant.ID_TEACHER_HOMEWORK_DONE, data.getId());
+//				startActivity(intent);
+//			}
+//		});
+//
 		
 		
 		
 		if(!TextUtils.isEmpty(data.getAttachment_file_name()))
 		{
-			layoutDownloadHolder.setVisibility(View.VISIBLE);
+			attachmentLayout.setVisibility(View.VISIBLE);
 		}
 		else
 		{
-			layoutDownloadHolder.setVisibility(View.GONE);
+            attachmentLayout.setVisibility(View.GONE);
 		}
-		
-		
-		
-		btnDownload.setOnClickListener(new View.OnClickListener() {
+
+
+
+        attachmentLayout.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -382,4 +404,23 @@ public class SingleTeacherHomeworkActivity extends ChildContainerActivity {
 		super.onBackPressed();
 	}
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btnDefaulterReg:
+                defaulterRegistrationCall();
+                break;
+            case R.id.back_btn_home:
+                finish();
+                break;
+        }
+    }
+
+    private void defaulterRegistrationCall(){
+        Intent intent = new Intent(this, DefaulterRegistrationActivity.class);
+        intent.putExtra(AppConstant.KEY_HOMEWORK_ID, id);
+		intent.putExtra(AppConstant.KEY_REGISTERED, defaulter_registration);
+		intent.putExtra("list_pos", list_pos);
+        this.startActivity(intent);
+    }
 }

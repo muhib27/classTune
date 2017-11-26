@@ -96,14 +96,14 @@ public class LoginActivity extends SocialBaseActivity implements
         });
 
 
-        btnRegister = (Button)this.findViewById(R.id.btnRegister);
-        btnRegister.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, UserSelectionActivity.class);
-                startActivityForResult(intent, REQ_LANG);
-            }
-        });
+//        btnRegister = (Button)this.findViewById(R.id.btnRegister);
+//        btnRegister.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(LoginActivity.this, UserSelectionActivity.class);
+//                startActivityForResult(intent, REQ_LANG);
+//            }
+//        });
 
         localIdentifier = Locale.getDefault().getLanguage();
 
@@ -170,10 +170,13 @@ public class LoginActivity extends SocialBaseActivity implements
         password = etPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(username)) {
-
+            etUserName.setFocusable(true);
             etUserName.setError(getString(R.string.java_loginactivity_enter_user_name));
+            etUserName.requestFocus();
         } else if (TextUtils.isEmpty(password)) {
+            etPassword.setFocusable(true);
             etPassword.setError(getString(R.string.java_loginactivity_enter_password));
+            etPassword.requestFocus();
         } else {
             if (ContextCompat.checkSelfPermission(LoginActivity.this,
                     Manifest.permission.READ_PHONE_STATE)

@@ -8,8 +8,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -109,6 +111,8 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	private CheckBox lastSelectedButton = null;
 	private List<StudentAssociated> listStudent;
 	private List<String> listStudentIds;
+
+	public  static final int PERMISSIONS_MULTIPLE_REQUEST = 123;
 
 	@Override
 	public void onResume() {
@@ -479,7 +483,8 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 		createHomeworkTypeCats();
 
 		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			isStoragePermissionGranted();
+			//isStoragePermissionGranted();
+			checkPermission();
 		}
 
 		isSubjectLayoutClicked = false;
@@ -1278,6 +1283,9 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 
+//                        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
+//                                == PackageManager.PERMISSION_DENIED)
+
 						listFiles.clear();
 						FilePickerBuilder.getInstance().setMaxCount(1)
 								.setSelectedFiles(listFiles)
@@ -1338,37 +1346,37 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 	};
 
 
-	public boolean isStoragePermissionGranted() {
-		if (Build.VERSION.SDK_INT >= 23) {
-			if (getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-					== PackageManager.PERMISSION_GRANTED) {
-				Log.v("PERMISSION","Permission is granted");
-				return true;
-			} else {
+//	public boolean isStoragePermissionGranted() {
+//		if (Build.VERSION.SDK_INT >= 23) {
+//			if (getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE )
+//					== PackageManager.PERMISSION_GRANTED  && getActivity().checkSelfPermission(Manifest.permission.CAMERA )== PackageManager.PERMISSION_GRANTED) {
+//				Log.v("PERMISSION","Permission is granted");
+//				return true;
+//			} else {
+//
+//				Log.v("PERMISSION","Permission is revoked");
+//				ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 1);
+//				return false;
+//			}
+//		}
+//		else { //permission is automatically granted on sdk<23 upon installation
+//			Log.v("PERMISSION","Permission is granted");
+//			return true;
+//		}
+//
+//
+//	}
 
-				Log.v("PERMISSION","Permission is revoked");
-				ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-				return false;
-			}
-		}
-		else { //permission is automatically granted on sdk<23 upon installation
-			Log.v("PERMISSION","Permission is granted");
-			return true;
-		}
 
-
-	}
-
-
-	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-		if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
-			Log.v("PERMISSION","Permission: "+permissions[0]+ "was "+grantResults[0]);
-			//resume tasks needing this permission
-
-		}
-	}
+//	@Override
+//	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//		if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+//			Log.v("PERMISSION","Permission: "+permissions[0]+ "was "+grantResults[0]);
+//			//resume tasks needing this permission
+//
+//		}
+//	}
 
 	@Override
 	public void onAttachCallBack(int requestCode, int resultCode, Intent data) {
@@ -1476,4 +1484,45 @@ public class TeacherHomeWorkAddFragment extends Fragment implements
 
 		instance = null;
 	}
+
+	private void checkPermission() {
+		if (ContextCompat.checkSelfPermission(getActivity(),
+				Manifest.permission.READ_EXTERNAL_STORAGE) + ContextCompat
+				.checkSelfPermission(getActivity(),
+						Manifest.permission.CAMERA)
+				!= PackageManager.PERMISSION_GRANTED) {
+
+			if (ActivityCompat.shouldShowRequestPermissionRationale
+					(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) ||
+					ActivityCompat.shouldShowRequestPermissionRationale
+							(getActivity(), Manifest.permission.CAMERA)) {
+
+//
+			} else {
+				requestPermissions(
+						new String[]{Manifest.permission
+								.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA},
+						PERMISSIONS_MULTIPLE_REQUEST);
+			}
+		} else {
+			// write your logic code if permission already granted
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PERMISSIONS_MULTIPLE_REQUEST:
+                if (grantResults.length > 0) {
+                    boolean cameraPermission = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    boolean readExternalFile = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+
+                    if (cameraPermission && readExternalFile) {
+                        // write your logic here
+                    }
+                    break;
+                }
+        }
+    }
 }

@@ -137,6 +137,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:textColor="@color/leave"
                     android:id="@+id/tv_forget_password"
                     android:visibility="visible"
                     android:layout_marginTop="10dp"
@@ -167,29 +168,31 @@
                     android:layout_weight="1">
 
 
-                    <TextView
-                        android:id="@+id/txtMember"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txt_dont_have_an_account"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="15sp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/txtMember"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/txt_dont_have_an_account"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:gravity="center"-->
+                        <!--android:textSize="15sp"-->
+                        <!--android:layout_alignParentTop="true"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_alignParentEnd="true" />-->
 
                     <RelativeLayout
                         android:layout_below="@+id/txtMember"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
                         <Button
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
                             android:id="@+id/btnChooseLanguage"
-                            android:layout_width="130dp"
+                            android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
@@ -199,20 +202,20 @@
                             android:textColor="@drawable/classtune_btn_user_selection_signin"
                             android:background="@drawable/classtune_btn_background_user_selection_signin"/>
 
-                        <Button
-                            android:id="@+id/btnRegister"
-                            android:layout_width="130dp"
-                            android:layout_height="50dp"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:textSize="18sp"
-                            android:text="@string/txt_login_register"
-                            android:textStyle="bold"
-                            android:textColor="@drawable/classtune_btn_user_selection_signin"
-                            android:background="@drawable/classtune_btn_background_user_selection_signin"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true" />
+                        <!--<Button-->
+                            <!--android:id="@+id/btnRegister"-->
+                            <!--android:layout_width="130dp"-->
+                            <!--android:layout_height="50dp"-->
+                            <!--android:paddingLeft="20dp"-->
+                            <!--android:paddingRight="20dp"-->
+                            <!--android:textSize="18sp"-->
+                            <!--android:text="@string/txt_login_register"-->
+                            <!--android:textStyle="bold"-->
+                            <!--android:textColor="@drawable/classtune_btn_user_selection_signin"-->
+                            <!--android:background="@drawable/classtune_btn_background_user_selection_signin"-->
+                            <!--android:layout_alignParentBottom="true"-->
+                            <!--android:layout_alignParentRight="true"-->
+                            <!--android:layout_alignParentEnd="true" />-->
 
                     </RelativeLayout>
 
