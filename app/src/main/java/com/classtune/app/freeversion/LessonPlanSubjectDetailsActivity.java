@@ -424,7 +424,7 @@ public class LessonPlanSubjectDetailsActivity extends ChildContainerActivity{
                 holder.layoutRoot = (LinearLayout)convertView.findViewById(R.id.layoutRoot);
                 holder.txtDate = (TextView)convertView.findViewById(R.id.txtDate);
                 holder.txtTitle = (TextView)convertView.findViewById(R.id.txtTitle);
-
+                holder.attachment = (ImageView)convertView.findViewById(R.id.attachment);
 
                 convertView.setTag(holder);
             }else {
@@ -442,6 +442,10 @@ public class LessonPlanSubjectDetailsActivity extends ChildContainerActivity{
 
             holder.txtDate.setText(AppUtility.getDateString(listSubjectDetails.get(position).getPublishDate(), AppUtility.DATE_FORMAT_APP, AppUtility.DATE_FORMAT_SERVER));
             holder.txtTitle.setText(listSubjectDetails.get(position).getTitle());
+            if(listSubjectDetails.get(position).getAttachmentFileName()!=null && !listSubjectDetails.get(position).getAttachmentFileName().isEmpty())
+                holder.attachment.setVisibility(View.VISIBLE);
+            else
+                holder.attachment.setVisibility(View.INVISIBLE);
 
             return convertView;
         }
@@ -452,6 +456,7 @@ public class LessonPlanSubjectDetailsActivity extends ChildContainerActivity{
             LinearLayout layoutRoot;
             TextView txtDate;
             TextView txtTitle;
+            ImageView attachment;
 
         }
     }

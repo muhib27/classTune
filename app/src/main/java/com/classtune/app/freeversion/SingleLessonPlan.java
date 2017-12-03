@@ -60,7 +60,7 @@ public class SingleLessonPlan extends ChildContainerActivity {
 
     private LinearLayout layoutButtonHolder;
     private Button btnDownload;
-    private LinearLayout layoutDownloadHolder;
+    private LinearLayout attachment;
 
 
     @Override
@@ -119,8 +119,8 @@ public class SingleLessonPlan extends ChildContainerActivity {
             layoutButtonHolder.setVisibility(View.VISIBLE);
         }
 
-        this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
-        this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
+        //this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
+        this.attachment = (LinearLayout)this.findViewById(R.id.attachment);
 
     }
 
@@ -161,15 +161,15 @@ public class SingleLessonPlan extends ChildContainerActivity {
 
         if(!TextUtils.isEmpty(data.getAttachmentFileName()))
         {
-            layoutDownloadHolder.setVisibility(View.VISIBLE);
+            attachment.setVisibility(View.VISIBLE);
         }
         else
         {
-            layoutDownloadHolder.setVisibility(View.GONE);
+            attachment.setVisibility(View.GONE);
         }
 
 
-        btnDownload.setOnClickListener(new View.OnClickListener() {
+        attachment.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

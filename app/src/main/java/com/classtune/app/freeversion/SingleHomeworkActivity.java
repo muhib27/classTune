@@ -75,6 +75,7 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
     private RelativeLayout layoutMessage;
     private LinearLayout layoutDataContainer;
 	private WebView webView;
+	private LinearLayout attachment;
 	
 	
 	@Override
@@ -138,12 +139,12 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 		this.tvDueDate = (TextView) this.findViewById(R.id.tv_teacher_homewrok_feed_date);
 		this.tvAssignDate = (TextView) this.findViewById(R.id.txtAssignDate);
 		this.section = (TextView) this.findViewById(R.id.tv_teavher_homework_feed_section);
-		this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
+		//this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
 		this.btnReminder = (CustomButton) this.findViewById(R.id.btn_reminder);
 		this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
 		this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
-		this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
-		this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
+		//this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
+		this.attachment = (LinearLayout)this.findViewById(R.id.attachment);
 
         layoutMessage = (RelativeLayout)this.findViewById(R.id.layoutMessage);
         layoutDataContainer = (LinearLayout)this.findViewById(R.id.layoutDataContainer);
@@ -161,23 +162,23 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 		
 		if ( data.getIsDone().equalsIgnoreCase(AppConstant.ACCEPTED) || 
 				data.getIsDone().equalsIgnoreCase(AppConstant.SUBMITTED)) {
-			btnDone.setImage(R.drawable.done_tap);
-			btnDone.setTitleColor(this.getResources().getColor(R.color.classtune_green_color));
+			//btnDone.setImage(R.drawable.done_tap);
+			//btnDone.setTitleColor(this.getResources().getColor(R.color.classtune_green_color));
 
-			btnDone.setEnabled(false);
+			//btnDone.setEnabled(false);
 		} else {
 
-			btnDone.setImage(R.drawable.done_normal);
-			btnDone.setTitleColor(this.getResources().getColor(R.color.gray_1));
+			//btnDone.setImage(R.drawable.done_normal);
+			//btnDone.setTitleColor(this.getResources().getColor(R.color.gray_1));
 
-			if (userHelper.getUser().getType() == UserTypeEnum.STUDENT) {
-				btnDone.setEnabled(true);
-			}
-			if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
-				btnDone.setEnabled(false);
-			}
-
-			btnDone.setTag( data.getId());
+//			if (userHelper.getUser().getType() == UserTypeEnum.STUDENT) {
+//				btnDone.setEnabled(true);
+//			}
+//			if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
+//				btnDone.setEnabled(false);
+//			}
+//
+//			btnDone.setTag( data.getId());
 		}
 		
 		
@@ -202,13 +203,13 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 		}
 		
 		
-		btnDone.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				processDoneButton((CustomButton) v);
-			}
-		});
+//		btnDone.setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				processDoneButton((CustomButton) v);
+//			}
+//		});
 		
 		btnReminder.setOnClickListener(new View.OnClickListener() {
 
@@ -240,16 +241,16 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 		
 		if(!TextUtils.isEmpty(data.getAttachmentFileName()))
 		{
-			layoutDownloadHolder.setVisibility(View.VISIBLE);
+			attachment.setVisibility(View.VISIBLE);
 		}
 		else
 		{
-			layoutDownloadHolder.setVisibility(View.GONE);
+			attachment.setVisibility(View.GONE);
 		}
-		
-		
-		
-		btnDownload.setOnClickListener(new View.OnClickListener() {
+
+
+
+		attachment.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -321,10 +322,10 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 							if (modelContainer.getStatus().getCode() == 200) {
 								data.setIsDone(AppConstant.ACCEPTED);
 
-								btnDone.setImage(R.drawable.done_tap);
-								btnDone.setTitleColor(SingleHomeworkActivity.this.getResources().getColor(R.color.classtune_green_color));
-
-								btnDone.setEnabled(false);
+//								btnDone.setImage(R.drawable.done_tap);
+//								btnDone.setTitleColor(SingleHomeworkActivity.this.getResources().getColor(R.color.classtune_green_color));
+//
+//								btnDone.setEnabled(false);
 
 							} else {
 								uiHelper.showMessage(getString(R.string.java_singlehomeworkactivity_error_in_operation));
@@ -365,11 +366,11 @@ public class SingleHomeworkActivity extends ChildContainerActivity {
 
 			if (modelContainer.getStatus().getCode() == 200) {
 				data.setIsDone(AppConstant.ACCEPTED);
-				
-				btnDone.setImage(R.drawable.done_tap);
-				btnDone.setTitleColor(SingleHomeworkActivity.this.getResources().getColor(R.color.classtune_green_color));
-
-				btnDone.setEnabled(false);
+//
+//				btnDone.setImage(R.drawable.done_tap);
+//				btnDone.setTitleColor(SingleHomeworkActivity.this.getResources().getColor(R.color.classtune_green_color));
+//
+//				btnDone.setEnabled(false);
 				
 			} else {
 				uiHelper.showMessage(getString(R.string.java_singlehomeworkactivity_error_in_operation));

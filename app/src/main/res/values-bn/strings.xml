@@ -1719,7 +1719,7 @@
     <string name="file_chooser_message">নিম্নোক্ত উৎস থেকে ফাইল পছন্দ করুন</string>
     <string name="file_chooser_type_photo">ছবি</string>
     <string name="file_chooser_type_doc">ডকুমেন্টস</string>
-    <string name="feed_cat_name_class_work">ক্লাস ওয়ার্ক</string>
+    <string name="feed_cat_name_class_work">ক্লাসওয়ার্ক</string>
     <string name="feed_cat_name_subject_attendance">সাবজেক্ট উপস্থিতি</string>
     <string name="subject_name">বিষয়ের নাম</string>
     <string name="select_specific_student">নির্দিষ্ট ছাত্র</string>

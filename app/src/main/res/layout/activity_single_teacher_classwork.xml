@@ -36,6 +36,7 @@
             android:orientation="vertical" >
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/tv_teacher_feed_subject_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -187,7 +188,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="vertical" >
 
@@ -208,23 +209,35 @@
 
             </WebView>
 
-
-
             <LinearLayout
-                android:id="@+id/layoutDownloadHolder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:visibility="gone" >
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/attachment"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/btn_download"
+                android:visibility="gone"
+                android:orientation="horizontal">
 
-                <Button
+                <ImageView
+                    android:layout_width="@dimen/margin_40dp"
+                    android:layout_height="@dimen/margin_40dp"
+                    android:padding="10dp"
+                    android:src="@drawable/attachment" />
+
+                <TextView
                     android:id="@+id/btnDownload"
                     android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_height="@dimen/margin_40dp"
+                    android:gravity="center"
+                    android:paddingRight="10dp"
                     android:text="@string/activity_single_homework_btn_download"
                     android:textColor="@android:color/white"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    android:background="@drawable/btn_download" />
+                    android:visibility="visible" />
             </LinearLayout>
 
             <LinearLayout

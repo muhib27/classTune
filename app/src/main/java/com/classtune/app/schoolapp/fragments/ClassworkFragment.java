@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -84,7 +85,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
     EfficientAdapter previousAdapter;
 
     EfficientAdapter currentAdapter;
-    PullToRefreshListView listviewHomework;
+    PullToRefreshListView listviewClasswork;
     String currentTabKey = "1";
 
     boolean hasNext = false;
@@ -193,10 +194,10 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
 
         initView(view);
 
-        listviewHomework = (PullToRefreshListView) view.findViewById(R.id.listView_homework);
+        listviewClasswork = (PullToRefreshListView) view.findViewById(R.id.listView_homework);
 
         // Set a listener to be invoked when the list should be refreshed.
-        listviewHomework.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+        listviewClasswork.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
                 String label = DateUtils.formatDateTime(getActivity(), System.currentTimeMillis(),
@@ -205,7 +206,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
                 // Update the LastUpdatedLabel
                 refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
 
-                PullToRefreshBase.Mode m = listviewHomework.getCurrentMode();
+                PullToRefreshBase.Mode m = listviewClasswork.getCurrentMode();
                 if (m == PullToRefreshBase.Mode.PULL_FROM_START) {
                     currentAdapter.setStopLoadingData(false);
                     currentAdapter.setRefreshing(true);
@@ -225,8 +226,8 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
             }
         });
 
-        listviewHomework.setMode(PullToRefreshBase.Mode.BOTH);
-        listviewHomework.setAdapter(currentAdapter);
+        listviewClasswork.setMode(PullToRefreshBase.Mode.BOTH);
+        listviewClasswork.setAdapter(currentAdapter);
 
 
         //layoutFilter = (LinearLayout)view.findViewById(R.id.layoutFilter);
@@ -560,7 +561,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
             currentAdapter.notifyDataSetChanged();
 
             // Call onRefreshComplete when the list has been refreshed.
-            listviewHomework.onRefreshComplete();
+            listviewClasswork.onRefreshComplete();
 
             super.onPostExecute(result);
         }
@@ -665,7 +666,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
     private void initListAction()
     {
 
-        listviewHomework.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listviewClasswork.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -831,7 +832,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
                                 // Call onRefreshComplete when the list has been refreshed.
                                 if(currentAdapter.getPageNumber() != 1 || currentAdapter.isRefreshing())
                                 {
-                                    listviewHomework.onRefreshComplete();
+                                    listviewClasswork.onRefreshComplete();
                                 }
 
                                 if(modelContainer.getData().getClassworkList().size() <= 0)
@@ -899,7 +900,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
                 // Call onRefreshComplete when the list has been refreshed.
                 if(currentAdapter.getPageNumber() != 1 || currentAdapter.isRefreshing())
                 {
-                    listviewHomework.onRefreshComplete();
+                    listviewClasswork.onRefreshComplete();
                 }
 
                 if(modelContainer.getData().getClassworkList().size() <= 0)
@@ -1096,8 +1097,9 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
             {
                 holder.bottmlay.setVisibility(View.GONE);
             }
+            */
 
-            if(!TextUtils.isEmpty(list.get(position).getAttachmentFileName()))
+            if(!TextUtils.isEmpty(list.get(position).getAttachment_file_name()))
             {
                 holder.txtAttachment.setVisibility(View.VISIBLE);
             }
@@ -1105,7 +1107,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
             {
                 holder.txtAttachment.setVisibility(View.GONE);
             }
-*/
+
             return convertView;
         }
 
@@ -1275,7 +1277,7 @@ public class ClassworkFragment extends Fragment implements View.OnClickListener,
         currentAdapter = previousAdapter;
         type = 3;
 
-        listviewHomework.setAdapter(currentAdapter);
+        listviewClasswork.setAdapter(currentAdapter);
 
         HashMap<String,String> params = new HashMap<>();
 

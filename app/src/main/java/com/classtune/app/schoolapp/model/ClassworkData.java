@@ -67,6 +67,10 @@ public class ClassworkData {
         return subjects_icon;
     }
 
+    public void setSubjects_icon(String subjects_icon) {
+        this.subjects_icon = subjects_icon;
+    }
+
     public String getAssign_date() {
         return assign_date;
     }

@@ -1033,7 +1033,7 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 				holder.tvDate = (TextView) convertView.findViewById(R.id.tv_teacher_homewrok_feed_date);
 				holder.tvLesson = (TextView) convertView.findViewById(R.id.tv_homework_content);
 				holder.section = (TextView) convertView.findViewById(R.id.tv_teavher_homework_feed_section);
-				holder.btnDone = (CustomButton) convertView.findViewById(R.id.btn_done);
+				//holder.btnDone = (CustomButton) convertView.findViewById(R.id.btn_done);
 				holder.ivSubjectIcon = (ImageView) convertView.findViewById(R.id.imgViewCategoryMenuIcon);
 
 				holder.bottmlay = (LinearLayout)convertView.findViewById(R.id.bottmlay);
@@ -1070,13 +1070,13 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 			}
 
 
-			holder.btnDone.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					processDoneButton(i, (CustomButton) v);
-				}
-			});
+//			holder.btnDone.setOnClickListener(new OnClickListener() {
+//
+//				@Override
+//				public void onClick(View v) {
+//					processDoneButton(i, (CustomButton) v);
+//				}
+//			});
 
 			holder.btnReminder = (CustomButton) convertView.findViewById(R.id.btn_reminder);
 
@@ -1127,26 +1127,26 @@ public class HomeworkFragment extends Fragment implements OnClickListener,UserAu
 			holder.tvLesson.setText(list.get(position).getName());
 			holder.section.setText(list.get(position).getTeacherName());
 			holder.ivSubjectIcon.setImageResource(AppUtility.getImageResourceId(list.get(position).getSubject_icon_name(), getActivity()));
-			if ( list.get(position).getIsDone().equalsIgnoreCase(AppConstant.ACCEPTED) ||
-					list.get(position).getIsDone().equalsIgnoreCase(AppConstant.SUBMITTED)) {
-				holder.btnDone.setImage(R.drawable.done_tap);
-				holder.btnDone.setTitleColor(HomeworkFragment.this.getActivity().getResources().getColor(R.color.classtune_green_color));
-
-				holder.btnDone.setEnabled(false);
-			} else {
-
-				holder.btnDone.setImage(R.drawable.done_normal);
-				holder.btnDone.setTitleColor(HomeworkFragment.this.getActivity().getResources().getColor(R.color.gray_1));
-
-				if (userHelper.getUser().getType() == UserTypeEnum.STUDENT) {
-					holder.btnDone.setEnabled(true);
-				}
-				if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
-					holder.btnDone.setEnabled(false);
-				}
-
-				holder.btnDone.setTag( list.get(position).getId());
-			}
+//			if ( list.get(position).getIsDone().equalsIgnoreCase(AppConstant.ACCEPTED) ||
+//					list.get(position).getIsDone().equalsIgnoreCase(AppConstant.SUBMITTED)) {
+//				holder.btnDone.setImage(R.drawable.done_tap);
+//				holder.btnDone.setTitleColor(HomeworkFragment.this.getActivity().getResources().getColor(R.color.classtune_green_color));
+//
+//				holder.btnDone.setEnabled(false);
+//			} else {
+//
+//				holder.btnDone.setImage(R.drawable.done_normal);
+//				holder.btnDone.setTitleColor(HomeworkFragment.this.getActivity().getResources().getColor(R.color.gray_1));
+//
+//				if (userHelper.getUser().getType() == UserTypeEnum.STUDENT) {
+//					holder.btnDone.setEnabled(true);
+//				}
+//				if (userHelper.getUser().getType() == UserTypeEnum.PARENTS) {
+//					holder.btnDone.setEnabled(false);
+//				}
+//
+//				holder.btnDone.setTag( list.get(position).getId());
+//			}
 
 
 			String[] parts2 =  list.get(position).getAssign_date().split(" ");

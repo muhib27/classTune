@@ -134,7 +134,11 @@ public class TeacherHomeWorkFeedFragment extends Fragment implements UserAuthLis
     @Override
     public void onResume() {
         super.onResume();
-        setUpList();
+		if(adapter.getCount()==0){
+			setUpList();
+			loadDataInToList();
+		}
+		adapter.notifyDataSetChanged();
     }
 
     private void initListAction()

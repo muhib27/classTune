@@ -13,6 +13,9 @@ public class LessonPlanSubjectDetails {
     @SerializedName("title")
     private String title;
 
+    @SerializedName("attachment_file_name")
+    private String attachmentFileName;
+
     public String getPublishDate() {
         return publishDate;
     }
@@ -40,4 +43,11 @@ public class LessonPlanSubjectDetails {
     @SerializedName("publish_date")
     private String publishDate;
 
+    public String getAttachmentFileName() {
+        return attachmentFileName;
+    }
+
+    public void setAttachmentFileName(String attachmentFileName) {
+        this.attachmentFileName = attachmentFileName;
+    }
 }

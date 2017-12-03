@@ -43,6 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="English"
+                android:textStyle="bold"
                 android:textColor="@color/black" />
 
             <LinearLayout
@@ -122,7 +123,7 @@
             android:layout_margin="10dip"
             android:textColor="@color/black"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="italic" />
+            android:textStyle="normal" />
 
     </LinearLayout>
 

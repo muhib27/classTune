@@ -71,6 +71,7 @@ public class SingleTeacherClassworkActivity extends ChildContainerActivity {
     private Button btnEdit;
     private static final int REQUEST_EDIT_HOMEWORK = 56;
     private WebView webView;
+    private LinearLayout attachment;
 
 
 
@@ -112,11 +113,12 @@ public class SingleTeacherClassworkActivity extends ChildContainerActivity {
         //this.btnDone = (CustomButton) this.findViewById(R.id.btn_done);
         this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
         this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
-        this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
-        this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
+//        this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
+//        this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
 
         this.layoutHorizontalBar = (LinearLayout)this.findViewById(R.id.layoutHorizontalBar);
         this.btnEdit = (Button)this.findViewById(R.id.btnEdit);
+        this.attachment = (LinearLayout)this.findViewById(R.id.attachment);
 
     }
 
@@ -161,16 +163,16 @@ public class SingleTeacherClassworkActivity extends ChildContainerActivity {
 
         if(!TextUtils.isEmpty(data.getAttachment_file_name()))
         {
-            layoutDownloadHolder.setVisibility(View.VISIBLE);
+            attachment.setVisibility(View.VISIBLE);
         }
         else
         {
-            layoutDownloadHolder.setVisibility(View.GONE);
+            attachment.setVisibility(View.GONE);
         }
 
 
 
-        btnDownload.setOnClickListener(new View.OnClickListener() {
+        attachment.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

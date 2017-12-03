@@ -23,6 +23,7 @@ import com.classtune.app.schoolapp.model.ClassworkData;
 import com.classtune.app.schoolapp.model.ModelContainer;
 import com.classtune.app.schoolapp.model.Wrapper;
 import com.classtune.app.schoolapp.utils.AppConstant;
+import com.classtune.app.schoolapp.utils.AppUtility;
 import com.classtune.app.schoolapp.utils.ApplicationSingleton;
 import com.classtune.app.schoolapp.utils.GsonParser;
 import com.classtune.app.schoolapp.utils.MyTagHandler;
@@ -139,7 +140,7 @@ public class SingleClassworkActivity extends ChildContainerActivity {
             //this.btnReminder = (CustomButton) this.findViewById(R.id.btn_reminder);
             this.ivSubjectIcon = (ImageView) this.findViewById(R.id.imgViewCategoryMenuIcon);
             this.bottmlay = (LinearLayout)this.findViewById(R.id.bottmlay);
-            this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
+            //this.btnDownload = (Button)this.findViewById(R.id.btnDownload);
             this.layoutDownloadHolder = (LinearLayout)this.findViewById(R.id.layoutDownloadHolder);
 
             layoutMessage = (RelativeLayout)this.findViewById(R.id.layoutMessage);
@@ -185,11 +186,11 @@ public class SingleClassworkActivity extends ChildContainerActivity {
             //this.tvDueDate.setText(part1);
             this.tvAssignDate.setText(data.getAssign_date());
 
-      /*      this.section.setText(getString(R.string.java_singlehomeworkactivity_by)+data.getTeacherName());
+         // this.section.setText(getString(R.string.java_singlehomeworkactivity_by)+data.getTeacherName());
 
-            this.ivSubjectIcon.setImageResource(AppUtility.getImageResourceId(data.getSubject_icon_name(), this));
+            this.ivSubjectIcon.setImageResource(AppUtility.getImageResourceId(data.getSubjects_icon(), this));
 
-            if(data.getTimeOver() == 0)
+   /*           if(data.getTimeOver() == 0)
             {
                 bottmlay.setVisibility(View.VISIBLE);
             }
@@ -246,7 +247,7 @@ public class SingleClassworkActivity extends ChildContainerActivity {
 
 
 
-            btnDownload.setOnClickListener(new View.OnClickListener() {
+            layoutDownloadHolder.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {

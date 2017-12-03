@@ -27,17 +27,29 @@
             android:layout_height="match_parent"
             android:background="@color/gray_2">
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
 
         <TextView
             android:id="@+id/txtTitle"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:padding="10dp"
             android:text="@string/lesson_plan_subject_details_activity_title"
             android:layout_gravity="center"
             android:textSize="14sp"
             android:textColor="@android:color/black"/>
+        <ImageView
+            android:padding="10dp"
+            android:id="@+id/attachment"
+            android:layout_width="@dimen/margin_40dp"
+            android:layout_height="@dimen/margin_40dp"
+            android:visibility="visible"
+            android:src="@drawable/attach_btn_tap"
+            android:tint="@color/classtune_green_color"/>
+        </LinearLayout>
 
 
     </LinearLayout>

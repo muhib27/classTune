@@ -1734,7 +1734,7 @@
     <string name="file_chooser_message">Choose file from sources below</string>
     <string name="file_chooser_type_photo">Photo</string>
     <string name="file_chooser_type_doc">Documents</string>
-    <string name="feed_cat_name_class_work">Class Work</string>
+    <string name="feed_cat_name_class_work">Classwork</string>
     <string name="feed_cat_name_subject_attendance">Subject Attendance</string>
     <string name="subject_name">Subject Name</string>
     <string name="birthday">Birthday</string>
